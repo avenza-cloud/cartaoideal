@@ -37,6 +37,25 @@ const RETAIL_BANK_SPREAD = 0.055;
 const DEFAULT_SPREAD = 0.045;
 const COOPERATIVE_SPREAD = 0.01;
 
+// Nomad Explorer earning tiers (investment in USD)
+const NOMAD_CARD_ID = "nomad-nomad-explorer-visa-infinite-aae26793ed";
+const NOMAD_TIERS: { minUsd: number; rate: number }[] = [
+  { minUsd: 5000, rate: 3.0 },
+  { minUsd: 2500, rate: 2.2 },
+  { minUsd: 1000, rate: 1.6 },
+];
+
+// Membership Rewards cards transfer 1:1 to premium international partners;
+// normal Livelo/Esfera programs require 2:1–3:1 for the same partners.
+// We replace (1 + transferBonus) with a higher multiplier for MR.
+const MR_TRANSFER_MULTIPLIER = 2.5; // ~38 % more value per point vs Livelo at 1.8×
+
+function isMembershipRewardsCard(card: CardFacet): boolean {
+  return (card.characteristics ?? []).some(
+    (x) => x.key === "loyalty_program" && /membership rewards/i.test(String(x.value))
+  );
+}
+
 function roundMoney(value: number): number {
   return Math.round(value * 100) / 100;
 }
@@ -499,6 +518,27 @@ export function scoreCardValue(
   const effectiveMonthlyFee = effectiveAnnualFee / 12;
 
   const pointsRates = parsePointsRates(card);
+
+  // Nomad Explorer: tiered earning rate based on user's USD investment balance
+  if (card.card_stable_id === NOMAD_CARD_ID) {
+    const investedUsd = (profile.avgInvestedBrl ?? 0) / assumptions.ptaxBrlPerUsd;
+    const tier = NOMAD_TIERS.find((t) => investedUsd >= t.minUsd);
+    const nomadRate = tier?.rate ?? 0;
+    pointsRates.domesticRate = nomadRate;
+    pointsRates.internationalRate = nomadRate;
+    pointsRates.fallbackRate = nomadRate;
+    if (!tier) {
+      pointsRates.note =
+        "Nomad Explorer: investimento abaixo de US$ 1.000 — pontuação não aplicada. A taxa sobe para 1,6–3,0 pts/USD com saldo a partir de US$ 1 mil.";
+    } else {
+      pointsRates.note = `Nomad Explorer: taxa ${nomadRate} pts/USD aplicada com US$${investedUsd.toFixed(0)} investidos (faixa ≥ US$${tier.minUsd.toLocaleString()}).`;
+    }
+  }
+
+  // Membership Rewards: 1:1 international parity — replace (1 + transferBonus) with MR_TRANSFER_MULTIPLIER
+  const mr = isMembershipRewardsCard(card);
+  const transferMultiplier = mr ? MR_TRANSFER_MULTIPLIER : 1 + assumptions.transferBonus;
+
   const internationalSpend = profile.monthlyInternationalSpendBrl ?? 0;
   const domesticSpend = Math.max(0, profile.avgMonthlySpendBrl - internationalSpend);
   const pointsRewardMonthly =
@@ -508,7 +548,7 @@ export function scoreCardValue(
             (pointsRates.domesticRate ?? 0)) +
           ((internationalSpend / assumptions.ptaxBrlPerUsd) *
             (pointsRates.internationalRate ?? pointsRates.domesticRate ?? 0))) *
-          (1 + assumptions.transferBonus) *
+          transferMultiplier *
           assumptions.mileValuePerThousandBrl) /
         1000
       : 0;
@@ -544,10 +584,15 @@ export function scoreCardValue(
       ? (effectiveMonthlyFee / grossRewardMonthly) * profile.avgMonthlySpendBrl
       : null;
 
+  const mrNote = mr
+    ? "Membership Rewards: paridade 1:1 com parceiros internacionais (Delta, Flying Blue, Hilton). Multiplicador ajustado vs. Livelo/Esfera."
+    : undefined;
+
   const dataQualityNotes = [
     ...eligibility.notes,
     ...feeNotes,
     ...(pointsRates.note ? [pointsRates.note] : []),
+    ...(mrNote ? [mrNote] : []),
     ...(cashlike.note ? [cashlike.note] : []),
     ...(spread.note ? [spread.note] : []),
   ];
