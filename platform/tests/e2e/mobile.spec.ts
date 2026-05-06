@@ -86,6 +86,42 @@ test.describe("mobile compatibility", () => {
     await expectNoHorizontalOverflow(page);
   });
 
+  test("chat history opens a saved conversation in a modal", async ({ page }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "credit-card-chat-history",
+        JSON.stringify([
+          {
+            id: "chat-test-history",
+            title: "Comparar cartões para meu perfil",
+            updatedAt: Date.now(),
+            messages: [
+              {
+                id: "message-user",
+                role: "user",
+                parts: [{ type: "text", text: "Compare cartões para meu perfil" }],
+              },
+              {
+                id: "message-assistant",
+                role: "assistant",
+                parts: [{ type: "text", text: "A melhor opção depende do seu gasto mensal." }],
+              },
+            ],
+          },
+        ])
+      );
+    });
+
+    await page.goto("/chat");
+    await page.getByTitle("Histórico").click();
+    await expect(page.getByText("Histórico")).toBeVisible();
+    await page.getByRole("button", { name: /Comparar cartões para meu perfil/ }).click();
+    await expect(page.getByRole("dialog")).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Comparar cartões para meu perfil" })).toBeVisible();
+    await expect(page.getByText("A melhor opção depende do seu gasto mensal.")).toBeVisible();
+    await expectNoHorizontalOverflow(page);
+  });
+
   test("chat sends the saved financial profile with each message", async ({ page }) => {
     const profile = {
       monthlySalaryBrl: 18000,

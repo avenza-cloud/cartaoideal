@@ -20,8 +20,15 @@ import {
   PromptInputActions,
   PromptInputSubmit,
 } from "@/components/ui/ai-prompt-box";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { useCompareStore, useProfileStore } from "@/lib/store";
-import { UserRound, LayoutList, CreditCard, ChevronDown, ChevronUp, ArrowUpRight, Check, Plus } from "lucide-react";
+import { UserRound, LayoutList, CreditCard, ChevronDown, ChevronUp, ArrowUpRight, Check, Plus, History } from "lucide-react";
 import Link from "next/link";
 import type { UIMessage } from "ai";
 import { cn } from "@/lib/utils";
@@ -29,6 +36,16 @@ import { cn } from "@/lib/utils";
 interface ChatInterfaceProps {
   variant?: "full" | "hero";
   className?: string;
+}
+
+const CHAT_HISTORY_KEY = "credit-card-chat-history";
+const MAX_CHAT_HISTORY = 20;
+
+interface ChatHistoryItem {
+  id: string;
+  title: string;
+  updatedAt: number;
+  messages: UIMessage[];
 }
 
 /* ─── Tool artifact types ─── */
@@ -77,6 +94,109 @@ function feeLabel(anuidade: number | string) {
   if (typeof anuidade === "number")
     return `R$${anuidade.toLocaleString("pt-BR")}/ano`;
   return String(anuidade);
+}
+
+function messageText(message: UIMessage) {
+  return message.parts
+    .filter(isTextUIPart)
+    .map((part) => part.text)
+    .join(" ")
+    .trim();
+}
+
+function historyTitle(messages: UIMessage[]) {
+  const firstUser = messages.find((message) => message.role === "user");
+  const text = firstUser ? messageText(firstUser) : "Conversa";
+  return text.length > 54 ? `${text.slice(0, 51)}...` : text || "Conversa";
+}
+
+function historyGroupLabel(timestamp: number) {
+  const date = new Date(timestamp);
+  const today = new Date();
+  const yesterday = new Date();
+  yesterday.setDate(today.getDate() - 1);
+
+  if (date.toDateString() === today.toDateString()) return "Hoje";
+  if (date.toDateString() === yesterday.toDateString()) return "Ontem";
+  return date.toLocaleDateString("pt-BR", { day: "2-digit", month: "short" });
+}
+
+function readChatHistory(): ChatHistoryItem[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(CHAT_HISTORY_KEY) ?? "[]");
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .filter((item): item is ChatHistoryItem => {
+        return (
+          typeof item?.id === "string" &&
+          typeof item?.title === "string" &&
+          typeof item?.updatedAt === "number" &&
+          Array.isArray(item?.messages)
+        );
+      })
+      .slice(0, MAX_CHAT_HISTORY);
+  } catch {
+    return [];
+  }
+}
+
+function writeChatHistory(history: ChatHistoryItem[]) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(history.slice(0, MAX_CHAT_HISTORY)));
+}
+
+function groupedHistory(history: ChatHistoryItem[]) {
+  return history.reduce<Array<{ label: string; items: ChatHistoryItem[] }>>((groups, item) => {
+    const label = historyGroupLabel(item.updatedAt);
+    const group = groups.find((entry) => entry.label === label);
+    if (group) {
+      group.items.push(item);
+    } else {
+      groups.push({ label, items: [item] });
+    }
+    return groups;
+  }, []);
+}
+
+function ChatMessageBubble({ message }: { message: UIMessage }) {
+  return (
+    <Message
+      from={message.role === "user" ? "user" : "assistant"}
+      className={message.role === "user" ? "justify-end" : ""}
+    >
+      <MessageContent
+        className={
+          message.role === "user"
+            ? "max-w-[86%] rounded-2xl bg-muted px-3.5 py-2 sm:max-w-[78%]"
+            : "w-full"
+        }
+      >
+        {message.parts.map((part, i) => {
+          if (isTextUIPart(part)) {
+            return message.role === "user" ? (
+              <span key={i} className="text-sm">{part.text}</span>
+            ) : (
+              <MessageResponse key={i}>{part.text}</MessageResponse>
+            );
+          }
+          if (isToolUIPart(part)) {
+            const toolName = part.type.replace(/^tool-/, "");
+            const output = "output" in part ? part.output : undefined;
+            return (
+              <ToolArtifact
+                key={i}
+                toolName={toolName}
+                state={part.state as string}
+                output={output}
+              />
+            );
+          }
+          return null;
+        })}
+      </MessageContent>
+    </Message>
+  );
 }
 
 /* ─── Mini card chip used in list artifacts ─── */
@@ -423,10 +543,17 @@ function ToolArtifact({
 export function ChatInterface({ variant = "full", className }: ChatInterfaceProps) {
   const { profile, resetOnboarding } = useProfileStore();
   const profileRef = React.useRef(profile);
+  const conversationIdRef = React.useRef<string | null>(null);
+  const [history, setHistory] = React.useState<ChatHistoryItem[]>([]);
+  const [selectedHistory, setSelectedHistory] = React.useState<ChatHistoryItem | null>(null);
 
   React.useEffect(() => {
     profileRef.current = profile;
   }, [profile]);
+
+  React.useEffect(() => {
+    setHistory(readChatHistory());
+  }, []);
 
   const { messages, sendMessage, status, stop } = useChat({
     transport: new DefaultChatTransport({
@@ -440,6 +567,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
 
   function handleSubmit(text: string) {
     if (!text.trim()) return;
+    conversationIdRef.current ??= `chat-${Date.now()}`;
     sendMessage(
       { text },
       {
@@ -450,6 +578,26 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
     );
     setExpanded(false);
   }
+
+  React.useEffect(() => {
+    if (isStreaming || messages.length < 2 || !conversationIdRef.current) return;
+
+    const nextItem: ChatHistoryItem = {
+      id: conversationIdRef.current,
+      title: historyTitle(messages as UIMessage[]),
+      updatedAt: Date.now(),
+      messages: messages as UIMessage[],
+    };
+
+    setHistory((current) => {
+      const next = [
+        nextItem,
+        ...current.filter((item) => item.id !== nextItem.id),
+      ].slice(0, MAX_CHAT_HISTORY);
+      writeChatHistory(next);
+      return next;
+    });
+  }, [isStreaming, messages]);
 
   const visibleMessages =
     expanded || messages.length <= 2 ? messages : messages.slice(-2);
@@ -522,42 +670,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
           )}
 
           {(visibleMessages as UIMessage[]).map((message) => (
-            <Message
-              key={message.id}
-              from={message.role === "user" ? "user" : "assistant"}
-              className={message.role === "user" ? "justify-end" : ""}
-            >
-              <MessageContent
-                className={
-                  message.role === "user"
-                    ? "max-w-[86%] rounded-2xl bg-muted px-3.5 py-2 sm:max-w-[78%]"
-                    : "w-full"
-                }
-              >
-                {message.parts.map((part, i) => {
-                  if (isTextUIPart(part)) {
-                    return message.role === "user" ? (
-                      <span key={i} className="text-sm">{part.text}</span>
-                    ) : (
-                      <MessageResponse key={i}>{part.text}</MessageResponse>
-                    );
-                  }
-                  if (isToolUIPart(part)) {
-                    const toolName = part.type.replace(/^tool-/, "");
-                    const output = "output" in part ? part.output : undefined;
-                    return (
-                      <ToolArtifact
-                        key={i}
-                        toolName={toolName}
-                        state={part.state as string}
-                        output={output}
-                      />
-                    );
-                  }
-                  return null;
-                })}
-              </MessageContent>
-            </Message>
+            <ChatMessageBubble key={message.id} message={message} />
           ))}
 
           {expanded && messages.length > 2 && (
@@ -585,12 +698,39 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
             onProfile={resetOnboarding}
             profileSet={!!profile}
             suggestion={comparisonSuggestion}
+            history={history}
+            onOpenHistory={setSelectedHistory}
           />
           <p className="mt-1.5 text-center text-[10px] text-muted-foreground/40">
             Dados podem conter imprecisões. Confirme com o emissor.
           </p>
         </div>
       </div>
+
+      <Dialog open={!!selectedHistory} onOpenChange={(open) => !open && setSelectedHistory(null)}>
+        <DialogContent className="h-[min(760px,88vh)] max-w-[min(920px,calc(100vw-1rem))] grid-rows-[auto_1fr] gap-3 overflow-hidden p-4 sm:max-w-3xl">
+          <DialogHeader className="pr-8">
+            <DialogTitle>{selectedHistory?.title ?? "Conversa"}</DialogTitle>
+            <DialogDescription>
+              {selectedHistory
+                ? new Date(selectedHistory.updatedAt).toLocaleString("pt-BR", {
+                    day: "2-digit",
+                    month: "short",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  })
+                : null}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="min-h-0 overflow-y-auto rounded-lg border bg-background/45 px-3 py-4">
+            <div className="mx-auto max-w-2xl space-y-3">
+              {selectedHistory?.messages.map((message) => (
+                <ChatMessageBubble key={message.id} message={message} />
+              ))}
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </motion.div>
   );
 }
@@ -603,6 +743,8 @@ function ChatPromptBox({
   onProfile,
   profileSet,
   suggestion,
+  history,
+  onOpenHistory,
 }: {
   isLoading: boolean;
   onSubmit: (text: string) => void;
@@ -610,12 +752,17 @@ function ChatPromptBox({
   onProfile: () => void;
   profileSet: boolean;
   suggestion?: string | null;
+  history: ChatHistoryItem[];
+  onOpenHistory: (item: ChatHistoryItem) => void;
 }) {
   const [value, setValue] = React.useState("");
+  const [historyOpen, setHistoryOpen] = React.useState(false);
+  const groups = React.useMemo(() => groupedHistory(history), [history]);
 
   function handleSubmit() {
     onSubmit(value);
     setValue("");
+    setHistoryOpen(false);
   }
 
   return (
@@ -653,7 +800,61 @@ function ChatPromptBox({
             </ActionButton>
           </Link>
         </div>
-        <PromptInputSubmit onStop={onStop} />
+        <div className="relative flex items-center gap-1.5">
+          {historyOpen && (
+            <div className="absolute bottom-10 right-0 z-20 w-72 max-w-[calc(100vw-2.5rem)] rounded-xl border bg-popover p-2 text-popover-foreground shadow-xl">
+              <div className="mb-1 flex items-center justify-between px-1.5">
+                <p className="text-xs font-medium">Histórico</p>
+                <p className="text-[10px] text-muted-foreground">{history.length}</p>
+              </div>
+              {history.length ? (
+                <div className="max-h-72 overflow-y-auto pr-1">
+                  {groups.map((group) => (
+                    <div key={group.label} className="mb-2 last:mb-0">
+                      <p className="px-1.5 py-1 text-[10px] font-medium uppercase text-muted-foreground">
+                        {group.label}
+                      </p>
+                      <div className="space-y-1">
+                        {group.items.map((item) => (
+                          <button
+                            key={item.id}
+                            type="button"
+                            onClick={() => {
+                              onOpenHistory(item);
+                              setHistoryOpen(false);
+                            }}
+                            className="w-full rounded-lg px-2 py-2 text-left transition-colors hover:bg-muted/50"
+                          >
+                            <p className="line-clamp-1 text-xs font-medium">{item.title}</p>
+                            <p className="mt-0.5 text-[10px] text-muted-foreground">
+                              {item.messages.length} mensagens ·{" "}
+                              {new Date(item.updatedAt).toLocaleTimeString("pt-BR", {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })}
+                            </p>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="px-2 py-3 text-xs text-muted-foreground">
+                  As conversas aparecem aqui depois da primeira resposta.
+                </p>
+              )}
+            </div>
+          )}
+          <ActionButton
+            tooltip="Histórico"
+            onClick={() => setHistoryOpen((open) => !open)}
+            active={historyOpen}
+          >
+            <History className="h-4 w-4" />
+          </ActionButton>
+          <PromptInputSubmit onStop={onStop} />
+        </div>
       </PromptInputActions>
     </PromptInput>
   );
