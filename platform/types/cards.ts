@@ -331,4 +331,5 @@ export interface CardFilters {
   zeroFee?: boolean;
   maxFee?: number;
   search?: string;
+  feeWaiverByInvestment?: boolean;
 }

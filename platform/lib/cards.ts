@@ -81,6 +81,30 @@ export function resolveCardByName(query: string): CardFacet | undefined {
   return findCardsByName(query, 1)[0];
 }
 
+export function getCardFeeWaiver(card: CardFacet): {
+  texto: string;
+  viaInvestimento: boolean;
+  viaGasto: boolean;
+  isGratuito: boolean;
+} | null {
+  const char = card.characteristics?.find((x) => x.key === "fee_waiver");
+  if (!char || !char.value || char.value === "unknown") return null;
+  const texto = String(char.value);
+  const lower = texto.toLowerCase();
+  const isGratuito =
+    lower.startsWith("sem anuidade") ||
+    lower.startsWith("todos os clientes são isentos") ||
+    lower.startsWith("anuidade isenta para todos") ||
+    lower.startsWith("não há anuidade");
+  if (texto.startsWith("Não há") && !lower.includes("investimento")) return null;
+  return {
+    texto,
+    viaInvestimento: lower.includes("investimento") || lower.includes("investidos"),
+    viaGasto: lower.includes("gasto") || lower.includes("fatura") || lower.includes("compras"),
+    isGratuito,
+  };
+}
+
 export function filterCards(filters: CardFilters): CardFacet[] {
   let cards = ALL_CARDS;
 
@@ -124,6 +148,10 @@ export function filterCards(filters: CardFilters): CardFacet[] {
       if (typeof fee === "number") return fee <= max;
       return false;
     });
+  }
+
+  if (filters.feeWaiverByInvestment === true) {
+    cards = cards.filter((c) => getCardFeeWaiver(c)?.viaInvestimento === true);
   }
 
   if (filters.search) {

@@ -1,7 +1,7 @@
 import "server-only";
 import { tool } from "ai";
 import { z } from "zod";
-import { filterCards, getAllCards, getCardById, getCardsByIds, resolveCardByName } from "@/lib/cards";
+import { filterCards, getAllCards, getCardById, getCardsByIds, getCardFeeWaiver, resolveCardByName } from "@/lib/cards";
 import { scoreCardValue } from "@/lib/card-value";
 import type { CardFacet, CardFilters, MarketSegment, UserProfile } from "@/types/cards";
 
@@ -107,10 +107,14 @@ export function createCardTools(savedProfile?: UserProfile | null) {
       zeroFee: z.boolean().optional().describe("Somente cartões sem anuidade"),
       maxFee: z.number().optional().describe("Anuidade máxima em reais"),
       search: z.string().optional().describe("Busca por nome do cartão ou emissor"),
+      feeWaiverByInvestment: z
+        .boolean()
+        .optional()
+        .describe("Somente cartões cuja anuidade pode ser isenta mediante investimento"),
     }),
     execute: async (input) => {
       const filters: CardFilters = { ...input, segment: input.segment as MarketSegment };
-      const cards = filterCards(filters).slice(0, 8);
+      const cards = filterCards(filters).slice(0, 12);
       return cards.map((c) => ({
         id: c.card_stable_id,
         nome: c.display_name,
@@ -118,9 +122,11 @@ export function createCardTools(savedProfile?: UserProfile | null) {
         bandeira: c.network_primary,
         segmento: c.market_segment_guess,
         anuidade: c.facets_numeric_or_special.annual_fee_brl_best_estimate,
+        investimentoMinimo: c.facets_numeric_or_special.minimum_investment_brl_best_estimate,
         lounge: c.lounge_access,
         retornoFinanceiro: c.reward_return,
         pontos: c.facets_boolean.earn_points_or_miles,
+        isentaAnuidade: getCardFeeWaiver(c),
         fonte: c.source_label,
         cardArtUrl: c.media.card_art_url,
         altText: c.media.alt_text,
@@ -154,6 +160,7 @@ export function createCardTools(savedProfile?: UserProfile | null) {
         investimentoMinimo: card.facets_numeric_or_special.minimum_investment_brl_best_estimate,
         lounge: card.lounge_access,
         iof: card.facets_numeric_or_special.official_forex_or_iof_note,
+        isentaAnuidade: getCardFeeWaiver(card),
         retornoFinanceiro: card.reward_return,
         valorEstimado: {
           pontuacao: score.score0To100,
@@ -233,6 +240,7 @@ export function createCardTools(savedProfile?: UserProfile | null) {
         pontos: c.facets_boolean.earn_points_or_miles,
         seguroViagem: c.facets_boolean.mentions_travel_insurance,
         concierge: c.facets_boolean.mentions_concierge,
+        isentaAnuidade: getCardFeeWaiver(c),
         fonte: c.source_label,
         cardArtUrl: c.media.card_art_url,
         altText: c.media.alt_text,
@@ -325,4 +333,12 @@ Regras importantes:
 - Ao citar dados de cartões, mencione a fonte quando for relevante
 - Para regras contratuais, tarifas e elegibilidade final, recomende verificação direta com o emissor
 - Seja objetivo e direto nas comparações
-- Data de referência do catálogo: maio de 2026`;
+- Data de referência do catálogo: maio de 2026
+
+Isenção de anuidade:
+- Cada cartão retornado pelas ferramentas tem um campo \`isentaAnuidade\` com: \`{ texto, viaInvestimento, viaGasto, isGratuito }\`.
+- \`texto\` é o critério exato de isenção publicado pelo emissor (em português).
+- Quando o usuário perguntar sobre isenção de anuidade por investimento, chame filterCards com \`feeWaiverByInvestment: true\`. Nunca diga que não encontrou cartões sem usar esse filtro primeiro.
+- Alguns cartões têm \`anuidade = 0\` mas exigem investimento mínimo (\`investimentoMinimo\`) — são gratuitos condicionalmente: XP Visa Infinite (R$50k), XP Visa Infinite Categoria One (R$5k), RecargaPay Titan (R$30k). Comunique isso claramente.
+- Se o usuário informar quanto tem investido, leia os valores no campo \`texto\` de cada cartão e informe quais ficam gratuitos com esse valor.
+- Cenários de isenção que o sistema suporta: (1) isenção total via investimento, (2) isenção total via gasto, (3) isenção parcial/progressiva, (4) isenção por múltiplos critérios (ex.: investimento OU gasto). O campo \`viaInvestimento\` e \`viaGasto\` indicam quais se aplicam.`;
