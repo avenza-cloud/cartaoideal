@@ -23,6 +23,11 @@ const BOOLEAN_FILTERS = [
   { key: "zeroFee", label: "Sem anuidade" },
 ];
 
+const RANKING_MODES = [
+  { value: "profile", label: "Seu perfil", title: "Ordenar pelo seu perfil" },
+  { value: "general", label: "Geral", title: "Ordenar pelo ranking geral" },
+];
+
 export function CardFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -50,6 +55,35 @@ export function CardFilters() {
 
   const content = (
     <>
+      <div>
+        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          Ordenação
+        </p>
+        <div className="grid grid-cols-2 rounded-lg border bg-background/40 p-1">
+          {RANKING_MODES.map((mode) => {
+            const active = (searchParams.get("rank") ?? "profile") === mode.value;
+            return (
+              <button
+                key={mode.value}
+                type="button"
+                title={mode.title}
+                onClick={() => setParam("rank", mode.value === "profile" ? null : mode.value)}
+                className={cn(
+                  "rounded-md px-2 py-1.5 text-center text-xs transition-colors",
+                  active
+                    ? "bg-primary font-medium text-primary-foreground"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                )}
+              >
+                {mode.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <Separator />
+
       <div>
         <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Segmento

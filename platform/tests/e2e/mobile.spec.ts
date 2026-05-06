@@ -56,6 +56,46 @@ test.describe("mobile compatibility", () => {
     await expectNoHorizontalOverflow(page);
   });
 
+  test("catalog can switch between profile and general ranking", async ({ page }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "credit-card-profile",
+        JSON.stringify({
+          state: {
+            onboardingDone: true,
+            profile: {
+              monthlySalaryBrl: 22000,
+              avgMonthlySpendBrl: 7000,
+              avgInvestedBrl: 300000,
+              monthlyInternationalSpendBrl: 500,
+              travelFrequency: "frequent",
+              spendingCategories: [],
+              preferences: {
+                wantsLounge: true,
+                prefersCashback: false,
+                prefersPoints: true,
+                prefersInvestback: false,
+              },
+            },
+          },
+          version: 0,
+        })
+      );
+    });
+
+    await page.goto("/cartoes");
+    await expect(page.getByText("Classificado para o seu perfil")).toBeVisible();
+
+    const mobileFilters = page.locator("aside details").first();
+    if (await mobileFilters.isVisible()) {
+      await mobileFilters.locator("summary").click();
+    }
+    await page.getByTitle("Ordenar pelo ranking geral").filter({ visible: true }).click();
+    await expect(page).toHaveURL(/rank=general/);
+    await expect(page.getByText("Ranking geral")).toBeVisible();
+    await expectNoHorizontalOverflow(page);
+  });
+
   test("card detail bottom actions are tappable", async ({ page }) => {
     await page.goto(`/cartoes/${firstCardId}`);
     await expect(page.getByRole("heading").first()).toBeVisible();
