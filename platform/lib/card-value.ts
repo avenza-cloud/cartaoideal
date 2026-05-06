@@ -1,0 +1,677 @@
+import type {
+  CardCharacteristic,
+  CardFacet,
+  CardScoreMode,
+  CardValueAssumptions,
+  CardValueComponent,
+  CardValueScore,
+  UserProfile,
+} from "@/types/cards";
+
+export const DEFAULT_VALUE_ASSUMPTIONS: CardValueAssumptions = {
+  ptaxBrlPerUsd: 4.96,
+  mileValuePerThousandBrl: 17.5,
+  transferBonus: 0.8,
+  iof: 0.035,
+  loungeVisitValueBrl: 160,
+  travelInsuranceMonthlyValueBrl: 25,
+  conciergeMonthlyValueBrl: 15,
+};
+
+export const DEFAULT_SCORING_PROFILE: UserProfile = {
+  monthlySalaryBrl: 8000,
+  avgMonthlySpendBrl: 3000,
+  avgInvestedBrl: 0,
+  monthlyInternationalSpendBrl: 0,
+  travelFrequency: "occasional",
+  spendingCategories: [],
+  preferences: {
+    wantsLounge: false,
+    prefersCashback: false,
+    prefersPoints: true,
+    prefersInvestback: false,
+  },
+};
+
+const RETAIL_BANK_SPREAD = 0.055;
+const DEFAULT_SPREAD = 0.045;
+const COOPERATIVE_SPREAD = 0.01;
+
+function roundMoney(value: number): number {
+  return Math.round(value * 100) / 100;
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value));
+}
+
+function normalizeText(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
+function characteristicText(card: CardFacet): string {
+  return (card.characteristics ?? [])
+    .map((item) => `${item.label} ${String(item.value)} ${item.details ?? ""}`)
+    .join(" ");
+}
+
+function characteristicsByKey(card: CardFacet, key: string): CardCharacteristic[] {
+  return (card.characteristics ?? []).filter((item) => item.key === key);
+}
+
+function parsePercent(text: string): number | null {
+  const match = text.match(/(\d+(?:[,.]\d+)?)\s*%/);
+  if (!match) return null;
+  return Number(match[1].replace(",", ".")) / 100;
+}
+
+function parseBrlAmount(text: string): number | null {
+  const match = text.match(/R\$\s*([\d.]+(?:,\d+)?)/i);
+  if (!match) return null;
+  const parsed = Number(match[1].replace(/\./g, "").replace(",", "."));
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function parsePointsRate(card: CardFacet): number | null {
+  const candidates = [
+    card.reward_return.earning_summary,
+    ...characteristicsByKey(card, "earning_rate").map((item) => String(item.value)),
+    ...characteristicsByKey(card, "earning_detail").map((item) => String(item.value)),
+  ];
+  const rates = candidates.flatMap((text) =>
+    [
+      ...text.matchAll(
+        /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)(?:\s*(?:por|\/)\s*(?:d[oó]lar|usd)|\/usd)/gi
+      ),
+    ].map((match) => Number(match[1].replace(",", ".")))
+  );
+  const validRates = rates.filter((rate) => Number.isFinite(rate) && rate > 0);
+  return validRates.length > 0 ? Math.max(...validRates) : null;
+}
+
+function parsePointsRates(card: CardFacet): {
+  domesticRate: number | null;
+  internationalRate: number | null;
+  fallbackRate: number | null;
+  note?: string;
+} {
+  const candidates = [
+    card.reward_return.earning_summary,
+    ...characteristicsByKey(card, "earning_rate").map((item) => String(item.value)),
+    ...characteristicsByKey(card, "earning_detail").map((item) => String(item.value)),
+  ];
+
+  const domestic: number[] = [];
+  const international: number[] = [];
+  const generic: number[] = [];
+  const ignoredGenericCeilings: string[] = [];
+
+  for (const text of candidates) {
+    const normalized = normalizeText(text);
+    for (const match of text.matchAll(
+      /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)(?:\s*(?:por|\/)\s*(?:d[oó]lar|usd)|\/usd)/gi
+    )) {
+      const rate = Number(match[1].replace(",", "."));
+      if (!Number.isFinite(rate) || rate <= 0) continue;
+      if (/exterior|internacion/.test(normalized)) {
+        international.push(rate);
+      } else if (/brasil|nacion/.test(normalized)) {
+        domestic.push(rate);
+      } else if (/ate|até/.test(normalized)) {
+        ignoredGenericCeilings.push(String(text));
+      } else {
+        generic.push(rate);
+      }
+    }
+  }
+
+  const maxOrNull = (values: number[]) => (values.length > 0 ? Math.max(...values) : null);
+  const fallbackRate = maxOrNull(generic);
+  const note =
+    ignoredGenericCeilings.length > 0 && domestic.length === 0 && international.length === 0
+      ? "Pontuação informada apenas como teto ('até X pontos/USD'); retorno em pontos não aplicado sem regra efetiva estruturada."
+      : undefined;
+  return {
+    domesticRate: maxOrNull(domestic) ?? fallbackRate,
+    internationalRate: maxOrNull(international) ?? fallbackRate,
+    fallbackRate,
+    note,
+  };
+}
+
+function cashlikeTextCandidates(card: CardFacet): string[] {
+  return [
+    card.reward_return.earning_summary,
+    ...characteristicsByKey(card, "earning_rate").map(
+      (item) => `${item.value} ${item.details ?? ""}`
+    ),
+    ...characteristicsByKey(card, "earning_detail").map(
+      (item) => `${item.value} ${item.details ?? ""}`
+    ),
+  ].flatMap((text) => String(text).split(/[.;|]/));
+}
+
+function parseCashlikeRates(card: CardFacet): {
+  generalRate: number;
+  domesticRate: number | null;
+  internationalRate: number | null;
+  ignoredCategorySpecific: string[];
+  note?: string;
+} {
+  const rewardConditionText = normalizeText(
+    characteristicsByKey(card, "reward_condition")
+      .map((item) => `${item.value} ${item.details ?? ""}`)
+      .join(" ")
+  );
+  if (/meli\+|assinatura meli|assinante meli/.test(rewardConditionText)) {
+    return {
+      generalRate: 0,
+      domesticRate: null,
+      internationalRate: null,
+      ignoredCategorySpecific: [],
+      note: "Cashback exige assinatura Meli+; retorno não aplicado ao score sem esse dado no perfil.",
+    };
+  }
+
+  const rates = {
+    general: [] as number[],
+    domestic: [] as number[],
+    international: [] as number[],
+  };
+  const ignoredCategorySpecific: string[] = [];
+
+  for (const raw of cashlikeTextCandidates(card)) {
+    const text = normalizeText(raw);
+    if (!/(cashback|investback|credito na fatura)/.test(text)) continue;
+    const rate = parsePercent(text);
+    if (rate === null || rate <= 0 || rate > 0.08) continue;
+
+    const categorySpecific =
+      /(amazon|mercado livre|extra|pao de acucar|pão de açúcar|nu viagens|passagens?|hoteis|hot[eé]is|hotel|companhia aerea|vivo)/.test(
+        text
+      );
+    if (categorySpecific) {
+      ignoredCategorySpecific.push(String(raw).trim());
+      continue;
+    }
+
+    if (/exterior|internacion/.test(text)) {
+      rates.international.push(rate);
+      continue;
+    }
+    if (/brasil|nacion/.test(text)) {
+      rates.domestic.push(rate);
+      continue;
+    }
+    if (/por dolar|\/usd/.test(text) && /ate|até/.test(text) && rate >= 0.03) {
+      ignoredCategorySpecific.push(String(raw).trim());
+      continue;
+    }
+    rates.general.push(rate);
+  }
+
+  const maxOrNull = (values: number[]) => (values.length > 0 ? Math.max(...values) : null);
+  const generalRate = maxOrNull(rates.general) ?? 0;
+  const domesticRate = maxOrNull(rates.domestic);
+  const internationalRate = maxOrNull(rates.international);
+
+  if (generalRate > 0 || domesticRate !== null || internationalRate !== null) {
+    return {
+      generalRate,
+      domesticRate,
+      internationalRate,
+      ignoredCategorySpecific,
+      note:
+        ignoredCategorySpecific.length > 0
+          ? "Bônus/cashback específico de categoria não aplicado ao gasto geral."
+          : undefined,
+    };
+  }
+
+  if (card.reward_return.has_cashlike_return) {
+    if (ignoredCategorySpecific.length > 0) {
+      return {
+        generalRate: 0,
+        domesticRate: null,
+        internationalRate: null,
+        ignoredCategorySpecific,
+        note: "Cashback identificado apenas como bônus/categoria específica; não aplicado ao gasto geral.",
+      };
+    }
+    return {
+      generalRate: 0.01,
+      domesticRate: null,
+      internationalRate: null,
+      ignoredCategorySpecific,
+      note: "Taxa exata de cashback/investback não estruturada; usado retorno conservador de 1%.",
+    };
+  }
+  return { generalRate: 0, domesticRate: null, internationalRate: null, ignoredCategorySpecific };
+}
+
+function formatBrl(value: number): string {
+  return `R$${value.toLocaleString("pt-BR")}`;
+}
+
+function getMinimumInvestment(card: CardFacet): number | "unknown" {
+  return (
+    card.eligibility?.minimum_investment_brl_best_estimate ??
+    card.facets_numeric_or_special.minimum_investment_brl_best_estimate
+  );
+}
+
+function getMinimumIncome(card: CardFacet): number | "unknown" {
+  return (
+    card.eligibility?.minimum_income_brl_best_estimate ??
+    card.facets_numeric_or_special.minimum_income_brl_best_estimate ??
+    "unknown"
+  );
+}
+
+function evaluateEligibility(
+  card: CardFacet,
+  profile: UserProfile
+): { eligible: boolean; reasons: string[]; notes: string[] } {
+  const reasons: string[] = [];
+  const notes: string[] = [];
+  const minInvestment = getMinimumInvestment(card);
+  const minIncome = getMinimumIncome(card);
+  const availability = card.eligibility?.availability_status ?? "unknown";
+
+  if (typeof minInvestment === "number" && profile.avgInvestedBrl < minInvestment) {
+    reasons.push(`Exige investimento mínimo de ${formatBrl(minInvestment)}.`);
+  }
+
+  if (typeof minIncome === "number" && profile.monthlySalaryBrl < minIncome) {
+    reasons.push(`Exige renda mensal mínima de ${formatBrl(minIncome)}.`);
+  }
+
+  if (availability === "unavailable") {
+    reasons.push("Produto marcado como indisponível/descontinuado.");
+  } else if (availability === "invite_only") {
+    reasons.push("Produto marcado como disponível apenas por convite.");
+  } else if (availability === "private_or_segment_restricted") {
+    const hasStructuredGate = typeof minInvestment === "number" || typeof minIncome === "number";
+    const meetsStructuredGate =
+      (typeof minInvestment !== "number" || profile.avgInvestedBrl >= minInvestment) &&
+      (typeof minIncome !== "number" || profile.monthlySalaryBrl >= minIncome);
+    if (!hasStructuredGate || !meetsStructuredGate) {
+      reasons.push("Produto marcado como restrito a segmento/private banking.");
+    } else {
+      notes.push("Produto restrito a segmento/private banking; elegibilidade final pode depender de convite/análise do emissor.");
+    }
+  }
+
+  const blocksOnUnknown =
+    card.eligibility?.recommendation_blocking_unknowns === true &&
+    minInvestment === "unknown" &&
+    minIncome === "unknown";
+  if (blocksOnUnknown) {
+    reasons.push("Elegibilidade crítica não estruturada; removido de recomendações automáticas.");
+  }
+
+  if (card.eligibility?.requires_bank_account_claim === true) {
+    notes.push("Exige conta/correntista no emissor; o perfil atual não coleta esse dado.");
+  }
+
+  return { eligible: reasons.length === 0, reasons, notes };
+}
+
+function parseConditionalAmount(text: string, pattern: RegExp): number | null {
+  const match = pattern.exec(normalizeText(text));
+  if (!match?.[1]) return null;
+  const parsed = Number(match[1].replace(/\./g, "").replace(",", "."));
+  const suffix = match[2] ?? "";
+  const multiplier = /milh/.test(suffix) ? 1_000_000 : /mil/.test(suffix) ? 1_000 : 1;
+  return Number.isFinite(parsed) ? parsed * multiplier : null;
+}
+
+function parseSpendThreshold(text: string): number | null {
+  const value = parseConditionalAmount(
+    text,
+    /(?:gasto|fatura|compras|despesas)[^\d]*(?:mensal|mes|m[eê]s)?[^\d]*(\d[\d.]*,\d{2}|\d[\d.]*)(?:\s*(milhoes|milhao|mil))?/
+  );
+  return value === null ? null : value;
+}
+
+function parseInvestmentThreshold(text: string): number | null {
+  return parseConditionalAmount(
+    text,
+    /(?:invest|patrimonio|aplicac)[^\d]*(\d[\d.]*,\d{2}|\d[\d.]*)(?:\s*(milhoes|milhao|mil))?/
+  );
+}
+
+function computeEffectiveAnnualFee(
+  card: CardFacet,
+  profile: UserProfile
+): { annualFee: number; reason: string; notes: string[] } {
+  const rawFee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
+  if (rawFee === "unknown" || rawFee === "variable_pricing_claim") {
+    return {
+      annualFee: 0,
+      reason: "Anuidade não estruturada; tratada como R$0 com baixa confiança.",
+      notes: ["Anuidade não estruturada; tratada como R$0 no score e marcada como incerteza."],
+    };
+  }
+
+  const baseFee = typeof rawFee === "number" ? rawFee : 0;
+  if (baseFee <= 0) return { annualFee: 0, reason: "Sem anuidade estruturada.", notes: [] };
+
+  const notes: string[] = [];
+  let effectiveFee = baseFee;
+  const feeWaivers = characteristicsByKey(card, "fee_waiver");
+
+  for (const waiver of feeWaivers) {
+    const text = `${waiver.value} ${waiver.details ?? ""}`;
+    const normalized = normalizeText(text);
+    const spendThreshold = parseSpendThreshold(text);
+    const investmentThreshold = parseInvestmentThreshold(text);
+
+    const qualifiesBySpend =
+      spendThreshold !== null && profile.avgMonthlySpendBrl >= spendThreshold;
+    const qualifiesByInvestment =
+      investmentThreshold !== null && profile.avgInvestedBrl >= investmentThreshold;
+
+    const hasExplicitCondition = spendThreshold !== null || investmentThreshold !== null;
+
+    if (
+      hasExplicitCondition &&
+      (qualifiesBySpend || qualifiesByInvestment) &&
+      /100%|isenc|isento|zero/.test(normalized)
+    ) {
+      effectiveFee = 0;
+      notes.push("Isenção aplicada por regra estruturada de gasto ou investimento.");
+      break;
+    }
+
+    if (
+      hasExplicitCondition &&
+      (qualifiesBySpend || qualifiesByInvestment) &&
+      /50%|metade|parcial/.test(normalized)
+    ) {
+      effectiveFee = Math.min(effectiveFee, baseFee * 0.5);
+      notes.push("Desconto parcial de anuidade aplicado de forma conservadora.");
+    }
+  }
+
+  const reason =
+    effectiveFee < baseFee
+      ? `Anuidade efetiva de R$${effectiveFee.toLocaleString("pt-BR")} após regra estruturada.`
+      : "Sem regra de isenção suficientemente estruturada para este perfil; anuidade cheia aplicada.";
+
+  if (effectiveFee === baseFee && feeWaivers.length > 0) {
+    notes.push("Há menção de isenção/desconto, mas sem condição estruturada aplicável ao perfil.");
+  }
+
+  return { annualFee: effectiveFee, reason, notes };
+}
+
+function issuerSpreadFallback(card: CardFacet): number {
+  const issuer = normalizeText(card.issuer_raw);
+  if (/(sicredi|sicoob|unicred|uniprime|sisprime|cresol)/.test(issuer)) {
+    return COOPERATIVE_SPREAD;
+  }
+  if (/(bradesco|itau|itaú|santander|banco do brasil|caixa)/.test(issuer)) {
+    return RETAIL_BANK_SPREAD;
+  }
+  return DEFAULT_SPREAD;
+}
+
+function parseSpread(card: CardFacet): { spread: number; note?: string } {
+  const text = `${card.facets_numeric_or_special.official_forex_or_iof_note} ${characteristicText(card)}`;
+  const normalized = normalizeText(text);
+  const spreadText = normalized
+    .split(/[.;|]/)
+    .filter((part) => part.includes("spread") || part.includes("dolar"))
+    .join(" ");
+  const parsed = parsePercent(spreadText);
+  if (parsed !== null) return { spread: parsed };
+  return {
+    spread: issuerSpreadFallback(card),
+    note: "Spread não estruturado; usado fallback por tipo de emissor.",
+  };
+}
+
+function effectiveIofRate(card: CardFacet, assumptions: CardValueAssumptions): number {
+  const text = normalizeText(
+    `${card.facets_numeric_or_special.official_forex_or_iof_note} ${characteristicText(card)}`
+  );
+  if (/iof\s*zero|zero\s*iof|0\s*%\s*de\s*iof/.test(text)) return 0;
+  return assumptions.iof;
+}
+
+function estimateLoungeVisits(profile: UserProfile, card: CardFacet): number {
+  if (!card.lounge_access.has_lounge_access) return 0;
+  const baseVisits =
+    profile.travelFrequency === "frequent"
+      ? 2
+      : profile.travelFrequency === "occasional"
+        ? 0.5
+        : 0;
+  const requestedBoost = profile.preferences.wantsLounge ? 0.5 : 0;
+  const monthlyDemand = baseVisits + requestedBoost;
+  if (card.lounge_access.unlimited) return monthlyDemand;
+  if (typeof card.lounge_access.annual_visits === "number") {
+    return Math.min(monthlyDemand, card.lounge_access.annual_visits / 12);
+  }
+  return Math.min(monthlyDemand, 0.5);
+}
+
+function normalizeScore(netMonthly: number, eligible: boolean): number {
+  if (!eligible) return 0;
+  return Math.round(clamp(50 + netMonthly / 25, 0, 100));
+}
+
+function makeComponent(
+  key: string,
+  label: string,
+  valueBrl: number,
+  explanation: string,
+  dataQualityNote?: string
+): CardValueComponent {
+  return {
+    key,
+    label,
+    valueBrl: roundMoney(valueBrl),
+    normalizedContribution: clamp(valueBrl / 300, -1, 1),
+    explanation,
+    dataQualityNote,
+  };
+}
+
+export function scoreCardValue(
+  card: CardFacet,
+  profile: UserProfile = DEFAULT_SCORING_PROFILE,
+  mode: CardScoreMode = "profile",
+  assumptions: CardValueAssumptions = DEFAULT_VALUE_ASSUMPTIONS
+): CardValueScore {
+  const eligibility = evaluateEligibility(card, profile);
+  const eligibilityReasons = eligibility.reasons;
+
+  const {
+    annualFee: effectiveAnnualFee,
+    reason: feeAppliedReason,
+    notes: feeNotes,
+  } = computeEffectiveAnnualFee(card, profile);
+  const effectiveMonthlyFee = effectiveAnnualFee / 12;
+
+  const pointsRates = parsePointsRates(card);
+  const internationalSpend = profile.monthlyInternationalSpendBrl ?? 0;
+  const domesticSpend = Math.max(0, profile.avgMonthlySpendBrl - internationalSpend);
+  const pointsRewardMonthly =
+    card.facets_boolean.earn_points_or_miles &&
+    (pointsRates.domesticRate !== null || pointsRates.internationalRate !== null)
+      ? ((((domesticSpend / assumptions.ptaxBrlPerUsd) *
+            (pointsRates.domesticRate ?? 0)) +
+          ((internationalSpend / assumptions.ptaxBrlPerUsd) *
+            (pointsRates.internationalRate ?? pointsRates.domesticRate ?? 0))) *
+          (1 + assumptions.transferBonus) *
+          assumptions.mileValuePerThousandBrl) /
+        1000
+      : 0;
+
+  const cashlike = parseCashlikeRates(card);
+  const cashlikeDomesticRate = cashlike.domesticRate ?? cashlike.generalRate;
+  const cashlikeInternationalRate = cashlike.internationalRate ?? cashlike.generalRate;
+  const cashlikeRewardMonthly =
+    domesticSpend * cashlikeDomesticRate + internationalSpend * cashlikeInternationalRate;
+  const grossRewardMonthly = Math.max(pointsRewardMonthly, cashlikeRewardMonthly);
+  const rewardChoice =
+    pointsRewardMonthly >= cashlikeRewardMonthly ? "milhas/pontos" : "retorno financeiro";
+
+  const loungeValue =
+    estimateLoungeVisits(profile, card) * assumptions.loungeVisitValueBrl;
+  const insuranceValue = card.facets_boolean.mentions_travel_insurance
+    ? assumptions.travelInsuranceMonthlyValueBrl
+    : 0;
+  const conciergeValue = card.facets_boolean.mentions_concierge
+    ? assumptions.conciergeMonthlyValueBrl
+    : 0;
+  const intangibleMonthlyValue = loungeValue + insuranceValue + conciergeValue;
+
+  const spread = parseSpread(card);
+  const iofRate = effectiveIofRate(card, assumptions);
+  const internationalMonthlyCost =
+    internationalSpend * ((1 + spread.spread) * (1 + iofRate) - 1);
+
+  const netMonthlyValue =
+    grossRewardMonthly + intangibleMonthlyValue - effectiveMonthlyFee - internationalMonthlyCost;
+  const breakEvenMonthlySpend =
+    grossRewardMonthly > 0 && profile.avgMonthlySpendBrl > 0
+      ? (effectiveMonthlyFee / grossRewardMonthly) * profile.avgMonthlySpendBrl
+      : null;
+
+  const dataQualityNotes = [
+    ...eligibility.notes,
+    ...feeNotes,
+    ...(pointsRates.note ? [pointsRates.note] : []),
+    ...(cashlike.note ? [cashlike.note] : []),
+    ...(spread.note ? [spread.note] : []),
+  ];
+
+  const components = [
+    makeComponent(
+      "rewards",
+      "Retorno estimado",
+      grossRewardMonthly,
+      `Melhor cenário entre pontos/cashback: ${rewardChoice}.`,
+      pointsRates.note ??
+        (pointsRates.fallbackRate === null &&
+        cashlike.generalRate === 0 &&
+        cashlike.domesticRate === null &&
+        cashlike.internationalRate === null
+          ? "Sem taxa de retorno estruturada."
+          : undefined)
+    ),
+    makeComponent(
+      "intangibles",
+      "Benefícios valorizados",
+      intangibleMonthlyValue,
+      "Sala VIP, seguro viagem e concierge convertidos em custo evitado mensal."
+    ),
+    makeComponent(
+      "fee",
+      "Mensalidade efetiva",
+      -effectiveMonthlyFee,
+      "Anuidade dividida por 12 após isenções estruturadas."
+    ),
+    makeComponent(
+      "international",
+      "Custo internacional",
+      -internationalMonthlyCost,
+      "Custo adicional estimado de IOF e spread sobre gasto internacional.",
+      spread.note
+    ),
+  ];
+
+  const roundedNetMonthly = roundMoney(netMonthlyValue);
+  const netAnnualValue = netMonthlyValue * 12;
+  const feeBurden =
+    profile.avgMonthlySpendBrl > 0
+      ? effectiveAnnualFee / (profile.avgMonthlySpendBrl * 12)
+      : null;
+  const roiMultiple = effectiveAnnualFee > 0 ? netAnnualValue / effectiveAnnualFee : null;
+  const scoreDrivers = [
+    `Valor líquido: R$${roundMoney(netMonthlyValue).toLocaleString("pt-BR")}/mês`,
+    `Anuidade efetiva: R$${roundMoney(effectiveAnnualFee).toLocaleString("pt-BR")}/ano`,
+    `Retorno bruto: R$${roundMoney(grossRewardMonthly).toLocaleString("pt-BR")}/mês`,
+    `Benefícios valorizados: R$${roundMoney(intangibleMonthlyValue).toLocaleString("pt-BR")}/mês`,
+  ];
+  if (internationalMonthlyCost > 0) {
+    scoreDrivers.push(
+      `Custo internacional: -R$${roundMoney(internationalMonthlyCost).toLocaleString("pt-BR")}/mês`
+    );
+  }
+  const rankReason = !eligibility.eligible
+    ? `Bloqueado por elegibilidade: ${eligibilityReasons.join(" ")}`
+    : roundedNetMonthly >= 0
+      ? `Rankeado por valor líquido positivo de R$${roundedNetMonthly.toLocaleString("pt-BR")}/mês após anuidade e custos.`
+      : `Rankeado abaixo por destruir R$${Math.abs(roundedNetMonthly).toLocaleString("pt-BR")}/mês após anuidade e custos.`;
+  const verdict =
+    !eligibility.eligible
+      ? "Não elegível com o perfil informado."
+      : roundedNetMonthly > 100
+        ? "Forte candidato para este perfil."
+        : roundedNetMonthly >= 0
+          ? "Pode compensar, dependendo do uso real."
+          : "Tende a destruir valor neste perfil.";
+
+  return {
+    card,
+    mode,
+    eligible: eligibility.eligible,
+    eligibilityReasons,
+    score0To100: normalizeScore(netMonthlyValue, eligibility.eligible),
+    rankReason,
+    feeAppliedReason,
+    roiMultiple: roiMultiple === null ? null : roundMoney(roiMultiple),
+    feeBurdenPctOfAnnualSpend: feeBurden === null ? null : roundMoney(feeBurden * 100),
+    scoreDrivers,
+    netMonthlyValueBrl: roundedNetMonthly,
+    netAnnualValueBrl: roundMoney(netAnnualValue),
+    effectiveMonthlyFeeBrl: roundMoney(effectiveMonthlyFee),
+    effectiveAnnualFeeBrl: roundMoney(effectiveAnnualFee),
+    grossRewardMonthlyBrl: roundMoney(grossRewardMonthly),
+    pointsRewardMonthlyBrl: roundMoney(pointsRewardMonthly),
+    cashlikeRewardMonthlyBrl: roundMoney(cashlikeRewardMonthly),
+    intangibleMonthlyValueBrl: roundMoney(intangibleMonthlyValue),
+    internationalMonthlyCostBrl: roundMoney(internationalMonthlyCost),
+    breakEvenMonthlySpendBrl:
+      breakEvenMonthlySpend === null ? null : roundMoney(breakEvenMonthlySpend),
+    verdict,
+    components,
+    assumptions,
+    dataQualityNotes,
+  };
+}
+
+export function scoreCardValues(
+  cards: CardFacet[],
+  profile: UserProfile = DEFAULT_SCORING_PROFILE,
+  mode: CardScoreMode = "profile",
+  assumptions: CardValueAssumptions = DEFAULT_VALUE_ASSUMPTIONS
+): CardValueScore[] {
+  const scored = cards
+    .map((card) => scoreCardValue(card, profile, mode, assumptions))
+    .sort((a, b) => {
+      if (a.eligible !== b.eligible) return a.eligible ? -1 : 1;
+      return b.netMonthlyValueBrl - a.netMonthlyValueBrl || b.score0To100 - a.score0To100;
+    });
+
+  const eligibleScores = scored.filter((score) => score.eligible);
+  const topNet = eligibleScores[0]?.netMonthlyValueBrl ?? 0;
+  const bottomNet = eligibleScores.at(-1)?.netMonthlyValueBrl ?? topNet;
+  const spread = Math.max(1, topNet - bottomNet);
+
+  return scored.map((score) => {
+    if (!score.eligible) return { ...score, score0To100: 0 };
+    const relative = Math.round(30 + ((score.netMonthlyValueBrl - bottomNet) / spread) * 70);
+    return {
+      ...score,
+      score0To100: clamp(relative, 0, 100),
+    };
+  });
+}
