@@ -151,6 +151,14 @@
   :where(.grid > *, .flex > *) {
     min-width: 0;
   }
+
+  @supports (-webkit-touch-callout: none) {
+    input,
+    textarea,
+    select {
+      font-size: 16px !important;
+    }
+  }
 }
 
 @layer utilities {
