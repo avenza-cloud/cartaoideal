@@ -48,13 +48,13 @@ export function CardFilters() {
     [searchParams, setParam]
   );
 
-  return (
-    <aside className="w-full shrink-0 space-y-4 rounded-2xl border bg-card/50 p-3 md:sticky md:top-[73px] md:max-h-[calc(100vh-88px)] md:w-52 md:overflow-y-auto">
+  const content = (
+    <>
       <div>
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Segmento
         </p>
-        <div className="flex flex-col gap-1">
+        <div className="grid grid-cols-2 gap-1 md:flex md:flex-col">
           {SEGMENTS.map((s) => {
             const active = (searchParams.get("segment") ?? "") === s.value;
             return (
@@ -62,10 +62,10 @@ export function CardFilters() {
                 key={s.value}
                 onClick={() => setParam("segment", s.value || null)}
                 className={cn(
-                  "text-left text-sm px-2 py-1 rounded transition-colors",
+                  "rounded px-2 py-1.5 text-left text-sm transition-colors",
                   active
-                    ? "bg-primary text-primary-foreground font-medium"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    ? "bg-primary font-medium text-primary-foreground"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
               >
                 {s.label}
@@ -78,10 +78,10 @@ export function CardFilters() {
       <Separator />
 
       <div>
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Bandeira
         </p>
-        <div className="flex flex-col gap-1">
+        <div className="grid grid-cols-2 gap-1 md:flex md:flex-col">
           {NETWORKS.map((n) => {
             const active = searchParams.get("network") === n;
             return (
@@ -89,10 +89,10 @@ export function CardFilters() {
                 key={n}
                 onClick={() => setParam("network", active ? null : n)}
                 className={cn(
-                  "text-left text-sm px-2 py-1 rounded transition-colors",
+                  "rounded px-2 py-1.5 text-left text-sm transition-colors",
                   active
-                    ? "bg-primary text-primary-foreground font-medium"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    ? "bg-primary font-medium text-primary-foreground"
+                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
                 )}
               >
                 {n}
@@ -105,7 +105,7 @@ export function CardFilters() {
       <Separator />
 
       <div>
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Benefícios
         </p>
         <div className="flex flex-wrap gap-1.5">
@@ -115,7 +115,7 @@ export function CardFilters() {
               <Badge
                 key={f.key}
                 variant={active ? "default" : "outline"}
-                className="cursor-pointer text-xs"
+                className="min-h-7 cursor-pointer whitespace-normal text-xs"
                 onClick={() => toggle(f.key)}
               >
                 {f.label}
@@ -124,6 +124,16 @@ export function CardFilters() {
           })}
         </div>
       </div>
+    </>
+  );
+
+  return (
+    <aside className="w-full shrink-0 md:sticky md:top-[73px] md:max-h-[calc(100vh-88px)] md:w-52 md:overflow-y-auto">
+      <details className="rounded-xl border bg-card/50 p-3 md:hidden">
+        <summary className="cursor-pointer list-none text-sm font-medium">Filtros</summary>
+        <div className="mt-3 space-y-4">{content}</div>
+      </details>
+      <div className="hidden space-y-4 rounded-xl border bg-card/50 p-3 md:block">{content}</div>
     </aside>
   );
 }

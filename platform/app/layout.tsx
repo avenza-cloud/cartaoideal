@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -16,9 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cartões BR — Compare e Escolha o Melhor Cartão",
+  title: "Meu Cartão Ideal — Compare e escolha o melhor cartão",
   description:
     "Plataforma de comparação de cartões de crédito brasileiros. Encontre o cartão ideal para seu perfil de renda, gastos e benefícios.",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#171717",
 };
 
 export default function RootLayout({

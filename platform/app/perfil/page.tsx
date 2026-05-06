@@ -263,7 +263,7 @@ export default function PerfilPage() {
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
               Prefere receber
             </p>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid gap-2 min-[380px]:grid-cols-2">
               {REWARD_OPTIONS.map(({ value, label, desc }) => (
                 <button
                   key={value}
@@ -288,7 +288,7 @@ export default function PerfilPage() {
             <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
               Frequência de viagens
             </p>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid gap-2 min-[430px]:grid-cols-3">
               {TRAVEL_OPTIONS.map(({ value, label, desc }) => (
                 <button
                   key={value}

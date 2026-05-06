@@ -14,18 +14,18 @@ export function CompareBar() {
   if (ids.length === 0) return null;
 
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 border-t border-border bg-card/95 backdrop-blur px-4 py-3">
-      <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-sm text-muted-foreground font-mono">
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-card/95 px-3 py-3 pb-safe backdrop-blur sm:px-4">
+      <div className="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+        <div className="flex min-w-0 flex-wrap items-center gap-2">
+          <span className="font-mono text-sm text-muted-foreground">
             {ids.length}/4 selecionados
           </span>
           {ids.map((id) => (
             <div
               key={id}
-              className="inline-flex items-center gap-1 text-xs bg-muted rounded px-2 py-1"
+              className="inline-flex max-w-full items-center gap-1 rounded bg-muted px-2 py-1 text-xs"
             >
-              <span className="max-w-[170px] truncate text-[10px]">
+              <span className="max-w-[min(170px,52vw)] truncate text-[10px]">
                 {byId.get(id)?.name ?? `${id.slice(0, 20)}...`}
               </span>
               <button
@@ -37,7 +37,7 @@ export function CompareBar() {
             </div>
           ))}
         </div>
-        <div className="flex gap-2 shrink-0">
+        <div className="flex shrink-0 justify-end gap-2">
           <Button variant="ghost" size="sm" onClick={clear} className="text-xs">
             Limpar
           </Button>

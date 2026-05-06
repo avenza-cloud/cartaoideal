@@ -132,9 +132,9 @@ export function ProfileOnboarding() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-background">
+    <div className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-background">
       {/* Top bar */}
-      <div className="flex items-center justify-between px-6 pt-5 pb-4">
+      <div className="flex items-center justify-between px-4 pt-4 pb-3 sm:px-6 sm:pt-5 sm:pb-4">
         {step > 0 ? (
           <button
             onClick={goBack}
@@ -144,7 +144,7 @@ export function ProfileOnboarding() {
             Voltar
           </button>
         ) : (
-          <span className="text-sm font-semibold tracking-tight">Cartões BR</span>
+          <span className="text-sm font-semibold tracking-tight">Meu Cartão Ideal</span>
         )}
 
         <div className="flex items-center gap-4">
@@ -171,7 +171,7 @@ export function ProfileOnboarding() {
       </div>
 
       {/* Step content */}
-      <div className="flex flex-1 items-center justify-center px-6">
+      <div className="flex flex-1 items-center justify-center px-4 py-4 sm:px-6">
         <div className="w-full max-w-sm">
           <AnimatePresence mode="wait" custom={dir}>
             <motion.div
@@ -257,7 +257,7 @@ function StepWelcome({
 }) {
   return (
     <div className="space-y-10">
-      <h1 className="text-[2.75rem] font-semibold leading-none tracking-[-0.05em]">
+      <h1 className="text-4xl font-semibold leading-none sm:text-[2.75rem]">
         <motion.span
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
@@ -318,7 +318,7 @@ function StepInput({
   return (
     <div className="space-y-8">
       <div className="space-y-1.5">
-        <h2 className="text-3xl font-semibold tracking-[-0.04em]">{question}</h2>
+        <h2 className="text-2xl font-semibold sm:text-3xl">{question}</h2>
         <p className="text-sm text-muted-foreground">{hint}</p>
       </div>
 
@@ -332,7 +332,7 @@ function StepInput({
           onChange={(e) => onChange(formatMoneyInput(e.target.value))}
           placeholder="0"
           onKeyDown={(e) => e.key === "Enter" && !nextDisabled && onNext()}
-          className="w-full bg-transparent text-3xl font-semibold tracking-tight placeholder:text-muted-foreground/20 focus:outline-none"
+          className="w-full min-w-0 bg-transparent text-2xl font-semibold placeholder:text-muted-foreground/20 focus:outline-none sm:text-3xl"
         />
       </div>
 
@@ -377,7 +377,7 @@ function StepCurrentCard({
   return (
     <div className="space-y-7">
       <div className="space-y-1.5">
-        <h2 className="text-3xl font-semibold tracking-[-0.04em]">
+        <h2 className="text-2xl font-semibold sm:text-3xl">
           Qual cartão você usa hoje?
         </h2>
         <p className="text-sm text-muted-foreground">
@@ -399,7 +399,7 @@ function StepCurrentCard({
             Mais comuns
           </p>
         )}
-        <div className="max-h-[22rem] space-y-1.5 overflow-y-auto pr-1">
+        <div className="max-h-[min(22rem,42vh)] space-y-1.5 overflow-y-auto pr-1">
           {matches.map((card) => (
             <button
               key={card.id}
@@ -471,7 +471,7 @@ function StepPreferences({
   return (
     <div className="space-y-7">
       <div className="space-y-1.5">
-        <h2 className="text-3xl font-semibold tracking-[-0.04em]">O que você quer?</h2>
+        <h2 className="text-2xl font-semibold sm:text-3xl">O que você quer?</h2>
         <p className="text-sm text-muted-foreground">Pode selecionar mais de um.</p>
       </div>
 
@@ -490,7 +490,7 @@ function StepPreferences({
 
         <div>
           <p className="mb-2 text-xs text-muted-foreground">Viagens</p>
-          <div className="flex gap-1.5">
+          <div className="flex flex-wrap gap-1.5">
             {TRAVEL_OPTIONS.map(({ value, label }) => (
               <Chip
                 key={value}

@@ -118,13 +118,47 @@
 }
 
 @layer base {
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }
+
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
   html {
     @apply font-sans;
+  }
+
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+  }
+
+  :where(.grid > *, .flex > *) {
+    min-width: 0;
+  }
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+
+  .bottom-safe {
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
   }
 }

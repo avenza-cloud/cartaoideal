@@ -10,7 +10,7 @@ import { BarChart3, Coins, Sparkles } from "lucide-react";
 import { getAllCards } from "@/lib/cards";
 
 export const metadata = {
-  title: "Cartões BR — Compare os melhores cartões de crédito",
+  title: "Meu Cartão Ideal — Compare os melhores cartões de crédito",
   description:
     "Encontre o cartão de crédito ideal para o seu perfil. Compare anuidades, benefícios e recompensas de cartões brasileiros.",
 };
@@ -26,13 +26,13 @@ export default function HomePage() {
       <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_28rem)]">
         <AppHeader totalCards={totalCards} />
 
-        <main className="mx-auto max-w-7xl space-y-4 px-4 py-5 md:px-6">
+        <main className="mx-auto max-w-7xl space-y-4 px-4 pb-28 pt-5 md:px-6">
           {/* Hero text */}
           <section className="mx-auto max-w-3xl text-center">
             <Badge variant="outline" className="mb-3 font-mono text-[10px]">
               {totalCards} cartões estruturados
             </Badge>
-            <h1 className="mx-auto text-4xl font-semibold tracking-[-0.045em] md:text-5xl">
+            <h1 className="mx-auto text-4xl font-semibold md:text-5xl">
               Pergunte. Compare. Decida.
             </h1>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
@@ -88,7 +88,7 @@ function QuickTile({
   return (
     <Link
       href={href}
-      className="group flex items-center justify-between rounded-2xl border bg-card/60 px-4 py-3 transition-colors hover:bg-muted/40"
+      className="group flex items-center justify-between rounded-xl border bg-card/60 px-4 py-3 transition-colors hover:bg-muted/40"
     >
       <div>
         <p className="text-sm font-medium">{label}</p>

@@ -111,7 +111,7 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
           <p className="truncate font-medium leading-tight">{card.nome}</p>
           <p className="truncate text-[10px] text-muted-foreground">{card.emissor}</p>
         </div>
-        <div className="shrink-0 text-right">
+              <div className="hidden shrink-0 text-right min-[390px]:block">
           <p className="font-mono text-[10px] text-muted-foreground">{feeLabel(card.anuidade)}</p>
           {card.valorEstimado?.valorLiquidoMensal !== undefined ? (
             <p
@@ -481,7 +481,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
     <motion.div
       className={cn(
         "flex flex-col overflow-hidden",
-        !isHero && "h-[calc(100vh-120px)]",
+        !isHero && "min-h-[520px] flex-1 sm:h-[calc(100vh-120px)]",
         className
       )}
       animate={isHero ? { height: hasMessages ? 500 : "auto" } : {}}
@@ -518,7 +518,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
               <MessageContent
                 className={
                   message.role === "user"
-                    ? "max-w-[78%] rounded-2xl bg-muted px-3.5 py-2"
+                    ? "max-w-[86%] rounded-2xl bg-muted px-3.5 py-2 sm:max-w-[78%]"
                     : "w-full"
                 }
               >

@@ -24,7 +24,7 @@ export default async function CompararPage({ searchParams }: PageProps) {
   return (
     <div className="min-h-screen">
       <AppHeader />
-      <div className="border-b border-border px-6 py-5 flex items-center gap-4">
+      <div className="flex items-center gap-3 border-b border-border px-4 py-4 sm:gap-4 sm:px-6 sm:py-5">
         <Link
           href="/cartoes"
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
@@ -32,14 +32,14 @@ export default async function CompararPage({ searchParams }: PageProps) {
           <ArrowLeft className="h-4 w-4" />
           Cartões
         </Link>
-        <h1 className="text-xl font-semibold">Comparar Cartões</h1>
+        <h1 className="min-w-0 truncate text-xl font-semibold">Comparar Cartões</h1>
       </div>
 
-      <div className="mx-auto max-w-6xl space-y-4 px-4 py-5">
+      <div className="mx-auto max-w-6xl space-y-4 px-3 py-5 sm:px-4">
         <ProfileCompareSummary cards={cards} />
 
-        <div className="overflow-x-auto rounded-2xl border bg-card/35">
-        <table className="w-full text-sm border-collapse">
+        <div className="overflow-x-auto rounded-xl border bg-card/35">
+        <table className="w-full min-w-[620px] border-collapse text-sm">
           <thead>
             <tr>
               <th className="sticky left-0 z-10 w-44 bg-card px-3 py-3 text-left font-normal text-muted-foreground">

@@ -127,21 +127,21 @@ export function CardCard({ card, compact = false, valueScore }: CardCardProps) {
           )}
         </CardHeader>
         <CardContent className={compact ? "space-y-2 p-3 pt-0" : "pt-0 space-y-3"}>
-          <div className={`${compact ? "grid-cols-2" : ""} grid gap-1.5 text-[11px]`}>
-            <span className="inline-flex items-center gap-1 text-muted-foreground">
+          <div className={`${compact ? "min-[390px]:grid-cols-2" : ""} grid gap-1.5 text-[11px]`}>
+            <span className="inline-flex min-w-0 items-center gap-1 text-muted-foreground">
               <Plane className="h-3 w-3" /> {loungeSummary(card.lounge_access)}
             </span>
             {card.facets_boolean.earn_points_or_miles && (
-              <span className="inline-flex items-center gap-1 text-muted-foreground">
+              <span className="inline-flex min-w-0 items-center gap-1 text-muted-foreground">
                 <CreditCard className="h-3 w-3" /> Pontos
               </span>
             )}
             {hasReturn && (
-              <span className="inline-flex items-center gap-1 text-muted-foreground">
+              <span className="inline-flex min-w-0 items-center gap-1 text-muted-foreground">
                 <Coins className="h-3 w-3" /> {rewardReturnLabel(card.reward_return)}
               </span>
             )}
-            <span className="inline-flex items-center gap-1 text-muted-foreground/80">
+            <span className="inline-flex min-w-0 items-center gap-1 text-muted-foreground/80">
               <ExternalLink className="h-3 w-3" /> {card.source_label}
             </span>
           </div>

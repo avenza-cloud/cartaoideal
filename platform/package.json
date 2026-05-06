@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test:e2e": "playwright test",
+    "test:e2e:mobile": "playwright test --project=mobile-small --project=mobile-chrome --project=mobile-large"
   },
   "dependencies": {
     "@ai-sdk/gateway": "^3.0.110",
@@ -40,6 +42,7 @@
     "zustand": "^5.0.13"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

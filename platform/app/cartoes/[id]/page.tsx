@@ -98,7 +98,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
   return (
     <>
       <AppHeader totalCards={getAllCards().length} />
-      <main className="mx-auto max-w-4xl px-3 pb-28 pt-4 sm:px-4 sm:pt-6 md:pb-12">
+      <main className="mx-auto w-full max-w-4xl px-3 pb-28 pt-4 sm:px-4 sm:pt-6 md:pb-12">
         <Link
           href="/cartoes"
           className="mb-4 hidden items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
@@ -108,7 +108,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
         </Link>
 
         {/* ─── Hero ─── */}
-        <div className="overflow-hidden rounded-[2rem] border bg-card/70 shadow-[0_28px_100px_rgba(0,0,0,0.26)]">
+        <div className="overflow-hidden rounded-2xl border bg-card/70 shadow-[0_28px_100px_rgba(0,0,0,0.26)] sm:rounded-[2rem]">
           <div className="grid lg:grid-cols-[240px_minmax(0,1fr)]">
             {/* Card art */}
             <div className="relative flex min-h-44 items-center justify-center border-b bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.12),transparent_36%),linear-gradient(145deg,#09090b,#18181b_55%,#050505)] p-6 lg:border-b-0 lg:border-r">
@@ -147,7 +147,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
               </div>
 
               {/* 3 metrics — each datum appears ONLY here */}
-              <div className="mt-4 grid grid-cols-3 gap-px overflow-hidden rounded-xl border bg-border">
+              <div className="mt-4 grid grid-cols-1 gap-px overflow-hidden rounded-xl border bg-border min-[380px]:grid-cols-3">
                 <Metric label="Anuidade" value={formatFee(fee)} />
                 <Metric label="Retorno" value={returnType ?? "—"} />
                 <Metric label="Lounge" value={loungeSummaryLine} />
@@ -255,7 +255,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
           )}
 
           {/* Fonte */}
-          <div className="flex items-center gap-3 rounded-2xl border bg-card/30 px-4 py-3">
+          <div className="flex flex-col gap-3 rounded-2xl border bg-card/30 px-4 py-3 sm:flex-row sm:items-center">
             <div className="min-w-0 flex-1">
               <span className="text-xs font-medium">{card.source_label}</span>
               <span className="ml-2 text-[11px] text-muted-foreground/60">
@@ -266,7 +266,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
               href={card.source_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="shrink-0 flex items-center gap-1.5 rounded-lg border bg-background/40 px-2.5 py-1.5 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg border bg-background/40 px-2.5 py-1.5 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
             >
               <ExternalLink className="h-3 w-3" />
               Abrir
