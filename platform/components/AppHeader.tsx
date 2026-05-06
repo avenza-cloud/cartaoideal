@@ -28,11 +28,6 @@ export function AppHeader({ totalCards }: AppHeaderProps) {
           </div>
           <div className="min-w-0">
             <span className="block truncate text-sm font-semibold leading-none">Meu Cartão Ideal</span>
-            {totalCards !== undefined && (
-              <span className="font-mono text-[10px] text-muted-foreground">
-                {totalCards} cartões
-              </span>
-            )}
           </div>
         </Link>
 
