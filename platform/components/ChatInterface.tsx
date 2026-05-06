@@ -421,13 +421,18 @@ function ToolArtifact({
 
 /* ─── Main component ─── */
 export function ChatInterface({ variant = "full", className }: ChatInterfaceProps) {
+  const { profile, resetOnboarding } = useProfileStore();
+  const profileRef = React.useRef(profile);
+
+  React.useEffect(() => {
+    profileRef.current = profile;
+  }, [profile]);
+
   const { messages, sendMessage, status, stop } = useChat({
     transport: new DefaultChatTransport({
       api: "/api/chat",
-      body: () => ({ profile }),
     }),
   });
-  const { profile, resetOnboarding } = useProfileStore();
   const [bestCardName, setBestCardName] = useState<string | null>(null);
   const isHero = variant === "hero";
   const isStreaming = status === "streaming" || status === "submitted";
@@ -435,7 +440,14 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
 
   function handleSubmit(text: string) {
     if (!text.trim()) return;
-    sendMessage({ text });
+    sendMessage(
+      { text },
+      {
+        body: {
+          profile: profileRef.current,
+        },
+      }
+    );
     setExpanded(false);
   }
 

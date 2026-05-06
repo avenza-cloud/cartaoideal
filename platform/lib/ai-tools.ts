@@ -7,11 +7,11 @@ import type { CardFacet, CardFilters, MarketSegment, UserProfile } from "@/types
 
 function profileSchema() {
   return z.object({
-    monthlySalaryBrl: z.number(),
-    avgMonthlySpendBrl: z.number(),
-    avgInvestedBrl: z.number().default(0),
-    monthlyInternationalSpendBrl: z.number().default(0),
-    travelFrequency: z.enum(["none", "occasional", "frequent"]),
+    monthlySalaryBrl: z.number().optional(),
+    avgMonthlySpendBrl: z.number().optional(),
+    avgInvestedBrl: z.number().optional(),
+    monthlyInternationalSpendBrl: z.number().optional(),
+    travelFrequency: z.enum(["none", "occasional", "frequent"]).optional(),
     prefersCashback: z.boolean().default(false),
     prefersPoints: z.boolean().default(false),
     prefersInvestback: z.boolean().default(false),
@@ -19,19 +19,46 @@ function profileSchema() {
   });
 }
 
-function toUserProfile(input: z.infer<ReturnType<typeof profileSchema>>): UserProfile {
+function toToolProfile(profile: UserProfile) {
   return {
-    monthlySalaryBrl: input.monthlySalaryBrl,
-    avgMonthlySpendBrl: input.avgMonthlySpendBrl,
-    avgInvestedBrl: input.avgInvestedBrl,
-    monthlyInternationalSpendBrl: input.monthlyInternationalSpendBrl,
-    travelFrequency: input.travelFrequency,
+    monthlySalaryBrl: profile.monthlySalaryBrl,
+    avgMonthlySpendBrl: profile.avgMonthlySpendBrl,
+    avgInvestedBrl: profile.avgInvestedBrl,
+    monthlyInternationalSpendBrl: profile.monthlyInternationalSpendBrl ?? 0,
+    travelFrequency: profile.travelFrequency,
+    prefersCashback: profile.preferences.prefersCashback,
+    prefersPoints: profile.preferences.prefersPoints,
+    prefersInvestback: profile.preferences.prefersInvestback,
+    wantsLounge: profile.preferences.wantsLounge,
+  };
+}
+
+function toUserProfile(
+  input?: z.infer<ReturnType<typeof profileSchema>>,
+  savedProfile?: UserProfile | null
+): UserProfile | undefined {
+  if (!input && !savedProfile) return undefined;
+  const saved = savedProfile ? toToolProfile(savedProfile) : null;
+  const monthlySalaryBrl = saved?.monthlySalaryBrl ?? input?.monthlySalaryBrl;
+  const avgMonthlySpendBrl = saved?.avgMonthlySpendBrl ?? input?.avgMonthlySpendBrl;
+
+  if (monthlySalaryBrl === undefined || avgMonthlySpendBrl === undefined) {
+    return undefined;
+  }
+
+  return {
+    monthlySalaryBrl,
+    avgMonthlySpendBrl,
+    avgInvestedBrl: saved?.avgInvestedBrl ?? input?.avgInvestedBrl ?? 0,
+    monthlyInternationalSpendBrl:
+      saved?.monthlyInternationalSpendBrl ?? input?.monthlyInternationalSpendBrl ?? 0,
+    travelFrequency: saved?.travelFrequency ?? input?.travelFrequency ?? "none",
     spendingCategories: [],
     preferences: {
-      wantsLounge: input.wantsLounge,
-      prefersCashback: input.prefersCashback,
-      prefersPoints: input.prefersPoints,
-      prefersInvestback: input.prefersInvestback,
+      wantsLounge: saved?.wantsLounge ?? input?.wantsLounge ?? false,
+      prefersCashback: saved?.prefersCashback ?? input?.prefersCashback ?? false,
+      prefersPoints: saved?.prefersPoints ?? input?.prefersPoints ?? false,
+      prefersInvestback: saved?.prefersInvestback ?? input?.prefersInvestback ?? false,
     },
   };
 }
@@ -57,8 +84,9 @@ function compactValue(card: CardFacet, profile?: UserProfile) {
   };
 }
 
-export const cardTools = {
-  filterCards: tool({
+export function createCardTools(savedProfile?: UserProfile | null) {
+  return {
+    filterCards: tool({
     description:
       "Filtra cartões de crédito brasileiros por segmento, bandeira, benefícios e taxa anual. Use para responder perguntas como 'quais cartões têm cashback' ou 'cartões sem anuidade'.",
     inputSchema: z.object({
@@ -100,16 +128,22 @@ export const cardTools = {
     },
   }),
 
-  getCardDetail: tool({
+    getCardDetail: tool({
     description:
       "Busca detalhes completos de um cartão pelo ID estável. Use quando o usuário quiser saber mais sobre um cartão específico.",
     inputSchema: z.object({
       cardId: z.string().describe("ID estável do cartão (card_stable_id)"),
+      profile: profileSchema()
+        .optional()
+        .describe("Perfil financeiro do usuário para cálculo numérico personalizado"),
     }),
-    execute: async ({ cardId }) => {
+    execute: async ({ cardId, profile }) => {
       const card = getCardById(cardId);
       if (!card) return { erro: "Cartão não encontrado" };
-      const score = scoreCardValue(card);
+      const userProfile = toUserProfile(profile, savedProfile);
+      const score = userProfile
+        ? scoreCardValue(card, userProfile, "profile")
+        : scoreCardValue(card);
       return {
         id: card.card_stable_id,
         nome: card.display_name,
@@ -146,7 +180,7 @@ export const cardTools = {
     },
   }),
 
-  compareCards: tool({
+    compareCards: tool({
     description:
       "Compara de 2 a 4 cartões lado a lado. Aceita IDs ou nomes exatos/aproximados. Use esta ferramenta sempre que o usuário pedir para comparar cartões, especialmente quando pedir 'vale trocar' ou 'para meu perfil'.",
     inputSchema: z.object({
@@ -174,7 +208,7 @@ export const cardTools = {
         (card, index, arr) =>
           arr.findIndex((other) => other.card_stable_id === card.card_stable_id) === index
       ).slice(0, 4);
-      const userProfile = profile ? toUserProfile(profile) : undefined;
+      const userProfile = toUserProfile(profile, savedProfile);
       const values = cards.map((c) => compactValue(c, userProfile));
       const delta =
         values.length >= 2
@@ -219,19 +253,20 @@ export const cardTools = {
     },
   }),
 
-  rankCardsForProfile: tool({
+    rankCardsForProfile: tool({
     description:
       "Pontua e ordena cartões de acordo com o perfil financeiro do usuário: renda, gastos, patrimônio investido e preferências.",
     inputSchema: z.object({
-      monthlySalaryBrl: z.number().describe("Renda mensal em reais"),
-      avgMonthlySpendBrl: z.number().describe("Gasto médio mensal no cartão"),
-      avgInvestedBrl: z.number().default(0).describe("Patrimônio investido em reais"),
+      monthlySalaryBrl: z.number().optional().describe("Renda mensal em reais"),
+      avgMonthlySpendBrl: z.number().optional().describe("Gasto médio mensal no cartão"),
+      avgInvestedBrl: z.number().optional().describe("Patrimônio investido em reais"),
       monthlyInternationalSpendBrl: z
         .number()
-        .default(0)
+        .optional()
         .describe("Gasto internacional mensal no cartão em reais"),
       travelFrequency: z
         .enum(["none", "occasional", "frequent"])
+        .optional()
         .describe("Frequência de viagens"),
       prefersCashback: z.boolean().default(false),
       prefersPoints: z.boolean().default(false),
@@ -241,20 +276,9 @@ export const cardTools = {
     execute: async (input) => {
       const { scoreCards: sc } = await import("@/lib/scoring");
       const all = getAllCards();
-      const scored = sc(all, {
-        monthlySalaryBrl: input.monthlySalaryBrl,
-        avgMonthlySpendBrl: input.avgMonthlySpendBrl,
-        avgInvestedBrl: input.avgInvestedBrl,
-        monthlyInternationalSpendBrl: input.monthlyInternationalSpendBrl,
-        travelFrequency: input.travelFrequency,
-        spendingCategories: [],
-        preferences: {
-          wantsLounge: input.wantsLounge,
-          prefersCashback: input.prefersCashback,
-          prefersPoints: input.prefersPoints,
-          prefersInvestback: input.prefersInvestback,
-        },
-      }).slice(0, 6);
+      const userProfile = toUserProfile(input, savedProfile);
+      if (!userProfile) return { erro: "Perfil financeiro não informado" };
+      const scored = sc(all, userProfile).slice(0, 6);
       return scored.map((s) => ({
         id: s.card.card_stable_id,
         nome: s.card.display_name,
@@ -287,7 +311,8 @@ export const cardTools = {
       }));
     },
   }),
-};
+  };
+}
 
 export const SYSTEM_PROMPT = `Você é um assistente especializado em cartões de crédito brasileiros. Você tem acesso a um catálogo de ${getAllCards().length} cartões com dados verificados.
 
@@ -295,7 +320,7 @@ Regras importantes:
 - Sempre responda em português (pt-BR)
 - Use as ferramentas disponíveis para buscar dados reais — nunca invente informações sobre cartões
 - Quando o usuário pedir comparação, troca de cartão, "vale trocar" ou "com números", use compareCards. Resolva por nome se o usuário não passar ID.
-- Se houver perfil salvo no contexto da conversa, use esses números no input profile da ferramenta. Não peça gasto/renda/investimento de novo quando já estiverem no contexto.
+- As ferramentas recebem o perfil salvo automaticamente. Não peça gasto/renda/investimento de novo quando já estiverem no contexto.
 - Para comparações, responda primeiro com a decisão prática em uma linha: "trocar", "ficar" ou "depende". Depois mostre delta mensal/anual, anuidade efetiva, retorno, benefícios e bloqueios de elegibilidade.
 - Ao citar dados de cartões, mencione a fonte quando for relevante
 - Para regras contratuais, tarifas e elegibilidade final, recomende verificação direta com o emissor

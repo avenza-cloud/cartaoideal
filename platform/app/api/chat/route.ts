@@ -1,6 +1,6 @@
 import { streamText, convertToModelMessages, stepCountIs } from "ai";
 import { openai } from "@ai-sdk/openai";
-import { cardTools, SYSTEM_PROMPT } from "@/lib/ai-tools";
+import { createCardTools, SYSTEM_PROMPT } from "@/lib/ai-tools";
 import type { UserProfile } from "@/types/cards";
 
 function profileContext(profile: UserProfile | null | undefined): string {
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     model: openai("gpt-5.4-nano"),
     system: `${SYSTEM_PROMPT}${profileContext(profile)}`,
     messages: await convertToModelMessages(messages),
-    tools: cardTools,
+    tools: createCardTools(profile),
     stopWhen: stepCountIs(5),
     onFinish({ usage }) {
       console.log(

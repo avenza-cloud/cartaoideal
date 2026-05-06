@@ -45,9 +45,10 @@ test.describe("mobile compatibility", () => {
 
   test("catalog filters and cards stay inside the viewport", async ({ page }) => {
     await page.goto("/cartoes");
-    const filters = page.getByText("Filtros").first();
-    if (await filters.isVisible()) {
-      await filters.click();
+    await page.waitForLoadState("networkidle").catch(() => undefined);
+    const mobileFilters = page.locator("aside details").first();
+    if (await mobileFilters.isVisible()) {
+      await mobileFilters.locator("summary").click();
     }
     await page.getByRole("button", { name: "Premium", exact: true }).click();
     await expect(page).toHaveURL(/segment=premium/);
@@ -83,5 +84,49 @@ test.describe("mobile compatibility", () => {
     await expect(page.getByRole("heading", { name: "Assistente de Cartões" })).toBeVisible();
     await expect(page.getByPlaceholder("Pergunte sobre cartões...")).toBeVisible();
     await expectNoHorizontalOverflow(page);
+  });
+
+  test("chat sends the saved financial profile with each message", async ({ page }) => {
+    const profile = {
+      monthlySalaryBrl: 18000,
+      avgMonthlySpendBrl: 6200,
+      avgInvestedBrl: 275000,
+      monthlyInternationalSpendBrl: 850,
+      travelFrequency: "frequent",
+      spendingCategories: [],
+      preferences: {
+        wantsLounge: true,
+        prefersCashback: false,
+        prefersPoints: true,
+        prefersInvestback: false,
+      },
+    };
+
+    await page.addInitScript((storedProfile) => {
+      window.localStorage.setItem(
+        "credit-card-profile",
+        JSON.stringify({
+          state: { profile: storedProfile, onboardingDone: true },
+          version: 0,
+        })
+      );
+    }, profile);
+
+    await page.route("**/api/chat", async (route) => {
+      await route.fulfill({
+        status: 200,
+        headers: { "Content-Type": "text/event-stream" },
+        body: "",
+      });
+    });
+
+    await page.goto("/chat");
+    const requestPromise = page.waitForRequest("**/api/chat");
+    await page.getByPlaceholder("Pergunte sobre cartões...").fill("Compare meus cartões para meu perfil");
+    await page.getByPlaceholder("Pergunte sobre cartões...").press("Enter");
+
+    const request = await requestPromise;
+    const body = request.postDataJSON();
+    expect(body.profile).toMatchObject(profile);
   });
 });
