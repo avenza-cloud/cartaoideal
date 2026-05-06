@@ -7,6 +7,7 @@ import { CLIENT_CARD_OPTIONS, CURATED_CARDS, normalizeCardSearchText } from "@/l
 import { ArrowRight, ArrowLeft, CreditCard } from "lucide-react";
 import type { UserProfile } from "@/types/cards";
 import { cn } from "@/lib/utils";
+import { formatBrlInput, parseBrlInput } from "@/lib/brl";
 
 type TravelFrequency = UserProfile["travelFrequency"];
 type RewardPref = "cost_benefit" | "cashback" | "points" | "investback" | "lounge" | "travel";
@@ -27,12 +28,6 @@ const TRAVEL_OPTIONS: { value: TravelFrequency; label: string }[] = [
 ];
 
 const HEADLINE = "O cartão certo para você.";
-
-function formatMoneyInput(value: string): string {
-  const digits = value.replaceAll(/\D/g, "");
-  if (!digits) return "";
-  return Number(digits).toLocaleString("pt-BR");
-}
 
 function cardMatchScore(card: (typeof CLIENT_CARD_OPTIONS)[number], query: string): number {
   if (!query) return 100 - card.popularityRank;
@@ -105,13 +100,12 @@ export function ProfileOnboarding() {
   }
 
   function submit() {
-    const parse = (s: string) => Number.parseFloat(s.replaceAll(".", "").replace(",", ".")) || 0;
-    const salaryNum = parse(salary);
+    const salaryNum = parseBrlInput(salary);
     const isCostBenefit = rewards.has("cost_benefit") || rewards.size === 0;
     setProfile({
       monthlySalaryBrl: salaryNum,
-      avgMonthlySpendBrl: parse(spend) || salaryNum * 0.4,
-      avgInvestedBrl: parse(invested),
+      avgMonthlySpendBrl: parseBrlInput(spend) || salaryNum * 0.4,
+      avgInvestedBrl: parseBrlInput(invested),
       currentPrimaryCardId: currentCardId,
       currentPrimaryCardName: currentCardQuery.trim() || undefined,
       travelFrequency: travel,
@@ -329,7 +323,7 @@ function StepInput({
           type="text"
           inputMode="numeric"
           value={value}
-          onChange={(e) => onChange(formatMoneyInput(e.target.value))}
+          onChange={(e) => onChange(formatBrlInput(e.target.value))}
           placeholder="0"
           onKeyDown={(e) => e.key === "Enter" && !nextDisabled && onNext()}
           className="w-full min-w-0 bg-transparent text-2xl font-semibold placeholder:text-muted-foreground/20 focus:outline-none sm:text-3xl"

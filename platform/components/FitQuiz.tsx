@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator";
 import { ScoreBreakdownBar } from "@/components/ScoreBreakdown";
 import { formatFee, segmentLabel } from "@/lib/formatting";
 import { CLIENT_CARD_OPTIONS } from "@/lib/client-card-options";
+import { formatBrlInput, formatBrlNumber, parseBrlInput } from "@/lib/brl";
 import Link from "next/link";
 import type { CardScore, SpendingCategory, TravelFrequency, UserProfile } from "@/types/cards";
 import { ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
@@ -49,6 +50,9 @@ const INITIAL_PROFILE: UserProfile = {
 export function FitQuiz() {
   const [step, setStep] = useState<Step>(1);
   const [profile, setProfile] = useState<UserProfile>(INITIAL_PROFILE);
+  const [salaryInput, setSalaryInput] = useState("");
+  const [spendInput, setSpendInput] = useState("");
+  const [investedInput, setInvestedInput] = useState("");
   const [results, setResults] = useState<CardScore[] | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -112,36 +116,45 @@ export function FitQuiz() {
               <Label htmlFor="salary">Renda mensal bruta (R$)</Label>
               <Input
                 id="salary"
-                type="number"
-                placeholder="Ex: 5000"
-                value={profile.monthlySalaryBrl || ""}
-                onChange={(e) =>
-                  setProfile((p) => ({ ...p, monthlySalaryBrl: Number(e.target.value) }))
-                }
+                type="text"
+                inputMode="numeric"
+                placeholder="Ex: 5.000"
+                value={salaryInput || formatBrlNumber(profile.monthlySalaryBrl)}
+                onChange={(e) => {
+                  const formatted = formatBrlInput(e.target.value);
+                  setSalaryInput(formatted);
+                  setProfile((p) => ({ ...p, monthlySalaryBrl: parseBrlInput(formatted) }));
+                }}
               />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="spend">Gasto médio mensal no cartão (R$)</Label>
               <Input
                 id="spend"
-                type="number"
-                placeholder="Ex: 2000"
-                value={profile.avgMonthlySpendBrl || ""}
-                onChange={(e) =>
-                  setProfile((p) => ({ ...p, avgMonthlySpendBrl: Number(e.target.value) }))
-                }
+                type="text"
+                inputMode="numeric"
+                placeholder="Ex: 2.000"
+                value={spendInput || formatBrlNumber(profile.avgMonthlySpendBrl)}
+                onChange={(e) => {
+                  const formatted = formatBrlInput(e.target.value);
+                  setSpendInput(formatted);
+                  setProfile((p) => ({ ...p, avgMonthlySpendBrl: parseBrlInput(formatted) }));
+                }}
               />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="invest">Patrimônio investido (R$)</Label>
               <Input
                 id="invest"
-                type="number"
-                placeholder="Ex: 50000"
-                value={profile.avgInvestedBrl || ""}
-                onChange={(e) =>
-                  setProfile((p) => ({ ...p, avgInvestedBrl: Number(e.target.value) }))
-                }
+                type="text"
+                inputMode="numeric"
+                placeholder="Ex: 50.000"
+                value={investedInput || formatBrlNumber(profile.avgInvestedBrl)}
+                onChange={(e) => {
+                  const formatted = formatBrlInput(e.target.value);
+                  setInvestedInput(formatted);
+                  setProfile((p) => ({ ...p, avgInvestedBrl: parseBrlInput(formatted) }));
+                }}
               />
               <p className="text-xs text-muted-foreground">
                 Usado para cartões de investimento como XP e Rico.

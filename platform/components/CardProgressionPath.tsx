@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { useProfileStore } from "@/lib/store";
 import { formatFee } from "@/lib/formatting";
+import { formatBrlInput, parseBrlInput } from "@/lib/brl";
 import {
   CreditCard,
   ArrowRight,
@@ -17,14 +18,6 @@ import type { CardScore } from "@/types/cards";
 function money(v: number) {
   const sign = v > 0 ? "+" : v < 0 ? "−" : "";
   return `${sign}R$${Math.abs(v).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}`;
-}
-function parseBrl(s: string) {
-  return parseFloat(s.replace(/\./g, "").replace(",", ".")) || 0;
-}
-function formatInput(s: string) {
-  const n = parseBrl(s);
-  if (!n) return s;
-  return n.toLocaleString("pt-BR");
 }
 function shortMoney(v: number) {
   if (v >= 1_000_000) return `R$${(v / 1_000_000).toFixed(1).replace(".", ",")}M`;
@@ -134,8 +127,8 @@ export function CardProgressionPath() {
       .finally(() => setLoadingCurrent(false));
   }, [profile]);
 
-  const futureIncomeNum = parseBrl(futureIncome);
-  const futureInvestedNum = parseBrl(futureInvested);
+  const futureIncomeNum = parseBrlInput(futureIncome);
+  const futureInvestedNum = parseBrlInput(futureInvested);
 
   // proportional spend estimate
   const estimatedFutureSpend =
@@ -252,7 +245,7 @@ export function CardProgressionPath() {
               label="Renda esperada / mês"
               value={futureIncome}
               onChange={(v) => {
-                setFutureIncome(v.replace(/[^\d.,]/g, ""));
+                setFutureIncome(formatBrlInput(v));
                 setSimResult(null);
               }}
               placeholder={`Atual: R$${profile.monthlySalaryBrl.toLocaleString("pt-BR")}`}
@@ -261,7 +254,7 @@ export function CardProgressionPath() {
               label="Total investido"
               value={futureInvested}
               onChange={(v) => {
-                setFutureInvested(v.replace(/[^\d.,]/g, ""));
+                setFutureInvested(formatBrlInput(v));
                 setSimResult(null);
               }}
               placeholder={`Atual: ${shortMoney(profile.avgInvestedBrl)}`}
@@ -378,10 +371,6 @@ function FutureInput({
           inputMode="numeric"
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          onBlur={(e) => {
-            const n = parseBrl(e.target.value);
-            if (n > 0) onChange(formatInput(e.target.value));
-          }}
           placeholder={placeholder}
           className="flex-1 bg-transparent text-sm font-medium text-foreground placeholder:text-muted-foreground/30 focus:outline-none"
         />

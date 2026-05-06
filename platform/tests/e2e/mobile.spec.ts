@@ -113,7 +113,15 @@ test.describe("mobile compatibility", () => {
 
   test("profile form controls fit mobile", async ({ page }) => {
     await page.goto("/perfil");
-    await page.getByPlaceholder("Ex: 8.000").fill("8000");
+    const salary = page.getByPlaceholder("Ex: 8.000");
+    const spend = page.getByPlaceholder("Ex: 3.000");
+    const invested = page.getByPlaceholder("Ex: 50.000");
+    await salary.fill("40000");
+    await spend.fill("12000");
+    await invested.fill("300000");
+    await expect(salary).toHaveValue("40.000");
+    await expect(spend).toHaveValue("12.000");
+    await expect(invested).toHaveValue("300.000");
     await page.getByRole("button", { name: "Cashback" }).click();
     await page.getByRole("button", { name: "Às vezes" }).click();
     await expectNoHorizontalOverflow(page);

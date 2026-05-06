@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Sparkles } from "lucide-react";
 import type { UserProfile } from "@/types/cards";
 import { cn } from "@/lib/utils";
+import { formatBrlInput, parseBrlInput } from "@/lib/brl";
 
 type TravelFrequency = UserProfile["travelFrequency"];
 type RewardPref = "cashback" | "points" | "investback" | "lounge";
@@ -42,9 +43,9 @@ export function ProfileQuickSetup() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const salaryNum = parseFloat(salary.replace(/\./g, "").replace(",", ".")) || 0;
-    const spendNum = parseFloat(spend.replace(/\./g, "").replace(",", ".")) || 0;
-    const investedNum = parseFloat(invested.replace(/\./g, "").replace(",", ".")) || 0;
+    const salaryNum = parseBrlInput(salary);
+    const spendNum = parseBrlInput(spend);
+    const investedNum = parseBrlInput(invested);
 
     setProfile({
       monthlySalaryBrl: salaryNum,
@@ -161,7 +162,7 @@ function CurrencyInput({
         type="text"
         inputMode="numeric"
         value={value}
-        onChange={(e) => onChange(e.target.value.replace(/[^\d.,]/g, ""))}
+        onChange={(e) => onChange(formatBrlInput(e.target.value))}
         className="w-full rounded-lg border border-input bg-background py-2 pl-7 pr-2 text-xs focus:outline-none focus:ring-1 focus:ring-ring"
         placeholder="0"
       />

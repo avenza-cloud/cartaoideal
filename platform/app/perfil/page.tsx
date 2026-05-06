@@ -7,6 +7,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { CLIENT_CARD_OPTIONS, CURATED_CARDS, normalizeCardSearchText } from "@/lib/client-card-options";
 import { Sparkles, CheckCircle2, ArrowLeft, CreditCard, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { formatBrlInput, formatBrlNumber, parseBrlInput } from "@/lib/brl";
 import type { UserProfile } from "@/types/cards";
 
 function cardMatchScore(card: (typeof CLIENT_CARD_OPTIONS)[number], query: string): number {
@@ -37,14 +38,6 @@ const REWARD_OPTIONS: { value: RewardPref; label: string; desc: string }[] = [
   { value: "investback", label: "Investback", desc: "Retorno direto no investimento" },
   { value: "lounge", label: "Lounge VIP", desc: "Acesso a salas em aeroportos" },
 ];
-
-function parseBrl(s: string) {
-  return parseFloat(s.replace(/\./g, "").replace(",", ".")) || 0;
-}
-function formatBrl(n: number) {
-  if (!n) return "";
-  return n.toLocaleString("pt-BR");
-}
 
 export default function PerfilPage() {
   const router = useRouter();
@@ -80,9 +73,9 @@ export default function PerfilPage() {
   // pre-fill from existing profile
   useEffect(() => {
     if (!profile) return;
-    setSalary(formatBrl(profile.monthlySalaryBrl));
-    setSpend(formatBrl(profile.avgMonthlySpendBrl));
-    setInvested(formatBrl(profile.avgInvestedBrl));
+    setSalary(formatBrlNumber(profile.monthlySalaryBrl));
+    setSpend(formatBrlNumber(profile.avgMonthlySpendBrl));
+    setInvested(formatBrlNumber(profile.avgInvestedBrl));
     setTravel(profile.travelFrequency);
     if (profile.currentPrimaryCardId) {
       setCardId(profile.currentPrimaryCardId);
@@ -107,9 +100,9 @@ export default function PerfilPage() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setProfile({
-      monthlySalaryBrl: parseBrl(salary),
-      avgMonthlySpendBrl: parseBrl(spend),
-      avgInvestedBrl: parseBrl(invested),
+      monthlySalaryBrl: parseBrlInput(salary),
+      avgMonthlySpendBrl: parseBrlInput(spend),
+      avgInvestedBrl: parseBrlInput(invested),
       travelFrequency: travel,
       spendingCategories: profile?.spendingCategories ?? [],
       currentPrimaryCardId: cardId,
@@ -366,11 +359,7 @@ function CurrencyInput({
         type="text"
         inputMode="numeric"
         value={value}
-        onChange={(e) => onChange(e.target.value.replace(/[^\d.,]/g, ""))}
-        onBlur={(e) => {
-          const n = parseBrl(e.target.value);
-          if (n > 0) onChange(formatBrl(n));
-        }}
+        onChange={(e) => onChange(formatBrlInput(e.target.value))}
         placeholder={placeholder ?? "0"}
         className="w-full rounded-xl border border-input bg-background/60 py-2.5 pl-9 pr-3 text-sm focus:outline-none focus:ring-1 focus:ring-ring"
       />
