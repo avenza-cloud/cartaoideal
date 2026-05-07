@@ -11,6 +11,7 @@ import { ScoreBreakdownBar } from "@/components/ScoreBreakdown";
 import { formatFee, segmentLabel } from "@/lib/formatting";
 import { CLIENT_CARD_OPTIONS } from "@/lib/client-card-options";
 import { formatBrlInput, formatBrlNumber, parseBrlInput } from "@/lib/brl";
+import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
 import Link from "next/link";
 import type { CardScore, SpendingCategory, TravelFrequency, UserProfile } from "@/types/cards";
 import { ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
@@ -75,12 +76,7 @@ export function FitQuiz() {
   async function submit() {
     setLoading(true);
     try {
-      const res = await fetch("/api/recommend", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ profile }),
-      });
-      const data = await res.json();
+      const data = await fetchRecommendationsWithFallback(profile);
       setResults(data);
       setStep(4);
     } catch {

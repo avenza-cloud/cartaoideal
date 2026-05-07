@@ -2,6 +2,8 @@ import { getAllCards } from "@/lib/cards";
 import { scoreCardValues, DEFAULT_SCORING_PROFILE } from "@/lib/card-value";
 import { getValueAssumptionsWithLiveUsd } from "@/lib/exchange-rate";
 
+export const runtime = "nodejs";
+
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const limit = Math.min(Number.parseInt(url.searchParams.get("limit") ?? "10", 10), 30);

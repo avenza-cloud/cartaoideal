@@ -3,6 +3,8 @@ import { scoreCards } from "@/lib/scoring";
 import { getValueAssumptionsWithLiveUsd } from "@/lib/exchange-rate";
 import type { UserProfile } from "@/types/cards";
 
+export const runtime = "nodejs";
+
 export async function POST(req: Request) {
   const start = Date.now();
   const body = await req.json();

@@ -21,6 +21,7 @@ import {
   PromptInputSubmit,
 } from "@/components/ui/ai-prompt-box";
 import { useCompareStore, useProfileStore } from "@/lib/store";
+import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
 import {
   CreditCard,
   ChevronDown,
@@ -877,16 +878,11 @@ export function ChatInterface({
     }
 
     let cancelled = false;
-    fetch("/api/recommend", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ profile }),
-    })
-      .then((response) => response.json())
+    fetchRecommendationsWithFallback(profile)
       .then((data) => {
         if (cancelled || !Array.isArray(data)) return;
         const best = data.find(
-          (item) => item?.card?.card_stable_id !== profile.currentPrimaryCardId,
+          (item) => item.card.card_stable_id !== profile.currentPrimaryCardId,
         );
         setBestCardName(best?.card?.display_name ?? null);
       })

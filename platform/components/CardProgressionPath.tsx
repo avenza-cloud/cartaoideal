@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useProfileStore } from "@/lib/store";
 import { formatFee } from "@/lib/formatting";
 import { formatBrlInput, parseBrlInput } from "@/lib/brl";
+import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
 import {
   CreditCard,
   ArrowRight,
@@ -116,13 +117,8 @@ export function CardProgressionPath() {
   useEffect(() => {
     if (!profile) { setCurrent(null); return; }
     setLoadingCurrent(true);
-    fetch("/api/recommend", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ profile }),
-    })
-      .then((r) => r.json())
-      .then((d: CardScore[]) => setCurrent(Array.isArray(d) ? d.slice(0, 3) : null))
+    fetchRecommendationsWithFallback(profile, 3)
+      .then((d: CardScore[]) => setCurrent(Array.isArray(d) ? d : null))
       .catch(() => setCurrent(null))
       .finally(() => setLoadingCurrent(false));
   }, [profile]);
@@ -154,12 +150,7 @@ export function CardProgressionPath() {
     };
 
     try {
-      const res = await fetch("/api/recommend", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ profile: futureProfile }),
-      });
-      const future: CardScore[] = await res.json();
+      const future = await fetchRecommendationsWithFallback(futureProfile, 10);
       if (!Array.isArray(future)) return;
 
       const currentIds = new Set((current ?? []).map((s) => s.card.card_stable_id));

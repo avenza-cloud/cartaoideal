@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useProfileStore } from "@/lib/store";
 import { feeTier, feeNote, FEE_TIER_COLOR, FEE_TIER_LABEL } from "@/lib/roi";
 import { formatFee } from "@/lib/formatting";
+import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
 import { Button } from "@/components/ui/button";
 import { CreditCard, ListFilter } from "lucide-react";
 import type { CardScore, CardValueScore } from "@/types/cards";
@@ -155,12 +156,7 @@ export function PersonalizedRanking() {
     }
     setTopCards(null);
     setLoading(true);
-    fetch("/api/recommend", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ profile }),
-    })
-      .then((r) => r.json())
+    fetchRecommendationsWithFallback(profile)
       .then((data) => setResults(Array.isArray(data) ? data : null))
       .catch(() => setResults(null))
       .finally(() => setLoading(false));
