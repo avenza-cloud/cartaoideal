@@ -127,6 +127,43 @@ test.describe("mobile compatibility", () => {
     await expectNoHorizontalOverflow(page);
   });
 
+  test("progression estimated spend keeps BRL scale and cents", async ({ page }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "credit-card-profile",
+        JSON.stringify({
+          state: {
+            onboardingDone: true,
+            profile: {
+              monthlySalaryBrl: 40000,
+              avgMonthlySpendBrl: 149333.57142857142,
+              avgInvestedBrl: 270000,
+              monthlyInternationalSpendBrl: 0,
+              travelFrequency: "none",
+              spendingCategories: [],
+              preferences: {
+                wantsLounge: false,
+                prefersCashback: true,
+                prefersPoints: false,
+                prefersInvestback: false,
+              },
+            },
+          },
+          version: 0,
+        })
+      );
+    });
+    await page.route("**/api/recommend", async (route) => {
+      await route.fulfill({ status: 200, headers: { "Content-Type": "application/json" }, body: "[]" });
+    });
+
+    await page.goto("/");
+    await page.getByPlaceholder("Atual: R$40.000").fill("56000");
+    await expect(page.getByText("Gasto estimado")).toBeVisible();
+    await expect(page.getByText("R$20.906,70/mês")).toBeVisible();
+    await expectNoHorizontalOverflow(page);
+  });
+
   test("chat shell renders without AI backend calls", async ({ page }) => {
     await page.goto("/chat");
     await expect(page.getByRole("heading", { name: "Assistente de Cartões" })).toBeVisible();

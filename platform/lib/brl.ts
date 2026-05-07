@@ -12,3 +12,10 @@ export function formatBrlNumber(value: number): string {
   if (!value) return "";
   return value.toLocaleString("pt-BR", { maximumFractionDigits: 0 });
 }
+
+export function formatBrlCurrency(value: number): string {
+  return `R$${value.toLocaleString("pt-BR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}`;
+}

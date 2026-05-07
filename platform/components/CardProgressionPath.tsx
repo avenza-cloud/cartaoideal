@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { useProfileStore } from "@/lib/store";
 import { formatFee } from "@/lib/formatting";
-import { formatBrlInput, parseBrlInput } from "@/lib/brl";
+import { formatBrlCurrency, formatBrlInput, parseBrlInput } from "@/lib/brl";
 import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
 import {
   CreditCard,
@@ -24,6 +24,34 @@ function shortMoney(v: number) {
   if (v >= 1_000_000) return `R$${(v / 1_000_000).toFixed(1).replace(".", ",")}M`;
   if (v >= 1_000) return `R$${(v / 1_000).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}k`;
   return `R$${v.toLocaleString("pt-BR")}`;
+}
+
+function projectionIncomeBase(currentIncome: number, currentSpend: number, futureIncome: number) {
+  if (currentIncome <= 0) return currentIncome;
+
+  const ratio = futureIncome / currentIncome;
+  const correctedIncome = currentIncome * 10;
+  const correctedRatio = futureIncome / correctedIncome;
+  const looksLikeLegacyMissingZero =
+    currentIncome < 10_000 &&
+    currentSpend > currentIncome * 2 &&
+    ratio >= 8 &&
+    correctedRatio >= 0.5 &&
+    correctedRatio <= 3;
+
+  return looksLikeLegacyMissingZero ? correctedIncome : currentIncome;
+}
+
+function projectionSpendBase(currentIncome: number, currentSpend: number) {
+  if (currentIncome <= 0 || currentSpend <= 0) return currentSpend;
+
+  const correctedSpend = currentSpend / 10;
+  const looksLikeLegacyExtraZero =
+    currentSpend > currentIncome * 2 &&
+    correctedSpend > 0 &&
+    correctedSpend <= currentIncome;
+
+  return looksLikeLegacyExtraZero ? correctedSpend : currentSpend;
 }
 
 /* ─── small card row ─── */
@@ -125,11 +153,17 @@ export function CardProgressionPath() {
 
   const futureIncomeNum = parseBrlInput(futureIncome);
   const futureInvestedNum = parseBrlInput(futureInvested);
+  const currentIncomeForProjection = profile
+    ? projectionIncomeBase(profile.monthlySalaryBrl, profile.avgMonthlySpendBrl, futureIncomeNum)
+    : 0;
+  const currentSpendForProjection = profile
+    ? projectionSpendBase(currentIncomeForProjection, profile.avgMonthlySpendBrl)
+    : 0;
 
   // proportional spend estimate
   const estimatedFutureSpend =
-    profile && futureIncomeNum > 0 && profile.monthlySalaryBrl > 0
-      ? profile.avgMonthlySpendBrl * (futureIncomeNum / profile.monthlySalaryBrl)
+    profile && futureIncomeNum > 0 && currentIncomeForProjection > 0
+      ? currentSpendForProjection * (futureIncomeNum / currentIncomeForProjection)
       : 0;
 
   const canSimulate = futureIncomeNum > 0 || futureInvestedNum > 0;
@@ -144,7 +178,7 @@ export function CardProgressionPath() {
       monthlySalaryBrl: futureIncomeNum || profile.monthlySalaryBrl,
       avgInvestedBrl: futureInvestedNum || profile.avgInvestedBrl,
       avgMonthlySpendBrl:
-        futureIncomeNum > 0 && profile.monthlySalaryBrl > 0
+        futureIncomeNum > 0 && currentIncomeForProjection > 0
           ? estimatedFutureSpend
           : profile.avgMonthlySpendBrl,
     };
@@ -160,7 +194,7 @@ export function CardProgressionPath() {
         top: future.slice(0, 3),
         newUnlocked: newUnlocked.slice(0, 2),
         futureSpend:
-          futureIncomeNum > 0 && profile.monthlySalaryBrl > 0
+          futureIncomeNum > 0 && currentIncomeForProjection > 0
             ? estimatedFutureSpend
             : profile.avgMonthlySpendBrl,
       });
@@ -169,7 +203,7 @@ export function CardProgressionPath() {
     } finally {
       setSimLoading(false);
     }
-  }, [profile, canSimulate, futureIncomeNum, futureInvestedNum, estimatedFutureSpend, current]);
+  }, [profile, canSimulate, futureIncomeNum, futureInvestedNum, currentIncomeForProjection, estimatedFutureSpend, current]);
 
   if (!profile || !onboardingDone) return null;
 
@@ -257,7 +291,7 @@ export function CardProgressionPath() {
             <div className="mt-2 flex items-center justify-between rounded-xl border border-dashed bg-background/20 px-3 py-2">
               <span className="text-[11px] text-muted-foreground">Gasto estimado</span>
               <span className="font-mono text-[11px] text-foreground">
-                R${estimatedFutureSpend.toLocaleString("pt-BR", { maximumFractionDigits: 0 })}/mês
+                {formatBrlCurrency(estimatedFutureSpend)}/mês
               </span>
             </div>
           )}
@@ -286,7 +320,7 @@ export function CardProgressionPath() {
               Com esse perfil em 1 ano
             </p>
             <span className="ml-auto font-mono text-[10px] text-muted-foreground">
-              gasto ≈ R${simResult.futureSpend.toLocaleString("pt-BR", { maximumFractionDigits: 0 })}/mês
+              gasto ≈ {formatBrlCurrency(simResult.futureSpend)}/mês
             </span>
           </div>
 
