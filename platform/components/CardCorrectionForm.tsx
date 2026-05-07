@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { AlertCircle, CheckCircle2, PencilLine } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import {
   Dialog,
   DialogContent,
@@ -19,6 +20,7 @@ interface CardCorrectionFormProps {
   cardName: string;
   issuer: string;
   sourceUrl: string;
+  triggerClassName?: string;
 }
 
 const FIELD_OPTIONS = [
@@ -38,6 +40,7 @@ export function CardCorrectionForm({
   cardName,
   issuer,
   sourceUrl,
+  triggerClassName,
 }: CardCorrectionFormProps) {
   const [open, setOpen] = useState(false);
   const [field, setField] = useState(FIELD_OPTIONS[0]);
@@ -95,7 +98,7 @@ export function CardCorrectionForm({
   return (
     <Dialog open={open} onOpenChange={resetAndClose}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-1.5">
+        <Button variant="outline" size="sm" className={cn("gap-1.5", triggerClassName)}>
           <PencilLine className="h-3.5 w-3.5" />
           Corrigir
         </Button>

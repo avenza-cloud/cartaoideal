@@ -22,11 +22,13 @@ function uniqueByStableId(cards: CardFacet[]): CardFacet[] {
 }
 
 // Real cards only (skip generic articles / multi-issuer aggregates)
-const ALL_CARDS: CardFacet[] = uniqueByStableId(data.cards.filter(
-  (c) =>
-    !c.facets_boolean.generic_article_not_single_product &&
-    !c.facets_boolean.issuer_multi_entity_row
-));
+const ALL_CARDS: CardFacet[] = uniqueByStableId(
+  data.cards.filter(
+    (c) =>
+      !c.facets_boolean.generic_article_not_single_product &&
+      !c.facets_boolean.issuer_multi_entity_row
+  )
+);
 
 const BY_ID = new Map(ALL_CARDS.map((c) => [c.card_stable_id, c]));
 
@@ -37,6 +39,37 @@ function normalizeSearchText(value: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
+}
+
+function tokenizeSearchText(value: string): string[] {
+  return normalizeSearchText(value).split(/\s+/).filter(Boolean);
+}
+
+function getCardSearchScore(card: CardFacet, queryTokens: string[]): number {
+  const identityTokens = tokenizeSearchText(`${card.display_name} ${card.issuer_raw}`);
+  const displayNameTokens = tokenizeSearchText(card.display_name);
+  const secondaryTokens = tokenizeSearchText(`${card.network_primary} ${card.variant_band}`);
+  const identityText = normalizeSearchText(`${card.display_name} ${card.issuer_raw}`);
+
+  if (queryTokens.every((token) => displayNameTokens.includes(token))) return 120;
+  if (queryTokens.every((token) => identityTokens.includes(token))) return 100;
+  if (
+    queryTokens.every((token) =>
+      identityTokens.some((identityToken) => identityToken.startsWith(token))
+    )
+  ) {
+    return 80;
+  }
+  if (queryTokens.every((token) => secondaryTokens.includes(token))) return 30;
+  if (
+    queryTokens.every((token) =>
+      secondaryTokens.some((secondaryToken) => secondaryToken.startsWith(token))
+    )
+  ) {
+    return 20;
+  }
+  if (queryTokens.every((token) => identityText.includes(token))) return 10;
+  return 0;
 }
 
 export function getAllCards(): CardFacet[] {
@@ -57,16 +90,18 @@ export function getCardsByIds(ids: string[]): CardFacet[] {
 export function findCardsByName(query: string, limit = 6): CardFacet[] {
   const q = normalizeSearchText(query);
   if (!q) return [];
-  const tokens = q.split(/\s+/).filter(Boolean);
+  const tokens = tokenizeSearchText(query);
 
   return ALL_CARDS.map((card) => {
     const haystack = normalizeSearchText(
       `${card.display_name} ${card.issuer_raw} ${card.network_primary}`
     );
     const exactName = normalizeSearchText(card.display_name) === q;
+    const searchScore = getCardSearchScore(card, tokens);
     const includes = haystack.includes(q);
     const tokenHits = tokens.filter((token) => haystack.includes(token)).length;
     const score =
+      searchScore +
       (exactName ? 100 : 0) +
       (includes ? 40 : 0) +
       tokenHits * 8 -
@@ -179,15 +214,16 @@ export function filterCards(filters: CardFilters): CardFacet[] {
 
   if (filters.search) {
     const q = normalizeSearchText(filters.search);
-    const tokens = q.split(/\s+/).filter(Boolean);
-    cards = cards.filter(
-      (c) => {
-        const haystack = normalizeSearchText(
-          `${c.display_name} ${c.issuer_raw} ${c.network_primary} ${c.variant_band}`
-        );
-        return tokens.every((token) => haystack.includes(token));
-      }
-    );
+    const tokens = tokenizeSearchText(q);
+    const scoredCards = cards
+      .map((card) => ({ card, score: getCardSearchScore(card, tokens) }))
+      .filter(({ score }) => score > 0);
+    const hasExactIdentityMatches = scoredCards.some(({ score }) => score >= 100);
+
+    cards = scoredCards
+      .filter(({ score }) => !hasExactIdentityMatches || score >= 100)
+      .sort((a, b) => b.score - a.score)
+      .map(({ card }) => card);
   }
 
   return cards;

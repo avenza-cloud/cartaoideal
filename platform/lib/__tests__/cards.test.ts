@@ -51,9 +51,17 @@ describe("filterCards", () => {
     expect(all.length).toBeGreaterThan(200);
   });
 
-  it("feeWaiverByInvestment:true returns exactly 45 cards", () => {
+  it("search for inter prioritizes Inter products over Internacional variants", () => {
+    const cards = filterCards({ search: "inter" });
+
+    expect(cards.length).toBeGreaterThan(0);
+    expect(cards.slice(0, 4).every((card) => card.display_name.toLowerCase().includes("inter"))).toBe(true);
+    expect(cards.some((card) => card.display_name === "LATAM Pass Itaú Visa Internacional")).toBe(false);
+  });
+
+  it("feeWaiverByInvestment:true returns exactly 46 cards", () => {
     const cards = filterCards({ feeWaiverByInvestment: true });
-    expect(cards).toHaveLength(45);
+    expect(cards).toHaveLength(46);
   });
 
   it("feeWaiverByInvestment result is sorted by fee ascending", () => {

@@ -1,5 +1,5 @@
 {
-  "downloaded": 269,
+  "downloaded": 270,
   "failed": [],
   "base_path": "/card-images",
   "items": {
@@ -271,6 +271,7 @@
     "banpara-banpara-mastercard-standard-5abb87827a": "/card-images/banpara-banpara-mastercard-standard.webp",
     "cartao-cartao-de-credito-saraiva-ada05cbac5": "/card-images/cartao-cartao-de-credito-saraiva.jpg",
     "inter-inter-mastercard-gold-c1c8b413cc": "/card-images/inter-inter-mastercard-gold.jpg",
-    "nubank-cartao-nubank-5feb686dbf": "/card-images/nubank-cartao-nubank.png"
+    "nubank-cartao-nubank-5feb686dbf": "/card-images/nubank-cartao-nubank.png",
+    "inter-inter-prime-mastercard-black-8f16c3a5b2": "/card-images/inter-inter-prime-mastercard-black.webp"
   }
 }

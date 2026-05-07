@@ -5,7 +5,6 @@ import { formatFee, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
 import { AppHeader } from "@/components/AppHeader";
 import { CardDetailActions } from "@/components/CardDetailActions";
 import { CardProfileInsights } from "@/components/CardProfileInsights";
-import { CardCorrectionForm } from "@/components/CardCorrectionForm";
 import { ArrowLeft, Coins, CreditCard, ExternalLink, Plane, ReceiptText, WalletCards } from "lucide-react";
 import type { BenefitGroupKey, CardCharacteristic, CardFacet, FeeWaiverRule } from "@/types/cards";
 
@@ -276,12 +275,6 @@ export default async function CartaoDetailPage({ params }: PageProps) {
               </span>
             </div>
             <div className="flex shrink-0 gap-2">
-              <CardCorrectionForm
-                cardId={card.card_stable_id}
-                cardName={card.display_name}
-                issuer={card.issuer_raw}
-                sourceUrl={card.source_url}
-              />
               <a
                 href={card.source_url}
                 target="_blank"
@@ -296,7 +289,12 @@ export default async function CartaoDetailPage({ params }: PageProps) {
         </div>
       </main>
 
-      <CardDetailActions cardId={card.card_stable_id} sourceUrl={card.source_url} />
+      <CardDetailActions
+        cardId={card.card_stable_id}
+        cardName={card.display_name}
+        issuer={card.issuer_raw}
+        sourceUrl={card.source_url}
+      />
     </>
   );
 }

@@ -5120,8 +5120,8 @@
       "ranking": {
         "source_rank": 4,
         "source_score": 160,
-        "source_name": "Passageiro de Primeira",
-        "source_url": "https://passageirodeprimeira.com/cartao-de-credito/genial-black/"
+        "source_name": "Genial Investimentos",
+        "source_url": "https://www.genialinvestimentos.com.br/cartao-de-credito/cartao-black/"
       },
       "categorization": {
         "market_segment_guess": "premium",
@@ -5129,8 +5129,8 @@
       },
       "media": {
         "card_art_url": "/card-images/genial-genial-black.png",
-        "source_url": "https://passageirodeprimeira.com/cartao-de-credito/genial-black/",
-        "source_tier": "trusted_catalog",
+        "source_url": "https://www.genialinvestimentos.com.br/cartao-de-credito/cartao-black/",
+        "source_tier": "official_issuer",
         "alt_text": "Genial Black",
         "remote_card_art_url": "https://passageirodeprimeira.com/wp-content/uploads/2024/08/genial-black-cartao-genial-black-230x146.png"
       },
@@ -5140,10 +5140,25 @@
           "raw_text": "R$ 0",
           "amount_brl_numeric": 0,
           "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Sem anuidade e sem taxa de manutenção",
+          "rules": [
+            {
+              "category": "general",
+              "full_waiver": true,
+              "description": "Sem anuidade e sem taxa de manutenção",
+              "raw_text": "Você não paga anuidade e nem taxa de manutenção ao utilizar o cartão de crédito Black da Genial."
+            }
+          ],
+          "has_full_waiver_option": true,
+          "has_partial_waiver_option": false,
+          "has_promotional_period": false
         }
       },
       "rewards": {
-        "earning_rules_text": "1,0% de cashback",
+        "earning_rules_text": "1% de retorno em gCoins ao pagar a fatura; 1 gCoin equivale a 25 pontos",
+        "loyalty_programs_text": "Genial Fidelidade; transferências para Livelo, Smiles e TudoAzul",
         "earn_points_or_miles_mentioned": true,
         "earn_cashback_mentioned": true,
         "earn_investback_mentioned": false,
@@ -5151,61 +5166,57 @@
           "has_points_or_miles": true,
           "has_cashlike_return": true,
           "subtypes": [
-            "cashback"
+            "cashback",
+            "points",
+            "miles"
           ],
-          "earning_summary": "1,0% de cashback"
+          "earning_summary": "1% de retorno em gCoins ao pagar a fatura; 1 gCoin equivale a 25 pontos para Livelo, Smiles ou TudoAzul"
         }
       },
       "travel_and_protection": {
         "airport_lounge_offered": true,
-        "airport_lounge_unlimited_claim": true,
+        "airport_lounge_unlimited_claim": false,
         "airport_lounge_annual_visits_hint": 8,
         "airport_lounge_programs_detected": [
-          "LoungeKey",
-          "Sala VIP Mastercard Black"
+          "LoungeKey"
         ],
-        "airport_lounge_guest_policy": "0 acompanhante(s)",
+        "airport_lounge_guest_policy": "Acessos compartilhados entre titular e cartões adicionais",
         "airport_lounge_complimentary_access_confirmed": true,
         "airport_lounge_policy_varies_by_issuer": false,
-        "official_airport_lounge_summary": "Salas VIP do LoungeKey - 8 acessos gratuitos para o portador e 0 acompanhante gratuito por ano (Os acessos às salas VIP são compartilhados entre o titular, acompanhantes e cartões adicionais.) | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano",
-        "travel_insurance_mentioned": false,
-        "concierge_mentioned": false,
+        "official_airport_lounge_summary": "Até 8 acessos a salas VIP LoungeKey para titular e adicionais do Mastercard Black Genial.",
+        "travel_insurance_mentioned": true,
+        "concierge_mentioned": true,
+        "rental_car_coverage_mentioned": true,
         "forex_spread_or_iof_text": "unknown"
       },
       "benefits": {
         "benefit_groups": {
           "fees": [
             "Anuidade: R$ 0",
-            "Adicionais com benefícios: Sim",
-            "Isenção da anuidade: Não há nenhuma publicada",
-            "Anuidade: R$ 0",
-            "Adicionais gratuitos: 5"
+            "Isenção da anuidade: Sem anuidade e sem taxa de manutenção",
+            "Adicionais gratuitos: até 5 cartões adicionais"
           ],
           "rewards": [
-            "Pontuação: 1,0% de cashback",
-            "Retorno financeiro: cashback",
-            "Regra de pontuação: 1,0% de cashback",
-            "Bônus de adesão: Livelo - (Não há)",
-            "Bônus de adesão: Genial Fidelidade - (Não há)",
-            "Programa de fidelidade: Livelo",
-            "Programa de fidelidade: Genial Fidelidade",
-            "Validade dos pontos: Livelo - 24 meses",
-            "Validade dos pontos: Genial Fidelidade - Não expiram"
+            "Genial Fidelidade: 1% de retorno em gCoins ao pagar a fatura",
+            "Conversão: 1 gCoin equivale a 25 pontos",
+            "Transferência: Livelo, Smiles ou TudoAzul",
+            "Resgates: desconto na fatura e investimentos exclusivos"
           ],
           "travel": [
-            "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
+            "Sala VIP: até 8 acessos LoungeKey",
             "Programa de sala VIP: LoungeKey",
-            "Programa de sala VIP: Sala VIP Mastercard Black",
-            "Acompanhantes em sala VIP: 0 acompanhante(s)",
-            "Acessos a sala VIP: Ilimitados",
-            "Salas VIP: Salas VIP do LoungeKey - 8 acessos gratuitos para o portador e 0 acompanhante gratuito por ano (Os acessos às salas VIP são compartilhados entre o titular, acompanhantes e cartões adicionais.)",
-            "Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano"
+            "Acessos compartilhados entre titular e cartões adicionais",
+            "Travel Concierge",
+            "Assistência em viagens",
+            "Seguro aluguel de carros"
           ],
           "lifestyle": [
-            "Carteira digital: Samsung Pay, Google Pay"
+            "Limite flexível calculado com base no valor investido na Genial"
           ],
           "eligibility": [
-            "Precisa ser correntista: Sim"
+            "Investimento mínimo: R$ 50.000 investidos na Genial",
+            "Precisa ser correntista: Sim",
+            "Aprovação sujeita à análise"
           ]
         },
         "characteristics": [
@@ -5216,87 +5227,22 @@
             "value": "R$ 0"
           },
           {
+            "category": "fees",
+            "key": "fee_waiver",
+            "label": "Isenção da anuidade",
+            "value": "Sem anuidade e sem taxa de manutenção"
+          },
+          {
+            "category": "fees",
+            "key": "free_additional_cards",
+            "label": "Adicionais gratuitos",
+            "value": "Até 5"
+          },
+          {
             "category": "rewards",
             "key": "earning_rate",
-            "label": "Pontuação",
-            "value": "1,0% de cashback"
-          },
-          {
-            "category": "rewards",
-            "key": "financial_return",
-            "label": "Retorno financeiro",
-            "value": "cashback"
-          },
-          {
-            "category": "travel",
-            "key": "lounge_access",
-            "label": "Sala VIP",
-            "value": "Acesso disponível",
-            "details": "Gratuidade indicada pela fonte"
-          },
-          {
-            "category": "travel",
-            "key": "lounge_program",
-            "label": "Programa de sala VIP",
-            "value": "LoungeKey"
-          },
-          {
-            "category": "travel",
-            "key": "lounge_program",
-            "label": "Programa de sala VIP",
-            "value": "Sala VIP Mastercard Black"
-          },
-          {
-            "category": "travel",
-            "key": "lounge_guest_policy",
-            "label": "Acompanhantes em sala VIP",
-            "value": "0 acompanhante(s)"
-          },
-          {
-            "category": "travel",
-            "key": "lounge_visits",
-            "label": "Acessos a sala VIP",
-            "value": "Ilimitados"
-          },
-          {
-            "category": "rewards",
-            "key": "earning_detail",
-            "label": "Regra de pontuação",
-            "value": "1,0% de cashback"
-          },
-          {
-            "category": "rewards",
-            "key": "welcome_bonus",
-            "label": "Bônus de adesão",
-            "value": "Livelo",
-            "details": "(Não há)"
-          },
-          {
-            "category": "rewards",
-            "key": "welcome_bonus",
-            "label": "Bônus de adesão",
-            "value": "Genial Fidelidade",
-            "details": "(Não há)"
-          },
-          {
-            "category": "travel",
-            "key": "salas_vip",
-            "label": "Salas VIP",
-            "value": "Salas VIP do LoungeKey",
-            "details": "8 acessos gratuitos para o portador e 0 acompanhante gratuito por ano (Os acessos às salas VIP são compartilhados entre o titular, acompanhantes e cartões adicionais.)"
-          },
-          {
-            "category": "travel",
-            "key": "salas_vip",
-            "label": "Salas VIP",
-            "value": "Sala VIP Mastercard Black",
-            "details": "Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano"
-          },
-          {
-            "category": "rewards",
-            "key": "loyalty_program",
-            "label": "Programa de fidelidade",
-            "value": "Livelo"
+            "label": "Retorno",
+            "value": "1% de retorno em gCoins ao pagar a fatura"
           },
           {
             "category": "rewards",
@@ -5306,79 +5252,79 @@
           },
           {
             "category": "rewards",
-            "key": "points_expiration",
-            "label": "Validade dos pontos",
-            "value": "Livelo",
-            "details": "24 meses"
+            "key": "earning_detail",
+            "label": "Conversão",
+            "value": "1 gCoin equivale a 25 pontos",
+            "details": "Transferência para Livelo, Smiles ou TudoAzul"
           },
           {
-            "category": "rewards",
-            "key": "points_expiration",
-            "label": "Validade dos pontos",
-            "value": "Genial Fidelidade",
-            "details": "Não expiram"
+            "category": "travel",
+            "key": "lounge_access",
+            "label": "Sala VIP",
+            "value": "Acesso disponível",
+            "details": "Até 8 acessos LoungeKey para titular e adicionais"
           },
           {
-            "category": "fees",
-            "key": "additional_card_benefits",
-            "label": "Adicionais com benefícios",
-            "value": "Sim"
+            "category": "travel",
+            "key": "lounge_program",
+            "label": "Programa de sala VIP",
+            "value": "LoungeKey"
           },
           {
-            "category": "fees",
-            "key": "fee_waiver",
-            "label": "Isenção da anuidade",
-            "value": "Não há nenhuma publicada"
+            "category": "travel",
+            "key": "lounge_visits",
+            "label": "Acessos a sala VIP",
+            "value": "Até 8 acessos"
           },
           {
-            "category": "fees",
-            "key": "annual_fee_detail",
-            "label": "Anuidade",
-            "value": "R$ 0"
+            "category": "travel",
+            "key": "travel_concierge",
+            "label": "Travel Concierge",
+            "value": "Disponível"
           },
           {
-            "category": "lifestyle",
-            "key": "digital_wallet",
-            "label": "Carteira digital",
-            "value": "Samsung Pay, Google Pay"
+            "category": "travel",
+            "key": "travel_assistance",
+            "label": "Assistência em viagens",
+            "value": "Disponível"
+          },
+          {
+            "category": "travel",
+            "key": "rental_car_insurance",
+            "label": "Seguro aluguel de carros",
+            "value": "Disponível"
+          },
+          {
+            "category": "eligibility",
+            "key": "minimum_investment",
+            "label": "Investimento mínimo",
+            "value": "R$ 50.000"
           },
           {
             "category": "eligibility",
             "key": "requires_account",
             "label": "Precisa ser correntista",
             "value": "Sim"
-          },
-          {
-            "category": "fees",
-            "key": "free_additional_cards",
-            "label": "Adicionais gratuitos",
-            "value": "5"
           }
         ],
         "atomic_benefit_statements": [
           "Anuidade: R$ 0",
-          "Pontuação: 1,0% de cashback",
-          "Retorno financeiro: cashback",
-          "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
+          "Isenção da anuidade: Sem anuidade e sem taxa de manutenção",
+          "Adicionais gratuitos: até 5 cartões adicionais",
+          "Genial Fidelidade: 1% de retorno em gCoins ao pagar a fatura",
+          "Conversão: 1 gCoin equivale a 25 pontos",
+          "Transferência: Livelo, Smiles ou TudoAzul",
+          "Resgates: desconto na fatura e investimentos exclusivos",
+          "Sala VIP: até 8 acessos LoungeKey",
           "Programa de sala VIP: LoungeKey",
-          "Programa de sala VIP: Sala VIP Mastercard Black",
-          "Acompanhantes em sala VIP: 0 acompanhante(s)",
-          "Acessos a sala VIP: Ilimitados",
-          "Regra de pontuação: 1,0% de cashback",
-          "Bônus de adesão: Livelo - (Não há)",
-          "Bônus de adesão: Genial Fidelidade - (Não há)",
-          "Salas VIP: Salas VIP do LoungeKey - 8 acessos gratuitos para o portador e 0 acompanhante gratuito por ano (Os acessos às salas VIP são compartilhados entre o titular, acompanhantes e cartões adicionais.)",
-          "Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano",
-          "Programa de fidelidade: Livelo",
-          "Programa de fidelidade: Genial Fidelidade",
-          "Validade dos pontos: Livelo - 24 meses",
-          "Validade dos pontos: Genial Fidelidade - Não expiram",
-          "Adicionais com benefícios: Sim",
-          "Isenção da anuidade: Não há nenhuma publicada",
-          "Anuidade: R$ 0",
-          "Carteira digital: Samsung Pay, Google Pay",
+          "Acessos compartilhados entre titular e cartões adicionais",
+          "Travel Concierge",
+          "Assistência em viagens",
+          "Seguro aluguel de carros",
+          "Limite flexível calculado com base no valor investido na Genial",
+          "Investimento mínimo: R$ 50.000 investidos na Genial",
           "Precisa ser correntista: Sim",
-          "Adicionais gratuitos: 5"
+          "Aprovação sujeita à análise"
         ]
       },
       "claims": {
@@ -5657,14 +5603,8 @@
         }
       },
       "evidence": {
-        "verification_bucket": "trusted_catalog",
-        "source_is_official_issuer_domain": false,
-        "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/genial-black/",
-        "application_url": "https://www.genialinvestimentos.com.br/cartao-de-credito/?utm_medium=site",
-        "source_name": "Passageiro de Primeira",
-        "source_tier": "trusted_catalog",
-        "internal_confidence": 1,
-        "ranking_page_url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/"
+        "primary_evidence_url": "https://www.genialinvestimentos.com.br/cartao-de-credito/cartao-black/",
+        "source_is_official_issuer_domain": true
       },
       "raw_source_snapshot": {
         "card_info_list": {
@@ -5727,14 +5667,11 @@
         "source_title": "Genial Black"
       },
       "verification": {
-        "cross_check_status": "trusted_passageiro_de_primeira_ranking",
-        "confidence_score_0_to_1": 1,
-        "machine_truthfulness_note_pt": "Dados importados do ranking de cartões do Passageiro de Primeira; a interface deve mostrar a fonte, não um percentual de confiança.",
-        "primary_evidence_domain": "passageirodeprimeira.com",
-        "embedded_official_snippet_applied": false,
+        "cross_check_status": "official_issuer_page",
+        "confidence_score_0_to_1": 0.95,
+        "machine_truthfulness_note_pt": "Atualizado pela página oficial Cartão Black Genial: sem anuidade, R$ 50 mil investidos para solicitar, até 8 acessos LoungeKey e 1% de retorno em gCoins.",
         "recommended_human_cross_check_actions": [
-          "Usar o link da fonte para auditoria quando necessário",
-          "Consultar o emissor para regras contratuais vigentes antes de decisão financeira"
+          "Revalidar política de LoungeKey e conversão de gCoins periodicamente."
         ]
       },
       "flags": {
@@ -5749,7 +5686,9 @@
         "issuer_is_multi_entity_list": false
       },
       "eligibility": {
-        "requires_bank_account_claim": true
+        "requirements_text": "É preciso ter pelo menos R$ 50 mil investidos na Genial para solicitar o Cartão Black; aprovação sujeita à análise.",
+        "requires_bank_account_claim": true,
+        "minimum_investment_brl": 50000
       },
       "semantic_audit": {
         "audited_at_utc": "2026-05-07T00:24:31.914588+00:00",
@@ -5779,7 +5718,10 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "data_quality_notes": [
+        "A página oficial informa Cartão Black sem anuidade e sem taxa de manutenção; isso deve aparecer como isenção geral, não como regra desconhecida."
+      ]
     },
     {
       "identity": {
@@ -123638,6 +123580,221 @@
         },
         "needs_human_review": false
       }
+    },
+    {
+      "identity": {
+        "stable_id": "inter-inter-prime-mastercard-black-8f16c3a5b2",
+        "display_name": "Inter Prime Mastercard Black",
+        "issuer": {
+          "raw": "Inter",
+          "normalized": "inter",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Black",
+        "product_kind": "named_credit_card_product"
+      },
+      "ranking": {
+        "source_rank": 204,
+        "source_score": 80.5,
+        "source_name": "Inter / Melhores Cartões",
+        "source_url": "https://inter.co/pra-voce/cartoes/v2/c/"
+      },
+      "categorization": {
+        "market_segment_guess": "premium",
+        "co_brand_detected_from_name": false
+      },
+      "media": {
+        "card_art_url": "/card-images/inter-inter-prime-mastercard-black.webp",
+        "source_url": "https://inter.co/pra-voce/cartoes/v2/c/",
+        "source_tier": "official_issuer",
+        "alt_text": "Inter Prime Mastercard Black",
+        "remote_card_art_url": "https://central-imagens.bancointer.com.br/images-without-small-versions/cartao-prime-cartoes/image.webp"
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "R$ 0",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Sem anuidade",
+          "rules": [
+            {
+              "category": "general",
+              "full_waiver": true,
+              "description": "Sem anuidade",
+              "raw_text": "Inter Prime: Sem anuidade"
+            }
+          ],
+          "has_full_waiver_option": true,
+          "has_partial_waiver_option": false,
+          "has_promotional_period": false
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "1 ponto Loop a cada R$ 2,50 gastos no crédito",
+        "loyalty_programs_text": "Inter Loop",
+        "earn_points_or_miles_mentioned": true,
+        "earn_cashback_mentioned": true,
+        "earn_investback_mentioned": true,
+        "return_cashlike": {
+          "has_points_or_miles": true,
+          "has_cashlike_return": true,
+          "earning_summary": "1 ponto Loop a cada R$ 2,50 gastos no crédito; pontos podem virar cashback, milhas, desconto na fatura ou investimentos"
+        }
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": true,
+        "airport_lounge_unlimited_claim": false,
+        "airport_lounge_annual_visits_hint": 6,
+        "airport_lounge_programs_detected": [
+          "Priority Pass",
+          "Sala VIP Mastercard Black",
+          "Inter Lounge"
+        ],
+        "airport_lounge_guest_policy": "0 acompanhante(s)",
+        "airport_lounge_complimentary_access_confirmed": true,
+        "airport_lounge_policy_varies_by_issuer": false,
+        "official_airport_lounge_summary": "Acesso a salas VIP. Melhores Cartões indica 6 acessos anuais ao Priority Pass para Inter Black desde 11/05/2025, além de salas Mastercard Black e Inter.",
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: R$ 0",
+            "Isenção da anuidade: Sem anuidade"
+          ],
+          "rewards": [
+            "Pontuação: 1 ponto Loop a cada R$ 2,50 gastos no crédito",
+            "Programa de fidelidade: Inter Loop",
+            "Resgates: cashback na conta, desconto na fatura, milhas, dólares, investimentos"
+          ],
+          "travel": [
+            "Sala VIP: Acesso disponível",
+            "Programa de sala VIP: Priority Pass",
+            "Programa de sala VIP: Sala VIP Mastercard Black",
+            "Programa de sala VIP: Inter Lounge",
+            "Acessos Priority Pass: 6 por ano conforme guia Melhores Cartões para Inter Black desde 11/05/2025"
+          ],
+          "eligibility": [
+            "Como ter: Assinar Duo Gourmet anual",
+            "Como ter: Gasto médio de R$ 7.000 em 4 faturas consecutivas",
+            "Precisa ser correntista: Sim"
+          ],
+          "lifestyle": [
+            "Carteira digital: Apple Pay, Samsung Pay, Google Pay"
+          ]
+        },
+        "characteristics": [
+          {
+            "category": "fees",
+            "key": "annual_fee",
+            "label": "Anuidade",
+            "value": "R$ 0"
+          },
+          {
+            "category": "fees",
+            "key": "fee_waiver",
+            "label": "Isenção da anuidade",
+            "value": "Sem anuidade"
+          },
+          {
+            "category": "rewards",
+            "key": "earning_rate",
+            "label": "Pontuação",
+            "value": "1 ponto Loop a cada R$ 2,50 gastos no crédito"
+          },
+          {
+            "category": "rewards",
+            "key": "loyalty_program",
+            "label": "Programa de fidelidade",
+            "value": "Inter Loop"
+          },
+          {
+            "category": "rewards",
+            "key": "earning_detail",
+            "label": "Conversão",
+            "value": "Pontos Loop",
+            "details": "Podem ser trocados por cashback, milhas, desconto na fatura, dólares ou investimentos; guia Melhores Cartões cita 1% de cashback no Inter Black."
+          },
+          {
+            "category": "travel",
+            "key": "lounge_access",
+            "label": "Sala VIP",
+            "value": "Acesso disponível",
+            "details": "Priority Pass, salas Mastercard Black e Inter Lounge"
+          },
+          {
+            "category": "travel",
+            "key": "lounge_program",
+            "label": "Programa de sala VIP",
+            "value": "Priority Pass"
+          },
+          {
+            "category": "travel",
+            "key": "lounge_program",
+            "label": "Programa de sala VIP",
+            "value": "Sala VIP Mastercard Black"
+          },
+          {
+            "category": "travel",
+            "key": "lounge_program",
+            "label": "Programa de sala VIP",
+            "value": "Inter Lounge"
+          },
+          {
+            "category": "travel",
+            "key": "lounge_visits",
+            "label": "Acessos a sala VIP",
+            "value": "6 acessos anuais ao Priority Pass",
+            "details": "Regra citada pelo Melhores Cartões para Inter Black desde 11/05/2025"
+          },
+          {
+            "category": "eligibility",
+            "key": "requires_account",
+            "label": "Precisa ser correntista",
+            "value": "Sim"
+          },
+          {
+            "category": "eligibility",
+            "key": "eligibility_rule",
+            "label": "Como ter",
+            "value": "Assinar Duo Gourmet anual ou gastar R$ 7.000/mês em média por 4 faturas"
+          }
+        ],
+        "atomic_benefit_statements": [
+          "Sem anuidade",
+          "1 ponto Loop a cada R$ 2,50 gastos no crédito",
+          "Pontos podem virar cashback, milhas, desconto na fatura, dólares ou investimentos",
+          "Acesso a salas VIP",
+          "Elegível por Duo Gourmet anual ou gasto médio de R$ 7.000 em 4 faturas consecutivas"
+        ]
+      },
+      "eligibility": {
+        "requirements_text": "Assinar o plano anual do Duo Gourmet ou gastar em média R$ 7.000 em 4 faturas consecutivas. Liberação de crédito sujeita à análise.",
+        "requires_bank_account_claim": true
+      },
+      "evidence": {
+        "primary_evidence_url": "https://inter.co/pra-voce/cartoes/v2/c/",
+        "source_is_official_issuer_domain": true,
+        "review_source_url": "https://www.melhorescartoes.com.br/cartao-inter-guia-completo-dos-cartoes-de-credito-do-superapp.html"
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_with_trusted_review_context",
+        "confidence_score_0_to_1": 0.92,
+        "machine_truthfulness_note_pt": "Dados atuais do Inter Prime extraídos da página oficial do Inter; contexto de Inter Black e Priority Pass conferido no guia Melhores Cartões.",
+        "recommended_human_cross_check_actions": [
+          "Revalidar periodicamente a política de acessos Priority Pass do Inter Prime/Black."
+        ]
+      },
+      "data_quality_notes": [
+        "A página oficial atual lista Inter Prime, não um produto separado chamado Inter Black.",
+        "O guia Melhores Cartões ainda usa a nomenclatura Inter Black e cita mudança de Priority Pass em 11/05/2025."
+      ]
     },
     {
       "identity": {
