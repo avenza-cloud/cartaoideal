@@ -1180,13 +1180,13 @@
         "summary": "Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita"
       },
       "eligibility": {
-        "requirements_text": "unknown",
-        "minimum_income_brl_best_estimate": "unknown",
-        "minimum_investment_brl_best_estimate": "unknown",
+        "requirements_text": "R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil.",
+        "minimum_income_brl_best_estimate": 300000,
+        "minimum_investment_brl_best_estimate": 30000000,
         "requires_bank_account_claim": true,
         "availability_status": "available",
         "recommendation_blocking_unknowns": false,
-        "source_status": "not_structured"
+        "source_status": "manual_curated"
       },
       "benefit_groups": {
         "fees": [
@@ -1871,8 +1871,8 @@
       "facets_numeric_or_special": {
         "annual_fee_brl_best_estimate": 18000,
         "monthly_fee_brl_after_intro_official_hint": "unknown",
-        "minimum_income_brl_best_estimate": "unknown",
-        "minimum_investment_brl_best_estimate": "unknown",
+        "minimum_income_brl_best_estimate": 300000,
+        "minimum_investment_brl_best_estimate": 30000000,
         "lounge_visits_per_year_hint": "unknown",
         "official_forex_or_iof_note": "unknown"
       },
@@ -1895,7 +1895,7 @@
         "travel:lounge",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "Unicred Visa Infinite Privilege \nEmissor: Unicred \nBandeira: Visa \nFaixa: Infinite Privilege \nElegibilidade: unknown \nGanhos: Até 7,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 18.000 \nSalas VIP / programa: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Visa Infinite Privilege Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita \nBenefícios (lista): Anuidade: R$ 18.000; Pontuação: Até 7,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Visa Airport Companion; Programa de sala VIP: Visa Infinite Privilege Lounge; Acompanhantes em sala VIP: 8 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 5,0 pontos por dólar gasto no Brasil; Regra de pontuação: 7,0 pontos por dólar gasto no exterior; Bônus de adesão: Único - (Não há); Bônus de adesão: Livelo - (Não há) \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
+      "text_for_embedding_compare": "Unicred Visa Infinite Privilege \nEmissor: Unicred \nBandeira: Visa \nFaixa: Infinite Privilege \nElegibilidade: R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil. \nGanhos: Até 7,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 18.000 \nSalas VIP / programa: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Visa Infinite Privilege Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita \nBenefícios (lista): Anuidade: R$ 18.000; Pontuação: Até 7,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Visa Airport Companion; Programa de sala VIP: Visa Infinite Privilege Lounge; Acompanhantes em sala VIP: 8 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 5,0 pontos por dólar gasto no Brasil; Regra de pontuação: 7,0 pontos por dólar gasto no exterior; Bônus de adesão: Único - (Não há); Bônus de adesão: Livelo - (Não há) \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
     },
     {
       "card_stable_id": "genial-genial-black-59b41b4a94",
