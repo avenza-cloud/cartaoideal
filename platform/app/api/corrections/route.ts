@@ -7,7 +7,6 @@ const correctionSchema = z.object({
   cardName: z.string().min(1),
   issuer: z.string().optional().default(""),
   field: z.string().min(1),
-  currentValue: z.string().optional().default(""),
   suggestedValue: z.string().min(1),
   sourceUrl: z.string().url(),
   notes: z.string().optional().default(""),

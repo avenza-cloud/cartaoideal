@@ -41,7 +41,6 @@ export function CardCorrectionForm({
 }: CardCorrectionFormProps) {
   const [open, setOpen] = useState(false);
   const [field, setField] = useState(FIELD_OPTIONS[0]);
-  const [currentValue, setCurrentValue] = useState("");
   const [suggestedValue, setSuggestedValue] = useState("");
   const [correctionSourceUrl, setCorrectionSourceUrl] = useState("");
   const [notes, setNotes] = useState("");
@@ -62,7 +61,6 @@ export function CardCorrectionForm({
         cardName,
         issuer,
         field,
-        currentValue,
         suggestedValue,
         sourceUrl: correctionSourceUrl,
         notes,
@@ -85,7 +83,6 @@ export function CardCorrectionForm({
   function resetAndClose(nextOpen: boolean) {
     setOpen(nextOpen);
     if (!nextOpen && status === "success") {
-      setCurrentValue("");
       setSuggestedValue("");
       setCorrectionSourceUrl("");
       setNotes("");
@@ -132,24 +129,14 @@ export function CardCorrectionForm({
             </select>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-muted-foreground">Valor atual</label>
-              <Input
-                value={currentValue}
-                onChange={(event) => setCurrentValue(event.target.value)}
-                placeholder="Ex: R$ 25.000"
-              />
-            </div>
-            <div className="space-y-1.5">
-              <label className="text-xs font-medium text-muted-foreground">Valor correto</label>
-              <Input
-                required
-                value={suggestedValue}
-                onChange={(event) => setSuggestedValue(event.target.value)}
-                placeholder="Ex: R$ 20.000"
-              />
-            </div>
+          <div className="space-y-1.5">
+            <label className="text-xs font-medium text-muted-foreground">Valor correto</label>
+            <Input
+              required
+              value={suggestedValue}
+              onChange={(event) => setSuggestedValue(event.target.value)}
+              placeholder="Ex: R$ 20.000"
+            />
           </div>
 
           <div className="space-y-1.5">
