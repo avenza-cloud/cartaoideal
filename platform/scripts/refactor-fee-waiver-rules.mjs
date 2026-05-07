@@ -30,9 +30,7 @@ function fullWaiverFromText(text) {
   return /100%|isenc|isent|gratuit|sem anuidade|zero/i.test(text);
 }
 
-function thresholdAppearsInText(text, value) {
-  if (typeof value !== "number") return false;
-  const normalized = String(text).toLowerCase();
+function amountForms(value) {
   const forms = new Set([
     String(value),
     value.toLocaleString("pt-BR"),
@@ -56,12 +54,129 @@ function thresholdAppearsInText(text, value) {
     forms.add(`${millions.toLocaleString("pt-BR", { maximumFractionDigits: 2 })} milhões`);
   }
 
-  return [...forms].some((form) => normalized.includes(form.toLowerCase()));
+  return [...forms];
+}
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function amountPattern(value) {
+  const forms = amountForms(value).sort((a, b) => b.length - a.length);
+  return new RegExp(`(?:R\\$\\s*)?(?:${forms.map(escapeRegExp).join("|")})`, "i");
+}
+
+function amountPatternGlobal(value) {
+  const forms = amountForms(value).sort((a, b) => b.length - a.length);
+  return new RegExp(`(?:R\\$\\s*)?(?:${forms.map(escapeRegExp).join("|")})`, "gi");
+}
+
+function isInvalidAmountFragment(text, match) {
+  const start = match.index ?? 0;
+  const end = start + match[0].length;
+  const before = text.slice(Math.max(0, start - 8), start);
+  const after = text.slice(end, end + 14);
+  if (/[A-Za-zÀ-ÿ\d.,]/.test(text[start - 1] ?? "")) return true;
+  if (/[A-Za-zÀ-ÿ\d.,]/.test(text[end] ?? "")) return true;
+  if (/mil\s+e\s*$/i.test(before)) return true;
+  if (!/\bmil/i.test(match[0]) && /^\s*mil/i.test(after)) return true;
+  if (/\bmil\s*$/i.test(match[0]) && /^\s+e\s+\d/i.test(after)) return true;
+  return false;
+}
+
+function firstValidAmountMatch(text, value) {
+  for (const match of String(text).matchAll(amountPatternGlobal(value))) {
+    if (!isInvalidAmountFragment(String(text), match)) return match;
+  }
+  return null;
+}
+
+function ruleFullWaiverFromContext(text, index, fallback) {
+  const { clause, sentence } = contextAround(String(text), index);
+  const clauseText = clause.toLowerCase();
+  const sentenceText = sentence.toLowerCase();
+  const hasPartialInClause = /50%|metade|parcial/.test(clauseText);
+  const hasFullSpecificInClause = /100%|isen[cç][aã]o total|isencao total|gratuit|sem anuidade|zero/.test(clauseText);
+  const hasFullInClause = hasFullSpecificInClause || /isenta|isento/.test(clauseText);
+  if (hasPartialInClause && !hasFullSpecificInClause) return false;
+  if (hasFullInClause && !hasPartialInClause) return true;
+
+  const hasPartialInSentence = /50%|metade|parcial/.test(sentenceText);
+  const hasFullSpecificInSentence = /100%|isen[cç][aã]o total|isencao total|gratuit|sem anuidade|zero/.test(sentenceText);
+  const hasFullInSentence = hasFullSpecificInSentence || /isenta|isento/.test(sentenceText);
+  if (hasPartialInSentence && !hasFullSpecificInSentence) return false;
+  if (hasFullInSentence && !hasPartialInSentence) return true;
+  return fallback;
+}
+
+function capturedAmountIndex(match) {
+  const offset = match[0].lastIndexOf(match[1]);
+  return (match.index ?? 0) + Math.max(offset, 0);
+}
+
+function contextAround(text, index) {
+  const beforeSentence = Math.max(text.lastIndexOf(".", index), text.lastIndexOf(";", index));
+  const afterDot = text.indexOf(".", index);
+  const afterSemi = text.indexOf(";", index);
+  const afterSentenceCandidates = [afterDot, afterSemi].filter((value) => value !== -1);
+  const afterSentence =
+    afterSentenceCandidates.length > 0 ? Math.min(...afterSentenceCandidates) : text.length;
+  const sentence = text.slice(beforeSentence + 1, afterSentence);
+
+  const beforeClause = Math.max(
+    text.lastIndexOf(",", index),
+    text.lastIndexOf(" ou ", index),
+    text.lastIndexOf(" e ", index),
+    beforeSentence
+  );
+  const afterComma = text.indexOf(",", index);
+  const afterOu = text.indexOf(" ou ", index);
+  const afterE = text.indexOf(" e ", index);
+  const afterClauseCandidates = [afterComma, afterOu, afterE, afterSentence].filter(
+    (value) => value !== -1
+  );
+  const afterClause = Math.min(...afterClauseCandidates);
+  const clause = text.slice(beforeClause + 1, afterClause);
+
+  return { clause, sentence };
+}
+
+function thresholdMatchesCategory(text, value, category) {
+  if (typeof value !== "number") return false;
+  const source = String(text);
+  for (const match of source.matchAll(amountPatternGlobal(value))) {
+    if (isInvalidAmountFragment(source, match)) continue;
+
+    const { clause, sentence } = contextAround(source, match.index);
+    const hasSpendInClause = /gastos?|faturas?|compras|despesas/i.test(clause);
+    const hasInvestInClause = /invest|patrim[oô]nio|aplica/i.test(clause);
+    const hasSpendInSentence = /gastos?|faturas?|compras|despesas/i.test(sentence);
+    const hasInvestInSentence = /invest|patrim[oô]nio|aplica/i.test(sentence);
+    const isFeeAmount = /valor da anuidade|anuidade será|anuidade de até|anuidade:?/i.test(clause);
+    const isProgressiveDiscount =
+      /desconto|mensalidade|valor total/i.test(clause) &&
+      !/100%|isen[cç][aã]o total|isencao total|gratuit|sem anuidade/i.test(clause);
+    if (isProgressiveDiscount) continue;
+
+    if (category === "monthly_spend") {
+      if (hasInvestInClause && !hasSpendInClause) continue;
+      if (hasSpendInClause) return true;
+      if (!isFeeAmount && hasSpendInSentence && !hasInvestInSentence) return true;
+      continue;
+    }
+
+    if (hasSpendInClause && !hasInvestInClause) continue;
+    if (hasInvestInClause) return true;
+    if (!isFeeAmount && hasInvestInSentence && !hasSpendInSentence) return true;
+  }
+  return false;
 }
 
 function pushUnique(rules, rule) {
   const key = `${rule.category}:${rule.threshold_brl ?? "none"}:${rule.period ?? "none"}`;
-  if (rules.some((existing) => `${existing.category}:${existing.threshold_brl ?? "none"}:${existing.period ?? "none"}` === key)) {
+  const existing = rules.find((item) => `${item.category}:${item.threshold_brl ?? "none"}:${item.period ?? "none"}` === key);
+  if (existing) {
+    Object.assign(existing, rule);
     return;
   }
   rules.push(rule);
@@ -74,23 +189,25 @@ function rulesFromSemanticAudit(card, text) {
   const rules = [];
   const full_waiver = fullWaiverFromText(text) || policy.has_full_waiver === true;
   for (const threshold of policy.spend_thresholds_brl ?? []) {
-    if (typeof threshold === "number" && thresholdAppearsInText(text, threshold)) {
+    if (typeof threshold === "number" && thresholdMatchesCategory(text, threshold, "monthly_spend")) {
+      const match = firstValidAmountMatch(text, threshold);
       pushUnique(rules, {
         category: "monthly_spend",
         threshold_brl: threshold,
         period: "monthly",
-        full_waiver,
+        full_waiver: ruleFullWaiverFromContext(text, match?.index ?? 0, full_waiver),
         description: "Gasto mensal mínimo",
         raw_text: text,
       });
     }
   }
   for (const threshold of policy.investment_thresholds_brl ?? []) {
-    if (typeof threshold === "number" && thresholdAppearsInText(text, threshold)) {
+    if (typeof threshold === "number" && thresholdMatchesCategory(text, threshold, "investment")) {
+      const match = firstValidAmountMatch(text, threshold);
       pushUnique(rules, {
         category: "investment",
         threshold_brl: threshold,
-        full_waiver,
+        full_waiver: ruleFullWaiverFromContext(text, match?.index ?? 0, full_waiver),
         description: "Investimento mínimo",
         raw_text: text,
       });
@@ -128,15 +245,45 @@ function rulesFromText(text) {
     /R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?[^.\n]{0,50}?(?:por mês|mensais|mensal|fatura|gastos?|compras|despesas)/gi,
   ];
 
+  for (const match of raw_text.matchAll(/R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?[^.\n]{0,90}?(?:gastos?|fatura)[^.\n]{0,90}?isen[cç][aã]o total/gi)) {
+    const threshold = parseAmount(match[1], match[2]);
+    if (threshold !== null) {
+      pushUnique(rules, {
+        category: "monthly_spend",
+        threshold_brl: threshold,
+        period: "monthly",
+        full_waiver: true,
+        description: "Gasto mensal mínimo",
+        raw_text,
+      });
+    }
+  }
+
+  for (const match of raw_text.matchAll(/R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?(?:(?!R\$).){0,60}?isen[cç][aã]o\s+de\s+50%/gi)) {
+    const threshold = parseAmount(match[1], match[2]);
+    if (threshold !== null) {
+      pushUnique(rules, {
+        category: "monthly_spend",
+        threshold_brl: threshold,
+        period: "monthly",
+        full_waiver: false,
+        description: "Gasto mensal mínimo",
+        raw_text,
+      });
+    }
+  }
+
   for (const pattern of investmentPatterns) {
     for (const match of raw_text.matchAll(pattern)) {
       if (/gastos?|fatura|compras|despesas/i.test(match[0])) continue;
+      const amountIndex = capturedAmountIndex(match);
+      if (!thresholdMatchesCategory(raw_text, parseAmount(match[1], match[2]), "investment")) continue;
       const threshold = parseAmount(match[1], match[2]);
       if (threshold !== null) {
         pushUnique(rules, {
           category: "investment",
           threshold_brl: threshold,
-          full_waiver,
+          full_waiver: ruleFullWaiverFromContext(raw_text, amountIndex, full_waiver),
           description: "Investimento mínimo",
           raw_text,
         });
@@ -147,17 +294,48 @@ function rulesFromText(text) {
   for (const pattern of spendPatterns) {
     for (const match of raw_text.matchAll(pattern)) {
       if (/invest/i.test(match[0])) continue;
+      const amountIndex = capturedAmountIndex(match);
+      if (!thresholdMatchesCategory(raw_text, parseAmount(match[1], match[2]), "monthly_spend")) continue;
       const threshold = parseAmount(match[1], match[2]);
       if (threshold !== null) {
         pushUnique(rules, {
           category: "monthly_spend",
           threshold_brl: threshold,
           period: "monthly",
-          full_waiver,
+          full_waiver: ruleFullWaiverFromContext(raw_text, amountIndex, full_waiver),
           description: "Gasto mensal mínimo",
           raw_text,
         });
       }
+    }
+  }
+
+  for (const match of raw_text.matchAll(/(?:R\$\s*)?(\d[\d.]*(?:,\d+)?)(?:\s*(mil(?:hões?)?))?/gi)) {
+    if (raw_text[match.index + match[0].length] === "%") continue;
+    if (isInvalidAmountFragment(raw_text, match)) continue;
+    const threshold = parseAmount(match[1], match[2]);
+    if (threshold === null) continue;
+    const amountIndex = capturedAmountIndex(match);
+
+    if (thresholdMatchesCategory(raw_text, threshold, "monthly_spend")) {
+      pushUnique(rules, {
+        category: "monthly_spend",
+        threshold_brl: threshold,
+        period: "monthly",
+        full_waiver: ruleFullWaiverFromContext(raw_text, amountIndex, full_waiver),
+        description: "Gasto mensal mínimo",
+        raw_text,
+      });
+    }
+
+    if (thresholdMatchesCategory(raw_text, threshold, "investment")) {
+      pushUnique(rules, {
+        category: "investment",
+        threshold_brl: threshold,
+        full_waiver: ruleFullWaiverFromContext(raw_text, amountIndex, full_waiver),
+        description: "Investimento mínimo",
+        raw_text,
+      });
     }
   }
 
@@ -222,20 +400,33 @@ function rulesForCatalogCard(card) {
     parsedRules.some((rule) => rule.category === "monthly_spend") &&
     parsedRules.some((rule) => rule.category === "investment")
   ) {
+    applySpecificWaiverHints(parsedRules);
     return parsedRules;
   }
 
   const rules = [...semanticRules];
   for (const rule of parsedRules) {
-    if (
-      semanticRules.length > 0 &&
-      (rule.category === "monthly_spend" || rule.category === "investment")
-    ) {
-      continue;
-    }
     pushUnique(rules, rule);
   }
+  applySpecificWaiverHints(rules);
   return rules;
+}
+
+function amountNearPattern(value, tailPattern) {
+  const forms = amountForms(value).sort((a, b) => b.length - a.length);
+  return new RegExp(`(?:R\\$\\s*)?(?:${forms.map(escapeRegExp).join("|")})(?:(?!R\\$).){0,70}?${tailPattern}`, "i");
+}
+
+function applySpecificWaiverHints(rules) {
+  for (const rule of rules) {
+    if (typeof rule.threshold_brl !== "number") continue;
+    if (amountNearPattern(rule.threshold_brl, "isen[cç][aã]o\\s+de\\s+50%").test(rule.raw_text)) {
+      rule.full_waiver = false;
+    }
+    if (amountNearPattern(rule.threshold_brl, "isen[cç][aã]o\\s+total").test(rule.raw_text)) {
+      rule.full_waiver = true;
+    }
+  }
 }
 
 function syncSemanticWaiverPolicy(card, rules) {

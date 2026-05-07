@@ -1699,7 +1699,7 @@
             {
               "category": "investment",
               "threshold_brl": 15000000,
-              "full_waiver": true,
+              "full_waiver": false,
               "description": "Investimento mínimo",
               "raw_text": "50% de isenção de anuidade para clientes com investimentos acima de R$ 15 milhões em produtos Porto e 100% de isenção para clientes acima de R$ 30 milhões"
             },
@@ -4401,19 +4401,9 @@
           "policy_text": "3 primeiros meses gratuitos. Após esse período, 50% de isenção com gastos acima de R$ 60 mil e 100% para gastos acima de R$ 120 mil. Isenção por Investimentos",
           "rules": [
             {
-              "category": "monthly_spend",
-              "threshold_brl": 60000,
-              "period": "monthly",
+              "category": "investment",
               "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "3 primeiros meses gratuitos. Após esse período, 50% de isenção com gastos acima de R$ 60 mil e 100% para gastos acima de R$ 120 mil. Isenção por Investimentos"
-            },
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 120000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
+              "description": "Investimento mínimo não informado",
               "raw_text": "3 primeiros meses gratuitos. Após esse período, 50% de isenção com gastos acima de R$ 60 mil e 100% para gastos acima de R$ 120 mil. Isenção por Investimentos"
             }
           ],
@@ -5097,10 +5087,7 @@
               "has_full_waiver": true,
               "has_partial_waiver": true,
               "investment_thresholds_brl": [],
-              "spend_thresholds_brl": [
-                60000,
-                120000
-              ]
+              "spend_thresholds_brl": []
             }
           },
           "rewards": {
@@ -5835,22 +5822,6 @@
           "policy_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 12.500,00 ou 100% de cashback com gastos acima de R$ 25.000,00",
           "rules": [
             {
-              "category": "monthly_spend",
-              "threshold_brl": 12500,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 12.500,00 ou 100% de cashback com gastos acima de R$ 25.000,00"
-            },
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 25000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 12.500,00 ou 100% de cashback com gastos acima de R$ 25.000,00"
-            },
-            {
               "category": "cashback",
               "threshold_brl": 25000,
               "period": "monthly",
@@ -6447,10 +6418,7 @@
               "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 12.500,00 ou 100% de cashback com gastos acima de R$ 25.000,00",
               "has_full_waiver": true,
               "has_partial_waiver": true,
-              "spend_thresholds_brl": [
-                12500,
-                25000
-              ],
+              "spend_thresholds_brl": [],
               "investment_thresholds_brl": []
             }
           },
@@ -7136,14 +7104,6 @@
           "rules": [
             {
               "category": "monthly_spend",
-              "threshold_brl": 12500,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "50% de isenção da anuidade para faturas acima de R$ 12,5 mil e 100% de isenção para faturas acima de R$ 25 mil ou R$ 5 milhões em investimentos no Banestes"
-            },
-            {
-              "category": "monthly_spend",
               "threshold_brl": 25000,
               "period": "monthly",
               "full_waiver": true,
@@ -7785,7 +7745,6 @@
                 5000000
               ],
               "spend_thresholds_brl": [
-                12500,
                 25000
               ]
             }
@@ -11172,22 +11131,6 @@
           "policy_text": "50% de isenção da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 15.000,00 ou 100% de isenção com gastos acima de R$ 25.000,00 ou R$ 2 milhões de investimentos",
           "rules": [
             {
-              "category": "monthly_spend",
-              "threshold_brl": 15000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "50% de isenção da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 15.000,00 ou 100% de isenção com gastos acima de R$ 25.000,00 ou R$ 2 milhões de investimentos"
-            },
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 25000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "50% de isenção da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 15.000,00 ou 100% de isenção com gastos acima de R$ 25.000,00 ou R$ 2 milhões de investimentos"
-            },
-            {
               "category": "investment",
               "threshold_brl": 2000000,
               "full_waiver": true,
@@ -11787,10 +11730,7 @@
               "investment_thresholds_brl": [
                 2000000
               ],
-              "spend_thresholds_brl": [
-                15000,
-                25000
-              ]
+              "spend_thresholds_brl": []
             }
           },
           "rewards": {
@@ -13712,7 +13652,7 @@
               "category": "monthly_spend",
               "threshold_brl": 20000,
               "period": "monthly",
-              "full_waiver": true,
+              "full_waiver": false,
               "description": "Gasto mensal mínimo",
               "raw_text": "50% de isenção na anuidade com gasto a partir de 20 mil reais por mês e de 100% a partir de 35 mil"
             },
@@ -17244,14 +17184,6 @@
           "policy_text": "100% de isenção de anuidade para clientes com investimentos acima de R$ 3 milhões ou faturas a partir de R$ 40 mil.",
           "rules": [
             {
-              "category": "monthly_spend",
-              "threshold_brl": 40000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "100% de isenção de anuidade para clientes com investimentos acima de R$ 3 milhões ou faturas a partir de R$ 40 mil."
-            },
-            {
               "category": "investment",
               "threshold_brl": 3000000,
               "full_waiver": true,
@@ -17892,9 +17824,7 @@
               "investment_thresholds_brl": [
                 3000000
               ],
-              "spend_thresholds_brl": [
-                40000
-              ]
+              "spend_thresholds_brl": []
             }
           },
           "rewards": {
@@ -18396,14 +18326,6 @@
         "waiver_and_discounts": {
           "policy_text": "100% de isenção de anuidade para clientes nível 5 no Minhas Vantagens, com investimentos acima de R$ 3 milhões ou faturas a partir de R$ 60 mil.",
           "rules": [
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 60000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "100% de isenção de anuidade para clientes nível 5 no Minhas Vantagens, com investimentos acima de R$ 3 milhões ou faturas a partir de R$ 60 mil."
-            },
             {
               "category": "investment",
               "threshold_brl": 3000000,
@@ -19001,9 +18923,7 @@
               "investment_thresholds_brl": [
                 3000000
               ],
-              "spend_thresholds_brl": [
-                60000
-              ]
+              "spend_thresholds_brl": []
             }
           },
           "rewards": {
@@ -19058,24 +18978,17 @@
         },
         "waiver_and_discounts": {
           "policy_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade",
+          "has_full_waiver_option": false,
           "rules": [
             {
               "category": "monthly_spend",
-              "threshold_brl": 1000,
+              "threshold_brl": 10000,
               "period": "monthly",
               "full_waiver": false,
               "description": "Gasto mensal mínimo",
               "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
-            },
-            {
-              "category": "investment",
-              "threshold_brl": 10000,
-              "full_waiver": false,
-              "description": "Investimento mínimo",
-              "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
             }
-          ],
-          "has_full_waiver_option": false
+          ]
         }
       },
       "rewards": {
@@ -19574,11 +19487,9 @@
               "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade",
               "has_full_waiver": false,
               "has_partial_waiver": true,
-              "investment_thresholds_brl": [
-                10000
-              ],
+              "investment_thresholds_brl": [],
               "spend_thresholds_brl": [
-                1000
+                10000
               ]
             }
           },
@@ -20887,14 +20798,6 @@
           "rules": [
             {
               "category": "monthly_spend",
-              "threshold_brl": 18000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "50% de desconto na parcela da anuidade com gastos mensais a partir de R$ 18 mil e 100% de isenção com gastos a partir de R$ 26 mil"
-            },
-            {
-              "category": "monthly_spend",
               "threshold_brl": 26000,
               "period": "monthly",
               "full_waiver": true,
@@ -21514,7 +21417,6 @@
               "has_full_waiver": true,
               "has_partial_waiver": true,
               "spend_thresholds_brl": [
-                18000,
                 26000
               ],
               "investment_thresholds_brl": []
@@ -23486,14 +23388,6 @@
           "rules": [
             {
               "category": "monthly_spend",
-              "threshold_brl": 18000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "50% de desconto na parcela da anuidade com gastos mensais a partir de R$ 18 mil e 100% de isenção com gastos a partir de R$ 26 mil"
-            },
-            {
-              "category": "monthly_spend",
               "threshold_brl": 26000,
               "period": "monthly",
               "full_waiver": true,
@@ -24078,7 +23972,6 @@
               "has_full_waiver": true,
               "has_partial_waiver": true,
               "spend_thresholds_brl": [
-                18000,
                 26000
               ],
               "investment_thresholds_brl": []
@@ -24542,14 +24435,6 @@
         "waiver_and_discounts": {
           "policy_text": "100% de isenção da anuidade com faturas acima de R$ 5 mil, investimentos acima de R$ 50 mil ou fazendo a portabilidade de salário e mantendo o recebimento no PicPay",
           "rules": [
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 5000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "100% de isenção da anuidade com faturas acima de R$ 5 mil, investimentos acima de R$ 50 mil ou fazendo a portabilidade de salário e mantendo o recebimento no PicPay"
-            },
             {
               "category": "investment",
               "threshold_brl": 50000,
@@ -25041,9 +24926,7 @@
               "investment_thresholds_brl": [
                 50000
               ],
-              "spend_thresholds_brl": [
-                5000
-              ]
+              "spend_thresholds_brl": []
             }
           },
           "rewards": {
@@ -25096,14 +24979,6 @@
         "waiver_and_discounts": {
           "policy_text": "100% de isenção de anuidade para clientes nível 5 no Minhas Vantagens, com investimentos acima de R$ 3 milhões ou faturas a partir de R$ 60 mil.",
           "rules": [
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 60000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "100% de isenção de anuidade para clientes nível 5 no Minhas Vantagens, com investimentos acima de R$ 3 milhões ou faturas a partir de R$ 60 mil."
-            },
             {
               "category": "investment",
               "threshold_brl": 3000000,
@@ -25717,9 +25592,7 @@
               "investment_thresholds_brl": [
                 3000000
               ],
-              "spend_thresholds_brl": [
-                60000
-              ]
+              "spend_thresholds_brl": []
             }
           },
           "rewards": {
@@ -28057,16 +27930,6 @@
         },
         "waiver_and_discounts": {
           "policy_text": "100% de isenção gastando R$350,00 em compras Vivo e realizando o pagamento da fatura em dia",
-          "rules": [
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 350,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "100% de isenção gastando R$350,00 em compras Vivo e realizando o pagamento da fatura em dia"
-            }
-          ],
           "has_full_waiver_option": true
         }
       },
@@ -29543,9 +29406,8 @@
           "rules": [
             {
               "category": "investment",
-              "threshold_brl": 150000,
               "full_waiver": false,
-              "description": "Investimento mínimo",
+              "description": "Investimento mínimo não informado",
               "raw_text": "50% de desconto de anuidade para correntistas com investimentos superiores a R$ 150 mil."
             }
           ],
@@ -30099,9 +29961,7 @@
               "raw_text": "50% de desconto de anuidade para correntistas com investimentos superiores a R$ 150 mil.",
               "has_full_waiver": false,
               "has_partial_waiver": true,
-              "investment_thresholds_brl": [
-                150000
-              ],
+              "investment_thresholds_brl": [],
               "spend_thresholds_brl": []
             }
           },
@@ -30154,16 +30014,6 @@
         },
         "waiver_and_discounts": {
           "policy_text": "100% de isenção gastando R$350,00 em compras Vivo e realizando o pagamento da fatura em dia",
-          "rules": [
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 350,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "100% de isenção gastando R$350,00 em compras Vivo e realizando o pagamento da fatura em dia"
-            }
-          ],
           "has_full_waiver_option": true
         }
       },
@@ -30627,23 +30477,15 @@
           "rules": [
             {
               "category": "monthly_spend",
-              "threshold_brl": 1500,
+              "threshold_brl": 17000,
               "period": "monthly",
-              "full_waiver": true,
+              "full_waiver": false,
               "description": "Gasto mensal mínimo",
               "raw_text": "O valor da anuidade será de até R$ 1500, podendo variar de cada cooperativa. A partir de R$ 25.000 em gastos na fatura do cartão ganha isenção total e a partir de R$ 17.000 isenção de 50%"
             },
             {
               "category": "monthly_spend",
               "threshold_brl": 25000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "O valor da anuidade será de até R$ 1500, podendo variar de cada cooperativa. A partir de R$ 25.000 em gastos na fatura do cartão ganha isenção total e a partir de R$ 17.000 isenção de 50%"
-            },
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 17000,
               "period": "monthly",
               "full_waiver": true,
               "description": "Gasto mensal mínimo",
@@ -31185,9 +31027,8 @@
               "has_full_waiver": true,
               "has_partial_waiver": true,
               "spend_thresholds_brl": [
-                1500,
-                25000,
-                17000
+                17000,
+                25000
               ],
               "investment_thresholds_brl": []
             }
@@ -31242,14 +31083,6 @@
         "waiver_and_discounts": {
           "policy_text": "100% de isenção da anuidade com faturas acima de R$ 2 mil, investimentos acima de R$ 20 mil ou fazendo a portabilidade de salário e mantendo o recebimento no PicPay",
           "rules": [
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 2000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "100% de isenção da anuidade com faturas acima de R$ 2 mil, investimentos acima de R$ 20 mil ou fazendo a portabilidade de salário e mantendo o recebimento no PicPay"
-            },
             {
               "category": "investment",
               "threshold_brl": 20000,
@@ -31644,9 +31477,7 @@
               "investment_thresholds_brl": [
                 20000
               ],
-              "spend_thresholds_brl": [
-                2000
-              ]
+              "spend_thresholds_brl": []
             }
           },
           "rewards": {
@@ -34197,14 +34028,6 @@
               "full_waiver": true,
               "description": "Gasto mensal mínimo",
               "raw_text": "Anuidade isenta com gasto a partir de R$ 20 mil por mês e 50% a partir de R$ 10 mil."
-            },
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 10000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "Anuidade isenta com gasto a partir de R$ 20 mil por mês e 50% a partir de R$ 10 mil."
             }
           ],
           "has_full_waiver_option": true
@@ -34743,8 +34566,7 @@
               "has_full_waiver": true,
               "has_partial_waiver": true,
               "spend_thresholds_brl": [
-                20000,
-                10000
+                20000
               ],
               "investment_thresholds_brl": []
             }
@@ -36690,14 +36512,6 @@
               "full_waiver": true,
               "description": "Gasto mensal mínimo",
               "raw_text": "Anuidade isenta com gasto a partir de R$ 20 mil por mês e 50% a partir de R$ 10 mil."
-            },
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 10000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "Anuidade isenta com gasto a partir de R$ 20 mil por mês e 50% a partir de R$ 10 mil."
             }
           ],
           "has_full_waiver_option": true
@@ -37236,8 +37050,7 @@
               "has_full_waiver": true,
               "has_partial_waiver": true,
               "spend_thresholds_brl": [
-                20000,
-                10000
+                20000
               ],
               "investment_thresholds_brl": []
             }
@@ -40101,9 +39914,8 @@
             },
             {
               "category": "investment",
-              "threshold_brl": 150000,
               "full_waiver": true,
-              "description": "Investimento mínimo",
+              "description": "Investimento mínimo não informado",
               "raw_text": "Primeira anuidade gratuita. Após isso, serão isentos os clientes com gastos a partir de R$12 mil por mês ou com investimento acima de R$150 mil."
             }
           ],
@@ -40678,9 +40490,7 @@
               "raw_text": "Primeira anuidade gratuita. Após isso, serão isentos os clientes com gastos a partir de R$12 mil por mês ou com investimento acima de R$150 mil.",
               "has_full_waiver": true,
               "has_partial_waiver": false,
-              "investment_thresholds_brl": [
-                150000
-              ],
+              "investment_thresholds_brl": [],
               "spend_thresholds_brl": [
                 12000
               ]
@@ -40748,7 +40558,7 @@
               "category": "monthly_spend",
               "threshold_brl": 10000,
               "period": "monthly",
-              "full_waiver": true,
+              "full_waiver": false,
               "description": "Gasto mensal mínimo",
               "raw_text": "Anuidade isenta com gasto a partir de 20 mil reais por mês e 50% a partir de 10 mil reais."
             }
@@ -48328,14 +48138,6 @@
           "policy_text": "100% de isenção de anuidade para clientes nível 2 no Minhas Vantagens, com investimentos acima de R$ 50 mil ou faturas a partir de R$ 10 mil.",
           "rules": [
             {
-              "category": "monthly_spend",
-              "threshold_brl": 10000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "100% de isenção de anuidade para clientes nível 2 no Minhas Vantagens, com investimentos acima de R$ 50 mil ou faturas a partir de R$ 10 mil."
-            },
-            {
               "category": "investment",
               "threshold_brl": 50000,
               "full_waiver": true,
@@ -48877,9 +48679,7 @@
               "investment_thresholds_brl": [
                 50000
               ],
-              "spend_thresholds_brl": [
-                10000
-              ]
+              "spend_thresholds_brl": []
             }
           },
           "rewards": {
@@ -48932,24 +48732,17 @@
         },
         "waiver_and_discounts": {
           "policy_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade",
+          "has_full_waiver_option": false,
           "rules": [
             {
               "category": "monthly_spend",
-              "threshold_brl": 1000,
+              "threshold_brl": 10000,
               "period": "monthly",
               "full_waiver": false,
               "description": "Gasto mensal mínimo",
               "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
-            },
-            {
-              "category": "investment",
-              "threshold_brl": 10000,
-              "full_waiver": false,
-              "description": "Investimento mínimo",
-              "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
             }
-          ],
-          "has_full_waiver_option": false
+          ]
         }
       },
       "rewards": {
@@ -49537,11 +49330,9 @@
               "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade",
               "has_full_waiver": false,
               "has_partial_waiver": true,
-              "investment_thresholds_brl": [
-                10000
-              ],
+              "investment_thresholds_brl": [],
               "spend_thresholds_brl": [
-                1000
+                10000
               ]
             }
           },
@@ -57442,14 +57233,6 @@
               "full_waiver": true,
               "description": "Gasto mensal mínimo",
               "raw_text": "Anuidade isenta com gasto a partir de R$ 4 mil por mês e 50% a partir de R$ 2 mil."
-            },
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 2000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "Anuidade isenta com gasto a partir de R$ 4 mil por mês e 50% a partir de R$ 2 mil."
             }
           ],
           "has_full_waiver_option": true
@@ -57951,8 +57734,7 @@
               "has_full_waiver": true,
               "has_partial_waiver": true,
               "spend_thresholds_brl": [
-                4000,
-                2000
+                4000
               ],
               "investment_thresholds_brl": []
             }
@@ -58007,14 +57789,6 @@
             {
               "category": "monthly_spend",
               "threshold_brl": 4000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "Anuidade isenta com gasto a partir de R$ 4 mil por mês e 50% a partir de R$ 2 mil."
-            },
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 2000,
               "period": "monthly",
               "full_waiver": true,
               "description": "Gasto mensal mínimo",
@@ -58520,8 +58294,7 @@
               "has_full_waiver": true,
               "has_partial_waiver": true,
               "spend_thresholds_brl": [
-                4000,
-                2000
+                4000
               ],
               "investment_thresholds_brl": []
             }
@@ -58573,22 +58346,6 @@
         "waiver_and_discounts": {
           "policy_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 4.000,00 ou 100% de cashback com gastos acima de R$ 8.000,00",
           "rules": [
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 4000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 4.000,00 ou 100% de cashback com gastos acima de R$ 8.000,00"
-            },
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 8000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 4.000,00 ou 100% de cashback com gastos acima de R$ 8.000,00"
-            },
             {
               "category": "cashback",
               "threshold_brl": 8000,
@@ -59150,10 +58907,7 @@
               "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 4.000,00 ou 100% de cashback com gastos acima de R$ 8.000,00",
               "has_full_waiver": true,
               "has_partial_waiver": true,
-              "spend_thresholds_brl": [
-                4000,
-                8000
-              ],
+              "spend_thresholds_brl": [],
               "investment_thresholds_brl": []
             }
           },
@@ -66159,7 +65913,7 @@
               "category": "monthly_spend",
               "threshold_brl": 8000,
               "period": "monthly",
-              "full_waiver": true,
+              "full_waiver": false,
               "description": "Gasto mensal mínimo",
               "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 8 mil ou 100% de cashback com gastos acima de R$ 4 mil"
             },
@@ -68246,16 +68000,8 @@
           "policy_text": "Isenta a cada R$10.000 em investimentos ou R$1.000 de gastos no cartão garantem R$10 de desconto na mensalidade, sempre priorizando o maior desconto para o cliente.",
           "rules": [
             {
-              "category": "monthly_spend",
-              "threshold_brl": 1000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "Isenta a cada R$10.000 em investimentos ou R$1.000 de gastos no cartão garantem R$10 de desconto na mensalidade, sempre priorizando o maior desconto para o cliente."
-            },
-            {
               "category": "investment",
-              "threshold_brl": 10000,
+              "threshold_brl": 1000,
               "full_waiver": true,
               "description": "Investimento mínimo",
               "raw_text": "Isenta a cada R$10.000 em investimentos ou R$1.000 de gastos no cartão garantem R$10 de desconto na mensalidade, sempre priorizando o maior desconto para o cliente."
@@ -68678,11 +68424,9 @@
               "has_full_waiver": true,
               "has_partial_waiver": true,
               "investment_thresholds_brl": [
-                10000
-              ],
-              "spend_thresholds_brl": [
                 1000
-              ]
+              ],
+              "spend_thresholds_brl": []
             }
           },
           "rewards": {
@@ -102163,7 +101907,7 @@
               "category": "monthly_spend",
               "threshold_brl": 2000,
               "period": "monthly",
-              "full_waiver": true,
+              "full_waiver": false,
               "description": "Gasto mensal mínimo",
               "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 2 mil ou 100% de cashback com gastos acima de R$ 4 mil"
             },
@@ -102682,7 +102426,7 @@
               "category": "monthly_spend",
               "threshold_brl": 2000,
               "period": "monthly",
-              "full_waiver": true,
+              "full_waiver": false,
               "description": "Gasto mensal mínimo",
               "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 2 mil ou 100% de cashback com gastos acima de R$ 4 mil"
             },

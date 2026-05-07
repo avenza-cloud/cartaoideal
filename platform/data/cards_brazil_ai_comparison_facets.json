@@ -879,7 +879,7 @@
         {
           "category": "investment",
           "threshold_brl": 15000000,
-          "full_waiver": true,
+          "full_waiver": false,
           "description": "Investimento mínimo",
           "raw_text": "50% de isenção de anuidade para clientes com investimentos acima de R$ 15 milhões em produtos Porto e 100% de isenção para clientes acima de R$ 30 milhões"
         },
@@ -1957,19 +1957,9 @@
       "text_for_embedding_compare": "Unicred Visa Infinite Privilege \nEmissor: Unicred \nBandeira: Visa \nFaixa: Infinite Privilege \nElegibilidade: R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil. \nGanhos: Até 7,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 18.000 \nSalas VIP / programa: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Visa Infinite Privilege Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita \nBenefícios (lista): Anuidade: R$ 18.000; Pontuação: Até 7,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Visa Airport Companion; Programa de sala VIP: Visa Infinite Privilege Lounge; Acompanhantes em sala VIP: 8 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 5,0 pontos por dólar gasto no Brasil; Regra de pontuação: 7,0 pontos por dólar gasto no exterior; Bônus de adesão: Único - (Não há); Bônus de adesão: Livelo - (Não há) \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
-          "category": "monthly_spend",
-          "threshold_brl": 60000,
-          "period": "monthly",
+          "category": "investment",
           "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "3 primeiros meses gratuitos. Após esse período, 50% de isenção com gastos acima de R$ 60 mil e 100% para gastos acima de R$ 120 mil. Isenção por Investimentos"
-        },
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 120000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
+          "description": "Investimento mínimo não informado",
           "raw_text": "3 primeiros meses gratuitos. Após esse período, 50% de isenção com gastos acima de R$ 60 mil e 100% para gastos acima de R$ 120 mil. Isenção por Investimentos"
         }
       ]
@@ -2489,22 +2479,6 @@
       ],
       "text_for_embedding_compare": "CAIXA Ícone Visa Infinite \nEmissor: CAIXA \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: unknown \nGanhos: Até 6,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 1.650 \nSalas VIP / programa: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 10 acompanhantes gratuitos por ano | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 10 acompanhantes gratuitos por ano \nBenefícios (lista): Anuidade: R$ 1.650; Pontuação: Até 6,0 pontos por dólar gasto; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 10 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 5,0 pontos por dólar gasto no Brasil; Regra de pontuação: 6,0 pontos por dólar gasto no exterior; Bônus de adesão: (Não há); Salas VIP: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 10 acompanhantes gratuitos por ano \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 12500,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 12.500,00 ou 100% de cashback com gastos acima de R$ 25.000,00"
-        },
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 25000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 12.500,00 ou 100% de cashback com gastos acima de R$ 25.000,00"
-        },
         {
           "category": "cashback",
           "threshold_brl": 25000,
@@ -3026,14 +3000,6 @@
       ],
       "text_for_embedding_compare": "Banescard Absoluto Visa Infinite \nEmissor: Banescard \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: Obtido apenas mediante convite; dentre os critérios de aquisição, é preciso ter no mínimo R$ 1 milhão em investimentos no Banestes. \nGanhos: 4,2 pontos por dólar em compras nacionais; 5 pontos por dólar em compras internacionais; pontos que não expiram. \nProgramas: unknown \nAnuidade (campo principal): R$ 1.800 \nSalas VIP / programa: Acesso às salas VIP LoungeKey e Dragon Pass, até 12 convidados, sem limite de uso. \nBenefícios (lista): Anuidade: R$ 1.800; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Bônus de adesão: Fidelidade Banescard - (Não há); Bônus de adesão: Livelo - (Não há); Salas VIP: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano; Salas VIP: Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano; Programa de fidelidade: Fidelidade Banescard; Programa de fidelidade: Livelo; Validade dos pontos: Fidelidade Banescard - Não expiram; Validade dos pontos: Livelo - 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: 50% de isenção da anuidade para faturas acima de R$ 12,5 mil e 100% de isenção para faturas acima de R$ 25 mil ou R$ 5 milhões em investimentos no Banestes \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 12500,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "50% de isenção da anuidade para faturas acima de R$ 12,5 mil e 100% de isenção para faturas acima de R$ 25 mil ou R$ 5 milhões em investimentos no Banestes"
-        },
         {
           "category": "monthly_spend",
           "threshold_brl": 25000,
@@ -4595,22 +4561,6 @@
       "text_for_embedding_compare": "Banco do Brasil Visa Altus Liv \nEmissor: Banco do Brasil \nBandeira: Visa \nFaixa: Visa \nElegibilidade: unknown \nGanhos: Até 4,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 3.600 \nSalas VIP / programa: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano \nBenefícios (lista): Anuidade: R$ 3.600; Pontuação: Até 4,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 12 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: Livelo - (Não há); Bônus de adesão: Dotz - (Não há); Salas VIP: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano; Salas VIP: Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano; Programa de fidelidade: Livelo \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
-          "category": "monthly_spend",
-          "threshold_brl": 15000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "50% de isenção da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 15.000,00 ou 100% de isenção com gastos acima de R$ 25.000,00 ou R$ 2 milhões de investimentos"
-        },
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 25000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "50% de isenção da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 15.000,00 ou 100% de isenção com gastos acima de R$ 25.000,00 ou R$ 2 milhões de investimentos"
-        },
-        {
           "category": "investment",
           "threshold_brl": 2000000,
           "full_waiver": true,
@@ -5613,7 +5563,7 @@
           "category": "monthly_spend",
           "threshold_brl": 20000,
           "period": "monthly",
-          "full_waiver": true,
+          "full_waiver": false,
           "description": "Gasto mensal mínimo",
           "raw_text": "50% de isenção na anuidade com gasto a partir de 20 mil reais por mês e de 100% a partir de 35 mil"
         },
@@ -6993,14 +6943,6 @@
       "text_for_embedding_compare": "Unicred Ímpar \nEmissor: Unicred \nBandeira: Visa \nFaixa: Visa \nElegibilidade: O Unicred Ímpar é um cartão da bandeira Visa Infinite direcionado ao público de alta renda da cooperativa. Com design exclusivo em metal, o produto é destino para clientes com investimentos acima de R$ 3 milhões. \nGanhos: Até 4,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 3.000 \nSalas VIP / programa: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita \nBenefícios (lista): Anuidade: R$ 3.000; Pontuação: Até 4,5 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 1 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 3,5 pontos por dólar gasto no Brasil; Regra de pontuação: 4,5 pontos por dólar gasto no exterior; Bônus de adesão: Único - (Não há); Bônus de adesão: Livelo - (Não há); Salas VIP: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
-          "category": "monthly_spend",
-          "threshold_brl": 40000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "100% de isenção de anuidade para clientes com investimentos acima de R$ 3 milhões ou faturas a partir de R$ 40 mil."
-        },
-        {
           "category": "investment",
           "threshold_brl": 3000000,
           "full_waiver": true,
@@ -7425,14 +7367,6 @@
       "text_for_embedding_compare": "Itaú The One Mastercard Private \nEmissor: Itaú \nBandeira: Mastercard \nFaixa: Mastercard \nElegibilidade: unknown \nGanhos: 4,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 4.000 \nSalas VIP / programa: Salas VIP do Mastercard Airport Experience - Acessos gratuitos e ilimitados para o portador e 20 acompanhantes gratuitos por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano | The Club by Mastercard - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita \nBenefícios (lista): Anuidade: R$ 4.000; Pontuação: 4,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Mastercard Airport Experience; Programa de sala VIP: Sala VIP Mastercard Black; Programa de sala VIP: The Club by Mastercard; Acompanhantes em sala VIP: 20 acompanhante(s); 0 acompanhante(s); 1 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 4,0 pontos por dólar gasto; Bônus de adesão: (Não há); Salas VIP: Salas VIP do Mastercard Airport Experience - Acessos gratuitos e ilimitados para o portador e 20 acompanhantes gratuitos por ano; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
-          "category": "monthly_spend",
-          "threshold_brl": 60000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "100% de isenção de anuidade para clientes nível 5 no Minhas Vantagens, com investimentos acima de R$ 3 milhões ou faturas a partir de R$ 60 mil."
-        },
-        {
           "category": "investment",
           "threshold_brl": 3000000,
           "full_waiver": true,
@@ -7656,17 +7590,10 @@
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
-          "threshold_brl": 1000,
+          "threshold_brl": 10000,
           "period": "monthly",
           "full_waiver": false,
           "description": "Gasto mensal mínimo",
-          "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
-        },
-        {
-          "category": "investment",
-          "threshold_brl": 10000,
-          "full_waiver": false,
-          "description": "Investimento mínimo",
           "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
         }
       ]
@@ -8430,14 +8357,6 @@
       ],
       "text_for_embedding_compare": "Sicoob Zenith Mastercard Black \nEmissor: Sicoob \nBandeira: Mastercard \nFaixa: Black \nElegibilidade: O Sicoob Zenith é o novo cartão da cooperativa voltada para clientes de mais alta renda. Para solicitar o cartão, o cooperado deve entrar em contato com o gerente, atendendo a pelo menos um dos seguintes critérios: \nGanhos: 4,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 1.790 \nSalas VIP / programa: Salas VIP do Mastercard Airport Experience - Acessos gratuitos e ilimitados para o portador e 2 acompanhantes gratuitos por visita | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: R$ 1.790; Pontuação: 4,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Mastercard Airport Experience; Programa de sala VIP: Sala VIP Mastercard Black; Acompanhantes em sala VIP: 2 acompanhante(s); 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 4,0 pontos por dólar gasto; Bônus de adesão: Coopera - (Não há); Bônus de adesão: Livelo - (Não há); Salas VIP: Salas VIP do Mastercard Airport Experience - Acessos gratuitos e ilimitados para o portador e 2 acompanhantes gratuitos por visita; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 18000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "50% de desconto na parcela da anuidade com gastos mensais a partir de R$ 18 mil e 100% de isenção com gastos a partir de R$ 26 mil"
-        },
         {
           "category": "monthly_spend",
           "threshold_brl": 26000,
@@ -9345,14 +9264,6 @@
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
-          "threshold_brl": 18000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "50% de desconto na parcela da anuidade com gastos mensais a partir de R$ 18 mil e 100% de isenção com gastos a partir de R$ 26 mil"
-        },
-        {
-          "category": "monthly_spend",
           "threshold_brl": 26000,
           "period": "monthly",
           "full_waiver": true,
@@ -9714,14 +9625,6 @@
       "text_for_embedding_compare": "PicPay Black \nEmissor: PicPay \nBandeira: Mastercard \nFaixa: Black \nElegibilidade: unknown \nGanhos: 1,2% de cashback \nProgramas: unknown \nAnuidade (campo principal): R$ 1.068 \nSalas VIP / programa: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: R$ 1.068; Pontuação: 1,2% de cashback; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Sala VIP Mastercard Black; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 1,2% de cashback; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano; Adicionais com benefícios: Sim; Isenção da anuidade: 100% de isenção da anuidade com faturas acima de R$ 5 mil, investimentos acima de R$ 50 mil ou fazendo a portabilidade de salário e mantendo o recebimento no PicPay; Anuidade: R$ 1.068 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
-          "category": "monthly_spend",
-          "threshold_brl": 5000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "100% de isenção da anuidade com faturas acima de R$ 5 mil, investimentos acima de R$ 50 mil ou fazendo a portabilidade de salário e mantendo o recebimento no PicPay"
-        },
-        {
           "category": "investment",
           "threshold_brl": 50000,
           "full_waiver": true,
@@ -9985,14 +9888,6 @@
       ],
       "text_for_embedding_compare": "Itaú The One Mastercard Personnalité \nEmissor: Itaú \nBandeira: Mastercard \nFaixa: Mastercard \nElegibilidade: unknown \nGanhos: Até 3,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 4.000 \nSalas VIP / programa: Salas VIP do Mastercard Airport Experience - Acessos gratuitos e ilimitados para o portador e 20 acompanhantes gratuitos por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano | The Club by Mastercard - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita \nBenefícios (lista): Anuidade: R$ 4.000; Pontuação: Até 3,5 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Mastercard Airport Experience; Programa de sala VIP: Sala VIP Mastercard Black; Programa de sala VIP: The Club by Mastercard; Acompanhantes em sala VIP: 20 acompanhante(s); 0 acompanhante(s); 1 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 3,0 pontos por dólar gasto no Brasil; Regra de pontuação: 3,5 pontos por dólar gasto no exterior; Bônus de adesão: (Não há); Salas VIP: Salas VIP do Mastercard Airport Experience - Acessos gratuitos e ilimitados para o portador e 20 acompanhantes gratuitos por ano \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 60000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "100% de isenção de anuidade para clientes nível 5 no Minhas Vantagens, com investimentos acima de R$ 3 milhões ou faturas a partir de R$ 60 mil."
-        },
         {
           "category": "investment",
           "threshold_brl": 3000000,
@@ -10995,17 +10890,7 @@
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
-      "text_for_embedding_compare": "Vivo Cashback Visa Platinum \nEmissor: Itaú \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 0,5% de cashback geral; até 10.0% em categoria/parceiro específico \nProgramas: unknown \nAnuidade (campo principal): R$ 434 \nBenefícios (lista): Anuidade: R$ 434; Pontuação: Até 10,0% de cashback por dólar gasto; Retorno financeiro: cashback; Regra de pontuação: 0,5% de cashback; Regra de pontuação: 10,0% de cashback por dólar gasto; Adicionais com benefícios: Sim; Isenção da anuidade: 100% de isenção gastando R$350,00 em compras Vivo e realizando o pagamento da fatura em dia; Anuidade: R$ 434; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
-      "fee_waiver_rules": [
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 350,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "100% de isenção gastando R$350,00 em compras Vivo e realizando o pagamento da fatura em dia"
-        }
-      ]
+      "text_for_embedding_compare": "Vivo Cashback Visa Platinum \nEmissor: Itaú \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 0,5% de cashback geral; até 10.0% em categoria/parceiro específico \nProgramas: unknown \nAnuidade (campo principal): R$ 434 \nBenefícios (lista): Anuidade: R$ 434; Pontuação: Até 10,0% de cashback por dólar gasto; Retorno financeiro: cashback; Regra de pontuação: 0,5% de cashback; Regra de pontuação: 10,0% de cashback por dólar gasto; Adicionais com benefícios: Sim; Isenção da anuidade: 100% de isenção gastando R$350,00 em compras Vivo e realizando o pagamento da fatura em dia; Anuidade: R$ 434; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
     },
     {
       "card_stable_id": "santander-santander-unlimited-visa-infinite-05d20296c3",
@@ -11627,9 +11512,8 @@
       "fee_waiver_rules": [
         {
           "category": "investment",
-          "threshold_brl": 150000,
           "full_waiver": false,
-          "description": "Investimento mínimo",
+          "description": "Investimento mínimo não informado",
           "raw_text": "50% de desconto de anuidade para correntistas com investimentos superiores a R$ 150 mil."
         }
       ]
@@ -11798,17 +11682,7 @@
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
-      "text_for_embedding_compare": "Vivo Cashback Mastercard Platinum \nEmissor: Itaú \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 0,5% de cashback geral; até 10.0% em categoria/parceiro específico \nProgramas: unknown \nAnuidade (campo principal): R$ 434 \nBenefícios (lista): Anuidade: R$ 434; Pontuação: Até 10,0% de cashback por dólar gasto; Retorno financeiro: cashback; Regra de pontuação: 0,5% de cashback; Regra de pontuação: 10,0% de cashback por dólar gasto; Adicionais com benefícios: Sim; Isenção da anuidade: 100% de isenção gastando R$350,00 em compras Vivo e realizando o pagamento da fatura em dia; Anuidade: R$ 434; Carteira digital: Apple Pay, Samsung Pay, Google Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
-      "fee_waiver_rules": [
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 350,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "100% de isenção gastando R$350,00 em compras Vivo e realizando o pagamento da fatura em dia"
-        }
-      ]
+      "text_for_embedding_compare": "Vivo Cashback Mastercard Platinum \nEmissor: Itaú \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 0,5% de cashback geral; até 10.0% em categoria/parceiro específico \nProgramas: unknown \nAnuidade (campo principal): R$ 434 \nBenefícios (lista): Anuidade: R$ 434; Pontuação: Até 10,0% de cashback por dólar gasto; Retorno financeiro: cashback; Regra de pontuação: 0,5% de cashback; Regra de pontuação: 10,0% de cashback por dólar gasto; Adicionais com benefícios: Sim; Isenção da anuidade: 100% de isenção gastando R$350,00 em compras Vivo e realizando o pagamento da fatura em dia; Anuidade: R$ 434; Carteira digital: Apple Pay, Samsung Pay, Google Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
     },
     {
       "card_stable_id": "sicredi-sicredi-visa-infinite-a16af1e81b",
@@ -12033,23 +11907,15 @@
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
-          "threshold_brl": 1500,
+          "threshold_brl": 17000,
           "period": "monthly",
-          "full_waiver": true,
+          "full_waiver": false,
           "description": "Gasto mensal mínimo",
           "raw_text": "O valor da anuidade será de até R$ 1500, podendo variar de cada cooperativa. A partir de R$ 25.000 em gastos na fatura do cartão ganha isenção total e a partir de R$ 17.000 isenção de 50%"
         },
         {
           "category": "monthly_spend",
           "threshold_brl": 25000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "O valor da anuidade será de até R$ 1500, podendo variar de cada cooperativa. A partir de R$ 25.000 em gastos na fatura do cartão ganha isenção total e a partir de R$ 17.000 isenção de 50%"
-        },
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 17000,
           "period": "monthly",
           "full_waiver": true,
           "description": "Gasto mensal mínimo",
@@ -12215,14 +12081,6 @@
       ],
       "text_for_embedding_compare": "PicPay Platinum \nEmissor: PicPay \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 0,5% de cashback \nProgramas: unknown \nAnuidade (campo principal): R$ 419 \nBenefícios (lista): Anuidade: R$ 419; Pontuação: 0,5% de cashback; Retorno financeiro: cashback; Regra de pontuação: 0,5% de cashback; Adicionais com benefícios: Sim; Isenção da anuidade: 100% de isenção da anuidade com faturas acima de R$ 2 mil, investimentos acima de R$ 20 mil ou fazendo a portabilidade de salário e mantendo o recebimento no PicPay; Anuidade: R$ 419; Carteira digital: Apple Pay, Samsung Pay, Google Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 2000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "100% de isenção da anuidade com faturas acima de R$ 2 mil, investimentos acima de R$ 20 mil ou fazendo a portabilidade de salário e mantendo o recebimento no PicPay"
-        },
         {
           "category": "investment",
           "threshold_brl": 20000,
@@ -13443,14 +13301,6 @@
           "full_waiver": true,
           "description": "Gasto mensal mínimo",
           "raw_text": "Anuidade isenta com gasto a partir de R$ 20 mil por mês e 50% a partir de R$ 10 mil."
-        },
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 10000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "Anuidade isenta com gasto a partir de R$ 20 mil por mês e 50% a partir de R$ 10 mil."
         }
       ]
     },
@@ -14423,14 +14273,6 @@
         {
           "category": "monthly_spend",
           "threshold_brl": 20000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "Anuidade isenta com gasto a partir de R$ 20 mil por mês e 50% a partir de R$ 10 mil."
-        },
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 10000,
           "period": "monthly",
           "full_waiver": true,
           "description": "Gasto mensal mínimo",
@@ -15792,9 +15634,8 @@
         },
         {
           "category": "investment",
-          "threshold_brl": 150000,
           "full_waiver": true,
-          "description": "Investimento mínimo",
+          "description": "Investimento mínimo não informado",
           "raw_text": "Primeira anuidade gratuita. Após isso, serão isentos os clientes com gastos a partir de R$12 mil por mês ou com investimento acima de R$150 mil."
         }
       ]
@@ -16033,7 +15874,7 @@
           "category": "monthly_spend",
           "threshold_brl": 10000,
           "period": "monthly",
-          "full_waiver": true,
+          "full_waiver": false,
           "description": "Gasto mensal mínimo",
           "raw_text": "Anuidade isenta com gasto a partir de 20 mil reais por mês e 50% a partir de 10 mil reais."
         }
@@ -18987,14 +18828,6 @@
       "text_for_embedding_compare": "Itaú Personnalité Mastercard Black \nEmissor: Itaú \nBandeira: Mastercard \nFaixa: Black \nElegibilidade: unknown \nGanhos: Até 3,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 996 \nSalas VIP / programa: Salas VIP do LoungeKey - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: R$ 996; Pontuação: Até 3,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: 2 por ano; Regra de pontuação: 2,0 pontos por dólar gasto no Brasil; Regra de pontuação: 3,0 pontos por dólar gasto no exterior; Bônus de adesão: (Não há); Salas VIP: Salas VIP do LoungeKey - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Programa de fidelidade: Itaú Shop; Validade dos pontos: Não expiram \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
-          "category": "monthly_spend",
-          "threshold_brl": 10000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "100% de isenção de anuidade para clientes nível 2 no Minhas Vantagens, com investimentos acima de R$ 50 mil ou faturas a partir de R$ 10 mil."
-        },
-        {
           "category": "investment",
           "threshold_brl": 50000,
           "full_waiver": true,
@@ -19253,17 +19086,10 @@
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
-          "threshold_brl": 1000,
+          "threshold_brl": 10000,
           "period": "monthly",
           "full_waiver": false,
           "description": "Gasto mensal mínimo",
-          "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
-        },
-        {
-          "category": "investment",
-          "threshold_brl": 10000,
-          "full_waiver": false,
-          "description": "Investimento mínimo",
           "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
         }
       ]
@@ -22473,14 +22299,6 @@
           "full_waiver": true,
           "description": "Gasto mensal mínimo",
           "raw_text": "Anuidade isenta com gasto a partir de R$ 4 mil por mês e 50% a partir de R$ 2 mil."
-        },
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 2000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "Anuidade isenta com gasto a partir de R$ 4 mil por mês e 50% a partir de R$ 2 mil."
         }
       ]
     },
@@ -22693,14 +22511,6 @@
         {
           "category": "monthly_spend",
           "threshold_brl": 4000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "Anuidade isenta com gasto a partir de R$ 4 mil por mês e 50% a partir de R$ 2 mil."
-        },
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 2000,
           "period": "monthly",
           "full_waiver": true,
           "description": "Gasto mensal mínimo",
@@ -22941,22 +22751,6 @@
       ],
       "text_for_embedding_compare": "CAIXA Visa Infinite \nEmissor: CAIXA \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: unknown \nGanhos: Até 3,2 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 828 \nSalas VIP / programa: Salas VIP do Visa Airport Companion - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: R$ 828; Pontuação: Até 3,2 pontos por dólar gasto; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: 2 por ano; Regra de pontuação: 2,3 pontos por dólar gasto no Brasil; Regra de pontuação: 3,2 pontos por dólar gasto no exterior; Bônus de adesão: 6.000; Salas VIP: Salas VIP do Visa Airport Companion - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Programa de fidelidade: Uau CAIXA \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 4000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 4.000,00 ou 100% de cashback com gastos acima de R$ 8.000,00"
-        },
-        {
-          "category": "monthly_spend",
-          "threshold_brl": 8000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 4.000,00 ou 100% de cashback com gastos acima de R$ 8.000,00"
-        },
         {
           "category": "cashback",
           "threshold_brl": 8000,
@@ -25847,7 +25641,7 @@
           "category": "monthly_spend",
           "threshold_brl": 8000,
           "period": "monthly",
-          "full_waiver": true,
+          "full_waiver": false,
           "description": "Gasto mensal mínimo",
           "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 8 mil ou 100% de cashback com gastos acima de R$ 4 mil"
         },
@@ -26572,16 +26366,8 @@
       "text_for_embedding_compare": "BTG Pactual Opção Avançada \nEmissor: BTG Pactual \nBandeira: Mastercard \nFaixa: Mastercard \nElegibilidade: unknown \nGanhos: 1,6 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 600 \nBenefícios (lista): Anuidade: R$ 600; Pontuação: 1,6 pontos por dólar gasto; Regra de pontuação: 1,6 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Isenta a cada R$10.000 em investimentos ou R$1.000 de gastos no cartão garantem R$10 de desconto na mensalidade, sempre priorizando o maior desconto para o cliente.; Anuidade: R$ 600; Carteira digital: Apple Pay, Google Pay, Samsung Pay, Garmin Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 2 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
-          "category": "monthly_spend",
-          "threshold_brl": 1000,
-          "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "Isenta a cada R$10.000 em investimentos ou R$1.000 de gastos no cartão garantem R$10 de desconto na mensalidade, sempre priorizando o maior desconto para o cliente."
-        },
-        {
           "category": "investment",
-          "threshold_brl": 10000,
+          "threshold_brl": 1000,
           "full_waiver": true,
           "description": "Investimento mínimo",
           "raw_text": "Isenta a cada R$10.000 em investimentos ou R$1.000 de gastos no cartão garantem R$10 de desconto na mensalidade, sempre priorizando o maior desconto para o cliente."
@@ -39205,7 +38991,7 @@
           "category": "monthly_spend",
           "threshold_brl": 2000,
           "period": "monthly",
-          "full_waiver": true,
+          "full_waiver": false,
           "description": "Gasto mensal mínimo",
           "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 2 mil ou 100% de cashback com gastos acima de R$ 4 mil"
         },
@@ -39411,7 +39197,7 @@
           "category": "monthly_spend",
           "threshold_brl": 2000,
           "period": "monthly",
-          "full_waiver": true,
+          "full_waiver": false,
           "description": "Gasto mensal mínimo",
           "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 2 mil ou 100% de cashback com gastos acima de R$ 4 mil"
         },
