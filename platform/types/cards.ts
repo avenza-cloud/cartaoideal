@@ -84,6 +84,22 @@ export interface CardCharacteristic {
   source_excerpt?: string;
 }
 
+export type FeeWaiverRuleCategory =
+  | "monthly_spend"
+  | "investment"
+  | "cashback"
+  | "miles"
+  | "general";
+
+export interface FeeWaiverRule {
+  category: FeeWaiverRuleCategory;
+  threshold_brl?: number;
+  period?: "monthly" | "annual";
+  full_waiver: boolean;
+  description: string;
+  raw_text: string;
+}
+
 export type MarketSegment =
   | "ultra_premium"
   | "premium"
@@ -113,6 +129,7 @@ export interface CardFacet {
   reward_return: RewardReturn;
   lounge_access: LoungeAccess;
   eligibility?: CardEligibilityFacet;
+  fee_waiver_rules?: FeeWaiverRule[];
   benefit_groups: BenefitGroups;
   characteristics?: CardCharacteristic[];
   facets_numeric_or_special: CardFacetsNumeric;
@@ -158,6 +175,7 @@ export interface CatalogAnnualFee {
 
 export interface CatalogWaiver {
   policy_text: string;
+  rules?: FeeWaiverRule[];
   has_full_waiver_option?: boolean;
   has_partial_waiver_option?: boolean;
   has_promotional_period?: boolean;

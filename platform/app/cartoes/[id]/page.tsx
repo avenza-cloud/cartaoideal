@@ -6,8 +6,8 @@ import { AppHeader } from "@/components/AppHeader";
 import { CardDetailActions } from "@/components/CardDetailActions";
 import { CardProfileInsights } from "@/components/CardProfileInsights";
 import { CardCorrectionForm } from "@/components/CardCorrectionForm";
-import { ArrowLeft, CreditCard, ExternalLink } from "lucide-react";
-import type { BenefitGroupKey, CardCharacteristic, CardFacet } from "@/types/cards";
+import { ArrowLeft, Coins, CreditCard, ExternalLink, Plane, ReceiptText, WalletCards } from "lucide-react";
+import type { BenefitGroupKey, CardCharacteristic, CardFacet, FeeWaiverRule } from "@/types/cards";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -75,9 +75,12 @@ export default async function CartaoDetailPage({ params }: PageProps) {
     (i) =>
       i.key !== "annual_fee" &&
       i.key !== "annual_fee_detail" &&
+      i.key !== "fee_waiver" &&
       String(i.value) !== "(Não há)" &&
       String(i.value) !== "Não ()"
   );
+  const feeWaiverText = card.characteristics?.find((i) => i.key === "fee_waiver")?.value;
+  const feeWaiverRules = card.fee_waiver_rules ?? [];
 
   const eligibilityChars = filterChars(card, ["eligibility"]).filter(
     (i) => String(i.value) !== "(Não há)" && String(i.value) !== "Não há"
@@ -221,6 +224,15 @@ export default async function CartaoDetailPage({ params }: PageProps) {
             {/* Custo */}
             <Block title="Custo">
               <DataRow label="Anuidade" value={formatFee(fee)} />
+              {feeWaiverRules.length > 0 ? (
+                <FeeWaiverRules rules={feeWaiverRules} />
+              ) : (
+                feeWaiverText &&
+                feeWaiverText !== "unknown" &&
+                !String(feeWaiverText).startsWith("Não há") && (
+                  <FullTextRow label="Isenção da anuidade" value={String(feeWaiverText)} />
+                )
+              )}
               {forexNote && <DataRow label="Câmbio / IOF" value={forexNote} />}
               {feeChars.length > 0 && <CharList items={feeChars} />}
               {!forexNote && feeChars.length === 0 && (
@@ -328,6 +340,78 @@ function DataRow({ label, value }: { label: string; value: string }) {
       <span className="min-w-0 truncate text-right text-xs font-medium" title={value}>
         {value}
       </span>
+    </div>
+  );
+}
+
+function FullTextRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-xl border bg-background/35 px-3 py-2">
+      <span className="text-[11px] text-muted-foreground">{label}</span>
+      <p className="mt-1 text-xs font-medium leading-relaxed">{value}</p>
+    </div>
+  );
+}
+
+function formatRuleAmount(rule: FeeWaiverRule) {
+  if (typeof rule.threshold_brl !== "number") return "Sem limite informado";
+  const suffix = rule.period === "monthly" ? "/mês" : "";
+  return `R$${rule.threshold_brl.toLocaleString("pt-BR")}${suffix}`;
+}
+
+function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
+  const ordered = [...rules].sort((a, b) => {
+    const order = { monthly_spend: 0, investment: 1, cashback: 2, miles: 3, general: 4 };
+    return order[a.category] - order[b.category];
+  });
+
+  return (
+    <div className="rounded-xl border bg-emerald-500/5 p-2.5">
+      <div className="mb-2 flex items-center justify-between gap-2">
+        <span className="text-[11px] font-medium text-emerald-500">Isenção da anuidade</span>
+        <span className="rounded-full border border-emerald-500/25 px-2 py-0.5 text-[10px] text-emerald-500">
+          {ordered.some((rule) => rule.full_waiver) ? "Isenção total" : "Condição"}
+        </span>
+      </div>
+      <div className="grid gap-2 min-[420px]:grid-cols-2">
+        {ordered.map((rule, index) => {
+          const isSpend = rule.category === "monthly_spend";
+          const isInvestment = rule.category === "investment";
+          const Icon = isSpend
+            ? ReceiptText
+            : isInvestment
+              ? WalletCards
+              : rule.category === "cashback"
+                ? Coins
+                : rule.category === "miles"
+                  ? Plane
+                  : CreditCard;
+          const label = isSpend
+            ? "Gasto mensal"
+            : isInvestment
+              ? "Investimento"
+              : rule.category === "cashback"
+                ? "Cashback"
+                : rule.category === "miles"
+                  ? "Milhas"
+                  : "Geral";
+          return (
+            <div
+              key={`${rule.category}-${rule.threshold_brl ?? "general"}-${index}`}
+              className="rounded-lg border bg-background/50 px-2.5 py-2"
+            >
+              <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                <Icon className="h-3.5 w-3.5" />
+                {label}
+              </div>
+              <p className="mt-1 font-mono text-sm font-semibold">{formatRuleAmount(rule)}</p>
+              <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
+                {rule.description}
+              </p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

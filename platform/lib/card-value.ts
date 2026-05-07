@@ -386,8 +386,29 @@ function computeEffectiveAnnualFee(
   const notes: string[] = [];
   let effectiveFee = baseFee;
   const feeWaivers = characteristicsByKey(card, "fee_waiver");
+  const structuredRules = card.fee_waiver_rules ?? [];
 
-  for (const waiver of feeWaivers) {
+  for (const rule of structuredRules) {
+    if (!rule.full_waiver && !/50%|metade|parcial/i.test(rule.description)) continue;
+
+    const qualifiesBySpend =
+      rule.category === "monthly_spend" &&
+      typeof rule.threshold_brl === "number" &&
+      profile.avgMonthlySpendBrl >= rule.threshold_brl;
+    const qualifiesByInvestment =
+      rule.category === "investment" &&
+      typeof rule.threshold_brl === "number" &&
+      profile.avgInvestedBrl >= rule.threshold_brl;
+    const qualifiesByGeneral = rule.category === "general" && rule.full_waiver;
+
+    if (rule.full_waiver && (qualifiesBySpend || qualifiesByInvestment || qualifiesByGeneral)) {
+      effectiveFee = 0;
+      notes.push("Isenção aplicada por regra estruturada de anuidade.");
+      break;
+    }
+  }
+
+  for (const waiver of structuredRules.length > 0 ? [] : feeWaivers) {
     const text = `${waiver.value} ${waiver.details ?? ""}`;
     const normalized = normalizeText(text);
     const spendThreshold = parseSpendThreshold(text);
@@ -425,7 +446,7 @@ function computeEffectiveAnnualFee(
       ? `Anuidade efetiva de R$${effectiveFee.toLocaleString("pt-BR")} após regra estruturada.`
       : "Sem regra de isenção suficientemente estruturada para este perfil; anuidade cheia aplicada.";
 
-  if (effectiveFee === baseFee && feeWaivers.length > 0) {
+  if (effectiveFee === baseFee && (feeWaivers.length > 0 || structuredRules.length > 0)) {
     notes.push("Há menção de isenção/desconto, mas sem condição estruturada aplicável ao perfil.");
   }
 

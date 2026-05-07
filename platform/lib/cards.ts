@@ -1,8 +1,10 @@
 import "server-only";
 import facetsFile from "@/data/cards_brazil_ai_comparison_facets.json";
+import { extractFeeWaiverRules } from "@/lib/fee-waiver";
 import type {
   CardFacet,
   CardFilters,
+  FeeWaiverRule,
   FacetsFile,
   MarketSegment,
 } from "@/types/cards";
@@ -83,24 +85,37 @@ export function resolveCardByName(query: string): CardFacet | undefined {
 
 export function getCardFeeWaiver(card: CardFacet): {
   texto: string;
+  rules: FeeWaiverRule[];
   viaInvestimento: boolean;
   viaGasto: boolean;
   isGratuito: boolean;
 } | null {
   const char = card.characteristics?.find((x) => x.key === "fee_waiver");
-  if (!char || !char.value || char.value === "unknown") return null;
-  const texto = String(char.value);
+  const texto = char?.value && char.value !== "unknown" ? String(char.value) : "";
+  const rules = card.fee_waiver_rules?.length
+    ? card.fee_waiver_rules
+    : extractFeeWaiverRules(texto);
+  if (!texto && rules.length === 0) return null;
   const lower = texto.toLowerCase();
   const isGratuito =
+    rules.some((rule) => rule.category === "general" && rule.full_waiver) ||
     lower.startsWith("sem anuidade") ||
     lower.startsWith("todos os clientes são isentos") ||
     lower.startsWith("anuidade isenta para todos") ||
     lower.startsWith("não há anuidade");
-  if (texto.startsWith("Não há") && !lower.includes("investimento")) return null;
+  if (texto.startsWith("Não há") && rules.length === 0 && !lower.includes("investimento")) return null;
   return {
     texto,
-    viaInvestimento: lower.includes("investimento") || lower.includes("investidos"),
-    viaGasto: lower.includes("gasto") || lower.includes("fatura") || lower.includes("compras"),
+    rules,
+    viaInvestimento:
+      rules.some((rule) => rule.category === "investment") ||
+      lower.includes("investimento") ||
+      lower.includes("investidos"),
+    viaGasto:
+      rules.some((rule) => rule.category === "monthly_spend") ||
+      lower.includes("gasto") ||
+      lower.includes("fatura") ||
+      lower.includes("compras"),
     isGratuito,
   };
 }
@@ -189,8 +204,14 @@ export function groupCardsByInvestment(
   const accessible: CardFacet[] = [];
   const needsMore: Array<{ card: CardFacet; threshold: number; shortfall: number }> = [];
   for (const card of cards) {
-    const texto = getCardFeeWaiver(card)?.texto ?? "";
-    const t = extractThreshold(texto);
+    const waiver = getCardFeeWaiver(card);
+    const structuredThresholds =
+      waiver?.rules
+        .filter((rule) => rule.category === "investment" && typeof rule.threshold_brl === "number")
+        .map((rule) => rule.threshold_brl as number) ?? [];
+    const t = structuredThresholds.length > 0
+      ? Math.min(...structuredThresholds)
+      : extractThreshold(waiver?.texto ?? "");
     if (t === null || userInvestedBrl >= t) {
       accessible.push(card);
     } else {

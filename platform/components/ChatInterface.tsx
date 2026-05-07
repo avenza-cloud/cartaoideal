@@ -24,6 +24,7 @@ import { useCompareStore, useProfileStore } from "@/lib/store";
 import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
 import {
   CreditCard,
+  Coins,
   ChevronDown,
   ChevronUp,
   ArrowUpRight,
@@ -31,10 +32,14 @@ import {
   Plus,
   History,
   Maximize2,
+  ReceiptText,
+  Plane,
+  WalletCards,
   X,
 } from "lucide-react";
 import Link from "next/link";
 import type { UIMessage } from "ai";
+import type { FeeWaiverRule } from "@/types/cards";
 import { cn } from "@/lib/utils";
 
 interface ChatInterfaceProps {
@@ -63,6 +68,7 @@ interface CardItem {
   cardArtUrl?: string;
   altText?: string;
   retornoFinanceiro?: { earning_summary?: string };
+  regrasIsencao?: FeeWaiverRule[];
   pontuacao?: number;
   valorEstimado?: {
     elegivel?: boolean;
@@ -98,6 +104,14 @@ function feeLabel(anuidade: number | string) {
   if (typeof anuidade === "number")
     return `R$${anuidade.toLocaleString("pt-BR")}/ano`;
   return String(anuidade);
+}
+
+function waiverBadgeLabel(rule: FeeWaiverRule) {
+  if (rule.category === "monthly_spend") return "Isento por gasto";
+  if (rule.category === "investment") return "Isento por investimento";
+  if (rule.category === "cashback") return "Isento por cashback";
+  if (rule.category === "miles") return "Isento por milhas";
+  return "Sem anuidade";
 }
 
 function messageText(message: UIMessage) {
@@ -218,11 +232,12 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
   const { ids, add, remove, canAdd } = useCompareStore();
   const selected = ids.includes(card.id);
   const hasImage = card.cardArtUrl && card.cardArtUrl !== "unknown";
+  const badges = (card.regrasIsencao ?? []).slice(0, 3);
   return (
-    <div className="flex items-center gap-2 rounded-xl border bg-card/60 px-2.5 py-2 text-xs">
+    <div className="flex items-start gap-2 rounded-xl border bg-card/60 px-2.5 py-2 text-xs">
       <Link
         href={`/cartoes/${card.id}`}
-        className="flex min-w-0 flex-1 items-center gap-2.5 transition-colors hover:text-foreground"
+        className="flex min-w-0 flex-1 items-start gap-2.5 transition-colors hover:text-foreground"
       >
         {rank !== undefined && (
           <span className="w-4 shrink-0 font-mono text-[10px] text-muted-foreground">
@@ -246,6 +261,18 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
           <p className="truncate text-[10px] text-muted-foreground">
             {card.emissor}
           </p>
+          {badges.length > 0 && (
+            <div className="mt-1 flex flex-wrap gap-1">
+              {badges.map((rule, index) => (
+                <span
+                  key={`${rule.category}-${rule.threshold_brl ?? index}`}
+                  className="rounded-md border border-emerald-500/25 bg-emerald-500/5 px-1.5 py-0.5 text-[9px] font-medium text-emerald-500"
+                >
+                  {waiverBadgeLabel(rule)}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
         <div className="hidden shrink-0 text-right min-[390px]:block">
           <p className="font-mono text-[10px] text-muted-foreground">
@@ -641,12 +668,26 @@ interface WaiverCardItem {
   emissor: string;
   anuidade: number | string;
   textoIsencao: string;
+  regrasIsencao?: FeeWaiverRule[];
   viaGasto: boolean;
   isGratuito: boolean;
   cardArtUrl?: string;
   altText?: string;
   thresholdInvestimento?: number;
   faltam?: number;
+}
+
+function waiverRuleLabel(rule: FeeWaiverRule) {
+  if (rule.category === "monthly_spend" && typeof rule.threshold_brl === "number") {
+    return `Gasto R$${rule.threshold_brl.toLocaleString("pt-BR")}/mês`;
+  }
+  if (rule.category === "investment" && typeof rule.threshold_brl === "number") {
+    return `Invest. R$${rule.threshold_brl.toLocaleString("pt-BR")}`;
+  }
+  if (rule.category === "cashback" && typeof rule.threshold_brl === "number") {
+    return `Cashback R$${rule.threshold_brl.toLocaleString("pt-BR")}/mês`;
+  }
+  return rule.description;
 }
 
 function WaiverMiniCard({
@@ -657,10 +698,11 @@ function WaiverMiniCard({
   faltam?: number;
 }) {
   const hasImage = card.cardArtUrl && card.cardArtUrl !== "unknown";
+  const visibleRules = (card.regrasIsencao ?? []).slice(0, 2);
   return (
     <Link
       href={`/cartoes/${card.id}`}
-      className="flex items-center gap-2.5 rounded-xl border bg-card/60 px-2.5 py-2 text-xs transition-colors hover:text-foreground"
+      className="flex items-start gap-2.5 rounded-xl border bg-card/60 px-2.5 py-2 text-xs transition-colors hover:text-foreground"
     >
       <div className="flex h-8 w-12 shrink-0 items-center justify-center rounded-md border bg-zinc-950">
         {hasImage ? (
@@ -679,6 +721,29 @@ function WaiverMiniCard({
         <p className="truncate text-[10px] text-muted-foreground">
           {card.emissor}
         </p>
+        {visibleRules.length > 0 && (
+          <div className="mt-1 flex flex-wrap gap-1">
+            {visibleRules.map((rule, index) => {
+              const Icon =
+                rule.category === "investment"
+                  ? WalletCards
+                  : rule.category === "cashback"
+                    ? Coins
+                    : rule.category === "miles"
+                      ? Plane
+                      : ReceiptText;
+              return (
+                <span
+                  key={`${rule.category}-${rule.threshold_brl ?? index}`}
+                  className="inline-flex min-w-0 items-center gap-1 rounded-md border bg-background/40 px-1.5 py-0.5 text-[9px] text-muted-foreground"
+                >
+                  <Icon className="h-2.5 w-2.5 shrink-0" />
+                  <span className="truncate">{waiverRuleLabel(rule)}</span>
+                </span>
+              );
+            })}
+          </div>
+        )}
       </div>
       <div className="shrink-0 text-right">
         <p className="font-mono text-[10px] text-muted-foreground">

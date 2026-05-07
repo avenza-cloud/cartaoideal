@@ -81,9 +81,7 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
       <div className="grid gap-0 sm:grid-cols-[minmax(0,1fr)_auto]">
         <div className="p-4">
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className={`rounded-full px-2.5 py-0.5 font-mono text-[10px] ${accentBg} ${accent}`}>
-              {score.score0To100}/100
-            </span>
+           
             {score.feeBurdenPctOfAnnualSpend !== null && score.feeBurdenPctOfAnnualSpend > 0 && (
               <span className="rounded-full border px-2.5 py-0.5 font-mono text-[10px] text-muted-foreground">
                 anuidade {score.feeBurdenPctOfAnnualSpend}% do gasto

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useProfileStore } from "@/lib/store";
 import { feeTier, feeNote, FEE_TIER_COLOR, FEE_TIER_LABEL } from "@/lib/roi";
 import { formatFee } from "@/lib/formatting";
+import { feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
 import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
 import { Button } from "@/components/ui/button";
 import { CreditCard, ListFilter } from "lucide-react";
@@ -45,6 +46,7 @@ function CardRow({
   earningsSummary,
   scoreBar,
   valueScore,
+  badges = [],
 }: {
   rank: number;
   id: string;
@@ -59,6 +61,7 @@ function CardRow({
   earningsSummary?: string;
   scoreBar?: number;
   valueScore?: CardValueScore;
+  badges?: string[];
 }) {
   const hasImage = cardArtUrl && cardArtUrl !== "unknown";
   return (
@@ -89,6 +92,18 @@ function CardRow({
             ? `Retorno ${moneyPerMonth(valueScore.grossRewardMonthlyBrl)} · Benefícios ${moneyPerMonth(valueScore.intangibleMonthlyValueBrl)}`
             : earningsSummary}
         </p>
+        {badges.length > 0 && (
+          <div className="flex flex-wrap gap-1 pt-0.5">
+            {badges.map((badge) => (
+              <span
+                key={badge}
+                className="rounded-md border border-emerald-500/25 bg-emerald-500/5 px-1.5 py-0.5 text-[9px] font-medium text-emerald-500"
+              >
+                {badge}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col items-end gap-1 text-right">
@@ -220,6 +235,7 @@ export function PersonalizedRanking() {
                 earningsSummary={card.reward_return.earning_summary}
                 valueScore={scored.valueScore}
                 scoreBar={Math.round(scored.totalScore * 100)}
+                badges={feeWaiverBadgesForCard(card).map((badge) => badge.label)}
               />
             );
           })}
@@ -252,6 +268,7 @@ export function PersonalizedRanking() {
                 earningsSummary={c.retornoFinanceiro?.earning_summary}
                 valueScore={c.score}
                 scoreBar={c.score.score0To100}
+                badges={feeWaiverBadgesForCard(c.score.card).map((badge) => badge.label)}
               />
             );
           })}

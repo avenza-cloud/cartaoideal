@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Check, CreditCard, Plane, Coins, ExternalLink } from "lucide-react";
 import { formatFee, loungeSummary, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
+import { feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
 // lib/cards.ts re-exports same helpers but is server-only; formatting is shared
 import type { CardFacet, CardValueScore } from "@/types/cards";
 import { useCompareStore } from "@/lib/store";
@@ -52,6 +53,7 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
   const fee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
   const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
   const hasReturn = card.reward_return.has_cashlike_return;
+  const feeWaiverBadges = feeWaiverBadgesForCard(card);
 
   return (
     <Link href={`/cartoes/${card.card_stable_id}`} className="group">
@@ -102,6 +104,18 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
               )}
             </span>
           </div>
+          {feeWaiverBadges.length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {feeWaiverBadges.map((badge) => (
+                <span
+                  key={badge.key}
+                  className="rounded-md border border-emerald-500/25 bg-emerald-500/5 px-1.5 py-0.5 text-[9px] font-medium text-emerald-500"
+                >
+                  {badge.label}
+                </span>
+              ))}
+            </div>
+          )}
           {valueScore && (
             <div className="grid grid-cols-[1fr_auto] items-center gap-2 rounded-xl border bg-background/60 px-3 py-2">
               <div className="min-w-0">
