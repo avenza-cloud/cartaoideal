@@ -163,12 +163,15 @@ export function filterCards(filters: CardFilters): CardFacet[] {
   }
 
   if (filters.search) {
-    const q = filters.search.toLowerCase();
+    const q = normalizeSearchText(filters.search);
+    const tokens = q.split(/\s+/).filter(Boolean);
     cards = cards.filter(
-      (c) =>
-        c.display_name.toLowerCase().includes(q) ||
-        c.issuer_raw.toLowerCase().includes(q) ||
-        c.network_primary.toLowerCase().includes(q)
+      (c) => {
+        const haystack = normalizeSearchText(
+          `${c.display_name} ${c.issuer_raw} ${c.network_primary} ${c.variant_band}`
+        );
+        return tokens.every((token) => haystack.includes(token));
+      }
     );
   }
 

@@ -1180,11 +1180,11 @@
         "summary": "Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita"
       },
       "eligibility": {
-        "requirements_text": "R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil.",
+        "requirements_text": "Exclusivamente por convite; R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil.",
         "minimum_income_brl_best_estimate": 300000,
         "minimum_investment_brl_best_estimate": 30000000,
         "requires_bank_account_claim": true,
-        "availability_status": "available",
+        "availability_status": "private_or_segment_restricted",
         "recommendation_blocking_unknowns": false,
         "source_status": "manual_curated"
       },
@@ -1655,13 +1655,13 @@
         "summary": "Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Visa Infinite Privilege Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita"
       },
       "eligibility": {
-        "requirements_text": "unknown",
-        "minimum_income_brl_best_estimate": "unknown",
-        "minimum_investment_brl_best_estimate": "unknown",
+        "requirements_text": "Exclusivamente por convite; R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil.",
+        "minimum_income_brl_best_estimate": 300000,
+        "minimum_investment_brl_best_estimate": 30000000,
         "requires_bank_account_claim": true,
-        "availability_status": "available",
+        "availability_status": "private_or_segment_restricted",
         "recommendation_blocking_unknowns": false,
-        "source_status": "not_structured"
+        "source_status": "manual_curated"
       },
       "benefit_groups": {
         "fees": [
@@ -6527,7 +6527,7 @@
       },
       "eligibility": {
         "requirements_text": "O Unicred Ímpar é um cartão da bandeira Visa Infinite direcionado ao público de alta renda da cooperativa. Com design exclusivo em metal, o produto é destino para clientes com investimentos acima de R$ 3 milhões.",
-        "minimum_income_brl_best_estimate": 3000000,
+        "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": 3000000,
         "requires_bank_account_claim": true,
         "availability_status": "private_or_segment_restricted",

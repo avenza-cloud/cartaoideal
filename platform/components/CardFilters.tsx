@@ -1,8 +1,11 @@
 "use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { Search, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 
@@ -31,16 +34,29 @@ const RANKING_MODES = [
 export function CardFilters() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const searchParamValue = searchParams.get("search") ?? "";
+  const [searchValue, setSearchValue] = useState(searchParamValue);
+
+  useEffect(() => {
+    setSearchValue((current) =>
+      current === searchParamValue ? current : searchParamValue
+    );
+  }, [searchParamValue]);
 
   const setParam = useCallback(
-    (key: string, value: string | null) => {
+    (key: string, value: string | null, method: "push" | "replace" = "push") => {
       const params = new URLSearchParams(searchParams.toString());
       if (value === null || value === "") {
         params.delete(key);
       } else {
         params.set(key, value);
       }
-      router.push(`/cartoes?${params.toString()}`, { scroll: false });
+      const url = params.toString() ? `/cartoes?${params.toString()}` : "/cartoes";
+      if (method === "replace") {
+        router.replace(url, { scroll: false });
+      } else {
+        router.push(url, { scroll: false });
+      }
     },
     [router, searchParams]
   );
@@ -53,8 +69,53 @@ export function CardFilters() {
     [searchParams, setParam]
   );
 
+  useEffect(() => {
+    const nextSearch = searchValue.trim();
+    if (nextSearch === searchParamValue) return;
+
+    const handle = window.setTimeout(() => {
+      setParam("search", nextSearch || null, "replace");
+    }, 250);
+
+    return () => window.clearTimeout(handle);
+  }, [searchParamValue, searchValue, setParam]);
+
   const content = (
     <>
+      <div>
+        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          Buscar
+        </p>
+        <div className="relative">
+          <Search className="pointer-events-none absolute left-2.5 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
+          <Input
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Nome, emissor ou bandeira"
+            className="pl-8 pr-8"
+          />
+          {searchValue && (
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon-xs"
+              className="absolute right-1 top-1"
+              onClick={() => {
+                setSearchValue("");
+                if (searchParamValue) {
+                  setParam("search", null, "replace");
+                }
+              }}
+              aria-label="Limpar busca"
+            >
+              <X className="h-3.5 w-3.5" />
+            </Button>
+          )}
+        </div>
+      </div>
+
+      <Separator />
+
       <div>
         <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Ordenação

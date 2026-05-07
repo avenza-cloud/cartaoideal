@@ -121,7 +121,7 @@
         "official_airport_lounge_summary": "Salas VIP do Priority Pass - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por visita | Bradesco Cartões Lounge - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita | Centurion Lounge - Acessos gratuitos e ilimitados para o portador e 2 acompanhantes gratuitos por visita | Delta Sky Club - Acessos gratuitos e ilimitados para o portador e 2 acompanhantes gratuitos por visita",
         "travel_insurance_mentioned": false,
         "concierge_mentioned": false,
-        "forex_spread_or_iof_text": "unknown"
+        "forex_spread_or_iof_text": "Spread zero nas compras internacionais; paga apenas a cotação oficial do dólar"
       },
       "benefits": {
         "benefit_groups": {
@@ -4346,7 +4346,7 @@
         "official_airport_lounge_summary": "Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Visa Infinite Privilege Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita",
         "travel_insurance_mentioned": false,
         "concierge_mentioned": false,
-        "forex_spread_or_iof_text": "unknown"
+        "forex_spread_or_iof_text": "Spread zero nas compras internacionais; paga apenas a cotação oficial do dólar"
       },
       "benefits": {
         "benefit_groups": {
@@ -4973,17 +4973,21 @@
         "issuer_is_multi_entity_list": false
       },
       "eligibility": {
-        "requires_bank_account_claim": true
+        "requires_bank_account_claim": true,
+        "requirements_text": "Exclusivamente por convite; R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil.",
+        "minimum_liquid_investments_brl_official": 30000000,
+        "minimum_income_brl": 300000,
+        "availability_status": "private_or_segment_restricted"
       },
       "semantic_audit": {
         "audited_at_utc": "2026-05-07T00:24:31.442438+00:00",
         "normalized_claims": {
           "eligibility": {
-            "requirements_text": "unknown",
-            "minimum_investment_brl": "unknown",
-            "minimum_income_brl": "unknown",
+            "requirements_text": "Exclusivamente por convite; R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil.",
+            "minimum_investment_brl": 30000000,
+            "minimum_income_brl": 300000,
             "requires_bank_account": true,
-            "availability_status": "available"
+            "availability_status": "private_or_segment_restricted"
           },
           "annual_fee": {
             "raw_text": "R$ 18.000",
@@ -4994,7 +4998,7 @@
               "has_full_waiver": true,
               "has_partial_waiver": true,
               "investment_thresholds_brl": [
-                120000
+                30000000
               ],
               "spend_thresholds_brl": [
                 60000,
@@ -5011,9 +5015,9 @@
           }
         },
         "audit_notes": [
-          "Ultra-premium sem elegibilidade estruturada; recomendações devem ser conservadoras."
+          "Regra de concessão revisada manualmente: R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil."
         ],
-        "needs_human_review": true
+        "needs_human_review": false
       }
     },
     {
@@ -17535,7 +17539,7 @@
       "eligibility": {
         "requirements_text": "O Unicred Ímpar é um cartão da bandeira Visa Infinite direcionado ao público de alta renda da cooperativa. Com design exclusivo em metal, o produto é destino para clientes com investimentos acima de R$ 3 milhões.",
         "minimum_liquid_investments_brl_official": 3000000,
-        "minimum_income_brl": 3000000,
+        "minimum_income_brl": "unknown",
         "requires_bank_account_claim": true
       },
       "semantic_audit": {
