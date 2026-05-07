@@ -85,6 +85,21 @@ function compactValue(card: CardFacet, profile?: UserProfile) {
   };
 }
 
+function rewardOriginLabel(card: CardFacet): string | null {
+  const summary = card.reward_return.earning_summary;
+  if (!summary || summary === "unknown") return null;
+  const percent = summary.match(/(\d+(?:[,.]\d+)?)\s*%\s*(?:de\s*)?(cashback|investback)?/i);
+  if (percent) {
+    const kind = percent[2]?.toLowerCase() ?? "retorno";
+    return `${percent[1]}% ${kind}`;
+  }
+  const points = summary.match(/(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)(?:\s*(?:por|\/)\s*(?:d[oó]lar|usd)|\/usd)/i);
+  if (points) {
+    return `${points[1]} pts/USD`;
+  }
+  return summary.length <= 32 ? summary : null;
+}
+
 export function createCardTools(savedProfile?: UserProfile | null) {
   return {
     filterCards: tool({
@@ -222,6 +237,7 @@ export function createCardTools(savedProfile?: UserProfile | null) {
               retornoBrutoMensal: values[1].retornoBrutoMensal - values[0].retornoBrutoMensal,
               anuidadeMensal: values[1].anuidadeEfetivaMensal - values[0].anuidadeEfetivaMensal,
               beneficiosMensais: values[1].beneficiosMensais - values[0].beneficiosMensais,
+              origemRetorno: rewardOriginLabel(cards[1]),
             }
           : null;
       return {
@@ -367,7 +383,8 @@ Regras importantes:
 - Use as ferramentas disponíveis para buscar dados reais — nunca invente informações sobre cartões
 - Quando o usuário pedir comparação, troca de cartão, "vale trocar" ou "com números", use compareCards. Resolva por nome se o usuário não passar ID.
 - As ferramentas recebem o perfil salvo automaticamente. Não peça gasto/renda/investimento de novo quando já estiverem no contexto.
-- Para comparações, responda primeiro com a decisão prática em uma linha: "trocar", "ficar" ou "depende". Depois mostre delta mensal/anual, anuidade efetiva, retorno, benefícios e bloqueios de elegibilidade.
+- Para comparações, a interface JÁ EXIBE visualmente delta mensal/anual, retorno, anuidade, benefícios e a tabela. NÃO repita esses números nem reescreva a tabela em texto.
+- Em comparações, responda em no máximo 3 frases: decisão prática ("trocar", "ficar" ou "depende"), motivo novo que não esteja óbvio na tabela, e bloqueio/ressalva de elegibilidade se existir.
 - Ao citar dados de cartões, mencione a fonte quando for relevante
 - Para regras contratuais, tarifas e elegibilidade final, recomende verificação direta com o emissor
 - Seja objetivo e direto nas comparações

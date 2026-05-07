@@ -284,6 +284,7 @@ function CardCompareArtifact({ output }: { output: unknown }) {
           retornoBrutoMensal?: number;
           anuidadeMensal?: number;
           beneficiosMensais?: number;
+          origemRetorno?: string | null;
         } | null;
         perfilUsado?: unknown;
         naoEncontrados?: string[];
@@ -342,9 +343,20 @@ function CardCompareArtifact({ output }: { output: unknown }) {
           )}
           {delta && (
             <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
-              <MiniMetric label="Delta/mês" value={moneyLabel(delta.valorLiquidoMensal ?? 0)} numericValue={delta.valorLiquidoMensal} strong />
+              <MiniMetric
+                label="Delta/mês"
+                value={moneyLabel(delta.valorLiquidoMensal ?? 0)}
+                numericValue={delta.valorLiquidoMensal}
+                detail={delta.origemRetorno ?? undefined}
+                strong
+              />
               <MiniMetric label="Delta/ano" value={`R$${Math.round(delta.valorLiquidoAnual ?? 0).toLocaleString("pt-BR")}`} numericValue={delta.valorLiquidoAnual} />
-              <MiniMetric label="Retorno" value={moneyLabel(delta.retornoBrutoMensal ?? 0)} numericValue={delta.retornoBrutoMensal} />
+              <MiniMetric
+                label="Retorno"
+                value={moneyLabel(delta.retornoBrutoMensal ?? 0)}
+                numericValue={delta.retornoBrutoMensal}
+                detail={delta.origemRetorno ?? undefined}
+              />
               <MiniMetric label="Anuidade" value={moneyLabel(-(delta.anuidadeMensal ?? 0))} numericValue={-(delta.anuidadeMensal ?? 0)} />
             </div>
           )}
@@ -396,11 +408,28 @@ function moneyColor(value: number | undefined): string {
   return "text-muted-foreground";
 }
 
-function MiniMetric({ label, value, strong, numericValue }: { label: string; value: string; strong?: boolean; numericValue?: number }) {
+function MiniMetric({
+  label,
+  value,
+  strong,
+  numericValue,
+  detail,
+}: {
+  label: string;
+  value: string;
+  strong?: boolean;
+  numericValue?: number;
+  detail?: string;
+}) {
   return (
     <div className="rounded-lg border bg-background/40 px-2.5 py-1.5">
       <p className="text-[10px] text-muted-foreground">{label}</p>
       <p className={cn("font-mono text-xs", strong && "font-semibold", numericValue !== undefined && moneyColor(numericValue))}>{value}</p>
+      {detail && (
+        <span className="mt-1 inline-flex max-w-full rounded border bg-muted/30 px-1.5 py-0.5 text-[9px] leading-none text-muted-foreground">
+          {detail}
+        </span>
+      )}
     </div>
   );
 }
