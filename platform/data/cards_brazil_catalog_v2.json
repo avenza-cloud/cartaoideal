@@ -144645,6 +144645,524 @@
         ],
         "needs_human_review": true
       }
+    },
+    {
+      "identity": {
+        "stable_id": "rico-rico-visa-infinite-cashback-a93f2e1c7d",
+        "display_name": "Rico Visa Infinite Cashback",
+        "issuer": {
+          "raw": "Rico",
+          "normalized": "rico",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa",
+        "variant_band": "Infinite",
+        "product_kind": "named_credit_card_product"
+      },
+      "ranking": {
+        "source_rank": 7,
+        "source_score": 128,
+        "source_name": "Melhores Cartões",
+        "source_url": "https://www.melhorescartoes.com.br/melhores-cartoes-credito-sem-anuidade"
+      },
+      "categorization": {
+        "market_segment_guess": "premium",
+        "co_brand_detected_from_name": false
+      },
+      "media": {
+        "card_art_url": "/card-images/rico-rico-visa-infinite-cashback.jpg",
+        "alt_text": "Rico Visa Infinite Cashback",
+        "source_url": "https://www.melhorescartoes.com.br/melhores-cartoes-credito-sem-anuidade",
+        "remote_card_art_url": "https://imgmd.net/image/upload/c_limit%2Cw_400/v1/cartoes/2a2d874ea7d8b93e85c7ae53d2266654.jpg"
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "R$ 0",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Sem anuidade",
+          "rules": [
+            {
+              "category": "general",
+              "full_waiver": true,
+              "description": "Sem anuidade",
+              "raw_text": "Cartão sem anuidade"
+            }
+          ],
+          "has_full_waiver_option": true,
+          "has_partial_waiver_option": false,
+          "has_promotional_period": false
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "0,5% de investback para faturas de R$ 1.500 a R$ 2.999,99; 1% de investback acima de R$ 3.000; pontos podem ser trocados na Livelo",
+        "loyalty_programs_text": "Livelo",
+        "earn_points_or_miles_mentioned": true,
+        "earn_cashback_mentioned": true,
+        "earn_investback_mentioned": true,
+        "return_cashlike": {
+          "has_points_or_miles": true,
+          "has_cashlike_return": true,
+          "subtypes": [
+            "investback",
+            "cashback",
+            "points"
+          ],
+          "earning_summary": "0,5% de investback para faturas de R$ 1.500 a R$ 2.999,99; 1% de investback acima de R$ 3.000; pontos podem ser trocados na Livelo"
+        }
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": true,
+        "airport_lounge_unlimited_claim": false,
+        "airport_lounge_annual_visits_hint": 4,
+        "airport_lounge_programs_detected": [
+          "Dragon Pass",
+          "Visa Airport Companion"
+        ],
+        "airport_lounge_guest_policy": "Ver política do Visa Airport Companion",
+        "airport_lounge_complimentary_access_confirmed": true,
+        "airport_lounge_policy_varies_by_issuer": false,
+        "official_airport_lounge_summary": "Dragon Pass/Visa Airport Companion - 4 acessos por ano mediante R$ 3.000 em gastos mensais e R$ 50.000 em investimentos na Rico.",
+        "travel_insurance_mentioned": true,
+        "concierge_mentioned": true,
+        "rental_car_coverage_mentioned": true,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: R$ 0",
+            "Isenção da anuidade: Sem anuidade",
+            "Adicionais gratuitos: 6"
+          ],
+          "rewards": [
+            "Investback progressivo: 0,5% para faturas de R$ 1.500 a R$ 2.999,99",
+            "Investback progressivo: 1% para faturas acima de R$ 3.000",
+            "Pontos podem ser trocados na Livelo"
+          ],
+          "travel": [
+            "Sala VIP: 4 acessos Dragon Pass/Visa Airport Companion por ano",
+            "Condição para sala VIP: R$ 3.000 em gastos mensais e R$ 50.000 em investimentos",
+            "Benefícios Visa Infinite",
+            "Seguro viagem",
+            "Seguro para veículos de locadora",
+            "Concierge 24 horas",
+            "Visa Luxury Hotel Collection"
+          ],
+          "eligibility": [
+            "Investimento mínimo para solicitar: R$ 1.000",
+            "Precisa ser cliente Rico",
+            "Aprovação sujeita à análise de crédito, cadastro e compliance"
+          ],
+          "lifestyle": [
+            "Pagamento por aproximação",
+            "Apple Pay, Samsung Pay e Google Pay",
+            "Cartão virtual",
+            "Débito e crédito no mesmo cartão físico"
+          ]
+        },
+        "characteristics": [
+          {
+            "category": "fees",
+            "key": "annual_fee",
+            "label": "Anuidade",
+            "value": "R$ 0"
+          },
+          {
+            "category": "fees",
+            "key": "fee_waiver",
+            "label": "Isenção da anuidade",
+            "value": "Sem anuidade"
+          },
+          {
+            "category": "fees",
+            "key": "free_additional_cards",
+            "label": "Adicionais gratuitos",
+            "value": "6"
+          },
+          {
+            "category": "rewards",
+            "key": "earning_rate",
+            "label": "Investback",
+            "value": "0,5% a 1% de investback"
+          },
+          {
+            "category": "rewards",
+            "key": "earning_detail",
+            "label": "Investback",
+            "value": "0,5%",
+            "details": "Para faturas de R$ 1.500 a R$ 2.999,99"
+          },
+          {
+            "category": "rewards",
+            "key": "earning_detail",
+            "label": "Investback",
+            "value": "1%",
+            "details": "Para faturas acima de R$ 3.000"
+          },
+          {
+            "category": "rewards",
+            "key": "loyalty_program",
+            "label": "Programa de pontos",
+            "value": "Livelo"
+          },
+          {
+            "category": "travel",
+            "key": "lounge_access",
+            "label": "Sala VIP",
+            "value": "Acesso disponível",
+            "details": "Dragon Pass / Visa Airport Companion"
+          },
+          {
+            "category": "travel",
+            "key": "lounge_program",
+            "label": "Programa de sala VIP",
+            "value": "Dragon Pass"
+          },
+          {
+            "category": "travel",
+            "key": "lounge_program",
+            "label": "Programa de sala VIP",
+            "value": "Visa Airport Companion"
+          },
+          {
+            "category": "travel",
+            "key": "lounge_visits",
+            "label": "Acessos a sala VIP",
+            "value": "4 acessos por ano",
+            "details": "Mediante R$ 3.000 em gastos mensais e R$ 50.000 em investimentos"
+          },
+          {
+            "category": "travel",
+            "key": "travel_insurance",
+            "label": "Seguro viagem",
+            "value": "Disponível"
+          },
+          {
+            "category": "travel",
+            "key": "concierge",
+            "label": "Concierge",
+            "value": "Disponível"
+          },
+          {
+            "category": "eligibility",
+            "key": "minimum_investment",
+            "label": "Investimento mínimo",
+            "value": "R$ 1.000"
+          },
+          {
+            "category": "eligibility",
+            "key": "requires_account",
+            "label": "Precisa ser cliente Rico",
+            "value": "Sim"
+          }
+        ],
+        "atomic_benefit_statements": [
+          "Anuidade: R$ 0",
+          "Isenção da anuidade: Sem anuidade",
+          "Adicionais gratuitos: 6",
+          "Investback progressivo: 0,5% para faturas de R$ 1.500 a R$ 2.999,99",
+          "Investback progressivo: 1% para faturas acima de R$ 3.000",
+          "Pontos podem ser trocados na Livelo",
+          "Sala VIP: 4 acessos Dragon Pass/Visa Airport Companion por ano",
+          "Condição para sala VIP: R$ 3.000 em gastos mensais e R$ 50.000 em investimentos",
+          "Benefícios Visa Infinite",
+          "Seguro viagem",
+          "Seguro para veículos de locadora",
+          "Concierge 24 horas",
+          "Visa Luxury Hotel Collection",
+          "Investimento mínimo para solicitar: R$ 1.000",
+          "Precisa ser cliente Rico",
+          "Aprovação sujeita à análise de crédito, cadastro e compliance",
+          "Pagamento por aproximação",
+          "Apple Pay, Samsung Pay e Google Pay",
+          "Cartão virtual",
+          "Débito e crédito no mesmo cartão físico"
+        ]
+      },
+      "eligibility": {
+        "requirements_text": "Invista pelo menos R$ 1.000 na Rico e peça o cartão. Elegibilidade sujeita às análises de cadastro, compliance e crédito.",
+        "requires_bank_account_claim": true,
+        "minimum_investment_brl": 1000
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.rico.com.vc/produtos/cartao-de-credito/",
+        "source_is_official_issuer_domain": true,
+        "review_source_url": "https://www.melhorescartoes.com.br/melhores-cartoes-credito-sem-anuidade"
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_with_trusted_ranking_context",
+        "confidence_score_0_to_1": 0.93,
+        "machine_truthfulness_note_pt": "Condições gerais confirmadas na página oficial da Rico; regras de sala VIP e ranking complementados pelo Melhores Cartões.",
+        "recommended_human_cross_check_actions": [
+          "Revalidar regras de sala VIP Dragon Pass/Visa Airport Companion periodicamente."
+        ]
+      },
+      "data_quality_notes": [
+        "A página oficial da Rico consolida o cartão como Rico Visa Infinite; o ranking Melhores Cartões distingue Rico e Rico One por quantidade/requisitos de acessos VIP."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "rico-rico-one-visa-infinite-cashback-b64d0a2f8c",
+        "display_name": "Rico One Visa Infinite Cashback",
+        "issuer": {
+          "raw": "Rico",
+          "normalized": "rico",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa",
+        "variant_band": "Infinite",
+        "product_kind": "named_credit_card_product"
+      },
+      "ranking": {
+        "source_rank": 8,
+        "source_score": 124,
+        "source_name": "Melhores Cartões",
+        "source_url": "https://www.melhorescartoes.com.br/melhores-cartoes-credito-sem-anuidade"
+      },
+      "categorization": {
+        "market_segment_guess": "upper_mass",
+        "co_brand_detected_from_name": false
+      },
+      "media": {
+        "card_art_url": "/card-images/rico-rico-one-visa-infinite-cashback.jpg",
+        "alt_text": "Rico One Visa Infinite Cashback",
+        "source_url": "https://www.melhorescartoes.com.br/melhores-cartoes-credito-sem-anuidade",
+        "remote_card_art_url": "https://imgmd.net/image/upload/c_limit%2Cw_400/v1/cartoes/81c29e03e17de1a3b29ec03e118969d3.jpg"
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "R$ 0",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Sem anuidade",
+          "rules": [
+            {
+              "category": "general",
+              "full_waiver": true,
+              "description": "Sem anuidade",
+              "raw_text": "Cartão sem anuidade"
+            }
+          ],
+          "has_full_waiver_option": true,
+          "has_partial_waiver_option": false,
+          "has_promotional_period": false
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "0,5% de investback para faturas de R$ 1.500 a R$ 2.999,99; 1% de investback acima de R$ 3.000; pontos podem ser trocados na Livelo",
+        "loyalty_programs_text": "Livelo",
+        "earn_points_or_miles_mentioned": true,
+        "earn_cashback_mentioned": true,
+        "earn_investback_mentioned": true,
+        "return_cashlike": {
+          "has_points_or_miles": true,
+          "has_cashlike_return": true,
+          "subtypes": [
+            "investback",
+            "cashback",
+            "points"
+          ],
+          "earning_summary": "0,5% de investback para faturas de R$ 1.500 a R$ 2.999,99; 1% de investback acima de R$ 3.000; pontos podem ser trocados na Livelo"
+        }
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": true,
+        "airport_lounge_unlimited_claim": false,
+        "airport_lounge_annual_visits_hint": 2,
+        "airport_lounge_programs_detected": [
+          "Dragon Pass",
+          "Visa Airport Companion"
+        ],
+        "airport_lounge_guest_policy": "Ver política do Visa Airport Companion",
+        "airport_lounge_complimentary_access_confirmed": true,
+        "airport_lounge_policy_varies_by_issuer": false,
+        "official_airport_lounge_summary": "Dragon Pass/Visa Airport Companion - 2 acessos por ano mediante R$ 3.000 em gastos mensais e R$ 15.000 em investimentos na Rico.",
+        "travel_insurance_mentioned": true,
+        "concierge_mentioned": true,
+        "rental_car_coverage_mentioned": true,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: R$ 0",
+            "Isenção da anuidade: Sem anuidade",
+            "Adicionais gratuitos: 6"
+          ],
+          "rewards": [
+            "Investback progressivo: 0,5% para faturas de R$ 1.500 a R$ 2.999,99",
+            "Investback progressivo: 1% para faturas acima de R$ 3.000",
+            "Pontos podem ser trocados na Livelo"
+          ],
+          "travel": [
+            "Sala VIP: 2 acessos Dragon Pass/Visa Airport Companion por ano",
+            "Condição para sala VIP: R$ 3.000 em gastos mensais e R$ 15.000 em investimentos",
+            "Benefícios Visa Infinite",
+            "Seguro viagem",
+            "Seguro para veículos de locadora",
+            "Concierge 24 horas",
+            "Visa Luxury Hotel Collection"
+          ],
+          "eligibility": [
+            "Investimento mínimo para solicitar: R$ 1.000",
+            "Precisa ser cliente Rico",
+            "Aprovação sujeita à análise de crédito, cadastro e compliance"
+          ],
+          "lifestyle": [
+            "Pagamento por aproximação",
+            "Apple Pay, Samsung Pay e Google Pay",
+            "Cartão virtual",
+            "Débito e crédito no mesmo cartão físico"
+          ]
+        },
+        "characteristics": [
+          {
+            "category": "fees",
+            "key": "annual_fee",
+            "label": "Anuidade",
+            "value": "R$ 0"
+          },
+          {
+            "category": "fees",
+            "key": "fee_waiver",
+            "label": "Isenção da anuidade",
+            "value": "Sem anuidade"
+          },
+          {
+            "category": "fees",
+            "key": "free_additional_cards",
+            "label": "Adicionais gratuitos",
+            "value": "6"
+          },
+          {
+            "category": "rewards",
+            "key": "earning_rate",
+            "label": "Investback",
+            "value": "0,5% a 1% de investback"
+          },
+          {
+            "category": "rewards",
+            "key": "earning_detail",
+            "label": "Investback",
+            "value": "0,5%",
+            "details": "Para faturas de R$ 1.500 a R$ 2.999,99"
+          },
+          {
+            "category": "rewards",
+            "key": "earning_detail",
+            "label": "Investback",
+            "value": "1%",
+            "details": "Para faturas acima de R$ 3.000"
+          },
+          {
+            "category": "rewards",
+            "key": "loyalty_program",
+            "label": "Programa de pontos",
+            "value": "Livelo"
+          },
+          {
+            "category": "travel",
+            "key": "lounge_access",
+            "label": "Sala VIP",
+            "value": "Acesso disponível",
+            "details": "Dragon Pass / Visa Airport Companion"
+          },
+          {
+            "category": "travel",
+            "key": "lounge_program",
+            "label": "Programa de sala VIP",
+            "value": "Dragon Pass"
+          },
+          {
+            "category": "travel",
+            "key": "lounge_program",
+            "label": "Programa de sala VIP",
+            "value": "Visa Airport Companion"
+          },
+          {
+            "category": "travel",
+            "key": "lounge_visits",
+            "label": "Acessos a sala VIP",
+            "value": "2 acessos por ano",
+            "details": "Mediante R$ 3.000 em gastos mensais e R$ 15.000 em investimentos"
+          },
+          {
+            "category": "travel",
+            "key": "travel_insurance",
+            "label": "Seguro viagem",
+            "value": "Disponível"
+          },
+          {
+            "category": "travel",
+            "key": "concierge",
+            "label": "Concierge",
+            "value": "Disponível"
+          },
+          {
+            "category": "eligibility",
+            "key": "minimum_investment",
+            "label": "Investimento mínimo",
+            "value": "R$ 1.000"
+          },
+          {
+            "category": "eligibility",
+            "key": "requires_account",
+            "label": "Precisa ser cliente Rico",
+            "value": "Sim"
+          }
+        ],
+        "atomic_benefit_statements": [
+          "Anuidade: R$ 0",
+          "Isenção da anuidade: Sem anuidade",
+          "Adicionais gratuitos: 6",
+          "Investback progressivo: 0,5% para faturas de R$ 1.500 a R$ 2.999,99",
+          "Investback progressivo: 1% para faturas acima de R$ 3.000",
+          "Pontos podem ser trocados na Livelo",
+          "Sala VIP: 2 acessos Dragon Pass/Visa Airport Companion por ano",
+          "Condição para sala VIP: R$ 3.000 em gastos mensais e R$ 15.000 em investimentos",
+          "Benefícios Visa Infinite",
+          "Seguro viagem",
+          "Seguro para veículos de locadora",
+          "Concierge 24 horas",
+          "Visa Luxury Hotel Collection",
+          "Investimento mínimo para solicitar: R$ 1.000",
+          "Precisa ser cliente Rico",
+          "Aprovação sujeita à análise de crédito, cadastro e compliance",
+          "Pagamento por aproximação",
+          "Apple Pay, Samsung Pay e Google Pay",
+          "Cartão virtual",
+          "Débito e crédito no mesmo cartão físico"
+        ]
+      },
+      "eligibility": {
+        "requirements_text": "Invista pelo menos R$ 1.000 na Rico e peça o cartão. Elegibilidade sujeita às análises de cadastro, compliance e crédito.",
+        "requires_bank_account_claim": true,
+        "minimum_investment_brl": 1000
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.rico.com.vc/produtos/cartao-de-credito/",
+        "source_is_official_issuer_domain": true,
+        "review_source_url": "https://www.melhorescartoes.com.br/melhores-cartoes-credito-sem-anuidade"
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_with_trusted_ranking_context",
+        "confidence_score_0_to_1": 0.93,
+        "machine_truthfulness_note_pt": "Condições gerais confirmadas na página oficial da Rico; regras de sala VIP e ranking complementados pelo Melhores Cartões.",
+        "recommended_human_cross_check_actions": [
+          "Revalidar regras de sala VIP Dragon Pass/Visa Airport Companion periodicamente."
+        ]
+      },
+      "data_quality_notes": [
+        "A página oficial da Rico consolida o cartão como Rico Visa Infinite; o ranking Melhores Cartões distingue Rico e Rico One por quantidade/requisitos de acessos VIP."
+      ]
     }
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "downloaded": 270,
+  "downloaded": 272,
   "failed": [],
   "base_path": "/card-images",
   "items": {
@@ -272,6 +272,8 @@
     "cartao-cartao-de-credito-saraiva-ada05cbac5": "/card-images/cartao-cartao-de-credito-saraiva.jpg",
     "inter-inter-mastercard-gold-c1c8b413cc": "/card-images/inter-inter-mastercard-gold.jpg",
     "nubank-cartao-nubank-5feb686dbf": "/card-images/nubank-cartao-nubank.png",
-    "inter-inter-prime-mastercard-black-8f16c3a5b2": "/card-images/inter-inter-prime-mastercard-black.webp"
+    "inter-inter-prime-mastercard-black-8f16c3a5b2": "/card-images/inter-inter-prime-mastercard-black.webp",
+    "rico-rico-visa-infinite-cashback-a93f2e1c7d": "/card-images/rico-rico-visa-infinite-cashback.jpg",
+    "rico-rico-one-visa-infinite-cashback-b64d0a2f8c": "/card-images/rico-rico-one-visa-infinite-cashback.jpg"
   }
 }
