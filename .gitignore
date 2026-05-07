@@ -1,8 +1,0 @@
-# Raw research/scraping artifacts — not part of the app
-cards_brazil_firecrawl.json
-cards_brazil_raw_sources.json
-tools/
-
-# Claude internal
-.claude/
-.vercel
