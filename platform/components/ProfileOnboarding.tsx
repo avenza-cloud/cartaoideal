@@ -76,7 +76,8 @@ export function ProfileOnboarding() {
       .slice(0, 7);
   }, [currentCardQuery]);
 
-  if (!mounted || onboardingDone) return null;
+  if (!mounted) return <div className="fixed inset-0 z-50 bg-background" />;
+  if (onboardingDone) return null;
 
   function goNext(n = 1) {
     setDir(n);

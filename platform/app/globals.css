@@ -170,3 +170,23 @@
     bottom: max(0.75rem, env(safe-area-inset-bottom));
   }
 }
+
+/* Slim, dark scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(1 0 0 / 10%);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(1 0 0 / 22%);
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(1 0 0 / 10%) transparent;
+}

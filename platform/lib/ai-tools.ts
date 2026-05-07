@@ -114,7 +114,8 @@ export function createCardTools(savedProfile?: UserProfile | null) {
     }),
     execute: async (input) => {
       const filters: CardFilters = { ...input, segment: input.segment as MarketSegment };
-      const cards = filterCards(filters).slice(0, 12);
+      const limit = input.feeWaiverByInvestment ? 40 : 16;
+      const cards = filterCards(filters).slice(0, limit);
       return cards.map((c) => ({
         id: c.card_stable_id,
         nome: c.display_name,
@@ -339,6 +340,9 @@ Isenção de anuidade:
 - Cada cartão retornado pelas ferramentas tem um campo \`isentaAnuidade\` com: \`{ texto, viaInvestimento, viaGasto, isGratuito }\`.
 - \`texto\` é o critério exato de isenção publicado pelo emissor (em português).
 - Quando o usuário perguntar sobre isenção de anuidade por investimento, chame filterCards com \`feeWaiverByInvestment: true\`. Nunca diga que não encontrou cartões sem usar esse filtro primeiro.
+- IMPORTANTE: ao usar feeWaiverByInvestment:true, liste TODOS os cartões retornados pela ferramenta — não filtre pela quantidade investida do usuário. O usuário quer conhecer as opções, mesmo que precise aumentar investimentos para algumas. Organize em grupos: "já acessíveis com seu valor atual" e "precisam de mais investimento".
+- Para cada cartão, sempre mostre: nome, emissor, anuidade, e o texto exato do critério de isenção (campo \`isentaAnuidade.texto\`).
 - Alguns cartões têm \`anuidade = 0\` mas exigem investimento mínimo (\`investimentoMinimo\`) — são gratuitos condicionalmente: XP Visa Infinite (R$50k), XP Visa Infinite Categoria One (R$5k), RecargaPay Titan (R$30k). Comunique isso claramente.
-- Se o usuário informar quanto tem investido, leia os valores no campo \`texto\` de cada cartão e informe quais ficam gratuitos com esse valor.
-- Cenários de isenção que o sistema suporta: (1) isenção total via investimento, (2) isenção total via gasto, (3) isenção parcial/progressiva, (4) isenção por múltiplos critérios (ex.: investimento OU gasto). O campo \`viaInvestimento\` e \`viaGasto\` indicam quais se aplicam.`;
+- Se o usuário informar quanto tem investido, leia os valores no campo \`texto\` e divida os cartões em: (a) acessíveis agora, (b) precisam de mais. Mostre ambos os grupos.
+- Cenários: (1) isenção total via investimento, (2) isenção total via gasto, (3) isenção parcial/progressiva, (4) múltiplos critérios (investimento OU gasto). Os campos \`viaInvestimento\` e \`viaGasto\` indicam quais se aplicam.
+- Nunca responda "não há outros cartões" sem antes verificar se a ferramenta retornou mais resultados além do que você já listou.`;

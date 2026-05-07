@@ -882,7 +882,7 @@
       "issuer_raw": "BTG Pactual",
       "network_primary": "Mastercard",
       "variant_band": "Mastercard",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "ultra_premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -1131,7 +1131,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:ultra_premium",
         "travel:lounge",
         "rewards:points_or_miles",
         "rewards:cashback",
@@ -1145,7 +1145,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Visa",
       "variant_band": "Visa",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "ultra_premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -1372,7 +1372,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:ultra_premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -1384,7 +1384,7 @@
       "issuer_raw": "XP Investimentos",
       "network_primary": "Visa",
       "variant_band": "Visa",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "ultra_premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_catalog_with_curated_official_override",
       "verification_confidence_0_to_1": 1.0,
@@ -1605,7 +1605,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:ultra_premium",
         "travel:lounge",
         "rewards:cashback",
         "rewards:return_cashlike"
@@ -1903,7 +1903,7 @@
       "issuer_raw": "Genial",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -2156,7 +2156,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles",
         "rewards:cashback",
@@ -2418,7 +2418,7 @@
       "issuer_raw": "Santander",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -2650,7 +2650,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:cashback",
         "rewards:return_cashlike"
@@ -3404,7 +3404,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Visa",
       "variant_band": "Visa",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "ultra_premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -3602,7 +3602,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:ultra_premium",
         "travel:lounge",
         "rewards:cashback",
         "rewards:return_cashlike"
@@ -3615,7 +3615,7 @@
       "issuer_raw": "C6 Bank",
       "network_primary": "Mastercard",
       "variant_band": "World Legend",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "ultra_premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -3918,7 +3918,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:ultra_premium",
         "travel:lounge",
         "rewards:points_or_miles",
         "rewards:return_cashlike"
@@ -3931,7 +3931,7 @@
       "issuer_raw": "Nubank",
       "network_primary": "Mastercard",
       "variant_band": "Mastercard",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_catalog_with_curated_official_override",
       "verification_confidence_0_to_1": 1.0,
@@ -4176,7 +4176,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:premium",
         "travel:lounge",
         "rewards:cashback",
         "rewards:return_cashlike"
@@ -4189,7 +4189,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Visa",
       "variant_band": "Visa",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "ultra_premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -4424,7 +4424,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:ultra_premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -4436,7 +4436,7 @@
       "issuer_raw": "PicPay",
       "network_primary": "Mastercard",
       "variant_band": "Mastercard",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -4650,7 +4650,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:premium",
         "travel:lounge",
         "rewards:cashback",
         "rewards:return_cashlike"
@@ -4925,7 +4925,7 @@
       "issuer_raw": "RecargaPay",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -5135,7 +5135,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:cashback",
         "rewards:return_cashlike"
@@ -5148,7 +5148,7 @@
       "issuer_raw": "BRB",
       "network_primary": "Visa",
       "variant_band": "Visa",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "ultra_premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -5388,7 +5388,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:ultra_premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -5597,7 +5597,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Visa",
       "variant_band": "Visa",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "ultra_premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -5801,7 +5801,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:ultra_premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -6323,7 +6323,7 @@
       "issuer_raw": "Amazon",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "mass_or_general",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -6478,7 +6478,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:mass_or_general",
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
@@ -6490,7 +6490,7 @@
       "issuer_raw": "Unicred",
       "network_primary": "Visa",
       "variant_band": "Visa",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "ultra_premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -6744,7 +6744,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:ultra_premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -6756,7 +6756,7 @@
       "issuer_raw": "Amazon.com.br",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "mass_or_general",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -6911,7 +6911,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:mass_or_general",
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
@@ -6923,7 +6923,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Mastercard",
       "variant_band": "Mastercard",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "ultra_premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -7159,7 +7159,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:ultra_premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -7171,7 +7171,7 @@
       "issuer_raw": "BTG Pactual",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -7371,7 +7371,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:cashback",
         "rewards:return_cashlike"
@@ -7384,7 +7384,7 @@
       "issuer_raw": "Santander",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -7627,7 +7627,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -7639,7 +7639,7 @@
       "issuer_raw": "RecargaPay",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -7846,7 +7846,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:cashback",
         "rewards:return_cashlike"
@@ -7859,7 +7859,7 @@
       "issuer_raw": "Sicoob",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -8104,7 +8104,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -8994,7 +8994,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Visa",
       "variant_band": "Visa",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -9131,7 +9131,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
@@ -9143,7 +9143,7 @@
       "issuer_raw": "PicPay",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -9333,7 +9333,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:cashback",
         "rewards:return_cashlike"
@@ -9346,7 +9346,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Mastercard",
       "variant_band": "Mastercard",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "ultra_premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -9589,7 +9589,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:ultra_premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -9601,7 +9601,7 @@
       "issuer_raw": "RecargaPay",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -9747,7 +9747,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
@@ -9759,7 +9759,7 @@
       "issuer_raw": "XP Investimentos",
       "network_primary": "Visa",
       "variant_band": "Visa",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "ultra_premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_catalog_with_curated_official_override",
       "verification_confidence_0_to_1": 1.0,
@@ -9970,7 +9970,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:ultra_premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -9982,7 +9982,7 @@
       "issuer_raw": "Mercado Pago",
       "network_primary": "Visa",
       "variant_band": "Gold",
-      "market_segment_guess": "upper_mass",
+      "market_segment_guess": "mass_or_general",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -10138,7 +10138,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:upper_mass",
+        "segment:mass_or_general",
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
@@ -10150,7 +10150,7 @@
       "issuer_raw": "Santander",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -10374,7 +10374,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -10386,7 +10386,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -10540,7 +10540,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
@@ -10772,7 +10772,7 @@
       "issuer_raw": "Banco BV",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -10911,7 +10911,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
@@ -10923,7 +10923,7 @@
       "issuer_raw": "Santander",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -11141,7 +11141,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -11153,7 +11153,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -11307,7 +11307,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
@@ -11540,7 +11540,7 @@
       "issuer_raw": "PicPay",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -11686,7 +11686,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
@@ -11698,7 +11698,7 @@
       "issuer_raw": "Porto Bank",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -11925,7 +11925,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -12383,7 +12383,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Mastercard",
       "variant_band": "Mastercard",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -12610,7 +12610,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -12848,7 +12848,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Visa",
       "variant_band": "Visa",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -13073,7 +13073,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -13085,7 +13085,7 @@
       "issuer_raw": "BTG Pactual",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -13312,7 +13312,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -13771,7 +13771,7 @@
       "issuer_raw": "C6 Bank",
       "network_primary": "Mastercard",
       "variant_band": "Mastercard",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -13999,7 +13999,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -14011,7 +14011,7 @@
       "issuer_raw": "Sicoob",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -14238,7 +14238,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -15088,7 +15088,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -15298,7 +15298,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -15310,7 +15310,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Elo",
       "variant_band": "Diners Club",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -15535,7 +15535,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -15547,7 +15547,7 @@
       "issuer_raw": "C6 Bank",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "mass_or_general",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -15731,7 +15731,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:mass_or_general",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -16080,7 +16080,7 @@
       "issuer_raw": "Uniprime",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -16298,7 +16298,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -17127,7 +17127,7 @@
       "issuer_raw": "Santander",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -17277,7 +17277,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Santander AAdvantage® Platinum \nEmissor: Santander \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: Até 4,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 660 \nBenefícios (lista): Anuidade: R$ 660; Pontuação: Até 4,0 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: AAdvantage; Validade dos pontos: Não expiram; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 660; Carteira digital: Apple Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 2 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -17741,7 +17741,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Elo",
       "variant_band": "Diners Club",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -17950,7 +17950,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -17962,7 +17962,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -18174,7 +18174,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -18186,7 +18186,7 @@
       "issuer_raw": "BTG Pactual",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -18422,7 +18422,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -18434,7 +18434,7 @@
       "issuer_raw": "Sisprime",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -18677,7 +18677,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -19349,7 +19349,7 @@
       "issuer_raw": "C6 Bank",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "mass_or_general",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -19531,7 +19531,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:mass_or_general",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "C6 Mastercard Platinum \nEmissor: C6 Bank \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 0,5 pontos por real gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 0 \nBenefícios (lista): Anuidade: R$ 0; Pontuação: 0,5 pontos por real gasto; Regra de pontuação: 0,5 pontospor real gasto; Bônus de adesão: Programa Átomos - (Não há); Bônus de adesão: Livelo - (Não há); Programa de fidelidade: Programa Átomos; Programa de fidelidade: Livelo; Validade dos pontos: Programa Átomos - Não expiram; Validade dos pontos: Livelo - 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -19542,7 +19542,7 @@
       "issuer_raw": "CAIXA",
       "network_primary": "Elo",
       "variant_band": "Diners Club",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -19751,7 +19751,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -20636,7 +20636,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -20802,7 +20802,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -20814,7 +20814,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -20980,7 +20980,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -20992,7 +20992,7 @@
       "issuer_raw": "Sicoob",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -21183,7 +21183,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -21195,7 +21195,7 @@
       "issuer_raw": "Santander",
       "network_primary": "Mastercard",
       "variant_band": "Mastercard",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -21345,7 +21345,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Santander AAdvantage® Quartz \nEmissor: Santander \nBandeira: Mastercard \nFaixa: Mastercard \nElegibilidade: unknown \nGanhos: Até 3,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 468 \nBenefícios (lista): Anuidade: R$ 468; Pontuação: Até 3,0 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: AAdvantage; Validade dos pontos: Não expiram; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 468; Carteira digital: Apple Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 2 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -22896,7 +22896,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -23046,7 +23046,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Azul Itaú Visa Platinum \nEmissor: Itaú \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: Até 2,6 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 616 \nBenefícios (lista): Anuidade: R$ 616; Pontuação: Até 2,6 pontos por dólar gasto; Bônus de adesão: 16.000 pontos (mantendo o gasto de R$ 4 mil por fatura durante os 3 primeiros meses.); Programa de fidelidade: Azul Fidelidade; Validade dos pontos: 24 meses; Adicionais com benefícios: Não (Os benefícios na companhia aérea não contemplam cartões adicionais); Isenção da anuidade: Anuidade isenta com gastos a partir de 4 mil reais por mês.; Anuidade: R$ 616; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -23057,7 +23057,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -23207,7 +23207,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Azul Itaú Mastercard Platinum \nEmissor: Itaú \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: Até 2,6 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 616 \nBenefícios (lista): Anuidade: R$ 616; Pontuação: Até 2,6 pontos por dólar gasto; Bônus de adesão: 16.000 pontos (mantendo o gasto de R$ 4 mil por fatura durante os 3 primeiros meses.); Programa de fidelidade: Azul Fidelidade; Validade dos pontos: 24 meses; Adicionais com benefícios: Não (Os benefícios na companhia aérea não contemplam cartões adicionais); Isenção da anuidade: Anuidade isenta com gastos a partir de 4 mil reais por mês.; Anuidade: R$ 616; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -23218,7 +23218,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -23428,7 +23428,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -23440,7 +23440,7 @@
       "issuer_raw": "Banescard",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -23622,7 +23622,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Banescard Visa Platinum \nEmissor: Banescard \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 2,2 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 384 \nBenefícios (lista): Anuidade: R$ 384; Pontuação: 2,2 pontos por dólar gasto; Regra de pontuação: 2,2 pontos por dólar gasto; Bônus de adesão: Fidelidade Banescard - (Não há); Bônus de adesão: Livelo - (Não há); Programa de fidelidade: Fidelidade Banescard; Programa de fidelidade: Livelo; Validade dos pontos: Fidelidade Banescard - 24 meses; Validade dos pontos: Livelo - 24 meses; Adicionais com benefícios: Não (); Isenção da anuidade: 100% de isenção de anuidade para gastos mensais a partir de R$ 4,5 mil ou R$ 60 mil em investimentos no Banestes; Anuidade: R$ 384 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -23633,7 +23633,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -23843,7 +23843,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -23855,7 +23855,7 @@
       "issuer_raw": "Santander",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -24012,7 +24012,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Santander Elite Visa Platinum \nEmissor: Santander \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 558 \nBenefícios (lista): Anuidade: R$ 558; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Esfera; Validade dos pontos: 36 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gastos a partir de 2 mil reais por mês, sendo correntista exceto com pacote de serviços essenciais.; Anuidade: R$ 558; Carteira digital: Apple Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 5 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -24023,7 +24023,7 @@
       "issuer_raw": "Porto Bank",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -24173,7 +24173,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Porto Bank Visa Platinum \nEmissor: Porto Bank \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 708 \nBenefícios (lista): Anuidade: R$ 708; Pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: PortoPlus; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gasto a partir de R$ 3.500 por mês ou a partir de R$ 50 mil em fundos no produto Investimentos Porto Bank.; Anuidade: R$ 708; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 4 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -24184,7 +24184,7 @@
       "issuer_raw": "Porto Bank",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -24341,7 +24341,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Porto Bank Mastercard Platinum \nEmissor: Porto Bank \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 708 \nBenefícios (lista): Anuidade: R$ 708; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: PortoPlus; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gasto a partir de R$ 3.500 por mês ou a partir de R$ 50 mil em fundos no produto Investimentos Porto Bank.; Anuidade: R$ 708; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 4 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -24527,7 +24527,7 @@
       "issuer_raw": "CAIXA",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -24755,7 +24755,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles",
         "rewards:cashback",
@@ -25105,7 +25105,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -25262,7 +25262,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Ourocard Visa Platinum \nEmissor: Banco do Brasil \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,2 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 498 \nBenefícios (lista): Anuidade: R$ 498; Pontuação: 1,2 pontos por dólar gasto; Regra de pontuação: 1,2 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 36 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Gastos a partir de R$ 6.000; Anuidade: R$ 498; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 5 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -25273,7 +25273,7 @@
       "issuer_raw": "BTG Pactual",
       "network_primary": "Mastercard",
       "variant_band": "Mastercard",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -25430,7 +25430,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "BTG Pactual Opção Avançada \nEmissor: BTG Pactual \nBandeira: Mastercard \nFaixa: Mastercard \nElegibilidade: unknown \nGanhos: 1,6 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 600 \nBenefícios (lista): Anuidade: R$ 600; Pontuação: 1,6 pontos por dólar gasto; Regra de pontuação: 1,6 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Isenta a cada R$10.000 em investimentos ou R$1.000 de gastos no cartão garantem R$10 de desconto na mensalidade, sempre priorizando o maior desconto para o cliente.; Anuidade: R$ 600; Carteira digital: Apple Pay, Google Pay, Samsung Pay, Garmin Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 2 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -25441,7 +25441,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -25598,7 +25598,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Ourocard Mastercard Platinum \nEmissor: Banco do Brasil \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,2 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 536 \nBenefícios (lista): Anuidade: R$ 536; Pontuação: 1,2 pontos por dólar gasto; Regra de pontuação: 1,2 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 36 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Gastos a partir de R$ 6.000; Anuidade: R$ 536; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 5 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -25609,7 +25609,7 @@
       "issuer_raw": "Sicredi",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -25820,7 +25820,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -25832,7 +25832,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Elo",
       "variant_band": "Grafite",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -25998,7 +25998,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -26178,7 +26178,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Elo",
       "variant_band": "Elo",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -26335,7 +26335,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Ourocard Elo Mais \nEmissor: Banco do Brasil \nBandeira: Elo \nFaixa: Elo \nElegibilidade: unknown \nGanhos: 1,2 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 352 \nBenefícios (lista): Anuidade: R$ 352; Pontuação: 1,2 pontos por dólar gasto; Regra de pontuação: 1,2 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Gastos a partir de R$ 3.000; Anuidade: R$ 352; Carteira digital: Apple Pay, Google Pay; Precisa ser correntista: Não; Adicionais gratuitos: 5 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -26346,7 +26346,7 @@
       "issuer_raw": "Sisprime",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -26528,7 +26528,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Sisprime Mastercard Platinum \nEmissor: Sisprime \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 420 \nBenefícios (lista): Anuidade: R$ 420; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: Programa de Pontos Sisprime - (Não há); Bônus de adesão: Livelo - (Não há); Programa de fidelidade: Programa de Pontos Sisprime; Programa de fidelidade: Livelo; Validade dos pontos: Programa de Pontos Sisprime - Não expiram; Validade dos pontos: Livelo - 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade gratuita nos primeiros 2 meses. A partir do 3º mês, desconto de 100% na anuidade ao utilizar 30% ou mais do limite de crédito​; Anuidade: R$ 420 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -26539,7 +26539,7 @@
       "issuer_raw": "digio",
       "network_primary": "Visa",
       "variant_band": "Signature",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -26689,7 +26689,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Digio One Visa Signature \nEmissor: digio \nBandeira: Visa \nFaixa: Signature \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 539 \nBenefícios (lista): Anuidade: R$ 539; Pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Primeira anuidade gratuita. Após esse período, 5% de isenção da parcela mensal da anuidade para faturas que atingirem R$ 2 mil ou 100% de isenção para faturas acima de R$ 4 mil; Anuidade: R$ 539; Carteira digital: Apple Pay, Google Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -26700,7 +26700,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Elo",
       "variant_band": "Grafite",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -26866,7 +26866,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -26878,7 +26878,7 @@
       "issuer_raw": "Unicred",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -27060,7 +27060,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Unicred Visa Platinum \nEmissor: Unicred \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 299 \nBenefícios (lista): Anuidade: R$ 299; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: Livelo - (Não há); Bônus de adesão: Único - (Não há); Programa de fidelidade: Livelo; Programa de fidelidade: Único; Validade dos pontos: Livelo - 24 meses; Validade dos pontos: Único - 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 299 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -27071,7 +27071,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -27228,7 +27228,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Ourocard Estilo Platinum Visa \nEmissor: Banco do Brasil \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 498 \nBenefícios (lista): Anuidade: R$ 498; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 36 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 498; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -27453,7 +27453,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Visa",
       "variant_band": "Internacional",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -27610,7 +27610,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "LATAM Pass Itaú Visa Internacional \nEmissor: Itaú \nBandeira: Visa \nFaixa: Internacional \nElegibilidade: unknown \nGanhos: 1,3 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 396 \nBenefícios (lista): Anuidade: R$ 396; Pontuação: 1,3 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: LATAM Pass; Validade dos pontos: 24 meses; Adicionais com benefícios: Não (); Isenção da anuidade: Anuidade isenta com gasto a partir de R$ 1.000 por mês.; Anuidade: R$ 396; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 5; Descrição do benefício em companhias aéreas: Passagens aéreas LATAM Airlines em até 10x sem juros, 10% de desconto em resgates no Shopping LATAM Pass e 30% de desconto na compra de pontos LATAM Pass. \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -27621,7 +27621,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Mastercard",
       "variant_band": "Internacional",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -27778,7 +27778,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "LATAM Pass Itaú Mastercard Internacional \nEmissor: Itaú \nBandeira: Mastercard \nFaixa: Internacional \nElegibilidade: unknown \nGanhos: 1,3 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 396 \nBenefícios (lista): Anuidade: R$ 396; Pontuação: 1,3 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: LATAM Pass; Validade dos pontos: 24 meses; Adicionais com benefícios: Não (); Isenção da anuidade: Anuidade isenta com gasto a partir de R$ 1.000 por mês.; Anuidade: R$ 396; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 5; Descrição do benefício em companhias aéreas: Passagens aéreas LATAM Airlines em até 10x sem juros, 10% de desconto em resgates no Shopping LATAM Pass e 30% de desconto na compra de pontos LATAM Pass. \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -27789,7 +27789,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Elo",
       "variant_band": "Grafite",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -27955,7 +27955,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -27967,7 +27967,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Elo",
       "variant_band": "Grafite",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -28140,7 +28140,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -28152,7 +28152,7 @@
       "issuer_raw": "Sicoob",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -28334,7 +28334,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Sicoob Mastercard Platinum \nEmissor: Sicoob \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 330 \nBenefícios (lista): Anuidade: R$ 330; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: Coopera - (Não há); Bônus de adesão: Livelo - (Não há); Programa de fidelidade: Coopera; Programa de fidelidade: Livelo; Validade dos pontos: Coopera - 24 meses; Validade dos pontos: Livelo - 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 330 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -28513,7 +28513,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Elo",
       "variant_band": "Grafite",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -28686,7 +28686,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -28698,7 +28698,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Visa",
       "variant_band": "Internacional",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -28855,7 +28855,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Azul Itaú Internacional Mastercard \nEmissor: Itaú \nBandeira: Visa \nFaixa: Internacional \nElegibilidade: unknown \nGanhos: Até 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 300 \nBenefícios (lista): Anuidade: R$ 300; Pontuação: Até 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Azul Fidelidade; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gastos a partir de 1 mil reais por mês.; Anuidade: R$ 300; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0; Descrição do benefício em companhias aéreas: Status Azul Topázio, 1 bagagem gratuita em todos os voos e 10% de desconto em passagens Azul, Clube Azul, compra de pontos e na Azul Viagens. \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -29202,7 +29202,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -29359,7 +29359,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Ourocard Estilo Platinum Mastercard \nEmissor: Banco do Brasil \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,3 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 536 \nBenefícios (lista): Anuidade: R$ 536; Pontuação: 1,3 pontos por dólar gasto; Regra de pontuação: 1,3 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 536; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -29370,7 +29370,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -29527,7 +29527,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Bradesco Seguros Visa Platinum \nEmissor: Bradesco \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,2 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 551 \nBenefícios (lista): Anuidade: R$ 551; Pontuação: 1,2 pontos por dólar gasto; Regra de pontuação: 1,2 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 551; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -29731,7 +29731,7 @@
       "issuer_raw": "Cartão",
       "network_primary": "Mastercard",
       "variant_band": "Mastercard",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -29895,7 +29895,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Cartão 1|2|3 \nEmissor: Cartão \nBandeira: Mastercard \nFaixa: Mastercard \nElegibilidade: unknown \nGanhos: Até 3,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 444 \nBenefícios (lista): Anuidade: R$ 444; Pontuação: Até 3,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto no Brasil; Regra de pontuação: 3,0 ponto por dólar gasto no exterior; Bônus de adesão: (Não há); Programa de fidelidade: Esfera; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gastos a partir de 1 mil reais por mês, sendo correntista exceto com pacote de serviços essenciais.; Anuidade: R$ 444; Carteira digital: Apple Pay, Samsung Pay; Precisa ser correntista: Não \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -29906,7 +29906,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Visa",
       "variant_band": "Internacional",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -30063,7 +30063,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Azul Itaú Visa Internacional \nEmissor: Itaú \nBandeira: Visa \nFaixa: Internacional \nElegibilidade: unknown \nGanhos: Até 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 300 \nBenefícios (lista): Anuidade: R$ 300; Pontuação: Até 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Azul Fidelidade; Validade dos pontos: 24 meses; Adicionais com benefícios: Não (); Isenção da anuidade: Anuidade isenta com gastos a partir de 1 mil reais por mês.; Anuidade: R$ 300; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0; Descrição do benefício em companhias aéreas: Status Azul Topázio, 1 bagagem gratuita em todos os voos e 10% de desconto em passagens Azul, Clube Azul, compra de pontos e na Azul Viagens. \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -30242,7 +30242,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Visa",
       "variant_band": "Signature",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -30399,7 +30399,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Bradesco Prime Visa Signature \nEmissor: Bradesco \nBandeira: Visa \nFaixa: Signature \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 570 \nBenefícios (lista): Anuidade: R$ 570; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com investimentos acima de 150 mil reais.; Anuidade: R$ 570; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -30410,7 +30410,7 @@
       "issuer_raw": "Banco do Nordeste",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -30584,7 +30584,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Banco do Nordeste Visa Platinum \nEmissor: Banco do Nordeste \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 430 \nBenefícios (lista): Anuidade: R$ 430; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: Nordeste Mais - (Não há); Bônus de adesão: Livelo - (Não há); Programa de fidelidade: Nordeste Mais; Programa de fidelidade: Livelo; Validade dos pontos: Nordeste Mais - 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 430; Carteira digital: Não \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -30595,7 +30595,7 @@
       "issuer_raw": "Porto Bank",
       "network_primary": "Mastercard",
       "variant_band": "Internacional",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -30752,7 +30752,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Porto Seguro Internacional Mastercard \nEmissor: Porto Bank \nBandeira: Mastercard \nFaixa: Internacional \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 312 \nBenefícios (lista): Anuidade: R$ 312; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: PortoPlus; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gasto a partir de 2 mil e 500 reais por mês.; Anuidade: R$ 312; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 1 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -30763,7 +30763,7 @@
       "issuer_raw": "Porto Bank",
       "network_primary": "Visa",
       "variant_band": "Internacional",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -30920,7 +30920,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Porto Seguro Internacional Visa \nEmissor: Porto Bank \nBandeira: Visa \nFaixa: Internacional \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 312 \nBenefícios (lista): Anuidade: R$ 312; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: PortoPlus; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gasto a partir de 2 mil e 500 reais por mês.; Anuidade: R$ 312; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 1 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -30931,7 +30931,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -31088,7 +31088,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Bradesco Visa Platinum \nEmissor: Bradesco \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 541 \nBenefícios (lista): Anuidade: R$ 541; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 541; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -31099,7 +31099,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -31267,7 +31267,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -31279,7 +31279,7 @@
       "issuer_raw": "Banco BV",
       "network_primary": "Elo",
       "variant_band": "Grafite",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -31470,7 +31470,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -31482,7 +31482,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Visa",
       "variant_band": "Signature",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -31639,7 +31639,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Bradesco Visa Signature \nEmissor: Bradesco \nBandeira: Visa \nFaixa: Signature \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 570 \nBenefícios (lista): Anuidade: R$ 570; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 570; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -31818,7 +31818,7 @@
       "issuer_raw": "Banco BV",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -32000,7 +32000,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "BV Mastercard Platinum \nEmissor: Banco BV \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 479 \nBenefícios (lista): Anuidade: R$ 479; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: BV Merece - (Não há); Bônus de adesão: Livelo - (Não há); Programa de fidelidade: BV Merece; Programa de fidelidade: Livelo; Validade dos pontos: BV Merece - 24 meses; Validade dos pontos: Livelo - 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gastos a partir de 4 mil e 500 reais por mês.; Anuidade: R$ 479 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -32011,7 +32011,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "American Express",
       "variant_band": "American Express",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -32168,7 +32168,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Bradesco American Express® Green Card \nEmissor: Bradesco \nBandeira: American Express \nFaixa: American Express \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 569 \nBenefícios (lista): Anuidade: R$ 569; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: Não expiram; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 569; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -32347,7 +32347,7 @@
       "issuer_raw": "Banco BV",
       "network_primary": "Elo",
       "variant_band": "Elo",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -32529,7 +32529,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "BV Elo Mais \nEmissor: Banco BV \nBandeira: Elo \nFaixa: Elo \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 347 \nBenefícios (lista): Anuidade: R$ 347; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: BV Merece - (Não há); Bônus de adesão: Livelo - (Não há); Programa de fidelidade: BV Merece; Programa de fidelidade: Livelo; Validade dos pontos: BV Merece - 24 meses; Validade dos pontos: Livelo - 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gastos a partir de 2 mil e 500 reais por mês.; Anuidade: R$ 347 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -32876,7 +32876,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -33033,7 +33033,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Bradesco Prime Visa Platinum \nEmissor: Bradesco \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 500 \nBenefícios (lista): Anuidade: R$ 500; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 500; Carteira digital: Apple Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -33573,7 +33573,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Elo",
       "variant_band": "Internacional",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -33730,7 +33730,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Bradesco Elo Mais Internacional \nEmissor: Bradesco \nBandeira: Elo \nFaixa: Internacional \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 425 \nBenefícios (lista): Anuidade: R$ 425; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 425; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -33741,7 +33741,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Elo",
       "variant_band": "Elo",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -33898,7 +33898,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Bradesco Seguros Elo Mais \nEmissor: Bradesco \nBandeira: Elo \nFaixa: Elo \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 551 \nBenefícios (lista): Anuidade: R$ 551; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 551; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -34124,7 +34124,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -34292,7 +34292,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -34908,7 +34908,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Elo",
       "variant_band": "Internacional",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -35065,7 +35065,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Bradesco Seguros Elo Internacional \nEmissor: Bradesco \nBandeira: Elo \nFaixa: Internacional \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 395 \nBenefícios (lista): Anuidade: R$ 395; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 395; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -35269,7 +35269,7 @@
       "issuer_raw": "Bradesco",
       "network_primary": "Elo",
       "variant_band": "Elo",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -35426,7 +35426,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Bradesco Exclusive Elo Mais \nEmissor: Bradesco \nBandeira: Elo \nFaixa: Elo \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 404 \nBenefícios (lista): Anuidade: R$ 404; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 404; Carteira digital: Apple Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -35630,7 +35630,7 @@
       "issuer_raw": "Banrisul",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -35839,7 +35839,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -36380,7 +36380,7 @@
       "issuer_raw": "Unicred",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -36581,7 +36581,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -36593,7 +36593,7 @@
       "issuer_raw": "Banco BV",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -36750,7 +36750,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Dotz BV Visa Platinum \nEmissor: Banco BV \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 0,1 ponto por real gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 260 \nBenefícios (lista): Anuidade: R$ 260; Pontuação: 0,1 ponto por real gasto; Regra de pontuação: 0,1 pontopor real gasto; Bônus de adesão: 3.000; Programa de fidelidade: Dotz; Validade dos pontos: 48 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gasto a partir de 4 mil e 500 reais por mês.; Anuidade: R$ 260; Carteira digital: Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -36761,7 +36761,7 @@
       "issuer_raw": "CAIXA",
       "network_primary": "Elo",
       "variant_band": "Grafite",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -36927,7 +36927,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -36939,7 +36939,7 @@
       "issuer_raw": "Cartão",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -37096,7 +37096,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Cartão de Crédito Dotz Visa Platinum \nEmissor: Cartão \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 0,1 ponto por real gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 468 \nBenefícios (lista): Anuidade: R$ 468; Pontuação: 0,1 ponto por real gasto; Regra de pontuação: 0,1 pontopor real gasto; Bônus de adesão: (Não há); Programa de fidelidade: Dotz; Validade dos pontos: 48 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 468; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -37567,7 +37567,7 @@
       "issuer_raw": "CAIXA",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -37734,7 +37734,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles",
         "rewards:cashback",
         "rewards:return_cashlike"
@@ -37747,7 +37747,7 @@
       "issuer_raw": "CAIXA",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -37914,7 +37914,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles",
         "rewards:cashback",
         "rewards:return_cashlike"
@@ -37927,7 +37927,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -38077,7 +38077,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Pão de Açúcar Visa Platinum \nEmissor: Itaú \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: Até 5,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 650 \nBenefícios (lista): Anuidade: R$ 650; Pontuação: Até 5,0 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: GPA; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Zere sua parcela mensal de anuidade realizando uma compra por fatura nas lojas físicas ou e-commerce do Pão de Açúcar; Anuidade: R$ 650; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -38088,7 +38088,7 @@
       "issuer_raw": "Banco BV",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -38245,7 +38245,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Dotz BV Mastercard Platinum \nEmissor: Banco BV \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 0,6 ponto por real gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 260 \nBenefícios (lista): Anuidade: R$ 260; Pontuação: 0,6 ponto por real gasto; Regra de pontuação: 0,6 pontopor real gasto; Bônus de adesão: 3.000; Programa de fidelidade: Dotz; Validade dos pontos: 48 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gasto a partir de 4 mil e 500 reais por mês.; Anuidade: R$ 260; Carteira digital: Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -38470,7 +38470,7 @@
       "issuer_raw": "Pão",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -38664,7 +38664,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -38676,7 +38676,7 @@
       "issuer_raw": "BRB",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -38894,7 +38894,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -39748,7 +39748,7 @@
       "issuer_raw": "Cresol",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -39966,7 +39966,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -40503,7 +40503,7 @@
       "issuer_raw": "BRB",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -40721,7 +40721,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -41237,7 +41237,7 @@
       "issuer_raw": "BRB",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -41439,7 +41439,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -41451,7 +41451,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "mass_or_general",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -41608,7 +41608,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:mass_or_general",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Itaú Click+ Visa Platinum com pontos \nEmissor: Itaú \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 0,3 ponto por real gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 192 \nBenefícios (lista): Anuidade: R$ 192; Pontuação: 0,3 ponto por real gasto; Regra de pontuação: 0,3 pontopor real gasto; Bônus de adesão: (Não há); Programa de fidelidade: Itaú Shop; Validade dos pontos: 36 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 192; Carteira digital: Apple Pay, Samsung Pay, Google Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -41619,7 +41619,7 @@
       "issuer_raw": "Banco do Brasil",
       "network_primary": "Visa",
       "variant_band": "Internacional",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -41776,7 +41776,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Ourocard Smiles Visa Internacional \nEmissor: Banco do Brasil \nBandeira: Visa \nFaixa: Internacional \nElegibilidade: unknown \nGanhos: 1,4 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 312 \nBenefícios (lista): Anuidade: R$ 312; Pontuação: 1,4 pontos por dólar gasto; Regra de pontuação: 1,4 pontos por dólar gasto; Bônus de adesão: 2.000; Programa de fidelidade: Smiles; Validade dos pontos: 36 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 312; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -41787,7 +41787,7 @@
       "issuer_raw": "Banpará",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -41953,7 +41953,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -41965,7 +41965,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "mass_or_general",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -42122,7 +42122,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:mass_or_general",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Itau Click Mastercard Platinum com pontos \nEmissor: Itaú \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 0,3 ponto por real gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 215 \nBenefícios (lista): Anuidade: R$ 215; Pontuação: 0,3 ponto por real gasto; Regra de pontuação: 0,3 pontopor real gasto; Bônus de adesão: (Não há); Programa de fidelidade: Itaú Shop; Validade dos pontos: 36 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 215; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -42133,7 +42133,7 @@
       "issuer_raw": "Sicredi",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -42290,7 +42290,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Sicredi Visa Platinum \nEmissor: Sicredi \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 400 \nBenefícios (lista): Anuidade: R$ 400; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Juntos; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 400; Carteira digital: Apple Pay, Samsung Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -42301,7 +42301,7 @@
       "issuer_raw": "BRB",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -42458,7 +42458,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "BRB Stock Car Mastercard Platinum \nEmissor: BRB \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,7 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 450 \nBenefícios (lista): Anuidade: R$ 450; Pontuação: 1,7 pontos por dólar gasto; Regra de pontuação: 1,7 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Curtaí; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gastos a partir de 5 mil e 340 reais por mês.; Anuidade: R$ 450; Carteira digital: Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -42469,7 +42469,7 @@
       "issuer_raw": "Credicard",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -42626,7 +42626,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Credicard Exclusive Visa Platinum \nEmissor: Credicard \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 2,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 636 \nBenefícios (lista): Anuidade: R$ 636; Pontuação: 2,0 pontos por dólar gasto; Regra de pontuação: 2,0 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Programa de Pontos Credicard; Validade dos pontos: 36 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 636; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -42637,7 +42637,7 @@
       "issuer_raw": "BRB",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -42803,7 +42803,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -42815,7 +42815,7 @@
       "issuer_raw": "Sicredi",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -42972,7 +42972,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Sicredi Mastercard Platinum \nEmissor: Sicredi \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 400 \nBenefícios (lista): Anuidade: R$ 400; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Juntos; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 400; Carteira digital: Apple Pay, Samsung Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -42983,7 +42983,7 @@
       "issuer_raw": "Credicard",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -43140,7 +43140,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Credicard Exclusive Platinum Mastercard \nEmissor: Credicard \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 2,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 599 \nBenefícios (lista): Anuidade: R$ 599; Pontuação: 2,0 pontos por dólar gasto; Regra de pontuação: 2,0 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Programa de Pontos Credicard; Validade dos pontos: 36 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 599; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -43151,7 +43151,7 @@
       "issuer_raw": "Banpará",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -43317,7 +43317,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -43329,7 +43329,7 @@
       "issuer_raw": "Itaú",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -43479,7 +43479,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Pão de Açúcar Mastercard Platinum \nEmissor: Itaú \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: Até 3,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 405 \nBenefícios (lista): Anuidade: R$ 405; Pontuação: Até 3,0 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: GPA; Validade dos pontos: 12 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Zere sua parcela mensal de anuidade realizando uma compra por fatura nas lojas físicas ou e-commerce do Pão de Açúcar; Anuidade: R$ 405; Carteira digital: Apple Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -43490,7 +43490,7 @@
       "issuer_raw": "Safra",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -43654,7 +43654,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Safra Visa Platinum \nEmissor: Safra \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: Até 2,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 660 \nBenefícios (lista): Anuidade: R$ 660; Pontuação: Até 2,0 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto no Brasil; Regra de pontuação: 2,0 pontos por dólar gasto no exterior; Bônus de adesão: (Não há); Programa de fidelidade: Safra Rewards; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade gratuita para clientes com investimentos acima de R$ 200 mil no Safra ou gastos a partir de R$ 5 mil por fatura mensal; Anuidade: R$ 660; Carteira digital: Samsung Pay, Apple Pay; Precisa ser correntista: Sim \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -43665,7 +43665,7 @@
       "issuer_raw": "BRB",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -43822,7 +43822,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "BRBCARD Mastercard Platinum \nEmissor: BRB \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 444 \nBenefícios (lista): Anuidade: R$ 444; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Curtaí; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gastos a partir de 5 mil e 340 reais por mês.; Anuidade: R$ 444; Carteira digital: Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -43833,7 +43833,7 @@
       "issuer_raw": "Banrisul",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -43990,7 +43990,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Banrisul Visa Platinum \nEmissor: Banrisul \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 480 \nBenefícios (lista): Anuidade: R$ 480; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: BanriClube; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gasto a partir de 4 mil reais por mês.; Anuidade: R$ 480; Carteira digital: Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 3 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -44162,7 +44162,7 @@
       "issuer_raw": "Banrisul",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -44319,7 +44319,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Banrisul Mastercard Platinum \nEmissor: Banrisul \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 420 \nBenefícios (lista): Anuidade: R$ 420; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: BanriClube; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gasto a partir de 4 mil reais por mês.; Anuidade: R$ 420; Carteira digital: Google Pay, Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 3 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -45012,7 +45012,7 @@
       "issuer_raw": "Banco PAN",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -45169,7 +45169,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Banco PAN Mastercard Platinum \nEmissor: Banco PAN \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 500 \nBenefícios (lista): Anuidade: R$ 500; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: PAN Mais; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gasto acima de 5 mil reais por mês.; Anuidade: R$ 500; Carteira digital: Não; Precisa ser correntista: Sim; Adicionais gratuitos: 1 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -45180,7 +45180,7 @@
       "issuer_raw": "Inter",
       "network_primary": "Mastercard",
       "variant_band": "Black",
-      "market_segment_guess": "ultra_premium",
+      "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -45398,7 +45398,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:ultra_premium",
+        "segment:premium",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -45588,7 +45588,7 @@
       "issuer_raw": "Uniprime",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -45745,7 +45745,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Uniprime Mastercard Platinum \nEmissor: Uniprime \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 345 \nBenefícios (lista): Anuidade: R$ 345; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Programa de Pontos Uniprime; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gasto a partir de 20% do limite de crédito por mês.; Anuidade: R$ 345; Carteira digital: Samsung Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -46438,7 +46438,7 @@
       "issuer_raw": "Unicred",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -46595,7 +46595,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Unicred Mastercard Platinum \nEmissor: Unicred \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 299 \nBenefícios (lista): Anuidade: R$ 299; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Único; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 299; Carteira digital: Samsung Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -46606,7 +46606,7 @@
       "issuer_raw": "Cresol",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -46763,7 +46763,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Cresol Mastercard Platinum \nEmissor: Cresol \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 359 \nBenefícios (lista): Anuidade: R$ 359; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Programa de Prêmios Cresol; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gastos acima de 4 mil e 200 reais por mês.; Anuidade: R$ 359; Carteira digital: Não; Precisa ser correntista: Sim; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -46942,7 +46942,7 @@
       "issuer_raw": "BRB",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -47092,7 +47092,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "BRB Flamengo Mastercard Platinum \nEmissor: BRB \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: Até 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 444 \nBenefícios (lista): Anuidade: R$ 444; Pontuação: Até 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: +Mengão; Validade dos pontos: 24 meses; Adicionais com benefícios: Não (); Isenção da anuidade: Anuidade isenta com gastos a partir de 5 mil e 340 reais por mês.; Anuidade: R$ 444; Carteira digital: Samsung Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -47271,7 +47271,7 @@
       "issuer_raw": "Banpará",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -47428,7 +47428,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Banpará Mastercard Platinum \nEmissor: Banpará \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 400 \nBenefícios (lista): Anuidade: R$ 400; Pontuação: 1,5 pontos por dólar gasto; Regra de pontuação: 1,5 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Banpará Sempre+; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 400; Carteira digital: Samsung Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -48279,7 +48279,7 @@
       "issuer_raw": "Banco BV",
       "network_primary": "Visa",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -48436,7 +48436,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:upper_mass",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "BV Visa Platinum \nEmissor: Banco BV \nBandeira: Visa \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 1,0 ponto por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 479 \nBenefícios (lista): Anuidade: R$ 479; Pontuação: 1,0 ponto por dólar gasto; Regra de pontuação: 1,0 ponto por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: BV Merece; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gastos a partir de 4 mil e 500 reais por mês.; Anuidade: R$ 479; Carteira digital: Samsung Pay; Precisa ser correntista: Não; Adicionais gratuitos: 0 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -49455,7 +49455,7 @@
       "issuer_raw": "Banco Bari",
       "network_primary": "Elo",
       "variant_band": "Grafite",
-      "market_segment_guess": "mass_or_general",
+      "market_segment_guess": "upper_mass",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -49621,7 +49621,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:upper_mass",
         "travel:lounge",
         "rewards:points_or_miles"
       ],
@@ -51995,7 +51995,7 @@
       "issuer_raw": "Inter",
       "network_primary": "Mastercard",
       "variant_band": "Platinum",
-      "market_segment_guess": "premium",
+      "market_segment_guess": "mass_or_general",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -52152,7 +52152,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:premium",
+        "segment:mass_or_general",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Inter One Mastercard Platinum \nEmissor: Inter \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: 0,2 ponto por real gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 0 \nBenefícios (lista): Anuidade: R$ 0; Pontuação: 0,2 ponto por real gasto; Regra de pontuação: 0,2 pontopor real gasto; Bônus de adesão: (Não há); Programa de fidelidade: Inter Loop; Validade dos pontos: Não expiram; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 0; Carteira digital: Apple Pay, Google Pay, Samsung Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 6 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
@@ -52499,7 +52499,7 @@
       "issuer_raw": "Inter",
       "network_primary": "Mastercard",
       "variant_band": "Gold",
-      "market_segment_guess": "upper_mass",
+      "market_segment_guess": "mass_or_general",
       "product_kind": "named_credit_card_product",
       "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
       "verification_confidence_0_to_1": 1.0,
@@ -52656,7 +52656,7 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:upper_mass",
+        "segment:mass_or_general",
         "rewards:points_or_miles"
       ],
       "text_for_embedding_compare": "Inter Mastercard Gold \nEmissor: Inter \nBandeira: Mastercard \nFaixa: Gold \nElegibilidade: unknown \nGanhos: 0,1 ponto por real gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 0 \nBenefícios (lista): Anuidade: R$ 0; Pontuação: 0,1 ponto por real gasto; Regra de pontuação: 0,1 pontopor real gasto; Bônus de adesão: (Não há); Programa de fidelidade: Inter Loop; Validade dos pontos: Não expiram; Adicionais com benefícios: Sim; Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 0; Carteira digital: Apple Pay, Samsung Pay, Google Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 4 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"

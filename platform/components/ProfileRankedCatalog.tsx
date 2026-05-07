@@ -41,11 +41,12 @@ export function ProfileRankedCatalog({ cards }: ProfileRankedCatalogProps) {
           </p>
         </div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
-          {scored.map((score) => (
+          {scored.map((score, idx) => (
             <CardCard
               key={score.card.card_stable_id}
               card={score.card}
               valueScore={score}
+              rank={idx + 1}
               compact
             />
           ))}
@@ -65,8 +66,8 @@ export function ProfileRankedCatalog({ cards }: ProfileRankedCatalogProps) {
         </div>
       )}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        {cards.map((card) => (
-          <CardCard key={card.card_stable_id} card={card} />
+        {cards.map((card, idx) => (
+          <CardCard key={card.card_stable_id} card={card} rank={idx + 1} />
         ))}
       </div>
     </div>

@@ -24,7 +24,7 @@ export default function HomePage() {
       <ProfileOnboarding />
 
       <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_28rem)]">
-        <AppHeader totalCards={totalCards} />
+        <AppHeader />
 
         <main className="mx-auto max-w-7xl space-y-4 px-4 pb-28 pt-5 md:px-6">
           {/* Hero text */}
@@ -36,7 +36,8 @@ export default function HomePage() {
               Pergunte. Compare. Decida.
             </h1>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Configure seu perfil abaixo para ver o ranking personalizado. Use o chat para tirar dúvidas, comparar cartões e explorar benefícios.
+              Configure seu perfil abaixo para ver o ranking personalizado. Use
+              o chat para tirar dúvidas, comparar cartões e explorar benefícios.
             </p>
           </section>
 
@@ -47,8 +48,18 @@ export default function HomePage() {
 
           {/* Quick-access tiles */}
           <section className="mx-auto grid max-w-4xl gap-2 md:grid-cols-2">
-            <QuickTile href="/cartoes" icon={BarChart3} label="Catálogo" detail="Filtros densos" />
-            <QuickTile href="/cartoes?cashback=true" icon={Coins} label="Cashback" detail="Retorno direto" />
+            <QuickTile
+              href="/cartoes"
+              icon={BarChart3}
+              label="Catálogo"
+              detail="Filtros densos"
+            />
+            <QuickTile
+              href="/cartoes?cashback=true"
+              icon={Coins}
+              label="Cashback"
+              detail="Retorno direto"
+            />
           </section>
 
           {/* Personalized ranking (profile setup or results) */}
@@ -64,7 +75,8 @@ export default function HomePage() {
 
         <footer className="border-t border-border/70 px-6 py-4 text-center">
           <p className="text-xs text-muted-foreground">
-            Dados do catálogo podem conter imprecisões. Verifique com o emissor antes de contratar.
+            Dados do catálogo podem conter imprecisões. Verifique com o emissor
+            antes de contratar.
           </p>
         </footer>
       </div>
@@ -73,18 +85,19 @@ export default function HomePage() {
     </>
   );
 }
+interface QuickTileProps {
+  href: string;
+  icon: typeof Sparkles;
+  label: string;
+  detail: string;
+}
 
 function QuickTile({
   href,
   icon: Icon,
   label,
   detail,
-}: {
-  href: string;
-  icon: typeof Sparkles;
-  label: string;
-  detail: string;
-}) {
+}: React.PropsWithChildren<QuickTileProps>) {
   return (
     <Link
       href={href}

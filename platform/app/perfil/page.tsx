@@ -24,7 +24,7 @@ function cardMatchScore(card: (typeof CLIENT_CARD_OPTIONS)[number], query: strin
 }
 
 type TravelFrequency = UserProfile["travelFrequency"];
-type RewardPref = "cashback" | "points" | "investback" | "lounge";
+type RewardPref = "cost_benefit" | "cashback" | "points" | "investback" | "lounge";
 
 const TRAVEL_OPTIONS: { value: TravelFrequency; label: string; desc: string }[] = [
   { value: "none", label: "Não viajo", desc: "Viagens nacionais ocasionais" },
@@ -33,6 +33,7 @@ const TRAVEL_OPTIONS: { value: TravelFrequency; label: string; desc: string }[] 
 ];
 
 const REWARD_OPTIONS: { value: RewardPref; label: string; desc: string }[] = [
+  { value: "cost_benefit", label: "Melhor custo-benefício", desc: "Maximize o retorno líquido total" },
   { value: "cashback", label: "Cashback", desc: "Dinheiro de volta nas compras" },
   { value: "points", label: "Pontos / milhas", desc: "Acumule para resgatar viagens" },
   { value: "investback", label: "Investback", desc: "Retorno direto no investimento" },
@@ -86,12 +87,17 @@ export default function PerfilPage() {
     if (profile.preferences.prefersPoints) prefs.add("points");
     if (profile.preferences.prefersInvestback) prefs.add("investback");
     if (profile.preferences.wantsLounge) prefs.add("lounge");
+    if (prefs.size === 0) prefs.add("cost_benefit");
     setRewards(prefs);
   }, [profile]);
 
   function toggleReward(r: RewardPref) {
     setRewards((prev) => {
       const next = new Set(prev);
+      if (r === "cost_benefit") {
+        return next.has(r) ? new Set<RewardPref>() : new Set<RewardPref>(["cost_benefit"]);
+      }
+      next.delete("cost_benefit");
       next.has(r) ? next.delete(r) : next.add(r);
       return next;
     });
@@ -99,6 +105,7 @@ export default function PerfilPage() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    const isCostBenefit = rewards.has("cost_benefit") || rewards.size === 0;
     setProfile({
       monthlySalaryBrl: parseBrlInput(salary),
       avgMonthlySpendBrl: parseBrlInput(spend),
@@ -108,10 +115,10 @@ export default function PerfilPage() {
       currentPrimaryCardId: cardId,
       currentPrimaryCardName: cardId ? cardQuery.trim() || undefined : undefined,
       preferences: {
-        prefersCashback: rewards.has("cashback"),
-        prefersPoints: rewards.has("points"),
-        prefersInvestback: rewards.has("investback"),
-        wantsLounge: rewards.has("lounge"),
+        prefersCashback: !isCostBenefit && rewards.has("cashback"),
+        prefersPoints: !isCostBenefit && rewards.has("points"),
+        prefersInvestback: !isCostBenefit && rewards.has("investback"),
+        wantsLounge: !isCostBenefit && rewards.has("lounge"),
       },
     });
     setSaved(true);

@@ -20,15 +20,8 @@ import {
   PromptInputActions,
   PromptInputSubmit,
 } from "@/components/ui/ai-prompt-box";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import { useCompareStore, useProfileStore } from "@/lib/store";
-import { UserRound, LayoutList, CreditCard, ChevronDown, ChevronUp, ArrowUpRight, Check, Plus, History } from "lucide-react";
+import { CreditCard, ChevronDown, ChevronUp, ArrowUpRight, Check, Plus, History, Maximize2, X } from "lucide-react";
 import Link from "next/link";
 import type { UIMessage } from "ai";
 import { cn } from "@/lib/utils";
@@ -307,48 +300,35 @@ function CardCompareArtifact({ output }: { output: unknown }) {
         : cards[0]
       : null;
 
-  const rows: { label: string; key: (c: CardItem) => string }[] = [
+  const rows: { label: string; key: (c: CardItem) => string; numericKey?: (c: CardItem) => number | undefined }[] = [
     {
       label: "Valor líquido",
-      key: (c) =>
-        c.valorEstimado?.valorLiquidoMensal !== undefined
-          ? moneyLabel(c.valorEstimado.valorLiquidoMensal)
-          : "—",
+      key: (c) => c.valorEstimado?.valorLiquidoMensal !== undefined ? moneyLabel(c.valorEstimado.valorLiquidoMensal) : "—",
+      numericKey: (c) => c.valorEstimado?.valorLiquidoMensal,
     },
     {
       label: "Retorno",
-      key: (c) =>
-        c.valorEstimado?.retornoBrutoMensal !== undefined
-          ? moneyLabel(c.valorEstimado.retornoBrutoMensal)
-          : c.retornoFinanceiro?.earning_summary ?? "—",
+      key: (c) => c.valorEstimado?.retornoBrutoMensal !== undefined ? moneyLabel(c.valorEstimado.retornoBrutoMensal) : c.retornoFinanceiro?.earning_summary ?? "—",
+      numericKey: (c) => c.valorEstimado?.retornoBrutoMensal,
     },
     {
       label: "Benefícios",
-      key: (c) =>
-        c.valorEstimado?.beneficiosMensais !== undefined
-          ? moneyLabel(c.valorEstimado.beneficiosMensais)
-          : c.valorEstimado?.beneficiosIntangiveisMensais !== undefined
-            ? moneyLabel(c.valorEstimado.beneficiosIntangiveisMensais)
-            : "—",
+      key: (c) => {
+        const v = c.valorEstimado?.beneficiosMensais ?? c.valorEstimado?.beneficiosIntangiveisMensais;
+        return v !== undefined ? moneyLabel(v) : "—";
+      },
+      numericKey: (c) => c.valorEstimado?.beneficiosMensais ?? c.valorEstimado?.beneficiosIntangiveisMensais,
     },
     {
       label: "Anuidade efetiva",
-      key: (c) =>
-        c.valorEstimado?.anuidadeEfetivaMensal !== undefined
-          ? `-${moneyLabel(c.valorEstimado.anuidadeEfetivaMensal).replace("+", "")}`
-          : feeLabel(c.anuidade),
+      key: (c) => c.valorEstimado?.anuidadeEfetivaMensal !== undefined ? `-${moneyLabel(c.valorEstimado.anuidadeEfetivaMensal).replace("+", "")}` : feeLabel(c.anuidade),
+      numericKey: (c) => c.valorEstimado?.anuidadeEfetivaMensal !== undefined ? -c.valorEstimado.anuidadeEfetivaMensal : undefined,
     },
     { label: "Anuidade", key: (c) => feeLabel(c.anuidade) },
     { label: "Lounge", key: (c) => (hasLounge(c.lounge) ? "Sim" : "Não") },
     { label: "Pontos", key: (c) => (c.pontos ? "Sim" : "Não") },
-    {
-      label: "Seg. viagem",
-      key: (c) => (c.seguroViagem !== undefined ? (c.seguroViagem ? "Sim" : "Não") : "—"),
-    },
-    {
-      label: "Concierge",
-      key: (c) => (c.concierge !== undefined ? (c.concierge ? "Sim" : "Não") : "—"),
-    },
+    { label: "Seg. viagem", key: (c) => (c.seguroViagem !== undefined ? (c.seguroViagem ? "Sim" : "Não") : "—") },
+    { label: "Concierge", key: (c) => (c.concierge !== undefined ? (c.concierge ? "Sim" : "Não") : "—") },
   ];
 
   return (
@@ -362,10 +342,10 @@ function CardCompareArtifact({ output }: { output: unknown }) {
           )}
           {delta && (
             <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
-              <MiniMetric label="Delta/mês" value={moneyLabel(delta.valorLiquidoMensal ?? 0)} strong />
-              <MiniMetric label="Delta/ano" value={`R$${Math.round(delta.valorLiquidoAnual ?? 0).toLocaleString("pt-BR")}`} />
-              <MiniMetric label="Retorno" value={moneyLabel(delta.retornoBrutoMensal ?? 0)} />
-              <MiniMetric label="Anuidade" value={moneyLabel(-(delta.anuidadeMensal ?? 0))} />
+              <MiniMetric label="Delta/mês" value={moneyLabel(delta.valorLiquidoMensal ?? 0)} numericValue={delta.valorLiquidoMensal} strong />
+              <MiniMetric label="Delta/ano" value={`R$${Math.round(delta.valorLiquidoAnual ?? 0).toLocaleString("pt-BR")}`} numericValue={delta.valorLiquidoAnual} />
+              <MiniMetric label="Retorno" value={moneyLabel(delta.retornoBrutoMensal ?? 0)} numericValue={delta.retornoBrutoMensal} />
+              <MiniMetric label="Anuidade" value={moneyLabel(-(delta.anuidadeMensal ?? 0))} numericValue={-(delta.anuidadeMensal ?? 0)} />
             </div>
           )}
         </div>
@@ -375,24 +355,31 @@ function CardCompareArtifact({ output }: { output: unknown }) {
         <thead>
           <tr className="border-b bg-muted/20">
             <th className="px-3 py-2 text-left font-normal text-muted-foreground">—</th>
-            {cards.map((c) => (
-              <th key={c.id} className="px-3 py-2 text-left font-medium">
-                <Link href={`/cartoes/${c.id}`} className="hover:underline">
-                  {c.nome}
-                </Link>
-              </th>
-            ))}
+            {cards.map((c) => {
+              const isWinner = winner?.id === c.id;
+              return (
+                <th key={c.id} className={cn("px-3 py-2 text-left font-medium", isWinner && "text-emerald-400")}>
+                  <Link href={`/cartoes/${c.id}`} className="hover:underline">
+                    {c.nome}
+                    {isWinner && <span className="ml-1 font-mono text-[9px] text-emerald-400/70">★</span>}
+                  </Link>
+                </th>
+              );
+            })}
           </tr>
         </thead>
         <tbody>
           {rows.map((row) => (
-            <tr key={row.label} className="border-b last:border-0">
+            <tr key={row.label} className="border-b last:border-0 odd:bg-muted/5">
               <td className="px-3 py-1.5 text-muted-foreground">{row.label}</td>
-              {cards.map((c) => (
-                <td key={c.id} className="px-3 py-1.5 font-mono">
-                  {row.key(c)}
-                </td>
-              ))}
+              {cards.map((c) => {
+                const num = row.numericKey?.(c);
+                return (
+                  <td key={c.id} className={cn("px-3 py-1.5 font-mono", row.numericKey ? moneyColor(num) : "")}>
+                    {row.key(c)}
+                  </td>
+                );
+              })}
             </tr>
           ))}
         </tbody>
@@ -402,11 +389,18 @@ function CardCompareArtifact({ output }: { output: unknown }) {
   );
 }
 
-function MiniMetric({ label, value, strong }: { label: string; value: string; strong?: boolean }) {
+function moneyColor(value: number | undefined): string {
+  if (value === undefined) return "";
+  if (value > 0) return "text-emerald-400";
+  if (value < 0) return "text-rose-400";
+  return "text-muted-foreground";
+}
+
+function MiniMetric({ label, value, strong, numericValue }: { label: string; value: string; strong?: boolean; numericValue?: number }) {
   return (
     <div className="rounded-lg border bg-background/40 px-2.5 py-1.5">
       <p className="text-[10px] text-muted-foreground">{label}</p>
-      <p className={cn("font-mono text-xs", strong && "font-semibold")}>{value}</p>
+      <p className={cn("font-mono text-xs", strong && "font-semibold", numericValue !== undefined && moneyColor(numericValue))}>{value}</p>
     </div>
   );
 }
@@ -561,6 +555,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
     }),
   });
   const [bestCardName, setBestCardName] = useState<string | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const isHero = variant === "hero";
   const isStreaming = status === "streaming" || status === "submitted";
   const [expanded, setExpanded] = useState(false);
@@ -577,6 +572,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
       }
     );
     setExpanded(false);
+    setIsFullscreen(true);
   }
 
   React.useEffect(() => {
@@ -637,101 +633,150 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
       ? `Compare meu cartão atual, ${profile.currentPrimaryCardName}, com ${bestCardName} para o meu perfil. Quero saber se vale trocar, com números.`
       : null;
 
-  return (
-    <motion.div
-      className={cn(
-        "flex flex-col overflow-hidden",
-        !isHero && "min-h-[520px] flex-1 sm:h-[calc(100vh-120px)]",
-        className
-      )}
-      animate={isHero ? { height: hasMessages ? 500 : "auto" } : {}}
-      transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
-    >
-      <AnimatePresence initial={false}>
-        {hasMessages && (
-          <motion.div
-            key="conversation"
-            className="flex-1 min-h-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+  const conversationContent = (
+    <Conversation className="h-full overflow-y-auto px-4">
+      <ConversationContent className="mx-auto max-w-2xl py-5 space-y-3">
+        {hiddenCount > 0 && (
+          <button
+            onClick={() => setExpanded(true)}
+            className="flex items-center gap-1.5 text-[11px] text-muted-foreground/50 hover:text-muted-foreground transition-colors"
           >
-      <Conversation className="h-full overflow-y-auto px-4">
-        <ConversationContent className="mx-auto max-w-2xl py-5 space-y-3">
-          {hiddenCount > 0 && (
-            <button
-              onClick={() => setExpanded(true)}
-              className="flex items-center gap-1.5 text-[11px] text-muted-foreground/50 hover:text-muted-foreground transition-colors"
-            >
-              <ChevronUp className="h-3 w-3" />
-              {hiddenCount} mensagen{hiddenCount !== 1 ? "s" : ""} anteriores
-            </button>
-          )}
+            <ChevronUp className="h-3 w-3" />
+            {hiddenCount} mensagen{hiddenCount !== 1 ? "s" : ""} anteriores
+          </button>
+        )}
+        {(visibleMessages as UIMessage[]).map((message) => (
+          <ChatMessageBubble key={message.id} message={message} />
+        ))}
+        {expanded && messages.length > 2 && (
+          <button
+            onClick={() => setExpanded(false)}
+            className="flex items-center gap-1.5 text-[11px] text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+          >
+            <ChevronDown className="h-3 w-3" />
+            Recolher
+          </button>
+        )}
+      </ConversationContent>
+      <ConversationScrollButton />
+    </Conversation>
+  );
 
-          {(visibleMessages as UIMessage[]).map((message) => (
-            <ChatMessageBubble key={message.id} message={message} />
-          ))}
-
-          {expanded && messages.length > 2 && (
-            <button
-              onClick={() => setExpanded(false)}
-              className="flex items-center gap-1.5 text-[11px] text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+  return (
+    <>
+      {/* ── Compact view ── */}
+      <motion.div
+        className={cn(
+          "flex flex-col overflow-hidden",
+          !isHero && "min-h-[520px] flex-1 sm:h-[calc(100vh-120px)]",
+          className
+        )}
+        animate={isHero ? { height: hasMessages ? 420 : "auto" } : {}}
+        transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
+        <AnimatePresence initial={false}>
+          {hasMessages && (
+            <motion.div
+              key="compact-convo"
+              className="flex-1 min-h-0 opacity-60"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.6 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
             >
-              <ChevronDown className="h-3 w-3" />
-              Recolher
-            </button>
+              {conversationContent}
+            </motion.div>
           )}
-        </ConversationContent>
-        <ConversationScrollButton />
-      </Conversation>
+        </AnimatePresence>
+        <div className="shrink-0 px-4 pb-4 pt-2">
+          <div className="mx-auto max-w-2xl">
+            <ChatPromptBox
+              isLoading={isStreaming}
+              onSubmit={handleSubmit}
+              onStop={stop}
+              onProfile={resetOnboarding}
+              profileSet={!!profile}
+              suggestion={comparisonSuggestion}
+              history={history}
+              onOpenHistory={(item) => { setSelectedHistory(item); setIsFullscreen(true); }}
+              onExpand={hasMessages ? () => setIsFullscreen(true) : undefined}
+            />
+            <p className="mt-1.5 text-center text-[10px] text-muted-foreground/40">
+              Dados podem conter imprecisões. Confirme com o emissor.
+            </p>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* ── Fullscreen modal ── */}
+      <AnimatePresence>
+        {isFullscreen && (
+          <motion.div
+            className="fixed inset-0 z-[60] flex flex-col bg-background"
+            initial={{ opacity: 0, scale: 0.98, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.98, y: 8 }}
+            transition={{ duration: 0.26, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            {/* Header */}
+            <div className="flex shrink-0 items-center justify-between border-b border-border/40 px-4 py-2.5">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
+                {selectedHistory ? selectedHistory.title : "Chat"}
+              </p>
+              <button
+                type="button"
+                onClick={() => { setIsFullscreen(false); setSelectedHistory(null); }}
+                className="flex h-7 w-7 items-center justify-center rounded-lg border border-border/50 text-muted-foreground transition-colors hover:border-border hover:text-foreground"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
+
+            {/* Conversation */}
+            {selectedHistory ? (
+              <div className="min-h-0 flex-1 overflow-y-auto px-4">
+                <div className="mx-auto max-w-2xl space-y-3 py-5">
+                  {selectedHistory.messages.map((msg) => (
+                    <ChatMessageBubble key={msg.id} message={msg as UIMessage} />
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="min-h-0 flex-1">
+                {hasMessages ? conversationContent : (
+                  <div className="flex h-full items-center justify-center">
+                    <p className="font-mono text-[11px] text-muted-foreground/30">
+                      Nenhuma mensagem ainda.
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Input */}
+            <div className="shrink-0 px-4 pb-4 pt-2">
+              {selectedHistory && (
+                <p className="mx-auto mb-2 max-w-2xl font-mono text-[10px] text-muted-foreground/40">
+                  Nova pergunta
+                </p>
+              )}
+              <div className="mx-auto max-w-2xl">
+                <ChatPromptBox
+                  isLoading={isStreaming}
+                  onSubmit={(text) => { setSelectedHistory(null); handleSubmit(text); }}
+                  onStop={stop}
+                  onProfile={resetOnboarding}
+                  profileSet={!!profile}
+                  suggestion={selectedHistory ? null : comparisonSuggestion}
+                  history={history}
+                  onOpenHistory={(item) => setSelectedHistory(item)}
+                />
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <div className="shrink-0 px-4 pb-4 pt-2">
-        <div className="mx-auto max-w-2xl">
-          <ChatPromptBox
-            isLoading={isStreaming}
-            onSubmit={handleSubmit}
-            onStop={stop}
-            onProfile={resetOnboarding}
-            profileSet={!!profile}
-            suggestion={comparisonSuggestion}
-            history={history}
-            onOpenHistory={setSelectedHistory}
-          />
-          <p className="mt-1.5 text-center text-[10px] text-muted-foreground/40">
-            Dados podem conter imprecisões. Confirme com o emissor.
-          </p>
-        </div>
-      </div>
-
-      <Dialog open={!!selectedHistory} onOpenChange={(open) => !open && setSelectedHistory(null)}>
-        <DialogContent className="h-[min(760px,88vh)] max-w-[min(920px,calc(100vw-1rem))] grid-rows-[auto_1fr] gap-3 overflow-hidden p-4 sm:max-w-3xl">
-          <DialogHeader className="pr-8">
-            <DialogTitle>{selectedHistory?.title ?? "Conversa"}</DialogTitle>
-            <DialogDescription>
-              {selectedHistory
-                ? new Date(selectedHistory.updatedAt).toLocaleString("pt-BR", {
-                    day: "2-digit",
-                    month: "short",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })
-                : null}
-            </DialogDescription>
-          </DialogHeader>
-          <div className="min-h-0 overflow-y-auto rounded-lg border bg-background/45 px-3 py-4">
-            <div className="mx-auto max-w-2xl space-y-3">
-              {selectedHistory?.messages.map((message) => (
-                <ChatMessageBubble key={message.id} message={message} />
-              ))}
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
-    </motion.div>
+    </>
   );
 }
 
@@ -745,6 +790,7 @@ function ChatPromptBox({
   suggestion,
   history,
   onOpenHistory,
+  onExpand,
 }: {
   isLoading: boolean;
   onSubmit: (text: string) => void;
@@ -754,10 +800,22 @@ function ChatPromptBox({
   suggestion?: string | null;
   history: ChatHistoryItem[];
   onOpenHistory: (item: ChatHistoryItem) => void;
+  onExpand?: () => void;
 }) {
   const [value, setValue] = React.useState("");
   const [historyOpen, setHistoryOpen] = React.useState(false);
   const groups = React.useMemo(() => groupedHistory(history), [history]);
+
+  const chips = React.useMemo(() => {
+    const list: { label: string; query: string }[] = [];
+    if (suggestion) {
+      list.push({ label: "Comparar com melhor alternativa", query: suggestion });
+    }
+    list.push(
+      { label: "Isentar anuidade com investimento", query: "Quais cartões consigo isentar a anuidade com investimento? Me mostre quais e quanto preciso manter." }
+    );
+    return list;
+  }, [suggestion]);
 
   function handleSubmit() {
     onSubmit(value);
@@ -772,37 +830,40 @@ function ChatPromptBox({
       isLoading={isLoading}
       onSubmit={handleSubmit}
     >
-      {suggestion && !value && (
-        <button
-          type="button"
-          onClick={() => onSubmit(suggestion)}
-          className="mx-2 mt-2 rounded-xl border bg-card/70 px-3 py-2 text-left text-xs text-muted-foreground transition-colors hover:border-border hover:text-foreground"
-        >
-          Sugerido: comparar meu cartão atual com a melhor recomendação
-        </button>
+      {onExpand && (
+        <div className="flex justify-end px-2 pt-2">
+          <button
+            type="button"
+            onClick={onExpand}
+            className="flex items-center gap-1 rounded-md border border-border/40 px-2 py-0.5 font-mono text-[10px] text-muted-foreground/50 transition-all hover:border-border/70 hover:text-muted-foreground"
+          >
+            <Maximize2 className="h-2.5 w-2.5" />
+            Expandir
+          </button>
+        </div>
+      )}
+      {!value && !isLoading && (
+        <div className="flex gap-1.5 overflow-x-auto px-2 pt-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {chips.map((chip) => (
+            <button
+              key={chip.label}
+              type="button"
+              onClick={() => { onSubmit(chip.query); }}
+              className="shrink-0 rounded-full border border-border/40 bg-transparent px-2.5 py-1 font-mono text-[10px] text-muted-foreground/60 transition-all hover:border-border/80 hover:text-muted-foreground whitespace-nowrap"
+            >
+              {chip.label}
+            </button>
+          ))}
+        </div>
       )}
       <PromptInputTextarea
         placeholder="Pergunte sobre cartões..."
         className="px-3 py-2.5 text-sm min-h-[42px]"
       />
       <PromptInputActions className="justify-between px-2 pb-2">
-        <div className="flex items-center gap-1">
-          <ActionButton
-            tooltip={profileSet ? "Editar perfil" : "Configurar perfil"}
-            onClick={onProfile}
-            active={profileSet}
-          >
-            <UserRound className="h-4 w-4" />
-          </ActionButton>
-          <Link href="/cartoes" tabIndex={-1}>
-            <ActionButton tooltip="Ver catálogo">
-              <LayoutList className="h-4 w-4" />
-            </ActionButton>
-          </Link>
-        </div>
-        <div className="relative flex items-center gap-1.5">
+        <div className="relative flex items-center gap-1">
           {historyOpen && (
-            <div className="absolute bottom-10 right-0 z-20 w-72 max-w-[calc(100vw-2.5rem)] rounded-xl border bg-popover p-2 text-popover-foreground shadow-xl">
+            <div className="absolute bottom-10 left-0 z-20 w-72 max-w-[calc(100vw-2.5rem)] rounded-xl border bg-popover p-2 text-popover-foreground shadow-xl">
               <div className="mb-1 flex items-center justify-between px-1.5">
                 <p className="text-xs font-medium">Histórico</p>
                 <p className="text-[10px] text-muted-foreground">{history.length}</p>
@@ -853,8 +914,8 @@ function ChatPromptBox({
           >
             <History className="h-4 w-4" />
           </ActionButton>
-          <PromptInputSubmit onStop={onStop} />
         </div>
+        <PromptInputSubmit onStop={onStop} />
       </PromptInputActions>
     </PromptInput>
   );

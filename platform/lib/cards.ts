@@ -152,6 +152,14 @@ export function filterCards(filters: CardFilters): CardFacet[] {
 
   if (filters.feeWaiverByInvestment === true) {
     cards = cards.filter((c) => getCardFeeWaiver(c)?.viaInvestimento === true);
+    // Sort by annual fee ascending so lower-barrier cards appear first
+    cards = [...cards].sort((a, b) => {
+      const fa = a.facets_numeric_or_special.annual_fee_brl_best_estimate;
+      const fb = b.facets_numeric_or_special.annual_fee_brl_best_estimate;
+      const na = typeof fa === "number" ? fa : 999999;
+      const nb = typeof fb === "number" ? fb : 999999;
+      return na - nb;
+    });
   }
 
   if (filters.search) {

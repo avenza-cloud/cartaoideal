@@ -14,6 +14,7 @@ interface CardCardProps {
   card: CardFacet;
   compact?: boolean;
   valueScore?: CardValueScore;
+  rank?: number;
 }
 
 const SEGMENT_COLORS = {
@@ -38,7 +39,7 @@ function classification(score: CardValueScore) {
   return "Não compensa";
 }
 
-export function CardCard({ card, compact = false, valueScore }: CardCardProps) {
+export function CardCard({ card, compact = false, valueScore, rank }: CardCardProps) {
   const { ids, add, remove, canAdd } = useCompareStore();
   const isSelected = ids.includes(card.card_stable_id);
 
@@ -68,7 +69,7 @@ export function CardCard({ card, compact = false, valueScore }: CardCardProps) {
               <CreditCard className="h-12 w-12 text-muted-foreground" />
             )}
             <span className="absolute left-2 top-2 rounded-full bg-background/80 px-2 py-0.5 text-[10px] font-mono text-muted-foreground">
-              #{card.ranking_position}
+              #{rank ?? card.ranking_position}
             </span>
           </div>
           <div className="flex items-start justify-between gap-2">
