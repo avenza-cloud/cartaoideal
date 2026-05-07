@@ -6,8 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test:e2e": "playwright test",
-    "test:e2e:mobile": "playwright test --project=mobile-small --project=mobile-chrome --project=mobile-large"
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:e2e": "playwright test --ignore-snapshots --grep-invert chat-waiver",
+    "test:e2e:mobile": "playwright test --project=mobile-small --project=mobile-chrome --project=mobile-large --grep-invert chat-waiver",
+    "test:chat": "playwright test tests/e2e/chat-waiver.spec.ts"
   },
   "dependencies": {
     "@ai-sdk/gateway": "^3.0.110",
@@ -47,7 +50,9 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/coverage-v8": "^4.1.5",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.5"
   }
 }

@@ -493,12 +493,111 @@ function CardDetailArtifact({ output }: { output: unknown }) {
   );
 }
 
+/* ─── Investment waiver artifact ─── */
+interface WaiverCardItem {
+  id: string;
+  nome: string;
+  emissor: string;
+  anuidade: number | string;
+  textoIsencao: string;
+  viaGasto: boolean;
+  isGratuito: boolean;
+  cardArtUrl?: string;
+  altText?: string;
+  thresholdInvestimento?: number;
+  faltam?: number;
+}
+
+function WaiverMiniCard({ card, faltam }: { card: WaiverCardItem; faltam?: number }) {
+  const hasImage = card.cardArtUrl && card.cardArtUrl !== "unknown";
+  return (
+    <Link
+      href={`/cartoes/${card.id}`}
+      className="flex items-center gap-2.5 rounded-xl border bg-card/60 px-2.5 py-2 text-xs transition-colors hover:text-foreground"
+    >
+      <div className="flex h-8 w-12 shrink-0 items-center justify-center rounded-md border bg-zinc-950">
+        {hasImage ? (
+          <img src={card.cardArtUrl} alt={card.altText ?? card.nome} className="max-h-6 max-w-[40px] object-contain" loading="lazy" />
+        ) : (
+          <CreditCard className="h-3.5 w-3.5 text-muted-foreground" />
+        )}
+      </div>
+      <div className="min-w-0 flex-1">
+        <p className="truncate font-medium leading-tight">{card.nome}</p>
+        <p className="truncate text-[10px] text-muted-foreground">{card.emissor}</p>
+      </div>
+      <div className="shrink-0 text-right">
+        <p className="font-mono text-[10px] text-muted-foreground">{feeLabel(card.anuidade)}</p>
+        {faltam !== undefined ? (
+          <p className="font-mono text-[10px] text-rose-400">
+            faltam R${faltam.toLocaleString("pt-BR")}
+          </p>
+        ) : (
+          <p className="font-mono text-[10px] text-emerald-400">✓ acessível</p>
+        )}
+      </div>
+      <ArrowUpRight className="h-3 w-3 shrink-0 text-muted-foreground/40" />
+    </Link>
+  );
+}
+
+function InvestmentWaiverArtifact({ output }: { output: unknown }) {
+  const data = output as {
+    totalEncontrado?: number;
+    investidoUsuario?: number;
+    acessiveisAgora?: WaiverCardItem[];
+    precisamDeMaisInvestimento?: WaiverCardItem[];
+    cartoes?: WaiverCardItem[];
+  };
+  if (!data?.totalEncontrado) return null;
+
+  const accessible = data.acessiveisAgora ?? [];
+  const needsMore = data.precisamDeMaisInvestimento ?? [];
+  const flat = data.cartoes;
+
+  if (flat) {
+    return (
+      <div className="mt-2 space-y-1">
+        {flat.map((c) => <WaiverMiniCard key={c.id} card={c} />)}
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-2 space-y-3">
+      {accessible.length > 0 && (
+        <div className="space-y-1">
+          <p className="text-[10px] font-medium uppercase tracking-widest text-emerald-400/80">
+            Acessíveis agora ({accessible.length})
+          </p>
+          {accessible.map((c) => <WaiverMiniCard key={c.id} card={c} />)}
+        </div>
+      )}
+      {needsMore.length > 0 && (() => {
+        const nearby = needsMore.filter((c) => (c.faltam ?? Infinity) <= 100_000);
+        if (!nearby.length) return null;
+        return (
+          <div className="space-y-1">
+            <p className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
+              Precisam de mais investimento ({nearby.length})
+            </p>
+            {nearby.map((c) => (
+              <WaiverMiniCard key={c.id} card={c} faltam={c.faltam} />
+            ))}
+          </div>
+        );
+      })()}
+    </div>
+  );
+}
+
 /* ─── Tool artifact dispatcher ─── */
 const TOOL_LOADING_LABELS: Record<string, string> = {
   filterCards: "Buscando cartões...",
   compareCards: "Comparando...",
   getCardDetail: "Carregando detalhes...",
   rankCardsForProfile: "Calculando ranking...",
+  getInvestmentWaiverCards: "Buscando cartões com isenção por investimento...",
 };
 
 function ToolArtifact({
@@ -529,6 +628,9 @@ function ToolArtifact({
   }
   if (toolName === "getCardDetail") {
     return <CardDetailArtifact output={output} />;
+  }
+  if (toolName === "getInvestmentWaiverCards") {
+    return <InvestmentWaiverArtifact output={output} />;
   }
   return null;
 }

@@ -175,6 +175,28 @@ export function filterCards(filters: CardFilters): CardFacet[] {
   return cards;
 }
 
+export function groupCardsByInvestment(
+  cards: CardFacet[],
+  userInvestedBrl: number,
+  extractThreshold: (texto: string) => number | null
+): {
+  accessible: CardFacet[];
+  needsMore: Array<{ card: CardFacet; threshold: number; shortfall: number }>;
+} {
+  const accessible: CardFacet[] = [];
+  const needsMore: Array<{ card: CardFacet; threshold: number; shortfall: number }> = [];
+  for (const card of cards) {
+    const texto = getCardFeeWaiver(card)?.texto ?? "";
+    const t = extractThreshold(texto);
+    if (t === null || userInvestedBrl >= t) {
+      accessible.push(card);
+    } else {
+      needsMore.push({ card, threshold: t, shortfall: t - userInvestedBrl });
+    }
+  }
+  return { accessible, needsMore };
+}
+
 export function getSegments(): MarketSegment[] {
   return ["mass_or_general", "upper_mass", "premium", "ultra_premium"];
 }

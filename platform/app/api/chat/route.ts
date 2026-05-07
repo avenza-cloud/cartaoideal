@@ -19,6 +19,11 @@ export async function POST(req: Request) {
     messages: await convertToModelMessages(messages),
     tools: createCardTools(profile),
     stopWhen: stepCountIs(5),
+    onStepFinish({ toolCalls }) {
+      for (const tc of toolCalls ?? []) {
+        console.log(JSON.stringify({ level: "info", route: "/api/chat", tool: tc.toolName, args: "input" in tc ? tc.input : undefined }));
+      }
+    },
     onFinish({ usage }) {
       console.log(
         JSON.stringify({

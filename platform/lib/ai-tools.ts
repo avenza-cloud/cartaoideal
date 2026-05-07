@@ -1,7 +1,8 @@
 import "server-only";
 import { tool } from "ai";
 import { z } from "zod";
-import { filterCards, getAllCards, getCardById, getCardsByIds, getCardFeeWaiver, resolveCardByName } from "@/lib/cards";
+import { filterCards, getAllCards, getCardById, getCardsByIds, getCardFeeWaiver, groupCardsByInvestment, resolveCardByName } from "@/lib/cards";
+import { extractInvestmentThreshold } from "@/lib/fee-waiver";
 import { scoreCardValue } from "@/lib/card-value";
 import type { CardFacet, CardFilters, MarketSegment, UserProfile } from "@/types/cards";
 
@@ -107,15 +108,10 @@ export function createCardTools(savedProfile?: UserProfile | null) {
       zeroFee: z.boolean().optional().describe("Somente cartões sem anuidade"),
       maxFee: z.number().optional().describe("Anuidade máxima em reais"),
       search: z.string().optional().describe("Busca por nome do cartão ou emissor"),
-      feeWaiverByInvestment: z
-        .boolean()
-        .optional()
-        .describe("Somente cartões cuja anuidade pode ser isenta mediante investimento"),
     }),
     execute: async (input) => {
       const filters: CardFilters = { ...input, segment: input.segment as MarketSegment };
-      const limit = input.feeWaiverByInvestment ? 40 : 16;
-      const cards = filterCards(filters).slice(0, limit);
+      const cards = filterCards(filters).slice(0, 16);
       return cards.map((c) => ({
         id: c.card_stable_id,
         nome: c.display_name,
@@ -262,6 +258,47 @@ export function createCardTools(savedProfile?: UserProfile | null) {
     },
   }),
 
+    getInvestmentWaiverCards: tool({
+    description:
+      "Lista TODOS os cartões brasileiros que permitem isenção de anuidade via investimento, agrupados por acessibilidade. Use SEMPRE que o usuário perguntar sobre isentar anuidade com investimento, quanto precisa manter investido, ou cartões gratuitos com investimento. Nunca use filterCards para esse fim.",
+    inputSchema: z.object({
+      userInvestedBrl: z
+        .number()
+        .optional()
+        .describe("Valor total investido pelo usuário em reais (do perfil ou da conversa)"),
+    }),
+    execute: async ({ userInvestedBrl }) => {
+      const cards = filterCards({ feeWaiverByInvestment: true });
+      const invested = userInvestedBrl ?? savedProfile?.avgInvestedBrl ?? null;
+      const slim = (c: CardFacet) => ({
+        id: c.card_stable_id,
+        nome: c.display_name,
+        emissor: c.issuer_raw,
+        bandeira: c.network_primary,
+        anuidade: c.facets_numeric_or_special.annual_fee_brl_best_estimate,
+        textoIsencao: getCardFeeWaiver(c)?.texto ?? "",
+        viaGasto: getCardFeeWaiver(c)?.viaGasto ?? false,
+        isGratuito: getCardFeeWaiver(c)?.isGratuito ?? false,
+        cardArtUrl: c.media.card_art_url,
+        altText: c.media.alt_text,
+      });
+      if (invested !== null) {
+        const { accessible, needsMore } = groupCardsByInvestment(cards, invested, extractInvestmentThreshold);
+        return {
+          totalEncontrado: cards.length,
+          investidoUsuario: invested,
+          acessiveisAgora: accessible.map(slim),
+          precisamDeMaisInvestimento: needsMore.map(({ card, threshold, shortfall }) => ({
+            ...slim(card),
+            thresholdInvestimento: threshold,
+            faltam: shortfall,
+          })),
+        };
+      }
+      return { totalEncontrado: cards.length, cartoes: cards.map(slim) };
+    },
+  }),
+
     rankCardsForProfile: tool({
     description:
       "Pontua e ordena cartões de acordo com o perfil financeiro do usuário: renda, gastos, patrimônio investido e preferências.",
@@ -336,13 +373,9 @@ Regras importantes:
 - Seja objetivo e direto nas comparações
 - Data de referência do catálogo: maio de 2026
 
-Isenção de anuidade:
-- Cada cartão retornado pelas ferramentas tem um campo \`isentaAnuidade\` com: \`{ texto, viaInvestimento, viaGasto, isGratuito }\`.
-- \`texto\` é o critério exato de isenção publicado pelo emissor (em português).
-- Quando o usuário perguntar sobre isenção de anuidade por investimento, chame filterCards com \`feeWaiverByInvestment: true\`. Nunca diga que não encontrou cartões sem usar esse filtro primeiro.
-- IMPORTANTE: ao usar feeWaiverByInvestment:true, liste TODOS os cartões retornados pela ferramenta — não filtre pela quantidade investida do usuário. O usuário quer conhecer as opções, mesmo que precise aumentar investimentos para algumas. Organize em grupos: "já acessíveis com seu valor atual" e "precisam de mais investimento".
-- Para cada cartão, sempre mostre: nome, emissor, anuidade, e o texto exato do critério de isenção (campo \`isentaAnuidade.texto\`).
-- Alguns cartões têm \`anuidade = 0\` mas exigem investimento mínimo (\`investimentoMinimo\`) — são gratuitos condicionalmente: XP Visa Infinite (R$50k), XP Visa Infinite Categoria One (R$5k), RecargaPay Titan (R$30k). Comunique isso claramente.
-- Se o usuário informar quanto tem investido, leia os valores no campo \`texto\` e divida os cartões em: (a) acessíveis agora, (b) precisam de mais. Mostre ambos os grupos.
-- Cenários: (1) isenção total via investimento, (2) isenção total via gasto, (3) isenção parcial/progressiva, (4) múltiplos critérios (investimento OU gasto). Os campos \`viaInvestimento\` e \`viaGasto\` indicam quais se aplicam.
-- Nunca responda "não há outros cartões" sem antes verificar se a ferramenta retornou mais resultados além do que você já listou.`;
+Isenção de anuidade por investimento:
+- Para QUALQUER pergunta sobre isentar anuidade com investimento, use SOMENTE a ferramenta \`getInvestmentWaiverCards\`. Nunca use \`filterCards\` para esse fim.
+- Passe \`userInvestedBrl\` com o valor investido do usuário (do perfil ou da conversa).
+- Os cartões JÁ SÃO EXIBIDOS VISUALMENTE pela interface logo acima desta mensagem. PROIBIDO repetir nomes, anuidades ou critérios de cartões em texto.
+- Escreva APENAS: "Encontrei [totalEncontrado] cartões. [N] já acessíveis com seus R$ X investidos, [M] precisam de mais." — uma frase, nada mais.
+- Se o usuário perguntar sobre um emissor específico, use getCardDetail. Não resuma dados da lista em prosa.`;
