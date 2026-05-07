@@ -68,6 +68,9 @@ function CardRow({
   const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
   const net = valueScore?.netMonthlyValueBrl;
   const positive = (net ?? 0) >= 0;
+  const restricted = valueScore?.dataQualityNotes.some((note) =>
+    /convite|restrit|private/i.test(note)
+  );
 
   return (
     <Link
@@ -96,6 +99,11 @@ function CardRow({
           {badge && (
             <span className="shrink-0 rounded-md bg-emerald-500/15 px-1.5 py-0.5 font-mono text-[9px] text-emerald-400">
               {badge}
+            </span>
+          )}
+          {restricted && (
+            <span className="shrink-0 rounded-md bg-amber-500/15 px-1.5 py-0.5 font-mono text-[9px] text-amber-400">
+              restrito
             </span>
           )}
           <p className="truncate font-medium leading-tight">{card.display_name}</p>
@@ -328,8 +336,8 @@ export function CardProgressionPath() {
             <>
               <p className="mb-2 text-[11px] text-muted-foreground">
                 {simResult.newUnlocked.length === 1
-                  ? "1 cartão novo se torna acessível:"
-                  : `${simResult.newUnlocked.length} cartões novos se tornam acessíveis:`}
+                  ? "1 cartão novo entra no radar:"
+                  : `${simResult.newUnlocked.length} cartões novos entram no radar:`}
               </p>
               <div className="space-y-1.5">
                 {simResult.newUnlocked.map((s) => (
@@ -353,7 +361,7 @@ export function CardProgressionPath() {
           ) : (
             <div className="space-y-1.5">
               <p className="mb-2 text-[11px] text-muted-foreground">
-                Sem novos cartões desbloqueados — mas o ranking muda:
+                Sem novos cartões no radar — mas o ranking muda:
               </p>
               {simResult.top.slice(0, 2).map((s) => (
                 <CardRow key={s.card.card_stable_id} scored={s} />

@@ -311,7 +311,7 @@ function evaluateEligibility(
   if (availability === "unavailable") {
     reasons.push("Produto marcado como indisponível/descontinuado.");
   } else if (availability === "invite_only") {
-    reasons.push("Produto marcado como disponível apenas por convite.");
+    notes.push("Produto disponível apenas por convite; sugerido como referência, não como elegibilidade garantida.");
   } else if (availability === "private_or_segment_restricted") {
     const hasStructuredGate = typeof minInvestment === "number" || typeof minIncome === "number";
     const meetsStructuredGate =
@@ -329,7 +329,11 @@ function evaluateEligibility(
     minInvestment === "unknown" &&
     minIncome === "unknown";
   if (blocksOnUnknown) {
-    reasons.push("Elegibilidade crítica não estruturada; removido de recomendações automáticas.");
+    if (availability === "invite_only" || availability === "private_or_segment_restricted") {
+      notes.push("Elegibilidade crítica não estruturada; mantenha como sugestão restrita para análise manual.");
+    } else {
+      reasons.push("Elegibilidade crítica não estruturada; removido de recomendações automáticas.");
+    }
   }
 
   if (card.eligibility?.requires_bank_account_claim === true) {
