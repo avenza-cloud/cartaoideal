@@ -5,6 +5,7 @@ import { formatFee, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
 import { AppHeader } from "@/components/AppHeader";
 import { CardDetailActions } from "@/components/CardDetailActions";
 import { CardProfileInsights } from "@/components/CardProfileInsights";
+import { CardCorrectionForm } from "@/components/CardCorrectionForm";
 import { ArrowLeft, CreditCard, ExternalLink } from "lucide-react";
 import type { BenefitGroupKey, CardCharacteristic, CardFacet } from "@/types/cards";
 
@@ -262,15 +263,23 @@ export default async function CartaoDetailPage({ params }: PageProps) {
                 · confirme condições com o emissor
               </span>
             </div>
-            <a
-              href={card.source_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg border bg-background/40 px-2.5 py-1.5 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <ExternalLink className="h-3 w-3" />
-              Abrir
-            </a>
+            <div className="flex shrink-0 gap-2">
+              <CardCorrectionForm
+                cardId={card.card_stable_id}
+                cardName={card.display_name}
+                issuer={card.issuer_raw}
+                sourceUrl={card.source_url}
+              />
+              <a
+                href={card.source_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-1.5 rounded-lg border bg-background/40 px-2.5 py-1.5 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <ExternalLink className="h-3 w-3" />
+                Abrir
+              </a>
+            </div>
           </div>
         </div>
       </main>

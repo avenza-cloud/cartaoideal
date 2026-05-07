@@ -1,0 +1,74 @@
+name: Correction issue to PR
+
+on:
+  issues:
+    types: [opened, labeled]
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  correction-pr:
+    if: contains(github.event.issue.labels.*.name, 'correction') || contains(github.event.issue.body, '```json card-correction')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write pending correction
+        id: correction
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const issue = context.payload.issue;
+            const match = issue.body.match(/```json card-correction\n([\s\S]*?)\n```/);
+            if (!match) {
+              core.setFailed("Correction JSON block not found.");
+              return;
+            }
+
+            const payload = JSON.parse(match[1]);
+            const dir = "platform/data/corrections/pending";
+            const file = `${dir}/issue-${issue.number}.json`;
+            fs.mkdirSync(dir, { recursive: true });
+            fs.writeFileSync(
+              file,
+              JSON.stringify(
+                {
+                  issueNumber: issue.number,
+                  issueUrl: issue.html_url,
+                  ...payload,
+                },
+                null,
+                2
+              ) + "\n"
+            );
+
+            core.setOutput("file", file);
+            core.setOutput("branch", `correction/issue-${issue.number}`);
+            core.setOutput("title", `Correção: ${payload.cardName} — ${payload.field}`);
+
+      - name: Create correction PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: ${{ steps.correction.outputs.branch }}
+          title: ${{ steps.correction.outputs.title }}
+          commit-message: Add pending correction from issue ${{ github.event.issue.number }}
+          body: |
+            Pending community correction from #${{ github.event.issue.number }}.
+
+            Review the source, then apply the accepted change to the canonical card data.
+          labels: correction,needs-review
+
+      - name: Comment with PR status
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.payload.issue.number,
+              body: "Correction PR automation ran. Check linked pull requests for review."
+            });
