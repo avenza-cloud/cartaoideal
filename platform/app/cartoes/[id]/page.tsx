@@ -359,7 +359,8 @@ function FullTextRow({ label, value }: { label: string; value: string }) {
   );
 }
 
-function loungeCondition(summary: string): string | null {
+function loungeCondition(summary?: string): string | null {
+  if (!summary) return null;
   const match = summary.match(/\(([^)]*(?:mediante|gasto|fatura|compras|invest|necessário|necessario|acima|partir)[^)]*)\)|(?:mediante|com|para ter direito)[^.]+/i);
   return match?.[1] ?? match?.[0] ?? null;
 }
