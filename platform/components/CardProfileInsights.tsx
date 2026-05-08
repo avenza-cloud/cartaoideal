@@ -4,6 +4,7 @@ import React, { useMemo, useState } from "react";
 import { scoreCardValue } from "@/lib/card-value";
 import { useProfileStore } from "@/lib/store";
 import { useValueAssumptions } from "@/lib/use-value-assumptions";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { ChevronDown } from "lucide-react";
 import type { CardFacet, CardValueAssumptions, CardValueComponent } from "@/types/cards";
 
@@ -216,28 +217,30 @@ function Strip({
   tooltip?: React.ReactNode;
 }) {
   return (
-    <div className="group relative border-b border-r px-3 py-2.5 last:border-r-0 even:border-r-0 sm:border-b-0 sm:even:border-r sm:last:border-r-0">
+    <div className="relative border-b border-r px-3 py-2.5 last:border-r-0 even:border-r-0 sm:border-b-0 sm:even:border-r sm:last:border-r-0">
       <p className="flex items-center gap-1 text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
         {label}
         {tooltip && (
-          <span className="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full border border-muted-foreground/30 font-mono text-[9px] text-muted-foreground/50 transition-colors group-hover:border-muted-foreground/60 group-hover:text-muted-foreground">
-            ?
-          </span>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <span className="inline-flex h-3.5 w-3.5 items-center justify-center rounded-full border border-muted-foreground/30 font-mono text-[9px] text-muted-foreground/50 transition-colors hover:border-muted-foreground/60 hover:text-muted-foreground">
+                ?
+              </span>
+            </TooltipTrigger>
+            <TooltipContent
+              side="top"
+              align="start"
+              sideOffset={6}
+              className="z-[100] block w-72 max-w-[calc(100vw-2rem)] rounded-xl border border-border/60 bg-[#111] p-0 text-left text-foreground shadow-[0_8px_32px_rgba(0,0,0,0.5)]"
+            >
+              {tooltip}
+            </TooltipContent>
+          </Tooltip>
         )}
       </p>
       <p className={`mt-0.5 font-mono text-xs font-semibold ${color ?? "text-foreground"}`}>
         {value}
       </p>
-
-      {tooltip && (
-        <div className="pointer-events-none absolute bottom-[calc(100%+6px)] left-0 z-50 w-72 opacity-0 transition-opacity duration-150 group-hover:opacity-100">
-          <div className="rounded-xl border border-border/60 bg-[#111] shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
-            {tooltip}
-          </div>
-          {/* Arrow */}
-          <div className="ml-4 h-0 w-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-border/60" />
-        </div>
-      )}
     </div>
   );
 }
