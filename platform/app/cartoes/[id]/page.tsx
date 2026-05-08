@@ -379,6 +379,7 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
   });
   const hasOnlyGeneralFullWaiver =
     ordered.length === 1 && ordered[0].category === "general" && ordered[0].full_waiver;
+  const hasAlternativeRules = ordered.length > 1;
 
   return (
     <div className="rounded-xl border bg-emerald-500/5 p-2.5">
@@ -398,7 +399,13 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
         </p>
       )}
       {!hasOnlyGeneralFullWaiver && (
-        <div className="grid gap-2 min-[420px]:grid-cols-2">
+        <>
+          {hasAlternativeRules && (
+            <p className="mb-2 text-[11px] leading-relaxed text-muted-foreground">
+              Basta cumprir uma das condições abaixo. As regras são alternativas: uma <strong>OU</strong> outra.
+            </p>
+          )}
+          <div className="grid gap-2 min-[420px]:grid-cols-2">
           {ordered.map((rule, index) => {
           const isSpend = rule.category === "monthly_spend";
           const isInvestment = rule.category === "investment";
@@ -439,10 +446,16 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
                 <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
                   {rule.description}
                 </p>
+                {hasAlternativeRules && index < ordered.length - 1 && (
+                  <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-500/80">
+                    OU
+                  </p>
+                )}
               </div>
             );
           })}
-        </div>
+          </div>
+        </>
       )}
     </div>
   );
