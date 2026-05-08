@@ -28,8 +28,10 @@ function RetornoTooltip({
       <p>{component.explanation}</p>
       <p className="font-mono text-[10px] text-muted-foreground/70">
         Gasto mensal: R${monthlySpend.toLocaleString("pt-BR", { maximumFractionDigits: 0 })} ·
-        Livelo R${assumptions.liveloPointValuePerThousandBrl}/1k · MR R$
-        {assumptions.membershipRewardsPointValuePerThousandBrl}/1k · PTAX R${assumptions.ptaxBrlPerUsd}
+        Livelo R${assumptions.liveloPointSaleValuePerThousandBrl}/1k venda · Livelo R$
+        {assumptions.liveloPointTravelValuePerThousandBrl}/1k uso · MR R$
+        {assumptions.membershipRewardsPointSaleValuePerThousandBrl}/1k venda · MR R$
+        {assumptions.membershipRewardsPointTravelValuePerThousandBrl}/1k uso · PTAX R${assumptions.ptaxBrlPerUsd}
       </p>
       {component.dataQualityNote && (
         <p className="text-amber-300/70">{component.dataQualityNote}</p>
@@ -71,8 +73,10 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
 
   const a = score.assumptions;
   const assumptionsLine = [
-    `Livelo/Esfera R$${a.liveloPointValuePerThousandBrl}/1k pts`,
-    `MR R$${a.membershipRewardsPointValuePerThousandBrl}/1k pts`,
+    `Livelo venda R$${a.liveloPointSaleValuePerThousandBrl}/1k pts`,
+    `Livelo uso R$${a.liveloPointTravelValuePerThousandBrl}/1k pts`,
+    `MR venda R$${a.membershipRewardsPointSaleValuePerThousandBrl}/1k pts`,
+    `MR uso R$${a.membershipRewardsPointTravelValuePerThousandBrl}/1k pts`,
     `PTAX R$${a.ptaxBrlPerUsd}`,
     `lounge R$${a.loungeVisitValueBrl}/visita`,
   ].join(" · ");

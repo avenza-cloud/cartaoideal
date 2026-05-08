@@ -263,6 +263,7 @@ export interface UserProfile {
   monthlySalaryBrl: number;
   avgMonthlySpendBrl: number;
   avgInvestedBrl: number;
+  // Base da compra internacional antes de IOF e spread; o motor adiciona esse custo.
   monthlyInternationalSpendBrl?: number;
   currentPrimaryCardId?: string;
   currentPrimaryCardName?: string;
@@ -289,10 +290,11 @@ export type CardScoreMode = "default" | "profile";
 export interface CardValueAssumptions {
   ptaxBrlPerUsd: number;
   mileValuePerThousandBrl: number;
-  liveloPointValuePerThousandBrl: number;
-  membershipRewardsPointValuePerThousandBrl: number;
+  liveloPointSaleValuePerThousandBrl: number;
+  liveloPointTravelValuePerThousandBrl: number;
+  membershipRewardsPointTravelValuePerThousandBrl: number;
+  membershipRewardsPointSaleValuePerThousandBrl: number;
   defaultPointValuePerThousandBrl: number;
-  transferBonus: number;
   iof: number;
   loungeVisitValueBrl: number;
   travelInsuranceMonthlyValueBrl: number;
@@ -325,10 +327,13 @@ export interface CardValueScore {
   effectiveAnnualFeeBrl: number;
   grossRewardMonthlyBrl: number;
   pointsRewardMonthlyBrl: number;
+  pointsRewardMonthlySaleBrl: number;
+  pointsRewardMonthlyTravelBrl: number;
   cashlikeRewardMonthlyBrl: number;
   intangibleMonthlyValueBrl: number;
   internationalMonthlyCostBrl: number;
   breakEvenMonthlySpendBrl: number | null;
+  breakEvenByRewardsOnlyMonthlySpendBrl: number | null;
   verdict: string;
   components: CardValueComponent[];
   assumptions: CardValueAssumptions;

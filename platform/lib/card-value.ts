@@ -11,10 +11,11 @@ import type {
 export const DEFAULT_VALUE_ASSUMPTIONS: CardValueAssumptions = {
   ptaxBrlPerUsd: 4.96,
   mileValuePerThousandBrl: 32,
-  liveloPointValuePerThousandBrl: 32,
-  membershipRewardsPointValuePerThousandBrl: 95,
+  liveloPointSaleValuePerThousandBrl: 32,
+  liveloPointTravelValuePerThousandBrl: 45,
+  membershipRewardsPointTravelValuePerThousandBrl: 95,
+  membershipRewardsPointSaleValuePerThousandBrl: 45,
   defaultPointValuePerThousandBrl: 35,
-  transferBonus: 0.8,
   iof: 0.035,
   loungeVisitValueBrl: 160,
   travelInsuranceMonthlyValueBrl: 25,
@@ -39,6 +40,7 @@ export const DEFAULT_SCORING_PROFILE: UserProfile = {
 const RETAIL_BANK_SPREAD = 0.055;
 const DEFAULT_SPREAD = 0.045;
 const COOPERATIVE_SPREAD = 0.01;
+const NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL = 20;
 
 // Nomad Explorer earning tiers (investment in USD)
 const NOMAD_CARD_ID = "nomad-nomad-explorer-visa-infinite-aae26793ed";
@@ -60,33 +62,91 @@ function hasLiveloOrEsferaProgram(card: CardFacet): boolean {
   );
 }
 
+function hasDirectAirlineProgram(card: CardFacet): boolean {
+  return (card.characteristics ?? []).some(
+    (x) =>
+      x.key === "loyalty_program" &&
+      /(smiles|latam pass|azul fidelidade|tudoazul|aadvantage)/i.test(String(x.value))
+  );
+}
+
 function pointValuationForCard(
   card: CardFacet,
+  profile: UserProfile,
   assumptions: CardValueAssumptions
-): { valuePerThousandBrl: number; label: string; note: string } {
+): {
+  saleValuePerThousandBrl: number;
+  travelValuePerThousandBrl: number;
+  saleLabel: string;
+  travelLabel: string;
+  note: string;
+} {
+  const nonTravelerSaleCap =
+    profile.travelFrequency === "none"
+      ? NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL
+      : Number.POSITIVE_INFINITY;
+
   if (isMembershipRewardsCard(card)) {
     return {
-      valuePerThousandBrl: assumptions.membershipRewardsPointValuePerThousandBrl,
-      label: `Membership Rewards a R$${assumptions.membershipRewardsPointValuePerThousandBrl}/1k pts`,
+      saleValuePerThousandBrl: assumptions.membershipRewardsPointSaleValuePerThousandBrl,
+      travelValuePerThousandBrl: assumptions.membershipRewardsPointTravelValuePerThousandBrl,
+      saleLabel: `Membership Rewards a R$${assumptions.membershipRewardsPointSaleValuePerThousandBrl}/1k pts (venda)`,
+      travelLabel: `Membership Rewards a R$${assumptions.membershipRewardsPointTravelValuePerThousandBrl}/1k pts (utilizacao)`,
       note:
-        "Membership Rewards: usado R$95 por 1.000 pontos para uso em parceiros/viagens.",
+        `Membership Rewards: retorno realizável de venda em R$${assumptions.membershipRewardsPointSaleValuePerThousandBrl} por 1.000 pontos; potencial de utilizacao em R$${assumptions.membershipRewardsPointTravelValuePerThousandBrl} por 1.000 pontos.`,
     };
   }
 
   if (hasLiveloOrEsferaProgram(card)) {
+    const liveloSaleValuePerThousandBrl = Math.min(
+      assumptions.liveloPointSaleValuePerThousandBrl,
+      nonTravelerSaleCap
+    );
+
     return {
-      valuePerThousandBrl: assumptions.liveloPointValuePerThousandBrl,
-      label: `Livelo/Esfera a R$${assumptions.liveloPointValuePerThousandBrl}/1k pts`,
+      saleValuePerThousandBrl: liveloSaleValuePerThousandBrl,
+      travelValuePerThousandBrl: assumptions.liveloPointTravelValuePerThousandBrl,
+      saleLabel: `Livelo/Esfera a R$${liveloSaleValuePerThousandBrl}/1k pts (venda)`,
+      travelLabel: `Livelo/Esfera a R$${assumptions.liveloPointTravelValuePerThousandBrl}/1k pts (utilizacao)`,
       note:
-        "Livelo/Esfera: usado R$32 por 1.000 pontos.",
+        `Livelo/Esfera: retorno realizável de venda em R$${liveloSaleValuePerThousandBrl} por 1.000 pontos; potencial de utilizacao em R$${assumptions.liveloPointTravelValuePerThousandBrl} por 1.000 pontos.`,
     };
   }
 
+  if (hasDirectAirlineProgram(card)) {
+    return {
+      saleValuePerThousandBrl: assumptions.mileValuePerThousandBrl,
+      travelValuePerThousandBrl: Math.max(
+        assumptions.mileValuePerThousandBrl,
+        assumptions.liveloPointTravelValuePerThousandBrl
+      ),
+      saleLabel: `milhas a R$${assumptions.mileValuePerThousandBrl}/1k (venda)`,
+      travelLabel: `milhas a R$${Math.max(
+        assumptions.mileValuePerThousandBrl,
+        assumptions.liveloPointTravelValuePerThousandBrl
+      )}/1k (utilizacao)`,
+      note:
+        `Programa aéreo direto: retorno realizável em R$${assumptions.mileValuePerThousandBrl} por 1.000 milhas; potencial de utilizacao em R$${Math.max(
+          assumptions.mileValuePerThousandBrl,
+          assumptions.liveloPointTravelValuePerThousandBrl
+        )} por 1.000 milhas.`,
+    };
+  }
+
+  const defaultSaleValuePerThousandBrl =
+    Math.min(assumptions.defaultPointValuePerThousandBrl, nonTravelerSaleCap);
+  const defaultTravelValuePerThousandBrl = Math.max(
+    defaultSaleValuePerThousandBrl,
+    assumptions.liveloPointTravelValuePerThousandBrl
+  );
+
   return {
-    valuePerThousandBrl: assumptions.defaultPointValuePerThousandBrl,
-    label: `pontos a R$${assumptions.defaultPointValuePerThousandBrl}/1k pts`,
+    saleValuePerThousandBrl: defaultSaleValuePerThousandBrl,
+    travelValuePerThousandBrl: defaultTravelValuePerThousandBrl,
+    saleLabel: `pontos a R$${defaultSaleValuePerThousandBrl}/1k pts (venda)`,
+    travelLabel: `pontos a R$${defaultTravelValuePerThousandBrl}/1k pts (utilizacao)`,
     note:
-      "Programa de pontos não identificado; usado valor conservador de R$35 por 1.000 pontos.",
+      `Programa de pontos não identificado; usado retorno conservador de R$${defaultSaleValuePerThousandBrl} por 1.000 pontos e potencial de utilizacao de R$${defaultTravelValuePerThousandBrl} por 1.000 pontos.`,
   };
 }
 
@@ -710,6 +770,39 @@ function normalizeScore({
   return Math.round(clamp(50 + absoluteGainScore + proportionalGainScore + benefitSignal, 0, 100));
 }
 
+function preferenceAdjustment(
+  profile: UserProfile,
+  {
+    pointsRewardMonthlySale,
+    cashlikeRewardMonthly,
+    loungeValue,
+  }: {
+    pointsRewardMonthlySale: number;
+    cashlikeRewardMonthly: number;
+    loungeValue: number;
+  }
+): number {
+  let adjustment = 0;
+  const hasMeaningfulPoints = pointsRewardMonthlySale > 0;
+  const hasMeaningfulCashlike = cashlikeRewardMonthly > 0;
+
+  if (profile.preferences.prefersCashback) {
+    if (hasMeaningfulCashlike || hasMeaningfulPoints) {
+      adjustment += cashlikeRewardMonthly >= pointsRewardMonthlySale ? 3 : -3;
+    }
+  }
+  if (profile.preferences.prefersPoints) {
+    if (hasMeaningfulCashlike || hasMeaningfulPoints) {
+      adjustment += pointsRewardMonthlySale > cashlikeRewardMonthly ? 3 : -3;
+    }
+  }
+  if (profile.preferences.wantsLounge) {
+    adjustment += loungeValue >= 20 ? 2 : -2;
+  }
+
+  return clamp(adjustment, -6, 6);
+}
+
 function makeComponent(
   key: string,
   label: string,
@@ -761,7 +854,7 @@ export function scoreCardValue(
     }
   }
 
-  const pointValuation = pointValuationForCard(card, assumptions);
+  const pointValuation = pointValuationForCard(card, profile, assumptions);
 
   const internationalSpend = profile.monthlyInternationalSpendBrl ?? 0;
   const domesticSpend = Math.max(0, profile.avgMonthlySpendBrl - internationalSpend);
@@ -772,10 +865,15 @@ export function scoreCardValue(
         (internationalSpend / assumptions.ptaxBrlPerUsd) *
           (pointsRates.internationalRate ?? pointsRates.domesticRate ?? 0)
       : 0;
-  const pointsRewardMonthly =
+  const pointsRewardMonthlySale =
     card.facets_boolean.earn_points_or_miles &&
     (pointsRates.domesticRate !== null || pointsRates.internationalRate !== null)
-      ? (pointsEarnedMonthly * pointValuation.valuePerThousandBrl) / 1000
+      ? (pointsEarnedMonthly * pointValuation.saleValuePerThousandBrl) / 1000
+      : 0;
+  const pointsRewardMonthlyTravel =
+    card.facets_boolean.earn_points_or_miles &&
+    (pointsRates.domesticRate !== null || pointsRates.internationalRate !== null)
+      ? (pointsEarnedMonthly * pointValuation.travelValuePerThousandBrl) / 1000
       : 0;
 
   const cashlike = parseCashlikeRates(card);
@@ -783,9 +881,9 @@ export function scoreCardValue(
   const cashlikeInternationalRate = cashlike.internationalRate ?? cashlike.generalRate;
   const cashlikeRewardMonthly =
     domesticSpend * cashlikeDomesticRate + internationalSpend * cashlikeInternationalRate;
-  const grossRewardMonthly = Math.max(pointsRewardMonthly, cashlikeRewardMonthly);
+  const grossRewardMonthly = Math.max(pointsRewardMonthlySale, cashlikeRewardMonthly);
   const rewardChoice =
-    pointsRewardMonthly >= cashlikeRewardMonthly ? "milhas/pontos" : "retorno financeiro";
+    pointsRewardMonthlySale >= cashlikeRewardMonthly ? "milhas/pontos" : "retorno financeiro";
 
   const loungeGate = hasLoungeGate(card, profile);
   const annualLounge = loungeGate.allowed
@@ -808,10 +906,17 @@ export function scoreCardValue(
 
   const netMonthlyValue =
     grossRewardMonthly + intangibleMonthlyValue - effectiveMonthlyFee - internationalMonthlyCost;
-  const breakEvenMonthlySpend =
+  const netContributionRateOverSpend =
+    profile.avgMonthlySpendBrl > 0
+      ? (grossRewardMonthly + intangibleMonthlyValue - internationalMonthlyCost) /
+        profile.avgMonthlySpendBrl
+      : 0;
+  const breakEvenByRewardsOnlyMonthlySpend =
     grossRewardMonthly > 0 && profile.avgMonthlySpendBrl > 0
       ? (effectiveMonthlyFee / grossRewardMonthly) * profile.avgMonthlySpendBrl
       : null;
+  const breakEvenMonthlySpend =
+    netContributionRateOverSpend > 0 ? effectiveMonthlyFee / netContributionRateOverSpend : null;
 
   const pointsValuationNote =
     card.facets_boolean.earn_points_or_miles &&
@@ -832,12 +937,12 @@ export function scoreCardValue(
 
   const components = [
     makeComponent(
-      "rewards",
-      "Retorno estimado",
-      grossRewardMonthly,
-      `Melhor cenário entre pontos/cashback: ${rewardChoice}. ${
-        pointsEarnedMonthly > 0
-          ? `${pointsEarnedMonthly.toLocaleString("pt-BR", { maximumFractionDigits: 0 })} pts/mês × ${pointValuation.label}.`
+        "rewards",
+        "Retorno estimado",
+        grossRewardMonthly,
+        `Retorno realizável entre pontos/cashback: ${rewardChoice}. ${
+          pointsEarnedMonthly > 0
+          ? `${pointsEarnedMonthly.toLocaleString("pt-BR", { maximumFractionDigits: 0 })} pts/mês × ${pointValuation.saleLabel}. Potencial de utilizacao: R$${roundMoney(pointsRewardMonthlyTravel).toLocaleString("pt-BR")}/mês com ${pointValuation.travelLabel}.`
           : ""
       }`,
       pointsRates.note ??
@@ -888,6 +993,16 @@ export function scoreCardValue(
       `Custo internacional: -R$${roundMoney(internationalMonthlyCost).toLocaleString("pt-BR")}/mês`
     );
   }
+  const preferenceScoreAdjustment = preferenceAdjustment(profile, {
+    pointsRewardMonthlySale,
+    cashlikeRewardMonthly,
+    loungeValue,
+  });
+  if (profile.preferences.prefersCashback || profile.preferences.prefersPoints || profile.preferences.wantsLounge) {
+    scoreDrivers.push(
+      `Preferências aplicadas com peso leve: ${preferenceScoreAdjustment >= 0 ? "+" : ""}${preferenceScoreAdjustment} pts no score`
+    );
+  }
   const rankReason = !eligibility.eligible
     ? `Bloqueado por elegibilidade: ${eligibilityReasons.join(" ")}`
     : roundedNetMonthly >= 0
@@ -902,19 +1017,28 @@ export function scoreCardValue(
           ? "Pode compensar, dependendo do uso real."
           : "Tende a destruir valor neste perfil.";
 
+  const baseScore = normalizeScore({
+    netMonthly: netMonthlyValue,
+    eligible: eligibility.eligible,
+    grossRewardMonthly,
+    intangibleMonthlyValue,
+    effectiveMonthlyFee,
+    monthlySpend: profile.avgMonthlySpendBrl,
+  });
+  const adjustedScore = Math.round(
+    clamp(
+      baseScore + preferenceScoreAdjustment,
+      0,
+      100
+    )
+  );
+
   return {
     card,
     mode,
     eligible: eligibility.eligible,
     eligibilityReasons,
-    score0To100: normalizeScore({
-      netMonthly: netMonthlyValue,
-      eligible: eligibility.eligible,
-      grossRewardMonthly,
-      intangibleMonthlyValue,
-      effectiveMonthlyFee,
-      monthlySpend: profile.avgMonthlySpendBrl,
-    }),
+    score0To100: adjustedScore,
     rankReason,
     feeAppliedReason,
     roiMultiple: roiMultiple === null ? null : roundMoney(roiMultiple),
@@ -925,12 +1049,18 @@ export function scoreCardValue(
     effectiveMonthlyFeeBrl: roundMoney(effectiveMonthlyFee),
     effectiveAnnualFeeBrl: roundMoney(effectiveAnnualFee),
     grossRewardMonthlyBrl: roundMoney(grossRewardMonthly),
-    pointsRewardMonthlyBrl: roundMoney(pointsRewardMonthly),
+    pointsRewardMonthlyBrl: roundMoney(pointsRewardMonthlySale),
+    pointsRewardMonthlySaleBrl: roundMoney(pointsRewardMonthlySale),
+    pointsRewardMonthlyTravelBrl: roundMoney(pointsRewardMonthlyTravel),
     cashlikeRewardMonthlyBrl: roundMoney(cashlikeRewardMonthly),
     intangibleMonthlyValueBrl: roundMoney(intangibleMonthlyValue),
     internationalMonthlyCostBrl: roundMoney(internationalMonthlyCost),
     breakEvenMonthlySpendBrl:
       breakEvenMonthlySpend === null ? null : roundMoney(breakEvenMonthlySpend),
+    breakEvenByRewardsOnlyMonthlySpendBrl:
+      breakEvenByRewardsOnlyMonthlySpend === null
+        ? null
+        : roundMoney(breakEvenByRewardsOnlyMonthlySpend),
     verdict,
     components,
     assumptions,

@@ -11,7 +11,10 @@ function profileSchema() {
     monthlySalaryBrl: z.number().optional(),
     avgMonthlySpendBrl: z.number().optional(),
     avgInvestedBrl: z.number().optional(),
-    monthlyInternationalSpendBrl: z.number().optional(),
+    monthlyInternationalSpendBrl: z
+      .number()
+      .optional()
+      .describe("Gasto internacional mensal base, antes de IOF e spread."),
     travelFrequency: z.enum(["none", "occasional", "frequent"]).optional(),
     prefersCashback: z.boolean().default(false),
     prefersPoints: z.boolean().default(false),
@@ -75,11 +78,14 @@ function compactValue(card: CardFacet, profile?: UserProfile) {
     valorLiquidoMensal: score.netMonthlyValueBrl,
     valorLiquidoAnual: score.netAnnualValueBrl,
     retornoBrutoMensal: score.grossRewardMonthlyBrl,
+    retornoPontosVendaMensal: score.pointsRewardMonthlySaleBrl,
+    retornoPontosViagemMensal: score.pointsRewardMonthlyTravelBrl,
     beneficiosMensais: score.intangibleMonthlyValueBrl,
     anuidadeEfetivaMensal: score.effectiveMonthlyFeeBrl,
     anuidadeEfetivaAnual: score.effectiveAnnualFeeBrl,
     custoInternacionalMensal: score.internationalMonthlyCostBrl,
     pontoEquilibrioGastoMensal: score.breakEvenMonthlySpendBrl,
+    pontoEquilibrioSoPorRetornoMensal: score.breakEvenByRewardsOnlyMonthlySpendBrl,
     motivoDaAnuidade: score.feeAppliedReason,
     veredito: score.verdict,
     motivo: score.rankReason,
@@ -184,9 +190,12 @@ export function createCardTools(savedProfile?: UserProfile | null) {
           valorLiquidoAnual: score.netAnnualValueBrl,
           anuidadeEfetivaMensal: score.effectiveMonthlyFeeBrl,
           retornoBrutoMensal: score.grossRewardMonthlyBrl,
+          retornoPontosVendaMensal: score.pointsRewardMonthlySaleBrl,
+          retornoPontosViagemMensal: score.pointsRewardMonthlyTravelBrl,
           beneficiosIntangiveisMensais: score.intangibleMonthlyValueBrl,
           custoInternacionalMensal: score.internationalMonthlyCostBrl,
           pontoEquilibrioGastoMensal: score.breakEvenMonthlySpendBrl,
+          pontoEquilibrioSoPorRetornoMensal: score.breakEvenByRewardsOnlyMonthlySpendBrl,
           veredito: score.verdict,
           motivoDoRanking: score.rankReason,
           motivoDaAnuidade: score.feeAppliedReason,
@@ -331,7 +340,7 @@ export function createCardTools(savedProfile?: UserProfile | null) {
       monthlyInternationalSpendBrl: z
         .number()
         .optional()
-        .describe("Gasto internacional mensal no cartão em reais"),
+        .describe("Gasto internacional mensal base no cartão, antes de IOF e spread."),
       travelFrequency: z
         .enum(["none", "occasional", "frequent"])
         .optional()
