@@ -275,7 +275,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
           )}
 
           {/* Fonte */}
-          <div className="flex flex-col gap-3 rounded-2xl border bg-card/30 px-4 py-3 sm:flex-row sm:items-center">
+          <div className="mb-8 flex flex-col gap-3 rounded-2xl border bg-card/30 px-4 py-3 sm:flex-row sm:items-center">
             <div className="min-w-0 flex-1">
               <span className="text-xs font-medium">{card.source_label}</span>
               <span className="ml-2 text-[11px] text-muted-foreground/60">
