@@ -10,9 +10,9 @@ import type {
 
 export const DEFAULT_VALUE_ASSUMPTIONS: CardValueAssumptions = {
   ptaxBrlPerUsd: 4.96,
-  mileValuePerThousandBrl: 40,
-  liveloPointValuePerThousandBrl: 40,
-  membershipRewardsPointUsdCents: 0.85,
+  mileValuePerThousandBrl: 32,
+  liveloPointValuePerThousandBrl: 32,
+  membershipRewardsPointValuePerThousandBrl: 95,
   defaultPointValuePerThousandBrl: 35,
   transferBonus: 0.8,
   iof: 0.035,
@@ -65,13 +65,11 @@ function pointValuationForCard(
   assumptions: CardValueAssumptions
 ): { valuePerThousandBrl: number; label: string; note: string } {
   if (isMembershipRewardsCard(card)) {
-    const valuePerThousandBrl =
-      assumptions.membershipRewardsPointUsdCents * 10 * assumptions.ptaxBrlPerUsd;
     return {
-      valuePerThousandBrl,
-      label: `Membership Rewards a US$${(assumptions.membershipRewardsPointUsdCents * 10).toFixed(2)}/1k pts`,
+      valuePerThousandBrl: assumptions.membershipRewardsPointValuePerThousandBrl,
+      label: `Membership Rewards a R$${assumptions.membershipRewardsPointValuePerThousandBrl}/1k pts`,
       note:
-        "Membership Rewards: pontos dolarizados, valorados no meio da faixa de US$7-10 por 1.000 pontos para uso em parceiros/viagens.",
+        "Membership Rewards: usado R$95 por 1.000 pontos para uso em parceiros/viagens.",
     };
   }
 
@@ -80,7 +78,7 @@ function pointValuationForCard(
       valuePerThousandBrl: assumptions.liveloPointValuePerThousandBrl,
       label: `Livelo/Esfera a R$${assumptions.liveloPointValuePerThousandBrl}/1k pts`,
       note:
-        "Livelo/Esfera: usado R$40 por 1.000 pontos, assumindo transferência bonificada nacional; cashback direto seria bem menor.",
+        "Livelo/Esfera: usado R$32 por 1.000 pontos.",
     };
   }
 

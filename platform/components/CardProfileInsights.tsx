@@ -28,9 +28,8 @@ function RetornoTooltip({
       <p>{component.explanation}</p>
       <p className="font-mono text-[10px] text-muted-foreground/70">
         Gasto mensal: R${monthlySpend.toLocaleString("pt-BR", { maximumFractionDigits: 0 })} ·
-        Livelo R${assumptions.liveloPointValuePerThousandBrl}/1k · MR US$
-        {(assumptions.membershipRewardsPointUsdCents * 10).toFixed(2)}/1k · PTAX R$
-        {assumptions.ptaxBrlPerUsd}
+        Livelo R${assumptions.liveloPointValuePerThousandBrl}/1k · MR R$
+        {assumptions.membershipRewardsPointValuePerThousandBrl}/1k · PTAX R${assumptions.ptaxBrlPerUsd}
       </p>
       {component.dataQualityNote && (
         <p className="text-amber-300/70">{component.dataQualityNote}</p>
@@ -73,7 +72,7 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
   const a = score.assumptions;
   const assumptionsLine = [
     `Livelo/Esfera R$${a.liveloPointValuePerThousandBrl}/1k pts`,
-    `MR US$${(a.membershipRewardsPointUsdCents * 10).toFixed(2)}/1k pts`,
+    `MR R$${a.membershipRewardsPointValuePerThousandBrl}/1k pts`,
     `PTAX R$${a.ptaxBrlPerUsd}`,
     `lounge R$${a.loungeVisitValueBrl}/visita`,
   ].join(" · ");

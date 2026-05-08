@@ -290,7 +290,7 @@ export interface CardValueAssumptions {
   ptaxBrlPerUsd: number;
   mileValuePerThousandBrl: number;
   liveloPointValuePerThousandBrl: number;
-  membershipRewardsPointUsdCents: number;
+  membershipRewardsPointValuePerThousandBrl: number;
   defaultPointValuePerThousandBrl: number;
   transferBonus: number;
   iof: number;

@@ -70,19 +70,19 @@ describe("scoreCardValue", () => {
     expect(score.score0To100).toBeGreaterThanOrEqual(80);
   });
 
-  it("values Membership Rewards in USD cents per point", () => {
+  it("values Membership Rewards in BRL per thousand points", () => {
     const card = getCardById("santander-santander-american-express-gold-card-f813c0b48b");
     expect(card).toBeDefined();
 
     const score = scoreCardValue(card!, baseProfile, "profile", {
       ...DEFAULT_VALUE_ASSUMPTIONS,
       ptaxBrlPerUsd: 5,
-      membershipRewardsPointUsdCents: 0.85,
+      membershipRewardsPointValuePerThousandBrl: 95,
     });
 
-    expect(score.pointsRewardMonthlyBrl).toBe(30.6);
+    expect(score.pointsRewardMonthlyBrl).toBe(68.4);
     expect(score.dataQualityNotes).toContain(
-      "Membership Rewards: pontos dolarizados, valorados no meio da faixa de US$7-10 por 1.000 pontos para uso em parceiros/viagens."
+      "Membership Rewards: usado R$95 por 1.000 pontos para uso em parceiros/viagens."
     );
   });
 
@@ -93,12 +93,12 @@ describe("scoreCardValue", () => {
     const score = scoreCardValue(card!, baseProfile, "profile", {
       ...DEFAULT_VALUE_ASSUMPTIONS,
       ptaxBrlPerUsd: 5,
-      liveloPointValuePerThousandBrl: 40,
+      liveloPointValuePerThousandBrl: 32,
     });
 
-    expect(score.pointsRewardMonthlyBrl).toBe(38.4);
+    expect(score.pointsRewardMonthlyBrl).toBe(30.72);
     expect(score.dataQualityNotes).toContain(
-      "Livelo/Esfera: usado R$40 por 1.000 pontos, assumindo transferência bonificada nacional; cashback direto seria bem menor."
+      "Livelo/Esfera: usado R$32 por 1.000 pontos."
     );
   });
 
