@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { scoreCardValue, scoreCardValues } from "@/lib/card-value";
+import { DEFAULT_VALUE_ASSUMPTIONS, scoreCardValue, scoreCardValues } from "@/lib/card-value";
 import { getCardById } from "@/lib/cards";
 import type { UserProfile } from "@/types/cards";
 
@@ -68,5 +68,50 @@ describe("scoreCardValue", () => {
     const score = scoreCardValue(card!, profile);
     expect(score.netMonthlyValueBrl).toBeGreaterThanOrEqual(25);
     expect(score.score0To100).toBeGreaterThanOrEqual(80);
+  });
+
+  it("values Membership Rewards in USD cents per point", () => {
+    const card = getCardById("santander-santander-american-express-gold-card-f813c0b48b");
+    expect(card).toBeDefined();
+
+    const score = scoreCardValue(card!, baseProfile, "profile", {
+      ...DEFAULT_VALUE_ASSUMPTIONS,
+      ptaxBrlPerUsd: 5,
+      membershipRewardsPointUsdCents: 0.85,
+    });
+
+    expect(score.pointsRewardMonthlyBrl).toBe(30.6);
+    expect(score.dataQualityNotes).toContain(
+      "Membership Rewards: pontos dolarizados, valorados no meio da faixa de US$7-10 por 1.000 pontos para uso em parceiros/viagens."
+    );
+  });
+
+  it("values Livelo and Esfera points in BRL per thousand points", () => {
+    const card = getCardById("btg-pactual-btg-pactual-opcao-avancada-79583395cd");
+    expect(card).toBeDefined();
+
+    const score = scoreCardValue(card!, baseProfile, "profile", {
+      ...DEFAULT_VALUE_ASSUMPTIONS,
+      ptaxBrlPerUsd: 5,
+      liveloPointValuePerThousandBrl: 40,
+    });
+
+    expect(score.pointsRewardMonthlyBrl).toBe(38.4);
+    expect(score.dataQualityNotes).toContain(
+      "Livelo/Esfera: usado R$40 por 1.000 pontos, assumindo transferência bonificada nacional; cashback direto seria bem menor."
+    );
+  });
+
+  it("applies CAIXA Icone annual-fee cashback tiers", () => {
+    const card = getCardById("caixa-caixa-icone-visa-infinite-421cd080e8");
+    expect(card).toBeDefined();
+
+    const belowTier = scoreCardValue(card!, { ...baseProfile, avgMonthlySpendBrl: 12_000 });
+    const halfTier = scoreCardValue(card!, { ...baseProfile, avgMonthlySpendBrl: 12_500 });
+    const fullTier = scoreCardValue(card!, { ...baseProfile, avgMonthlySpendBrl: 25_000 });
+
+    expect(belowTier.effectiveAnnualFeeBrl).toBe(1650);
+    expect(halfTier.effectiveAnnualFeeBrl).toBe(825);
+    expect(fullTier.effectiveAnnualFeeBrl).toBe(0);
   });
 });

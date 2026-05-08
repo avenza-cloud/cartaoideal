@@ -10,7 +10,10 @@ import type {
 
 export const DEFAULT_VALUE_ASSUMPTIONS: CardValueAssumptions = {
   ptaxBrlPerUsd: 4.96,
-  mileValuePerThousandBrl: 17.5,
+  mileValuePerThousandBrl: 40,
+  liveloPointValuePerThousandBrl: 40,
+  membershipRewardsPointUsdCents: 0.85,
+  defaultPointValuePerThousandBrl: 35,
   transferBonus: 0.8,
   iof: 0.035,
   loungeVisitValueBrl: 160,
@@ -45,15 +48,48 @@ const NOMAD_TIERS: { minUsd: number; rate: number }[] = [
   { minUsd: 1000, rate: 1.6 },
 ];
 
-// Membership Rewards cards transfer 1:1 to premium international partners;
-// normal Livelo/Esfera programs require 2:1–3:1 for the same partners.
-// We replace (1 + transferBonus) with a higher multiplier for MR.
-const MR_TRANSFER_MULTIPLIER = 2.5; // ~38 % more value per point vs Livelo at 1.8×
-
 function isMembershipRewardsCard(card: CardFacet): boolean {
   return (card.characteristics ?? []).some(
     (x) => x.key === "loyalty_program" && /membership rewards/i.test(String(x.value))
   );
+}
+
+function hasLiveloOrEsferaProgram(card: CardFacet): boolean {
+  return (card.characteristics ?? []).some(
+    (x) => x.key === "loyalty_program" && /(livelo|esfera)/i.test(String(x.value))
+  );
+}
+
+function pointValuationForCard(
+  card: CardFacet,
+  assumptions: CardValueAssumptions
+): { valuePerThousandBrl: number; label: string; note: string } {
+  if (isMembershipRewardsCard(card)) {
+    const valuePerThousandBrl =
+      assumptions.membershipRewardsPointUsdCents * 10 * assumptions.ptaxBrlPerUsd;
+    return {
+      valuePerThousandBrl,
+      label: `Membership Rewards a US$${(assumptions.membershipRewardsPointUsdCents * 10).toFixed(2)}/1k pts`,
+      note:
+        "Membership Rewards: pontos dolarizados, valorados no meio da faixa de US$7-10 por 1.000 pontos para uso em parceiros/viagens.",
+    };
+  }
+
+  if (hasLiveloOrEsferaProgram(card)) {
+    return {
+      valuePerThousandBrl: assumptions.liveloPointValuePerThousandBrl,
+      label: `Livelo/Esfera a R$${assumptions.liveloPointValuePerThousandBrl}/1k pts`,
+      note:
+        "Livelo/Esfera: usado R$40 por 1.000 pontos, assumindo transferência bonificada nacional; cashback direto seria bem menor.",
+    };
+  }
+
+  return {
+    valuePerThousandBrl: assumptions.defaultPointValuePerThousandBrl,
+    label: `pontos a R$${assumptions.defaultPointValuePerThousandBrl}/1k pts`,
+    note:
+      "Programa de pontos não identificado; usado valor conservador de R$35 por 1.000 pontos.",
+  };
 }
 
 function roundMoney(value: number): number {
@@ -432,6 +468,11 @@ function computeEffectiveAnnualFee(
       notes.push("Isenção aplicada por regra estruturada de anuidade.");
       break;
     }
+
+    if (!rule.full_waiver && qualifiesBySpend && /50%|metade|parcial/i.test(rule.description)) {
+      effectiveFee = Math.min(effectiveFee, baseFee * 0.5);
+      notes.push("Desconto/cashback parcial de anuidade aplicado por regra estruturada.");
+    }
   }
 
   for (const waiver of structuredRules.length > 0 ? [] : feeWaivers) {
@@ -705,22 +746,21 @@ export function scoreCardValue(
     }
   }
 
-  // Membership Rewards: 1:1 international parity — replace (1 + transferBonus) with MR_TRANSFER_MULTIPLIER
-  const mr = isMembershipRewardsCard(card);
-  const transferMultiplier = mr ? MR_TRANSFER_MULTIPLIER : 1 + assumptions.transferBonus;
+  const pointValuation = pointValuationForCard(card, assumptions);
 
   const internationalSpend = profile.monthlyInternationalSpendBrl ?? 0;
   const domesticSpend = Math.max(0, profile.avgMonthlySpendBrl - internationalSpend);
+  const pointsEarnedMonthly =
+    card.facets_boolean.earn_points_or_miles &&
+    (pointsRates.domesticRate !== null || pointsRates.internationalRate !== null)
+      ? (domesticSpend / assumptions.ptaxBrlPerUsd) * (pointsRates.domesticRate ?? 0) +
+        (internationalSpend / assumptions.ptaxBrlPerUsd) *
+          (pointsRates.internationalRate ?? pointsRates.domesticRate ?? 0)
+      : 0;
   const pointsRewardMonthly =
     card.facets_boolean.earn_points_or_miles &&
     (pointsRates.domesticRate !== null || pointsRates.internationalRate !== null)
-      ? ((((domesticSpend / assumptions.ptaxBrlPerUsd) *
-            (pointsRates.domesticRate ?? 0)) +
-          ((internationalSpend / assumptions.ptaxBrlPerUsd) *
-            (pointsRates.internationalRate ?? pointsRates.domesticRate ?? 0))) *
-          transferMultiplier *
-          assumptions.mileValuePerThousandBrl) /
-        1000
+      ? (pointsEarnedMonthly * pointValuation.valuePerThousandBrl) / 1000
       : 0;
 
   const cashlike = parseCashlikeRates(card);
@@ -758,15 +798,17 @@ export function scoreCardValue(
       ? (effectiveMonthlyFee / grossRewardMonthly) * profile.avgMonthlySpendBrl
       : null;
 
-  const mrNote = mr
-    ? "Membership Rewards: paridade 1:1 com parceiros internacionais (Delta, Flying Blue, Hilton). Multiplicador ajustado vs. Livelo/Esfera."
-    : undefined;
+  const pointsValuationNote =
+    card.facets_boolean.earn_points_or_miles &&
+    (pointsRates.domesticRate !== null || pointsRates.internationalRate !== null)
+      ? pointValuation.note
+      : undefined;
 
   const dataQualityNotes = [
     ...eligibility.notes,
     ...feeNotes,
     ...(pointsRates.note ? [pointsRates.note] : []),
-    ...(mrNote ? [mrNote] : []),
+    ...(pointsValuationNote ? [pointsValuationNote] : []),
     ...(cashlike.note ? [cashlike.note] : []),
     ...(loungeGate.note ? [loungeGate.note] : []),
     ...(annualLounge.note ? [annualLounge.note] : []),
@@ -778,7 +820,11 @@ export function scoreCardValue(
       "rewards",
       "Retorno estimado",
       grossRewardMonthly,
-      `Melhor cenário entre pontos/cashback: ${rewardChoice}.`,
+      `Melhor cenário entre pontos/cashback: ${rewardChoice}. ${
+        pointsEarnedMonthly > 0
+          ? `${pointsEarnedMonthly.toLocaleString("pt-BR", { maximumFractionDigits: 0 })} pts/mês × ${pointValuation.label}.`
+          : ""
+      }`,
       pointsRates.note ??
         (pointsRates.fallbackRate === null &&
         cashlike.generalRate === 0 &&

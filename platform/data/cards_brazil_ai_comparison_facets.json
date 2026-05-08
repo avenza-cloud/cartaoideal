@@ -2468,12 +2468,20 @@
       "text_for_embedding_compare": "CAIXA Ícone Visa Infinite \nEmissor: CAIXA \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: unknown \nGanhos: Até 6,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 1.650 \nSalas VIP / programa: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 10 acompanhantes gratuitos por ano | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 10 acompanhantes gratuitos por ano \nBenefícios (lista): Anuidade: R$ 1.650; Pontuação: Até 6,0 pontos por dólar gasto; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 10 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 5,0 pontos por dólar gasto no Brasil; Regra de pontuação: 6,0 pontos por dólar gasto no exterior; Bônus de adesão: (Não há); Salas VIP: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 10 acompanhantes gratuitos por ano \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
-          "category": "cashback",
+          "category": "monthly_spend",
+          "threshold_brl": 12500,
+          "period": "monthly",
+          "full_waiver": false,
+          "description": "50% de cashback da parcela mensal da anuidade",
+          "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para fatura mensal a partir de R$ 12.500,00"
+        },
+        {
+          "category": "monthly_spend",
           "threshold_brl": 25000,
           "period": "monthly",
           "full_waiver": true,
-          "description": "Cashback da anuidade",
-          "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 12.500,00 ou 100% de cashback com gastos acima de R$ 25.000,00"
+          "description": "100% de cashback da parcela mensal da anuidade",
+          "raw_text": "100% de cashback da parcela mensal da anuidade cobrada no mês para fatura mensal a partir de R$ 25.000,00"
         }
       ]
     },

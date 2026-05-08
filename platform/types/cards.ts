@@ -289,6 +289,9 @@ export type CardScoreMode = "default" | "profile";
 export interface CardValueAssumptions {
   ptaxBrlPerUsd: number;
   mileValuePerThousandBrl: number;
+  liveloPointValuePerThousandBrl: number;
+  membershipRewardsPointUsdCents: number;
+  defaultPointValuePerThousandBrl: number;
   transferBonus: number;
   iof: number;
   loungeVisitValueBrl: number;
