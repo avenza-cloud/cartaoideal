@@ -283,6 +283,7 @@ export function PersonalizedRanking() {
       return;
     }
     setTopCards(null);
+    setResults(null);
     setLoading(true);
     fetchRecommendationsWithFallback(profile)
       .then((data) => setResults(Array.isArray(data) ? data : null))
