@@ -114,4 +114,19 @@ describe("scoreCardValue", () => {
     expect(halfTier.effectiveAnnualFeeBrl).toBe(825);
     expect(fullTier.effectiveAnnualFeeBrl).toBe(0);
   });
+
+  it("applies Centurion account-holder annual fee condition", () => {
+    const card = getCardById("bradesco-bradesco-american-express-the-centurion-card-6d6ffcfe73");
+    expect(card).toBeDefined();
+
+    const score = scoreCardValue(card!, baseProfile);
+
+    expect(score.effectiveAnnualFeeBrl).toBe(18_000);
+    expect(score.feeAppliedReason).toBe(
+      "Anuidade efetiva de R$18.000 após regra estruturada."
+    );
+    expect(score.dataQualityNotes).toContain(
+      "Anuidade de correntista aplicada por condição estruturada."
+    );
+  });
 });

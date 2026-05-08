@@ -127,6 +127,7 @@
         "benefit_groups": {
           "fees": [
             "Anuidade: R$ 25.000",
+            "Anuidade condicional: R$ 18.000 para correntistas",
             "Adicionais com benefícios: Sim",
             "Isenção da anuidade: Não há nenhuma publicada",
             "Anuidade: R$ 25.000",
@@ -370,6 +371,13 @@
             "value": "R$ 25.000"
           },
           {
+            "category": "fees",
+            "key": "annual_fee_condition",
+            "label": "Anuidade condicional",
+            "value": "R$ 18.000 para correntistas",
+            "details": "Valor base: R$ 25.000/ano"
+          },
+          {
             "category": "lifestyle",
             "key": "digital_wallet",
             "label": "Carteira digital",
@@ -409,6 +417,7 @@
         ],
         "atomic_benefit_statements": [
           "Anuidade: R$ 25.000",
+          "Anuidade condicional: R$ 18.000 para correntistas",
           "Pontuação: Até 7,0 pontos por dólar gasto",
           "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
           "Programa de sala VIP: Priority Pass",
@@ -15965,6 +15974,7 @@
         "benefit_groups": {
           "fees": [
             "Anuidade: R$ 25.000",
+            "Anuidade condicional: R$ 18.000 para correntistas",
             "Adicionais com benefícios: Sim",
             "Isenção da anuidade: Não há nenhuma publicada",
             "Anuidade: R$ 25.000",
@@ -16189,6 +16199,13 @@
             "value": "R$ 25.000"
           },
           {
+            "category": "fees",
+            "key": "annual_fee_condition",
+            "label": "Anuidade condicional",
+            "value": "R$ 18.000 para correntistas",
+            "details": "Valor base: R$ 25.000/ano"
+          },
+          {
             "category": "lifestyle",
             "key": "digital_wallet",
             "label": "Carteira digital",
@@ -16227,6 +16244,7 @@
         ],
         "atomic_benefit_statements": [
           "Anuidade: R$ 25.000",
+          "Anuidade condicional: R$ 18.000 para correntistas",
           "Pontuação: 4,2 pontos por dólar gasto",
           "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
           "Programa de sala VIP: Priority Pass",

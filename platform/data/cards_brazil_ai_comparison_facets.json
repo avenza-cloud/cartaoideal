@@ -69,6 +69,7 @@
       "benefit_groups": {
         "fees": [
           "Anuidade: R$ 25.000",
+          "Anuidade condicional: R$ 18.000 para correntistas",
           "Adicionais com benefícios: Sim",
           "Isenção da anuidade: Não há nenhuma publicada",
           "Anuidade: R$ 25.000",
@@ -312,6 +313,13 @@
           "value": "R$ 25.000"
         },
         {
+          "category": "fees",
+          "key": "annual_fee_condition",
+          "label": "Anuidade condicional",
+          "value": "R$ 18.000 para correntistas",
+          "details": "Valor base: R$ 25.000/ano"
+        },
+        {
           "category": "lifestyle",
           "key": "digital_wallet",
           "label": "Carteira digital",
@@ -376,7 +384,7 @@
         "travel:lounge",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "Bradesco American Express® The Centurion Card \nEmissor: Bradesco \nBandeira: American Express \nFaixa: Centurion \nElegibilidade: unknown \nGanhos: Até 7,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 25.000 \nSalas VIP / programa: Salas VIP do Priority Pass - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por visita | Bradesco Cartões Lounge - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita | Centurion Lounge - Acessos gratuitos e ilimitados para o portador e 2 acompanhantes gratuitos por visita | Delta Sky Club - Acessos gratuitos e ilimitados para o portador e 2 acompanhantes gratuitos por visita \nBenefícios (lista): Anuidade: R$ 25.000; Pontuação: Até 7,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Priority Pass; Programa de sala VIP: Bradesco Cartões Lounge; Programa de sala VIP: Centurion Lounge; Programa de sala VIP: Delta Sky Club; Programa de sala VIP: VIP Club BSB; Programa de sala VIP: American Express Lounge; Programa de sala VIP: W Premium Lounge; Programa de sala VIP: Lufthansa Business Lounge; Programa de sala VIP: Lufthansa Senator Lounge \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
+      "text_for_embedding_compare": "Bradesco American Express® The Centurion Card \nEmissor: Bradesco \nBandeira: American Express \nFaixa: Centurion \nElegibilidade: unknown \nGanhos: Até 7,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 25.000; R$ 18.000 para correntistas \nSalas VIP / programa: Salas VIP do Priority Pass - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por visita | Bradesco Cartões Lounge - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita | Centurion Lounge - Acessos gratuitos e ilimitados para o portador e 2 acompanhantes gratuitos por visita | Delta Sky Club - Acessos gratuitos e ilimitados para o portador e 2 acompanhantes gratuitos por visita \nBenefícios (lista): Anuidade: R$ 25.000; Anuidade condicional: R$ 18.000 para correntistas; Pontuação: Até 7,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Priority Pass; Programa de sala VIP: Bradesco Cartões Lounge; Programa de sala VIP: Centurion Lounge; Programa de sala VIP: Delta Sky Club; Programa de sala VIP: VIP Club BSB; Programa de sala VIP: American Express Lounge; Programa de sala VIP: W Premium Lounge; Programa de sala VIP: Lufthansa Business Lounge; Programa de sala VIP: Lufthansa Senator Lounge \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
     },
     {
       "card_stable_id": "xp-investimentos-xp-visa-infinite-privilege-versao-cashback-99a6f9cd19",
@@ -6258,6 +6266,7 @@
       "benefit_groups": {
         "fees": [
           "Anuidade: R$ 25.000",
+          "Anuidade condicional: R$ 18.000 para correntistas",
           "Adicionais com benefícios: Sim",
           "Isenção da anuidade: Não há nenhuma publicada",
           "Anuidade: R$ 25.000",
@@ -6482,6 +6491,13 @@
           "value": "R$ 25.000"
         },
         {
+          "category": "fees",
+          "key": "annual_fee_condition",
+          "label": "Anuidade condicional",
+          "value": "R$ 18.000 para correntistas",
+          "details": "Valor base: R$ 25.000/ano"
+        },
+        {
           "category": "lifestyle",
           "key": "digital_wallet",
           "label": "Carteira digital",
@@ -6545,7 +6561,7 @@
         "travel:lounge",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "Santander American Express® The Centurion Card \nEmissor: Santander \nBandeira: American Express \nFaixa: Centurion \nElegibilidade: unknown \nGanhos: 4,2 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 25.000 \nSalas VIP / programa: Salas VIP do Priority Pass - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por ano | American Express Lounge - Acessos gratuitos e ilimitados para o portador e 2 acompanhantes gratuitos por visita | Delta Sky Club - Acessos gratuitos e ilimitados para o portador e 2 acompanhantes gratuitos por visita | Escape Lounge - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita \nBenefícios (lista): Anuidade: R$ 25.000; Pontuação: 4,2 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Priority Pass; Programa de sala VIP: American Express Lounge; Programa de sala VIP: Delta Sky Club; Programa de sala VIP: Escape Lounge; Programa de sala VIP: Airspace Lounge; Programa de sala VIP: Centurion Lounge; Programa de sala VIP: W Premium Lounge; Acompanhantes em sala VIP: 8 acompanhante(s); 2 acompanhante(s); 1 acompanhante(s); Acessos a sala VIP: Ilimitados \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
+      "text_for_embedding_compare": "Santander American Express® The Centurion Card \nEmissor: Santander \nBandeira: American Express \nFaixa: Centurion \nElegibilidade: unknown \nGanhos: 4,2 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 25.000; R$ 18.000 para correntistas \nSalas VIP / programa: Salas VIP do Priority Pass - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por ano | American Express Lounge - Acessos gratuitos e ilimitados para o portador e 2 acompanhantes gratuitos por visita | Delta Sky Club - Acessos gratuitos e ilimitados para o portador e 2 acompanhantes gratuitos por visita | Escape Lounge - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita \nBenefícios (lista): Anuidade: R$ 25.000; Anuidade condicional: R$ 18.000 para correntistas; Pontuação: 4,2 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Priority Pass; Programa de sala VIP: American Express Lounge; Programa de sala VIP: Delta Sky Club; Programa de sala VIP: Escape Lounge; Programa de sala VIP: Airspace Lounge; Programa de sala VIP: Centurion Lounge; Programa de sala VIP: W Premium Lounge; Acompanhantes em sala VIP: 8 acompanhante(s); 2 acompanhante(s); 1 acompanhante(s); Acessos a sala VIP: Ilimitados \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
     },
     {
       "card_stable_id": "amazon-amazon-prime-mastercard-platinum-8313f45d80",

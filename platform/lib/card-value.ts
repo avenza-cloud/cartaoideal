@@ -128,6 +128,12 @@ function parseBrlAmount(text: string): number | null {
   return Number.isFinite(parsed) ? parsed : null;
 }
 
+function parseBrlAmounts(text: string): number[] {
+  return [...text.matchAll(/R\$\s*([\d.]+(?:,\d+)?)/gi)]
+    .map((match) => Number(match[1].replace(/\./g, "").replace(",", ".")))
+    .filter((value) => Number.isFinite(value));
+}
+
 function parsePointsRate(card: CardFacet): number | null {
   const candidates = [
     card.reward_return.earning_summary,
@@ -447,6 +453,17 @@ function computeEffectiveAnnualFee(
   let effectiveFee = baseFee;
   const feeWaivers = characteristicsByKey(card, "fee_waiver");
   const structuredRules = card.fee_waiver_rules ?? [];
+  const conditionalAnnualFee = characteristicsByKey(card, "annual_fee_condition")
+    .map((item) => `${item.value} ${item.details ?? ""}`)
+    .find((text) => /correntista/i.test(text));
+
+  if (conditionalAnnualFee && card.eligibility?.requires_bank_account_claim === true) {
+    const accountHolderFee = Math.min(...parseBrlAmounts(conditionalAnnualFee));
+    if (Number.isFinite(accountHolderFee) && accountHolderFee > 0 && accountHolderFee < effectiveFee) {
+      effectiveFee = accountHolderFee;
+      notes.push("Anuidade de correntista aplicada por condição estruturada.");
+    }
+  }
 
   for (const rule of structuredRules) {
     if (!rule.full_waiver && !/50%|metade|parcial/i.test(rule.description)) continue;
