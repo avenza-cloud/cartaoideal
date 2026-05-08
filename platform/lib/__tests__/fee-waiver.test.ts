@@ -144,6 +144,24 @@ describe("groupCardsByInvestment", () => {
     expect(accessible).toHaveLength(1);
   });
 
+  it("BTG Pactual Black with R$20k → needsMore (threshold=120k)", () => {
+    const btgBlack = allWaiverCards.find((c) => c.display_name === "BTG Pactual Black")!;
+    const { accessible, needsMore } = groupCardsByInvestment([btgBlack], 20_000, extractInvestmentThreshold);
+    expect(accessible).toHaveLength(0);
+    expect(needsMore).toHaveLength(1);
+    expect(needsMore[0].threshold).toBe(120_000);
+    expect(needsMore[0].shortfall).toBe(100_000);
+  });
+
+  it("BTG Pactual Black Cashback with R$20k → needsMore (threshold=90k)", () => {
+    const btgCashback = allWaiverCards.find((c) => c.display_name === "BTG Pactual Black Cashback")!;
+    const { accessible, needsMore } = groupCardsByInvestment([btgCashback], 20_000, extractInvestmentThreshold);
+    expect(accessible).toHaveLength(0);
+    expect(needsMore).toHaveLength(1);
+    expect(needsMore[0].threshold).toBe(90_000);
+    expect(needsMore[0].shortfall).toBe(70_000);
+  });
+
   it("with R$1M invested, most cards are accessible", () => {
     const { accessible, needsMore } = groupCardsByInvestment(allWaiverCards, 1_000_000, extractInvestmentThreshold);
     expect(accessible.length).toBeGreaterThan(needsMore.length);

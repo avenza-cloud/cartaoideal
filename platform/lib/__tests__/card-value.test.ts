@@ -52,4 +52,21 @@ describe("scoreCardValue", () => {
     const rankedScore = scoreCardValues([card!], profile)[0];
     expect(rankedScore.score0To100).toBe(50);
   });
+
+  it("rewards gains proportionally for lower-spend profiles", () => {
+    const card = getCardById("nomad-nomad-explorer-visa-infinite-aae26793ed");
+    expect(card).toBeDefined();
+
+    const profile: UserProfile = {
+      ...baseProfile,
+      monthlySalaryBrl: 2000,
+      avgMonthlySpendBrl: 1200,
+      avgInvestedBrl: 25000,
+      travelFrequency: "none",
+    };
+
+    const score = scoreCardValue(card!, profile);
+    expect(score.netMonthlyValueBrl).toBeGreaterThanOrEqual(25);
+    expect(score.score0To100).toBeGreaterThanOrEqual(80);
+  });
 });

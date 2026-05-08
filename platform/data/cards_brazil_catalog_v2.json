@@ -4401,10 +4401,29 @@
           "policy_text": "3 primeiros meses gratuitos. Após esse período, 50% de isenção com gastos acima de R$ 60 mil e 100% para gastos acima de R$ 120 mil. Isenção por Investimentos",
           "rules": [
             {
-              "category": "investment",
+              "category": "monthly_spend",
+              "threshold_brl": 60000,
+              "period": "monthly",
+              "full_waiver": false,
+              "discount_brl": 750,
+              "description": "50% de desconto na anuidade",
+              "raw_text": "50% de isenção com gastos acima de R$ 60 mil"
+            },
+            {
+              "category": "monthly_spend",
+              "threshold_brl": 120000,
+              "period": "monthly",
               "full_waiver": true,
-              "description": "Investimento mínimo não informado",
-              "raw_text": "3 primeiros meses gratuitos. Após esse período, 50% de isenção com gastos acima de R$ 60 mil e 100% para gastos acima de R$ 120 mil. Isenção por Investimentos"
+              "description": "Isenção total por gasto mensal",
+              "raw_text": "100% de isenção para gastos acima de R$ 120 mil"
+            },
+            {
+              "category": "investment",
+              "threshold_brl": 30000000,
+              "period": "annual",
+              "full_waiver": true,
+              "description": "Isenção total por investimentos/patrimônio na cooperativa",
+              "raw_text": "Isenção por investimentos: R$ 30 milhões em investimentos na cooperativa"
             }
           ],
           "has_full_waiver_option": true
@@ -4473,7 +4492,10 @@
             "Carteira digital: Apple Pay, Samsung Pay, Google Pay"
           ],
           "eligibility": [
-            "Precisa ser correntista: Sim"
+            "Precisa ser correntista/cooperado: Sim",
+            "Disponibilidade: Private/ultraexclusivo, majoritariamente por convite",
+            "Renda mínima estimada: R$ 300.000/mês",
+            "Investimento/patrimônio estimado: R$ 30.000.000"
           ]
         },
         "characteristics": [
@@ -4627,8 +4649,26 @@
           {
             "category": "eligibility",
             "key": "requires_account",
-            "label": "Precisa ser correntista",
+            "label": "Precisa ser correntista/cooperado",
             "value": "Sim"
+          },
+          {
+            "category": "eligibility",
+            "key": "availability_status",
+            "label": "Disponibilidade",
+            "value": "Private/ultraexclusivo, majoritariamente por convite"
+          },
+          {
+            "category": "eligibility",
+            "key": "minimum_income",
+            "label": "Renda mínima estimada",
+            "value": "R$ 300.000/mês"
+          },
+          {
+            "category": "eligibility",
+            "key": "minimum_investment",
+            "label": "Investimento/patrimônio estimado",
+            "value": "R$ 30.000.000"
           },
           {
             "category": "fees",
@@ -4667,7 +4707,10 @@
           "Isenção da anuidade: 3 primeiros meses gratuitos. Após esse período, 50% de isenção com gastos acima de R$ 60 mil e 100% para gastos acima de R$ 120 mil. Isenção por Investimentos - R$ 30 milhões em investimentos na cooperativa",
           "Anuidade: R$ 18.000",
           "Carteira digital: Apple Pay, Samsung Pay, Google Pay",
-          "Precisa ser correntista: Sim",
+          "Precisa ser correntista/cooperado: Sim",
+          "Disponibilidade: Private/ultraexclusivo, majoritariamente por convite",
+          "Renda mínima estimada: R$ 300.000/mês",
+          "Investimento/patrimônio estimado: R$ 30.000.000",
           "Adicionais gratuitos: 0",
           "Descrição do benefício em companhias aéreas: A experiência em aeroportos é elevada a um novo nível, com direito a 1 (um) trajeto de helicóptero gratuito por ano em São Paulo e atendimento Meet & Greet no GRU Airport."
         ]
@@ -18937,10 +18980,17 @@
           "rules": [
             {
               "category": "monthly_spend",
-              "threshold_brl": 10000,
+              "threshold_brl": 9000,
               "period": "monthly",
-              "full_waiver": false,
-              "description": "Gasto mensal mínimo",
+              "full_waiver": true,
+              "description": "Gasto mensal para isenção total",
+              "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
+            },
+            {
+              "category": "investment",
+              "threshold_brl": 90000,
+              "full_waiver": true,
+              "description": "Investimento para isenção total",
               "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
             }
           ]
@@ -48685,10 +48735,17 @@
           "rules": [
             {
               "category": "monthly_spend",
-              "threshold_brl": 10000,
+              "threshold_brl": 12000,
               "period": "monthly",
-              "full_waiver": false,
-              "description": "Gasto mensal mínimo",
+              "full_waiver": true,
+              "description": "Gasto mensal para isenção total",
+              "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
+            },
+            {
+              "category": "investment",
+              "threshold_brl": 120000,
+              "full_waiver": true,
+              "description": "Investimento para isenção total",
               "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
             }
           ]

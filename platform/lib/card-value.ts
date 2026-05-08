@@ -625,25 +625,33 @@ function normalizeScore({
   grossRewardMonthly,
   intangibleMonthlyValue,
   effectiveMonthlyFee,
+  monthlySpend,
 }: {
   netMonthly: number;
   eligible: boolean;
   grossRewardMonthly: number;
   intangibleMonthlyValue: number;
   effectiveMonthlyFee: number;
+  monthlySpend: number;
 }): number {
   if (!eligible) return 0;
 
   const valueCreated = grossRewardMonthly + intangibleMonthlyValue;
   if (valueCreated <= 0 && effectiveMonthlyFee <= 0 && netMonthly >= 0) return 50;
 
+  const spendBase = Math.max(1, monthlySpend);
+  const spendYield = netMonthly / spendBase;
+
   if (netMonthly < 0) {
-    return Math.round(clamp(50 + netMonthly / 2, 0, 49));
+    const absolutePenalty = Math.min(25, Math.abs(netMonthly) / 2);
+    const proportionalPenalty = Math.min(25, (Math.abs(spendYield) / 0.02) * 25);
+    return Math.round(clamp(50 - absolutePenalty - proportionalPenalty, 0, 49));
   }
 
-  const netScore = Math.min(45, netMonthly * 0.35);
-  const benefitSignal = Math.min(5, valueCreated / 20);
-  return Math.round(clamp(50 + netScore + benefitSignal, 0, 100));
+  const absoluteGainScore = Math.min(20, netMonthly / 5);
+  const proportionalGainScore = Math.min(28, (spendYield / 0.025) * 28);
+  const benefitSignal = Math.min(2, valueCreated / 50);
+  return Math.round(clamp(50 + absoluteGainScore + proportionalGainScore + benefitSignal, 0, 100));
 }
 
 function makeComponent(
@@ -844,6 +852,7 @@ export function scoreCardValue(
       grossRewardMonthly,
       intangibleMonthlyValue,
       effectiveMonthlyFee,
+      monthlySpend: profile.avgMonthlySpendBrl,
     }),
     rankReason,
     feeAppliedReason,

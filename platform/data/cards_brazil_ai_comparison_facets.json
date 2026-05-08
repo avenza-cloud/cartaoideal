@@ -1205,7 +1205,7 @@
         "summary": "Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita"
       },
       "eligibility": {
-        "requirements_text": "Exclusivamente por convite; R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil.",
+        "requirements_text": "Necessário ser cooperado Unicred. Cartão Private/ultraexclusivo, emitido majoritariamente por convite; relatos indicam cerca de R$ 30 milhões em ativos/investimentos/patrimônio ou renda mensal a partir de R$ 300 mil, sujeito à avaliação da cooperativa.",
         "minimum_income_brl_best_estimate": 300000,
         "minimum_investment_brl_best_estimate": 30000000,
         "requires_bank_account_claim": true,
@@ -1242,7 +1242,10 @@
           "Carteira digital: Apple Pay, Google Pay, Samsung Pay"
         ],
         "eligibility": [
-          "Precisa ser correntista: Sim"
+          "Precisa ser correntista/cooperado: Sim",
+          "Disponibilidade: Private/ultraexclusivo, majoritariamente por convite",
+          "Renda mínima estimada: R$ 300.000/mês",
+          "Investimento/patrimônio estimado: R$ 30.000.000"
         ]
       },
       "characteristics": [
@@ -1364,8 +1367,26 @@
         {
           "category": "eligibility",
           "key": "requires_account",
-          "label": "Precisa ser correntista",
+          "label": "Precisa ser correntista/cooperado",
           "value": "Sim"
+        },
+        {
+          "category": "eligibility",
+          "key": "availability_status",
+          "label": "Disponibilidade",
+          "value": "Private/ultraexclusivo, majoritariamente por convite"
+        },
+        {
+          "category": "eligibility",
+          "key": "minimum_income",
+          "label": "Renda mínima estimada",
+          "value": "R$ 300.000/mês"
+        },
+        {
+          "category": "eligibility",
+          "key": "minimum_investment",
+          "label": "Investimento/patrimônio estimado",
+          "value": "R$ 30.000.000"
         },
         {
           "category": "fees",
@@ -1954,13 +1975,32 @@
         "travel:lounge",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "Unicred Visa Infinite Privilege \nEmissor: Unicred \nBandeira: Visa \nFaixa: Infinite Privilege \nElegibilidade: R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil. \nGanhos: Até 7,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 18.000 \nSalas VIP / programa: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Visa Infinite Privilege Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita \nBenefícios (lista): Anuidade: R$ 18.000; Pontuação: Até 7,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Visa Airport Companion; Programa de sala VIP: Visa Infinite Privilege Lounge; Acompanhantes em sala VIP: 8 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 5,0 pontos por dólar gasto no Brasil; Regra de pontuação: 7,0 pontos por dólar gasto no exterior; Bônus de adesão: Único - (Não há); Bônus de adesão: Livelo - (Não há) \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
+      "text_for_embedding_compare": "Unicred Visa Infinite Privilege \nEmissor: Unicred \nBandeira: Visa \nFaixa: Infinite Privilege \nElegibilidade: necessário ser cooperado Unicred; cartão Private/ultraexclusivo, emitido majoritariamente por convite; relatos indicam cerca de R$ 30 milhões em ativos/investimentos/patrimônio ou renda mensal a partir de R$ 300 mil, sujeito à avaliação da cooperativa. \nGanhos: 5,0 pontos por dólar gasto no Brasil; 7,0 pontos por dólar gasto no exterior \nProgramas: unknown \nAnuidade (campo principal): R$ 18.000 \nSalas VIP / programa: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Visa Infinite Privilege Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita \nBenefícios (lista): Anuidade: R$ 18.000; Pontuação: Até 7,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Visa Airport Companion; Programa de sala VIP: Visa Infinite Privilege Lounge; Acompanhantes em sala VIP: 8 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 5,0 pontos por dólar gasto no Brasil; Regra de pontuação: 7,0 pontos por dólar gasto no exterior; Bônus de adesão: Único - (Não há); Bônus de adesão: Livelo - (Não há); Precisa ser cooperado: Sim; Disponibilidade: Private/ultraexclusivo, majoritariamente por convite \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
-          "category": "investment",
+          "category": "monthly_spend",
+          "threshold_brl": 60000,
+          "period": "monthly",
+          "full_waiver": false,
+          "discount_brl": 750,
+          "description": "50% de desconto na anuidade",
+          "raw_text": "50% de isenção com gastos acima de R$ 60 mil"
+        },
+        {
+          "category": "monthly_spend",
+          "threshold_brl": 120000,
+          "period": "monthly",
           "full_waiver": true,
-          "description": "Investimento mínimo não informado",
-          "raw_text": "3 primeiros meses gratuitos. Após esse período, 50% de isenção com gastos acima de R$ 60 mil e 100% para gastos acima de R$ 120 mil. Isenção por Investimentos"
+          "description": "Isenção total por gasto mensal",
+          "raw_text": "100% de isenção para gastos acima de R$ 120 mil"
+        },
+        {
+          "category": "investment",
+          "threshold_brl": 30000000,
+          "period": "annual",
+          "full_waiver": true,
+          "description": "Isenção total por investimentos/patrimônio na cooperativa",
+          "raw_text": "Isenção por investimentos: R$ 30 milhões em investimentos na cooperativa"
         }
       ]
     },
@@ -7552,10 +7592,17 @@
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
-          "threshold_brl": 10000,
+          "threshold_brl": 9000,
           "period": "monthly",
-          "full_waiver": false,
-          "description": "Gasto mensal mínimo",
+          "full_waiver": true,
+          "description": "Gasto mensal para isenção total",
+          "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
+        },
+        {
+          "category": "investment",
+          "threshold_brl": 90000,
+          "full_waiver": true,
+          "description": "Investimento para isenção total",
           "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
         }
       ]
@@ -19033,10 +19080,17 @@
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
-          "threshold_brl": 10000,
+          "threshold_brl": 12000,
           "period": "monthly",
-          "full_waiver": false,
-          "description": "Gasto mensal mínimo",
+          "full_waiver": true,
+          "description": "Gasto mensal para isenção total",
+          "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
+        },
+        {
+          "category": "investment",
+          "threshold_brl": 120000,
+          "full_waiver": true,
+          "description": "Investimento para isenção total",
           "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
         }
       ]
