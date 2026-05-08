@@ -12,13 +12,13 @@ describe("getCardFeeWaiver", () => {
     expect(waiver!.viaGasto).toBe(true);
   });
 
-  it("C6 Mastercard Black — viaInvestimento + viaGasto", () => {
+  it("C6 Mastercard Black — viaGasto only", () => {
     const results = filterCards({ search: "c6 mastercard black" });
     const card = results.find((c) => c.display_name === "C6 Mastercard Black");
     expect(card).toBeDefined();
     const waiver = getCardFeeWaiver(card!);
     expect(waiver).not.toBeNull();
-    expect(waiver!.viaInvestimento).toBe(true);
+    expect(waiver!.viaInvestimento).toBe(false);
     expect(waiver!.viaGasto).toBe(true);
   });
 

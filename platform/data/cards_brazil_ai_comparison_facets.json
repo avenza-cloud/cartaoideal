@@ -1652,7 +1652,7 @@
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
-      "text_for_embedding_compare": "XP Legacy (versão cashback) \nEmissor: XP Investimentos \nBandeira: Visa \nFaixa: Visa \nElegibilidade: A partir de R$ 1 milhão em investimentos líquidos \nGanhos: Pontos XP (Turbo Benefícios): Até 10 pontos XP/USD com Turbo Benefícios em compras internacionais e Até 3,5 pontos XP/USD com Turbo Benefícios em compras nacionais. Investback (Turbo Benefícios): 5,5% com Turbo Benefícios em compras internacionais e 1,7% com Turbo Benefícios em compras nacionais. \nProgramas: unknown \nAnuidade (campo principal): R$ 350/mês, com 3 meses grátis. (Possibilidades de desconto e isenção) \nSalas VIP / programa: Ilimitado +12 acompanhantes \nBenefícios (lista): Pontos XP (Turbo Benefícios): Até 10 pontos XP/USD com Turbo Benefícios em compras internacionais e Até 3,5 pontos XP/USD com Turbo Benefícios em compras nacionais; Investback (Turbo Benefícios): 5,5% com Turbo Benefícios em compras internacionais e 1,7% com Turbo Benefícios em compras nacionais; A partir de R$ 1 milhão em investimentos líquidos; R$ 350/mês, com 3 meses grátis. (Possibilidades de desconto e isenção); Ilimitado +12 acompanhantes; Anuidade: R$ 4.200; Pontuação: Até 5,3% de cashback; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 12 acompanhante(s); Acessos a sala VIP: Ilimitados \nVerificação automática: trusted_catalog_with_curated_official_override (confiança 1.0)",
+      "text_for_embedding_compare": "XP Legacy (versão cashback) \nEmissor: XP Investimentos \nBandeira: Visa \nFaixa: Visa \nElegibilidade: A partir de R$ 1 milhão em investimentos líquidos \nGanhos: Pontos XP (Turbo Benefícios): Até 10 pontos XP/USD com Turbo Benefícios em compras internacionais e Até 3,5 pontos XP/USD com Turbo Benefícios em compras nacionais. Cashback (Turbo Benefícios): 5,5% com Turbo Benefícios em compras internacionais e 1,7% com Turbo Benefícios em compras nacionais. \nProgramas: unknown \nAnuidade (campo principal): R$ 350/mês, com 3 meses grátis. (Possibilidades de desconto e isenção) \nSalas VIP / programa: Ilimitado +12 acompanhantes \nBenefícios (lista): Pontos XP (Turbo Benefícios): Até 10 pontos XP/USD com Turbo Benefícios em compras internacionais e Até 3,5 pontos XP/USD com Turbo Benefícios em compras nacionais; Cashback (Turbo Benefícios): 5,5% com Turbo Benefícios em compras internacionais e 1,7% com Turbo Benefícios em compras nacionais; A partir de R$ 1 milhão em investimentos líquidos; R$ 350/mês, com 3 meses grátis. (Possibilidades de desconto e isenção); Ilimitado +12 acompanhantes; Anuidade: R$ 4.200; Pontuação: Até 5,3% de cashback; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 12 acompanhante(s); Acessos a sala VIP: Ilimitados \nVerificação automática: trusted_catalog_with_curated_official_override (confiança 1.0)",
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
@@ -5053,23 +5053,23 @@
         "subtypes": [
           "cashback"
         ],
-        "earning_summary": "2,0% de cashback"
+        "earning_summary": "2% de cashback ilimitado em todas as compras"
       },
       "lounge_access": {
         "has_lounge_access": true,
         "programs": [
-          "Mastercard Airport Experience",
+          "LoungeKey",
           "Sala VIP Mastercard Black"
         ],
-        "unlimited": true,
+        "unlimited": false,
         "annual_visits": 2,
         "guest_policy": "0 acompanhante(s)",
         "complimentary_access_confirmed": true,
         "policy_varies_by_issuer": false,
-        "summary": "Salas VIP do Mastercard Airport Experience - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano"
+        "summary": "LoungeKey - 2 acessos gratuitos por ano | Sala VIP Mastercard Black em Guarulhos - acesso gratuito e ilimitado para o portador."
       },
       "eligibility": {
-        "requirements_text": "Para solicitar, o cliente precisa investir a partir de R$ 30 mil em CDB.",
+        "requirements_text": "Investimento mínimo de R$ 30.000 no CDB Titan; limite de crédito definido pelo valor investido.",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": 30000,
         "requires_bank_account_claim": true,
@@ -5083,30 +5083,26 @@
       "benefit_groups": {
         "fees": [
           "Anuidade: R$ 0",
-          "Adicionais com benefícios: Não (O cartão não permite a solicitação de adicionais)",
-          "Isenção da anuidade: Não há anuidade. Para solicitar, o cliente precisa investir a partir de R$ 30 mil em CDB",
-          "Anuidade: R$ 0",
-          "Adicionais gratuitos: 0"
+          "Sem anuidade, sem gasto mínimo"
         ],
         "rewards": [
-          "Pontuação: 2,0% de cashback",
-          "Retorno financeiro: cashback",
-          "Regra de pontuação: 2,0% de cashback"
+          "2% de cashback ilimitado em todas as compras",
+          "0% spread em compras internacionais",
+          "CDB Titan rende 100% do CDI"
         ],
         "travel": [
-          "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
-          "Programa de sala VIP: Mastercard Airport Experience",
-          "Programa de sala VIP: Sala VIP Mastercard Black",
-          "Acompanhantes em sala VIP: 0 acompanhante(s)",
-          "Acessos a sala VIP: Ilimitados",
-          "Salas VIP: Salas VIP do Mastercard Airport Experience - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano",
-          "Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano"
+          "LoungeKey: 2 acessos gratuitos por ano",
+          "Sala VIP Mastercard Black GRU: acesso ilimitado",
+          "MasterSeguro de Automóveis",
+          "Travel Rewards"
         ],
         "lifestyle": [
           "Carteira digital: Samsung Pay, Google Pay"
         ],
         "eligibility": [
-          "Precisa ser correntista: Sim"
+          "Investimento mínimo: R$ 30.000 no CDB Titan",
+          "Limite de crédito definido pelo investimento",
+          "Precisa ser cliente RecargaPay"
         ]
       },
       "characteristics": [
@@ -5115,12 +5111,6 @@
           "key": "annual_fee",
           "label": "Anuidade",
           "value": "R$ 0"
-        },
-        {
-          "category": "rewards",
-          "key": "earning_rate",
-          "label": "Pontuação",
-          "value": "2,0% de cashback"
         },
         {
           "category": "rewards",
@@ -5137,27 +5127,9 @@
         },
         {
           "category": "travel",
-          "key": "lounge_program",
-          "label": "Programa de sala VIP",
-          "value": "Mastercard Airport Experience"
-        },
-        {
-          "category": "travel",
-          "key": "lounge_program",
-          "label": "Programa de sala VIP",
-          "value": "Sala VIP Mastercard Black"
-        },
-        {
-          "category": "travel",
           "key": "lounge_guest_policy",
           "label": "Acompanhantes em sala VIP",
           "value": "0 acompanhante(s)"
-        },
-        {
-          "category": "travel",
-          "key": "lounge_visits",
-          "label": "Acessos a sala VIP",
-          "value": "Ilimitados"
         },
         {
           "category": "rewards",
@@ -5187,12 +5159,6 @@
         },
         {
           "category": "fees",
-          "key": "fee_waiver",
-          "label": "Isenção da anuidade",
-          "value": "Não há anuidade. Para solicitar, o cliente precisa investir a partir de R$ 30 mil em CDB"
-        },
-        {
-          "category": "fees",
           "key": "annual_fee_detail",
           "label": "Anuidade",
           "value": "R$ 0"
@@ -5214,6 +5180,54 @@
           "key": "free_additional_cards",
           "label": "Adicionais gratuitos",
           "value": "0"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_rate",
+          "label": "Cashback",
+          "value": "2% de cashback ilimitado"
+        },
+        {
+          "category": "travel",
+          "key": "lounge_program",
+          "label": "Programa de sala VIP",
+          "value": "LoungeKey"
+        },
+        {
+          "category": "travel",
+          "key": "lounge_visits",
+          "label": "Acessos LoungeKey",
+          "value": "2 acessos por ano"
+        },
+        {
+          "category": "travel",
+          "key": "lounge_program",
+          "label": "Sala VIP",
+          "value": "Sala VIP Mastercard Black GRU"
+        },
+        {
+          "category": "travel",
+          "key": "lounge_visits_gru",
+          "label": "Sala VIP Mastercard Black GRU",
+          "value": "Acesso ilimitado"
+        },
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Anuidade",
+          "value": "Sem anuidade"
+        },
+        {
+          "category": "eligibility",
+          "key": "minimum_investment",
+          "label": "Investimento mínimo",
+          "value": "R$ 30.000 no CDB Titan"
+        },
+        {
+          "category": "issuer_specific",
+          "key": "forex_spread",
+          "label": "Spread internacional",
+          "value": "0%"
         }
       ],
       "facets_numeric_or_special": {
@@ -5222,17 +5236,17 @@
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": 30000,
         "lounge_visits_per_year_hint": 2,
-        "official_forex_or_iof_note": "unknown"
+        "official_forex_or_iof_note": "0% spread em compras internacionais"
       },
       "facets_boolean": {
         "has_any_lounge_claim": true,
         "has_named_lounge_program": true,
-        "lounge_unlimited_claim": true,
+        "lounge_unlimited_claim": false,
         "earn_points_or_miles": false,
         "earn_cashback": true,
         "earn_investback": false,
         "reward_return_cashlike": true,
-        "mentions_travel_insurance": false,
+        "mentions_travel_insurance": true,
         "mentions_concierge": false,
         "co_brand_name_detected": false,
         "issuer_multi_entity_row": false,
@@ -8520,7 +8534,7 @@
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
-      "text_for_embedding_compare": "XP Visa Infinite \nEmissor: XP Investimentos \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: A partir de R$ 50 mil em investimentos líquidos \nGanhos: Pontos XP (Turbo Benefícios): Até 3,0 pontos com Turbo Benefícios. Investback (Turbo Benefícios): Até 1,5% com Turbo Benefícios. \nProgramas: unknown \nAnuidade (campo principal): Zero, para sempre (tabela oficial XP — cartões Infinite e One) \nSalas VIP / programa: 4 acessos por ano \nBenefícios (lista): Pontos XP (Turbo Benefícios): Até 3,0 pontos com Turbo Benefícios; Investback (Turbo Benefícios): Até 1,5% com Turbo Benefícios; A partir de R$ 50 mil em investimentos líquidos; Zero, para sempre (tabela oficial XP — cartões Infinite e One); 4 acessos por ano; Anuidade: R$ 0; Pontuação: 1,0% de cashback; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Dragon Pass; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: 4 por ano \nVerificação automática: trusted_catalog_with_curated_official_override (confiança 1.0)"
+      "text_for_embedding_compare": "XP Visa Infinite \nEmissor: XP Investimentos \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: A partir de R$ 50 mil em investimentos líquidos \nGanhos: Pontos XP (Turbo Benefícios): Até 3,0 pontos com Turbo Benefícios. Cashback (Turbo Benefícios): Até 1,5% com Turbo Benefícios. \nProgramas: unknown \nAnuidade (campo principal): Zero, para sempre (tabela oficial XP — cartões Infinite e One) \nSalas VIP / programa: 4 acessos por ano \nBenefícios (lista): Pontos XP (Turbo Benefícios): Até 3,0 pontos com Turbo Benefícios; Cashback (Turbo Benefícios): Até 1,5% com Turbo Benefícios; A partir de R$ 50 mil em investimentos líquidos; Zero, para sempre (tabela oficial XP — cartões Infinite e One); 4 acessos por ano; Anuidade: R$ 0; Pontuação: 1,0% de cashback; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Dragon Pass; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: 4 por ano \nVerificação automática: trusted_catalog_with_curated_official_override (confiança 1.0)"
     },
     {
       "card_stable_id": "santander-santander-unlimited-visa-infinite-private-736af4429a",
@@ -8807,7 +8821,7 @@
         "summary": "2 acessos por ano"
       },
       "eligibility": {
-        "requirements_text": "A partir de R$ 5 mil em investimentos líquidos",
+        "requirements_text": "A partir de R$ 5 mil em investimentos líquidos.",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": 5000,
         "requires_bank_account_claim": true,
@@ -8821,10 +8835,7 @@
       "benefit_groups": {
         "fees": [
           "Anuidade: R$ 0",
-          "Adicionais com benefícios: Sim",
-          "Isenção da anuidade: Não há nenhuma publicada",
-          "Anuidade: R$ 0",
-          "Adicionais gratuitos: 6"
+          "Sem anuidade para clientes com mais de R$ 5.000 investidos"
         ],
         "rewards": [
           "Pontuação: 1,0% de cashback",
@@ -8842,7 +8853,9 @@
           "Carteira digital: Apple Pay, Samsung Pay, Google Pay"
         ],
         "eligibility": [
-          "Precisa ser correntista: Sim"
+          "Investimento mínimo: R$ 5.000",
+          "Precisa ser cliente XP",
+          "Aprovação sujeita à análise"
         ]
       },
       "characteristics": [
@@ -8910,12 +8923,6 @@
         },
         {
           "category": "fees",
-          "key": "fee_waiver",
-          "label": "Isenção da anuidade",
-          "value": "Não há nenhuma publicada"
-        },
-        {
-          "category": "fees",
           "key": "annual_fee_detail",
           "label": "Anuidade",
           "value": "R$ 0"
@@ -8937,6 +8944,18 @@
           "key": "free_additional_cards",
           "label": "Adicionais gratuitos",
           "value": "6"
+        },
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Isenção da anuidade",
+          "value": "Sem anuidade para clientes com mais de R$ 5.000 investidos"
+        },
+        {
+          "category": "eligibility",
+          "key": "minimum_investment",
+          "label": "Investimento mínimo",
+          "value": "R$ 5.000"
         }
       ],
       "facets_numeric_or_special": {
@@ -8967,7 +8986,7 @@
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
-      "text_for_embedding_compare": "XP Visa Infinite Categoria One \nEmissor: XP Investimentos \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: A partir de R$ 5 mil em investimentos líquidos \nGanhos: Pontos XP (Turbo Benefícios): Até 1,8 pontos com Turbo Benefícios. Investback (Turbo Benefícios): Até 1,1% com Turbo Benefícios. \nProgramas: unknown \nAnuidade (campo principal): Zero, para sempre (tabela oficial XP — cartões Infinite e One) \nSalas VIP / programa: 2 acessos por ano \nBenefícios (lista): Pontos XP (Turbo Benefícios): Até 1,8 pontos com Turbo Benefícios; Investback (Turbo Benefícios): Até 1,1% com Turbo Benefícios; A partir de R$ 5 mil em investimentos líquidos; Zero, para sempre (tabela oficial XP — cartões Infinite e One); 2 acessos por ano; Anuidade: R$ 0; Pontuação: 1,0% de cashback; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: 2 por ano \nVerificação automática: trusted_catalog_with_curated_official_override (confiança 1.0)"
+      "text_for_embedding_compare": "XP Visa Infinite Categoria One \nEmissor: XP Investimentos \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: A partir de R$ 5 mil em investimentos líquidos \nGanhos: Pontos XP (Turbo Benefícios): Até 1,8 pontos com Turbo Benefícios. Cashback (Turbo Benefícios): Até 1,1% com Turbo Benefícios. \nProgramas: unknown \nAnuidade (campo principal): Zero, para sempre (tabela oficial XP — cartões Infinite e One) \nSalas VIP / programa: 2 acessos por ano \nBenefícios (lista): Pontos XP (Turbo Benefícios): Até 1,8 pontos com Turbo Benefícios; Cashback (Turbo Benefícios): Até 1,1% com Turbo Benefícios; A partir de R$ 5 mil em investimentos líquidos; Zero, para sempre (tabela oficial XP — cartões Infinite e One); 2 acessos por ano; Anuidade: R$ 0; Pontuação: 1,0% de cashback; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: 2 por ano \nVerificação automática: trusted_catalog_with_curated_official_override (confiança 1.0)"
     },
     {
       "card_stable_id": "sicoob-sicoob-zenith-visa-infinite-38761232a5",
@@ -10234,7 +10253,7 @@
         "travel:lounge",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "XP Legacy (versão pontos) \nEmissor: XP Investimentos \nBandeira: Visa \nFaixa: Visa \nElegibilidade: A partir de R$ 1 milhão em investimentos líquidos \nGanhos: Pontos XP (Turbo Benefícios): Até 10 pontos XP/USD com Turbo Benefícios em compras internacionais e Até 3,5 pontos XP/USD com Turbo Benefícios em compras nacionais. Investback (Turbo Benefícios): 5,5% com Turbo Benefícios em compras internacionais e 1,7% com Turbo Benefícios em compras nacionais. \nProgramas: unknown \nAnuidade (campo principal): R$ 350/mês, com 3 meses grátis. (Possibilidades de desconto e isenção) \nSalas VIP / programa: Ilimitado +12 acompanhantes \nBenefícios (lista): Pontos XP (Turbo Benefícios): Até 10 pontos XP/USD com Turbo Benefícios em compras internacionais e Até 3,5 pontos XP/USD com Turbo Benefícios em compras nacionais; Investback (Turbo Benefícios): 5,5% com Turbo Benefícios em compras internacionais e 1,7% com Turbo Benefícios em compras nacionais; A partir de R$ 1 milhão em investimentos líquidos; R$ 350/mês, com 3 meses grátis. (Possibilidades de desconto e isenção); Ilimitado +12 acompanhantes; Anuidade: R$ 4.200; Pontuação: Até 9,5 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 12 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 3,0 pontos por dólar gasto no Brasil \nVerificação automática: trusted_catalog_with_curated_official_override (confiança 1.0)",
+      "text_for_embedding_compare": "XP Legacy (versão pontos) \nEmissor: XP Investimentos \nBandeira: Visa \nFaixa: Visa \nElegibilidade: A partir de R$ 1 milhão em investimentos líquidos \nGanhos: Pontos XP (Turbo Benefícios): Até 10 pontos XP/USD com Turbo Benefícios em compras internacionais e Até 3,5 pontos XP/USD com Turbo Benefícios em compras nacionais. Cashback (Turbo Benefícios): 5,5% com Turbo Benefícios em compras internacionais e 1,7% com Turbo Benefícios em compras nacionais. \nProgramas: unknown \nAnuidade (campo principal): R$ 350/mês, com 3 meses grátis. (Possibilidades de desconto e isenção) \nSalas VIP / programa: Ilimitado +12 acompanhantes \nBenefícios (lista): Pontos XP (Turbo Benefícios): Até 10 pontos XP/USD com Turbo Benefícios em compras internacionais e Até 3,5 pontos XP/USD com Turbo Benefícios em compras nacionais; Cashback (Turbo Benefícios): 5,5% com Turbo Benefícios em compras internacionais e 1,7% com Turbo Benefícios em compras nacionais; A partir de R$ 1 milhão em investimentos líquidos; R$ 350/mês, com 3 meses grátis. (Possibilidades de desconto e isenção); Ilimitado +12 acompanhantes; Anuidade: R$ 4.200; Pontuação: Até 9,5 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 12 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 3,0 pontos por dólar gasto no Brasil \nVerificação automática: trusted_catalog_with_curated_official_override (confiança 1.0)",
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
@@ -13560,11 +13579,10 @@
       },
       "benefit_groups": {
         "fees": [
-          "Anuidade: R$ 1.200",
-          "Adicionais com benefícios: Não ()",
-          "Isenção da anuidade: Anuidade gratuita para gastos acima de R$ 10 mil por fatura, ou receber um desconto progressivo de R$ 10,00 a cada R$ 1.000 gastos.",
-          "Anuidade: R$ 1.200",
-          "Adicionais gratuitos: 3"
+          "Mensalidade: R$ 100",
+          "Custo anual equivalente: R$ 1.200",
+          "Isenção completa: R$ 10.000/mês em compras no crédito",
+          "Desconto progressivo: R$ 10 a cada R$ 1.000 gastos"
         ],
         "rewards": [
           "Pontuação: Até 4,0 pontos por dólar gasto",
@@ -13593,9 +13611,21 @@
       "characteristics": [
         {
           "category": "fees",
+          "key": "monthly_fee",
+          "label": "Mensalidade",
+          "value": "R$ 100"
+        },
+        {
+          "category": "fees",
           "key": "annual_fee",
-          "label": "Anuidade",
+          "label": "Custo anual equivalente",
           "value": "R$ 1.200"
+        },
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Isenção / desconto da mensalidade",
+          "value": "Isenção completa com R$ 10.000/mês em compras no crédito; desconto de R$ 10 a cada R$ 1.000 gastos"
         },
         {
           "category": "rewards",
@@ -13686,18 +13716,6 @@
           "value": "Não ()"
         },
         {
-          "category": "fees",
-          "key": "fee_waiver",
-          "label": "Isenção da anuidade",
-          "value": "Anuidade gratuita para gastos acima de R$ 10 mil por fatura, ou receber um desconto progressivo de R$ 10,00 a cada R$ 1.000 gastos."
-        },
-        {
-          "category": "fees",
-          "key": "annual_fee_detail",
-          "label": "Anuidade",
-          "value": "R$ 1.200"
-        },
-        {
           "category": "lifestyle",
           "key": "digital_wallet",
           "label": "Carteira digital",
@@ -13718,7 +13736,7 @@
       ],
       "facets_numeric_or_special": {
         "annual_fee_brl_best_estimate": 1200,
-        "monthly_fee_brl_after_intro_official_hint": "unknown",
+        "monthly_fee_brl_after_intro_official_hint": 100,
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
         "lounge_visits_per_year_hint": 4,
@@ -13743,23 +13761,24 @@
         "travel:lounge",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "TAP BTG Pactual Black \nEmissor: BTG Pactual \nBandeira: Mastercard \nFaixa: Black \nElegibilidade: unknown \nGanhos: Até 4,0 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 1.200 \nSalas VIP / programa: Salas VIP do LoungeKey - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano | TAP Premium Lounge - Aeroporto de Lisboa - 3 acessos gratuitos para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: R$ 1.200; Pontuação: Até 4,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Sala VIP Mastercard Black; Programa de sala VIP: TAP Premium Lounge; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: 45.000 milhas (mantendo o gasto de R$ 20 mil por fatura durante os 3 primeiros meses); Salas VIP: Salas VIP do LoungeKey - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano; Salas VIP: TAP Premium Lounge - Aeroporto de Lisboa - 3 acessos gratuitos para o portador e 0 acompanhante gratuito por ano \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
+      "text_for_embedding_compare": "TAP BTG Pactual Black \nEmissor: BTG Pactual \nBandeira: Mastercard \nFaixa: Black \nElegibilidade: unknown \nGanhos: Até 4,0 pontos por dólar gasto \nProgramas: unknown \nMensalidade: R$ 100; isenção com R$ 10.000/mês ou desconto de R$ 10 a cada R$ 1.000 gastos\nSalas VIP / programa: Salas VIP do LoungeKey - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano | TAP Premium Lounge - Aeroporto de Lisboa - 3 acessos gratuitos para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: R$ 1.200; Pontuação: Até 4,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Sala VIP Mastercard Black; Programa de sala VIP: TAP Premium Lounge; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: 45.000 milhas (mantendo o gasto de R$ 20 mil por fatura durante os 3 primeiros meses); Salas VIP: Salas VIP do LoungeKey - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano; Salas VIP: TAP Premium Lounge - Aeroporto de Lisboa - 3 acessos gratuitos para o portador e 0 acompanhante gratuito por ano \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
           "threshold_brl": 10000,
           "period": "monthly",
           "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "Anuidade gratuita para gastos acima de R$ 10 mil por fatura, ou receber um desconto progressivo de R$ 10,00 a cada R$ 1.000 gastos."
+          "description": "Isenção completa da mensalidade",
+          "raw_text": "Gaste a partir de R$ 10 mil em compras no crédito para ter isenção completa da mensalidade de R$ 100."
         },
         {
           "category": "monthly_spend",
           "threshold_brl": 1000,
           "period": "monthly",
-          "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "Anuidade gratuita para gastos acima de R$ 10 mil por fatura, ou receber um desconto progressivo de R$ 10,00 a cada R$ 1.000 gastos."
+          "full_waiver": false,
+          "discount_brl": 10,
+          "description": "Desconto progressivo de R$ 10 na mensalidade a cada R$ 1.000 gastos",
+          "raw_text": "Desconto progressivo de R$ 10 a cada R$ 1 mil gastos."
         }
       ]
     },
@@ -16083,15 +16102,15 @@
       "variant_band": "Black",
       "market_segment_guess": "mass_or_general",
       "product_kind": "named_credit_card_product",
-      "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-      "verification_confidence_0_to_1": 1,
-      "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/c6-mastercard-black/",
-      "application_url": "https://www.c6bank.com.br/cartao-black/?utm_medium=site",
+      "verification_cross_check_status": "official_issuer_with_user_reported_context",
+      "verification_confidence_0_to_1": 0.9,
+      "primary_evidence_url": "https://www.c6bank.com.br/cartao-black/",
+      "application_url": "https://www.c6bank.com.br/cartao-black/",
       "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/c6-mastercard-black/",
       "source_label": "Link direto do cartão",
       "review_source_label": "Passageiro de Primeira",
       "source_tier": "trusted_catalog",
-      "source_url": "https://www.c6bank.com.br/cartao-black/?utm_medium=site",
+      "source_url": "https://www.c6bank.com.br/cartao-black/",
       "ranking_position": 43,
       "ranking_score": 208.4,
       "media": {
@@ -16101,49 +16120,54 @@
         "remote_card_art_url": "https://passageirodeprimeira.com/wp-content/uploads/2024/12/c6-bank-oferece-isencao-de-anuidade-por-12-meses-para-clientes-selecionados-passageirodeprimeira.com-c6-carbon-c6-carbon-e1723820606134-230x146.png"
       },
       "reward_return": {
-        "has_cashlike_return": false,
-        "earning_summary": "2,5 pontos por dólar gasto"
+        "has_cashlike_return": true,
+        "subtypes": [
+          "cashback",
+          "points"
+        ],
+        "earning_summary": "2 pontos por dólar no crédito; pontos podem ser convertidos em 1% de cashback"
       },
       "lounge_access": {
         "has_lounge_access": true,
-        "unlimited": false,
-        "complimentary_access_confirmed": false,
-        "policy_varies_by_issuer": false
+        "programs": [
+          "Sala VIP Mastercard Black"
+        ],
+        "unlimited": true,
+        "guest_policy": "0 acompanhante(s)",
+        "complimentary_access_confirmed": true,
+        "policy_varies_by_issuer": false,
+        "summary": "Sala VIP Mastercard Black em Guarulhos - acesso gratuito e ilimitado para o portador."
       },
       "eligibility": {
-        "requirements_text": "unknown",
+        "requirements_text": "Correntista C6 Bank; aprovação sujeita à análise de crédito.",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
         "requires_bank_account_claim": true,
         "availability_status": "available",
+        "hard_gate_fields": [],
         "recommendation_blocking_unknowns": false,
-        "source_status": "not_structured"
+        "source_status": "official_or_structured"
       },
       "benefit_groups": {
         "fees": [
           "Anuidade: R$ 600",
-          "Adicionais com benefícios: Sim",
-          "Isenção da anuidade: Anuidade isenta com gasto a partir de R$ 3,5 mil por mês ou R$ 20 mil em investimentos em renda fixa no C6 Bank",
-          "Anuidade: R$ 600",
-          "Adicionais gratuitos: 10"
+          "Isenção da anuidade: gasto mensal a partir de R$ 5.000 no crédito"
         ],
         "rewards": [
-          "Pontuação: 2,5 pontos por dólar gasto",
-          "Bônus de adesão: Programa Átomos - (Não há)",
-          "Bônus de adesão: Livelo - (Não há)",
-          "Programa de fidelidade: Programa Átomos",
-          "Programa de fidelidade: Livelo",
-          "Validade dos pontos: Programa Átomos - Não expiram",
-          "Validade dos pontos: Livelo - 24 meses"
+          "Pontuação: 2 pontos por dólar no crédito",
+          "Conversão: pontos podem virar 1% de cashback"
         ],
         "travel": [
-          "Sala VIP: Acesso disponível"
-        ],
-        "lifestyle": [
-          "Carteira digital: Apple Pay, Google Pay, Samsung Pay"
+          "Sala VIP: acesso gratuito e ilimitado à Sala VIP Mastercard Black em Guarulhos",
+          "Benefícios Mastercard Black",
+          "Seguro viagem",
+          "Proteção de bagagem",
+          "Seguro de automóveis",
+          "Mastercard Concierge"
         ],
         "eligibility": [
-          "Precisa ser correntista: Sim"
+          "Precisa ser correntista: Sim",
+          "Aprovação sujeita à análise de crédito"
         ]
       },
       "characteristics": [
@@ -16154,92 +16178,73 @@
           "value": "R$ 600"
         },
         {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Isenção da anuidade",
+          "value": "Gasto mensal a partir de R$ 5.000 no crédito"
+        },
+        {
           "category": "rewards",
           "key": "earning_rate",
           "label": "Pontuação",
-          "value": "2,5 pontos por dólar gasto"
+          "value": "2 pontos por dólar no crédito"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Cashback",
+          "value": "1%",
+          "details": "Pontos podem ser convertidos em cashback"
         },
         {
           "category": "travel",
           "key": "lounge_access",
           "label": "Sala VIP",
-          "value": "Acesso disponível"
+          "value": "Acesso disponível",
+          "details": "Sala VIP Mastercard Black em Guarulhos"
         },
         {
-          "category": "rewards",
-          "key": "welcome_bonus",
-          "label": "Bônus de adesão",
-          "value": "Programa Átomos",
-          "details": "(Não há)"
+          "category": "travel",
+          "key": "lounge_program",
+          "label": "Programa de sala VIP",
+          "value": "Sala VIP Mastercard Black"
         },
         {
-          "category": "rewards",
-          "key": "welcome_bonus",
-          "label": "Bônus de adesão",
-          "value": "Livelo",
-          "details": "(Não há)"
+          "category": "travel",
+          "key": "lounge_visits",
+          "label": "Acessos a sala VIP",
+          "value": "Ilimitados",
+          "details": "Sala VIP Mastercard Black em Guarulhos"
         },
         {
-          "category": "rewards",
-          "key": "loyalty_program",
-          "label": "Programa de fidelidade",
-          "value": "Programa Átomos"
+          "category": "travel",
+          "key": "travel_insurance",
+          "label": "Seguro viagem",
+          "value": "Disponível"
         },
         {
-          "category": "rewards",
-          "key": "loyalty_program",
-          "label": "Programa de fidelidade",
-          "value": "Livelo"
+          "category": "travel",
+          "key": "baggage_protection",
+          "label": "Proteção de bagagem",
+          "value": "Disponível"
         },
         {
-          "category": "rewards",
-          "key": "points_expiration",
-          "label": "Validade dos pontos",
-          "value": "Programa Átomos",
-          "details": "Não expiram"
+          "category": "travel",
+          "key": "rental_car_insurance",
+          "label": "Seguro de automóveis",
+          "value": "Disponível"
         },
         {
-          "category": "rewards",
-          "key": "points_expiration",
-          "label": "Validade dos pontos",
-          "value": "Livelo",
-          "details": "24 meses"
-        },
-        {
-          "category": "fees",
-          "key": "additional_card_benefits",
-          "label": "Adicionais com benefícios",
-          "value": "Sim"
-        },
-        {
-          "category": "fees",
-          "key": "fee_waiver",
-          "label": "Isenção da anuidade",
-          "value": "Anuidade isenta com gasto a partir de R$ 3,5 mil por mês ou R$ 20 mil em investimentos em renda fixa no C6 Bank"
-        },
-        {
-          "category": "fees",
-          "key": "annual_fee_detail",
-          "label": "Anuidade",
-          "value": "R$ 600"
-        },
-        {
-          "category": "lifestyle",
-          "key": "digital_wallet",
-          "label": "Carteira digital",
-          "value": "Apple Pay, Google Pay, Samsung Pay"
+          "category": "travel",
+          "key": "concierge",
+          "label": "Mastercard Concierge",
+          "value": "Disponível"
         },
         {
           "category": "eligibility",
           "key": "requires_account",
           "label": "Precisa ser correntista",
           "value": "Sim"
-        },
-        {
-          "category": "fees",
-          "key": "free_additional_cards",
-          "label": "Adicionais gratuitos",
-          "value": "10"
         }
       ],
       "facets_numeric_or_special": {
@@ -16252,39 +16257,33 @@
       },
       "facets_boolean": {
         "has_any_lounge_claim": true,
-        "has_named_lounge_program": false,
-        "lounge_unlimited_claim": false,
+        "has_named_lounge_program": true,
+        "lounge_unlimited_claim": true,
         "earn_points_or_miles": true,
-        "earn_cashback": false,
+        "earn_cashback": true,
         "earn_investback": false,
-        "reward_return_cashlike": false,
-        "mentions_travel_insurance": false,
-        "mentions_concierge": false,
+        "reward_return_cashlike": true,
+        "mentions_travel_insurance": true,
+        "mentions_concierge": true,
         "co_brand_name_detected": false,
         "issuer_multi_entity_row": false,
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [
-        "segment:mass_or_general",
+        "segment:premium",
         "travel:lounge",
+        "rewards:cashback",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "C6 Mastercard Black \nEmissor: C6 Bank \nBandeira: Mastercard \nFaixa: Black \nElegibilidade: unknown \nGanhos: 2,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 600 \nBenefícios (lista): Anuidade: R$ 600; Pontuação: 2,5 pontos por dólar gasto; Sala VIP: Acesso disponível; Bônus de adesão: Programa Átomos - (Não há); Bônus de adesão: Livelo - (Não há); Programa de fidelidade: Programa Átomos; Programa de fidelidade: Livelo; Validade dos pontos: Programa Átomos - Não expiram; Validade dos pontos: Livelo - 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Anuidade isenta com gasto a partir de R$ 3,5 mil por mês ou R$ 20 mil em investimentos em renda fixa no C6 Bank; Anuidade: R$ 600 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
+      "text_for_embedding_compare": "C6 Mastercard Black\nEmissor: C6 Bank\nBandeira: Mastercard\nFaixa: Black\nAnuidade: R$ 600; isenção com R$ 5.000/mês no crédito\nGanhos: 2 pontos por dólar no crédito; pontos podem virar 1% de cashback\nSalas VIP: acesso gratuito e ilimitado à Sala VIP Mastercard Black em Guarulhos\nBenefícios: seguro viagem, proteção de bagagem, seguro de automóveis e Mastercard Concierge\nFonte: C6 Bank / Passageiro de Primeira / contexto informado pelo usuário",
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
-          "threshold_brl": 3500,
+          "threshold_brl": 5000,
           "period": "monthly",
           "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "Anuidade isenta com gasto a partir de R$ 3,5 mil por mês ou R$ 20 mil em investimentos em renda fixa no C6 Bank"
-        },
-        {
-          "category": "investment",
-          "threshold_brl": 20000,
-          "full_waiver": true,
-          "description": "Investimento mínimo",
-          "raw_text": "Anuidade isenta com gasto a partir de R$ 3,5 mil por mês ou R$ 20 mil em investimentos em renda fixa no C6 Bank"
+          "description": "Isenção de anuidade por gasto mensal no crédito",
+          "raw_text": "Anuidade pode ser zerada com gastos a partir de R$ 5.000 mensais no crédito."
         }
       ]
     },
@@ -26147,7 +26146,7 @@
     },
     {
       "card_stable_id": "btg-pactual-btg-pactual-opcao-avancada-79583395cd",
-      "display_name": "BTG Pactual Opção Avançada",
+      "display_name": "BTG Pactual Platinum",
       "issuer_raw": "BTG Pactual",
       "network_primary": "Mastercard",
       "variant_band": "Mastercard",
@@ -26166,7 +26165,7 @@
       "ranking_score": 158.4,
       "media": {
         "card_art_url": "/card-images/btg-pactual-btg-pactual-opcao-avancada.jpg",
-        "alt_text": "BTG Pactual Opção Avançada",
+        "alt_text": "BTG Pactual Platinum",
         "source_url": "https://passageirodeprimeira.com/cartao-de-credito/btg-opcao-avancada-2/",
         "remote_card_art_url": "https://passageirodeprimeira.com/wp-content/uploads/2022/04/passageirodeprimeira.com-btg-pactual-opcao-avancada-btg-pactual-avancado-230x146.jpg"
       },
@@ -26311,7 +26310,7 @@
         "segment:upper_mass",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "BTG Pactual Opção Avançada \nEmissor: BTG Pactual \nBandeira: Mastercard \nFaixa: Mastercard \nElegibilidade: unknown \nGanhos: 1,6 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 600 \nBenefícios (lista): Anuidade: R$ 600; Pontuação: 1,6 pontos por dólar gasto; Regra de pontuação: 1,6 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Isenta a cada R$10.000 em investimentos ou R$1.000 de gastos no cartão garantem R$10 de desconto na mensalidade, sempre priorizando o maior desconto para o cliente.; Anuidade: R$ 600; Carteira digital: Apple Pay, Google Pay, Samsung Pay, Garmin Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 2 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
+      "text_for_embedding_compare": "BTG Pactual Platinum \nEmissor: BTG Pactual \nBandeira: Mastercard \nFaixa: Mastercard \nElegibilidade: unknown \nGanhos: 1,6 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 600 \nBenefícios (lista): Anuidade: R$ 600; Pontuação: 1,6 pontos por dólar gasto; Regra de pontuação: 1,6 pontos por dólar gasto; Bônus de adesão: (Não há); Programa de fidelidade: Livelo; Validade dos pontos: 24 meses; Adicionais com benefícios: Sim; Isenção da anuidade: Isenta a cada R$10.000 em investimentos ou R$1.000 de gastos no cartão garantem R$10 de desconto na mensalidade, sempre priorizando o maior desconto para o cliente.; Anuidade: R$ 600; Carteira digital: Apple Pay, Google Pay, Samsung Pay, Garmin Pay; Precisa ser correntista: Sim; Adicionais gratuitos: 2 \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
           "category": "investment",
@@ -46685,21 +46684,21 @@
         "summary": "Salas VIP do Priority Pass - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano | Inter Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita (Os acompanhantes do titular, desde que possua cartão adicional, também têm acesso gratuito e ilimitado. É necessário emitir QR Code em nome do acompanhante.)"
       },
       "eligibility": {
-        "requirements_text": "unknown",
+        "requirements_text": "Relacionamento Inter Win disponível para clientes com investimentos acima de R$ 1 milhão no Inter. Elegibilidade final sujeita à análise do Inter.",
         "minimum_income_brl_best_estimate": "unknown",
-        "minimum_investment_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": 1000000,
         "requires_bank_account_claim": true,
-        "availability_status": "available",
+        "availability_status": "private_or_segment_restricted",
         "recommendation_blocking_unknowns": false,
-        "source_status": "not_structured"
+        "source_status": "official_current",
+        "hard_gate_fields": [
+          "minimum_investment_brl_best_estimate"
+        ]
       },
       "benefit_groups": {
         "fees": [
           "Anuidade: R$ 0",
-          "Adicionais com benefícios: Sim",
-          "Isenção da anuidade: Não há nenhuma publicada",
-          "Anuidade: R$ 0",
-          "Adicionais gratuitos: 6"
+          "Isenção da anuidade: sem anuidade publicada"
         ],
         "rewards": [
           "Pontuação: 0,5 ponto por real gasto",
@@ -46721,7 +46720,9 @@
           "Carteira digital: Apple Pay, Samsung Pay, Google Pay"
         ],
         "eligibility": [
-          "Precisa ser correntista: Sim"
+          "Investimento mínimo: acima de R$ 1.000.000 no Inter",
+          "Precisa ser correntista: Sim",
+          "Relacionamento sujeito à análise do Inter"
         ]
       },
       "characteristics": [
@@ -46814,12 +46815,6 @@
         },
         {
           "category": "fees",
-          "key": "fee_waiver",
-          "label": "Isenção da anuidade",
-          "value": "Não há nenhuma publicada"
-        },
-        {
-          "category": "fees",
           "key": "annual_fee_detail",
           "label": "Anuidade",
           "value": "R$ 0"
@@ -46841,13 +46836,31 @@
           "key": "free_additional_cards",
           "label": "Adicionais gratuitos",
           "value": "6"
+        },
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Isenção da anuidade",
+          "value": "Sem anuidade publicada"
+        },
+        {
+          "category": "eligibility",
+          "key": "minimum_investment",
+          "label": "Investimento mínimo",
+          "value": "Acima de R$ 1.000.000"
+        },
+        {
+          "category": "eligibility",
+          "key": "eligibility_rule",
+          "label": "Como ter",
+          "value": "Relacionamento Inter Win para clientes com investimentos acima de R$ 1 milhão no Inter"
         }
       ],
       "facets_numeric_or_special": {
         "annual_fee_brl_best_estimate": 0,
         "monthly_fee_brl_after_intro_official_hint": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
-        "minimum_investment_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": 1000000,
         "lounge_visits_per_year_hint": "unknown",
         "official_forex_or_iof_note": "unknown"
       },
@@ -46870,7 +46883,7 @@
         "travel:lounge",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "Inter Win Mastercard Black \nEmissor: Inter \nBandeira: Mastercard \nFaixa: Black \nElegibilidade: unknown \nGanhos: 0,5 ponto por real gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 0 \nSalas VIP / programa: Salas VIP do Priority Pass - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano | Inter Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita (Os acompanhantes do titular, desde que possua cartão adicional, também têm acesso gratuito e ilimitado. É necessário emitir QR Code em nome do acompanhante.) \nBenefícios (lista): Anuidade: R$ 0; Pontuação: 0,5 ponto por real gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Priority Pass; Programa de sala VIP: Sala VIP Mastercard Black; Programa de sala VIP: Inter Lounge; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: (Não há); Salas VIP: Salas VIP do Priority Pass - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano; Programa de fidelidade: Inter Loop \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
+      "text_for_embedding_compare": "Inter Win Mastercard Black \nEmissor: Inter \nBandeira: Mastercard \nFaixa: Black \nElegibilidade: investimentos acima de R$ 1 milhão no Inter \nGanhos: 0,5 ponto por real gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 0 \nSalas VIP / programa: Salas VIP do Priority Pass - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano | Inter Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita (Os acompanhantes do titular, desde que possua cartão adicional, também têm acesso gratuito e ilimitado. É necessário emitir QR Code em nome do acompanhante.) \nBenefícios (lista): Anuidade: R$ 0; Pontuação: 0,5 ponto por real gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Priority Pass; Programa de sala VIP: Sala VIP Mastercard Black; Programa de sala VIP: Inter Lounge; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: (Não há); Salas VIP: Salas VIP do Priority Pass - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano; Programa de fidelidade: Inter Loop \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
     },
     {
       "card_stable_id": "inter-inter-prime-mastercard-black-8f16c3a5b2",
@@ -46892,10 +46905,10 @@
       "ranking_position": 204,
       "ranking_score": 80.5,
       "media": {
-        "card_art_url": "/card-images/inter-inter-prime-mastercard-black.webp",
+        "card_art_url": "/card-images/inter-inter-mastercard-black.jpg",
         "alt_text": "Inter Prime Mastercard Black",
-        "source_url": "https://inter.co/pra-voce/cartoes/v2/c/",
-        "remote_card_art_url": "https://central-imagens.bancointer.com.br/images-without-small-versions/cartao-prime-cartoes/image.webp"
+        "source_url": "https://www.melhorescartoes.com.br/cartao-inter-guia-completo-dos-cartoes-de-credito-do-superapp.html",
+        "remote_card_art_url": "https://www.melhorescartoes.com.br/wp-content/uploads/2025/04/cartao-inter-mastercard-black.jpg"
       },
       "reward_return": {
         "has_cashlike_return": true,
@@ -46905,7 +46918,7 @@
           "miles",
           "investment"
         ],
-        "earning_summary": "1 ponto Loop a cada R$ 2,50 gastos no crédito; pontos podem virar cashback, milhas, desconto na fatura ou investimentos"
+        "earning_summary": "1 ponto Loop a cada R$ 2,50 gastos no crédito; pontos podem virar cashback, milhas, desconto na fatura ou cashback/investimentos"
       },
       "lounge_access": {
         "has_lounge_access": true,
@@ -46922,7 +46935,7 @@
         "summary": "Acesso a salas VIP. Melhores Cartões indica 6 acessos anuais ao Priority Pass para Inter Black desde 11/05/2025, além de salas Mastercard Black e Inter."
       },
       "eligibility": {
-        "requirements_text": "Assinar o plano anual do Duo Gourmet ou gastar em média R$ 7.000 em 4 faturas consecutivas. Liberação de crédito sujeita à análise.",
+        "requirements_text": "Assinar o plano anual Duo Gourmet (R$ 708/ano) ou gastar em média R$ 7.000 no crédito por 4 faturas consecutivas. Liberação de crédito sujeita à análise.",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
         "requires_bank_account_claim": true,
@@ -46933,16 +46946,26 @@
       },
       "fee_waiver_rules": [
         {
-          "category": "general",
+          "category": "monthly_spend",
+          "threshold_brl": 7000,
+          "period": "monthly",
           "full_waiver": true,
-          "description": "Sem anuidade",
-          "raw_text": "Inter Prime: Sem anuidade"
+          "description": "Gasto médio no crédito por 4 faturas consecutivas",
+          "raw_text": "Gastar R$ 7.000/mês em média por 4 faturas consecutivas"
+        },
+        {
+          "category": "subscription",
+          "threshold_brl": 708,
+          "period": "annual",
+          "full_waiver": false,
+          "description": "Plano anual Duo Gourmet como caminho pago de elegibilidade",
+          "raw_text": "Assinar Duo Gourmet anual por R$ 708/ano"
         }
       ],
       "benefit_groups": {
         "fees": [
-          "Anuidade: R$ 0",
-          "Isenção da anuidade: Sem anuidade"
+          "Custo anual: R$ 708 via Duo Gourmet",
+          "Isenção/caminho sem custo adicional: gasto médio de R$ 7.000/mês por 4 faturas consecutivas"
         ],
         "rewards": [
           "Pontuação: 1 ponto Loop a cada R$ 2,50 gastos no crédito",
@@ -46957,8 +46980,8 @@
           "Acessos Priority Pass: 6 por ano conforme guia Melhores Cartões para Inter Black desde 11/05/2025"
         ],
         "eligibility": [
-          "Como ter: Assinar Duo Gourmet anual",
-          "Como ter: Gasto médio de R$ 7.000 em 4 faturas consecutivas",
+          "Como ter: Assinar Duo Gourmet anual por R$ 708/ano",
+          "Como ter sem custo adicional: gasto médio de R$ 7.000 em 4 faturas consecutivas",
           "Precisa ser correntista: Sim"
         ],
         "lifestyle": [
@@ -46969,14 +46992,16 @@
         {
           "category": "fees",
           "key": "annual_fee",
-          "label": "Anuidade",
-          "value": "R$ 0"
+          "label": "Custo anual",
+          "value": "R$ 708",
+          "details": "Plano anual Duo Gourmet como caminho pago de elegibilidade"
         },
         {
           "category": "fees",
           "key": "fee_waiver",
-          "label": "Isenção da anuidade",
-          "value": "Sem anuidade"
+          "label": "Isenção / caminho sem custo adicional",
+          "value": "Gasto médio de R$ 7.000/mês por 4 faturas",
+          "details": "Alternativa ao plano Duo Gourmet anual de R$ 708"
         },
         {
           "category": "rewards",
@@ -47039,11 +47064,11 @@
           "category": "eligibility",
           "key": "eligibility_rule",
           "label": "Como ter",
-          "value": "Assinar Duo Gourmet anual ou gastar R$ 7.000/mês em média por 4 faturas"
+          "value": "Assinar Duo Gourmet anual por R$ 708/ano ou gastar R$ 7.000/mês em média por 4 faturas"
         }
       ],
       "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": 0,
+        "annual_fee_brl_best_estimate": 708,
         "monthly_fee_brl_after_intro_official_hint": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
@@ -47056,7 +47081,7 @@
         "lounge_unlimited_claim": false,
         "earn_points_or_miles": true,
         "earn_cashback": true,
-        "earn_investback": true,
+        "earn_investback": false,
         "reward_return_cashlike": true,
         "mentions_travel_insurance": false,
         "mentions_concierge": false,
@@ -47071,7 +47096,7 @@
         "rewards:cashback",
         "fees:zero_fee"
       ],
-      "text_for_embedding_compare": "Inter Prime Mastercard Black\nEmissor: Inter\nBandeira: Mastercard\nFaixa: Black\nElegibilidade: Assinar Duo Gourmet anual ou gastar em média R$ 7.000 em 4 faturas consecutivas\nGanhos: 1 ponto Loop a cada R$ 2,50 gastos no crédito; pontos podem virar cashback, milhas, desconto na fatura, dólares ou investimentos\nAnuidade: R$ 0; sem anuidade\nSalas VIP: Priority Pass, Sala VIP Mastercard Black e Inter Lounge; 6 acessos anuais ao Priority Pass conforme guia Melhores Cartões para Inter Black desde 11/05/2025\nVerificação automática: página oficial Inter + contexto Melhores Cartões"
+      "text_for_embedding_compare": "Inter Prime Mastercard Black\nEmissor: Inter\nBandeira: Mastercard\nFaixa: Black\nElegibilidade: assinar Duo Gourmet anual por R$ 708/ano ou gastar em média R$ 7.000 em 4 faturas consecutivas\nGanhos: 1 ponto Loop a cada R$ 2,50 gastos no crédito; pontos podem virar cashback, milhas, desconto na fatura, dólares ou investimentos\nAnuidade: R$ 0; sem anuidade\nSalas VIP: Priority Pass, Sala VIP Mastercard Black e Inter Lounge; 6 acessos anuais ao Priority Pass conforme guia Melhores Cartões para Inter Black desde 11/05/2025\nVerificação automática: página oficial Inter + contexto Melhores Cartões"
     },
     {
       "card_stable_id": "brb-brbcard-anajustra-visa-platinum-23991c8cff",
@@ -54796,11 +54821,10 @@
       "reward_return": {
         "has_cashlike_return": true,
         "subtypes": [
-          "investback",
           "cashback",
           "points"
         ],
-        "earning_summary": "0,5% de investback para faturas de R$ 1.500 a R$ 2.999,99; 1% de investback acima de R$ 3.000; pontos podem ser trocados na Livelo"
+        "earning_summary": "0,5% de cashback para faturas de R$ 1.500 a R$ 2.999,99; 1% de cashback acima de R$ 3.000; pontos podem ser trocados na Livelo"
       },
       "lounge_access": {
         "has_lounge_access": true,
@@ -54842,8 +54866,8 @@
           "Adicionais gratuitos: 6"
         ],
         "rewards": [
-          "Investback progressivo: 0,5% para faturas de R$ 1.500 a R$ 2.999,99",
-          "Investback progressivo: 1% para faturas acima de R$ 3.000",
+          "Cashback progressivo: 0,5% para faturas de R$ 1.500 a R$ 2.999,99",
+          "Cashback progressivo: 1% para faturas acima de R$ 3.000",
           "Pontos podem ser trocados na Livelo"
         ],
         "travel": [
@@ -54889,20 +54913,20 @@
         {
           "category": "rewards",
           "key": "earning_rate",
-          "label": "Investback",
-          "value": "0,5% a 1% de investback"
+          "label": "Cashback",
+          "value": "0,5% a 1% de cashback"
         },
         {
           "category": "rewards",
           "key": "earning_detail",
-          "label": "Investback",
+          "label": "Cashback",
           "value": "0,5%",
           "details": "Para faturas de R$ 1.500 a R$ 2.999,99"
         },
         {
           "category": "rewards",
           "key": "earning_detail",
-          "label": "Investback",
+          "label": "Cashback",
           "value": "1%",
           "details": "Para faturas acima de R$ 3.000"
         },
@@ -54977,7 +55001,7 @@
         "lounge_unlimited_claim": false,
         "earn_points_or_miles": true,
         "earn_cashback": true,
-        "earn_investback": true,
+        "earn_investback": false,
         "reward_return_cashlike": true,
         "mentions_travel_insurance": true,
         "mentions_concierge": true,
@@ -54989,240 +55013,11 @@
         "segment:premium",
         "travel:lounge",
         "rewards:cashback",
-        "rewards:investback",
         "rewards:points_or_miles",
         "fees:zero_fee",
         "eligibility:investment_required"
       ],
-      "text_for_embedding_compare": "Rico Visa Infinite Cashback\nEmissor: Rico\nBandeira: Visa\nFaixa: Infinite\nAnuidade: R$ 0; sem anuidade\nElegibilidade: R$ 1.000 investidos na Rico para solicitar, sujeito a análise\nGanhos: 0,5% de investback para faturas de R$ 1.500 a R$ 2.999,99; 1% acima de R$ 3.000; pontos podem ser trocados na Livelo\nSalas VIP: 4 acessos Dragon Pass/Visa Airport Companion por ano mediante R$ 3.000 em gastos mensais e R$ 50.000 em investimentos\nBenefícios: 6 adicionais gratuitos, Visa Infinite, seguro viagem, concierge, carteiras digitais\nFonte oficial: Rico; ranking/contexto: Melhores Cartões"
-    },
-    {
-      "card_stable_id": "rico-rico-one-visa-infinite-cashback-b64d0a2f8c",
-      "display_name": "Rico One Visa Infinite Cashback",
-      "issuer_raw": "Rico",
-      "network_primary": "Visa",
-      "variant_band": "Infinite",
-      "market_segment_guess": "upper_mass",
-      "product_kind": "named_credit_card_product",
-      "verification_cross_check_status": "official_issuer_with_trusted_ranking_context",
-      "verification_confidence_0_to_1": 0.93,
-      "primary_evidence_url": "https://www.rico.com.vc/produtos/cartao-de-credito/",
-      "application_url": "https://www.rico.com.vc/produtos/cartao-de-credito/",
-      "review_source_url": "https://www.melhorescartoes.com.br/melhores-cartoes-credito-sem-anuidade",
-      "source_label": "Link direto do cartão",
-      "review_source_label": "Melhores Cartões",
-      "source_tier": "official_issuer",
-      "source_url": "https://www.rico.com.vc/produtos/cartao-de-credito/",
-      "ranking_position": 8,
-      "ranking_score": 124,
-      "media": {
-        "card_art_url": "/card-images/rico-rico-one-visa-infinite-cashback.jpg",
-        "alt_text": "Rico One Visa Infinite Cashback",
-        "source_url": "https://www.melhorescartoes.com.br/melhores-cartoes-credito-sem-anuidade",
-        "remote_card_art_url": "https://imgmd.net/image/upload/c_limit%2Cw_400/v1/cartoes/81c29e03e17de1a3b29ec03e118969d3.jpg"
-      },
-      "reward_return": {
-        "has_cashlike_return": true,
-        "subtypes": [
-          "investback",
-          "cashback",
-          "points"
-        ],
-        "earning_summary": "0,5% de investback para faturas de R$ 1.500 a R$ 2.999,99; 1% de investback acima de R$ 3.000; pontos podem ser trocados na Livelo"
-      },
-      "lounge_access": {
-        "has_lounge_access": true,
-        "programs": [
-          "Dragon Pass",
-          "Visa Airport Companion"
-        ],
-        "unlimited": false,
-        "annual_visits": 2,
-        "guest_policy": "Ver política do Visa Airport Companion",
-        "complimentary_access_confirmed": true,
-        "policy_varies_by_issuer": false,
-        "summary": "Dragon Pass/Visa Airport Companion - 2 acessos por ano mediante R$ 3.000 em gastos mensais e R$ 15.000 em investimentos na Rico."
-      },
-      "eligibility": {
-        "requirements_text": "Invista pelo menos R$ 1.000 na Rico e peça o cartão. Elegibilidade sujeita às análises de cadastro, compliance e crédito.",
-        "minimum_income_brl_best_estimate": "unknown",
-        "minimum_investment_brl_best_estimate": 1000,
-        "requires_bank_account_claim": true,
-        "availability_status": "available",
-        "hard_gate_fields": [
-          "minimum_investment_brl_best_estimate"
-        ],
-        "recommendation_blocking_unknowns": false,
-        "source_status": "official_current"
-      },
-      "fee_waiver_rules": [
-        {
-          "category": "general",
-          "full_waiver": true,
-          "description": "Sem anuidade",
-          "raw_text": "Cartão sem anuidade"
-        }
-      ],
-      "benefit_groups": {
-        "fees": [
-          "Anuidade: R$ 0",
-          "Isenção da anuidade: Sem anuidade",
-          "Adicionais gratuitos: 6"
-        ],
-        "rewards": [
-          "Investback progressivo: 0,5% para faturas de R$ 1.500 a R$ 2.999,99",
-          "Investback progressivo: 1% para faturas acima de R$ 3.000",
-          "Pontos podem ser trocados na Livelo"
-        ],
-        "travel": [
-          "Sala VIP: 2 acessos Dragon Pass/Visa Airport Companion por ano",
-          "Condição para sala VIP: R$ 3.000 em gastos mensais e R$ 15.000 em investimentos",
-          "Benefícios Visa Infinite",
-          "Seguro viagem",
-          "Seguro para veículos de locadora",
-          "Concierge 24 horas",
-          "Visa Luxury Hotel Collection"
-        ],
-        "eligibility": [
-          "Investimento mínimo para solicitar: R$ 1.000",
-          "Precisa ser cliente Rico",
-          "Aprovação sujeita à análise de crédito, cadastro e compliance"
-        ],
-        "lifestyle": [
-          "Pagamento por aproximação",
-          "Apple Pay, Samsung Pay e Google Pay",
-          "Cartão virtual",
-          "Débito e crédito no mesmo cartão físico"
-        ]
-      },
-      "characteristics": [
-        {
-          "category": "fees",
-          "key": "annual_fee",
-          "label": "Anuidade",
-          "value": "R$ 0"
-        },
-        {
-          "category": "fees",
-          "key": "fee_waiver",
-          "label": "Isenção da anuidade",
-          "value": "Sem anuidade"
-        },
-        {
-          "category": "fees",
-          "key": "free_additional_cards",
-          "label": "Adicionais gratuitos",
-          "value": "6"
-        },
-        {
-          "category": "rewards",
-          "key": "earning_rate",
-          "label": "Investback",
-          "value": "0,5% a 1% de investback"
-        },
-        {
-          "category": "rewards",
-          "key": "earning_detail",
-          "label": "Investback",
-          "value": "0,5%",
-          "details": "Para faturas de R$ 1.500 a R$ 2.999,99"
-        },
-        {
-          "category": "rewards",
-          "key": "earning_detail",
-          "label": "Investback",
-          "value": "1%",
-          "details": "Para faturas acima de R$ 3.000"
-        },
-        {
-          "category": "rewards",
-          "key": "loyalty_program",
-          "label": "Programa de pontos",
-          "value": "Livelo"
-        },
-        {
-          "category": "travel",
-          "key": "lounge_access",
-          "label": "Sala VIP",
-          "value": "Acesso disponível",
-          "details": "Dragon Pass / Visa Airport Companion"
-        },
-        {
-          "category": "travel",
-          "key": "lounge_program",
-          "label": "Programa de sala VIP",
-          "value": "Dragon Pass"
-        },
-        {
-          "category": "travel",
-          "key": "lounge_program",
-          "label": "Programa de sala VIP",
-          "value": "Visa Airport Companion"
-        },
-        {
-          "category": "travel",
-          "key": "lounge_visits",
-          "label": "Acessos a sala VIP",
-          "value": "2 acessos por ano",
-          "details": "Mediante R$ 3.000 em gastos mensais e R$ 15.000 em investimentos"
-        },
-        {
-          "category": "travel",
-          "key": "travel_insurance",
-          "label": "Seguro viagem",
-          "value": "Disponível"
-        },
-        {
-          "category": "travel",
-          "key": "concierge",
-          "label": "Concierge",
-          "value": "Disponível"
-        },
-        {
-          "category": "eligibility",
-          "key": "minimum_investment",
-          "label": "Investimento mínimo",
-          "value": "R$ 1.000"
-        },
-        {
-          "category": "eligibility",
-          "key": "requires_account",
-          "label": "Precisa ser cliente Rico",
-          "value": "Sim"
-        }
-      ],
-      "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": 0,
-        "monthly_fee_brl_after_intro_official_hint": "unknown",
-        "minimum_income_brl_best_estimate": "unknown",
-        "minimum_investment_brl_best_estimate": 1000,
-        "lounge_visits_per_year_hint": 2,
-        "official_forex_or_iof_note": "unknown"
-      },
-      "facets_boolean": {
-        "has_any_lounge_claim": true,
-        "has_named_lounge_program": true,
-        "lounge_unlimited_claim": false,
-        "earn_points_or_miles": true,
-        "earn_cashback": true,
-        "earn_investback": true,
-        "reward_return_cashlike": true,
-        "mentions_travel_insurance": true,
-        "mentions_concierge": true,
-        "co_brand_name_detected": false,
-        "issuer_multi_entity_row": false,
-        "generic_article_not_single_product": false
-      },
-      "labels_for_filtering": [
-        "segment:premium",
-        "travel:lounge",
-        "rewards:cashback",
-        "rewards:investback",
-        "rewards:points_or_miles",
-        "fees:zero_fee",
-        "eligibility:investment_required"
-      ],
-      "text_for_embedding_compare": "Rico One Visa Infinite Cashback\nEmissor: Rico\nBandeira: Visa\nFaixa: Infinite\nAnuidade: R$ 0; sem anuidade\nElegibilidade: R$ 1.000 investidos na Rico para solicitar, sujeito a análise\nGanhos: 0,5% de investback para faturas de R$ 1.500 a R$ 2.999,99; 1% acima de R$ 3.000; pontos podem ser trocados na Livelo\nSalas VIP: 2 acessos Dragon Pass/Visa Airport Companion por ano mediante R$ 3.000 em gastos mensais e R$ 15.000 em investimentos\nBenefícios: 6 adicionais gratuitos, Visa Infinite, seguro viagem, concierge, carteiras digitais\nFonte oficial: Rico; ranking/contexto: Melhores Cartões"
+      "text_for_embedding_compare": "Rico Visa Infinite Cashback\nEmissor: Rico\nBandeira: Visa\nFaixa: Infinite\nAnuidade: R$ 0; sem anuidade\nElegibilidade: R$ 1.000 investidos na Rico para solicitar, sujeito a análise\nGanhos: 0,5% de cashback para faturas de R$ 1.500 a R$ 2.999,99; 1% acima de R$ 3.000; pontos podem ser trocados na Livelo\nSalas VIP: 4 acessos Dragon Pass/Visa Airport Companion por ano mediante R$ 3.000 em gastos mensais e R$ 50.000 em investimentos\nBenefícios: 6 adicionais gratuitos, Visa Infinite, seguro viagem, concierge, carteiras digitais\nFonte oficial: Rico; ranking/contexto: Melhores Cartões"
     }
   ]
 }

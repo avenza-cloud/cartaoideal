@@ -27,9 +27,9 @@ const SPENDING_CATEGORIES: { value: SpendingCategory; label: string }[] = [
 ];
 
 const TRAVEL_OPTIONS: { value: TravelFrequency; label: string; desc: string }[] = [
-  { value: "none", label: "Não viajo", desc: "Raramente ou nunca pego avião" },
-  { value: "occasional", label: "Às vezes", desc: "1 a 3 viagens por ano" },
-  { value: "frequent", label: "Frequente", desc: "Mais de 4 viagens por ano" },
+  { value: "none", label: "Não viajo", desc: "0 a 3 viagens por ano" },
+  { value: "occasional", label: "Às vezes", desc: "4 a 8 viagens por ano" },
+  { value: "frequent", label: "Frequente", desc: "8+ viagens por ano" },
 ];
 
 const INITIAL_PROFILE: UserProfile = {
@@ -253,7 +253,7 @@ export function FitQuiz() {
           </CardHeader>
           <CardContent className="space-y-3">
             {[
-              { key: "prefersCashback" as const, label: "Retorno financeiro", desc: "Cashback, investback ou crédito na fatura" },
+              { key: "prefersCashback" as const, label: "Retorno financeiro", desc: "Cashback ou crédito na fatura" },
               { key: "prefersPoints" as const, label: "Pontos e milhas", desc: "Acumular para resgatar em viagens" },
               { key: "wantsLounge" as const, label: "Acesso a lounge", desc: "Salas VIP em aeroportos" },
             ].map(({ key, label, desc }) => (

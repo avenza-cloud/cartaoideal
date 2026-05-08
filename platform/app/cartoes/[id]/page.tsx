@@ -91,10 +91,12 @@ export default async function CartaoDetailPage({ params }: PageProps) {
 
   // Lounge summary line for hero
   const loungeSummaryLine = hasLounge
-    ? card.lounge_access.unlimited
-      ? "Ilimitado"
-      : typeof card.lounge_access.annual_visits === "number"
-        ? `${card.lounge_access.annual_visits}×/ano`
+    ? typeof card.lounge_access.annual_visits === "number"
+      ? card.lounge_access.unlimited
+        ? `${card.lounge_access.annual_visits}×/ano + GRU`
+        : `${card.lounge_access.annual_visits}×/ano${loungeCondition(card.lounge_access.summary) ? " cond." : ""}`
+      : card.lounge_access.unlimited
+        ? "Ilimitado"
         : "Acesso VIP"
     : "Sem lounge";
 
@@ -208,6 +210,12 @@ export default async function CartaoDetailPage({ params }: PageProps) {
                     )}
                     {card.lounge_access.guest_policy !== "unknown" && (
                       <DataRow label="Acompanhantes" value={card.lounge_access.guest_policy} />
+                    )}
+                    {loungeCondition(card.lounge_access.summary) && (
+                      <FullTextRow
+                        label="Condição"
+                        value={loungeCondition(card.lounge_access.summary)!}
+                      />
                     )}
                   </>
                 )
@@ -351,65 +359,90 @@ function FullTextRow({ label, value }: { label: string; value: string }) {
   );
 }
 
+function loungeCondition(summary: string): string | null {
+  const match = summary.match(/\(([^)]*(?:mediante|gasto|fatura|compras|invest|necessário|necessario|acima|partir)[^)]*)\)|(?:mediante|com|para ter direito)[^.]+/i);
+  return match?.[1] ?? match?.[0] ?? null;
+}
+
 function formatRuleAmount(rule: FeeWaiverRule) {
+  if (rule.category === "general" && rule.full_waiver) return null;
   if (typeof rule.threshold_brl !== "number") return "Sem limite informado";
-  const suffix = rule.period === "monthly" ? "/mês" : "";
+  const suffix = rule.period === "monthly" ? "/mês" : rule.period === "annual" ? "/ano" : "";
   return `R$${rule.threshold_brl.toLocaleString("pt-BR")}${suffix}`;
 }
 
 function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
   const ordered = [...rules].sort((a, b) => {
-    const order = { monthly_spend: 0, investment: 1, cashback: 2, miles: 3, general: 4 };
+    const order = { monthly_spend: 0, investment: 1, subscription: 2, cashback: 3, miles: 4, general: 5 };
     return order[a.category] - order[b.category];
   });
+  const hasOnlyGeneralFullWaiver =
+    ordered.length === 1 && ordered[0].category === "general" && ordered[0].full_waiver;
 
   return (
     <div className="rounded-xl border bg-emerald-500/5 p-2.5">
       <div className="mb-2 flex items-center justify-between gap-2">
         <span className="text-[11px] font-medium text-emerald-500">Isenção da anuidade</span>
         <span className="rounded-full border border-emerald-500/25 px-2 py-0.5 text-[10px] text-emerald-500">
-          {ordered.some((rule) => rule.full_waiver) ? "Isenção total" : "Condição"}
+          {hasOnlyGeneralFullWaiver
+            ? "Sem anuidade"
+            : ordered.every((rule) => rule.full_waiver)
+              ? "Isenção total"
+              : "Condições"}
         </span>
       </div>
-      <div className="grid gap-2 min-[420px]:grid-cols-2">
-        {ordered.map((rule, index) => {
+      {hasOnlyGeneralFullWaiver && (
+        <p className="rounded-lg border bg-background/50 px-2.5 py-2 text-xs font-medium leading-relaxed">
+          {ordered[0].description}
+        </p>
+      )}
+      {!hasOnlyGeneralFullWaiver && (
+        <div className="grid gap-2 min-[420px]:grid-cols-2">
+          {ordered.map((rule, index) => {
           const isSpend = rule.category === "monthly_spend";
           const isInvestment = rule.category === "investment";
+          const isSubscription = rule.category === "subscription";
+          const amount = formatRuleAmount(rule);
           const Icon = isSpend
             ? ReceiptText
             : isInvestment
               ? WalletCards
+              : isSubscription
+                ? CreditCard
               : rule.category === "cashback"
                 ? Coins
                 : rule.category === "miles"
-                  ? Plane
-                  : CreditCard;
+                    ? Plane
+                    : CreditCard;
           const label = isSpend
             ? "Gasto mensal"
             : isInvestment
               ? "Investimento"
+              : isSubscription
+                ? "Assinatura"
               : rule.category === "cashback"
                 ? "Cashback"
                 : rule.category === "miles"
-                  ? "Milhas"
-                  : "Geral";
-          return (
-            <div
-              key={`${rule.category}-${rule.threshold_brl ?? "general"}-${index}`}
-              className="rounded-lg border bg-background/50 px-2.5 py-2"
-            >
-              <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                <Icon className="h-3.5 w-3.5" />
-                {label}
+                    ? "Milhas"
+                    : "Geral";
+            return (
+              <div
+                key={`${rule.category}-${rule.threshold_brl ?? "general"}-${index}`}
+                className="rounded-lg border bg-background/50 px-2.5 py-2"
+              >
+                <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                  <Icon className="h-3.5 w-3.5" />
+                  {label}
+                </div>
+                {amount && <p className="mt-1 font-mono text-sm font-semibold">{amount}</p>}
+                <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
+                  {rule.description}
+                </p>
               </div>
-              <p className="mt-1 font-mono text-sm font-semibold">{formatRuleAmount(rule)}</p>
-              <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
-                {rule.description}
-              </p>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

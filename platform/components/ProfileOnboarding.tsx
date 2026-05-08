@@ -10,19 +10,18 @@ import { cn } from "@/lib/utils";
 import { formatBrlInput, parseBrlInput } from "@/lib/brl";
 
 type TravelFrequency = UserProfile["travelFrequency"];
-type RewardPref = "cost_benefit" | "cashback" | "points" | "investback" | "lounge" | "travel";
+type RewardPref = "cost_benefit" | "cashback" | "points" | "lounge" | "travel";
 
 const REWARD_OPTIONS: { value: RewardPref; label: string }[] = [
   { value: "cost_benefit", label: "Melhor custo-benefício" },
   { value: "cashback", label: "Cashback" },
   { value: "points", label: "Pontos e milhas" },
-  { value: "investback", label: "Investback" },
   { value: "lounge", label: "Lounge" },
   { value: "travel", label: "Viagens" },
 ];
 
 const TRAVEL_OPTIONS: { value: TravelFrequency; label: string }[] = [
-  { value: "none", label: "Raramente" },
+  { value: "none", label: "Não viajo" },
   { value: "occasional", label: "Às vezes" },
   { value: "frequent", label: "Frequente" },
 ];
@@ -114,7 +113,7 @@ export function ProfileOnboarding() {
       preferences: {
         prefersCashback: !isCostBenefit && rewards.has("cashback"),
         prefersPoints: !isCostBenefit && rewards.has("points"),
-        prefersInvestback: !isCostBenefit && rewards.has("investback"),
+        prefersInvestback: false,
         wantsLounge: !isCostBenefit && rewards.has("lounge"),
       },
     });

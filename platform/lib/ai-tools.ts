@@ -27,9 +27,9 @@ function toToolProfile(profile: UserProfile) {
     avgInvestedBrl: profile.avgInvestedBrl,
     monthlyInternationalSpendBrl: profile.monthlyInternationalSpendBrl ?? 0,
     travelFrequency: profile.travelFrequency,
-    prefersCashback: profile.preferences.prefersCashback,
+    prefersCashback: profile.preferences.prefersCashback || profile.preferences.prefersInvestback,
     prefersPoints: profile.preferences.prefersPoints,
-    prefersInvestback: profile.preferences.prefersInvestback,
+    prefersInvestback: false,
     wantsLounge: profile.preferences.wantsLounge,
   };
 }
@@ -57,9 +57,11 @@ function toUserProfile(
     spendingCategories: [],
     preferences: {
       wantsLounge: saved?.wantsLounge ?? input?.wantsLounge ?? false,
-      prefersCashback: saved?.prefersCashback ?? input?.prefersCashback ?? false,
+      prefersCashback:
+        saved?.prefersCashback ??
+        Boolean(input?.prefersCashback || input?.prefersInvestback),
       prefersPoints: saved?.prefersPoints ?? input?.prefersPoints ?? false,
-      prefersInvestback: saved?.prefersInvestback ?? input?.prefersInvestback ?? false,
+      prefersInvestback: false,
     },
   };
 }
@@ -118,7 +120,7 @@ export function createCardTools(savedProfile?: UserProfile | null) {
       rewardReturn: z
         .boolean()
         .optional()
-        .describe("Somente cartões com retorno financeiro, como cashback ou investback"),
+        .describe("Somente cartões com retorno financeiro, como cashback"),
       points: z.boolean().optional().describe("Somente cartões com pontos ou milhas"),
       zeroFee: z.boolean().optional().describe("Somente cartões sem anuidade"),
       maxFee: z.number().optional().describe("Anuidade máxima em reais"),
@@ -336,7 +338,7 @@ export function createCardTools(savedProfile?: UserProfile | null) {
         .describe("Frequência de viagens"),
       prefersCashback: z.boolean().default(false),
       prefersPoints: z.boolean().default(false),
-      prefersInvestback: z.boolean().default(false),
+      prefersInvestback: z.boolean().default(false).describe("Legado: trate como cashback."),
       wantsLounge: z.boolean().default(false),
     }),
     execute: async (input) => {

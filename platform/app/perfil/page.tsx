@@ -24,19 +24,18 @@ function cardMatchScore(card: (typeof CLIENT_CARD_OPTIONS)[number], query: strin
 }
 
 type TravelFrequency = UserProfile["travelFrequency"];
-type RewardPref = "cost_benefit" | "cashback" | "points" | "investback" | "lounge";
+type RewardPref = "cost_benefit" | "cashback" | "points" | "lounge";
 
 const TRAVEL_OPTIONS: { value: TravelFrequency; label: string; desc: string }[] = [
-  { value: "none", label: "Não viajo", desc: "Viagens nacionais ocasionais" },
-  { value: "occasional", label: "Às vezes", desc: "1–4 viagens internacionais/ano" },
-  { value: "frequent", label: "Frequente", desc: "5+ viagens internacionais/ano" },
+  { value: "none", label: "Não viajo", desc: "0–3 viagens por ano" },
+  { value: "occasional", label: "Às vezes", desc: "4–8 viagens por ano" },
+  { value: "frequent", label: "Frequente", desc: "8+ viagens por ano" },
 ];
 
 const REWARD_OPTIONS: { value: RewardPref; label: string; desc: string }[] = [
   { value: "cost_benefit", label: "Melhor custo-benefício", desc: "Maximize o retorno líquido total" },
   { value: "cashback", label: "Cashback", desc: "Dinheiro de volta nas compras" },
   { value: "points", label: "Pontos / milhas", desc: "Acumule para resgatar viagens" },
-  { value: "investback", label: "Investback", desc: "Retorno direto no investimento" },
   { value: "lounge", label: "Lounge VIP", desc: "Acesso a salas em aeroportos" },
 ];
 
@@ -83,9 +82,10 @@ export default function PerfilPage() {
       setCardQuery(profile.currentPrimaryCardName ?? "");
     }
     const prefs = new Set<RewardPref>();
-    if (profile.preferences.prefersCashback) prefs.add("cashback");
+    if (profile.preferences.prefersCashback || profile.preferences.prefersInvestback) {
+      prefs.add("cashback");
+    }
     if (profile.preferences.prefersPoints) prefs.add("points");
-    if (profile.preferences.prefersInvestback) prefs.add("investback");
     if (profile.preferences.wantsLounge) prefs.add("lounge");
     if (prefs.size === 0) prefs.add("cost_benefit");
     setRewards(prefs);
@@ -117,7 +117,7 @@ export default function PerfilPage() {
       preferences: {
         prefersCashback: !isCostBenefit && rewards.has("cashback"),
         prefersPoints: !isCostBenefit && rewards.has("points"),
-        prefersInvestback: !isCostBenefit && rewards.has("investback"),
+        prefersInvestback: false,
         wantsLounge: !isCostBenefit && rewards.has("lounge"),
       },
     });

@@ -44,11 +44,7 @@ export function networkColor(network: string): string {
 
 export function rewardReturnLabel(reward: RewardReturn): string {
   const subtypes = reward.subtypes ?? [];
-  if (subtypes.includes("cashback") && subtypes.includes("investback")) {
-    return "Cashback + investback";
-  }
-  if (subtypes.includes("investback")) return "Investback";
-  if (subtypes.includes("cashback")) return "Cashback";
+  if (subtypes.includes("cashback") || subtypes.includes("investback")) return "Cashback";
   if (subtypes.includes("statement_credit")) return "Crédito na fatura";
   return reward.earning_summary === "unknown" ? "Sem retorno financeiro" : reward.earning_summary;
 }
@@ -56,9 +52,15 @@ export function rewardReturnLabel(reward: RewardReturn): string {
 export function loungeSummary(lounge: LoungeAccess): string {
   if (!lounge.has_lounge_access) return "Sem sala VIP";
   if (lounge.policy_varies_by_issuer) return "Lounge com política variável";
-  if (lounge.unlimited) return "Acessos ilimitados";
+  const conditional = /(mediante|gasto|fatura|compras|invest|necessário|necessario|acima|partir)/i.test(
+    lounge.summary ?? ""
+  );
   if (typeof lounge.annual_visits === "number") {
-    return `${lounge.annual_visits} acesso${lounge.annual_visits === 1 ? "" : "s"}`;
+    const suffix = conditional ? " cond." : "";
+    return lounge.unlimited
+      ? `${lounge.annual_visits} acesso${lounge.annual_visits === 1 ? "" : "s"} + GRU`
+      : `${lounge.annual_visits} acesso${lounge.annual_visits === 1 ? "" : "s"}${suffix}`;
   }
+  if (lounge.unlimited) return "Acessos ilimitados";
   return "Acesso a sala VIP";
 }

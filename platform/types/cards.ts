@@ -87,6 +87,7 @@ export interface CardCharacteristic {
 export type FeeWaiverRuleCategory =
   | "monthly_spend"
   | "investment"
+  | "subscription"
   | "cashback"
   | "miles"
   | "general";
@@ -96,6 +97,7 @@ export interface FeeWaiverRule {
   threshold_brl?: number;
   period?: "monthly" | "annual";
   full_waiver: boolean;
+  discount_brl?: number;
   description: string;
   raw_text: string;
 }

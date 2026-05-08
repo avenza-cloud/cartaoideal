@@ -8,6 +8,7 @@ export interface FeeWaiverBadge {
 const BADGE_LABELS: Record<FeeWaiverRuleCategory, string> = {
   monthly_spend: "Isento por gasto",
   investment: "Isento por investimento",
+  subscription: "Isento por assinatura",
   cashback: "Isento por cashback",
   miles: "Isento por milhas",
   general: "Sem anuidade",
@@ -17,11 +18,12 @@ export function feeWaiverBadgesFromRules(rules: FeeWaiverRule[] = []): FeeWaiver
   const order: FeeWaiverRuleCategory[] = [
     "monthly_spend",
     "investment",
+    "subscription",
     "cashback",
     "miles",
     "general",
   ];
-  const categories = new Set(rules.map((rule) => rule.category));
+  const categories = new Set(rules.filter((rule) => rule.full_waiver).map((rule) => rule.category));
   return order
     .filter((category) => categories.has(category))
     .map((category) => ({ key: category, label: BADGE_LABELS[category] }));

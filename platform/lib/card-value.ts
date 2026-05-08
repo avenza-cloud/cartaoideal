@@ -265,7 +265,7 @@ function parseCashlikeRates(card: CardFacet): {
       domesticRate: null,
       internationalRate: null,
       ignoredCategorySpecific,
-      note: "Taxa exata de cashback/investback não estruturada; usado retorno conservador de 1%.",
+      note: "Taxa exata de cashback não estruturada; usado retorno conservador de 1%.",
     };
   }
   return { generalRate: 0, domesticRate: null, internationalRate: null, ignoredCategorySpecific };
@@ -367,6 +367,32 @@ function parseInvestmentThreshold(text: string): number | null {
   );
 }
 
+function parseAmountBeforeKeyword(text: string, keywordPattern: string): number | null {
+  const normalized = normalizeText(text);
+  const match = new RegExp(
+    `r\\$\\s*(\\d[\\d.]*,\\d{2}|\\d[\\d.]*)(?:\\s*(milhoes|milhao|mil))?[^.;|]{0,80}${keywordPattern}`
+  ).exec(normalized);
+  if (!match?.[1]) return null;
+  const parsed = Number(match[1].replace(/\./g, "").replace(",", "."));
+  const suffix = match[2] ?? "";
+  const multiplier = /milh/.test(suffix) ? 1_000_000 : /mil/.test(suffix) ? 1_000 : 1;
+  return Number.isFinite(parsed) ? parsed * multiplier : null;
+}
+
+function parseSpendThresholdAnyOrder(text: string): number | null {
+  return (
+    parseAmountBeforeKeyword(text, "(?:gasto|fatura|compras|despesas)") ??
+    parseSpendThreshold(text)
+  );
+}
+
+function parseInvestmentThresholdAnyOrder(text: string): number | null {
+  return (
+    parseAmountBeforeKeyword(text, "(?:invest|patrimonio|aplicac)") ??
+    parseInvestmentThreshold(text)
+  );
+}
+
 function computeEffectiveAnnualFee(
   card: CardFacet,
   profile: UserProfile
@@ -441,6 +467,29 @@ function computeEffectiveAnnualFee(
     }
   }
 
+  const monthlyFee = baseFee / 12;
+  for (const rule of structuredRules) {
+    if (
+      rule.category !== "monthly_spend" ||
+      rule.full_waiver ||
+      typeof rule.threshold_brl !== "number" ||
+      typeof rule.discount_brl !== "number" ||
+      rule.period !== "monthly"
+    ) {
+      continue;
+    }
+
+    const discountSteps = Math.floor(profile.avgMonthlySpendBrl / rule.threshold_brl);
+    if (discountSteps <= 0) continue;
+
+    const discountedMonthlyFee = Math.max(0, monthlyFee - discountSteps * rule.discount_brl);
+    const discountedAnnualFee = discountedMonthlyFee * 12;
+    if (discountedAnnualFee < effectiveFee) {
+      effectiveFee = discountedAnnualFee;
+      notes.push("Desconto progressivo de mensalidade aplicado por regra estruturada de gasto.");
+    }
+  }
+
   const reason =
     effectiveFee < baseFee
       ? `Anuidade efetiva de R$${effectiveFee.toLocaleString("pt-BR")} após regra estruturada.`
@@ -487,21 +536,87 @@ function effectiveIofRate(card: CardFacet, assumptions: CardValueAssumptions): n
   return assumptions.iof;
 }
 
-function estimateLoungeVisits(profile: UserProfile, card: CardFacet): number {
-  if (!card.lounge_access.has_lounge_access) return 0;
-  const baseVisits =
-    profile.travelFrequency === "frequent"
+function estimateAnnualTravelDemand(profile: UserProfile): number {
+  if (profile.travelFrequency === "frequent") return 10;
+  if (profile.travelFrequency === "occasional") return 6;
+  return 1;
+}
+
+function fallbackAnnualLoungeCap(card: CardFacet): { visits: number; note: string } {
+  const variant = normalizeText(card.variant_band);
+  const segment = card.market_segment_guess;
+  const visits =
+    /black|infinite|centurion/.test(variant) || segment === "ultra_premium" || segment === "premium"
       ? 2
-      : profile.travelFrequency === "occasional"
-        ? 0.5
-        : 0;
-  const requestedBoost = profile.preferences.wantsLounge ? 0.5 : 0;
-  const monthlyDemand = baseVisits + requestedBoost;
-  if (card.lounge_access.unlimited) return monthlyDemand;
+      : 1;
+  return {
+    visits,
+    note: `Acessos VIP sem limite anual estruturado; usado fallback conservador de ${visits} acesso${visits === 1 ? "" : "s"}/ano para ${card.variant_band}.`,
+  };
+}
+
+function estimateAnnualLoungeVisits(
+  profile: UserProfile,
+  card: CardFacet
+): { visits: number; note?: string } {
+  if (!card.lounge_access.has_lounge_access) return { visits: 0 };
+
+  const demand = estimateAnnualTravelDemand(profile);
   if (typeof card.lounge_access.annual_visits === "number") {
-    return Math.min(monthlyDemand, card.lounge_access.annual_visits / 12);
+    return { visits: Math.min(demand, card.lounge_access.annual_visits) };
   }
-  return Math.min(monthlyDemand, 0.5);
+
+  if (card.lounge_access.unlimited) return { visits: demand };
+
+  const fallback = fallbackAnnualLoungeCap(card);
+  return {
+    visits: Math.min(demand, fallback.visits),
+    note: fallback.note,
+  };
+}
+
+function travelBenefitDemandFactor(profile: UserProfile): number {
+  return estimateAnnualTravelDemand(profile) / 10;
+}
+
+function loungeConditionText(card: CardFacet): string {
+  return [
+    card.lounge_access.summary,
+    ...characteristicsByKey(card, "lounge_visits").map(
+      (item) => `${item.value} ${item.details ?? ""}`
+    ),
+  ].join(" ");
+}
+
+function hasLoungeGate(card: CardFacet, profile: UserProfile): { allowed: boolean; note?: string } {
+  if (!card.lounge_access.has_lounge_access) return { allowed: false };
+
+  const text = loungeConditionText(card);
+  const spendThreshold = parseSpendThresholdAnyOrder(text);
+  const investmentThreshold = parseInvestmentThresholdAnyOrder(text);
+  const hasGate = spendThreshold !== null || investmentThreshold !== null;
+  if (!hasGate) return { allowed: true };
+
+  const passesSpend =
+    spendThreshold === null || profile.avgMonthlySpendBrl >= spendThreshold;
+  const passesInvestment =
+    investmentThreshold === null || profile.avgInvestedBrl >= investmentThreshold;
+
+  if (passesSpend && passesInvestment) return { allowed: true };
+
+  const missing = [
+    spendThreshold !== null && !passesSpend
+      ? `gasto mensal de ${formatBrl(spendThreshold)}`
+      : null,
+    investmentThreshold !== null && !passesInvestment
+      ? `investimento de ${formatBrl(investmentThreshold)}`
+      : null,
+  ].filter(Boolean);
+
+  return {
+    allowed: false,
+    note: `Benefício de sala VIP não valorizado porque exige ${missing.join(" e ")}.`,
+  };
 }
 
 function normalizeScore(netMonthly: number, eligible: boolean): number {
@@ -587,13 +702,17 @@ export function scoreCardValue(
   const rewardChoice =
     pointsRewardMonthly >= cashlikeRewardMonthly ? "milhas/pontos" : "retorno financeiro";
 
-  const loungeValue =
-    estimateLoungeVisits(profile, card) * assumptions.loungeVisitValueBrl;
+  const loungeGate = hasLoungeGate(card, profile);
+  const annualLounge = loungeGate.allowed
+    ? estimateAnnualLoungeVisits(profile, card)
+    : { visits: 0 };
+  const loungeValue = (annualLounge.visits * assumptions.loungeVisitValueBrl) / 12;
+  const travelDemandFactor = travelBenefitDemandFactor(profile);
   const insuranceValue = card.facets_boolean.mentions_travel_insurance
-    ? assumptions.travelInsuranceMonthlyValueBrl
+    ? assumptions.travelInsuranceMonthlyValueBrl * travelDemandFactor
     : 0;
   const conciergeValue = card.facets_boolean.mentions_concierge
-    ? assumptions.conciergeMonthlyValueBrl
+    ? assumptions.conciergeMonthlyValueBrl * travelDemandFactor
     : 0;
   const intangibleMonthlyValue = loungeValue + insuranceValue + conciergeValue;
 
@@ -619,6 +738,8 @@ export function scoreCardValue(
     ...(pointsRates.note ? [pointsRates.note] : []),
     ...(mrNote ? [mrNote] : []),
     ...(cashlike.note ? [cashlike.note] : []),
+    ...(loungeGate.note ? [loungeGate.note] : []),
+    ...(annualLounge.note ? [annualLounge.note] : []),
     ...(spread.note ? [spread.note] : []),
   ];
 
@@ -640,7 +761,8 @@ export function scoreCardValue(
       "intangibles",
       "Benefícios valorizados",
       intangibleMonthlyValue,
-      "Sala VIP, seguro viagem e concierge convertidos em custo evitado mensal."
+      `Sala VIP (${annualLounge.visits.toLocaleString("pt-BR", { maximumFractionDigits: 1 })} acessos/ano × R$${assumptions.loungeVisitValueBrl} ÷ 12), seguro viagem (R$${roundMoney(insuranceValue)}/mês) e concierge (R$${roundMoney(conciergeValue)}/mês) ponderados pela frequência de viagem.`,
+      loungeGate.note ?? annualLounge.note
     ),
     makeComponent(
       "fee",

@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import { formatBrlInput, parseBrlInput } from "@/lib/brl";
 
 type TravelFrequency = UserProfile["travelFrequency"];
-type RewardPref = "cashback" | "points" | "investback" | "lounge";
+type RewardPref = "cashback" | "points" | "lounge";
 
 const TRAVEL_OPTIONS: { value: TravelFrequency; label: string }[] = [
   { value: "none", label: "Não viajo" },
@@ -20,7 +20,6 @@ const TRAVEL_OPTIONS: { value: TravelFrequency; label: string }[] = [
 const REWARD_OPTIONS: { value: RewardPref; label: string }[] = [
   { value: "cashback", label: "Cashback" },
   { value: "points", label: "Pontos/milhas" },
-  { value: "investback", label: "Investback" },
   { value: "lounge", label: "Lounge" },
 ];
 
@@ -56,7 +55,7 @@ export function ProfileQuickSetup() {
       preferences: {
         prefersCashback: rewards.has("cashback"),
         prefersPoints: rewards.has("points"),
-        prefersInvestback: rewards.has("investback"),
+        prefersInvestback: false,
         wantsLounge: rewards.has("lounge"),
       },
     });

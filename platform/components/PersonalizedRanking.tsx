@@ -1,15 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useProfileStore } from "@/lib/store";
+import {
+  CLIENT_CARD_FACETS,
+  getClientCardById,
+  resolveClientCardByName,
+} from "@/lib/client-card-options";
 import { feeTier, feeNote, FEE_TIER_COLOR, FEE_TIER_LABEL } from "@/lib/roi";
 import { formatFee } from "@/lib/formatting";
 import { feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
 import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
+import { scoreCardValue, scoreCardValues } from "@/lib/card-value";
+import { useValueAssumptions } from "@/lib/use-value-assumptions";
 import { Button } from "@/components/ui/button";
 import { CreditCard, ListFilter } from "lucide-react";
-import type { CardScore, CardValueScore } from "@/types/cards";
+import type { CardFacet, CardScore, CardValueScore } from "@/types/cards";
 
 interface TopCard {
   id: string;
@@ -30,6 +37,20 @@ function moneyPerMonth(value: number) {
   return `${sign}R$${Math.abs(value).toLocaleString("pt-BR", {
     maximumFractionDigits: 0,
   })}/mês`;
+}
+
+function scoreTextColor(score: number): string {
+  if (score >= 90) return "text-emerald-500";
+  if (score >= 75) return "text-sky-500";
+  if (score >= 50) return "text-amber-500";
+  return "text-rose-500";
+}
+
+function scoreBarColor(score: number): string {
+  if (score >= 90) return "bg-emerald-500";
+  if (score >= 75) return "bg-sky-500";
+  if (score >= 50) return "bg-amber-500";
+  return "bg-rose-500";
 }
 
 function CardRow({
@@ -107,7 +128,11 @@ function CardRow({
       </div>
 
       <div className="flex flex-col items-end gap-1 text-right">
-        <span className={`text-[11px] font-semibold font-mono ${tierColor}`}>
+        <span
+          className={`text-[11px] font-semibold font-mono ${
+            valueScore ? scoreTextColor(valueScore.score0To100) : tierColor
+          }`}
+        >
           {valueScore ? `${valueScore.score0To100}/100` : tierLabel}
         </span>
         <span className="font-mono text-[10px] text-muted-foreground">{formatFee(anuidade)}</span>
@@ -123,7 +148,7 @@ function CardRow({
         {scoreBar !== undefined && (
           <div className="h-1 w-14 overflow-hidden rounded-full bg-muted">
             <div
-              className="h-full rounded-full bg-foreground/60"
+              className={`h-full rounded-full ${scoreBarColor(scoreBar)}`}
               style={{ width: `${scoreBar}%` }}
             />
           </div>
@@ -150,8 +175,96 @@ function SkeletonRows({ n = 6 }: { n?: number }) {
   );
 }
 
+function CurrentCardSummary({
+  card,
+  score,
+  rank,
+  spend,
+}: {
+  card: CardFacet;
+  score?: CardValueScore;
+  rank?: number;
+  spend: number;
+}) {
+  const tier = feeTier(card, spend);
+  const note = feeNote(card, spend);
+  const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
+
+  return (
+    <Link
+      href={`/cartoes/${card.card_stable_id}`}
+      className="mb-3 grid grid-cols-[28px_56px_minmax(0,1fr)] items-center gap-3 rounded-2xl border bg-background/45 p-3 transition-colors hover:bg-muted/35 sm:grid-cols-[28px_64px_minmax(0,1fr)_auto]"
+    >
+      <span className="font-mono text-[11px] text-muted-foreground">
+        {rank ? `#${rank}` : "—"}
+      </span>
+
+      <div className="flex h-12 items-center justify-center rounded-xl border bg-zinc-950">
+        {hasImage ? (
+          <img
+            src={card.media.card_art_url}
+            alt={card.media.alt_text}
+            className="max-h-9 max-w-[48px] object-contain"
+            loading="lazy"
+          />
+        ) : (
+          <CreditCard className="h-4 w-4 text-muted-foreground" />
+        )}
+      </div>
+
+      <div className="min-w-0">
+        <p className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+          Seu cartão atual
+        </p>
+        <p className="truncate text-sm font-semibold">{card.display_name}</p>
+        <p className="mt-0.5 truncate text-[11px] text-muted-foreground">{note}</p>
+        {score && (
+          <p className="mt-1 text-[10px] text-muted-foreground/75">
+            Retorno {moneyPerMonth(score.grossRewardMonthlyBrl)} · Benefícios{" "}
+            {moneyPerMonth(score.intangibleMonthlyValueBrl)} · Anuidade{" "}
+            {moneyPerMonth(-score.effectiveMonthlyFeeBrl)}
+          </p>
+        )}
+      </div>
+
+      <div className="col-span-3 flex items-end justify-between gap-3 sm:col-span-1 sm:flex-col sm:justify-center sm:text-right">
+        <div className="flex flex-col items-end gap-1 text-right">
+          <span
+            className={`text-[11px] font-semibold font-mono ${
+              score ? scoreTextColor(score.score0To100) : FEE_TIER_COLOR[tier]
+            }`}
+          >
+            {score ? `${score.score0To100}/100` : FEE_TIER_LABEL[tier]}
+          </span>
+          <span className="font-mono text-[10px] text-muted-foreground">
+            {formatFee(card.facets_numeric_or_special.annual_fee_brl_best_estimate)}
+          </span>
+          {score && (
+            <span
+              className={`font-mono text-[10px] ${
+                score.netMonthlyValueBrl >= 0 ? "text-emerald-500" : "text-rose-500"
+              }`}
+            >
+              {moneyPerMonth(score.netMonthlyValueBrl)}
+            </span>
+          )}
+          {score && (
+            <div className="h-1 w-14 overflow-hidden rounded-full bg-muted">
+              <div
+                className={`h-full rounded-full ${scoreBarColor(score.score0To100)}`}
+                style={{ width: `${score.score0To100}%` }}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    </Link>
+  );
+}
+
 export function PersonalizedRanking() {
   const { profile, onboardingDone, resetOnboarding } = useProfileStore();
+  const assumptions = useValueAssumptions();
   const [results, setResults] = useState<CardScore[] | null>(null);
   const [topCards, setTopCards] = useState<TopCard[] | null>(null);
   const [loading, setLoading] = useState(false);
@@ -177,10 +290,46 @@ export function PersonalizedRanking() {
       .finally(() => setLoading(false));
   }, [profile, onboardingDone]);
 
+  const currentCard =
+    profile?.currentPrimaryCardId
+      ? getClientCardById(profile.currentPrimaryCardId)
+      : profile?.currentPrimaryCardName
+        ? resolveClientCardByName(profile.currentPrimaryCardName)
+        : undefined;
+  const currentCardRanking = useMemo(() => {
+    if (!profile || !currentCard) return undefined;
+    const scores = scoreCardValues(CLIENT_CARD_FACETS, profile, "profile", assumptions);
+    const rankedScores = scores.filter((score) => score.eligible);
+    const currentScore = scores.find(
+      (score) => score.card.card_stable_id === currentCard.card_stable_id
+    );
+    const index = rankedScores.findIndex(
+      (score) => score.card.card_stable_id === currentCard.card_stable_id
+    );
+    return {
+      rank: index >= 0 ? index + 1 : undefined,
+      score: currentScore ?? scoreCardValue(currentCard, profile, "profile", assumptions),
+    };
+  }, [profile, currentCard, assumptions]);
+  const currentCardScore =
+    profile && currentCard
+      ? results?.find((score) => score.card.card_stable_id === currentCard.card_stable_id)
+          ?.valueScore ?? currentCardRanking?.score
+      : undefined;
+
   if (!onboardingDone) return null;
 
   return (
     <div className="rounded-3xl border bg-card/50 p-3">
+      {profile && currentCard && (
+        <CurrentCardSummary
+          card={currentCard}
+          score={currentCardScore}
+          rank={currentCardRanking?.rank}
+          spend={profile.avgMonthlySpendBrl}
+        />
+      )}
+
       <div className="mb-3 flex items-center justify-between px-1">
         <div>
           <h2 className="text-sm font-semibold">
@@ -218,7 +367,6 @@ export function PersonalizedRanking() {
           {results.map((scored, idx) => {
             const card = scored.card;
             const tier = feeTier(card, profile.avgMonthlySpendBrl);
-            const net = scored.valueScore?.netMonthlyValueBrl ?? 0;
             return (
               <CardRow
                 key={card.card_stable_id}
@@ -231,7 +379,7 @@ export function PersonalizedRanking() {
                 altText={card.media.alt_text}
                 note={feeNote(card, profile.avgMonthlySpendBrl)}
                 tierLabel={FEE_TIER_LABEL[tier]}
-                tierColor={net >= 0 ? "text-emerald-500" : "text-rose-500"}
+                tierColor={FEE_TIER_COLOR[tier]}
                 earningsSummary={card.reward_return.earning_summary}
                 valueScore={scored.valueScore}
                 scoreBar={Math.round(scored.totalScore * 100)}

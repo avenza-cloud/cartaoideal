@@ -1,5 +1,5 @@
 import facetsFile from "@/data/cards_brazil_ai_comparison_facets.json";
-import type { FacetsFile } from "@/types/cards";
+import type { CardFacet, FacetsFile } from "@/types/cards";
 
 const data = facetsFile as FacetsFile;
 
@@ -70,12 +70,17 @@ function popularityRank(name: string, issuer: string): number {
 
 const curatedMap = new Map(CURATED_POPULAR.map((c) => [c.id, c.description]));
 
-export const CLIENT_CARD_OPTIONS: ClientCardOption[] = data.cards
-  .filter(
-    (card) =>
-      !card.facets_boolean.generic_article_not_single_product &&
-      !card.facets_boolean.issuer_multi_entity_row
-  )
+export const CLIENT_CARD_FACETS: CardFacet[] = data.cards.filter(
+  (card) =>
+    !card.facets_boolean.generic_article_not_single_product &&
+    !card.facets_boolean.issuer_multi_entity_row
+);
+
+const CLIENT_CARD_FACETS_BY_ID = new Map(
+  CLIENT_CARD_FACETS.map((card) => [card.card_stable_id, card])
+);
+
+export const CLIENT_CARD_OPTIONS: ClientCardOption[] = CLIENT_CARD_FACETS
   .map((card) => ({
     id: card.card_stable_id,
     name: card.display_name,
@@ -98,3 +103,25 @@ export const CLIENT_CARD_OPTIONS: ClientCardOption[] = data.cards
 export const CURATED_CARDS: ClientCardOption[] = CURATED_POPULAR
   .map((c) => CLIENT_CARD_OPTIONS.find((o) => o.id === c.id))
   .filter((c): c is ClientCardOption => c !== undefined);
+
+export function getClientCardById(id: string): CardFacet | undefined {
+  return CLIENT_CARD_FACETS_BY_ID.get(id);
+}
+
+export function resolveClientCardByName(query: string): CardFacet | undefined {
+  const normalized = normalizeCardSearchText(query.trim());
+  if (!normalized) return undefined;
+
+  const exact =
+    CLIENT_CARD_OPTIONS.find(
+      (option) =>
+        option.id === query ||
+        normalizeCardSearchText(option.name) === normalized ||
+        normalizeCardSearchText(`${option.issuer} ${option.name}`) === normalized
+    ) ?? null;
+
+  if (exact) return getClientCardById(exact.id);
+
+  const partial = CLIENT_CARD_OPTIONS.find((option) => option.searchText.includes(normalized));
+  return partial ? getClientCardById(partial.id) : undefined;
+}
