@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { scoreCardValue } from "@/lib/card-value";
+import { scoreCardValue, scoreCardValues } from "@/lib/card-value";
 import { getCardById } from "@/lib/cards";
 import type { UserProfile } from "@/types/cards";
 
@@ -29,5 +29,27 @@ describe("scoreCardValue", () => {
     expect(score.dataQualityNotes).toContain(
       "Benefício de sala VIP não valorizado porque exige investimento de R$50.000."
     );
+  });
+
+  it("keeps zero-value free cards neutral in the 0-100 score", () => {
+    const card = getCardById("nubank-cartao-nubank-5feb686dbf");
+    expect(card).toBeDefined();
+
+    const profile: UserProfile = {
+      ...baseProfile,
+      monthlySalaryBrl: 2000,
+      avgMonthlySpendBrl: 1200,
+      avgInvestedBrl: 0,
+      travelFrequency: "none",
+    };
+
+    const directScore = scoreCardValue(card!, profile);
+    expect(directScore.netMonthlyValueBrl).toBe(0);
+    expect(directScore.grossRewardMonthlyBrl).toBe(0);
+    expect(directScore.intangibleMonthlyValueBrl).toBe(0);
+    expect(directScore.score0To100).toBe(50);
+
+    const rankedScore = scoreCardValues([card!], profile)[0];
+    expect(rankedScore.score0To100).toBe(50);
   });
 });

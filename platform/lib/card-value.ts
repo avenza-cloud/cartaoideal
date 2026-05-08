@@ -619,9 +619,31 @@ function hasLoungeGate(card: CardFacet, profile: UserProfile): { allowed: boolea
   };
 }
 
-function normalizeScore(netMonthly: number, eligible: boolean): number {
+function normalizeScore({
+  netMonthly,
+  eligible,
+  grossRewardMonthly,
+  intangibleMonthlyValue,
+  effectiveMonthlyFee,
+}: {
+  netMonthly: number;
+  eligible: boolean;
+  grossRewardMonthly: number;
+  intangibleMonthlyValue: number;
+  effectiveMonthlyFee: number;
+}): number {
   if (!eligible) return 0;
-  return Math.round(clamp(50 + netMonthly / 25, 0, 100));
+
+  const valueCreated = grossRewardMonthly + intangibleMonthlyValue;
+  if (valueCreated <= 0 && effectiveMonthlyFee <= 0 && netMonthly >= 0) return 50;
+
+  if (netMonthly < 0) {
+    return Math.round(clamp(50 + netMonthly / 2, 0, 49));
+  }
+
+  const netScore = Math.min(45, netMonthly * 0.35);
+  const benefitSignal = Math.min(5, valueCreated / 20);
+  return Math.round(clamp(50 + netScore + benefitSignal, 0, 100));
 }
 
 function makeComponent(
@@ -816,7 +838,13 @@ export function scoreCardValue(
     mode,
     eligible: eligibility.eligible,
     eligibilityReasons,
-    score0To100: normalizeScore(netMonthlyValue, eligibility.eligible),
+    score0To100: normalizeScore({
+      netMonthly: netMonthlyValue,
+      eligible: eligibility.eligible,
+      grossRewardMonthly,
+      intangibleMonthlyValue,
+      effectiveMonthlyFee,
+    }),
     rankReason,
     feeAppliedReason,
     roiMultiple: roiMultiple === null ? null : roundMoney(roiMultiple),
@@ -846,24 +874,10 @@ export function scoreCardValues(
   mode: CardScoreMode = "profile",
   assumptions: CardValueAssumptions = DEFAULT_VALUE_ASSUMPTIONS
 ): CardValueScore[] {
-  const scored = cards
+  return cards
     .map((card) => scoreCardValue(card, profile, mode, assumptions))
     .sort((a, b) => {
       if (a.eligible !== b.eligible) return a.eligible ? -1 : 1;
       return b.netMonthlyValueBrl - a.netMonthlyValueBrl || b.score0To100 - a.score0To100;
     });
-
-  const eligibleScores = scored.filter((score) => score.eligible);
-  const topNet = eligibleScores[0]?.netMonthlyValueBrl ?? 0;
-  const bottomNet = eligibleScores.at(-1)?.netMonthlyValueBrl ?? topNet;
-  const spread = Math.max(1, topNet - bottomNet);
-
-  return scored.map((score) => {
-    if (!score.eligible) return { ...score, score0To100: 0 };
-    const relative = Math.round(30 + ((score.netMonthlyValueBrl - bottomNet) / spread) * 70);
-    return {
-      ...score,
-      score0To100: clamp(relative, 0, 100),
-    };
-  });
 }
