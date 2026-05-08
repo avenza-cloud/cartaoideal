@@ -922,7 +922,7 @@
         "subtypes": [
           "cashback"
         ],
-        "earning_summary": "Até 4,1% de cashback"
+        "earning_summary": "3,0 pontos/USD no Brasil ou 3,5 pontos/USD no exterior; cashback de 1,5% no Brasil ou 1,7% no exterior"
       },
       "lounge_access": {
         "has_lounge_access": true,
@@ -957,8 +957,12 @@
           "Adicionais gratuitos: 7"
         ],
         "rewards": [
-          "Pontuação: Até 4,1% de cashback",
+          "Pontuação: Até 3,5 pontos por dólar gasto",
           "Retorno financeiro: cashback",
+          "Regra de pontuação: 3,0 pontos por dólar gasto em compras nacionais",
+          "Regra de pontuação: 3,5 pontos por dólar gasto em compras internacionais",
+          "Regra de cashback: 1,5% de cashback em compras nacionais",
+          "Regra de cashback: 1,7% de cashback em compras internacionais",
           "Bônus de adesão: Livelo - (Não há)",
           "Bônus de adesão: Pontos BTG - (Não há)",
           "Programa de fidelidade: Livelo",
@@ -995,13 +999,37 @@
           "category": "rewards",
           "key": "earning_rate",
           "label": "Pontuação",
-          "value": "Até 4,1% de cashback"
+          "value": "Até 3,5 pontos por dólar gasto"
         },
         {
           "category": "rewards",
           "key": "financial_return",
           "label": "Retorno financeiro",
           "value": "cashback"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Regra de pontuação",
+          "value": "3,0 pontos por dólar gasto em compras nacionais"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Regra de pontuação",
+          "value": "3,5 pontos por dólar gasto em compras internacionais"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Regra de cashback",
+          "value": "1,5% de cashback em compras nacionais"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Regra de cashback",
+          "value": "1,7% de cashback em compras internacionais"
         },
         {
           "category": "travel",
@@ -1153,7 +1181,7 @@
         "rewards:cashback",
         "rewards:return_cashlike"
       ],
-      "text_for_embedding_compare": "Ultrablue BTG Pactual \nEmissor: BTG Pactual \nBandeira: Mastercard \nFaixa: Mastercard \nElegibilidade: Para solicitar o cartão, é necessário ter, no mínimo, R$ 1 milhão em investimentos no banco. \nGanhos: Até 4,1% de cashback \nProgramas: unknown \nAnuidade (campo principal): R$ 4.800 \nSalas VIP / programa: Salas VIP do Mastercard Airport Experience - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: R$ 4.800; Pontuação: Até 4,1% de cashback; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Mastercard Airport Experience; Programa de sala VIP: Sala VIP Mastercard Black; Acompanhantes em sala VIP: 12 acompanhante(s); 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: Livelo - (Não há); Bônus de adesão: Pontos BTG - (Não há); Salas VIP: Salas VIP do Mastercard Airport Experience - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
+      "text_for_embedding_compare": "Ultrablue BTG Pactual \nEmissor: BTG Pactual \nBandeira: Mastercard \nFaixa: Mastercard \nElegibilidade: Para solicitar o cartão, é necessário ter, no mínimo, R$ 1 milhão em investimentos no banco. \nGanhos: 3,0 pontos/USD no Brasil ou 3,5 pontos/USD no exterior; cashback de 1,5% no Brasil ou 1,7% no exterior \nProgramas: unknown \nAnuidade (campo principal): R$ 4.800 \nSalas VIP / programa: Salas VIP do Mastercard Airport Experience - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: R$ 4.800; Pontuação: Até 3,5 pontos por dólar gasto; Regra de pontuação: 3,0 pontos por dólar gasto em compras nacionais; Regra de pontuação: 3,5 pontos por dólar gasto em compras internacionais; Retorno financeiro: cashback; Regra de cashback: 1,5% de cashback em compras nacionais; Regra de cashback: 1,7% de cashback em compras internacionais; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Mastercard Airport Experience; Programa de sala VIP: Sala VIP Mastercard Black; Acompanhantes em sala VIP: 12 acompanhante(s); 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: Livelo - (Não há); Bônus de adesão: Pontos BTG - (Não há); Salas VIP: Salas VIP do Mastercard Airport Experience - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
           "category": "investment",
