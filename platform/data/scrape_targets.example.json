@@ -1,0 +1,10 @@
+[
+  {
+    "card_stable_id": "itau-visa-platinum-official",
+    "display_name": "Itaú Visa Platinum",
+    "issuer": "Itaú",
+    "source_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/",
+    "source_type": "official_issuer",
+    "adapter": "itau"
+  }
+]

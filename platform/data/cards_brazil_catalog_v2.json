@@ -4,7 +4,7 @@
     "reference_as_of_date_for_freshness_checks": "2026-05-05",
     "generated_at_utc": "2026-05-07T00:24:31.965218+00:00",
     "source_file": "https://passageirodeprimeira.com/ranking-cartao-de-credito/ + https://passageirodeprimeira.com/categoria-cartao-de-credito/cartoes-de-cashback/",
-    "card_count": 269,
+    "card_count": 279,
     "source_meta": {
       "sources": [
         {
@@ -49,7 +49,8 @@
       },
       "unknown_sentinel": "unknown",
       "hint": "Para IA comparadora: use facets estruturados e source_label/source_url. Não mostre porcentagem de confiança ao usuário; mostre a fonte."
-    }
+    },
+    "last_manual_expansion_at": "2026-05-09"
   },
   "cards": [
     {
@@ -145096,6 +145097,1016 @@
       },
       "data_quality_notes": [
         "A página oficial da Rico consolida o cartão como Rico Visa Infinite; o ranking Melhores Cartões distingue Rico e Rico One por quantidade/requisitos de acessos VIP."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "itau-visa-platinum-official",
+        "display_name": "Itaú Visa Platinum",
+        "issuer": {
+          "raw": "Itaú",
+          "normalized": "itau",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa",
+        "variant_band": "Platinum",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Anuidade grátis",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.92,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade Grátis; Pontuação: Não possui programa de fidelidade (pontos ou cashback)."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Sujeito à análise de crédito pelo emissor.",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade Grátis; Pontuação: Não possui programa de fidelidade (pontos ou cashback)."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Não possui programa de fidelidade (pontos ou cashback)",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade Grátis; Pontuação: Não possui programa de fidelidade (pontos ou cashback)."
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito à análise de crédito pelo emissor.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "Anuidade grátis",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Anuidade grátis",
+          "rules": [
+            {
+              "category": "general",
+              "full_waiver": true,
+              "description": "Anuidade grátis conforme página oficial do Itaú.",
+              "raw_text": "Anuidade Grátis"
+            }
+          ],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Não possui programa de fidelidade (pontos ou cashback)",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "atomic_benefit_statements": [
+          "Cartão virtual",
+          "Pagamento de contas e boletos no cartão",
+          "Aproxime e pague",
+          "Carteiras digitais",
+          "Benefícios Visa Platinum"
+        ],
+        "official_highlights": [
+          "Cartão virtual",
+          "Pagamento de contas e boletos no cartão",
+          "Aproxime e pague",
+          "Carteiras digitais",
+          "Benefícios Visa Platinum"
+        ]
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.9,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas e benefícios na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado como captura inicial da fase 2; campos dinâmicos exigem revalidação periódica."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "itau-magalu-visa-platinum",
+        "display_name": "Cartão Magalu Visa Platinum",
+        "issuer": {
+          "raw": "Itaú / Magalu",
+          "normalized": "itau-magalu",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa",
+        "variant_band": "Platinum",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": true
+      },
+      "co_brand": {
+        "partner_name": "Magalu",
+        "partner_category": "retail"
+      },
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Anuidade grátis",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.92,
+          "dynamic": true,
+          "raw_excerpt": "Renda mínima R$ 800,00; Anuidade Grátis; 2% de dinheiro de volta em compras dentro do Magalu com MagaluPay ativo."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Renda mínima R$ 800,00; sujeito à análise de crédito.",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Renda mínima R$ 800,00; Anuidade Grátis; 2% de dinheiro de volta em compras dentro do Magalu com MagaluPay ativo."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "2% de dinheiro de volta em compras dentro do Magalu quando a conta digital MagaluPay está ativa, conforme página oficial.",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Renda mínima R$ 800,00; Anuidade Grátis; 2% de dinheiro de volta em compras dentro do Magalu com MagaluPay ativo."
+        }
+      ],
+      "cashback_details": {
+        "rate_text": "2% em compras dentro do Magalu, com MagaluPay ativo",
+        "destination": "partner_wallet",
+        "conditions_text": "Conta digital MagaluPay ativa no SuperApp Magalu."
+      },
+      "store_benefits": [
+        {
+          "partner_name": "Magalu",
+          "benefit_type": "cashback",
+          "description": "Dinheiro de volta em compras dentro do Magalu, condicionado ao MagaluPay."
+        }
+      ],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Renda mínima R$ 800,00; sujeito à análise de crédito.",
+        "minimum_income_brl": 800
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "Anuidade grátis",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Anuidade grátis",
+          "rules": [
+            {
+              "category": "general",
+              "full_waiver": true,
+              "description": "Anuidade grátis conforme página oficial do Itaú.",
+              "raw_text": "Anuidade Grátis"
+            }
+          ],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "2% de dinheiro de volta em compras dentro do Magalu quando a conta digital MagaluPay está ativa, conforme página oficial.",
+        "earn_points_or_miles": false,
+        "earn_cashback": true,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "atomic_benefit_statements": [
+          "2% de dinheiro de volta no Magalu com MagaluPay ativo",
+          "Benefícios Visa Platinum",
+          "Benefícios dentro e fora do Magalu"
+        ],
+        "official_highlights": [
+          "2% de dinheiro de volta no Magalu com MagaluPay ativo",
+          "Benefícios Visa Platinum",
+          "Benefícios dentro e fora do Magalu"
+        ]
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.9,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas e benefícios na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado como captura inicial da fase 2; campos dinâmicos exigem revalidação periódica."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "santander-sx",
+        "display_name": "Santander SX",
+        "issuer": {
+          "raw": "Santander",
+          "normalized": "santander",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa / Mastercard",
+        "variant_band": "Standard",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 no crédito por fatura ou mantendo CPF e celular como chaves Pix no Santander.",
+          "source_url": "https://www.santander.com.br/sx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.92,
+          "dynamic": true,
+          "raw_excerpt": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 em compras ou cadastrando CPF e celular como chaves Pix no Santander."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Sujeito à análise de crédito pelo Santander.",
+          "source_url": "https://www.santander.com.br/sx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 em compras ou cadastrando CPF e celular como chaves Pix no Santander."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Descontos em parceiros Esfera; benefícios da bandeira variam.",
+          "source_url": "https://www.santander.com.br/sx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 em compras ou cadastrando CPF e celular como chaves Pix no Santander."
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito à análise de crédito pelo Santander.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 no crédito por fatura ou mantendo CPF e celular como chaves Pix no Santander.",
+          "amount_brl_numeric": 399,
+          "is_zero_fee_claim": false
+        },
+        "waiver_and_discounts": {
+          "policy_text": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 no crédito por fatura ou mantendo CPF e celular como chaves Pix no Santander.",
+          "rules": [
+            {
+              "category": "monthly_spend",
+              "threshold_brl": 100,
+              "period": "monthly",
+              "full_waiver": true,
+              "description": "Isenção ao acumular no mínimo R$ 100 em compras no crédito a cada fatura.",
+              "raw_text": "Livre de anuidade acumulando no mínimo R$ 100 em compras no crédito a cada fatura."
+            },
+            {
+              "category": "pix_key",
+              "full_waiver": true,
+              "description": "Isenção cadastrando e mantendo CPF e celular como chaves Pix no Santander.",
+              "raw_text": "Livre de anuidade cadastrando CPF e celular como chaves Pix no Santander."
+            }
+          ],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Descontos em parceiros Esfera; benefícios da bandeira variam.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "atomic_benefit_statements": [
+          "Descontos em parceiros Esfera",
+          "Possibilidade de isenção por gasto mínimo",
+          "Possibilidade de isenção por chaves Pix"
+        ],
+        "official_highlights": [
+          "Descontos em parceiros Esfera",
+          "Possibilidade de isenção por gasto mínimo",
+          "Possibilidade de isenção por chaves Pix"
+        ]
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.santander.com.br/sx",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.9,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas e benefícios na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado como captura inicial da fase 2; campos dinâmicos exigem revalidação periódica."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "neon-cartao-de-credito",
+        "display_name": "Cartão de Crédito Neon",
+        "issuer": {
+          "raw": "Neon",
+          "normalized": "neon",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa",
+        "variant_band": "Internacional",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Cartão 100% grátis / sem anuidade",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.92,
+          "dynamic": true,
+          "raw_excerpt": "Cartão grátis com Viracrédito, cashback e limite elástico."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Solicitação pelo app; sujeito à análise de crédito. Viracrédito pode transformar CDB Neon em limite.",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Cartão grátis com Viracrédito, cashback e limite elástico."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Cashback mencionado pela Neon; regras devem ser verificadas no app/site antes de comparação quantitativa.",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Cartão grátis com Viracrédito, cashback e limite elástico."
+        },
+        {
+          "field_path": "fees.annual.raw_text",
+          "value_text": "anuidade e sem complicação",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7999999999999999,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de crédito | Peça o seu cartão Neon Cartões Cartão de crédito Sem anuidade e sem complicação. Viracrédito Neon Novo Mais limite no cartão de crédito. Cashback Dinheiro de volta nas suas compras. Cartão de débito Bandeira Visa e internacional. Cartão virtual Seguro para co"
+        },
+        {
+          "field_path": "fees.waiver_and_discounts.policy_text",
+          "value_text": "Sem anuidade e sem complicação",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.84,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de crédito | Peça o seu cartão Neon Cartões Cartão de crédito Sem anuidade e sem complicação. Viracrédito Neon Novo Mais limite no cartão de crédito. Cashback Dinheiro de volta nas suas compras. Cartão de débito Bandeira Visa e internacional. Cartão virtual Seguro para co"
+        },
+        {
+          "field_path": "rewards.earning_rules_text",
+          "value_text": "Cashback Dinheiro de volta nas suas compras",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7799999999999999,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de crédito | Peça o seu cartão Neon Cartões Cartão de crédito Sem anuidade e sem complicação. Viracrédito Neon Novo Mais limite no cartão de crédito. Cashback Dinheiro de volta nas suas compras. Cartão de débito Bandeira Visa e internacional. Cartão virtual Seguro para compras online. Carteira digital Guarde seus cartões com segurança. Para você Conta digital Neon comple"
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "investimento seguro, garantido pelo Fundo Garantidor de Créditos (FGC) , e que rende muito mais que a poupança",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.76,
+          "dynamic": true,
+          "raw_excerpt": "ansformar em limite no cartão. Conheça o Viracrédito Neon e veja como funciona. + O que é o Viracrédito? É sua chance de ter crédito sem perrengue! O Viracrédito Neon é um tipo de investimento seguro, garantido pelo Fundo Garantidor de Créditos (FGC) , e que rende muito mais que a poupança. Enquanto sua grana cresce, você aproveita o cartão de crédito pra parcelar suas compras e organizar sua vida financeira com seu novo limite. Ao final do mês, você paga sua fatura"
+        },
+        {
+          "field_path": "benefits.official_highlights",
+          "value_text": "Seguro para compras online",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "em complicação. Viracrédito Neon Novo Mais limite no cartão de crédito. Cashback Dinheiro de volta nas suas compras. Cartão de débito Bandeira Visa e internacional. Cartão virtual Seguro para compras online. Carteira digital Guarde seus cartões com segurança. Para você Conta digital Neon completa Conta com cartão e muito mais. CDBs Neon Novo Rentabilidade, segurança e lucro certo. Em"
+        }
+      ],
+      "cashback_details": {
+        "rate_text": "Regras não publicadas de forma suficiente para cálculo nesta captura",
+        "destination": "unknown",
+        "conditions_text": "Verificar regras vigentes no app/site da Neon."
+      },
+      "store_benefits": [],
+      "secured_limit_options": [
+        {
+          "product_name": "Viracrédito Neon",
+          "backing_asset": "cdb",
+          "description": "Dinheiro guardado no CDB Neon pode virar limite no cartão de crédito."
+        }
+      ],
+      "eligibility": {
+        "requirements_text": "Solicitação pelo app; sujeito à análise de crédito. Viracrédito pode transformar CDB Neon em limite.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "Cartão 100% grátis / sem anuidade",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Cartão 100% grátis / sem anuidade",
+          "rules": [
+            {
+              "category": "general",
+              "full_waiver": true,
+              "description": "Sem anuidade conforme página oficial da Neon.",
+              "raw_text": "Cartão de crédito Neon 100% grátis."
+            }
+          ],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Cashback mencionado pela Neon; regras devem ser verificadas no app/site antes de comparação quantitativa.",
+        "earn_points_or_miles": false,
+        "earn_cashback": true,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "atomic_benefit_statements": [
+          "Sem anuidade",
+          "Viracrédito Neon",
+          "Cashback",
+          "Limite elástico"
+        ],
+        "official_highlights": [
+          "Sem anuidade",
+          "Viracrédito Neon",
+          "Cashback",
+          "Limite elástico"
+        ]
+      },
+      "evidence": {
+        "primary_evidence_url": "https://neon.com.br/cartao-de-credito",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.9,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas e benefícios na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado como captura inicial da fase 2; campos dinâmicos exigem revalidação periódica."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "pagbank-cartao-de-credito",
+        "display_name": "Cartão de Crédito PagBank",
+        "issuer": {
+          "raw": "PagBank",
+          "normalized": "pagbank",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa / Mastercard",
+        "variant_band": "Internacional",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Sem anuidade",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cartão sem anuidade; reserve saldo da conta ou invista a partir de R$ 300 em CDBs para compor limite."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Sem análise de crédito para limite garantido; pode reservar saldo da conta ou investir em CDB para compor limite.",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Cartão sem anuidade; reserve saldo da conta ou invista a partir de R$ 300 em CDBs para compor limite."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Não identificado na captura oficial inicial.",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.84,
+          "dynamic": true,
+          "raw_excerpt": "Cartão sem anuidade; reserve saldo da conta ou invista a partir de R$ 300 em CDBs para compor limite."
+        },
+        {
+          "field_path": "fees.annual.raw_text",
+          "value_text": "anuidade Use sem pagar taxas adicionais",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7999999999999999,
+          "dynamic": true,
+          "raw_excerpt": "dir cartão Compras internacionais O Cartão de Crédito PagBank funciona no Brasil e no exterior. Para PF e PJ Cartão de crédito para Pessoas Físicas e Pessoas Jurídicas. Cartão sem anuidade Use sem pagar taxas adicionais. Limite na hora Invista ou reserve do saldo e tenha o valor em limite liberado na hora. Parcele em até 24x Rápido e fácil, tudo pelo app. Use seu Cartão PagBank nas principais car"
+        },
+        {
+          "field_path": "fees.waiver_and_discounts.policy_text",
+          "value_text": "sem anuidade Use sem pagar taxas adicionais",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.84,
+          "dynamic": true,
+          "raw_excerpt": ". Pedir cartão Compras internacionais O Cartão de Crédito PagBank funciona no Brasil e no exterior. Para PF e PJ Cartão de crédito para Pessoas Físicas e Pessoas Jurídicas. Cartão sem anuidade Use sem pagar taxas adicionais. Limite na hora Invista ou reserve do saldo e tenha o valor em limite liberado na hora. Parcele em até 24x Rápido e fácil, tudo pelo app. Use seu Cartão PagBank nas principais car"
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Investimentos Para Você Investimentos Renda Fixa CDB PagBank Fundos de Investimento Tesouro Direto Renda Variável Custos Operacionais Poupar Automático Cofrinho Ver todos o",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.76,
+          "dynamic": true,
+          "raw_excerpt": "mentos Internacionais Seja um Parceiro PagBank Para Você Voltar para o menu Para Você Conta Digital PagBank Conta PJ PagBank Para Você Conta PJ PagBank Conta PJ Domicílio Bancário Investimentos Para Você Investimentos Renda Fixa CDB PagBank Fundos de Investimento Tesouro Direto Renda Variável Custos Operacionais Poupar Automático Cofrinho Ver todos os investimentos Cartões PagBank Para Você Cartões PagBank Cartão de Crédito Grátis Cartão Pré Pago Cartão de Débito Ver todos os cartões Pix Seguros e PagBank Saúde Para Você Segur"
+        },
+        {
+          "field_path": "benefits.official_highlights",
+          "value_text": "Vantagens das Maquininhas Para Seu Negócio Vantagens das Maquininhas Recarga de Celular Compartilhamento Transferência Poupar Automático Antecipação de Vendas Pré-Autorização de Pagamentos",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "rninha ProFit Moderninha Smart 2 Moderninha Pro 2 Moderninha Plus 2 Minizinha Chip 3 Minizinha NFC 2 Ver todas as maquininhas Compare as maquininhas Taxas e Tarifas Taxas e Planos Vantagens das Maquininhas Para Seu Negócio Vantagens das Maquininhas Recarga de Celular Compartilhamento Transferência Poupar Automático Antecipação de Vendas Pré-Autorização de Pagamentos Conta PJ PagBank Venda Online Para Seu Negócio Venda Online Checkout Link de Pagamento Pagar com PagBank Envio Fácil Gestão de Cobrança Ver todas as soluções Venda Online Via Integ"
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [
+        {
+          "product_name": "Limite garantido PagBank",
+          "backing_asset": "cdb",
+          "description": "Reserva de saldo da conta ou investimento em CDB pode compor o limite do cartão."
+        }
+      ],
+      "eligibility": {
+        "requirements_text": "Sem análise de crédito para limite garantido; pode reservar saldo da conta ou investir em CDB para compor limite."
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "Sem anuidade",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Sem anuidade",
+          "rules": [
+            {
+              "category": "general",
+              "full_waiver": true,
+              "description": "Cartão sem anuidade conforme página oficial do PagBank.",
+              "raw_text": "Cartão sem anuidade."
+            }
+          ],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Não identificado na captura oficial inicial.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "atomic_benefit_statements": [
+          "Cartão sem anuidade",
+          "Limite garantido por saldo reservado ou CDB",
+          "Uso nacional e internacional"
+        ],
+        "official_highlights": [
+          "Cartão sem anuidade",
+          "Limite garantido por saldo reservado ou CDB",
+          "Uso nacional e internacional"
+        ]
+      },
+      "evidence": {
+        "primary_evidence_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas, disponibilidade e regulamentos antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado como captura inicial; campos dinâmicos exigem revalidação periódica."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "banco-pan-cartao-de-credito",
+        "display_name": "Cartão de Crédito PAN",
+        "issuer": {
+          "raw": "Banco PAN",
+          "normalized": "banco-pan",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Internacional",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "application_availability": {
+        "channels": [
+          "official_site",
+          "app"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Verificar tarifas vigentes no app/site do Banco PAN",
+          "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Solicitação pelo app; sujeito à análise de crédito.",
+          "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Cashback de 0,75% por real gasto nas transações elegíveis, conforme página oficial capturada.",
+          "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.84,
+          "dynamic": true,
+          "raw_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app."
+        }
+      ],
+      "cashback_details": {
+        "rate_text": "0,75% por real gasto nas transações elegíveis",
+        "destination": "unknown",
+        "conditions_text": "Transações elegíveis; verificar regulamento vigente no Banco PAN."
+      },
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Solicitação pelo app; sujeito à análise de crédito."
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": false,
+          "raw_text": "Verificar tarifas vigentes no app/site do Banco PAN",
+          "amount_brl_numeric": null,
+          "is_zero_fee_claim": false
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Verificar tarifas vigentes no app/site do Banco PAN",
+          "rules": [],
+          "has_full_waiver_option": false
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Cashback de 0,75% por real gasto nas transações elegíveis, conforme página oficial capturada.",
+        "earn_points_or_miles": false,
+        "earn_cashback": true,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "atomic_benefit_statements": [
+          "Cartão virtual",
+          "Ajuste de limite no app",
+          "Mastercard Surpreenda",
+          "Cashback em transações elegíveis"
+        ],
+        "official_highlights": [
+          "Cartão virtual",
+          "Ajuste de limite no app",
+          "Mastercard Surpreenda",
+          "Cashback em transações elegíveis"
+        ]
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas, disponibilidade e regulamentos antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado como captura inicial; campos dinâmicos exigem revalidação periódica."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "carrefour-cartao-de-credito",
+        "display_name": "Cartão Carrefour",
+        "issuer": {
+          "raw": "Carrefour Soluções Financeiras",
+          "normalized": "carrefour-solucoes-financeiras",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa / Mastercard",
+        "variant_band": "Internacional",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour; condição promocional pode mudar.",
+          "source_url": "https://www.carrefoursolucoes.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade zero: use o Cartão Carrefour uma vez por mês em qualquer Carrefour."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Sujeito à análise de crédito.",
+          "source_url": "https://www.carrefoursolucoes.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade zero: use o Cartão Carrefour uma vez por mês em qualquer Carrefour."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Benefícios de loja e ofertas Carrefour; regras variam.",
+          "source_url": "https://www.carrefoursolucoes.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.84,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade zero: use o Cartão Carrefour uma vez por mês em qualquer Carrefour."
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [
+        {
+          "partner_name": "Carrefour",
+          "benefit_type": "exclusive_offer",
+          "description": "Benefícios e ofertas para compras no ecossistema Carrefour."
+        }
+      ],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito à análise de crédito."
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": false,
+          "raw_text": "Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour; condição promocional pode mudar.",
+          "amount_brl_numeric": null,
+          "is_zero_fee_claim": false
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour; condição promocional pode mudar.",
+          "rules": [
+            {
+              "category": "monthly_spend",
+              "period": "monthly",
+              "full_waiver": true,
+              "description": "Isenção ao realizar no mínimo uma compra por ciclo de fatura nas lojas do Grupo Carrefour.",
+              "raw_text": "Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour."
+            },
+            {
+              "category": "promotional_period",
+              "full_waiver": true,
+              "description": "Condição promocional sujeita a alteração mediante comunicação.",
+              "raw_text": "Condição promocional, podendo ser alterada ou extinta mediante prévia comunicação."
+            }
+          ],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Benefícios de loja e ofertas Carrefour; regras variam.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "atomic_benefit_statements": [
+          "Anuidade zero por uso mensal no Carrefour",
+          "Benefícios em compras no Carrefour",
+          "Aceito em estabelecimentos credenciados pela bandeira"
+        ],
+        "official_highlights": [
+          "Anuidade zero por uso mensal no Carrefour",
+          "Benefícios em compras no Carrefour",
+          "Aceito em estabelecimentos credenciados pela bandeira"
+        ]
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.carrefoursolucoes.com.br/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas, disponibilidade e regulamentos antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado como captura inicial; campos dinâmicos exigem revalidação periódica."
       ]
     }
   ]

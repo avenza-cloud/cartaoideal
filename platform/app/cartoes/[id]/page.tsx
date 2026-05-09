@@ -179,8 +179,21 @@ export default async function CartaoDetailPage({ params }: PageProps) {
               ) : (
                 <Empty>Sem retorno financeiro neste cartão.</Empty>
               )}
+              {card.cashback_details && (
+                <>
+                  {card.cashback_details.rate_text && (
+                    <FullTextRow label="Cashback" value={card.cashback_details.rate_text} />
+                  )}
+                  {card.cashback_details.destination && card.cashback_details.destination !== "unknown" && (
+                    <DataRow label="Destino" value={cashbackDestinationLabel(card.cashback_details.destination)} />
+                  )}
+                  {card.cashback_details.conditions_text && (
+                    <FullTextRow label="Condições" value={card.cashback_details.conditions_text} />
+                  )}
+                </>
+              )}
               {rewardChars.length > 0 && <CharList items={rewardChars} />}
-              {!returnType && rewardChars.length === 0 && null}
+              {!returnType && rewardChars.length === 0 && !card.cashback_details && null}
             </Block>
 
             {/* Lounge */}
@@ -263,9 +276,31 @@ export default async function CartaoDetailPage({ params }: PageProps) {
                   value={`R$${(minimumIncome as number).toLocaleString("pt-BR")}/mês`}
                 />
               )}
+              {card.application_availability?.notes && (
+                <FullTextRow label="Canal" value={card.application_availability.notes} />
+              )}
+              {card.secured_limit_options?.map((option) => (
+                <FullTextRow
+                  key={`${option.product_name ?? "limite"}-${option.description}`}
+                  label={option.product_name ?? "Limite garantido"}
+                  value={option.description}
+                />
+              ))}
               {eligibilityChars.length > 0 && <CharList items={eligibilityChars} />}
             </Block>
           </div>
+
+          {card.store_benefits && card.store_benefits.length > 0 && (
+            <Block title="Benefícios de loja/parceiro">
+              {card.store_benefits.map((benefit) => (
+                <FullTextRow
+                  key={`${benefit.partner_name ?? "parceiro"}-${benefit.benefit_type}-${benefit.description}`}
+                  label={benefit.partner_name ?? storeBenefitLabel(benefit.benefit_type)}
+                  value={benefit.description}
+                />
+              ))}
+            </Block>
+          )}
 
           {/* Row 3: Extras — only if content */}
           {extrasChars.length > 0 && (
@@ -365,6 +400,28 @@ function loungeCondition(summary?: string): string | null {
   return match?.[1] ?? match?.[0] ?? null;
 }
 
+function cashbackDestinationLabel(destination: NonNullable<CardFacet["cashback_details"]>["destination"]) {
+  const labels = {
+    statement_credit: "Crédito na fatura",
+    wallet: "Carteira digital",
+    bank_account: "Conta bancária",
+    partner_wallet: "Carteira do parceiro",
+    unknown: "Verificar na fonte",
+  } as const;
+  return labels[destination ?? "unknown"];
+}
+
+function storeBenefitLabel(type: NonNullable<CardFacet["store_benefits"]>[number]["benefit_type"]) {
+  const labels = {
+    cashback: "Cashback",
+    discount: "Desconto",
+    installment: "Parcelamento",
+    exclusive_offer: "Oferta exclusiva",
+    other: "Benefício",
+  } as const;
+  return labels[type];
+}
+
 function formatRuleAmount(rule: FeeWaiverRule) {
   if (rule.category === "general" && rule.full_waiver) return null;
   if (typeof rule.threshold_brl !== "number") return "Sem limite informado";
@@ -374,7 +431,7 @@ function formatRuleAmount(rule: FeeWaiverRule) {
 
 function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
   const ordered = [...rules].sort((a, b) => {
-    const order = { monthly_spend: 0, investment: 1, subscription: 2, cashback: 3, miles: 4, general: 5 };
+    const order = { monthly_spend: 0, investment: 1, pix_key: 2, bank_relationship: 3, subscription: 4, cashback: 5, miles: 6, promotional_period: 7, general: 8 };
     return order[a.category] - order[b.category];
   });
   const hasOnlyGeneralFullWaiver =
@@ -415,7 +472,7 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
             ? ReceiptText
             : isInvestment
               ? WalletCards
-              : isSubscription
+              : isSubscription || rule.category === "pix_key" || rule.category === "bank_relationship"
                 ? CreditCard
               : rule.category === "cashback"
                 ? Coins
@@ -426,13 +483,19 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
             ? "Gasto mensal"
             : isInvestment
               ? "Investimento"
+              : rule.category === "pix_key"
+                ? "Chaves Pix"
+              : rule.category === "bank_relationship"
+                ? "Relacionamento"
               : isSubscription
                 ? "Assinatura"
               : rule.category === "cashback"
                 ? "Cashback"
                 : rule.category === "miles"
                     ? "Milhas"
-                    : "Geral";
+                    : rule.category === "promotional_period"
+                      ? "Promoção"
+                      : "Geral";
             return (
               <div
                 key={`${rule.category}-${rule.threshold_brl ?? "general"}-${index}`}

@@ -37,7 +37,7 @@ describe("getCardFeeWaiver", () => {
     const cards = filterCards({});
     const noWaiver = cards.find((c) => {
       const char = c.characteristics?.find((x) => x.key === "fee_waiver");
-      return !char || char.value === "unknown" || !char.value;
+      return (!char || char.value === "unknown" || !char.value) && !c.fee_waiver_rules?.length;
     });
     if (noWaiver) {
       expect(getCardFeeWaiver(noWaiver)).toBeNull();

@@ -9,6 +9,10 @@
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
     "audit:card-sources": "node scripts/audit-card-sources.mjs",
+    "audit:source-claims": "node scripts/audit-source-claims.mjs",
+    "audit:source-freshness": "node scripts/audit-source-freshness.mjs",
+    "scrape:card-sources": "node scripts/scrape-card-sources.mjs",
+    "apply:scrape-results": "node scripts/apply-scrape-results.mjs",
     "test:e2e": "playwright test --ignore-snapshots --grep-invert chat-waiver",
     "test:e2e:mobile": "playwright test --project=mobile-small --project=mobile-chrome --project=mobile-large --grep-invert chat-waiver",
     "test:chat": "playwright test tests/e2e/chat-waiver.spec.ts"

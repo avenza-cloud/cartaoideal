@@ -87,10 +87,61 @@ export interface CardCharacteristic {
 export type FeeWaiverRuleCategory =
   | "monthly_spend"
   | "investment"
+  | "pix_key"
+  | "bank_relationship"
   | "subscription"
   | "cashback"
   | "miles"
+  | "promotional_period"
   | "general";
+
+export type SourceClaimType =
+  | "official_issuer"
+  | "official_network"
+  | "tariff_pdf"
+  | "aggregator"
+  | "manual"
+  | "unknown";
+
+export interface SourceClaim {
+  field_path: string;
+  value_text: string;
+  source_url: string;
+  source_type: SourceClaimType;
+  captured_at: string;
+  last_verified_at?: string;
+  confidence_0_to_1: number;
+  dynamic: boolean;
+  raw_excerpt?: string;
+}
+
+export interface CoBrandInfo {
+  partner_name: string;
+  partner_category?: "retail" | "airline" | "marketplace" | "fuel" | "other";
+}
+
+export interface CashbackDetails {
+  rate_text?: string;
+  destination?: "statement_credit" | "wallet" | "bank_account" | "partner_wallet" | "unknown";
+  conditions_text?: string;
+}
+
+export interface StoreBenefit {
+  partner_name?: string;
+  benefit_type: "cashback" | "discount" | "installment" | "exclusive_offer" | "other";
+  description: string;
+}
+
+export interface ApplicationAvailability {
+  channels?: Array<"official_site" | "app" | "branch" | "invite" | "partner_site" | "unknown">;
+  notes?: string;
+}
+
+export interface SecuredLimitOption {
+  product_name?: string;
+  backing_asset?: "cdb" | "account_balance" | "deposit" | "unknown";
+  description: string;
+}
 
 export interface FeeWaiverRule {
   category: FeeWaiverRuleCategory;
@@ -116,6 +167,12 @@ export interface CardFacet {
   variant_band: string;
   market_segment_guess: MarketSegment;
   product_kind: string;
+  co_brand?: CoBrandInfo;
+  application_availability?: ApplicationAvailability;
+  source_claims?: SourceClaim[];
+  cashback_details?: CashbackDetails;
+  store_benefits?: StoreBenefit[];
+  secured_limit_options?: SecuredLimitOption[];
   verification_cross_check_status: string;
   verification_confidence_0_to_1: number;
   primary_evidence_url: string;
@@ -232,6 +289,12 @@ export interface CatalogVerification {
 export interface CatalogCard {
   identity: CatalogIdentity;
   categorization: { market_segment_guess: MarketSegment; co_brand_detected_from_name?: boolean };
+  co_brand?: CoBrandInfo;
+  application_availability?: ApplicationAvailability;
+  source_claims?: SourceClaim[];
+  cashback_details?: CashbackDetails;
+  store_benefits?: StoreBenefit[];
+  secured_limit_options?: SecuredLimitOption[];
   card_physical?: { material?: string; is_metal_claim?: boolean };
   eligibility?: CatalogEligibility;
   fees: CatalogFees;

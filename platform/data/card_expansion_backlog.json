@@ -1,0 +1,49 @@
+{
+  "updated_at": "2026-05-09",
+  "notes": "Brazilian credit-card expansion backlog. Add only after official issuer source is verified; dynamic fields require source_claims.",
+  "priorities": [
+    {
+      "priority": 1,
+      "group": "mass_market_everyday",
+      "cards": [
+        { "name": "Bradesco Neo", "source_type_needed": "official_issuer" },
+        { "name": "Banco do Brasil Ourocard Fácil", "source_type_needed": "official_issuer" },
+        { "name": "Caixa Sim", "source_type_needed": "official_issuer" },
+        { "name": "Digio Visa", "source_type_needed": "official_issuer" },
+        { "name": "Next Visa", "source_type_needed": "official_issuer", "note": "Verify current availability before adding." }
+      ]
+    },
+    {
+      "priority": 2,
+      "group": "retail_cobrand",
+      "cards": [
+        { "name": "Casas Bahia / Bradescard", "source_type_needed": "official_issuer_or_partner" },
+        { "name": "Renner / Realize", "source_type_needed": "official_issuer_or_partner" },
+        { "name": "Riachuelo / Midway", "source_type_needed": "official_issuer_or_partner" },
+        { "name": "Atacadão", "source_type_needed": "official_issuer_or_partner" },
+        { "name": "Assaí", "source_type_needed": "official_issuer_or_partner" }
+      ]
+    },
+    {
+      "priority": 3,
+      "group": "fintech_investment",
+      "cards": [
+        { "name": "XP Visa Infinite variants", "source_type_needed": "official_issuer", "note": "Verify current variant matrix." },
+        { "name": "BTG Black/Ultrablue variants", "source_type_needed": "official_issuer" },
+        { "name": "Inter Win/One/Black variants", "source_type_needed": "official_issuer" },
+        { "name": "C6 additional tiers", "source_type_needed": "official_issuer" }
+      ]
+    },
+    {
+      "priority": 4,
+      "group": "airline_travel",
+      "cards": [
+        { "name": "GOL Smiles variants", "source_type_needed": "official_issuer_or_partner" },
+        { "name": "LATAM Pass variants", "source_type_needed": "official_issuer_or_partner" },
+        { "name": "Azul Itaú variants", "source_type_needed": "official_issuer_or_partner" },
+        { "name": "Porto Bank variants", "source_type_needed": "official_issuer" },
+        { "name": "BRB DUX/Connect variants", "source_type_needed": "official_issuer" }
+      ]
+    }
+  ]
+}

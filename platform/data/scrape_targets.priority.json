@@ -1,0 +1,58 @@
+[
+  {
+    "card_stable_id": "itau-visa-platinum-official",
+    "display_name": "Itaú Visa Platinum",
+    "issuer": "Itaú",
+    "source_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/",
+    "source_type": "official_issuer",
+    "adapter": "itau"
+  },
+  {
+    "card_stable_id": "itau-magalu-visa-platinum",
+    "display_name": "Cartão Magalu Visa Platinum",
+    "issuer": "Itaú/Magalu",
+    "source_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+    "source_type": "official_issuer",
+    "adapter": "itau"
+  },
+  {
+    "card_stable_id": "santander-sx",
+    "display_name": "Santander SX",
+    "issuer": "Santander",
+    "source_url": "https://www.santander.com.br/sx",
+    "source_type": "official_issuer",
+    "adapter": "santander"
+  },
+  {
+    "card_stable_id": "neon-cartao-de-credito",
+    "display_name": "Cartão de Crédito Neon",
+    "issuer": "Neon",
+    "source_url": "https://neon.com.br/cartao-de-credito",
+    "source_type": "official_issuer",
+    "adapter": "neon"
+  },
+  {
+    "card_stable_id": "pagbank-cartao-de-credito",
+    "display_name": "Cartão de Crédito PagBank",
+    "issuer": "PagBank",
+    "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+    "source_type": "official_issuer",
+    "adapter": "pagbank"
+  },
+  {
+    "card_stable_id": "banco-pan-cartao-de-credito",
+    "display_name": "Cartão de Crédito PAN",
+    "issuer": "Banco PAN",
+    "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+    "source_type": "official_issuer",
+    "adapter": "pan"
+  },
+  {
+    "card_stable_id": "carrefour-cartao-de-credito",
+    "display_name": "Cartão Carrefour",
+    "issuer": "Carrefour",
+    "source_url": "https://www.carrefoursolucoes.com.br/",
+    "source_type": "official_issuer",
+    "adapter": "carrefour"
+  }
+]
