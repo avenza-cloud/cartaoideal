@@ -55124,6 +55124,2629 @@
         "eligibility:investment_required"
       ],
       "text_for_embedding_compare": "Rico Visa Infinite Cashback\nEmissor: Rico\nBandeira: Visa\nFaixa: Infinite\nAnuidade: R$ 0; sem anuidade\nElegibilidade: R$ 1.000 investidos na Rico para solicitar, sujeito a análise\nGanhos: 0,5% de cashback para faturas de R$ 1.500 a R$ 2.999,99; 1% acima de R$ 3.000; pontos podem ser trocados na Livelo\nSalas VIP: 4 acessos Dragon Pass/Visa Airport Companion por ano mediante R$ 3.000 em gastos mensais e R$ 50.000 em investimentos\nBenefícios: 6 adicionais gratuitos, Visa Infinite, seguro viagem, concierge, carteiras digitais\nFonte oficial: Rico; ranking/contexto: Melhores Cartões"
+    },
+    {
+      "card_stable_id": "itau-visa-platinum-official",
+      "display_name": "Itaú Visa Platinum",
+      "issuer_raw": "Itaú",
+      "network_primary": "Visa",
+      "variant_band": "Platinum",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.9,
+      "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/",
+      "application_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "media": {
+        "card_art_url": "unknown",
+        "alt_text": "Itaú Visa Platinum",
+        "source_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "subtypes": [],
+        "earning_summary": "Não possui programa de fidelidade (pontos ou cashback)"
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "programs": [],
+        "unlimited": false,
+        "annual_visits": "unknown",
+        "guest_policy": "unknown",
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false,
+        "summary": "Não identificado na captura oficial inicial."
+      },
+      "eligibility": {
+        "requirements_text": "Sujeito à análise de crédito pelo emissor.",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": "unknown",
+        "availability_status": "available",
+        "hard_gate_fields": [],
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_issuer_initial_capture"
+      },
+      "fee_waiver_rules": [
+        {
+          "category": "general",
+          "full_waiver": true,
+          "description": "Anuidade grátis conforme página oficial do Itaú.",
+          "raw_text": "Anuidade Grátis"
+        }
+      ],
+      "benefit_groups": {
+        "fees": [
+          "Anuidade: Anuidade grátis"
+        ],
+        "rewards": [
+          "Não possui programa de fidelidade (pontos ou cashback)"
+        ],
+        "issuer_specific": [
+          "Cartão virtual",
+          "Pagamento de contas e boletos no cartão",
+          "Aproxime e pague",
+          "Carteiras digitais",
+          "Benefícios Visa Platinum"
+        ]
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Anuidade grátis",
+          "source_excerpt": "Anuidade Grátis; Pontuação: Não possui programa de fidelidade (pontos ou cashback)."
+        },
+        {
+          "category": "eligibility",
+          "key": "requirements",
+          "label": "Elegibilidade",
+          "value": "Sujeito à análise de crédito pelo emissor.",
+          "source_excerpt": "Anuidade Grátis; Pontuação: Não possui programa de fidelidade (pontos ou cashback)."
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 0,
+        "monthly_fee_brl_after_intro_official_hint": 0,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": 0,
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "reward_return_cashlike": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [
+        "sem-anuidade"
+      ],
+      "text_for_embedding_compare": "Itaú Visa Platinum | Itaú | Visa | Anuidade grátis | Não possui programa de fidelidade (pontos ou cashback) | Sujeito à análise de crédito pelo emissor. | Cartão virtual | Pagamento de contas e boletos no cartão | Aproxime e pague | Carteiras digitais | Benefícios Visa Platinum",
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Anuidade grátis",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.92,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade Grátis; Pontuação: Não possui programa de fidelidade (pontos ou cashback)."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Sujeito à análise de crédito pelo emissor.",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade Grátis; Pontuação: Não possui programa de fidelidade (pontos ou cashback)."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Não possui programa de fidelidade (pontos ou cashback)",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade Grátis; Pontuação: Não possui programa de fidelidade (pontos ou cashback)."
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": []
+    },
+    {
+      "card_stable_id": "itau-magalu-visa-platinum",
+      "display_name": "Cartão Magalu Visa Platinum",
+      "issuer_raw": "Itaú / Magalu",
+      "network_primary": "Visa",
+      "variant_band": "Platinum",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.9,
+      "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+      "application_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "media": {
+        "card_art_url": "/card-images/magalu-visa-platinum.png",
+        "alt_text": "Cartão Magalu Visa Platinum",
+        "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s",
+        "remote_card_art_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s"
+      },
+      "reward_return": {
+        "has_cashlike_return": true,
+        "subtypes": [
+          "cashback"
+        ],
+        "earning_summary": "2% de Dinheiro de Volta em compras no Magalu, creditado na carteira MagaluPay em até 30 dias após aprovação da compra."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "programs": [],
+        "unlimited": false,
+        "annual_visits": "unknown",
+        "guest_policy": "unknown",
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false,
+        "summary": "Não identificado na captura oficial inicial."
+      },
+      "eligibility": {
+        "requirements_text": "Renda mínima R$ 800,00; sujeito à análise de crédito.",
+        "minimum_income_brl_best_estimate": 800,
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": "unknown",
+        "availability_status": "available",
+        "hard_gate_fields": [],
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_issuer_initial_capture"
+      },
+      "fee_waiver_rules": [
+        {
+          "category": "general",
+          "full_waiver": true,
+          "description": "Anuidade grátis conforme página oficial do Itaú.",
+          "raw_text": "Anuidade Grátis"
+        }
+      ],
+      "benefit_groups": {
+        "fees": [
+          "Anuidade grátis."
+        ],
+        "rewards": [
+          "2% de Dinheiro de Volta em compras no Magalu, condicionado ao MagaluPay."
+        ],
+        "issuer_specific": [
+          "Cashback em lojas, app, site, televendas e Clubes Parceiros Magalu",
+          "Recebimento na carteira MagaluPay em até 30 dias após aprovação da compra",
+          "Sujeito à análise de crédito"
+        ]
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Anuidade grátis",
+          "source_excerpt": "Renda mínima R$ 800,00; Anuidade Grátis; 2% de dinheiro de volta em compras dentro do Magalu com MagaluPay ativo."
+        },
+        {
+          "category": "eligibility",
+          "key": "requirements",
+          "label": "Elegibilidade",
+          "value": "Renda mínima R$ 800,00; sujeito à análise de crédito.",
+          "source_excerpt": "Renda mínima R$ 800,00; Anuidade Grátis; 2% de dinheiro de volta em compras dentro do Magalu com MagaluPay ativo."
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 0,
+        "monthly_fee_brl_after_intro_official_hint": 0,
+        "minimum_income_brl_best_estimate": 800,
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": 0,
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": false,
+        "earn_cashback": true,
+        "earn_investback": false,
+        "reward_return_cashlike": true,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": true,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [
+        "sem-anuidade"
+      ],
+      "text_for_embedding_compare": "Cartão Magalu Visa Platinum | Itaú / Magalu | Visa | Anuidade grátis | 2% de dinheiro de volta em compras dentro do Magalu quando a conta digital MagaluPay está ativa, conforme página oficial. | Renda mínima R$ 800,00; sujeito à análise de crédito. | 2% de dinheiro de volta no Magalu com MagaluPay ativo | Benefícios Visa Platinum | Benefícios dentro e fora do Magalu",
+      "co_brand": {
+        "partner_name": "Magalu",
+        "partner_category": "retail"
+      },
+      "application_availability": {
+        "channels": [
+          "official_site",
+          "partner_site"
+        ],
+        "notes": "Solicitação pelo fluxo Cartão Magalu; sujeito à análise de crédito."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Anuidade grátis",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.92,
+          "dynamic": true,
+          "raw_excerpt": "Renda mínima R$ 800,00; Anuidade Grátis; 2% de dinheiro de volta em compras dentro do Magalu com MagaluPay ativo."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Renda mínima R$ 800,00; sujeito à análise de crédito.",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Renda mínima R$ 800,00; Anuidade Grátis; 2% de dinheiro de volta em compras dentro do Magalu com MagaluPay ativo."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/magalu-visa-platinum.png",
+          "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s",
+          "source_type": "manual",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.75,
+          "dynamic": false,
+          "raw_excerpt": "User-provided Google image thumbnail formatted into local 611x408 card-image canvas for Cartão Magalu Visa Platinum."
+        },
+        {
+          "field_path": "cashback_details.rate_text",
+          "value_text": "2% de Dinheiro de Volta em compras feitas com o Cartão Magalu nas lojas, aplicativo e site do Magalu.",
+          "source_url": "https://especiais.magazineluiza.com.br/cartao-luiza/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Você receberá 2% de Dinheiro de Volta nas compras feitas com o Cartão Magalu nas lojas, no aplicativo e no site do Magalu."
+        },
+        {
+          "field_path": "cashback_details.destination",
+          "value_text": "Dinheiro de Volta recebido na carteira digital MagaluPay.",
+          "source_url": "https://especiais.magazineluiza.com.br/cartao-luiza/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Você receberá seu dinheiro de volta na carteira digital do MagaluPay."
+        },
+        {
+          "field_path": "cashback_details.conditions_text",
+          "value_text": "Ative a conta MagaluPay em até 30 dias; prazo de recebimento até 30 dias após aprovação da compra.",
+          "source_url": "https://especiais.magazineluiza.com.br/cartao-luiza/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "O prazo para recebimento... é de até 30 dias após a aprovação da compra... Ative sua conta digital MagaluPay no Superapp Magalu em até 30 dias."
+        },
+        {
+          "field_path": "store_benefits",
+          "value_text": "Cashback em compras no Magazine Luiza por app, site, lojas, televendas e Clubes Parceiros.",
+          "source_url": "https://especiais.magazineluiza.com.br/cartao-luiza/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Você recebe Cashback em compras realizadas no Magazineluiza por meio do App, no site, nas lojas e no televendas... Clubes Parceiros."
+        },
+        {
+          "field_path": "application_availability",
+          "value_text": "Solicitação sujeita à análise de crédito.",
+          "source_url": "https://especiais.magazineluiza.com.br/cartao-luiza/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Você pode solicitar um Cartão Magalu e estará sujeito à análise de crédito."
+        }
+      ],
+      "cashback_details": {
+        "rate_text": "2% de Dinheiro de Volta em compras no Magalu.",
+        "destination": "partner_wallet",
+        "conditions_text": "Válido para compras nas lojas, app, site, televendas e Clubes Parceiros do Magalu. Recebimento em até 30 dias após aprovação da compra na carteira MagaluPay; é necessário ativar a conta MagaluPay no SuperApp Magalu em até 30 dias."
+      },
+      "store_benefits": [
+        {
+          "partner_name": "Magalu",
+          "benefit_type": "cashback",
+          "description": "2% de Dinheiro de Volta em compras no Magalu, recebido na carteira MagaluPay em até 30 dias após aprovação da compra."
+        }
+      ],
+      "secured_limit_options": []
+    },
+    {
+      "card_stable_id": "santander-sx",
+      "display_name": "Santander SX",
+      "issuer_raw": "Santander",
+      "network_primary": "Visa / Mastercard",
+      "variant_band": "Standard",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.9,
+      "primary_evidence_url": "https://www.santander.com.br/sx",
+      "application_url": "https://www.santander.com.br/sx",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.santander.com.br/sx",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "media": {
+        "card_art_url": "/card-images/santander-sx.png",
+        "alt_text": "Santander SX",
+        "source_url": "https://s3.amazonaws.com/marketplace.comparaonline.com/marketplace/marketplace/br/credit-card/santander/santander-sx.png",
+        "remote_card_art_url": "https://s3.amazonaws.com/marketplace.comparaonline.com/marketplace/marketplace/br/credit-card/santander/santander-sx.png"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "subtypes": [],
+        "earning_summary": "Descontos em parceiros Esfera; benefícios da bandeira variam."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "programs": [],
+        "unlimited": false,
+        "annual_visits": "unknown",
+        "guest_policy": "unknown",
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false,
+        "summary": "Não identificado na captura oficial inicial."
+      },
+      "eligibility": {
+        "requirements_text": "Sujeito à análise de crédito pelo Santander.",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": "unknown",
+        "availability_status": "available",
+        "hard_gate_fields": [],
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_issuer_initial_capture"
+      },
+      "fee_waiver_rules": [
+        {
+          "category": "monthly_spend",
+          "threshold_brl": 100,
+          "period": "monthly",
+          "full_waiver": true,
+          "description": "Isenção ao acumular no mínimo R$ 100 em compras no crédito a cada fatura.",
+          "raw_text": "Livre de anuidade acumulando no mínimo R$ 100 em compras no crédito a cada fatura."
+        },
+        {
+          "category": "pix_key",
+          "full_waiver": true,
+          "description": "Isenção cadastrando e mantendo CPF e celular como chaves Pix no Santander.",
+          "raw_text": "Livre de anuidade cadastrando CPF e celular como chaves Pix no Santander."
+        }
+      ],
+      "benefit_groups": {
+        "fees": [
+          "Anuidade: 12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 no crédito por fatura ou mantendo CPF e celular como chaves Pix no Santander."
+        ],
+        "rewards": [
+          "Descontos em parceiros Esfera; benefícios da bandeira variam."
+        ],
+        "issuer_specific": [
+          "Descontos em parceiros Esfera",
+          "Possibilidade de isenção por gasto mínimo",
+          "Possibilidade de isenção por chaves Pix"
+        ]
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "R$ 399/ano (R$ 33,25/mês)",
+          "details": "Isento com ≥R$ 100 em compras/fatura ou chaves Pix CPF+celular no Santander"
+        },
+        {
+          "category": "rewards",
+          "key": "rewards_summary",
+          "label": "Recompensas",
+          "value": "Descontos em parceiros Esfera"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 399,
+        "monthly_fee_brl_after_intro_official_hint": 33.25,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": 0,
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "reward_return_cashlike": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [
+        "isencao-anuidade"
+      ],
+      "text_for_embedding_compare": "Santander SX | Santander | Visa / Mastercard | 12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 no crédito por fatura ou mantendo CPF e celular como chaves Pix no Santander. | Descontos em parceiros Esfera; benefícios da bandeira variam. | Sujeito à análise de crédito pelo Santander. | Descontos em parceiros Esfera | Possibilidade de isenção por gasto mínimo | Possibilidade de isenção por chaves Pix",
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 no crédito por fatura ou mantendo CPF e celular como chaves Pix no Santander.",
+          "source_url": "https://www.santander.com.br/sx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.92,
+          "dynamic": true,
+          "raw_excerpt": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 em compras ou cadastrando CPF e celular como chaves Pix no Santander."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Sujeito à análise de crédito pelo Santander.",
+          "source_url": "https://www.santander.com.br/sx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 em compras ou cadastrando CPF e celular como chaves Pix no Santander."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Descontos em parceiros Esfera; benefícios da bandeira variam.",
+          "source_url": "https://www.santander.com.br/sx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 em compras ou cadastrando CPF e celular como chaves Pix no Santander."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Página oficial redireciona/posiciona Free/SX como cartão sem anuidade.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/sx?ic=vitrine%3Acartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Free: cartão livre da anuidade; 100% gratuito, sem condicionantes de uso mínimo."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/santander-sx.png",
+          "source_url": "https://s3.amazonaws.com/marketplace.comparaonline.com/marketplace/marketplace/br/credit-card/santander/santander-sx.png",
+          "source_type": "aggregator",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.8,
+          "dynamic": false,
+          "raw_excerpt": "Card artwork formatted into the local 611x408 card-image canvas for Santander SX."
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": []
+    },
+    {
+      "card_stable_id": "neon-cartao-de-credito",
+      "display_name": "Cartão de Crédito Neon",
+      "issuer_raw": "Neon",
+      "network_primary": "Visa",
+      "variant_band": "Internacional",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.9,
+      "primary_evidence_url": "https://neon.com.br/cartao-de-credito",
+      "application_url": "https://neon.com.br/cartao-de-credito",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://neon.com.br/cartao-de-credito",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "media": {
+        "card_art_url": "/card-images/neon-cartao-de-credito.png",
+        "alt_text": "Cartão de Crédito Neon",
+        "source_url": "https://a.storyblok.com/f/114280/663x423/d287d584f5/cartao_neon.png",
+        "remote_card_art_url": "https://a.storyblok.com/f/114280/663x423/d287d584f5/cartao_neon.png"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "subtypes": [],
+        "earning_summary": "A página oficial cita cashback, mas não publica taxa/regras suficientes para estimar retorno; tratado como não quantificável."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "programs": [],
+        "unlimited": false,
+        "annual_visits": "unknown",
+        "guest_policy": "unknown",
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false,
+        "summary": "Não identificado na captura oficial inicial."
+      },
+      "eligibility": {
+        "requirements_text": "Solicitação pelo app; sujeito à análise de crédito em até 5 dias corridos. Se negado, nova tentativa após 30 dias. Viracrédito permite usar CDB Neon como limite.",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": true,
+        "availability_status": "available",
+        "hard_gate_fields": [],
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_issuer_initial_capture"
+      },
+      "fee_waiver_rules": [
+        {
+          "category": "general",
+          "full_waiver": true,
+          "description": "Sem anuidade conforme página oficial da Neon.",
+          "raw_text": "Cartão de crédito Neon 100% grátis."
+        }
+      ],
+      "benefit_groups": {
+        "fees": [
+          "Cartão sem anuidade."
+        ],
+        "rewards": [
+          "Cashback citado pela Neon, sem taxa pública suficiente para cálculo."
+        ],
+        "insurance": [
+          "Benefícios Visa Classic, proteção de compra, proteção de preço e garantia estendida original."
+        ],
+        "issuer_specific": [
+          "Viracrédito Neon",
+          "Limite elástico",
+          "Pix no crédito entre R$ 10 e R$ 500, sujeito a limite disponível e tarifa",
+          "Solicitação pelo app com análise em até 5 dias corridos"
+        ]
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Grátis"
+        },
+        {
+          "category": "rewards",
+          "key": "cashback",
+          "label": "Cashback",
+          "value": "Sim — percentual não divulgado oficialmente"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 0,
+        "monthly_fee_brl_after_intro_official_hint": 0,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": 0,
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": false,
+        "earn_cashback": true,
+        "earn_investback": false,
+        "reward_return_cashlike": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [
+        "sem-anuidade"
+      ],
+      "text_for_embedding_compare": "Cartão de Crédito Neon | Neon | Visa | Cartão 100% grátis / sem anuidade | Cashback não quantificável mencionado pela Neon; regras devem ser verificadas no app/site antes de comparação quantitativa. | Solicitação pelo app; sujeito à análise de crédito. Viracrédito pode transformar CDB Neon em limite. | Sem anuidade | Viracrédito Neon | Cashback não quantificável | Limite elástico",
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "app"
+        ],
+        "notes": "Abra/ative a conta Neon, solicite pela aba Crédito do app e aguarde análise de crédito em até 5 dias corridos."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Cartão 100% grátis / sem anuidade",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.92,
+          "dynamic": true,
+          "raw_excerpt": "Cartão grátis com Viracrédito, cashback e limite elástico."
+        },
+        {
+          "field_path": "fees.annual.raw_text",
+          "value_text": "anuidade e sem complicação",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7999999999999999,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de crédito | Peça o seu cartão Neon Cartões Cartão de crédito Sem anuidade e sem complicação. Viracrédito Neon Novo Mais limite no cartão de crédito. Cashback Dinheiro de volta nas suas compras. Cartão de débito Bandeira Visa e internacional. Cartão virtual Seguro para co"
+        },
+        {
+          "field_path": "fees.waiver_and_discounts.policy_text",
+          "value_text": "Sem anuidade e sem complicação",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.84,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de crédito | Peça o seu cartão Neon Cartões Cartão de crédito Sem anuidade e sem complicação. Viracrédito Neon Novo Mais limite no cartão de crédito. Cashback Dinheiro de volta nas suas compras. Cartão de débito Bandeira Visa e internacional. Cartão virtual Seguro para co"
+        },
+        {
+          "field_path": "benefits.official_highlights",
+          "value_text": "Seguro para compras online",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "em complicação. Viracrédito Neon Novo Mais limite no cartão de crédito. Cashback Dinheiro de volta nas suas compras. Cartão de débito Bandeira Visa e internacional. Cartão virtual Seguro para compras online. Carteira digital Guarde seus cartões com segurança. Para você Conta digital Neon completa Conta com cartão e muito mais. CDBs Neon Novo Rentabilidade, segurança e lucro certo. Em"
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/neon-cartao-de-credito.png",
+          "source_url": "https://a.storyblok.com/f/114280/663x423/d287d584f5/cartao_neon.png",
+          "source_type": "manual",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": false,
+          "raw_excerpt": "User-provided Neon card artwork formatted into the local 611x408 card-image canvas."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Cartão de crédito Neon sem anuidade.",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Na Neon você tem conta com cartão de crédito sem anuidade."
+        },
+        {
+          "field_path": "application_availability",
+          "value_text": "Solicitação pela aba Crédito do app; análise em até 5 dias corridos.",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Na aba “Crédito” do app Neon, clique em “Pedir cartão de crédito”; a análise leva até 5 dias corridos."
+        },
+        {
+          "field_path": "eligibility.retry",
+          "value_text": "Se não aprovado, a Neon libera nova chance após 30 dias.",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Liberamos uma nova chance para você fazer o cartão de crédito Neon após 30 dias."
+        },
+        {
+          "field_path": "secured_limit_options",
+          "value_text": "Viracrédito: CDB Neon pode virar limite no cartão.",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Viracrédito... guardando uma parte do seu dinheiro no CDB Neon para transformar em limite no cartão."
+        },
+        {
+          "field_path": "benefits.insurance",
+          "value_text": "Visa Classic, proteção de compra, proteção de preço e garantia estendida original.",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Benefícios do Visa Classic somados à proteção de compra, proteção de preço e garantia estendida original."
+        },
+        {
+          "field_path": "benefits.pix_credit",
+          "value_text": "Pix no crédito entre R$ 10 e R$ 500, sujeito a limite disponível e taxa.",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Informe o valor do Pix que deve ser entre R$ 10 e R$ 500... considerando as tarifas mostradas."
+        },
+        {
+          "field_path": "cashback_details",
+          "value_text": "Cashback citado na página, mas sem taxa/regras suficientes para cálculo.",
+          "source_url": "https://neon.com.br/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Cartão grátis com Viracrédito, cashback e limite elástico!"
+        }
+      ],
+      "cashback_details": {
+        "rate_text": "Sem taxa pública suficiente para cálculo; cashback citado sem regra detalhada na captura oficial.",
+        "destination": "unknown",
+        "conditions_text": "Não usar cashback Neon em comparação quantitativa sem regra vigente no app/site."
+      },
+      "store_benefits": [],
+      "secured_limit_options": [
+        {
+          "product_name": "Viracrédito Neon",
+          "backing_asset": "cdb",
+          "description": "Dinheiro guardado no CDB Neon pode transformar-se em limite no cartão de crédito."
+        }
+      ]
+    },
+    {
+      "card_stable_id": "pagbank-cartao-de-credito",
+      "display_name": "Cartão de Crédito PagBank",
+      "issuer_raw": "PagBank",
+      "network_primary": "Visa / Mastercard",
+      "variant_band": "Internacional",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+      "application_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "media": {
+        "card_art_url": "unknown",
+        "alt_text": "Cartão de Crédito PagBank",
+        "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "subtypes": [],
+        "earning_summary": "Não identificado na captura oficial inicial."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "programs": [],
+        "unlimited": false,
+        "annual_visits": "unknown",
+        "guest_policy": "unknown",
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false,
+        "summary": "Não identificado na captura oficial inicial."
+      },
+      "eligibility": {
+        "requirements_text": "Sem análise de crédito para limite garantido; pode reservar saldo da conta ou investir em CDB para compor limite.",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": "unknown",
+        "availability_status": "available",
+        "hard_gate_fields": [],
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_issuer_initial_capture"
+      },
+      "fee_waiver_rules": [
+        {
+          "category": "general",
+          "full_waiver": true,
+          "description": "Cartão sem anuidade conforme página oficial do PagBank.",
+          "raw_text": "Cartão sem anuidade."
+        }
+      ],
+      "benefit_groups": {
+        "fees": [
+          "Anuidade: Sem anuidade"
+        ],
+        "rewards": [
+          "Não identificado na captura oficial inicial."
+        ],
+        "issuer_specific": [
+          "Cartão sem anuidade",
+          "Limite garantido por saldo reservado ou CDB",
+          "Uso nacional e internacional"
+        ]
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Grátis"
+        },
+        {
+          "category": "eligibility",
+          "key": "secured_limit",
+          "label": "Limite",
+          "value": "Garantido por saldo ou CDB (a partir de R$ 300)"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 0,
+        "monthly_fee_brl_after_intro_official_hint": 0,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": 0,
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "reward_return_cashlike": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [
+        "sem-anuidade"
+      ],
+      "text_for_embedding_compare": "Cartão de Crédito PagBank | PagBank | Visa / Mastercard | Sem anuidade | Não identificado na captura oficial inicial. | Sem análise de crédito para limite garantido; pode reservar saldo da conta ou investir em CDB para compor limite. | Cartão sem anuidade | Limite garantido por saldo reservado ou CDB | Uso nacional e internacional",
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Sem anuidade",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cartão sem anuidade; reserve saldo da conta ou invista a partir de R$ 300 em CDBs para compor limite."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Sem análise de crédito para limite garantido; pode reservar saldo da conta ou investir em CDB para compor limite.",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Cartão sem anuidade; reserve saldo da conta ou invista a partir de R$ 300 em CDBs para compor limite."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Não identificado na captura oficial inicial.",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.84,
+          "dynamic": true,
+          "raw_excerpt": "Cartão sem anuidade; reserve saldo da conta ou invista a partir de R$ 300 em CDBs para compor limite."
+        },
+        {
+          "field_path": "fees.annual.raw_text",
+          "value_text": "anuidade Use sem pagar taxas adicionais",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7999999999999999,
+          "dynamic": true,
+          "raw_excerpt": "dir cartão Compras internacionais O Cartão de Crédito PagBank funciona no Brasil e no exterior. Para PF e PJ Cartão de crédito para Pessoas Físicas e Pessoas Jurídicas. Cartão sem anuidade Use sem pagar taxas adicionais. Limite na hora Invista ou reserve do saldo e tenha o valor em limite liberado na hora. Parcele em até 24x Rápido e fácil, tudo pelo app. Use seu Cartão PagBank nas principais car"
+        },
+        {
+          "field_path": "fees.waiver_and_discounts.policy_text",
+          "value_text": "sem anuidade Use sem pagar taxas adicionais",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.84,
+          "dynamic": true,
+          "raw_excerpt": ". Pedir cartão Compras internacionais O Cartão de Crédito PagBank funciona no Brasil e no exterior. Para PF e PJ Cartão de crédito para Pessoas Físicas e Pessoas Jurídicas. Cartão sem anuidade Use sem pagar taxas adicionais. Limite na hora Invista ou reserve do saldo e tenha o valor em limite liberado na hora. Parcele em até 24x Rápido e fácil, tudo pelo app. Use seu Cartão PagBank nas principais car"
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Investimentos Para Você Investimentos Renda Fixa CDB PagBank Fundos de Investimento Tesouro Direto Renda Variável Custos Operacionais Poupar Automático Cofrinho Ver todos o",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.76,
+          "dynamic": true,
+          "raw_excerpt": "mentos Internacionais Seja um Parceiro PagBank Para Você Voltar para o menu Para Você Conta Digital PagBank Conta PJ PagBank Para Você Conta PJ PagBank Conta PJ Domicílio Bancário Investimentos Para Você Investimentos Renda Fixa CDB PagBank Fundos de Investimento Tesouro Direto Renda Variável Custos Operacionais Poupar Automático Cofrinho Ver todos os investimentos Cartões PagBank Para Você Cartões PagBank Cartão de Crédito Grátis Cartão Pré Pago Cartão de Débito Ver todos os cartões Pix Seguros e PagBank Saúde Para Você Segur"
+        },
+        {
+          "field_path": "benefits.official_highlights",
+          "value_text": "Vantagens das Maquininhas Para Seu Negócio Vantagens das Maquininhas Recarga de Celular Compartilhamento Transferência Poupar Automático Antecipação de Vendas Pré-Autorização de Pagamentos",
+          "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "rninha ProFit Moderninha Smart 2 Moderninha Pro 2 Moderninha Plus 2 Minizinha Chip 3 Minizinha NFC 2 Ver todas as maquininhas Compare as maquininhas Taxas e Tarifas Taxas e Planos Vantagens das Maquininhas Para Seu Negócio Vantagens das Maquininhas Recarga de Celular Compartilhamento Transferência Poupar Automático Antecipação de Vendas Pré-Autorização de Pagamentos Conta PJ PagBank Venda Online Para Seu Negócio Venda Online Checkout Link de Pagamento Pagar com PagBank Envio Fácil Gestão de Cobrança Ver todas as soluções Venda Online Via Integ"
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [
+        {
+          "product_name": "Limite garantido PagBank",
+          "backing_asset": "cdb",
+          "description": "Reserva de saldo da conta ou investimento em CDB pode compor o limite do cartão."
+        }
+      ]
+    },
+    {
+      "card_stable_id": "banco-pan-cartao-de-credito",
+      "display_name": "Cartão de Crédito PAN",
+      "issuer_raw": "Banco PAN",
+      "network_primary": "Mastercard",
+      "variant_band": "Internacional",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+      "application_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "media": {
+        "card_art_url": "unknown",
+        "alt_text": "Cartão de Crédito PAN",
+        "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/"
+      },
+      "reward_return": {
+        "has_cashlike_return": true,
+        "subtypes": [
+          "cashback"
+        ],
+        "earning_summary": "Cashback de 0,75% por real gasto nas transações elegíveis, conforme página oficial capturada."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "programs": [],
+        "unlimited": false,
+        "annual_visits": "unknown",
+        "guest_policy": "unknown",
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false,
+        "summary": "Não identificado na captura oficial inicial."
+      },
+      "eligibility": {
+        "requirements_text": "Solicitação pelo app; sujeito à análise de crédito.",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": "unknown",
+        "availability_status": "available",
+        "hard_gate_fields": [],
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_issuer_initial_capture"
+      },
+      "fee_waiver_rules": [],
+      "benefit_groups": {
+        "fees": [
+          "Anuidade: Verificar tarifas vigentes no app/site do Banco PAN"
+        ],
+        "rewards": [
+          "Cashback de 0,75% por real gasto nas transações elegíveis, conforme página oficial capturada."
+        ],
+        "issuer_specific": [
+          "Cartão virtual",
+          "Ajuste de limite no app",
+          "Mastercard Surpreenda",
+          "Cashback em transações elegíveis"
+        ]
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Verificar tarifas vigentes no app/site do Banco PAN",
+          "source_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app."
+        },
+        {
+          "category": "eligibility",
+          "key": "requirements",
+          "label": "Elegibilidade",
+          "value": "Solicitação pelo app; sujeito à análise de crédito.",
+          "source_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app."
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": "unknown",
+        "monthly_fee_brl_after_intro_official_hint": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": 0,
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": false,
+        "earn_cashback": true,
+        "earn_investback": false,
+        "reward_return_cashlike": true,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Cartão de Crédito PAN | Banco PAN | Mastercard | Verificar tarifas vigentes no app/site do Banco PAN | Cashback de 0,75% por real gasto nas transações elegíveis, conforme página oficial capturada. | Solicitação pelo app; sujeito à análise de crédito. | Cartão virtual | Ajuste de limite no app | Mastercard Surpreenda | Cashback em transações elegíveis",
+      "application_availability": {
+        "channels": [
+          "official_site",
+          "app"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Verificar tarifas vigentes no app/site do Banco PAN",
+          "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Solicitação pelo app; sujeito à análise de crédito.",
+          "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Cashback de 0,75% por real gasto nas transações elegíveis, conforme página oficial capturada.",
+          "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.84,
+          "dynamic": true,
+          "raw_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app."
+        }
+      ],
+      "cashback_details": {
+        "rate_text": "0,75% por real gasto nas transações elegíveis",
+        "destination": "unknown",
+        "conditions_text": "Transações elegíveis; verificar regulamento vigente no Banco PAN."
+      },
+      "store_benefits": [],
+      "secured_limit_options": []
+    },
+    {
+      "card_stable_id": "carrefour-cartao-de-credito",
+      "display_name": "Cartão Carrefour",
+      "issuer_raw": "Carrefour Soluções Financeiras",
+      "network_primary": "Visa / Mastercard",
+      "variant_band": "Internacional",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.carrefoursolucoes.com.br/",
+      "application_url": "https://www.carrefoursolucoes.com.br/",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.carrefoursolucoes.com.br/",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "media": {
+        "card_art_url": "unknown",
+        "alt_text": "Cartão Carrefour",
+        "source_url": "https://www.carrefoursolucoes.com.br/"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "subtypes": [],
+        "earning_summary": "Benefícios de loja e ofertas Carrefour; regras variam."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "programs": [],
+        "unlimited": false,
+        "annual_visits": "unknown",
+        "guest_policy": "unknown",
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false,
+        "summary": "Não identificado na captura oficial inicial."
+      },
+      "eligibility": {
+        "requirements_text": "Sujeito à análise de crédito.",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": "unknown",
+        "availability_status": "available",
+        "hard_gate_fields": [],
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_issuer_initial_capture"
+      },
+      "fee_waiver_rules": [
+        {
+          "category": "monthly_spend",
+          "period": "monthly",
+          "full_waiver": true,
+          "description": "Isenção ao realizar no mínimo uma compra por ciclo de fatura nas lojas do Grupo Carrefour.",
+          "raw_text": "Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour."
+        },
+        {
+          "category": "promotional_period",
+          "full_waiver": true,
+          "description": "Condição promocional sujeita a alteração mediante comunicação.",
+          "raw_text": "Condição promocional, podendo ser alterada ou extinta mediante prévia comunicação."
+        }
+      ],
+      "benefit_groups": {
+        "fees": [
+          "Anuidade: Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour; condição promocional pode mudar."
+        ],
+        "rewards": [
+          "Benefícios de loja e ofertas Carrefour; regras variam."
+        ],
+        "issuer_specific": [
+          "Anuidade zero por uso mensal no Carrefour",
+          "Benefícios em compras no Carrefour",
+          "Aceito em estabelecimentos credenciados pela bandeira"
+        ]
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Grátis",
+          "details": "Basta usar o cartão ≥1×/mês em loja Carrefour, Atacadão ou Sam's Club"
+        },
+        {
+          "category": "rewards",
+          "key": "cashback",
+          "label": "Cashback",
+          "value": "Sim — programa Comprou, Voltou (% no regulamento)"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 0,
+        "monthly_fee_brl_after_intro_official_hint": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": 0,
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": false,
+        "earn_cashback": true,
+        "earn_investback": false,
+        "reward_return_cashlike": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [
+        "varejo"
+      ],
+      "text_for_embedding_compare": "Cartão Carrefour | Carrefour Soluções Financeiras | Visa / Mastercard | Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour; condição promocional pode mudar. | Benefícios de loja e ofertas Carrefour; regras variam. | Sujeito à análise de crédito. | Anuidade zero por uso mensal no Carrefour | Benefícios em compras no Carrefour | Aceito em estabelecimentos credenciados pela bandeira",
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour; condição promocional pode mudar.",
+          "source_url": "https://www.carrefoursolucoes.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade zero: use o Cartão Carrefour uma vez por mês em qualquer Carrefour."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Sujeito à análise de crédito.",
+          "source_url": "https://www.carrefoursolucoes.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade zero: use o Cartão Carrefour uma vez por mês em qualquer Carrefour."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Benefícios de loja e ofertas Carrefour; regras variam.",
+          "source_url": "https://www.carrefoursolucoes.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.84,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade zero: use o Cartão Carrefour uma vez por mês em qualquer Carrefour."
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [
+        {
+          "partner_name": "Carrefour",
+          "benefit_type": "exclusive_offer",
+          "description": "Benefícios e ofertas para compras no ecossistema Carrefour."
+        }
+      ],
+      "secured_limit_options": []
+    },
+    {
+      "card_stable_id": "ailos-now-official",
+      "display_name": "Ailos Now",
+      "issuer_raw": "Ailos",
+      "network_primary": "Mastercard",
+      "variant_band": "Standard",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "application_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "media": {
+        "card_art_url": "/card-images/alios-now.png",
+        "alt_text": "Ailos Now",
+        "source_url": "https://plusdin.com.br/r3-ailos-mastercard-now/",
+        "remote_card_art_url": "https://plusdin.com.br/box/uploads/2024/06/Ailos-Mastercard-Now.png"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "subtypes": [],
+        "earning_summary": "Não possui programa de pontos identificado na página oficial; participa de benefícios Mastercard aplicáveis."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "programs": [],
+        "unlimited": "unknown",
+        "annual_visits": "unknown",
+        "guest_policy": "unknown",
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": true,
+        "summary": "Não identificado na captura oficial."
+      },
+      "eligibility": {
+        "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": true,
+        "availability_status": "available",
+        "hard_gate_fields": [
+          "cooperative_membership",
+          "credit_analysis"
+        ],
+        "recommendation_blocking_unknowns": true,
+        "source_status": "official_issuer_partial_capture"
+      },
+      "fee_waiver_rules": [
+        {
+          "type": "spend_based",
+          "summary": "Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
+        }
+      ],
+      "benefit_groups": {
+        "fees": [
+          "Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura."
+        ],
+        "rewards": [],
+        "travel": [],
+        "insurance": [],
+        "lifestyle": [
+          "Cartão virtual e gestão pelo App Ailos Cartões",
+          "Compras internacionais e por aproximação",
+          "Gestão pelo App Ailos Cartões",
+          "Cartão virtual",
+          "Compras internacionais",
+          "Pagamento por aproximação",
+          "Apple Pay e Samsung Pay"
+        ],
+        "issuer_specific": [
+          "Mastercard Global Service",
+          "Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura",
+          "Cartão virtual e gestão pelo App Ailos Cartões",
+          "Compras internacionais e por aproximação"
+        ]
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Anuidade",
+          "value": "Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura."
+        },
+        {
+          "category": "rewards",
+          "key": "rewards",
+          "label": "Recompensas",
+          "value": "Não possui programa de pontos identificado na página oficial; participa de benefícios Mastercard aplicáveis."
+        },
+        {
+          "category": "issuer_specific",
+          "key": "official_highlights",
+          "label": "Destaques oficiais",
+          "value": "Mastercard Global Service; Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura; Cartão virtual e gestão pelo App Ailos Cartões; Compras internacionais e por aproximação"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": "unknown",
+        "monthly_fee_brl_after_intro_official_hint": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "reward_return_cashlike": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [
+        "cooperativa",
+        "official_issuer"
+      ],
+      "text_for_embedding_compare": "Ailos Now | Ailos | Não possui programa de pontos identificado na página oficial; participa de benefícios Mastercard aplicáveis. | Benefícios: Mastercard Global Service; Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura; Cartão virtual e gestão pelo App Ailos Cartões; Compras internacionais e por aproximação | Dados oficiais parciais; anuidade/renda/tabela Comprou Zerou permanecem unknown.",
+      "application_availability": {
+        "channels": [
+          "app",
+          "branch",
+          "phone"
+        ],
+        "notes": "Não cooperados abrem conta e solicitam pelo app Ailos+; cooperados solicitam pelo 0800 647 2200 ou em postos. Sujeito à análise de crédito."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ailos Now aparece no portfólio oficial de Cartões Ailos.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Ailos: Ailos Now, Ailos Mastercard Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "benefits",
+          "value_text": "Mastercard Global Service; cartão virtual; compras internacionais e por aproximação; gestão pelo App Ailos Cartões.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Faça compras internacionais; pagamento por aproximação; cartões virtuais; controle seus gastos em tempo real pelo App Ailos Cartões."
+        },
+        {
+          "field_path": "benefits.promotions",
+          "value_text": "Cartões de crédito Ailos aparecem como produto participante da promoção Coopere com a Sorte, conforme regulamento/campanha vigente ou encerrada.",
+          "source_url": "https://www.ailos.coop.br/cooperecomasorte",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "Promoção Ailos Coopere com a Sorte; Cartão de Crédito; regulamento."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/alios-now.png",
+          "source_url": "https://plusdin.com.br/r3-ailos-mastercard-now/",
+          "source_type": "manual",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.95,
+          "dynamic": false,
+          "raw_excerpt": "Local card artwork file added under platform/public/card-images for Ailos Now. Remote/source image retained in media.remote_card_art_url/source_url."
+        },
+        {
+          "field_path": "application_availability",
+          "value_text": "Não cooperado: abrir conta e solicitar pelo app Ailos+. Cooperado: solicitar pelo 0800 647 2200 ou posto de atendimento; sujeito à análise de crédito.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Se ainda não é Cooperado: abra sua conta pelo app Ailos+; faça a solicitação do cartão através do app Ailos+. Se já é Cooperado: solicite através do 0800 647 2200 ou em um Posto de Atendimento. Sujeito à análise de crédito."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Comprou Zerou: quanto mais você usa o seu cartão, maior o desconto. Possibilidade de anuidade zero. Consulte na sua Cooperativa."
+        },
+        {
+          "field_path": "benefits.app",
+          "value_text": "App Ailos Cartões permite controle de gastos, bloqueio/desbloqueio, compras internacionais, aproximação, cartões virtuais, Apple Pay e Samsung Pay.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Faça a gestão completa do seu cartão no App Ailos Cartões: controle seus gastos, bloqueie e desbloqueie, compras internacionais, pagamento por aproximação, cartões virtuais, Apple Pay e Samsung Pay."
+        }
+      ],
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "data_quality_notes": [
+        "Dados Ailos atualizados com base em páginas oficiais Ailos e contexto fornecido; valores exatos de anuidade, renda mínima e tabela Comprou Zerou não foram encontrados.",
+        "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
+      ]
+    },
+    {
+      "card_stable_id": "ailos-mastercard-classico-official",
+      "display_name": "Ailos Mastercard Clássico",
+      "issuer_raw": "Ailos",
+      "network_primary": "Mastercard",
+      "variant_band": "Classic",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "application_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "media": {
+        "card_art_url": "/card-images/ailos-classic.png",
+        "alt_text": "Ailos Mastercard Clássico",
+        "source_url": "https://plusdin.com.br/r3-ailos-mastercard-internacional/",
+        "remote_card_art_url": "https://plusdin.com.br/box/uploads/2024/06/Ailos-Mastercard-Internacional.png"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "subtypes": [],
+        "earning_summary": "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, viagens, aporte na previdência e crédito na fatura."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "programs": [],
+        "unlimited": "unknown",
+        "annual_visits": "unknown",
+        "guest_policy": "unknown",
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": true,
+        "summary": "Não identificado na captura oficial."
+      },
+      "eligibility": {
+        "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": true,
+        "availability_status": "available",
+        "hard_gate_fields": [
+          "cooperative_membership",
+          "credit_analysis"
+        ],
+        "recommendation_blocking_unknowns": true,
+        "source_status": "official_issuer_partial_capture"
+      },
+      "fee_waiver_rules": [
+        {
+          "type": "spend_based",
+          "summary": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
+        }
+      ],
+      "benefit_groups": {
+        "fees": [
+          "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela."
+        ],
+        "rewards": [
+          "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, viagens, aporte na previdência e crédito na fatura."
+        ],
+        "travel": [],
+        "insurance": [],
+        "lifestyle": [
+          "Cartão virtual e gestão pelo App Ailos Cartões",
+          "Compras internacionais e por aproximação",
+          "Gestão pelo App Ailos Cartões",
+          "Cartão virtual",
+          "Compras internacionais",
+          "Pagamento por aproximação",
+          "Apple Pay e Samsung Pay"
+        ],
+        "issuer_specific": [
+          "Mastercard Surpreenda",
+          "Mastercard Global Service",
+          "Comprou, Zerou pode isentar a anuidade",
+          "Programa de pontos com resgate por produtos, viagens, previdência e crédito na fatura",
+          "Cartão virtual e gestão pelo App Ailos Cartões",
+          "Compras internacionais e por aproximação"
+        ]
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Anuidade",
+          "value": "Comprou, Zerou pode isentar/reduzir anuidade; valores e tabela não foram encontrados na captura oficial."
+        },
+        {
+          "category": "rewards",
+          "key": "rewards",
+          "label": "Recompensas",
+          "value": "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, viagens, aporte na previdência e crédito na fatura."
+        },
+        {
+          "category": "issuer_specific",
+          "key": "official_highlights",
+          "label": "Destaques oficiais",
+          "value": "Mastercard Surpreenda; Mastercard Global Service; Comprou, Zerou pode isentar a anuidade; Programa de pontos com resgate por produtos, viagens, previdência e crédito na fatura; Cartão virtual e gestão pelo App Ailos Cartões; Compras internacionais e por aproximação"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": "unknown",
+        "monthly_fee_brl_after_intro_official_hint": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "reward_return_cashlike": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [
+        "cooperativa",
+        "official_issuer"
+      ],
+      "text_for_embedding_compare": "Ailos Mastercard Clássico | Ailos | Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, viagens, aporte na previdência e crédito na fatura. | Benefícios: Mastercard Surpreenda; Mastercard Global Service; Comprou, Zerou pode isentar a anuidade; Programa de pontos com resgate por produtos, viagens, previdência e crédito na fatura; Cartão virtual e gestão pelo App Ailos Cartões; Compras internacionais e por aproximação | Dados oficiais parciais; anuidade/renda/tabela Comprou Zerou permanecem unknown.",
+      "application_availability": {
+        "channels": [
+          "app",
+          "branch",
+          "phone"
+        ],
+        "notes": "Não cooperados abrem conta e solicitam pelo app Ailos+; cooperados solicitam pelo 0800 647 2200 ou em postos. Sujeito à análise de crédito."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ailos Mastercard Clássico aparece no portfólio oficial de Cartões Ailos.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Ailos: Ailos Now, Ailos Mastercard Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Programa de pontos: compras acumulam pontos para resgate por produtos, viagens, aporte na previdência e crédito na fatura.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Clássico: Programa de pontos: cada compra acumula pontos que podem ser trocados por produtos, viagens, aporte na previdência e crédito na fatura."
+        },
+        {
+          "field_path": "benefits",
+          "value_text": "Mastercard Surpreenda e Mastercard Global Service.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Clássico: Mastercard Surpreenda. Mastercard Global Service."
+        },
+        {
+          "field_path": "benefits.promotions",
+          "value_text": "Cartões de crédito Ailos aparecem como produto participante da promoção Coopere com a Sorte, conforme regulamento/campanha vigente ou encerrada.",
+          "source_url": "https://www.ailos.coop.br/cooperecomasorte",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "Promoção Ailos Coopere com a Sorte; Cartão de Crédito; regulamento."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/ailos-classic.png",
+          "source_url": "https://plusdin.com.br/r3-ailos-mastercard-internacional/",
+          "source_type": "manual",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.95,
+          "dynamic": false,
+          "raw_excerpt": "Local card artwork file added under platform/public/card-images for Ailos Mastercard Clássico. Remote/source image retained in media.remote_card_art_url/source_url."
+        },
+        {
+          "field_path": "application_availability",
+          "value_text": "Não cooperado: abrir conta e solicitar pelo app Ailos+. Cooperado: solicitar pelo 0800 647 2200 ou posto de atendimento; sujeito à análise de crédito.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Se ainda não é Cooperado: abra sua conta pelo app Ailos+; faça a solicitação do cartão através do app Ailos+. Se já é Cooperado: solicite através do 0800 647 2200 ou em um Posto de Atendimento. Sujeito à análise de crédito."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Comprou Zerou: quanto mais você usa o seu cartão, maior o desconto. Possibilidade de anuidade zero. Consulte na sua Cooperativa."
+        },
+        {
+          "field_path": "benefits.app",
+          "value_text": "App Ailos Cartões permite controle de gastos, bloqueio/desbloqueio, compras internacionais, aproximação, cartões virtuais, Apple Pay e Samsung Pay.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Faça a gestão completa do seu cartão no App Ailos Cartões: controle seus gastos, bloqueie e desbloqueie, compras internacionais, pagamento por aproximação, cartões virtuais, Apple Pay e Samsung Pay."
+        }
+      ],
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "data_quality_notes": [
+        "Dados Ailos atualizados com base em páginas oficiais Ailos e contexto fornecido; valores exatos de anuidade, renda mínima e tabela Comprou Zerou não foram encontrados.",
+        "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
+      ]
+    },
+    {
+      "card_stable_id": "ailos-mastercard-gold-official",
+      "display_name": "Ailos Mastercard Gold",
+      "issuer_raw": "Ailos",
+      "network_primary": "Mastercard",
+      "variant_band": "Gold",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "application_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "media": {
+        "card_art_url": "/card-images/alios-gold.png",
+        "alt_text": "Ailos Mastercard Gold",
+        "source_url": "https://cardfacil.com/r2-cartao-de-credito-ailos-gold/",
+        "remote_card_art_url": "https://cardfacil.com/wp-content/uploads/2023/08/Cartao-Ailos-Mastercard-Gold.png.webp"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "subtypes": [],
+        "earning_summary": "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "programs": [],
+        "unlimited": "unknown",
+        "annual_visits": "unknown",
+        "guest_policy": "unknown",
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": true,
+        "summary": "Não identificado na captura oficial."
+      },
+      "eligibility": {
+        "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": true,
+        "availability_status": "available",
+        "hard_gate_fields": [
+          "cooperative_membership",
+          "credit_analysis"
+        ],
+        "recommendation_blocking_unknowns": true,
+        "source_status": "official_issuer_partial_capture"
+      },
+      "fee_waiver_rules": [
+        {
+          "type": "spend_based",
+          "summary": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
+        }
+      ],
+      "benefit_groups": {
+        "fees": [
+          "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela."
+        ],
+        "rewards": [
+          "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura."
+        ],
+        "travel": [],
+        "insurance": [
+          "Garantia Estendida",
+          "Compra Protegida",
+          "Proteção de Preço"
+        ],
+        "lifestyle": [
+          "Cartão virtual e gestão pelo App Ailos Cartões",
+          "Compras internacionais e por aproximação",
+          "Gestão pelo App Ailos Cartões",
+          "Cartão virtual",
+          "Compras internacionais",
+          "Pagamento por aproximação",
+          "Apple Pay e Samsung Pay"
+        ],
+        "issuer_specific": [
+          "Mastercard Surpreenda",
+          "Mastercard Global Service",
+          "Garantia Estendida",
+          "Compra Protegida",
+          "Proteção de Preço",
+          "Comprou, Zerou pode isentar a anuidade",
+          "Programa de pontos com resgate por produtos, milhas, previdência e crédito na fatura",
+          "Cartão virtual e gestão pelo App Ailos Cartões"
+        ]
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Anuidade",
+          "value": "Comprou, Zerou pode isentar/reduzir anuidade; valores e tabela não foram encontrados na captura oficial."
+        },
+        {
+          "category": "rewards",
+          "key": "rewards",
+          "label": "Recompensas",
+          "value": "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura."
+        },
+        {
+          "category": "issuer_specific",
+          "key": "official_highlights",
+          "label": "Destaques oficiais",
+          "value": "Mastercard Surpreenda; Mastercard Global Service; Garantia Estendida; Compra Protegida; Proteção de Preço; Comprou, Zerou pode isentar a anuidade"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": "unknown",
+        "monthly_fee_brl_after_intro_official_hint": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "reward_return_cashlike": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [
+        "cooperativa",
+        "official_issuer"
+      ],
+      "text_for_embedding_compare": "Ailos Mastercard Gold | Ailos | Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura. | Benefícios: Mastercard Surpreenda; Mastercard Global Service; Garantia Estendida; Compra Protegida; Proteção de Preço; Comprou, Zerou pode isentar a anuidade; Programa de pontos com resgate por produtos, milhas, previdência e crédito na fatura; Cartão virtual e gestão pelo App Ailos Cartões | Dados oficiais parciais; anuidade/renda/tabela Comprou Zerou permanecem unknown.",
+      "application_availability": {
+        "channels": [
+          "app",
+          "branch",
+          "phone"
+        ],
+        "notes": "Não cooperados abrem conta e solicitam pelo app Ailos+; cooperados solicitam pelo 0800 647 2200 ou em postos. Sujeito à análise de crédito."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ailos Mastercard Gold aparece no portfólio oficial de Cartões Ailos.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Ailos: Ailos Now, Ailos Mastercard Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Programa de pontos: compras acumulam pontos para resgate por produtos, milhas, aporte na previdência e crédito na fatura.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Gold: Programa de pontos: cada compra acumula pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura."
+        },
+        {
+          "field_path": "benefits.insurance",
+          "value_text": "Garantia Estendida, Compra Protegida e Proteção de Preço.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Gold: Garantia Estendida. Compra Protegida. Proteção de Preço."
+        },
+        {
+          "field_path": "benefits.promotions",
+          "value_text": "Cartões de crédito Ailos aparecem como produto participante da promoção Coopere com a Sorte, conforme regulamento/campanha vigente ou encerrada.",
+          "source_url": "https://www.ailos.coop.br/cooperecomasorte",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "Promoção Ailos Coopere com a Sorte; Cartão de Crédito; regulamento."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/alios-gold.png",
+          "source_url": "https://cardfacil.com/r2-cartao-de-credito-ailos-gold/",
+          "source_type": "manual",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.95,
+          "dynamic": false,
+          "raw_excerpt": "Local card artwork file added under platform/public/card-images for Ailos Mastercard Gold. Remote/source image retained in media.remote_card_art_url/source_url."
+        },
+        {
+          "field_path": "application_availability",
+          "value_text": "Não cooperado: abrir conta e solicitar pelo app Ailos+. Cooperado: solicitar pelo 0800 647 2200 ou posto de atendimento; sujeito à análise de crédito.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Se ainda não é Cooperado: abra sua conta pelo app Ailos+; faça a solicitação do cartão através do app Ailos+. Se já é Cooperado: solicite através do 0800 647 2200 ou em um Posto de Atendimento. Sujeito à análise de crédito."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Comprou Zerou: quanto mais você usa o seu cartão, maior o desconto. Possibilidade de anuidade zero. Consulte na sua Cooperativa."
+        },
+        {
+          "field_path": "benefits.app",
+          "value_text": "App Ailos Cartões permite controle de gastos, bloqueio/desbloqueio, compras internacionais, aproximação, cartões virtuais, Apple Pay e Samsung Pay.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Faça a gestão completa do seu cartão no App Ailos Cartões: controle seus gastos, bloqueie e desbloqueie, compras internacionais, pagamento por aproximação, cartões virtuais, Apple Pay e Samsung Pay."
+        }
+      ],
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "data_quality_notes": [
+        "Dados Ailos atualizados com base em páginas oficiais Ailos e contexto fornecido; valores exatos de anuidade, renda mínima e tabela Comprou Zerou não foram encontrados.",
+        "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
+      ]
+    },
+    {
+      "card_stable_id": "ailos-mastercard-platinum-official",
+      "display_name": "Ailos Mastercard Platinum",
+      "issuer_raw": "Ailos",
+      "network_primary": "Mastercard",
+      "variant_band": "Platinum",
+      "market_segment_guess": "premium",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "application_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "media": {
+        "card_art_url": "/card-images/ailos-platinum.png",
+        "alt_text": "Ailos Mastercard Platinum",
+        "source_url": "https://setorneinvestidor.net/ailos-cartoes-veja-como-funciona-e-se-vale-a-pena/",
+        "remote_card_art_url": "https://setorneinvestidor.net/wp-content/uploads/2022/07/Banner_Cartao_SemFundo_Platinum.png"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "subtypes": [],
+        "earning_summary": "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "programs": [],
+        "unlimited": "unknown",
+        "annual_visits": "unknown",
+        "guest_policy": "unknown",
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": true,
+        "summary": "Não identificado na captura oficial."
+      },
+      "eligibility": {
+        "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": true,
+        "availability_status": "available",
+        "hard_gate_fields": [
+          "cooperative_membership",
+          "credit_analysis"
+        ],
+        "recommendation_blocking_unknowns": true,
+        "source_status": "official_issuer_partial_capture"
+      },
+      "fee_waiver_rules": [
+        {
+          "type": "spend_based",
+          "summary": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
+        }
+      ],
+      "benefit_groups": {
+        "fees": [
+          "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela."
+        ],
+        "rewards": [
+          "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura."
+        ],
+        "travel": [
+          "Serviços de assistência de viagem",
+          "Mastercard Travel Rewards",
+          "Mastercard Airport Concierge",
+          "Assistência Global de Emergência"
+        ],
+        "insurance": [
+          "Master Seguro de Automóveis"
+        ],
+        "lifestyle": [
+          "Cartão virtual e gestão pelo App Ailos Cartões",
+          "Compras internacionais e por aproximação",
+          "Gestão pelo App Ailos Cartões",
+          "Cartão virtual",
+          "Compras internacionais",
+          "Pagamento por aproximação",
+          "Apple Pay e Samsung Pay"
+        ],
+        "issuer_specific": [
+          "Mastercard Surpreenda",
+          "Mastercard Platinum Concierge",
+          "Serviços de assistência de viagem",
+          "Masterassist Plus",
+          "Mastercard Global Service",
+          "Priceless Cities",
+          "Mastercard Travel Rewards",
+          "Mastercard Airport Concierge",
+          "Assistência Global de Emergência",
+          "Master Seguro de Automóveis",
+          "Comprou, Zerou pode isentar a anuidade",
+          "Programa de pontos com resgate por produtos, milhas, previdência e crédito na fatura"
+        ]
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Anuidade",
+          "value": "Comprou, Zerou pode isentar/reduzir anuidade; valores e tabela não foram encontrados na captura oficial."
+        },
+        {
+          "category": "rewards",
+          "key": "rewards",
+          "label": "Recompensas",
+          "value": "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura."
+        },
+        {
+          "category": "issuer_specific",
+          "key": "official_highlights",
+          "label": "Destaques oficiais",
+          "value": "Mastercard Surpreenda; Mastercard Platinum Concierge; Serviços de assistência de viagem; Masterassist Plus; Mastercard Global Service; Priceless Cities"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": "unknown",
+        "monthly_fee_brl_after_intro_official_hint": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "reward_return_cashlike": false,
+        "mentions_travel_insurance": true,
+        "mentions_concierge": true,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [
+        "cooperativa",
+        "official_issuer"
+      ],
+      "text_for_embedding_compare": "Ailos Mastercard Platinum | Ailos | Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura. | Benefícios: Mastercard Surpreenda; Mastercard Platinum Concierge; Serviços de assistência de viagem; Masterassist Plus; Mastercard Global Service; Priceless Cities; Mastercard Travel Rewards; Mastercard Airport Concierge; Assistência Global de Emergência; Master Seguro de Automóveis; Comprou, Zerou pode isentar a anuidade; Programa de pontos com resgate por produtos, milhas, previdência e crédito na fatura | Dados oficiais parciais; anuidade/renda/tabela Comprou Zerou permanecem unknown.",
+      "application_availability": {
+        "channels": [
+          "app",
+          "branch",
+          "phone"
+        ],
+        "notes": "Não cooperados abrem conta e solicitam pelo app Ailos+; cooperados solicitam pelo 0800 647 2200 ou em postos. Sujeito à análise de crédito."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ailos Mastercard Platinum aparece no portfólio oficial de Cartões Ailos.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Ailos: Ailos Now, Ailos Mastercard Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Programa de pontos: compras acumulam pontos para resgate por produtos, milhas, aporte na previdência e crédito na fatura.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Platinum: Programa de pontos: cada compra acumula pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura."
+        },
+        {
+          "field_path": "benefits.travel",
+          "value_text": "Mastercard Platinum Concierge, assistência de viagem, Masterassist Plus, Travel Rewards, Airport Concierge e Assistência Global de Emergência.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Platinum: Mastercard Platinum Concierge. Serviços de assistência de Viagem. Seguro médico em viagens: Masterassist Plus. Mastercard Travel Rewards. Mastercard Airport Concierge. Assistência Global de Emergência."
+        },
+        {
+          "field_path": "benefits.insurance",
+          "value_text": "Master Seguro de Automóveis.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Platinum: Master Seguro de Automóveis."
+        },
+        {
+          "field_path": "benefits.promotions",
+          "value_text": "Cartões de crédito Ailos aparecem como produto participante da promoção Coopere com a Sorte, conforme regulamento/campanha vigente ou encerrada.",
+          "source_url": "https://www.ailos.coop.br/cooperecomasorte",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "Promoção Ailos Coopere com a Sorte; Cartão de Crédito; regulamento."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/ailos-platinum.png",
+          "source_url": "https://setorneinvestidor.net/ailos-cartoes-veja-como-funciona-e-se-vale-a-pena/",
+          "source_type": "manual",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.95,
+          "dynamic": false,
+          "raw_excerpt": "Local card artwork file added under platform/public/card-images for Ailos Mastercard Platinum. Remote/source image retained in media.remote_card_art_url/source_url."
+        },
+        {
+          "field_path": "application_availability",
+          "value_text": "Não cooperado: abrir conta e solicitar pelo app Ailos+. Cooperado: solicitar pelo 0800 647 2200 ou posto de atendimento; sujeito à análise de crédito.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Se ainda não é Cooperado: abra sua conta pelo app Ailos+; faça a solicitação do cartão através do app Ailos+. Se já é Cooperado: solicite através do 0800 647 2200 ou em um Posto de Atendimento. Sujeito à análise de crédito."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Comprou Zerou: quanto mais você usa o seu cartão, maior o desconto. Possibilidade de anuidade zero. Consulte na sua Cooperativa."
+        },
+        {
+          "field_path": "benefits.app",
+          "value_text": "App Ailos Cartões permite controle de gastos, bloqueio/desbloqueio, compras internacionais, aproximação, cartões virtuais, Apple Pay e Samsung Pay.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Faça a gestão completa do seu cartão no App Ailos Cartões: controle seus gastos, bloqueie e desbloqueie, compras internacionais, pagamento por aproximação, cartões virtuais, Apple Pay e Samsung Pay."
+        }
+      ],
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "data_quality_notes": [
+        "Dados Ailos atualizados com base em páginas oficiais Ailos e contexto fornecido; valores exatos de anuidade, renda mínima e tabela Comprou Zerou não foram encontrados.",
+        "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
+      ]
+    },
+    {
+      "card_stable_id": "ailos-mastercard-black-official",
+      "display_name": "Ailos Mastercard Black",
+      "issuer_raw": "Ailos",
+      "network_primary": "Mastercard",
+      "variant_band": "Black",
+      "market_segment_guess": "premium",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "application_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "media": {
+        "card_art_url": "/card-images/ailos-black.png",
+        "alt_text": "Ailos Mastercard Black",
+        "source_url": "https://www.ailos.coop.br/wp-content/uploads/2025/03/Cartoes_Black.png",
+        "remote_card_art_url": "https://www.ailos.coop.br/wp-content/uploads/2025/03/Cartoes_Black.png"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "2,2 pontos por dólar (internacional); taxa doméstica não divulgada."
+      },
+      "lounge_access": {
+        "has_lounge_access": true,
+        "programs": [
+          "LoungeKey"
+        ],
+        "unlimited": false,
+        "complimentary_visits_per_year": 4,
+        "complimentary_access_confirmed": true,
+        "policy_varies_by_issuer": false,
+        "summary": "LoungeKey — 4 acessos gratuitos/ano em mais de 1.100 aeroportos."
+      },
+      "eligibility": {
+        "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": true,
+        "availability_status": "available",
+        "hard_gate_fields": [
+          "cooperative_membership",
+          "credit_analysis"
+        ],
+        "recommendation_blocking_unknowns": true,
+        "source_status": "official_issuer_partial_capture"
+      },
+      "fee_waiver_rules": [
+        {
+          "type": "spend_based",
+          "summary": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
+        }
+      ],
+      "benefit_groups": {
+        "fees": [
+          "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela."
+        ],
+        "rewards": [
+          "2,2 pontos por dólar gasto; pontos podem ser trocados por crédito na fatura, aportes na previdência, milhas aéreas ou produtos."
+        ],
+        "travel": [
+          "LoungeKey com 4 acessos gratuitos por ano",
+          "Seguro médico/viagem internacional",
+          "Mastercard Travel Rewards",
+          "Assistência Global de Emergência"
+        ],
+        "insurance": [
+          "Proteção de Bagagem",
+          "Compra Protegida",
+          "Garantia Estendida",
+          "Seguro médico/viagem internacional",
+          "Master Seguro de Automóveis"
+        ],
+        "lifestyle": [
+          "Cartão virtual e gestão pelo App Ailos Cartões",
+          "Compras internacionais e por aproximação",
+          "Gestão pelo App Ailos Cartões",
+          "Cartão virtual",
+          "Compras internacionais",
+          "Pagamento por aproximação",
+          "Apple Pay e Samsung Pay"
+        ],
+        "issuer_specific": [
+          "LoungeKey com 4 acessos gratuitos por ano",
+          "Mastercard Surpreenda",
+          "Mastercard Black Concierge",
+          "Proteção de Bagagem",
+          "Compra Protegida",
+          "Garantia Estendida",
+          "Seguro médico/viagem internacional",
+          "Priceless Cities",
+          "Mastercard Travel Rewards",
+          "Assistência Global de Emergência",
+          "Master Seguro de Automóveis",
+          "Comprou, Zerou pode isentar a anuidade",
+          "Melhor pontuação do portfólio Ailos"
+        ]
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Anuidade",
+          "value": "Comprou, Zerou pode isentar/reduzir anuidade; valores e tabela não foram encontrados na captura oficial."
+        },
+        {
+          "category": "rewards",
+          "key": "rewards",
+          "label": "Recompensas",
+          "value": "2,2 pontos por dólar gasto; pontos podem ser trocados por crédito na fatura, aportes na previdência, milhas aéreas ou produtos."
+        },
+        {
+          "category": "issuer_specific",
+          "key": "official_highlights",
+          "label": "Destaques oficiais",
+          "value": "LoungeKey com 4 acessos gratuitos por ano; Mastercard Surpreenda; Mastercard Black Concierge; Proteção de Bagagem; Compra Protegida; Garantia Estendida"
+        },
+        {
+          "category": "travel",
+          "key": "lounge_visits",
+          "label": "Salas VIP",
+          "value": "4 acessos LoungeKey/ano"
+        },
+        {
+          "category": "travel",
+          "key": "lounge_access",
+          "label": "Sala VIP",
+          "value": "LoungeKey — 4 acessos/ano",
+          "details": "Mais de 1.100 aeroportos"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_rate",
+          "label": "Pontuação",
+          "value": "2,2 pts/USD (internacional)"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": "unknown",
+        "monthly_fee_brl_after_intro_official_hint": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": 4,
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "has_any_lounge_claim": true,
+        "has_named_lounge_program": true,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "reward_return_cashlike": false,
+        "mentions_travel_insurance": true,
+        "mentions_concierge": true,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [
+        "cooperativa",
+        "official_issuer"
+      ],
+      "text_for_embedding_compare": "Ailos Mastercard Black | Ailos | 2,2 pontos por dólar gasto; pontos podem ser trocados por crédito na fatura, aportes na previdência, milhas aéreas ou produtos. | Benefícios: LoungeKey com 4 acessos gratuitos por ano; Mastercard Surpreenda; Mastercard Black Concierge; Proteção de Bagagem; Compra Protegida; Garantia Estendida; Seguro médico/viagem internacional; Priceless Cities; Mastercard Travel Rewards; Assistência Global de Emergência; Master Seguro de Automóveis; Comprou, Zerou pode isentar a anuidade; Melhor pontuação do portfólio Ailos | Dados oficiais parciais; anuidade/renda/tabela Comprou Zerou permanecem unknown.",
+      "application_availability": {
+        "channels": [
+          "app",
+          "branch",
+          "phone"
+        ],
+        "notes": "Não cooperados abrem conta e solicitam pelo app Ailos+; cooperados solicitam pelo 0800 647 2200 ou em postos. Sujeito à análise de crédito."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ailos Mastercard Black aparece no portfólio oficial de Cartões Ailos.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Ailos: Ailos Now, Ailos Mastercard Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "rewards.earning_rate",
+          "value_text": "2,2 pontos por dólar gasto; pontos podem ser trocados por crédito na fatura, aportes na previdência, milhas aéreas ou produtos.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes/cartao-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.94,
+          "dynamic": true,
+          "raw_excerpt": "O Cartão Ailos Black oferece 2,2 pontos por dólar gasto no Programa de Pontos. Esses pontos podem ser trocados por crédito na fatura, aportes na previdência, milhas aéreas ou produtos."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "4 acessos gratuitos por ano às Salas VIP LoungeKey; não cumulativos; cobrança a partir do 5º acesso conforme política do programa/cooperativa.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes/cartao-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.94,
+          "dynamic": true,
+          "raw_excerpt": "O Cartão Ailos Black oferece 4 acessos gratuitos por ano às Salas VIP do programa LoungeKey; a partir do 5º acesso, é cobrado um valor por visita."
+        },
+        {
+          "field_path": "benefits.insurance",
+          "value_text": "Seguro Viagem Internacional gratuito, Proteção de Bagagem, Cobertura para Inconveniências de Viagem, Compra Protegida e Garantia Estendida.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes/cartao-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Seguro Viagem Internacional gratuito; Proteção de Bagagem; Cobertura para Inconveniências de Viagem. Página geral também lista Compra Protegida e Garantia Estendida."
+        },
+        {
+          "field_path": "benefits",
+          "value_text": "Mastercard Black Concierge, benefícios Mastercard Black, compras por aproximação e carteiras digitais.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes/cartao-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Atendimento Mastercard Concierge; Benefícios Mastercard Black; Compras por aproximação; Carteiras digitais."
+        },
+        {
+          "field_path": "benefits.promotions",
+          "value_text": "Cartões de crédito Ailos aparecem como produto participante da promoção Coopere com a Sorte, conforme regulamento/campanha vigente ou encerrada.",
+          "source_url": "https://www.ailos.coop.br/cooperecomasorte",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "Promoção Ailos Coopere com a Sorte; Cartão de Crédito; regulamento."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/ailos-black.png",
+          "source_url": "https://www.ailos.coop.br/wp-content/uploads/2025/03/Cartoes_Black.png",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.98,
+          "dynamic": false,
+          "raw_excerpt": "Official Ailos Black card artwork downloaded from Ailos, cropped to non-background pixels, rotated to horizontal orientation, and centered on the standard 611x408 transparent card-image canvas."
+        },
+        {
+          "field_path": "application_availability",
+          "value_text": "Não cooperado: abrir conta e solicitar pelo app Ailos+. Cooperado: solicitar pelo 0800 647 2200 ou posto de atendimento; sujeito à análise de crédito.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Se ainda não é Cooperado: abra sua conta pelo app Ailos+; faça a solicitação do cartão através do app Ailos+. Se já é Cooperado: solicite através do 0800 647 2200 ou em um Posto de Atendimento. Sujeito à análise de crédito."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Comprou Zerou: quanto mais você usa o seu cartão, maior o desconto. Possibilidade de anuidade zero. Consulte na sua Cooperativa."
+        },
+        {
+          "field_path": "benefits.app",
+          "value_text": "App Ailos Cartões permite controle de gastos, bloqueio/desbloqueio, compras internacionais, aproximação, cartões virtuais, Apple Pay e Samsung Pay.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Faça a gestão completa do seu cartão no App Ailos Cartões: controle seus gastos, bloqueie e desbloqueie, compras internacionais, pagamento por aproximação, cartões virtuais, Apple Pay e Samsung Pay."
+        }
+      ],
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "data_quality_notes": [
+        "Dados Ailos atualizados com base em páginas oficiais Ailos e contexto fornecido; valores exatos de anuidade, renda mínima e tabela Comprou Zerou não foram encontrados.",
+        "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
+      ]
     }
   ]
 }
