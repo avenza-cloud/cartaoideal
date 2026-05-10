@@ -38049,10 +38049,12 @@
         "earning_summary": "1,6 pontos por dólar gasto"
       },
       "lounge_access": {
-        "has_lounge_access": true,
+        "has_lounge_access": false,
         "unlimited": false,
         "complimentary_access_confirmed": false,
-        "policy_varies_by_issuer": false
+        "policy_varies_by_issuer": false,
+        "annual_visits": "unknown",
+        "summary": ""
       },
       "eligibility": {
         "requirements_text": "unknown",
@@ -38177,7 +38179,7 @@
         "official_forex_or_iof_note": "unknown"
       },
       "facets_boolean": {
-        "has_any_lounge_claim": true,
+        "has_any_lounge_claim": false,
         "has_named_lounge_program": false,
         "lounge_unlimited_claim": false,
         "earn_points_or_miles": true,
