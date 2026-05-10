@@ -149448,13 +149448,13 @@
         {
           "field_path": "media.card_art_url",
           "value_text": "/card-images/ailos-black.png",
-          "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSESEbZdSeys7c31rX6vO9mqBBB8mAOtLoKtA&s",
-          "source_type": "manual",
-          "captured_at": "2026-05-09",
-          "last_verified_at": "2026-05-09",
-          "confidence_0_to_1": 0.95,
+          "source_url": "https://www.ailos.coop.br/wp-content/uploads/2025/03/Cartoes_Black.png",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.98,
           "dynamic": false,
-          "raw_excerpt": "Local card artwork file added under platform/public/card-images for Ailos Mastercard Black. Remote/source image retained in media.remote_card_art_url/source_url."
+          "raw_excerpt": "Official Ailos Black card artwork downloaded from Ailos, cropped to non-background pixels, rotated to horizontal orientation, and centered on the standard 611x408 transparent card-image canvas."
         }
       ],
       "eligibility": {
@@ -149540,8 +149540,8 @@
       "media": {
         "card_art_url": "/card-images/ailos-black.png",
         "alt_text": "Ailos Mastercard Black",
-        "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSESEbZdSeys7c31rX6vO9mqBBB8mAOtLoKtA&s",
-        "remote_card_art_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSESEbZdSeys7c31rX6vO9mqBBB8mAOtLoKtA&s"
+        "source_url": "https://www.ailos.coop.br/wp-content/uploads/2025/03/Cartoes_Black.png",
+        "remote_card_art_url": "https://www.ailos.coop.br/wp-content/uploads/2025/03/Cartoes_Black.png"
       }
     }
   ]
