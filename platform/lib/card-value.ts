@@ -10,8 +10,8 @@ import type {
 
 export const DEFAULT_VALUE_ASSUMPTIONS: CardValueAssumptions = {
   ptaxBrlPerUsd: 4.96,
-  mileValuePerThousandBrl: 32,
-  liveloPointSaleValuePerThousandBrl: 32,
+  mileValuePerThousandBrl: 22,
+  liveloPointSaleValuePerThousandBrl: 22,
   liveloPointTravelValuePerThousandBrl: 45,
   membershipRewardsPointTravelValuePerThousandBrl: 95,
   membershipRewardsPointSaleValuePerThousandBrl: 45,
