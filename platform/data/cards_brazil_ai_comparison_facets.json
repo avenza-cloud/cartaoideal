@@ -46400,14 +46400,15 @@
       "ranking_position": 202,
       "ranking_score": 82.5,
       "media": {
-        "card_art_url": "/card-images/banco-pan-banco-pan-mastercard-platinum.png",
-        "alt_text": "Banco PAN Mastercard Platinum",
-        "source_url": "https://passageirodeprimeira.com/cartao-de-credito/banco-pan-mastercard-platinum/",
-        "remote_card_art_url": "https://passageirodeprimeira.com/wp-content/uploads/2022/04/passageirodeprimeira.com-banco-pan-mastercard-platinum-banco-pan-mastercard-platinum-230x146.png"
+        "card_art_url": "/card-images/pan-estelar.png",
+        "alt_text": "Banco PAN Estelar Mastercard Platinum"
       },
       "reward_return": {
-        "has_cashlike_return": false,
-        "earning_summary": "1,5 pontos por dólar gasto"
+        "has_cashlike_return": true,
+        "subtypes": [
+          "cashback"
+        ],
+        "earning_summary": "0,75% de cashback por real gasto em transações elegíveis"
       },
       "lounge_access": {
         "has_lounge_access": false,
@@ -46457,12 +46458,6 @@
           "category": "rewards",
           "key": "earning_rate",
           "label": "Pontuação",
-          "value": "1,5 pontos por dólar gasto"
-        },
-        {
-          "category": "rewards",
-          "key": "earning_detail",
-          "label": "Regra de pontuação",
           "value": "1,5 pontos por dólar gasto"
         },
         {
@@ -46518,10 +46513,17 @@
           "key": "free_additional_cards",
           "label": "Adicionais gratuitos",
           "value": "1"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_rate",
+          "label": "Cashback",
+          "value": "0,75%",
+          "details": "Por real gasto em transações elegíveis"
         }
       ],
       "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": 500,
+        "annual_fee_brl_best_estimate": 0,
         "monthly_fee_brl_after_intro_official_hint": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
@@ -46532,12 +46534,12 @@
         "has_any_lounge_claim": false,
         "has_named_lounge_program": false,
         "lounge_unlimited_claim": false,
-        "earn_points_or_miles": true,
-        "earn_cashback": false,
+        "earn_points_or_miles": false,
+        "earn_cashback": true,
         "earn_investback": false,
         "reward_return_cashlike": false,
-        "mentions_travel_insurance": false,
-        "mentions_concierge": false,
+        "mentions_travel_insurance": true,
+        "mentions_concierge": true,
         "co_brand_name_detected": false,
         "issuer_multi_entity_row": false,
         "generic_article_not_single_product": false
@@ -49114,14 +49116,12 @@
       "ranking_position": 216,
       "ranking_score": 72.65,
       "media": {
-        "card_art_url": "/card-images/banco-pan-banco-pan-mastercard-gold.jpg",
-        "alt_text": "Banco PAN Mastercard Gold",
-        "source_url": "https://passageirodeprimeira.com/cartao-de-credito/banco-pan-mastercard-gold/",
-        "remote_card_art_url": "https://passageirodeprimeira.com/wp-content/uploads/2022/04/passageirodeprimeira.com-banco-pan-mastercard-gold-banco-pan-mastercard-gold-230x146.jpg"
+        "card_art_url": "/card-images/pan-atmosfera.png",
+        "alt_text": "Banco PAN Atmosfera Mastercard Gold"
       },
       "reward_return": {
         "has_cashlike_return": false,
-        "earning_summary": "1,2 pontos por dólar gasto"
+        "earning_summary": "Sem cashback. Mastercard Surpreenda."
       },
       "lounge_access": {
         "has_lounge_access": false,
@@ -49235,7 +49235,7 @@
         }
       ],
       "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": 350,
+        "annual_fee_brl_best_estimate": 0,
         "monthly_fee_brl_after_intro_official_hint": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
@@ -49246,7 +49246,7 @@
         "has_any_lounge_claim": false,
         "has_named_lounge_program": false,
         "lounge_unlimited_claim": false,
-        "earn_points_or_miles": true,
+        "earn_points_or_miles": false,
         "earn_cashback": false,
         "earn_investback": false,
         "reward_return_cashlike": false,
@@ -58647,6 +58647,90 @@
           "key": "fee_waiver",
           "label": "Isenção de anuidade",
           "value": "Anuidade isenta nas primeiras 5 anuidades automaticamente."
+        }
+      ]
+    },
+    {
+      "card_stable_id": "banco-pan-estelar-elo",
+      "display_name": "Banco PAN Estelar Elo",
+      "issuer_raw": "Banco PAN",
+      "network_primary": "Elo",
+      "variant_band": "estelar",
+      "market_segment_guess": "upper_mass",
+      "facets_boolean": {
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "earn_points_or_miles": false,
+        "earn_cashback": true,
+        "earn_investback": false,
+        "reward_return_cashlike": true,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 432,
+        "monthly_fee_brl_after_intro_official_hint": 36,
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": ""
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "annual_visits": "unknown",
+        "guest_policy": "",
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false,
+        "summary": ""
+      },
+      "reward_return": {
+        "has_cashlike_return": true,
+        "subtypes": [
+          "cashback"
+        ],
+        "earning_summary": "0,8% de cashback em todas as compras"
+      },
+      "media": {
+        "card_art_url": "/card-images/pan-estelar.png"
+      },
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "R$ 432"
+        },
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Isenção da anuidade",
+          "value": "Isenção 100% com R$4.000/mês na fatura ou R$25.000 investidos no PAN. Grátis nos primeiros 6 meses."
+        },
+        {
+          "category": "rewards",
+          "key": "earning_rate",
+          "label": "Cashback",
+          "value": "0,8%",
+          "details": "Em todas as compras"
+        }
+      ],
+      "fee_waiver_rules": [
+        {
+          "category": "monthly_spend",
+          "threshold_brl": 4000,
+          "period": "monthly",
+          "full_waiver": true,
+          "description": "Gastos ≥ R$4.000/mês → 100% isenção"
+        },
+        {
+          "category": "investment",
+          "threshold_brl": 25000,
+          "full_waiver": true,
+          "description": "Investimentos ≥ R$25.000 no PAN → 100% isenção"
         }
       ]
     }
