@@ -980,7 +980,42 @@
           "Ultra-premium sem elegibilidade estruturada; recomendações devem ser conservadoras."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "The Centurion Card informa 300 mil pontos de bônus e até 7 pontos por US$ gasto.",
+          "source_url": "https://banco.bradesco/cartoes/thecenturion",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Receba 300 mil pontos; Até 7 pontos = 1 US$ gasto no Brasil ou exterior."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "The Platinum Card informa Priority Pass com acesso a salas VIP em mais de 1.300 lounges.",
+          "source_url": "https://banco.bradesco/cartoes/theplatinumcardmetal/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "PRIORITY PASS: acesso às Salas VIP em mais de 1.300 lounges de aeroportos ao redor do mundo."
+        }
+      ]
     },
     {
       "identity": {
@@ -3671,7 +3706,31 @@
           "Pontuação usa teto ('até') sem regras doméstica/exterior estruturadas."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -5215,7 +5274,31 @@
           "Regra de concessão revisada manualmente: R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil."
         ],
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Unicred relacionado ao portfólio oficial de cartões; conteúdo modal exige validação por variante.",
+          "source_url": "https://www.unicred.com.br/solucoes/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões Unicred; Conte com os benefícios do Unicred Visa; cartões Privilege e Ímpar."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "Unicred Visa Infinite Privilege informa acesso VIP ilimitado em aeroportos para titular e 8 convidados.",
+          "source_url": "https://www.unicred.com.br/solucoes/privilege",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Acesso VIP ilimitado em aeroportos; Salas LoungeKey e DragonPass ilimitados para você e 8 convidados."
+        }
+      ]
     },
     {
       "identity": {
@@ -6494,7 +6577,42 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão CAIXA relacionado ao portfólio oficial; pontos, limites e tarifas são dinâmicos e exigem revalidação nas páginas/tabelas CAIXA.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões CAIXA; Programa Pontos CAIXA; benefícios exclusivos."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "CAIXA Visa Infinite voltado a clientes com investimentos pode oferecer até 6 pontos por dólar.",
+          "source_url": "https://caixanoticias.caixa.gov.br/Paginas/Not%C3%ADcias/2025/01-JANEIRO/CAIXA-e-VISA-oferecem-cartao-com-acesso-ilimitado-a-salas--VIP-e-ate-6-pontos-por-dolar.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Cartão CAIXA Visa Infinite voltado para clientes que possuem investimentos; até 6 pontos por dólar."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "CAIXA Visa Infinite noticia acesso ilimitado a salas VIP.",
+          "source_url": "https://caixanoticias.caixa.gov.br/Paginas/Not%C3%ADcias/2025/01-JANEIRO/CAIXA-e-VISA-oferecem-cartao-com-acesso-ilimitado-a-salas--VIP-e-ate-6-pontos-por-dolar.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "CAIXA e VISA oferecem cartão com acesso ilimitado a salas VIP."
+        }
+      ]
     },
     {
       "identity": {
@@ -7123,7 +7241,20 @@
           "Política de anuidade tem texto mas não gerou limiar numérico estruturado."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "rewards",
+          "value_text": "Até 3 pontos Esfera por dólar ou 1,2% de cashback; até 100% de desconto na anuidade.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/unique-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Até 3 pontos Esfera a cada US$ 1 gasto; até 100% de desconto na anuidade; pontos ou cashback."
+        }
+      ]
     },
     {
       "identity": {
@@ -8415,7 +8546,20 @@
           "Política de anuidade tem texto mas não gerou limiar numérico estruturado."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "rewards",
+          "value_text": "Até 3 pontos Esfera por dólar ou 1,2% de cashback; até 100% de desconto na anuidade.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/unique-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Até 3 pontos Esfera a cada US$ 1 gasto; até 100% de desconto na anuidade; pontos ou cashback."
+        }
+      ]
     },
     {
       "identity": {
@@ -9617,7 +9761,31 @@
           "Ultra-premium sem elegibilidade estruturada; recomendações devem ser conservadoras."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -11805,7 +11973,31 @@
           "Pontuação usa teto ('até') sem regras doméstica/exterior estruturadas."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -15457,7 +15649,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -16778,7 +16983,20 @@
           "Ultra-premium sem elegibilidade estruturada; recomendações devem ser conservadoras."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Santander listado/relacionado ao portfólio oficial; detalhes exigem captura específica por produto.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.65,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Santander: portfólio oficial de cartões."
+        }
+      ]
     },
     {
       "identity": {
@@ -17921,7 +18139,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Unicred relacionado ao portfólio oficial de cartões; conteúdo modal exige validação por variante.",
+          "source_url": "https://www.unicred.com.br/solucoes/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões Unicred; Conte com os benefícios do Unicred Visa; cartões Privilege e Ímpar."
+        }
+      ]
     },
     {
       "identity": {
@@ -20264,7 +20495,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "rewards",
+          "value_text": "Até 3,6 pontos Esfera em compras internacionais e 2,6 em nacionais; clientes Private podem ter até 4,0/3,0.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/unlimited",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Até 3,6 pontos Esfera em compras internacionais e 2,6 em nacionais; Private até 4,0 e 3,0."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Anuidade 12x R$183,33 com possibilidade de 100% de isenção por gasto mensal ou investimentos.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/unlimited",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Pagando anuidade de 12x 183,33, sendo possível isenção de 100% por gasto mensal ou investimentos."
+        }
+      ]
     },
     {
       "identity": {
@@ -21522,7 +21777,42 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicoob relacionado ao portfólio oficial; opções podem variar por cooperativa.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/bandeira-mastercard-pf",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.77,
+          "dynamic": true,
+          "raw_excerpt": "O Sicoob oferece cartões de três bandeiras: Cabal, Mastercard e Visa; Clássico, Gold, Platinum, Black, Merit e Zenith."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Coopera é o programa de fidelidade/marketplace do Sicoob para resgates com Pontos Coopera.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/coopera",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Coopera, o programa de fidelidade e marketplace do Sicoob; Pontos Coopera podem ser trocados por produtos e serviços."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "Sicoob Zenith possui benefícios premium de bandeira; página Visa Zenith menciona concierge e benefícios de viagem.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/visa-zenith",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.78,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Sicoob Visa Zenith; Visa Concierge; Visa Luxury Hotel Collection."
+        }
+      ]
     },
     {
       "identity": {
@@ -22781,7 +23071,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "rewards",
+          "value_text": "Até 3,6 pontos Esfera em compras internacionais e 2,6 em nacionais; clientes Private podem ter até 4,0/3,0.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/unlimited",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Até 3,6 pontos Esfera em compras internacionais e 2,6 em nacionais; Private até 4,0 e 3,0."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Anuidade 12x R$183,33 com possibilidade de 100% de isenção por gasto mensal ou investimentos.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/unlimited",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Pagando anuidade de 12x 183,33, sendo possível isenção de 100% por gasto mensal ou investimentos."
+        }
+      ]
     },
     {
       "identity": {
@@ -24090,7 +24404,42 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicoob relacionado ao portfólio oficial; opções podem variar por cooperativa.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/bandeira-visa-pf/-/asset_publisher/jcmyqSXepXVt/content/id/1286015",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.77,
+          "dynamic": true,
+          "raw_excerpt": "O Sicoob oferece cartões de três bandeiras: Cabal, Mastercard e Visa; Clássico, Gold, Platinum, Black, Merit e Zenith."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Coopera é o programa de fidelidade/marketplace do Sicoob para resgates com Pontos Coopera.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/coopera",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Coopera, o programa de fidelidade e marketplace do Sicoob; Pontos Coopera podem ser trocados por produtos e serviços."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "Sicoob Zenith possui benefícios premium de bandeira; página Visa Zenith menciona concierge e benefícios de viagem.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/visa-zenith",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.78,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Sicoob Visa Zenith; Visa Concierge; Visa Luxury Hotel Collection."
+        }
+      ]
     },
     {
       "identity": {
@@ -24498,7 +24847,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -27994,7 +28356,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "rewards",
+          "value_text": "Até 3,6 pontos Esfera em compras internacionais e 2,6 em nacionais; clientes Private podem ter até 4,0/3,0.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/unlimited",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Até 3,6 pontos Esfera em compras internacionais e 2,6 em nacionais; Private até 4,0 e 3,0."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Anuidade 12x R$183,33 com possibilidade de 100% de isenção por gasto mensal ou investimentos.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/unlimited",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Pagando anuidade de 12x 183,33, sendo possível isenção de 100% por gasto mensal ou investimentos."
+        }
+      ]
     },
     {
       "identity": {
@@ -29058,7 +29444,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "rewards",
+          "value_text": "Até 3,6 pontos Esfera em compras internacionais e 2,6 em nacionais; clientes Private podem ter até 4,0/3,0.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/unlimited",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Até 3,6 pontos Esfera em compras internacionais e 2,6 em nacionais; Private até 4,0 e 3,0."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Anuidade 12x R$183,33 com possibilidade de 100% de isenção por gasto mensal ou investimentos.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/unlimited",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Pagando anuidade de 12x 183,33, sendo possível isenção de 100% por gasto mensal ou investimentos."
+        }
+      ]
     },
     {
       "identity": {
@@ -30078,7 +30488,31 @@
           "Pontuação usa teto ('até') sem regras doméstica/exterior estruturadas."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "rewards",
+          "value_text": "Até 5 milhas AAdvantage por dólar gasto.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/aadvantage-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Acumule até 5 milhas por dólar gasto no programa AAdvantage."
+        },
+        {
+          "field_path": "lounge_access",
+          "value_text": "4 acessos gratuitos por ano às salas VIP LoungeKey.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Santander / AAdvantage Black: 4 acessos gratuitos por ano às salas VIP Loungekey."
+        }
+      ]
     },
     {
       "identity": {
@@ -31146,7 +31580,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicredi relacionado ao portfólio oficial de cartões; condições podem variar por cooperativa.",
+          "source_url": "https://www.sicredi.com.br/site/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.76,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Sicredi para você; tipos de cartão Sicredi; Visa Infinite, Mastercard Black, Platinum e Gold."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Sicredi Visa Infinite acumula 3 pontos por dólar gasto e pontos não expiram.",
+          "source_url": "https://www.sicredi.com.br/site/cartoes/cartao-sicredi-visa-infinite/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Acumule 3 pontos a cada dólar gasto; Pontos que não expiram."
+        }
+      ]
     },
     {
       "identity": {
@@ -35328,7 +35786,42 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Bradesco Principal acumula 2,5 pontos/US$ em compras nacionais e 3 pontos/US$ em compras internacionais.",
+          "source_url": "https://banco.bradesco/cartoes/visaprincipal/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Acumule 2,5 pontos a cada US$ 1 gasto em compras nacionais e 3 pontos a cada US$ 1 gasto em compras internacionais."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "Visa Airport Companion e Visa Infinite Fast Pass para o titular e 5 acompanhantes.",
+          "source_url": "https://banco.bradesco/cartoes/visaprincipal/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Visa Airport Companion; Visa Infinite Fast Pass; Você e 5 acompanhantes."
+        }
+      ]
     },
     {
       "identity": {
@@ -38457,7 +38950,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicoob relacionado ao portfólio oficial; opções podem variar por cooperativa.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/bandeira-mastercard-pf",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.77,
+          "dynamic": true,
+          "raw_excerpt": "O Sicoob oferece cartões de três bandeiras: Cabal, Mastercard e Visa; Clássico, Gold, Platinum, Black, Merit e Zenith."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Coopera é o programa de fidelidade/marketplace do Sicoob para resgates com Pontos Coopera.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/coopera",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Coopera, o programa de fidelidade e marketplace do Sicoob; Pontos Coopera podem ser trocados por produtos e serviços."
+        }
+      ]
     },
     {
       "identity": {
@@ -39130,7 +39647,20 @@
           "Política de anuidade tem texto mas não gerou limiar numérico estruturado."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Unicred relacionado ao portfólio oficial de cartões; conteúdo modal exige validação por variante.",
+          "source_url": "https://www.unicred.com.br/solucoes/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões Unicred; Conte com os benefícios do Unicred Visa; cartões Privilege e Ímpar."
+        }
+      ]
     },
     {
       "identity": {
@@ -39972,7 +40502,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "The Platinum Card informa Priority Pass com acesso a salas VIP em mais de 1.300 lounges.",
+          "source_url": "https://banco.bradesco/cartoes/theplatinumcardmetal/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "PRIORITY PASS: acesso às Salas VIP em mais de 1.300 lounges de aeroportos ao redor do mundo."
+        }
+      ]
     },
     {
       "identity": {
@@ -41856,7 +42410,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -43221,7 +43788,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "The Platinum Card informa Priority Pass com acesso a salas VIP em mais de 1.300 lounges.",
+          "source_url": "https://banco.bradesco/cartoes/theplatinumcardmetal/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "PRIORITY PASS: acesso às Salas VIP em mais de 1.300 lounges de aeroportos ao redor do mundo."
+        }
+      ]
     },
     {
       "identity": {
@@ -43826,7 +44417,31 @@
           "Política de anuidade tem texto mas não gerou limiar numérico estruturado."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Uniprime relacionado ao portfólio oficial Mastercard; disponibilidade pode variar por singular.",
+          "source_url": "https://novo.uniprime.com.br/solucoes/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.76,
+          "dynamic": true,
+          "raw_excerpt": "Cartões Uniprime: Mastercard Classic, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "benefits",
+          "value_text": "Cartões Uniprime Mastercard oferecem benefícios de bandeira e programa de pontos conforme modalidade.",
+          "source_url": "https://novo.uniprime.com.br/solucoes/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.78,
+          "dynamic": true,
+          "raw_excerpt": "Programa de Pontos; Mastercard Platinum; Mastercard Black; benefícios de bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -44691,7 +45306,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Santander listado/relacionado ao portfólio oficial; detalhes exigem captura específica por produto.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.65,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Santander: portfólio oficial de cartões."
+        }
+      ]
     },
     {
       "identity": {
@@ -45929,7 +46557,42 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        },
+        {
+          "field_path": "eligibility.availability_status",
+          "value_text": "Ourocard Visa Infinite é oferecido para seleto grupo de convidados.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/ourocard-visa-infinite/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "O Banco do Brasil oferece para um seleto grupo de convidados o cartão de crédito Ourocard Visa Infinite."
+        }
+      ]
     },
     {
       "identity": {
@@ -46374,7 +47037,31 @@
           "Pontuação usa teto ('até') sem regras doméstica/exterior estruturadas."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "rewards",
+          "value_text": "Até 4 milhas AAdvantage por dólar gasto.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/aadvantage-platinum",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Acumule até 4 milhas por dólar gasto no programa AAdvantage."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Anuidade grátis nos 3 primeiros meses; correntistas têm 50% de redução após o período inicial.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/aadvantage-platinum",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Anuidade GRÁTIS nos 3 primeiros meses; clientes correntistas têm 50% de redução."
+        }
+      ]
     },
     {
       "identity": {
@@ -46993,7 +47680,42 @@
           "Pontuação usa teto ('até') sem regras doméstica/exterior estruturadas."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        },
+        {
+          "field_path": "eligibility.availability_status",
+          "value_text": "Ourocard Visa Infinite é oferecido para seleto grupo de convidados.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/ourocard-visa-infinite/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "O Banco do Brasil oferece para um seleto grupo de convidados o cartão de crédito Ourocard Visa Infinite."
+        }
+      ]
     },
     {
       "identity": {
@@ -47599,7 +48321,42 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        },
+        {
+          "field_path": "eligibility.availability_status",
+          "value_text": "Ourocard Visa Infinite é oferecido para seleto grupo de convidados.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/ourocard-visa-infinite/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "O Banco do Brasil oferece para um seleto grupo de convidados o cartão de crédito Ourocard Visa Infinite."
+        }
+      ]
     },
     {
       "identity": {
@@ -48181,7 +48938,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -50670,7 +51451,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -51250,7 +52055,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -51851,7 +52680,20 @@
           "Pontuação usa teto ('até') sem regras doméstica/exterior estruturadas."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -52973,7 +53815,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão CAIXA relacionado ao portfólio oficial; pontos, limites e tarifas são dinâmicos e exigem revalidação nas páginas/tabelas CAIXA.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões CAIXA; Programa Pontos CAIXA; benefícios exclusivos."
+        }
+      ]
     },
     {
       "identity": {
@@ -53553,7 +54408,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -54732,7 +55600,20 @@
           "Pontuação usa teto ('até') sem regras doméstica/exterior estruturadas."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Santander listado/relacionado ao portfólio oficial; detalhes exigem captura específica por produto.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.65,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Santander: portfólio oficial de cartões."
+        }
+      ]
     },
     {
       "identity": {
@@ -55294,7 +56175,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -55794,7 +56688,42 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        },
+        {
+          "field_path": "eligibility.availability_status",
+          "value_text": "Ourocard Mastercard Black é oferecido para seleto grupo de convidados.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/ourocard-mastercard-black/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "O Banco do Brasil oferece para um seleto grupo de convidados o cartão de crédito internacional Ourocard Mastercard Black."
+        }
+      ]
     },
     {
       "identity": {
@@ -56294,7 +57223,42 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        },
+        {
+          "field_path": "eligibility.availability_status",
+          "value_text": "Ourocard Mastercard Black é oferecido para seleto grupo de convidados.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/ourocard-mastercard-black/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "O Banco do Brasil oferece para um seleto grupo de convidados o cartão de crédito internacional Ourocard Mastercard Black."
+        }
+      ]
     },
     {
       "identity": {
@@ -56832,7 +57796,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicoob relacionado ao portfólio oficial; opções podem variar por cooperativa.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/bandeira-mastercard-pf",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.77,
+          "dynamic": true,
+          "raw_excerpt": "O Sicoob oferece cartões de três bandeiras: Cabal, Mastercard e Visa; Clássico, Gold, Platinum, Black, Merit e Zenith."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Coopera é o programa de fidelidade/marketplace do Sicoob para resgates com Pontos Coopera.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/coopera",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Coopera, o programa de fidelidade e marketplace do Sicoob; Pontos Coopera podem ser trocados por produtos e serviços."
+        }
+      ]
     },
     {
       "identity": {
@@ -57277,7 +58265,20 @@
           "Pontuação usa teto ('até') sem regras doméstica/exterior estruturadas."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Santander listado/relacionado ao portfólio oficial; detalhes exigem captura específica por produto.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.65,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Santander: portfólio oficial de cartões."
+        }
+      ]
     },
     {
       "identity": {
@@ -59013,7 +60014,42 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão CAIXA relacionado ao portfólio oficial; pontos, limites e tarifas são dinâmicos e exigem revalidação nas páginas/tabelas CAIXA.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões CAIXA; Programa Pontos CAIXA; benefícios exclusivos."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "CAIXA Visa Infinite voltado a clientes com investimentos pode oferecer até 6 pontos por dólar.",
+          "source_url": "https://caixanoticias.caixa.gov.br/Paginas/Not%C3%ADcias/2025/01-JANEIRO/CAIXA-e-VISA-oferecem-cartao-com-acesso-ilimitado-a-salas--VIP-e-ate-6-pontos-por-dolar.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Cartão CAIXA Visa Infinite voltado para clientes que possuem investimentos; até 6 pontos por dólar."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "CAIXA Visa Infinite noticia acesso ilimitado a salas VIP.",
+          "source_url": "https://caixanoticias.caixa.gov.br/Paginas/Not%C3%ADcias/2025/01-JANEIRO/CAIXA-e-VISA-oferecem-cartao-com-acesso-ilimitado-a-salas--VIP-e-ate-6-pontos-por-dolar.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "CAIXA e VISA oferecem cartão com acesso ilimitado a salas VIP."
+        }
+      ]
     },
     {
       "identity": {
@@ -59575,7 +60611,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -60181,7 +61230,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -60760,7 +61822,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -62908,7 +63983,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -64034,7 +65122,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -64515,7 +65616,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Santander listado/relacionado ao portfólio oficial; detalhes exigem captura específica por produto.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.65,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Santander: portfólio oficial de cartões."
+        }
+      ]
     },
     {
       "identity": {
@@ -65960,7 +67074,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "The Platinum Card informa Priority Pass com acesso a salas VIP em mais de 1.300 lounges.",
+          "source_url": "https://banco.bradesco/cartoes/theplatinumcardmetal/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "PRIORITY PASS: acesso às Salas VIP em mais de 1.300 lounges de aeroportos ao redor do mundo."
+        }
+      ]
     },
     {
       "identity": {
@@ -66613,7 +67751,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão CAIXA relacionado ao portfólio oficial; pontos, limites e tarifas são dinâmicos e exigem revalidação nas páginas/tabelas CAIXA.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões CAIXA; Programa Pontos CAIXA; benefícios exclusivos."
+        }
+      ]
     },
     {
       "identity": {
@@ -68050,7 +69201,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -69011,7 +70186,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -69614,7 +70813,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicredi relacionado ao portfólio oficial de cartões; condições podem variar por cooperativa.",
+          "source_url": "https://www.sicredi.com.br/site/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.76,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Sicredi para você; tipos de cartão Sicredi; Visa Infinite, Mastercard Black, Platinum e Gold."
+        }
+      ]
     },
     {
       "identity": {
@@ -70096,7 +71308,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -71058,7 +72294,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -72531,7 +73791,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -73050,7 +74323,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Unicred relacionado ao portfólio oficial de cartões; conteúdo modal exige validação por variante.",
+          "source_url": "https://www.unicred.com.br/solucoes/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões Unicred; Conte com os benefícios do Unicred Visa; cartões Privilege e Ímpar."
+        }
+      ]
     },
     {
       "identity": {
@@ -73513,7 +74799,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -74075,7 +75385,42 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão CAIXA relacionado ao portfólio oficial; pontos, limites e tarifas são dinâmicos e exigem revalidação nas páginas/tabelas CAIXA.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões CAIXA; Programa Pontos CAIXA; benefícios exclusivos."
+        },
+        {
+          "field_path": "eligibility.limit",
+          "value_text": "CAIXA Elo Nanquim informa limite mínimo para contratação de R$ 15.000,00.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "O limite mínimo para contratação é de R$ 15.000,00."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "CAIXA Elo Nanquim participa do Programa Pontos CAIXA.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Programa Pontos CAIXA para aproveitar as melhores oportunidades."
+        }
+      ]
     },
     {
       "identity": {
@@ -75513,7 +76858,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -76029,7 +77398,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -76548,7 +77930,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicoob relacionado ao portfólio oficial; opções podem variar por cooperativa.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/bandeira-mastercard-pf",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.77,
+          "dynamic": true,
+          "raw_excerpt": "O Sicoob oferece cartões de três bandeiras: Cabal, Mastercard e Visa; Clássico, Gold, Platinum, Black, Merit e Zenith."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Coopera é o programa de fidelidade/marketplace do Sicoob para resgates com Pontos Coopera.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/coopera",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Coopera, o programa de fidelidade e marketplace do Sicoob; Pontos Coopera podem ser trocados por produtos e serviços."
+        }
+      ]
     },
     {
       "identity": {
@@ -77029,7 +78435,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -77528,7 +78958,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -79440,7 +80883,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -79903,7 +81370,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -81909,7 +83389,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -82389,7 +83893,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -84315,7 +85832,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -84798,7 +86328,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -85817,7 +87371,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -87295,7 +88862,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "The Platinum Card informa Priority Pass com acesso a salas VIP em mais de 1.300 lounges.",
+          "source_url": "https://banco.bradesco/cartoes/theplatinumcardmetal/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "PRIORITY PASS: acesso às Salas VIP em mais de 1.300 lounges de aeroportos ao redor do mundo."
+        }
+      ]
     },
     {
       "identity": {
@@ -87758,7 +89349,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -88758,7 +90373,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -89221,7 +90849,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -89684,7 +91325,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -90203,7 +91857,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicoob relacionado ao portfólio oficial; opções podem variar por cooperativa.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/bandeira-mastercard-pf",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.77,
+          "dynamic": true,
+          "raw_excerpt": "O Sicoob oferece cartões de três bandeiras: Cabal, Mastercard e Visa; Clássico, Gold, Platinum, Black, Merit e Zenith."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Coopera é o programa de fidelidade/marketplace do Sicoob para resgates com Pontos Coopera.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/coopera",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Coopera, o programa de fidelidade e marketplace do Sicoob; Pontos Coopera podem ser trocados por produtos e serviços."
+        }
+      ]
     },
     {
       "identity": {
@@ -90666,7 +92344,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -91129,7 +92831,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -91592,7 +93307,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -92055,7 +93783,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -92616,7 +94357,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Santander listado/relacionado ao portfólio oficial; detalhes exigem captura específica por produto.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.65,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Santander: portfólio oficial de cartões."
+        }
+      ]
     },
     {
       "identity": {
@@ -93099,7 +94853,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -93660,7 +95427,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -94269,7 +96049,53 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Safra relacionado à oferta oficial de cartões pessoa física.",
+          "source_url": "http://www.bancosafra.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.78,
+          "dynamic": true,
+          "raw_excerpt": "Cartões de crédito com padrão de excelência Safra, parcerias e vantagens exclusivas."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Safra Visa Infinite informa até 3 pontos por dólar no Safra Rewards.",
+          "source_url": "http://www.bancosafra.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Até 3 pontos por dólar gasto no programa Safra Rewards."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "Safra Visa Infinite informa acesso ilimitado à sala VIP Safra no aeroporto de Guarulhos.",
+          "source_url": "http://www.bancosafra.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Acesso ilimitado à sala VIP Safra no aeroporto de Guarulhos."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Possibilidade de isenção de anuidade de acordo com investimentos.",
+          "source_url": "http://www.bancosafra.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Possibilidade de isenção de anuidade de acordo com seus investimentos."
+        }
+      ]
     },
     {
       "identity": {
@@ -94732,7 +96558,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -95195,7 +97034,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -96177,7 +98029,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -96696,7 +98561,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicoob relacionado ao portfólio oficial; opções podem variar por cooperativa.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/bandeira-mastercard-pf",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.77,
+          "dynamic": true,
+          "raw_excerpt": "O Sicoob oferece cartões de três bandeiras: Cabal, Mastercard e Visa; Clássico, Gold, Platinum, Black, Merit e Zenith."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Coopera é o programa de fidelidade/marketplace do Sicoob para resgates com Pontos Coopera.",
+          "source_url": "https://www.sicoob.com.br/web/sicoob/coopera",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Coopera, o programa de fidelidade e marketplace do Sicoob; Pontos Coopera podem ser trocados por produtos e serviços."
+        }
+      ]
     },
     {
       "identity": {
@@ -97756,7 +99645,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -98219,7 +100132,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Santander listado/relacionado ao portfólio oficial; detalhes exigem captura específica por produto.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.65,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Santander: portfólio oficial de cartões."
+        }
+      ]
     },
     {
       "identity": {
@@ -99298,7 +101224,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Unicred relacionado ao portfólio oficial de cartões; conteúdo modal exige validação por variante.",
+          "source_url": "https://www.unicred.com.br/solucoes/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões Unicred; Conte com os benefícios do Unicred Visa; cartões Privilege e Ímpar."
+        }
+      ]
     },
     {
       "identity": {
@@ -100261,7 +102200,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão CAIXA relacionado ao portfólio oficial; pontos, limites e tarifas são dinâmicos e exigem revalidação nas páginas/tabelas CAIXA.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões CAIXA; Programa Pontos CAIXA; benefícios exclusivos."
+        }
+      ]
     },
     {
       "identity": {
@@ -102473,7 +104425,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão CAIXA relacionado ao portfólio oficial; pontos, limites e tarifas são dinâmicos e exigem revalidação nas páginas/tabelas CAIXA.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões CAIXA; Programa Pontos CAIXA; benefícios exclusivos."
+        }
+      ]
     },
     {
       "identity": {
@@ -102992,7 +104957,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão CAIXA relacionado ao portfólio oficial; pontos, limites e tarifas são dinâmicos e exigem revalidação nas páginas/tabelas CAIXA.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões CAIXA; Programa Pontos CAIXA; benefícios exclusivos."
+        }
+      ]
     },
     {
       "identity": {
@@ -107561,7 +109539,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Inter emite cartões Mastercard Gold, Platinum, Black, Win, Global e Microbusiness PJ.",
+          "source_url": "https://ajuda.inter.co/cartao/quais-cartoes-mastercard-estao-disponiveis-no-inter/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.75,
+          "dynamic": true,
+          "raw_excerpt": "Atualmente emitimos os cartões Gold, Platinum, Black, Win, Global e Microbusiness (PJ)."
+        }
+      ]
     },
     {
       "identity": {
@@ -108025,7 +110016,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -108640,7 +110655,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Cresol relacionado ao portfólio oficial Mastercard; condições podem variar por cooperativa.",
+          "source_url": "https://cresol.com.br/voce/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.78,
+          "dynamic": true,
+          "raw_excerpt": "Cartões com vantagens para todos os momentos; Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Cartões Cresol elegíveis informam programa de pontos para troca por produtos e passagens aéreas.",
+          "source_url": "https://cresol.com.br/voce/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Programa de pontos: cada compra acumula pontos que podem ser trocados por produtos e passagens aéreas."
+        }
+      ]
     },
     {
       "identity": {
@@ -109104,7 +111143,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Santander listado/relacionado ao portfólio oficial; detalhes exigem captura específica por produto.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.65,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Santander: portfólio oficial de cartões."
+        }
+      ]
     },
     {
       "identity": {
@@ -109568,7 +111620,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Bradesco relacionado ao portfólio oficial de cartões; detalhes dinâmicos devem ser validados na página específica do produto.",
+          "source_url": "https://banco.bradesco/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.72,
+          "dynamic": true,
+          "raw_excerpt": "Bradesco Cartões: página oficial de cartões, ofertas, benefícios, assistências, anuidade e contratos."
+        }
+      ]
     },
     {
       "identity": {
@@ -110097,7 +112162,53 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Safra relacionado à oferta oficial de cartões pessoa física.",
+          "source_url": "http://www.bancosafra.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.78,
+          "dynamic": true,
+          "raw_excerpt": "Cartões de crédito com padrão de excelência Safra, parcerias e vantagens exclusivas."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Safra Visa Infinite informa até 3 pontos por dólar no Safra Rewards.",
+          "source_url": "http://www.bancosafra.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Até 3 pontos por dólar gasto no programa Safra Rewards."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "Safra Visa Infinite informa acesso ilimitado à sala VIP Safra no aeroporto de Guarulhos.",
+          "source_url": "http://www.bancosafra.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Acesso ilimitado à sala VIP Safra no aeroporto de Guarulhos."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Possibilidade de isenção de anuidade de acordo com investimentos.",
+          "source_url": "http://www.bancosafra.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Possibilidade de isenção de anuidade de acordo com seus investimentos."
+        }
+      ]
     },
     {
       "identity": {
@@ -111175,7 +113286,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão CAIXA relacionado ao portfólio oficial; pontos, limites e tarifas são dinâmicos e exigem revalidação nas páginas/tabelas CAIXA.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões CAIXA; Programa Pontos CAIXA; benefícios exclusivos."
+        }
+      ]
     },
     {
       "identity": {
@@ -111638,7 +113762,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão CAIXA relacionado ao portfólio oficial; pontos, limites e tarifas são dinâmicos e exigem revalidação nas páginas/tabelas CAIXA.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões CAIXA; Programa Pontos CAIXA; benefícios exclusivos."
+        }
+      ]
     },
     {
       "identity": {
@@ -112101,7 +114238,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão CAIXA relacionado ao portfólio oficial; pontos, limites e tarifas são dinâmicos e exigem revalidação nas páginas/tabelas CAIXA.",
+          "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/nanquim/Paginas/default.aspx",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões CAIXA; Programa Pontos CAIXA; benefícios exclusivos."
+        }
+      ]
     },
     {
       "identity": {
@@ -113610,7 +115760,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Ourocard/Banco do Brasil relacionado ao hub oficial de cartões BB; tarifas e benefícios devem ser validados nas tabelas oficiais vigentes.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Veja todos os cartões de crédito BB disponíveis; Contratos, tabelas de benefícios e taxas de juros de cartões."
+        },
+        {
+          "field_path": "source.tables",
+          "value_text": "Contratos e tabelas oficiais de benefícios/recompensas e taxas ficam em página separada com vigência.",
+          "source_url": "https://www.bb.com.br/site/contratos-e-tabelas-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true,
+          "raw_excerpt": "Tabela de Benefícios e Recompensas de Cartões: vigente; ordenada por anuidade ou bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -115021,7 +117195,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicredi relacionado ao portfólio oficial de cartões; condições podem variar por cooperativa.",
+          "source_url": "https://www.sicredi.com.br/site/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.76,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Sicredi para você; tipos de cartão Sicredi; Visa Infinite, Mastercard Black, Platinum e Gold."
+        }
+      ]
     },
     {
       "identity": {
@@ -116928,7 +119115,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicredi relacionado ao portfólio oficial de cartões; condições podem variar por cooperativa.",
+          "source_url": "https://www.sicredi.com.br/site/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.76,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Sicredi para você; tipos de cartão Sicredi; Visa Infinite, Mastercard Black, Platinum e Gold."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Sicredi Mastercard Platinum acumula 1,5 pontos por dólar gasto.",
+          "source_url": "https://www.sicredi.com.br/site/cartoes/cartao-sicredi-platinum-mastercard/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Acumule 1,5 pontos por dólar gasto."
+        }
+      ]
     },
     {
       "identity": {
@@ -118826,7 +121037,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Safra relacionado à oferta oficial de cartões pessoa física.",
+          "source_url": "http://www.bancosafra.com.br/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.78,
+          "dynamic": true,
+          "raw_excerpt": "Cartões de crédito com padrão de excelência Safra, parcerias e vantagens exclusivas."
+        }
+      ]
     },
     {
       "identity": {
@@ -123748,7 +125972,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Inter emite cartões Mastercard Gold, Platinum, Black, Win, Global e Microbusiness PJ.",
+          "source_url": "https://ajuda.inter.co/cartao/quais-cartoes-mastercard-estao-disponiveis-no-inter/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Atualmente emitimos os cartões Gold, Platinum, Black, Win, Global e Microbusiness (PJ)."
+        }
+      ]
     },
     {
       "identity": {
@@ -123989,6 +126226,30 @@
         "A página oficial atual lista Inter Prime, não um produto separado chamado Inter Black.",
         "O guia Melhores Cartões ainda usa a nomenclatura Inter Black e cita mudança de Priority Pass em 11/05/2025.",
         "Plano Duo Gourmet anual custa R$ 708/ano e é um caminho de elegibilidade para o Inter Prime; não é anuidade do cartão."
+      ],
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Cartão Mastercard Black sem anuidade.",
+          "source_url": "https://inter.co/pra-voce/relacionamento/inter-black/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Mastercard Black, sem anuidade e internacional."
+        },
+        {
+          "field_path": "eligibility.requirements_text",
+          "value_text": "Relacionamento Inter Black: investimentos a partir de R$250 mil.",
+          "source_url": "https://inter.co/pra-voce/relacionamento/inter-black/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Carteira de investimentos a partir de R$250 mil."
+        }
       ]
     },
     {
@@ -124955,7 +127216,31 @@
           "Política de anuidade tem texto mas não gerou limiar numérico estruturado."
         ],
         "needs_human_review": true
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Uniprime relacionado ao portfólio oficial Mastercard; disponibilidade pode variar por singular.",
+          "source_url": "https://novo.uniprime.com.br/solucoes/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.76,
+          "dynamic": true,
+          "raw_excerpt": "Cartões Uniprime: Mastercard Classic, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "benefits",
+          "value_text": "Cartões Uniprime Mastercard oferecem benefícios de bandeira e programa de pontos conforme modalidade.",
+          "source_url": "https://novo.uniprime.com.br/solucoes/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.78,
+          "dynamic": true,
+          "raw_excerpt": "Programa de Pontos; Mastercard Platinum; Mastercard Black; benefícios de bandeira."
+        }
+      ]
     },
     {
       "identity": {
@@ -125418,7 +127703,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Santander listado/relacionado ao portfólio oficial; detalhes exigem captura específica por produto.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.65,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Santander: portfólio oficial de cartões."
+        }
+      ]
     },
     {
       "identity": {
@@ -125881,7 +128179,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicredi relacionado ao portfólio oficial de cartões; condições podem variar por cooperativa.",
+          "source_url": "https://www.sicredi.com.br/site/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.76,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Sicredi para você; tipos de cartão Sicredi; Visa Infinite, Mastercard Black, Platinum e Gold."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Sicredi Mastercard Gold acumula 1 ponto por dólar gasto.",
+          "source_url": "https://www.sicredi.com.br/site/cartoes/portfolio-mastercard",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Sicredi Mastercard Gold; 1 ponto por dólar acumulado."
+        }
+      ]
     },
     {
       "identity": {
@@ -126344,7 +128666,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicredi relacionado ao portfólio oficial de cartões; condições podem variar por cooperativa.",
+          "source_url": "https://www.sicredi.com.br/site/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.76,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Sicredi para você; tipos de cartão Sicredi; Visa Infinite, Mastercard Black, Platinum e Gold."
+        }
+      ]
     },
     {
       "identity": {
@@ -127307,7 +129642,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Unicred relacionado ao portfólio oficial de cartões; conteúdo modal exige validação por variante.",
+          "source_url": "https://www.unicred.com.br/solucoes/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões Unicred; Conte com os benefícios do Unicred Visa; cartões Privilege e Ímpar."
+        }
+      ]
     },
     {
       "identity": {
@@ -127788,7 +130136,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Cresol relacionado ao portfólio oficial Mastercard; condições podem variar por cooperativa.",
+          "source_url": "https://cresol.com.br/voce/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.78,
+          "dynamic": true,
+          "raw_excerpt": "Cartões com vantagens para todos os momentos; Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Cartões Cresol elegíveis informam programa de pontos para troca por produtos e passagens aéreas.",
+          "source_url": "https://cresol.com.br/voce/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Programa de pontos: cada compra acumula pontos que podem ser trocados por produtos e passagens aéreas."
+        }
+      ]
     },
     {
       "identity": {
@@ -129195,7 +131567,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Sicredi relacionado ao portfólio oficial de cartões; condições podem variar por cooperativa.",
+          "source_url": "https://www.sicredi.com.br/site/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.76,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Sicredi para você; tipos de cartão Sicredi; Visa Infinite, Mastercard Black, Platinum e Gold."
+        }
+      ]
     },
     {
       "identity": {
@@ -140722,7 +143107,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Unicred relacionado ao portfólio oficial de cartões; conteúdo modal exige validação por variante.",
+          "source_url": "https://www.unicred.com.br/solucoes/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões Unicred; Conte com os benefícios do Unicred Visa; cartões Privilege e Ímpar."
+        }
+      ]
     },
     {
       "identity": {
@@ -141185,7 +143583,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Unicred relacionado ao portfólio oficial de cartões; conteúdo modal exige validação por variante.",
+          "source_url": "https://www.unicred.com.br/solucoes/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões Unicred; Conte com os benefícios do Unicred Visa; cartões Privilege e Ímpar."
+        }
+      ]
     },
     {
       "identity": {
@@ -141666,7 +144077,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Cresol relacionado ao portfólio oficial Mastercard; condições podem variar por cooperativa.",
+          "source_url": "https://cresol.com.br/voce/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.78,
+          "dynamic": true,
+          "raw_excerpt": "Cartões com vantagens para todos os momentos; Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Cartões Cresol elegíveis informam programa de pontos para troca por produtos e passagens aéreas.",
+          "source_url": "https://cresol.com.br/voce/cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.82,
+          "dynamic": true,
+          "raw_excerpt": "Programa de pontos: cada compra acumula pontos que podem ser trocados por produtos e passagens aéreas."
+        }
+      ]
     },
     {
       "identity": {
@@ -142129,7 +144564,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Unicred relacionado ao portfólio oficial de cartões; conteúdo modal exige validação por variante.",
+          "source_url": "https://www.unicred.com.br/solucoes/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões Unicred; Conte com os benefícios do Unicred Visa; cartões Privilege e Ímpar."
+        }
+      ]
     },
     {
       "identity": {
@@ -142592,7 +145040,20 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "source",
+          "value_text": "Cartão Unicred relacionado ao portfólio oficial de cartões; conteúdo modal exige validação por variante.",
+          "source_url": "https://www.unicred.com.br/solucoes/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.74,
+          "dynamic": true,
+          "raw_excerpt": "Cartões Unicred; Conte com os benefícios do Unicred Visa; cartões Privilege e Ímpar."
+        }
+      ]
     },
     {
       "identity": {
@@ -143061,7 +145522,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Cartão Platinum Inter com zero anuidade.",
+          "source_url": "https://inter.co/pra-voce/cartoes/cartao-platinum/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Programa de pontos gratuito; Zero anuidade."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Inter Loop: 1 ponto a cada R$5,00 em compras no cartão de crédito.",
+          "source_url": "https://inter.co/pra-voce/cartoes/cartao-platinum/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Inter Loop, você acumula 1 ponto a cada R$5,00 em compras."
+        }
+      ]
     },
     {
       "identity": {
@@ -144470,7 +146955,31 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.annual",
+          "value_text": "Cartão Inter sem anuidade.",
+          "source_url": "https://inter.co/pra-voce/cartoes/v2/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de crédito internacional, sem anuidade e com programa de pontos exclusivo."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Inter Loop: pontos para trocar por recompensas.",
+          "source_url": "https://inter.co/pra-voce/cartoes/v2/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Use, acumule pontos e troque por vantagens."
+        }
+      ]
     },
     {
       "identity": {
@@ -145419,6 +147928,17 @@
           "confidence_0_to_1": 0.85,
           "dynamic": true,
           "raw_excerpt": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 em compras ou cadastrando CPF e celular como chaves Pix no Santander."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Página oficial redireciona/posiciona Free/SX como cartão sem anuidade.",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander/sx?ic=vitrine%3Acartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.85,
+          "dynamic": true,
+          "raw_excerpt": "Cartão Free: cartão livre da anuidade; 100% gratuito, sem condicionantes de uso mínimo."
         }
       ],
       "cashback_details": null,
@@ -146108,6 +148628,921 @@
       "data_quality_notes": [
         "Adicionado como captura inicial; campos dinâmicos exigem revalidação periódica."
       ]
+    },
+    {
+      "identity": {
+        "stable_id": "ailos-now-official",
+        "display_name": "Ailos Now",
+        "issuer": {
+          "name": "Ailos"
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Standard",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "application_availability": {
+        "channels": [
+          "app",
+          "branch",
+          "phone"
+        ],
+        "notes": "Solicitação sujeita à análise de crédito; regras e condições podem variar por cooperativa."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ailos Now aparece no portfólio oficial de Cartões Ailos.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Ailos: Ailos Now, Ailos Mastercard Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "application_availability",
+          "value_text": "Solicitação sujeita à análise de crédito; regras podem variar por cooperativa.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.86,
+          "dynamic": true,
+          "raw_excerpt": "A solicitação e o pedido de upgrade do cartão estão sujeitos à análise de crédito; consulte na sua Cooperativa."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Now: Mastercard Global Service. Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura."
+        },
+        {
+          "field_path": "benefits",
+          "value_text": "Mastercard Global Service; cartão virtual; compras internacionais e por aproximação; gestão pelo App Ailos Cartões.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Faça compras internacionais; pagamento por aproximação; cartões virtuais; controle seus gastos em tempo real pelo App Ailos Cartões."
+        },
+        {
+          "field_path": "benefits.promotions",
+          "value_text": "Cartões de crédito Ailos aparecem como produto participante da promoção Coopere com a Sorte, conforme regulamento/campanha vigente ou encerrada.",
+          "source_url": "https://www.ailos.coop.br/cooperecomasorte",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "Promoção Ailos Coopere com a Sorte; Cartão de Crédito; regulamento."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/alios-now.png",
+          "source_url": "https://plusdin.com.br/r3-ailos-mastercard-now/",
+          "source_type": "manual",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.95,
+          "dynamic": false,
+          "raw_excerpt": "Local card artwork file added under platform/public/card-images for Ailos Now. Remote/source image retained in media.remote_card_art_url/source_url."
+        }
+      ],
+      "eligibility": {
+        "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "best_estimate_brl": "unknown"
+        },
+        "waiver_and_discounts": {
+          "rules": [
+            {
+              "type": "spend_based",
+              "summary": "Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura.",
+              "source_url": "https://www.ailos.coop.br/cartoes"
+            }
+          ]
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Não possui programa de pontos identificado na página oficial; participa de benefícios Mastercard aplicáveis.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_programs_detected": [],
+        "airport_lounge_unlimited_claim": false,
+        "airport_lounge_visits_per_year": "unknown",
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "atomic_benefit_statements": [
+          "Mastercard Global Service",
+          "Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura",
+          "Cartão virtual e gestão pelo App Ailos Cartões",
+          "Compras internacionais e por aproximação"
+        ],
+        "official_highlights": [
+          "Mastercard Global Service",
+          "Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura",
+          "Cartão virtual e gestão pelo App Ailos Cartões",
+          "Compras internacionais e por aproximação"
+        ]
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.ailos.coop.br/para-voce/cartoes",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_partial_capture",
+        "confidence_score_0_to_1": 0.86,
+        "recommended_human_cross_check_actions": [
+          "Confirmar valores de anuidade, renda mínima, tabela Comprou Zerou e disponibilidade na cooperativa específica."
+        ]
+      },
+      "data_quality_notes": [
+        "Dados Ailos atualizados com base em páginas oficiais Ailos e contexto fornecido; valores exatos de anuidade, renda mínima e tabela Comprou Zerou não foram encontrados.",
+        "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
+      ],
+      "media": {
+        "card_art_url": "/card-images/alios-now.png",
+        "alt_text": "Ailos Now",
+        "source_url": "https://plusdin.com.br/r3-ailos-mastercard-now/",
+        "remote_card_art_url": "https://plusdin.com.br/box/uploads/2024/06/Ailos-Mastercard-Now.png"
+      }
+    },
+    {
+      "identity": {
+        "stable_id": "ailos-mastercard-classico-official",
+        "display_name": "Ailos Mastercard Clássico",
+        "issuer": {
+          "name": "Ailos"
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Classic",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "application_availability": {
+        "channels": [
+          "app",
+          "branch",
+          "phone"
+        ],
+        "notes": "Solicitação sujeita à análise de crédito; regras e condições podem variar por cooperativa."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ailos Mastercard Clássico aparece no portfólio oficial de Cartões Ailos.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Ailos: Ailos Now, Ailos Mastercard Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "application_availability",
+          "value_text": "Solicitação sujeita à análise de crédito; regras podem variar por cooperativa.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.86,
+          "dynamic": true,
+          "raw_excerpt": "A solicitação e o pedido de upgrade do cartão estão sujeitos à análise de crédito; consulte na sua Cooperativa."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Programa de pontos: compras acumulam pontos para resgate por produtos, viagens, aporte na previdência e crédito na fatura.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Clássico: Programa de pontos: cada compra acumula pontos que podem ser trocados por produtos, viagens, aporte na previdência e crédito na fatura."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Benefício Comprou, Zerou pode isentar a anuidade do cartão.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Benefício Comprou, Zerou, que pode isentar a anuidade do cartão."
+        },
+        {
+          "field_path": "benefits",
+          "value_text": "Mastercard Surpreenda e Mastercard Global Service.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Clássico: Mastercard Surpreenda. Mastercard Global Service."
+        },
+        {
+          "field_path": "benefits.promotions",
+          "value_text": "Cartões de crédito Ailos aparecem como produto participante da promoção Coopere com a Sorte, conforme regulamento/campanha vigente ou encerrada.",
+          "source_url": "https://www.ailos.coop.br/cooperecomasorte",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "Promoção Ailos Coopere com a Sorte; Cartão de Crédito; regulamento."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/ailos-classic.png",
+          "source_url": "https://plusdin.com.br/r3-ailos-mastercard-internacional/",
+          "source_type": "manual",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.95,
+          "dynamic": false,
+          "raw_excerpt": "Local card artwork file added under platform/public/card-images for Ailos Mastercard Clássico. Remote/source image retained in media.remote_card_art_url/source_url."
+        }
+      ],
+      "eligibility": {
+        "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "best_estimate_brl": "unknown"
+        },
+        "waiver_and_discounts": {
+          "rules": [
+            {
+              "type": "spend_based",
+              "summary": "Comprou, Zerou pode isentar/reduzir anuidade; valores e tabela não foram encontrados na captura oficial.",
+              "source_url": "https://www.ailos.coop.br/cartoes"
+            }
+          ]
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, viagens, aporte na previdência e crédito na fatura.",
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_programs_detected": [],
+        "airport_lounge_unlimited_claim": false,
+        "airport_lounge_visits_per_year": "unknown",
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "atomic_benefit_statements": [
+          "Mastercard Surpreenda",
+          "Mastercard Global Service",
+          "Comprou, Zerou pode isentar a anuidade",
+          "Programa de pontos com resgate por produtos, viagens, previdência e crédito na fatura",
+          "Cartão virtual e gestão pelo App Ailos Cartões",
+          "Compras internacionais e por aproximação"
+        ],
+        "official_highlights": [
+          "Mastercard Surpreenda",
+          "Mastercard Global Service",
+          "Comprou, Zerou pode isentar a anuidade",
+          "Programa de pontos com resgate por produtos, viagens, previdência e crédito na fatura",
+          "Cartão virtual e gestão pelo App Ailos Cartões",
+          "Compras internacionais e por aproximação"
+        ]
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.ailos.coop.br/para-voce/cartoes",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_partial_capture",
+        "confidence_score_0_to_1": 0.86,
+        "recommended_human_cross_check_actions": [
+          "Confirmar valores de anuidade, renda mínima, tabela Comprou Zerou e disponibilidade na cooperativa específica."
+        ]
+      },
+      "data_quality_notes": [
+        "Dados Ailos atualizados com base em páginas oficiais Ailos e contexto fornecido; valores exatos de anuidade, renda mínima e tabela Comprou Zerou não foram encontrados.",
+        "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
+      ],
+      "media": {
+        "card_art_url": "/card-images/ailos-classic.png",
+        "alt_text": "Ailos Mastercard Clássico",
+        "source_url": "https://plusdin.com.br/r3-ailos-mastercard-internacional/",
+        "remote_card_art_url": "https://plusdin.com.br/box/uploads/2024/06/Ailos-Mastercard-Internacional.png"
+      }
+    },
+    {
+      "identity": {
+        "stable_id": "ailos-mastercard-gold-official",
+        "display_name": "Ailos Mastercard Gold",
+        "issuer": {
+          "name": "Ailos"
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Gold",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "application_availability": {
+        "channels": [
+          "app",
+          "branch",
+          "phone"
+        ],
+        "notes": "Solicitação sujeita à análise de crédito; regras e condições podem variar por cooperativa."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ailos Mastercard Gold aparece no portfólio oficial de Cartões Ailos.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Ailos: Ailos Now, Ailos Mastercard Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "application_availability",
+          "value_text": "Solicitação sujeita à análise de crédito; regras podem variar por cooperativa.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.86,
+          "dynamic": true,
+          "raw_excerpt": "A solicitação e o pedido de upgrade do cartão estão sujeitos à análise de crédito; consulte na sua Cooperativa."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Programa de pontos: compras acumulam pontos para resgate por produtos, milhas, aporte na previdência e crédito na fatura.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Gold: Programa de pontos: cada compra acumula pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura."
+        },
+        {
+          "field_path": "benefits.insurance",
+          "value_text": "Garantia Estendida, Compra Protegida e Proteção de Preço.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Gold: Garantia Estendida. Compra Protegida. Proteção de Preço."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Benefício Comprou, Zerou pode isentar a anuidade do cartão.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Benefício Comprou, Zerou, que pode isentar a anuidade do cartão."
+        },
+        {
+          "field_path": "benefits.promotions",
+          "value_text": "Cartões de crédito Ailos aparecem como produto participante da promoção Coopere com a Sorte, conforme regulamento/campanha vigente ou encerrada.",
+          "source_url": "https://www.ailos.coop.br/cooperecomasorte",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "Promoção Ailos Coopere com a Sorte; Cartão de Crédito; regulamento."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/alios-gold.png",
+          "source_url": "https://cardfacil.com/r2-cartao-de-credito-ailos-gold/",
+          "source_type": "manual",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.95,
+          "dynamic": false,
+          "raw_excerpt": "Local card artwork file added under platform/public/card-images for Ailos Mastercard Gold. Remote/source image retained in media.remote_card_art_url/source_url."
+        }
+      ],
+      "eligibility": {
+        "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "best_estimate_brl": "unknown"
+        },
+        "waiver_and_discounts": {
+          "rules": [
+            {
+              "type": "spend_based",
+              "summary": "Comprou, Zerou pode isentar/reduzir anuidade; valores e tabela não foram encontrados na captura oficial.",
+              "source_url": "https://www.ailos.coop.br/cartoes"
+            }
+          ]
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura.",
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_programs_detected": [],
+        "airport_lounge_unlimited_claim": false,
+        "airport_lounge_visits_per_year": "unknown",
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "atomic_benefit_statements": [
+          "Mastercard Surpreenda",
+          "Mastercard Global Service",
+          "Garantia Estendida",
+          "Compra Protegida",
+          "Proteção de Preço",
+          "Comprou, Zerou pode isentar a anuidade",
+          "Programa de pontos com resgate por produtos, milhas, previdência e crédito na fatura",
+          "Cartão virtual e gestão pelo App Ailos Cartões"
+        ],
+        "official_highlights": [
+          "Mastercard Surpreenda",
+          "Mastercard Global Service",
+          "Garantia Estendida",
+          "Compra Protegida",
+          "Proteção de Preço",
+          "Comprou, Zerou pode isentar a anuidade",
+          "Programa de pontos com resgate por produtos, milhas, previdência e crédito na fatura",
+          "Cartão virtual e gestão pelo App Ailos Cartões"
+        ]
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.ailos.coop.br/para-voce/cartoes",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_partial_capture",
+        "confidence_score_0_to_1": 0.86,
+        "recommended_human_cross_check_actions": [
+          "Confirmar valores de anuidade, renda mínima, tabela Comprou Zerou e disponibilidade na cooperativa específica."
+        ]
+      },
+      "data_quality_notes": [
+        "Dados Ailos atualizados com base em páginas oficiais Ailos e contexto fornecido; valores exatos de anuidade, renda mínima e tabela Comprou Zerou não foram encontrados.",
+        "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
+      ],
+      "media": {
+        "card_art_url": "/card-images/alios-gold.png",
+        "alt_text": "Ailos Mastercard Gold",
+        "source_url": "https://cardfacil.com/r2-cartao-de-credito-ailos-gold/",
+        "remote_card_art_url": "https://cardfacil.com/wp-content/uploads/2023/08/Cartao-Ailos-Mastercard-Gold.png.webp"
+      }
+    },
+    {
+      "identity": {
+        "stable_id": "ailos-mastercard-platinum-official",
+        "display_name": "Ailos Mastercard Platinum",
+        "issuer": {
+          "name": "Ailos"
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Platinum",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "premium",
+        "co_brand_detected_from_name": false
+      },
+      "application_availability": {
+        "channels": [
+          "app",
+          "branch",
+          "phone"
+        ],
+        "notes": "Solicitação sujeita à análise de crédito; regras e condições podem variar por cooperativa."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ailos Mastercard Platinum aparece no portfólio oficial de Cartões Ailos.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Ailos: Ailos Now, Ailos Mastercard Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "application_availability",
+          "value_text": "Solicitação sujeita à análise de crédito; regras podem variar por cooperativa.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.86,
+          "dynamic": true,
+          "raw_excerpt": "A solicitação e o pedido de upgrade do cartão estão sujeitos à análise de crédito; consulte na sua Cooperativa."
+        },
+        {
+          "field_path": "rewards",
+          "value_text": "Programa de pontos: compras acumulam pontos para resgate por produtos, milhas, aporte na previdência e crédito na fatura.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Platinum: Programa de pontos: cada compra acumula pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura."
+        },
+        {
+          "field_path": "benefits.travel",
+          "value_text": "Mastercard Platinum Concierge, assistência de viagem, Masterassist Plus, Travel Rewards, Airport Concierge e Assistência Global de Emergência.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Platinum: Mastercard Platinum Concierge. Serviços de assistência de Viagem. Seguro médico em viagens: Masterassist Plus. Mastercard Travel Rewards. Mastercard Airport Concierge. Assistência Global de Emergência."
+        },
+        {
+          "field_path": "benefits.insurance",
+          "value_text": "Master Seguro de Automóveis.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Ailos Mastercard Platinum: Master Seguro de Automóveis."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Benefício Comprou, Zerou pode isentar a anuidade do cartão.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.88,
+          "dynamic": true,
+          "raw_excerpt": "Benefício Comprou, Zerou, que pode isentar a anuidade do cartão."
+        },
+        {
+          "field_path": "benefits.promotions",
+          "value_text": "Cartões de crédito Ailos aparecem como produto participante da promoção Coopere com a Sorte, conforme regulamento/campanha vigente ou encerrada.",
+          "source_url": "https://www.ailos.coop.br/cooperecomasorte",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "Promoção Ailos Coopere com a Sorte; Cartão de Crédito; regulamento."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/ailos-platinum.png",
+          "source_url": "https://setorneinvestidor.net/ailos-cartoes-veja-como-funciona-e-se-vale-a-pena/",
+          "source_type": "manual",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.95,
+          "dynamic": false,
+          "raw_excerpt": "Local card artwork file added under platform/public/card-images for Ailos Mastercard Platinum. Remote/source image retained in media.remote_card_art_url/source_url."
+        }
+      ],
+      "eligibility": {
+        "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "best_estimate_brl": "unknown"
+        },
+        "waiver_and_discounts": {
+          "rules": [
+            {
+              "type": "spend_based",
+              "summary": "Comprou, Zerou pode isentar/reduzir anuidade; valores e tabela não foram encontrados na captura oficial.",
+              "source_url": "https://www.ailos.coop.br/cartoes"
+            }
+          ]
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura.",
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_programs_detected": [],
+        "airport_lounge_unlimited_claim": false,
+        "airport_lounge_visits_per_year": "unknown",
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "atomic_benefit_statements": [
+          "Mastercard Surpreenda",
+          "Mastercard Platinum Concierge",
+          "Serviços de assistência de viagem",
+          "Masterassist Plus",
+          "Mastercard Global Service",
+          "Priceless Cities",
+          "Mastercard Travel Rewards",
+          "Mastercard Airport Concierge",
+          "Assistência Global de Emergência",
+          "Master Seguro de Automóveis",
+          "Comprou, Zerou pode isentar a anuidade",
+          "Programa de pontos com resgate por produtos, milhas, previdência e crédito na fatura"
+        ],
+        "official_highlights": [
+          "Mastercard Surpreenda",
+          "Mastercard Platinum Concierge",
+          "Serviços de assistência de viagem",
+          "Masterassist Plus",
+          "Mastercard Global Service",
+          "Priceless Cities",
+          "Mastercard Travel Rewards",
+          "Mastercard Airport Concierge",
+          "Assistência Global de Emergência",
+          "Master Seguro de Automóveis",
+          "Comprou, Zerou pode isentar a anuidade",
+          "Programa de pontos com resgate por produtos, milhas, previdência e crédito na fatura"
+        ]
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.ailos.coop.br/para-voce/cartoes",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_partial_capture",
+        "confidence_score_0_to_1": 0.86,
+        "recommended_human_cross_check_actions": [
+          "Confirmar valores de anuidade, renda mínima, tabela Comprou Zerou e disponibilidade na cooperativa específica."
+        ]
+      },
+      "data_quality_notes": [
+        "Dados Ailos atualizados com base em páginas oficiais Ailos e contexto fornecido; valores exatos de anuidade, renda mínima e tabela Comprou Zerou não foram encontrados.",
+        "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
+      ],
+      "media": {
+        "card_art_url": "/card-images/ailos-platinum.png",
+        "alt_text": "Ailos Mastercard Platinum",
+        "source_url": "https://setorneinvestidor.net/ailos-cartoes-veja-como-funciona-e-se-vale-a-pena/",
+        "remote_card_art_url": "https://setorneinvestidor.net/wp-content/uploads/2022/07/Banner_Cartao_SemFundo_Platinum.png"
+      }
+    },
+    {
+      "identity": {
+        "stable_id": "ailos-mastercard-black-official",
+        "display_name": "Ailos Mastercard Black",
+        "issuer": {
+          "name": "Ailos"
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Black",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "premium",
+        "co_brand_detected_from_name": false
+      },
+      "application_availability": {
+        "channels": [
+          "app",
+          "branch",
+          "phone"
+        ],
+        "notes": "Solicitação sujeita à análise de crédito; regras e condições podem variar por cooperativa."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ailos Mastercard Black aparece no portfólio oficial de Cartões Ailos.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Cartão de Crédito Ailos: Ailos Now, Ailos Mastercard Clássico, Gold, Platinum e Black."
+        },
+        {
+          "field_path": "application_availability",
+          "value_text": "Solicitação sujeita à análise de crédito; regras podem variar por cooperativa.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.86,
+          "dynamic": true,
+          "raw_excerpt": "A solicitação e o pedido de upgrade do cartão estão sujeitos à análise de crédito; consulte na sua Cooperativa."
+        },
+        {
+          "field_path": "rewards.earning_rate",
+          "value_text": "2,2 pontos por dólar gasto; pontos podem ser trocados por crédito na fatura, aportes na previdência, milhas aéreas ou produtos.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes/cartao-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.94,
+          "dynamic": true,
+          "raw_excerpt": "O Cartão Ailos Black oferece 2,2 pontos por dólar gasto no Programa de Pontos. Esses pontos podem ser trocados por crédito na fatura, aportes na previdência, milhas aéreas ou produtos."
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge",
+          "value_text": "4 acessos gratuitos por ano às Salas VIP LoungeKey; não cumulativos; cobrança a partir do 5º acesso conforme política do programa/cooperativa.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes/cartao-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.94,
+          "dynamic": true,
+          "raw_excerpt": "O Cartão Ailos Black oferece 4 acessos gratuitos por ano às Salas VIP do programa LoungeKey; a partir do 5º acesso, é cobrado um valor por visita."
+        },
+        {
+          "field_path": "benefits.insurance",
+          "value_text": "Seguro Viagem Internacional gratuito, Proteção de Bagagem, Cobertura para Inconveniências de Viagem, Compra Protegida e Garantia Estendida.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes/cartao-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Seguro Viagem Internacional gratuito; Proteção de Bagagem; Cobertura para Inconveniências de Viagem. Página geral também lista Compra Protegida e Garantia Estendida."
+        },
+        {
+          "field_path": "benefits",
+          "value_text": "Mastercard Black Concierge, benefícios Mastercard Black, compras por aproximação e carteiras digitais.",
+          "source_url": "https://www.ailos.coop.br/para-voce/cartoes/cartao-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true,
+          "raw_excerpt": "Atendimento Mastercard Concierge; Benefícios Mastercard Black; Compras por aproximação; Carteiras digitais."
+        },
+        {
+          "field_path": "fees.annual",
+          "value_text": "Comprou, Zerou pode isentar/reduzir anuidade; a página não informa tabela ou valor exato.",
+          "source_url": "https://www.ailos.coop.br/cartoes",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.86,
+          "dynamic": true,
+          "raw_excerpt": "Benefício Comprou, Zerou, que pode isentar a anuidade do cartão."
+        },
+        {
+          "field_path": "benefits.promotions",
+          "value_text": "Cartões de crédito Ailos aparecem como produto participante da promoção Coopere com a Sorte, conforme regulamento/campanha vigente ou encerrada.",
+          "source_url": "https://www.ailos.coop.br/cooperecomasorte",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.7,
+          "dynamic": true,
+          "raw_excerpt": "Promoção Ailos Coopere com a Sorte; Cartão de Crédito; regulamento."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/ailos-black.png",
+          "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSESEbZdSeys7c31rX6vO9mqBBB8mAOtLoKtA&s",
+          "source_type": "manual",
+          "captured_at": "2026-05-09",
+          "last_verified_at": "2026-05-09",
+          "confidence_0_to_1": 0.95,
+          "dynamic": false,
+          "raw_excerpt": "Local card artwork file added under platform/public/card-images for Ailos Mastercard Black. Remote/source image retained in media.remote_card_art_url/source_url."
+        }
+      ],
+      "eligibility": {
+        "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "best_estimate_brl": "unknown"
+        },
+        "waiver_and_discounts": {
+          "rules": [
+            {
+              "type": "spend_based",
+              "summary": "Comprou, Zerou pode isentar/reduzir anuidade; valores e tabela não foram encontrados na captura oficial.",
+              "source_url": "https://www.ailos.coop.br/cartoes"
+            }
+          ]
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "2,2 pontos por dólar gasto; pontos podem ser trocados por crédito na fatura, aportes na previdência, milhas aéreas ou produtos.",
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": true,
+        "airport_lounge_programs_detected": [
+          "LoungeKey"
+        ],
+        "airport_lounge_unlimited_claim": false,
+        "airport_lounge_visits_per_year": 4,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "atomic_benefit_statements": [
+          "LoungeKey com 4 acessos gratuitos por ano",
+          "Mastercard Surpreenda",
+          "Mastercard Black Concierge",
+          "Proteção de Bagagem",
+          "Compra Protegida",
+          "Garantia Estendida",
+          "Seguro médico/viagem internacional",
+          "Priceless Cities",
+          "Mastercard Travel Rewards",
+          "Assistência Global de Emergência",
+          "Master Seguro de Automóveis",
+          "Comprou, Zerou pode isentar a anuidade",
+          "Melhor pontuação do portfólio Ailos"
+        ],
+        "official_highlights": [
+          "LoungeKey com 4 acessos gratuitos por ano",
+          "Mastercard Surpreenda",
+          "Mastercard Black Concierge",
+          "Proteção de Bagagem",
+          "Compra Protegida",
+          "Garantia Estendida",
+          "Seguro médico/viagem internacional",
+          "Priceless Cities",
+          "Mastercard Travel Rewards",
+          "Assistência Global de Emergência",
+          "Master Seguro de Automóveis",
+          "Comprou, Zerou pode isentar a anuidade",
+          "Melhor pontuação do portfólio Ailos"
+        ]
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.ailos.coop.br/para-voce/cartoes/cartao-black",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_partial_capture",
+        "confidence_score_0_to_1": 0.86,
+        "recommended_human_cross_check_actions": [
+          "Confirmar valores de anuidade, renda mínima, tabela Comprou Zerou e disponibilidade na cooperativa específica."
+        ]
+      },
+      "data_quality_notes": [
+        "Dados Ailos atualizados com base em páginas oficiais Ailos e contexto fornecido; valores exatos de anuidade, renda mínima e tabela Comprou Zerou não foram encontrados.",
+        "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
+      ],
+      "media": {
+        "card_art_url": "/card-images/ailos-black.png",
+        "alt_text": "Ailos Mastercard Black",
+        "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSESEbZdSeys7c31rX6vO9mqBBB8mAOtLoKtA&s",
+        "remote_card_art_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSESEbZdSeys7c31rX6vO9mqBBB8mAOtLoKtA&s"
+      }
     }
   ]
 }

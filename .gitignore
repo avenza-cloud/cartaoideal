@@ -1,2 +1,4 @@
 /.pnpm-store/
 /platform/audit-reports/
+/wiki/
+.pi
