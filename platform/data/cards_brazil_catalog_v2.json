@@ -135473,7 +135473,7 @@
         }
       },
       "travel_and_protection": {
-        "airport_lounge_offered": true,
+        "airport_lounge_offered": false,
         "airport_lounge_unlimited_claim": false,
         "airport_lounge_complimentary_access_confirmed": false,
         "airport_lounge_policy_varies_by_issuer": false,
@@ -135497,9 +135497,6 @@
             "Programa de fidelidade: Programa de Pontos e Benefícios do Banco Bari",
             "Validade dos pontos: 24 meses"
           ],
-          "travel": [
-            "Sala VIP: Acesso disponível"
-          ],
           "lifestyle": [
             "Carteira digital: Não"
           ],
@@ -135519,12 +135516,6 @@
             "key": "earning_rate",
             "label": "Pontuação",
             "value": "1,0 ponto por dólar gasto"
-          },
-          {
-            "category": "travel",
-            "key": "lounge_access",
-            "label": "Sala VIP",
-            "value": "Acesso disponível"
           },
           {
             "category": "rewards",
@@ -135590,7 +135581,6 @@
         "atomic_benefit_statements": [
           "Anuidade: R$ 0",
           "Pontuação: 1,0 ponto por dólar gasto",
-          "Sala VIP: Acesso disponível",
           "Regra de pontuação: 1,0 ponto por dólar gasto",
           "Bônus de adesão: (Não há)",
           "Programa de fidelidade: Programa de Pontos e Benefícios do Banco Bari",
@@ -135638,7 +135628,7 @@
         },
         "lounge_access": {
           "value": {
-            "has_lounge_access": true,
+            "has_lounge_access": false,
             "unlimited": false,
             "complimentary_access_confirmed": false,
             "policy_varies_by_issuer": false,
@@ -135672,9 +135662,6 @@
                 "Programa de fidelidade: Programa de Pontos e Benefícios do Banco Bari",
                 "Validade dos pontos: 24 meses"
               ],
-              "travel": [
-                "Sala VIP: Acesso disponível"
-              ],
               "lifestyle": [
                 "Carteira digital: Não"
               ],
@@ -135694,12 +135681,6 @@
                 "key": "earning_rate",
                 "label": "Pontuação",
                 "value": "1,0 ponto por dólar gasto"
-              },
-              {
-                "category": "travel",
-                "key": "lounge_access",
-                "label": "Sala VIP",
-                "value": "Acesso disponível"
               },
               {
                 "category": "rewards",
@@ -135804,7 +135785,6 @@
         "card_info_list": {
           "Anuidade": "R$ 0",
           "Pontuação": "1,0 ponto por dólar gasto",
-          "Salas VIP": "Sim",
           "Bandeira": "Elo"
         },
         "benefit_sections": {
@@ -135863,14 +135843,15 @@
       },
       "flags": {
         "has_named_lounge_program": false,
-        "has_any_lounge_claim": true,
+        "has_any_lounge_claim": false,
         "mentions_concierge": false,
         "mentions_travel_insurance": false,
         "earn_points_or_miles": true,
         "earn_cashback": false,
         "earn_investback": false,
         "has_cashlike_return": false,
-        "issuer_is_multi_entity_list": false
+        "issuer_is_multi_entity_list": false,
+        "lounge_unlimited_claim": false
       },
       "eligibility": {
         "requires_bank_account_claim": true
