@@ -15,7 +15,7 @@ export const DEFAULT_VALUE_ASSUMPTIONS: CardValueAssumptions = {
   liveloPointTravelValuePerThousandBrl: 45,
   membershipRewardsPointTravelValuePerThousandBrl: 95,
   membershipRewardsPointSaleValuePerThousandBrl: 45,
-  defaultPointValuePerThousandBrl: 35,
+  defaultPointValuePerThousandBrl: 22,
   iof: 0.035,
   loungeVisitValueBrl: 160,
   travelInsuranceMonthlyValueBrl: 25,
@@ -137,7 +137,7 @@ function pointValuationForCard(
     Math.min(assumptions.defaultPointValuePerThousandBrl, nonTravelerSaleCap);
   const defaultTravelValuePerThousandBrl = Math.max(
     defaultSaleValuePerThousandBrl,
-    assumptions.liveloPointTravelValuePerThousandBrl
+    55
   );
 
   return {
@@ -373,6 +373,64 @@ function parseCashlikeRates(card: CardFacet): {
 
 function formatBrl(value: number): string {
   return `R$${value.toLocaleString("pt-BR")}`;
+}
+
+function parseBrlNumber(str: string): number | null {
+  const val = parseFloat(str.replace(/\./g, "").replace(",", "."));
+  return isNaN(val) ? null : val;
+}
+
+// Returns tiered cashback rates keyed by minimum monthly spend.
+// If a card has spend-threshold cashback (e.g. 0.5% for R$1500–R$2999,
+// 1% for R$3000+), returns those tiers sorted ascending by minSpend.
+// Returns [] when no spend thresholds are found (use parseCashlikeRates instead).
+function parseSpendTieredRates(card: CardFacet): Array<{
+  rate: number;
+  minSpend: number;
+  maxSpend: number;
+}> {
+  const tiers: Array<{ rate: number; minSpend: number; maxSpend: number }> = [];
+
+  for (const item of characteristicsByKey(card, "earning_detail")) {
+    const details = normalizeText(String(item.details ?? ""));
+    const rate = parsePercent(normalizeText(String(item.value)));
+    if (rate === null || rate <= 0 || rate > 0.2) continue;
+
+    // "de r$ 1.500 a r$ 2.999,99" or "entre r$ 1.500 e r$ 2.999"
+    const rangeMatch = details.match(/(?:de|entre)\s+r\$\s*([\d.,]+)\s+(?:a|e)\s+r\$\s*([\d.,]+)/);
+    if (rangeMatch) {
+      const minSpend = parseBrlNumber(rangeMatch[1]);
+      const maxSpend = parseBrlNumber(rangeMatch[2]);
+      if (minSpend !== null && maxSpend !== null) {
+        tiers.push({ rate, minSpend, maxSpend });
+        continue;
+      }
+    }
+
+    // "acima de r$ 3.000" or "a partir de r$ 3.000"
+    const aboveMatch = details.match(/(?:acima|partir)\s+de\s+r\$\s*([\d.,]+)/);
+    if (aboveMatch) {
+      const minSpend = parseBrlNumber(aboveMatch[1]);
+      if (minSpend !== null) {
+        tiers.push({ rate, minSpend, maxSpend: Infinity });
+        continue;
+      }
+    }
+  }
+
+  return tiers.sort((a, b) => a.minSpend - b.minSpend);
+}
+
+function effectiveCashlikeRate(card: CardFacet, totalMonthlySpendBrl: number): number {
+  const tiers = parseSpendTieredRates(card);
+  if (tiers.length > 0) {
+    // Find the highest tier whose minSpend the user meets
+    const applicable = [...tiers].reverse().find(
+      (t) => totalMonthlySpendBrl >= t.minSpend && totalMonthlySpendBrl <= t.maxSpend
+    );
+    return applicable?.rate ?? 0;
+  }
+  return parseCashlikeRates(card).generalRate;
 }
 
 function getMinimumInvestment(card: CardFacet): number | "unknown" {
@@ -877,8 +935,11 @@ export function scoreCardValue(
       : 0;
 
   const cashlike = parseCashlikeRates(card);
-  const cashlikeDomesticRate = cashlike.domesticRate ?? cashlike.generalRate;
-  const cashlikeInternationalRate = cashlike.internationalRate ?? cashlike.generalRate;
+  const tieredRate = effectiveCashlikeRate(card, profile.avgMonthlySpendBrl);
+  // Use tiered rate when spend thresholds exist; otherwise fall back to parsed rates
+  const hasTiers = parseSpendTieredRates(card).length > 0;
+  const cashlikeDomesticRate = hasTiers ? tieredRate : (cashlike.domesticRate ?? cashlike.generalRate);
+  const cashlikeInternationalRate = hasTiers ? tieredRate : (cashlike.internationalRate ?? cashlike.generalRate);
   const cashlikeRewardMonthly =
     domesticSpend * cashlikeDomesticRate + internationalSpend * cashlikeInternationalRate;
   const grossRewardMonthly = Math.max(pointsRewardMonthlySale, cashlikeRewardMonthly);
@@ -924,12 +985,22 @@ export function scoreCardValue(
       ? pointValuation.note
       : undefined;
 
+  const tieredSpendNote = (() => {
+    const tiers = parseSpendTieredRates(card);
+    if (tiers.length === 0) return undefined;
+    const minRequired = Math.min(...tiers.map((t) => t.minSpend));
+    if (profile.avgMonthlySpendBrl < minRequired)
+      return `Cashback requer gasto mínimo de ${formatBrl(minRequired)}/mês; seu perfil (${formatBrl(profile.avgMonthlySpendBrl)}) não atinge o limite — cashback zero aplicado.`;
+    return undefined;
+  })();
+
   const dataQualityNotes = [
     ...eligibility.notes,
     ...feeNotes,
     ...(pointsRates.note ? [pointsRates.note] : []),
     ...(pointsValuationNote ? [pointsValuationNote] : []),
-    ...(cashlike.note ? [cashlike.note] : []),
+    ...(tieredSpendNote ? [tieredSpendNote] : []),
+    ...(cashlike.note && !tieredSpendNote ? [cashlike.note] : []),
     ...(loungeGate.note ? [loungeGate.note] : []),
     ...(annualLounge.note ? [annualLounge.note] : []),
     ...(spread.note ? [spread.note] : []),

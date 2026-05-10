@@ -17924,454 +17924,6 @@
     },
     {
       "identity": {
-        "stable_id": "amazon-com-br-amazon-com-br-mastercard-platinum-e96689cfce",
-        "display_name": "Amazon.com.br Mastercard Platinum",
-        "issuer": {
-          "raw": "Amazon.com.br",
-          "normalized": "amazon.com.br",
-          "is_multi_issuer_listing": false
-        },
-        "network_primary": "Mastercard",
-        "variant_band": "Platinum",
-        "product_kind": "named_credit_card_product"
-      },
-      "ranking": {
-        "source_rank": 14,
-        "source_score": 69,
-        "source_name": "Passageiro de Primeira",
-        "source_url": "https://passageirodeprimeira.com/cartao-de-credito/amazon-com-br-mastercard-platinum/"
-      },
-      "categorization": {
-        "market_segment_guess": "mass_or_general",
-        "co_brand_detected_from_name": true
-      },
-      "media": {
-        "card_art_url": "/card-images/amazon-com-br-amazon-com-br-mastercard-platinum.png",
-        "source_url": "https://passageirodeprimeira.com/cartao-de-credito/amazon-com-br-mastercard-platinum/",
-        "source_tier": "trusted_catalog",
-        "alt_text": "Amazon.com.br Mastercard Platinum",
-        "remote_card_art_url": "https://passageirodeprimeira.com/wp-content/uploads/2025/08/cartao-amazon-3-cartao-amazon-3-230x146.png"
-      },
-      "fees": {
-        "annual": {
-          "has_explicit_amount": true,
-          "raw_text": "R$ 0",
-          "amount_brl_numeric": 0,
-          "is_zero_fee_claim": true
-        }
-      },
-      "rewards": {
-        "earning_rules_text": "Pontos Amazon: 1% nas demais compras, 2% em restaurantes/drogarias/viagens/entretenimento/compras internacionais e 3% em compras na Amazon.com.br. Pontos são usados na Amazon, não crédito livre em fatura.",
-        "earn_points_or_miles_mentioned": false,
-        "earn_cashback_mentioned": true,
-        "earn_investback_mentioned": false,
-        "return_cashlike": {
-          "has_points_or_miles": false,
-          "has_cashlike_return": true,
-          "subtypes": [
-            "amazon_points"
-          ],
-          "earning_summary": "1% demais compras; 3% apenas na Amazon.com.br"
-        }
-      },
-      "travel_and_protection": {
-        "airport_lounge_offered": false,
-        "airport_lounge_unlimited_claim": false,
-        "airport_lounge_complimentary_access_confirmed": false,
-        "airport_lounge_policy_varies_by_issuer": false,
-        "travel_insurance_mentioned": false,
-        "concierge_mentioned": false,
-        "forex_spread_or_iof_text": "unknown"
-      },
-      "benefits": {
-        "benefit_groups": {
-          "fees": [
-            "Anuidade: R$ 0",
-            "Adicionais com benefícios: Não ()",
-            "Isenção da anuidade: Não há nenhuma publicada",
-            "Anuidade: R$ 0",
-            "Adicionais gratuitos: 0"
-          ],
-          "rewards": [
-            "Retorno financeiro: cashback",
-            "Pontos Amazon: 1% nas demais compras - Resgate restrito a compras na Amazon.com.br",
-            "Categorias bônus: 2% em restaurantes, drogarias, viagens, entretenimento e compras internacionais",
-            "Amazon.com.br: 3% em compras na Amazon.com.br - Categoria específica, não retorno geral do cartão"
-          ],
-          "lifestyle": [
-            "Carteira digital: Não"
-          ],
-          "eligibility": [
-            "Precisa ser correntista: Não"
-          ]
-        },
-        "characteristics": [
-          {
-            "category": "fees",
-            "key": "annual_fee",
-            "label": "Anuidade",
-            "value": "R$ 0"
-          },
-          {
-            "category": "rewards",
-            "key": "financial_return",
-            "label": "Retorno financeiro",
-            "value": "cashback"
-          },
-          {
-            "category": "fees",
-            "key": "additional_card_benefits",
-            "label": "Adicionais com benefícios",
-            "value": "Não ()"
-          },
-          {
-            "category": "fees",
-            "key": "fee_waiver",
-            "label": "Isenção da anuidade",
-            "value": "Não há nenhuma publicada"
-          },
-          {
-            "category": "fees",
-            "key": "annual_fee_detail",
-            "label": "Anuidade",
-            "value": "R$ 0"
-          },
-          {
-            "category": "lifestyle",
-            "key": "digital_wallet",
-            "label": "Carteira digital",
-            "value": "Não"
-          },
-          {
-            "category": "eligibility",
-            "key": "requires_account",
-            "label": "Precisa ser correntista",
-            "value": "Não"
-          },
-          {
-            "category": "fees",
-            "key": "free_additional_cards",
-            "label": "Adicionais gratuitos",
-            "value": "0"
-          },
-          {
-            "category": "rewards",
-            "key": "earning_rate",
-            "label": "Pontos Amazon",
-            "value": "1% nas demais compras",
-            "details": "Resgate restrito a compras na Amazon.com.br"
-          },
-          {
-            "category": "rewards",
-            "key": "earning_detail",
-            "label": "Categorias bônus",
-            "value": "2% em restaurantes, drogarias, viagens, entretenimento e compras internacionais"
-          },
-          {
-            "category": "rewards",
-            "key": "earning_detail",
-            "label": "Amazon.com.br",
-            "value": "3% em compras na Amazon.com.br",
-            "details": "Categoria específica, não retorno geral do cartão"
-          }
-        ],
-        "atomic_benefit_statements": [
-          "Anuidade: R$ 0",
-          "Retorno financeiro: cashback",
-          "Adicionais com benefícios: Não ()",
-          "Isenção da anuidade: Não há nenhuma publicada",
-          "Anuidade: R$ 0",
-          "Carteira digital: Não",
-          "Precisa ser correntista: Não",
-          "Adicionais gratuitos: 0",
-          "Pontos Amazon: 1% nas demais compras - Resgate restrito a compras na Amazon.com.br",
-          "Categorias bônus: 2% em restaurantes, drogarias, viagens, entretenimento e compras internacionais",
-          "Amazon.com.br: 3% em compras na Amazon.com.br - Categoria específica, não retorno geral do cartão"
-        ]
-      },
-      "claims": {
-        "annual_fee": {
-          "value": "R$ 0",
-          "evidence": [
-            {
-              "field": "annual_fee",
-              "source_tier": "trusted_catalog",
-              "source_name": "Passageiro de Primeira",
-              "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
-              "internal_confidence": 1,
-              "retrieved_at_utc": "2026-05-07T00:24:31.933987+00:00",
-              "excerpt": "R$ 0"
-            }
-          ]
-        },
-        "reward_return": {
-          "value": {
-            "has_points_or_miles": false,
-            "has_cashlike_return": true,
-            "subtypes": [
-              "amazon_points"
-            ],
-            "earning_summary": "1% demais compras; 3% apenas na Amazon.com.br"
-          },
-          "evidence": [
-            {
-              "field": "reward_return",
-              "source_tier": "trusted_catalog",
-              "source_name": "Passageiro de Primeira",
-              "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
-              "internal_confidence": 1,
-              "retrieved_at_utc": "2026-05-07T00:24:31.933995+00:00",
-              "excerpt": "Até 3,0% de cashback por dólar gasto"
-            }
-          ]
-        },
-        "lounge_access": {
-          "value": {
-            "has_lounge_access": false,
-            "unlimited": false,
-            "complimentary_access_confirmed": false,
-            "policy_varies_by_issuer": false,
-            "raw_summary": "Não"
-          },
-          "evidence": [
-            {
-              "field": "lounge_access",
-              "source_tier": "trusted_catalog",
-              "source_name": "Passageiro de Primeira",
-              "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
-              "internal_confidence": 1,
-              "retrieved_at_utc": "2026-05-07T00:24:31.933999+00:00"
-            }
-          ]
-        },
-        "benefits": {
-          "value": {
-            "groups": {
-              "fees": [
-                "Anuidade: R$ 0",
-                "Adicionais com benefícios: Não ()",
-                "Isenção da anuidade: Não há nenhuma publicada",
-                "Anuidade: R$ 0",
-                "Adicionais gratuitos: 0"
-              ],
-              "rewards": [
-                "Pontuação: Até 3,0% de cashback por dólar gasto",
-                "Retorno financeiro: cashback"
-              ],
-              "lifestyle": [
-                "Carteira digital: Não"
-              ],
-              "eligibility": [
-                "Precisa ser correntista: Não"
-              ]
-            },
-            "characteristics": [
-              {
-                "category": "fees",
-                "key": "annual_fee",
-                "label": "Anuidade",
-                "value": "R$ 0"
-              },
-              {
-                "category": "rewards",
-                "key": "financial_return",
-                "label": "Retorno financeiro",
-                "value": "cashback"
-              },
-              {
-                "category": "fees",
-                "key": "additional_card_benefits",
-                "label": "Adicionais com benefícios",
-                "value": "Não ()"
-              },
-              {
-                "category": "fees",
-                "key": "fee_waiver",
-                "label": "Isenção da anuidade",
-                "value": "Não há nenhuma publicada"
-              },
-              {
-                "category": "fees",
-                "key": "annual_fee_detail",
-                "label": "Anuidade",
-                "value": "R$ 0"
-              },
-              {
-                "category": "lifestyle",
-                "key": "digital_wallet",
-                "label": "Carteira digital",
-                "value": "Não"
-              },
-              {
-                "category": "eligibility",
-                "key": "requires_account",
-                "label": "Precisa ser correntista",
-                "value": "Não"
-              },
-              {
-                "category": "fees",
-                "key": "free_additional_cards",
-                "label": "Adicionais gratuitos",
-                "value": "0"
-              },
-              {
-                "category": "rewards",
-                "key": "earning_rate",
-                "label": "Pontos Amazon",
-                "value": "1% nas demais compras",
-                "details": "Resgate restrito a compras na Amazon.com.br"
-              },
-              {
-                "category": "rewards",
-                "key": "earning_detail",
-                "label": "Categorias bônus",
-                "value": "2% em restaurantes, drogarias, viagens, entretenimento e compras internacionais"
-              },
-              {
-                "category": "rewards",
-                "key": "earning_detail",
-                "label": "Amazon.com.br",
-                "value": "3% em compras na Amazon.com.br",
-                "details": "Categoria específica, não retorno geral do cartão"
-              }
-            ]
-          },
-          "evidence": [
-            {
-              "field": "benefits",
-              "source_tier": "trusted_catalog",
-              "source_name": "Passageiro de Primeira",
-              "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
-              "internal_confidence": 1,
-              "retrieved_at_utc": "2026-05-07T00:24:31.934068+00:00",
-              "excerpt": "Pontuação:\n1% de cashback em compras\n2% de cashback em compras internacionais e estabelecimentos classificados como restaurantes, farmácias, entretenimento e viagens\n3% de cashback em compras no site da Amazon.com.br para membros Amazon Prime\nAdicionais com os mesmos benefícios do titular:\nNão ()\nPolítica de isenção da anuidade\nNão há nenhuma publicada\nAnuidade\nR$ 0\nCarteiras digitais:\nNão\nSpread do dólar:\n5,3%\nPrecisa ser correntista?:\nNão\nCartões adicionais gratuitos:\n0"
-            }
-          ]
-        },
-        "card_art": {
-          "value": "https://passageirodeprimeira.com/wp-content/uploads/2025/08/cartao-amazon-3-cartao-amazon-3-230x146.png",
-          "evidence": [
-            {
-              "field": "card_art",
-              "source_tier": "trusted_catalog",
-              "source_name": "Passageiro de Primeira",
-              "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
-              "internal_confidence": 1,
-              "retrieved_at_utc": "2026-05-07T00:24:31.934073+00:00",
-              "excerpt": "https://passageirodeprimeira.com/wp-content/uploads/2025/08/cartao-amazon-3-cartao-amazon-3-230x146.png"
-            }
-          ]
-        }
-      },
-      "evidence": {
-        "verification_bucket": "trusted_catalog",
-        "source_is_official_issuer_domain": false,
-        "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/amazon-com-br-mastercard-platinum/",
-        "application_url": "https://www.amazon.com.br/Bradesco-Amazon-Cartão-de-Crédito-Amazon-com-br/dp/B0BJS39DSD",
-        "source_name": "Passageiro de Primeira",
-        "source_tier": "trusted_catalog",
-        "internal_confidence": 1,
-        "ranking_page_url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/"
-      },
-      "raw_source_snapshot": {
-        "card_info_list": {
-          "Anuidade": "R$ 0",
-          "Pontuação": "Até 3,0% de cashback por dólar gasto",
-          "Salas VIP": "Não",
-          "Bandeira": "Mastercard"
-        },
-        "benefit_sections": {
-          "Adicionais com os mesmos benefícios do titular": [
-            "Não ()"
-          ],
-          "Política de isenção da anuidade": [
-            "Não há nenhuma publicada"
-          ],
-          "Anuidade": [
-            "R$ 0"
-          ],
-          "Carteiras digitais": [
-            "Não"
-          ],
-          "Precisa ser correntista": [
-            "Não"
-          ],
-          "Cartões adicionais gratuitos": [
-            "0"
-          ],
-          "Bandeira - Resumo": [
-            "Priceless Cities"
-          ]
-        },
-        "benefit_block_titles": [
-          "Benefícios do cartão",
-          "Benefícios da bandeira"
-        ],
-        "source_article_url": "https://passageirodeprimeira.com/cartao-de-credito/amazon-com-br-mastercard-platinum/",
-        "application_url": "https://www.amazon.com.br/Bradesco-Amazon-Cartão-de-Crédito-Amazon-com-br/dp/B0BJS39DSD",
-        "source_title": "Amazon.com.br Mastercard Platinum"
-      },
-      "verification": {
-        "cross_check_status": "trusted_passageiro_de_primeira_ranking",
-        "confidence_score_0_to_1": 1,
-        "machine_truthfulness_note_pt": "Dados importados do ranking de cartões do Passageiro de Primeira; a interface deve mostrar a fonte, não um percentual de confiança.",
-        "primary_evidence_domain": "passageirodeprimeira.com",
-        "embedded_official_snippet_applied": false,
-        "recommended_human_cross_check_actions": [
-          "Usar o link da fonte para auditoria quando necessário",
-          "Consultar o emissor para regras contratuais vigentes antes de decisão financeira"
-        ]
-      },
-      "flags": {
-        "has_named_lounge_program": false,
-        "has_any_lounge_claim": false,
-        "mentions_concierge": false,
-        "mentions_travel_insurance": false,
-        "earn_points_or_miles": false,
-        "earn_cashback": true,
-        "earn_investback": false,
-        "has_cashlike_return": true,
-        "issuer_is_multi_entity_list": false
-      },
-      "data_quality_notes": [
-        "Revisão manual: Manual review 2026-05-06: Mastercard/Amazon launch terms list 1% base, 2% categories and 3% Amazon. Do not expose 3% as general return."
-      ],
-      "eligibility": {
-        "requires_bank_account_claim": false
-      },
-      "semantic_audit": {
-        "audited_at_utc": "2026-05-07T00:24:31.963915+00:00",
-        "normalized_claims": {
-          "eligibility": {
-            "requirements_text": "unknown",
-            "minimum_investment_brl": "unknown",
-            "minimum_income_brl": "unknown",
-            "requires_bank_account": false,
-            "availability_status": "available"
-          },
-          "annual_fee": {
-            "raw_text": "R$ 0",
-            "amount_brl_numeric": 0,
-            "monthly_fee_brl_after_intro_months": "unknown",
-            "waiver_policy": {
-              "raw_text": "Não há nenhuma publicada",
-              "has_full_waiver": false,
-              "has_partial_waiver": false
-            }
-          },
-          "rewards": {
-            "earning_summary": "1% nas demais compras",
-            "earning_details": [
-              "2% em restaurantes, drogarias, viagens, entretenimento e compras internacionais",
-              "3% em compras na Amazon.com.br"
-            ]
-          }
-        },
-        "needs_human_review": false
-      }
-    },
-    {
-      "identity": {
         "stable_id": "itau-itau-the-one-mastercard-private-3827962cd4",
         "display_name": "Itaú The One Mastercard Private",
         "issuer": {
@@ -135473,7 +135025,7 @@
         }
       },
       "travel_and_protection": {
-        "airport_lounge_offered": true,
+        "airport_lounge_offered": false,
         "airport_lounge_unlimited_claim": false,
         "airport_lounge_complimentary_access_confirmed": false,
         "airport_lounge_policy_varies_by_issuer": false,
@@ -135497,9 +135049,6 @@
             "Programa de fidelidade: Programa de Pontos e Benefícios do Banco Bari",
             "Validade dos pontos: 24 meses"
           ],
-          "travel": [
-            "Sala VIP: Acesso disponível"
-          ],
           "lifestyle": [
             "Carteira digital: Não"
           ],
@@ -135519,12 +135068,6 @@
             "key": "earning_rate",
             "label": "Pontuação",
             "value": "1,0 ponto por dólar gasto"
-          },
-          {
-            "category": "travel",
-            "key": "lounge_access",
-            "label": "Sala VIP",
-            "value": "Acesso disponível"
           },
           {
             "category": "rewards",
@@ -135590,7 +135133,6 @@
         "atomic_benefit_statements": [
           "Anuidade: R$ 0",
           "Pontuação: 1,0 ponto por dólar gasto",
-          "Sala VIP: Acesso disponível",
           "Regra de pontuação: 1,0 ponto por dólar gasto",
           "Bônus de adesão: (Não há)",
           "Programa de fidelidade: Programa de Pontos e Benefícios do Banco Bari",
@@ -135638,7 +135180,7 @@
         },
         "lounge_access": {
           "value": {
-            "has_lounge_access": true,
+            "has_lounge_access": false,
             "unlimited": false,
             "complimentary_access_confirmed": false,
             "policy_varies_by_issuer": false,
@@ -135672,9 +135214,6 @@
                 "Programa de fidelidade: Programa de Pontos e Benefícios do Banco Bari",
                 "Validade dos pontos: 24 meses"
               ],
-              "travel": [
-                "Sala VIP: Acesso disponível"
-              ],
               "lifestyle": [
                 "Carteira digital: Não"
               ],
@@ -135694,12 +135233,6 @@
                 "key": "earning_rate",
                 "label": "Pontuação",
                 "value": "1,0 ponto por dólar gasto"
-              },
-              {
-                "category": "travel",
-                "key": "lounge_access",
-                "label": "Sala VIP",
-                "value": "Acesso disponível"
               },
               {
                 "category": "rewards",
@@ -135804,7 +135337,6 @@
         "card_info_list": {
           "Anuidade": "R$ 0",
           "Pontuação": "1,0 ponto por dólar gasto",
-          "Salas VIP": "Sim",
           "Bandeira": "Elo"
         },
         "benefit_sections": {
@@ -135863,14 +135395,15 @@
       },
       "flags": {
         "has_named_lounge_program": false,
-        "has_any_lounge_claim": true,
+        "has_any_lounge_claim": false,
         "mentions_concierge": false,
         "mentions_travel_insurance": false,
         "earn_points_or_miles": true,
         "earn_cashback": false,
         "earn_investback": false,
         "has_cashlike_return": false,
-        "issuer_is_multi_entity_list": false
+        "issuer_is_multi_entity_list": false,
+        "lounge_unlimited_claim": false
       },
       "eligibility": {
         "requires_bank_account_claim": true

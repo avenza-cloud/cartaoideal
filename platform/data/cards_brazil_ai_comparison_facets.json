@@ -7003,173 +7003,6 @@
       ]
     },
     {
-      "card_stable_id": "amazon-com-br-amazon-com-br-mastercard-platinum-e96689cfce",
-      "display_name": "Amazon.com.br Mastercard Platinum",
-      "issuer_raw": "Amazon.com.br",
-      "network_primary": "Mastercard",
-      "variant_band": "Platinum",
-      "market_segment_guess": "mass_or_general",
-      "product_kind": "named_credit_card_product",
-      "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-      "verification_confidence_0_to_1": 1,
-      "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/amazon-com-br-mastercard-platinum/",
-      "application_url": "https://www.amazon.com.br/Bradesco-Amazon-Cartão-de-Crédito-Amazon-com-br/dp/B0BJS39DSD",
-      "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/amazon-com-br-mastercard-platinum/",
-      "source_label": "Link direto do cartão",
-      "review_source_label": "Passageiro de Primeira",
-      "source_tier": "trusted_catalog",
-      "source_url": "https://www.amazon.com.br/Bradesco-Amazon-Cartão-de-Crédito-Amazon-com-br/dp/B0BJS39DSD",
-      "ranking_position": 14,
-      "ranking_score": 69,
-      "media": {
-        "card_art_url": "/card-images/amazon-com-br-amazon-com-br-mastercard-platinum.png",
-        "alt_text": "Amazon.com.br Mastercard Platinum",
-        "source_url": "https://passageirodeprimeira.com/cartao-de-credito/amazon-com-br-mastercard-platinum/",
-        "remote_card_art_url": "https://passageirodeprimeira.com/wp-content/uploads/2025/08/cartao-amazon-3-cartao-amazon-3-230x146.png"
-      },
-      "reward_return": {
-        "has_cashlike_return": true,
-        "subtypes": [
-          "amazon_points"
-        ],
-        "earning_summary": "1% demais compras; 3% apenas na Amazon.com.br"
-      },
-      "lounge_access": {
-        "has_lounge_access": false,
-        "unlimited": false,
-        "complimentary_access_confirmed": false,
-        "policy_varies_by_issuer": false
-      },
-      "eligibility": {
-        "requirements_text": "unknown",
-        "minimum_income_brl_best_estimate": "unknown",
-        "minimum_investment_brl_best_estimate": "unknown",
-        "requires_bank_account_claim": false,
-        "availability_status": "available",
-        "recommendation_blocking_unknowns": false,
-        "source_status": "not_structured"
-      },
-      "benefit_groups": {
-        "fees": [
-          "Anuidade: R$ 0",
-          "Adicionais com benefícios: Não ()",
-          "Isenção da anuidade: Não há nenhuma publicada",
-          "Anuidade: R$ 0",
-          "Adicionais gratuitos: 0"
-        ],
-        "rewards": [
-          "Retorno financeiro: cashback",
-          "Pontos Amazon: 1% nas demais compras - Resgate restrito a compras na Amazon.com.br",
-          "Categorias bônus: 2% em restaurantes, drogarias, viagens, entretenimento e compras internacionais",
-          "Amazon.com.br: 3% em compras na Amazon.com.br - Categoria específica, não retorno geral do cartão"
-        ],
-        "lifestyle": [
-          "Carteira digital: Não"
-        ],
-        "eligibility": [
-          "Precisa ser correntista: Não"
-        ]
-      },
-      "characteristics": [
-        {
-          "category": "fees",
-          "key": "annual_fee",
-          "label": "Anuidade",
-          "value": "R$ 0"
-        },
-        {
-          "category": "rewards",
-          "key": "financial_return",
-          "label": "Retorno financeiro",
-          "value": "cashback"
-        },
-        {
-          "category": "fees",
-          "key": "additional_card_benefits",
-          "label": "Adicionais com benefícios",
-          "value": "Não ()"
-        },
-        {
-          "category": "fees",
-          "key": "fee_waiver",
-          "label": "Isenção da anuidade",
-          "value": "Não há nenhuma publicada"
-        },
-        {
-          "category": "fees",
-          "key": "annual_fee_detail",
-          "label": "Anuidade",
-          "value": "R$ 0"
-        },
-        {
-          "category": "lifestyle",
-          "key": "digital_wallet",
-          "label": "Carteira digital",
-          "value": "Não"
-        },
-        {
-          "category": "eligibility",
-          "key": "requires_account",
-          "label": "Precisa ser correntista",
-          "value": "Não"
-        },
-        {
-          "category": "fees",
-          "key": "free_additional_cards",
-          "label": "Adicionais gratuitos",
-          "value": "0"
-        },
-        {
-          "category": "rewards",
-          "key": "earning_rate",
-          "label": "Pontos Amazon",
-          "value": "1% nas demais compras",
-          "details": "Resgate restrito a compras na Amazon.com.br"
-        },
-        {
-          "category": "rewards",
-          "key": "earning_detail",
-          "label": "Categorias bônus",
-          "value": "2% em restaurantes, drogarias, viagens, entretenimento e compras internacionais"
-        },
-        {
-          "category": "rewards",
-          "key": "earning_detail",
-          "label": "Amazon.com.br",
-          "value": "3% em compras na Amazon.com.br",
-          "details": "Categoria específica, não retorno geral do cartão"
-        }
-      ],
-      "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": 0,
-        "monthly_fee_brl_after_intro_official_hint": "unknown",
-        "minimum_income_brl_best_estimate": "unknown",
-        "minimum_investment_brl_best_estimate": "unknown",
-        "lounge_visits_per_year_hint": "unknown",
-        "official_forex_or_iof_note": "unknown"
-      },
-      "facets_boolean": {
-        "has_any_lounge_claim": false,
-        "has_named_lounge_program": false,
-        "lounge_unlimited_claim": false,
-        "earn_points_or_miles": false,
-        "earn_cashback": true,
-        "earn_investback": false,
-        "reward_return_cashlike": true,
-        "mentions_travel_insurance": false,
-        "mentions_concierge": false,
-        "co_brand_name_detected": true,
-        "issuer_multi_entity_row": false,
-        "generic_article_not_single_product": false
-      },
-      "labels_for_filtering": [
-        "segment:mass_or_general",
-        "rewards:cashback",
-        "rewards:return_cashlike"
-      ],
-      "text_for_embedding_compare": "Amazon.com.br Mastercard Platinum \nEmissor: Amazon.com.br \nBandeira: Mastercard \nFaixa: Platinum \nElegibilidade: unknown \nGanhos: Pontos Amazon: 1% nas demais compras, 2% em restaurantes/drogarias/viagens/entretenimento/compras internacionais e 3% em compras na Amazon.com.br. Pontos são usados na Amazon, não crédito livre em fatura. \nProgramas: unknown \nAnuidade (campo principal): R$ 0 \nBenefícios (lista): Anuidade: R$ 0; Retorno financeiro: cashback; Adicionais com benefícios: Não (); Isenção da anuidade: Não há nenhuma publicada; Anuidade: R$ 0; Carteira digital: Não; Precisa ser correntista: Não; Adicionais gratuitos: 0; Pontos Amazon: 1% nas demais compras - Resgate restrito a compras na Amazon.com.br; Categorias bônus: 2% em restaurantes, drogarias, viagens, entretenimento e compras internacionais; Amazon.com.br: 3% em compras na Amazon.com.br - Categoria específica, não retorno geral do cartão \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
-    },
-    {
       "card_stable_id": "itau-itau-the-one-mastercard-private-3827962cd4",
       "display_name": "Itaú The One Mastercard Private",
       "issuer_raw": "Itaú",
@@ -51427,10 +51260,12 @@
         "earning_summary": "1,0 ponto por dólar gasto"
       },
       "lounge_access": {
-        "has_lounge_access": true,
+        "has_lounge_access": false,
         "unlimited": false,
         "complimentary_access_confirmed": false,
-        "policy_varies_by_issuer": false
+        "policy_varies_by_issuer": false,
+        "annual_visits": "unknown",
+        "summary": ""
       },
       "eligibility": {
         "requirements_text": "unknown",
@@ -51555,7 +51390,7 @@
         "official_forex_or_iof_note": "unknown"
       },
       "facets_boolean": {
-        "has_any_lounge_claim": true,
+        "has_any_lounge_claim": false,
         "has_named_lounge_program": false,
         "lounge_unlimited_claim": false,
         "earn_points_or_miles": true,
