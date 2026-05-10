@@ -44,6 +44,10 @@ export interface LoungeAccess {
   complimentary_access_confirmed: boolean;
   policy_varies_by_issuer: boolean;
   summary: string;
+  /** When conditions exist, whether user must meet ALL ("and") or ANY ONE ("or") */
+  condition_logic?: "and" | "or";
+  condition_investment_brl?: number;
+  condition_monthly_spend_brl?: number;
 }
 
 export type CardAvailabilityStatus =

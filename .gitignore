@@ -1,2 +1,4 @@
 /.pnpm-store/
 /platform/audit-reports/
+.playwright-report/
+.playwright-mcp/** */

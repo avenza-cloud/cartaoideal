@@ -79,8 +79,12 @@ export function CardCatalog({ allCards }: CardCatalogProps) {
     fromSearchParams(searchParams)
   );
 
-  // Sync URL → state only when the URL changes externally (e.g. browser back/forward)
+  // Track whether the last update came from the search input (needs debounce)
+  const isSearchUpdate = useRef(false);
+  const searchDebounce = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastPushed = useRef<string>(toParams(active));
+
+  // Sync URL → state only when URL changes externally (browser back/forward)
   useEffect(() => {
     const incoming = searchParams.toString();
     if (incoming !== lastPushed.current) {
@@ -89,37 +93,33 @@ export function CardCatalog({ allCards }: CardCatalogProps) {
     }
   }, [searchParams]);
 
-  // Sync state → URL (debounced only for search to avoid mid-type flicker)
-  const searchDebounce = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const syncUrl = useCallback(
-    (next: ActiveFilters, isSearch = false) => {
+  // Sync state → URL after every state change, debounced only for search
+  useEffect(() => {
+    const wasSearch = isSearchUpdate.current;
+    if (searchDebounce.current) clearTimeout(searchDebounce.current);
+
+    const commit = () => {
+      const qs = toParams(active);
+      if (qs === lastPushed.current) return;
+      lastPushed.current = qs;
+      router.replace(qs ? `/cartoes?${qs}` : "/cartoes", { scroll: false });
+    };
+
+    if (wasSearch) {
+      searchDebounce.current = setTimeout(commit, 300);
+    } else {
+      commit();
+    }
+
+    return () => {
       if (searchDebounce.current) clearTimeout(searchDebounce.current);
+    };
+  }, [active, router]);
 
-      const commit = () => {
-        const qs = toParams(next);
-        lastPushed.current = qs;
-        router.replace(qs ? `/cartoes?${qs}` : "/cartoes", { scroll: false });
-      };
-
-      if (isSearch) {
-        searchDebounce.current = setTimeout(commit, 300);
-      } else {
-        commit();
-      }
-    },
-    [router]
-  );
-
-  const update = useCallback(
-    (patch: Partial<ActiveFilters>, isSearch = false) => {
-      setActive((prev) => {
-        const next = { ...prev, ...patch };
-        syncUrl(next, isSearch);
-        return next;
-      });
-    },
-    [syncUrl]
-  );
+  const update = useCallback((patch: Partial<ActiveFilters>, isSearch = false) => {
+    isSearchUpdate.current = isSearch;
+    setActive((prev) => ({ ...prev, ...patch }));
+  }, []);
 
   const filtered = useMemo(
     () => filterCards(allCards, toFilters(active)),

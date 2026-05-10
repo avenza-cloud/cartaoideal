@@ -765,26 +765,29 @@ function loungeConditionText(card: CardFacet): string {
 function hasLoungeGate(card: CardFacet, profile: UserProfile): { allowed: boolean; note?: string } {
   if (!card.lounge_access.has_lounge_access) return { allowed: false };
 
-  const text = loungeConditionText(card);
-  const spendThreshold = parseSpendThresholdAnyOrder(text);
-  const investmentThreshold = parseInvestmentThresholdAnyOrder(text);
+  const la = card.lounge_access;
+  const spendThreshold = la.condition_monthly_spend_brl ?? parseSpendThresholdAnyOrder(loungeConditionText(card));
+  const investmentThreshold = la.condition_investment_brl ?? parseInvestmentThresholdAnyOrder(loungeConditionText(card));
+  const isOr = la.condition_logic === "or";
   const hasGate = spendThreshold !== null || investmentThreshold !== null;
   if (!hasGate) return { allowed: true };
 
-  const passesSpend =
-    spendThreshold === null || profile.avgMonthlySpendBrl >= spendThreshold;
-  const passesInvestment =
-    investmentThreshold === null || profile.avgInvestedBrl >= investmentThreshold;
+  const passesSpend = spendThreshold === null || profile.avgMonthlySpendBrl >= spendThreshold;
+  const passesInvestment = investmentThreshold === null || profile.avgInvestedBrl >= investmentThreshold;
 
-  if (passesSpend && passesInvestment) return { allowed: true };
+  const passes = isOr ? passesSpend || passesInvestment : passesSpend && passesInvestment;
+  if (passes) return { allowed: true };
+
+  if (isOr) {
+    return {
+      allowed: false,
+      note: `Benefício de sala VIP não valorizado porque exige ${spendThreshold !== null ? `gasto mensal de ${formatBrl(spendThreshold)}` : ""}${spendThreshold !== null && investmentThreshold !== null ? " ou " : ""}${investmentThreshold !== null ? `investimento de ${formatBrl(investmentThreshold)}` : ""}.`,
+    };
+  }
 
   const missing = [
-    spendThreshold !== null && !passesSpend
-      ? `gasto mensal de ${formatBrl(spendThreshold)}`
-      : null,
-    investmentThreshold !== null && !passesInvestment
-      ? `investimento de ${formatBrl(investmentThreshold)}`
-      : null,
+    spendThreshold !== null && !passesSpend ? `gasto mensal de ${formatBrl(spendThreshold)}` : null,
+    investmentThreshold !== null && !passesInvestment ? `investimento de ${formatBrl(investmentThreshold)}` : null,
   ].filter(Boolean);
 
   return {

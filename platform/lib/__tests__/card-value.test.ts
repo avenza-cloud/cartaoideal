@@ -19,15 +19,21 @@ const baseProfile: UserProfile = {
 };
 
 describe("scoreCardValue", () => {
-  it("does not value conditional Rico lounge access when investment gate is not met", () => {
+  it("does not value conditional Rico lounge access when neither spend nor investment gate is met", () => {
     const card = getCardById("rico-rico-visa-infinite-cashback-a93f2e1c7d");
     expect(card).toBeDefined();
 
-    const score = scoreCardValue(card!, baseProfile);
+    // Rico lounge requires R$50k invested OR R$3k monthly spend — profile meets neither
+    const lowProfile: UserProfile = {
+      ...baseProfile,
+      avgMonthlySpendBrl: 1500,
+      avgInvestedBrl: 1000,
+    };
+    const score = scoreCardValue(card!, lowProfile);
 
     expect(score.intangibleMonthlyValueBrl).toBe(24);
     expect(score.dataQualityNotes).toContain(
-      "Benefício de sala VIP não valorizado porque exige investimento de R$50.000."
+      "Benefício de sala VIP não valorizado porque exige gasto mensal de R$3.000 ou investimento de R$50.000."
     );
   });
 
@@ -145,7 +151,7 @@ describe("scoreCardValue", () => {
     });
 
     expect(score.dataQualityNotes).toContain(
-      "Programa de pontos não identificado; usado retorno conservador de R$20 por 1.000 pontos e potencial de utilizacao de R$45 por 1.000 pontos."
+      "Programa de pontos não identificado; usado retorno conservador de R$20 por 1.000 pontos e potencial de utilizacao de R$55 por 1.000 pontos."
     );
     expect(score.components.find((component) => component.key === "rewards")?.explanation).toContain(
       "pontos a R$20/1k pts (venda)"

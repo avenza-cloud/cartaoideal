@@ -32,12 +32,13 @@ describe("getCardFeeWaiver", () => {
     expect(waiver!.viaGasto).toBe(false);
   });
 
-  it("card without fee_waiver returns null", () => {
-    // Find a card that definitely has no waiver characteristic set
+  it("card without fee_waiver characteristic or rules returns null", () => {
     const cards = filterCards({});
+    // A card with neither a fee_waiver characteristic nor fee_waiver_rules must return null
     const noWaiver = cards.find((c) => {
       const char = c.characteristics?.find((x) => x.key === "fee_waiver");
-      return !char || char.value === "unknown" || !char.value;
+      const hasRules = (c.fee_waiver_rules?.length ?? 0) > 0;
+      return (!char || char.value === "unknown" || !char.value) && !hasRules;
     });
     if (noWaiver) {
       expect(getCardFeeWaiver(noWaiver)).toBeNull();
@@ -59,9 +60,9 @@ describe("filterCards", () => {
     expect(cards.some((card) => card.display_name === "LATAM Pass Itaú Visa Internacional")).toBe(false);
   });
 
-  it("feeWaiverByInvestment:true returns exactly 46 cards", () => {
+  it("feeWaiverByInvestment:true returns exactly 47 cards", () => {
     const cards = filterCards({ feeWaiverByInvestment: true });
-    expect(cards).toHaveLength(46);
+    expect(cards).toHaveLength(47);
   });
 
   it("feeWaiverByInvestment result is sorted by fee ascending", () => {

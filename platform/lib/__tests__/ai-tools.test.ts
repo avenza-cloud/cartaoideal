@@ -35,22 +35,22 @@ function executeGetInvestmentWaiverCards(
 }
 
 describe("getInvestmentWaiverCards execute logic", () => {
-  it("with R$10k — totalEncontrado is 45 and all cards are accounted for", () => {
+  it("with R$10k — totalEncontrado is 47 and all cards are accounted for", () => {
     const result = executeGetInvestmentWaiverCards(10_000);
-    expect(result.totalEncontrado).toBe(45);
+    expect(result.totalEncontrado).toBe(47);
     expect("acessiveisAgora" in result).toBe(true);
     if ("acessiveisAgora" in result) {
-      expect(result.acessiveisAgora!.length + result.precisamDeMaisInvestimento!.length).toBe(45);
+      expect(result.acessiveisAgora!.length + result.precisamDeMaisInvestimento!.length).toBe(47);
     }
   });
 
-  it("with R$10k — C6 Mastercard Black is in precisamDeMaisInvestimento with faltam=10000", () => {
+  it("with R$10k — C6 Carbon is in precisamDeMaisInvestimento with faltam=40000", () => {
     const result = executeGetInvestmentWaiverCards(10_000);
     assert("precisamDeMaisInvestimento" in result, "expected grouped result");
-    const c6 = result.precisamDeMaisInvestimento!.find((c) => c.nome === "C6 Mastercard Black");
+    const c6 = result.precisamDeMaisInvestimento!.find((c) => c.nome === "C6 Carbon");
     expect(c6).toBeDefined();
-    expect(c6!.thresholdInvestimento).toBe(20_000);
-    expect(c6!.faltam).toBe(10_000);
+    expect(c6!.thresholdInvestimento).toBe(50_000);
+    expect(c6!.faltam).toBe(40_000);
   });
 
   it("with R$70k — Nubank Ultravioleta is in acessiveisAgora", () => {
@@ -76,19 +76,21 @@ describe("getInvestmentWaiverCards execute logic", () => {
     expect(nubank).toBeDefined();
   });
 
-  it("with no profile or input — returns flat cartoes array with totalEncontrado:45", () => {
+  it("with no profile or input — returns flat cartoes array with totalEncontrado:47", () => {
     const result = executeGetInvestmentWaiverCards(undefined, null);
-    expect(result.totalEncontrado).toBe(45);
+    expect(result.totalEncontrado).toBe(47);
     assert("cartoes" in result, "expected flat result");
-    expect(result.cartoes!).toHaveLength(45);
+    expect(result.cartoes!).toHaveLength(47);
   });
 
-  it("each card has textoIsencao with investment mention", () => {
-    const result = executeGetInvestmentWaiverCards(undefined, null);
-    assert("cartoes" in result, "expected flat result");
-    for (const c of result.cartoes!) {
-      const lower = c.textoIsencao.toLowerCase();
-      expect(lower.includes("investimento") || lower.includes("investidos")).toBe(true);
+  it("each card has investment mention in text or structured rules", () => {
+    const allWaiverCards = filterCards({ feeWaiverByInvestment: true });
+    for (const card of allWaiverCards) {
+      const waiver = getCardFeeWaiver(card);
+      const lower = (waiver?.texto ?? "").toLowerCase();
+      const hasInvestText = lower.includes("investimento") || lower.includes("investidos");
+      const hasInvestRule = waiver?.rules?.some((r) => r.category === "investment") ?? false;
+      expect(hasInvestText || hasInvestRule).toBe(true);
     }
   });
 });

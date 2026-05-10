@@ -30691,8 +30691,8 @@
     },
     {
       "card_stable_id": "cartao-cartao-1-2-3-94a6980df3",
-      "display_name": "Cartão 1|2|3",
-      "issuer_raw": "Cartão",
+      "display_name": "Santander 1|2|3",
+      "issuer_raw": "Santander",
       "network_primary": "Mastercard",
       "variant_band": "Mastercard",
       "market_segment_guess": "upper_mass",
@@ -30709,8 +30709,8 @@
       "ranking_position": 116,
       "ranking_score": 145.56,
       "media": {
-        "card_art_url": "/card-images/cartao-cartao-1-2-3.webp",
-        "alt_text": "Cartão 1|2|3",
+        "card_art_url": "/card-images/santander-123.png",
+        "alt_text": "Santander 1|2|3",
         "source_url": "https://passageirodeprimeira.com/cartao-de-credito/cartao-123/",
         "remote_card_art_url": "https://passageirodeprimeira.com/wp-content/themes/pp2025.iwwa/img/general/cartao-padrao.webp"
       },
@@ -30726,7 +30726,7 @@
       },
       "eligibility": {
         "requirements_text": "unknown",
-        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_income_brl_best_estimate": 2500,
         "minimum_investment_brl_best_estimate": "unknown",
         "requires_bank_account_claim": false,
         "availability_status": "available",
@@ -30747,13 +30747,18 @@
           "Regra de pontuação: 3,0 ponto por dólar gasto no exterior",
           "Bônus de adesão: (Não há)",
           "Programa de fidelidade: Esfera",
-          "Validade dos pontos: 24 meses"
+          "Validade dos pontos: 24 meses",
+          "Regra de pontuação: 2,0 pontos por dólar em compras online (até 500 pts/mês)"
         ],
         "lifestyle": [
-          "Carteira digital: Apple Pay, Samsung Pay"
+          "Carteira digital: Apple Pay, Samsung Pay",
+          "Mastercard Surpreenda"
         ],
         "eligibility": [
           "Precisa ser correntista: Não"
+        ],
+        "travel": [
+          "Seguro viagem: Mastercard Platinum"
         ]
       },
       "characteristics": [
@@ -30774,6 +30779,13 @@
           "key": "earning_detail",
           "label": "Regra de pontuação",
           "value": "1,0 ponto por dólar gasto no Brasil"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Regra de pontuação",
+          "value": "2,0 pontos por dólar em compras online",
+          "details": "Limitado aos primeiros 500 pontos por mês"
         },
         {
           "category": "rewards",
@@ -30834,12 +30846,24 @@
           "key": "free_additional_cards",
           "label": "Adicionais gratuitos",
           "value": "0"
+        },
+        {
+          "category": "travel",
+          "key": "travel_insurance",
+          "label": "Seguro viagem",
+          "value": "Mastercard Platinum"
+        },
+        {
+          "category": "lifestyle",
+          "key": "merchant_offers",
+          "label": "Benefícios de bandeira",
+          "value": "Mastercard Surpreenda"
         }
       ],
       "facets_numeric_or_special": {
         "annual_fee_brl_best_estimate": 444,
         "monthly_fee_brl_after_intro_official_hint": "unknown",
-        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_income_brl_best_estimate": 2500,
         "minimum_investment_brl_best_estimate": "unknown",
         "lounge_visits_per_year_hint": "unknown",
         "official_forex_or_iof_note": "unknown"
@@ -30852,7 +30876,7 @@
         "earn_cashback": false,
         "earn_investback": false,
         "reward_return_cashlike": false,
-        "mentions_travel_insurance": false,
+        "mentions_travel_insurance": true,
         "mentions_concierge": false,
         "co_brand_name_detected": false,
         "issuer_multi_entity_row": false,
@@ -30866,11 +30890,21 @@
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
-          "threshold_brl": 1000,
+          "description": "Desconto 50% da anuidade com gasto mensal",
+          "full_waiver": false,
           "period": "monthly",
+          "raw_text": "50% de desconto se gastar R$ 1.000 mensais",
+          "threshold_brl": 1000,
+          "discount_pct": 50
+        },
+        {
+          "category": "monthly_spend",
+          "description": "Isenção total para correntistas com gasto mensal mínimo",
           "full_waiver": true,
-          "description": "Gasto mensal mínimo",
-          "raw_text": "Anuidade isenta com gastos a partir de 1 mil reais por mês, sendo correntista exceto com pacote de serviços essenciais."
+          "period": "monthly",
+          "raw_text": "Anuidade isenta com gastos a partir de 1 mil reais por mês, sendo correntista exceto com pacote de serviços essenciais.",
+          "threshold_brl": 1000,
+          "requires_bank_account": true
         }
       ]
     },
@@ -54756,7 +54790,10 @@
         "guest_policy": "Ver política do Visa Airport Companion",
         "complimentary_access_confirmed": true,
         "policy_varies_by_issuer": false,
-        "summary": "Dragon Pass/Visa Airport Companion - 4 acessos por ano mediante R$ 3.000 em gastos mensais e R$ 50.000 em investimentos na Rico."
+        "summary": "Dragon Pass/Visa Airport Companion - 4 acessos por ano para quem tem R$ 50.000 em investimentos na Rico ou gasta acima de R$ 3.000 mensais.",
+        "condition_logic": "or",
+        "condition_investment_brl": 50000,
+        "condition_monthly_spend_brl": 3000
       },
       "eligibility": {
         "requirements_text": "Invista pelo menos R$ 1.000 na Rico e peça o cartão. Elegibilidade sujeita às análises de cadastro, compliance e crédito.",
@@ -55999,7 +56036,7 @@
       "ranking_position": "unknown",
       "ranking_score": "unknown",
       "media": {
-        "card_art_url": "unknown",
+        "card_art_url": "/card-images/pan-credito.png",
         "alt_text": "Cartão de Crédito PAN",
         "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/"
       },
@@ -58174,7 +58211,7 @@
       "card_stable_id": "santander-free",
       "display_name": "Santander FREE",
       "issuer_raw": "Santander",
-      "network_primary": "Visa / Mastercard",
+      "network_primary": "Mastercard",
       "variant_band": "Standard",
       "market_segment_guess": "mass_or_general",
       "product_kind": "named_credit_card_product",
@@ -58190,7 +58227,7 @@
       "ranking_position": null,
       "ranking_score": null,
       "media": {
-        "card_art_url": null,
+        "card_art_url": "/card-images/santander-free.png",
         "alt_text": "Santander FREE"
       },
       "reward_return": {
@@ -58225,6 +58262,42 @@
           "key": "perk",
           "label": "Benefício",
           "value": "Pré-venda ingressos shows internacionais"
+        },
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "R$ 0"
+        },
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Isenção da anuidade",
+          "value": "Sem anuidade, sem condicionantes de uso mínimo"
+        },
+        {
+          "category": "rewards",
+          "key": "loyalty_program",
+          "label": "Programa de pontos",
+          "value": "Esfera"
+        },
+        {
+          "category": "lifestyle",
+          "key": "digital_wallet",
+          "label": "Carteira digital",
+          "value": "Apple Pay, Google Pay, Samsung Pay"
+        },
+        {
+          "category": "travel",
+          "key": "travel_insurance",
+          "label": "Seguro viagem",
+          "value": "Visa Platinum"
+        },
+        {
+          "category": "eligibility",
+          "key": "requires_account",
+          "label": "Precisa ser correntista",
+          "value": "Não"
         }
       ],
       "facets_numeric_or_special": {
@@ -58235,20 +58308,28 @@
         "official_forex_or_iof_note": "unknown"
       },
       "facets_boolean": {
-        "earn_points_or_miles": false,
+        "earn_points_or_miles": true,
         "earn_cashback": false,
         "earn_investback": false,
         "has_any_lounge_claim": false,
         "has_named_lounge_program": false,
         "lounge_unlimited_claim": false,
-        "mentions_travel_insurance": false,
+        "mentions_travel_insurance": true,
         "mentions_concierge": false,
         "co_brand_name_detected": false,
         "issuer_multi_entity_row": false,
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [],
-      "text_for_embedding_compare": "Santander FREE"
+      "text_for_embedding_compare": "Santander FREE",
+      "fee_waiver_rules": [
+        {
+          "category": "general",
+          "description": "Sem anuidade",
+          "full_waiver": true,
+          "raw_text": "Sem anuidade, sem condicionantes de uso mínimo"
+        }
+      ]
     },
     {
       "card_stable_id": "banco-do-brasil-ourocard-facil",
@@ -58270,7 +58351,7 @@
       "ranking_position": null,
       "ranking_score": null,
       "media": {
-        "card_art_url": null,
+        "card_art_url": "/card-images/ourocard-facil.png",
         "alt_text": "Ourocard Fácil"
       },
       "reward_return": {
@@ -58299,6 +58380,36 @@
           "key": "annual_fee",
           "label": "Anuidade",
           "value": "Grátis"
+        },
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "R$ 0"
+        },
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Isenção da anuidade",
+          "value": "Sem anuidade"
+        },
+        {
+          "category": "rewards",
+          "key": "loyalty_program",
+          "label": "Programa de pontos",
+          "value": "Livelo / Dotz"
+        },
+        {
+          "category": "lifestyle",
+          "key": "digital_wallet",
+          "label": "Carteira digital",
+          "value": "Apple Pay, Google Pay, Samsung Pay"
+        },
+        {
+          "category": "eligibility",
+          "key": "requires_account",
+          "label": "Precisa ser correntista",
+          "value": "Não"
         }
       ],
       "facets_numeric_or_special": {
@@ -58309,7 +58420,7 @@
         "official_forex_or_iof_note": "unknown"
       },
       "facets_boolean": {
-        "earn_points_or_miles": false,
+        "earn_points_or_miles": true,
         "earn_cashback": false,
         "earn_investback": false,
         "has_any_lounge_claim": false,
@@ -58322,7 +58433,15 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [],
-      "text_for_embedding_compare": "Ourocard Fácil"
+      "text_for_embedding_compare": "Ourocard Fácil",
+      "fee_waiver_rules": [
+        {
+          "category": "general",
+          "description": "Sem anuidade",
+          "full_waiver": true,
+          "raw_text": "Sem anuidade"
+        }
+      ]
     },
     {
       "card_stable_id": "banco-do-brasil-ourocard-universitario",
@@ -58344,7 +58463,7 @@
       "ranking_position": null,
       "ranking_score": null,
       "media": {
-        "card_art_url": null,
+        "card_art_url": "/card-images/ourocard-universitario.png",
         "alt_text": "Ourocard Universitário"
       },
       "reward_return": {
@@ -58373,17 +58492,53 @@
           "key": "annual_fee",
           "label": "Anuidade",
           "value": "Grátis"
+        },
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "R$ 0"
+        },
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Isenção da anuidade",
+          "value": "Sem anuidade"
+        },
+        {
+          "category": "rewards",
+          "key": "loyalty_program",
+          "label": "Programa de pontos",
+          "value": "Livelo"
+        },
+        {
+          "category": "eligibility",
+          "key": "minimum_income",
+          "label": "Renda mínima",
+          "value": "Não exige comprovação de renda"
+        },
+        {
+          "category": "eligibility",
+          "key": "requires_account",
+          "label": "Precisa ser correntista",
+          "value": "Não"
+        },
+        {
+          "category": "lifestyle",
+          "key": "digital_wallet",
+          "label": "Carteira digital",
+          "value": "Apple Pay, Google Pay, Samsung Pay"
         }
       ],
       "facets_numeric_or_special": {
         "annual_fee_brl_best_estimate": 0,
-        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_income_brl_best_estimate": 0,
         "minimum_investment_brl_best_estimate": "unknown",
         "lounge_visits_per_year_hint": "unknown",
         "official_forex_or_iof_note": "unknown"
       },
       "facets_boolean": {
-        "earn_points_or_miles": false,
+        "earn_points_or_miles": true,
         "earn_cashback": false,
         "earn_investback": false,
         "has_any_lounge_claim": false,
@@ -58396,7 +58551,15 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [],
-      "text_for_embedding_compare": "Ourocard Universitário"
+      "text_for_embedding_compare": "Ourocard Universitário",
+      "fee_waiver_rules": [
+        {
+          "category": "general",
+          "description": "Sem anuidade para universitários",
+          "full_waiver": true,
+          "raw_text": "Sem anuidade. Exclusivo para universitários (mínimo 16 anos cursando nível superior)."
+        }
+      ]
     },
     {
       "card_stable_id": "banco-do-brasil-ourocard-elo",
@@ -58418,7 +58581,7 @@
       "ranking_position": null,
       "ranking_score": null,
       "media": {
-        "card_art_url": null,
+        "card_art_url": "/card-images/ourocard-elo.png",
         "alt_text": "Ourocard Elo"
       },
       "reward_return": {
@@ -58447,6 +58610,36 @@
           "key": "annual_fee",
           "label": "Anuidade",
           "value": "R$ 210/ano (12x R$ 17,50)"
+        },
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "12x de R$ 17,50 (R$ 210,00)"
+        },
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Isenção da anuidade",
+          "value": "Parcela zerada com R$ 2.500 em compras mensais no crédito"
+        },
+        {
+          "category": "rewards",
+          "key": "loyalty_program",
+          "label": "Programa",
+          "value": "Investimento, Cashback ou Pontos Livelo/Dotz"
+        },
+        {
+          "category": "lifestyle",
+          "key": "digital_wallet",
+          "label": "Carteira digital",
+          "value": "Apple Pay, Google Pay, Samsung Pay"
+        },
+        {
+          "category": "eligibility",
+          "key": "requires_account",
+          "label": "Precisa ser correntista",
+          "value": "Não"
         }
       ],
       "facets_numeric_or_special": {
@@ -58457,9 +58650,9 @@
         "official_forex_or_iof_note": "unknown"
       },
       "facets_boolean": {
-        "earn_points_or_miles": false,
-        "earn_cashback": false,
-        "earn_investback": false,
+        "earn_points_or_miles": true,
+        "earn_cashback": true,
+        "earn_investback": true,
         "has_any_lounge_claim": false,
         "has_named_lounge_program": false,
         "lounge_unlimited_claim": false,
@@ -58470,7 +58663,17 @@
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [],
-      "text_for_embedding_compare": "Ourocard Elo"
+      "text_for_embedding_compare": "Ourocard Elo",
+      "fee_waiver_rules": [
+        {
+          "category": "monthly_spend",
+          "threshold_brl": 2500,
+          "period": "monthly",
+          "full_waiver": true,
+          "description": "Parcela zerada com R$2.500 em compras mensais",
+          "raw_text": "Parcela zerada com R$ 2.500 em compras mensais no crédito"
+        }
+      ]
     },
     {
       "card_stable_id": "banco-do-brasil-petrobras-visa",
@@ -58492,7 +58695,7 @@
       "ranking_position": null,
       "ranking_score": null,
       "media": {
-        "card_art_url": null,
+        "card_art_url": "/card-images/petrobras-visa.jpg",
         "alt_text": "Petrobras Visa"
       },
       "reward_return": {
@@ -58527,6 +58730,36 @@
           "key": "program",
           "label": "Programa",
           "value": "Premmia"
+        },
+        {
+          "category": "fees",
+          "key": "fee_waiver",
+          "label": "Isenção da anuidade",
+          "value": "Grátis"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_rate",
+          "label": "Programa Premmia",
+          "value": "2 pontos/R$1 em postos BR, 4 pontos/R$1 no Posto Preferido"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Programa Ourocard",
+          "value": "1 ponto por US$ 1 em compras"
+        },
+        {
+          "category": "lifestyle",
+          "key": "digital_wallet",
+          "label": "Carteira digital",
+          "value": "Apple Pay, Google Pay, Samsung Pay"
+        },
+        {
+          "category": "fees",
+          "key": "free_additional_cards",
+          "label": "Adicionais gratuitos",
+          "value": "4"
         }
       ],
       "facets_numeric_or_special": {
@@ -58545,12 +58778,20 @@
         "lounge_unlimited_claim": false,
         "mentions_travel_insurance": false,
         "mentions_concierge": false,
-        "co_brand_name_detected": false,
+        "co_brand_name_detected": true,
         "issuer_multi_entity_row": false,
         "generic_article_not_single_product": false
       },
       "labels_for_filtering": [],
-      "text_for_embedding_compare": "Petrobras Visa"
+      "text_for_embedding_compare": "Petrobras Visa",
+      "fee_waiver_rules": [
+        {
+          "category": "general",
+          "description": "Sem anuidade",
+          "full_waiver": true,
+          "raw_text": "Grátis"
+        }
+      ]
     },
     {
       "card_stable_id": "caixa-sim",

@@ -115,18 +115,20 @@ describe("groupCardsByInvestment", () => {
     expect(allWaiverCards.length).toBeGreaterThan(45);
   });
 
-  it("C6 Mastercard Black with R$10k → needsMore (threshold=20k)", () => {
-    const c6 = allWaiverCards.find((c) => c.display_name === "C6 Mastercard Black")!;
+  it("C6 Carbon with R$10k → needsMore (threshold=50k)", () => {
+    const c6 = allWaiverCards.find((c) => c.display_name === "C6 Carbon")!;
+    expect(c6).toBeDefined();
     const { accessible, needsMore } = groupCardsByInvestment([c6], 10_000, extractInvestmentThreshold);
     expect(accessible).toHaveLength(0);
     expect(needsMore).toHaveLength(1);
-    expect(needsMore[0].threshold).toBe(20_000);
-    expect(needsMore[0].shortfall).toBe(10_000);
+    expect(needsMore[0].threshold).toBe(50_000);
+    expect(needsMore[0].shortfall).toBe(40_000);
   });
 
-  it("C6 Mastercard Black with R$25k → accessible", () => {
-    const c6 = allWaiverCards.find((c) => c.display_name === "C6 Mastercard Black")!;
-    const { accessible } = groupCardsByInvestment([c6], 25_000, extractInvestmentThreshold);
+  it("C6 Carbon with R$60k → accessible", () => {
+    const c6 = allWaiverCards.find((c) => c.display_name === "C6 Carbon")!;
+    expect(c6).toBeDefined();
+    const { accessible } = groupCardsByInvestment([c6], 60_000, extractInvestmentThreshold);
     expect(accessible).toHaveLength(1);
   });
 

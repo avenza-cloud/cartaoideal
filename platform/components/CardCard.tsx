@@ -64,7 +64,7 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
               <img
                 src={card.media.card_art_url}
                 alt={card.media.alt_text}
-                className={`max-w-[82%] object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105 ${compact ? "max-h-16" : "max-h-24"}`}
+                className={`object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105 ${compact ? "max-h-full max-w-[88%]" : "max-h-24 max-w-[82%]"}`}
                 loading="lazy"
               />
             ) : (
