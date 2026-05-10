@@ -145224,7 +145224,10 @@
       "data_quality_notes": [
         "Adicionado como captura inicial da fase 2; campos dinâmicos exigem revalidação periódica.",
         "[fonte-inacessível] Página redireciona para funil de abertura de conta; dados de tarifas não acessíveis via URL fornecida."
-      ]
+      ],
+      "media": {
+        "card_art_url": "/card-images/itau-visa-platinum.png"
+      }
     },
     {
       "identity": {
@@ -147492,13 +147495,19 @@
           "policy_text": "Sem anuidade.",
           "rules": [],
           "has_full_waiver_option": true
-        }
+        },
+        "annual_fee_brl": 0,
+        "annual_fee_notes": "Sem anuidade na versão sem pontos. Versões com pontos e cashback: grátis nos 2 primeiros meses. Após: gastos R$4k/mês → 100% desconto; R$2k/mês → 50% desconto; Minhas Vantagens nível 3+ → 100% desconto."
       },
       "rewards": {
         "earning_rules_text": "Sem programa de pontos divulgado na listagem.",
-        "earn_points_or_miles": false,
+        "earn_points_or_miles": true,
         "earn_cashback": false,
-        "earn_investback": false
+        "earn_investback": false,
+        "points_per_brl_domestic": null,
+        "points_per_usd_international": 1.5,
+        "cashback_pct": 0.5,
+        "program_notes": "Disponível em 3 versões: sem pontos (sem anuidade), com pontos (1,5 pts/USD), ou cashback (0,5% na fatura). 3 cartões adicionais gratuitos. Benefícios Visa Signature."
       },
       "travel_and_protection": {
         "airport_lounge_offered": false,
@@ -147532,7 +147541,7 @@
         ]
       },
       "media": {
-        "card_art_url": "/card-images/itau-uniclass-visa-signature.avif",
+        "card_art_url": "/card-images/itau-uniclass-visa-signature.png",
         "alt_text": "Itaú Uniclass Visa Signature"
       },
       "evidence": {

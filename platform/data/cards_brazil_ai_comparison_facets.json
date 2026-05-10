@@ -55143,7 +55143,7 @@
       "ranking_position": "unknown",
       "ranking_score": "unknown",
       "media": {
-        "card_art_url": "unknown",
+        "card_art_url": "/card-images/itau-visa-platinum.png",
         "alt_text": "Itaú Visa Platinum",
         "source_url": "https://www.itau.com.br/cartoes/escolha/g/itau-visa-platinum/"
       },
@@ -57922,8 +57922,7 @@
       "ranking_position": null,
       "ranking_score": null,
       "media": {
-        "card_art_url": null,
-        "alt_text": "Itaú Uniclass Visa Signature"
+        "card_art_url": "/card-images/itau-uniclass-visa-signature.png"
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -57961,8 +57960,8 @@
         "official_forex_or_iof_note": "unknown"
       },
       "facets_boolean": {
-        "earn_points_or_miles": false,
-        "earn_cashback": false,
+        "earn_points_or_miles": true,
+        "earn_cashback": true,
         "earn_investback": false,
         "has_any_lounge_claim": false,
         "has_named_lounge_program": false,
