@@ -58287,8 +58287,8 @@
       "media": {
         "card_art_url": "/card-images/neon-cartao-de-credito.png",
         "alt_text": "Cartão de Crédito Neon",
-        "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s",
-        "remote_card_art_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s"
+        "source_url": "https://a.storyblok.com/f/114280/663x423/d287d584f5/cartao_neon.png",
+        "remote_card_art_url": "https://a.storyblok.com/f/114280/663x423/d287d584f5/cartao_neon.png"
       },
       "reward_return": {
         "has_cashlike_return": true,
@@ -58480,13 +58480,13 @@
         {
           "field_path": "media.card_art_url",
           "value_text": "/card-images/neon-cartao-de-credito.png",
-          "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s",
+          "source_url": "https://a.storyblok.com/f/114280/663x423/d287d584f5/cartao_neon.png",
           "source_type": "manual",
           "captured_at": "2026-05-10",
           "last_verified_at": "2026-05-10",
-          "confidence_0_to_1": 0.75,
+          "confidence_0_to_1": 0.9,
           "dynamic": false,
-          "raw_excerpt": "User-provided Google image thumbnail formatted into local 611x408 card-image canvas for Cartão de Crédito Neon."
+          "raw_excerpt": "User-provided Neon card artwork formatted into the local 611x408 card-image canvas."
         }
       ],
       "cashback_details": {
