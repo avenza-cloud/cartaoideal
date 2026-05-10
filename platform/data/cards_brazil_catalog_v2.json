@@ -73538,7 +73538,7 @@
         "co_brand_detected_from_name": false
       },
       "media": {
-        "card_art_url": "/card-images/caixa-caixa-elo-nanquim.jpg",
+        "card_art_url": "/card-images/caixa-caixa-elo-nanquim.png",
         "source_url": "https://passageirodeprimeira.com/cartao-de-credito/caixa-elo-nanquim/",
         "source_tier": "trusted_catalog",
         "alt_text": "CAIXA Elo Nanquim",
@@ -145224,7 +145224,10 @@
       "data_quality_notes": [
         "Adicionado como captura inicial da fase 2; campos dinâmicos exigem revalidação periódica.",
         "[fonte-inacessível] Página redireciona para funil de abertura de conta; dados de tarifas não acessíveis via URL fornecida."
-      ]
+      ],
+      "media": {
+        "card_art_url": "/card-images/itau-visa-platinum.png"
+      }
     },
     {
       "identity": {
@@ -147302,7 +147305,7 @@
         ]
       },
       "media": {
-        "card_art_url": "/card-images/itau-uniclass-black.avif",
+        "card_art_url": "/card-images/itau-uniclass-black.png",
         "alt_text": "Itaú Uniclass Black"
       },
       "evidence": {
@@ -147421,7 +147424,7 @@
         ]
       },
       "media": {
-        "card_art_url": "/card-images/itau-uniclass-mastercard-platinum.avif",
+        "card_art_url": "/card-images/itau-uniclass-mastercard-platinum.png",
         "alt_text": "Itaú Uniclass Mastercard Platinum"
       },
       "evidence": {
@@ -147492,13 +147495,19 @@
           "policy_text": "Sem anuidade.",
           "rules": [],
           "has_full_waiver_option": true
-        }
+        },
+        "annual_fee_brl": 0,
+        "annual_fee_notes": "Sem anuidade na versão sem pontos. Versões com pontos e cashback: grátis nos 2 primeiros meses. Após: gastos R$4k/mês → 100% desconto; R$2k/mês → 50% desconto; Minhas Vantagens nível 3+ → 100% desconto."
       },
       "rewards": {
         "earning_rules_text": "Sem programa de pontos divulgado na listagem.",
-        "earn_points_or_miles": false,
+        "earn_points_or_miles": true,
         "earn_cashback": false,
-        "earn_investback": false
+        "earn_investback": false,
+        "points_per_brl_domestic": null,
+        "points_per_usd_international": 1.5,
+        "cashback_pct": 0.5,
+        "program_notes": "Disponível em 3 versões: sem pontos (sem anuidade), com pontos (1,5 pts/USD), ou cashback (0,5% na fatura). 3 cartões adicionais gratuitos. Benefícios Visa Signature."
       },
       "travel_and_protection": {
         "airport_lounge_offered": false,
@@ -147532,7 +147541,7 @@
         ]
       },
       "media": {
-        "card_art_url": "/card-images/itau-uniclass-visa-signature.avif",
+        "card_art_url": "/card-images/itau-uniclass-visa-signature.png",
         "alt_text": "Itaú Uniclass Visa Signature"
       },
       "evidence": {
@@ -147645,7 +147654,7 @@
         ]
       },
       "media": {
-        "card_art_url": "/card-images/itau-n-card.avif",
+        "card_art_url": "/card-images/itau-n-card.png",
         "alt_text": "N Card"
       },
       "evidence": {
@@ -147758,7 +147767,7 @@
         ]
       },
       "media": {
-        "card_art_url": "/card-images/itau-pao-de-acucar-black.avif",
+        "card_art_url": "/card-images/itau-pao-de-acucar-black.png",
         "alt_text": "Pão de Açúcar Black"
       },
       "evidence": {
@@ -147865,7 +147874,7 @@
         ]
       },
       "media": {
-        "card_art_url": "/card-images/itau-passai-gold.avif",
+        "card_art_url": "/card-images/itau-passai-gold.png",
         "alt_text": "Passaí Gold"
       },
       "evidence": {
@@ -147978,7 +147987,7 @@
         ]
       },
       "media": {
-        "card_art_url": "/card-images/itau-instituto-ayrton-senna-master.avif",
+        "card_art_url": "/card-images/itau-instituto-ayrton-senna-master.png",
         "alt_text": "Instituto Ayrton Senna Master"
       },
       "evidence": {
@@ -148084,7 +148093,7 @@
         ]
       },
       "media": {
-        "card_art_url": "/card-images/itau-instituto-ayrton-senna-visa.avif",
+        "card_art_url": "/card-images/itau-instituto-ayrton-senna-visa.png",
         "alt_text": "Instituto Ayrton Senna Visa"
       },
       "evidence": {
@@ -148660,6 +148669,76 @@
       "data_quality_notes": [
         "Anuidade zero e programa Premmia confirmados na página oficial BB em 2026-05-10."
       ]
+    },
+    {
+      "identity": {
+        "stable_id": "caixa-sim",
+        "display_name": "CAIXA SIM",
+        "issuer_raw": "Caixa Econômica Federal",
+        "issuer_normalized": "caixa",
+        "network_primary": "Visa",
+        "variant_band": "básico"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "card_type": "credit"
+      },
+      "fees": {
+        "annual_fee_brl": 0,
+        "annual_fee_notes": "Anuidade zero para titular e adicional."
+      },
+      "rewards": {
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "program_notes": "Sem programa de pontos ou cashback."
+      },
+      "media": {
+        "card_art_url": "/card-images/caixa-sim.jpg",
+        "alt_text": "CAIXA SIM"
+      },
+      "evidence": {
+        "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/simulador-cartoes/Paginas/default.aspx"
+      },
+      "verification": {
+        "status": "verified",
+        "last_checked": "2026-05-10"
+      }
+    },
+    {
+      "identity": {
+        "stable_id": "caixa-visa-universitario",
+        "display_name": "CAIXA Visa Universitário",
+        "issuer_raw": "Caixa Econômica Federal",
+        "issuer_normalized": "caixa",
+        "network_primary": "Visa",
+        "variant_band": "universitário"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "card_type": "credit"
+      },
+      "fees": {
+        "annual_fee_brl": 207,
+        "annual_fee_notes": "R$207/ano (12x R$17,25). Isenção das 5 primeiras anuidades.",
+        "fee_waiver_notes": "5 primeiras anuidades isentas automaticamente."
+      },
+      "rewards": {
+        "earn_points_or_miles": true,
+        "points_per_usd_international": 1.0,
+        "program": "Pontos CAIXA",
+        "program_notes": "1 ponto por USD gasto ou equivalente em R$."
+      },
+      "media": {
+        "card_art_url": "/card-images/caixa-visa-universitario.png",
+        "alt_text": "CAIXA Visa Universitário"
+      },
+      "evidence": {
+        "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/simulador-cartoes/Paginas/default.aspx"
+      },
+      "verification": {
+        "status": "verified",
+        "last_checked": "2026-05-10"
+      }
     }
   ]
 }
