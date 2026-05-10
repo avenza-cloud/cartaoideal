@@ -147200,6 +147200,1466 @@
         "source_url": "https://www.ailos.coop.br/wp-content/uploads/2025/03/Cartoes_Black.png",
         "remote_card_art_url": "https://www.ailos.coop.br/wp-content/uploads/2025/03/Cartoes_Black.png"
       }
+    },
+    {
+      "identity": {
+        "stable_id": "itau-uniclass-black",
+        "display_name": "Itaú Uniclass Black",
+        "issuer": {
+          "raw": "Itaú",
+          "normalized": "itau",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Black",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "premium",
+        "co_brand_detected_from_name": false
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Itaú Uniclass Black",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": false,
+          "raw_text": "Anuidade gratuita ou desconto de 50% conforme gastos/investimentos.",
+          "amount_brl_numeric": null,
+          "is_zero_fee_claim": false
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Anuidade gratuita ou desconto de 50% conforme gastos/investimentos.",
+          "rules": [
+            {
+              "category": "monthly_spend",
+              "full_waiver": false,
+              "description": "Desconto ou isenção por gastos/investimentos.",
+              "raw_text": "Anuidade gratuita ou desconto de 50% conforme gastos/investimentos."
+            }
+          ],
+          "has_full_waiver_option": false
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Pontos por dólar gasto (taxa não divulgada na página de listagem).",
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: isenta ou 50% de desconto por gastos/investimentos"
+          ],
+          "rewards": [
+            "Pontos por dólar gasto"
+          ],
+          "other": []
+        },
+        "characteristics": [
+          {
+            "category": "fees",
+            "key": "annual_fee",
+            "label": "Anuidade",
+            "value": "Isenta ou 50% de desconto por gastos/investimentos"
+          },
+          {
+            "category": "rewards",
+            "key": "earning_rate",
+            "label": "Pontuação",
+            "value": "Pontos por dólar gasto (taxa não divulgada)"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/itau-uniclass-black.avif",
+        "alt_text": "Itaú Uniclass Black"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado a partir da listagem oficial Itaú; taxa de pontos e detalhes de anuidade requerem revalidação na página do produto."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "itau-uniclass-mastercard-platinum",
+        "display_name": "Itaú Uniclass Mastercard Platinum",
+        "issuer": {
+          "raw": "Itaú",
+          "normalized": "itau",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Platinum",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "upper_mass",
+        "co_brand_detected_from_name": false
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Itaú Uniclass Mastercard Platinum",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": false,
+          "raw_text": "Anuidade grátis por gastos.",
+          "amount_brl_numeric": null,
+          "is_zero_fee_claim": false
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Anuidade grátis por gastos.",
+          "rules": [
+            {
+              "category": "monthly_spend",
+              "full_waiver": true,
+              "description": "Isenção por gastos no cartão.",
+              "raw_text": "Anuidade grátis por gastos."
+            }
+          ],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "1,5 pontos por dólar gasto.",
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: isenta por gastos"
+          ],
+          "rewards": [
+            "Pontuação: 1,5 pontos por dólar gasto"
+          ],
+          "other": []
+        },
+        "characteristics": [
+          {
+            "category": "fees",
+            "key": "annual_fee",
+            "label": "Anuidade",
+            "value": "Isenta por gastos"
+          },
+          {
+            "category": "rewards",
+            "key": "earning_rate",
+            "label": "Pontuação",
+            "value": "1,5 pts/USD"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/itau-uniclass-mastercard-platinum.avif",
+        "alt_text": "Itaú Uniclass Mastercard Platinum"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado a partir da listagem oficial Itaú; revalidar detalhes na página do produto."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "itau-uniclass-visa-signature",
+        "display_name": "Itaú Uniclass Visa Signature",
+        "issuer": {
+          "raw": "Itaú",
+          "normalized": "itau",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa",
+        "variant_band": "Signature",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "upper_mass",
+        "co_brand_detected_from_name": false
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Itaú Uniclass Visa Signature",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "Sem anuidade.",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Sem anuidade.",
+          "rules": [],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Sem programa de pontos divulgado na listagem.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: gratuita",
+            "Limite: até R$ 50.000"
+          ],
+          "rewards": [],
+          "other": []
+        },
+        "characteristics": [
+          {
+            "category": "fees",
+            "key": "annual_fee",
+            "label": "Anuidade",
+            "value": "Grátis"
+          },
+          {
+            "category": "eligibility",
+            "key": "limit",
+            "label": "Limite",
+            "value": "Até R$ 50.000"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/itau-uniclass-visa-signature.avif",
+        "alt_text": "Itaú Uniclass Visa Signature"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado a partir da listagem oficial Itaú; revalidar detalhes na página do produto."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "itau-n-card",
+        "display_name": "N Card",
+        "issuer": {
+          "raw": "Itaú",
+          "normalized": "itau",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Internacional",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": true
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "N Card",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": false,
+          "raw_text": "Anuidade não divulgada na página de listagem.",
+          "amount_brl_numeric": null,
+          "is_zero_fee_claim": false
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Anuidade não divulgada na página de listagem.",
+          "rules": [],
+          "has_full_waiver_option": false
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Sem programa de pontos; descontos exclusivos na Netshoes e Zattini.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: não divulgada"
+          ],
+          "rewards": [
+            "Até 30% de desconto na Netshoes e Zattini",
+            "Parcelamento em até 15x sem juros na Netshoes"
+          ],
+          "other": []
+        },
+        "characteristics": [
+          {
+            "category": "rewards",
+            "key": "store_benefit",
+            "label": "Desconto parceiro",
+            "value": "Até 30% OFF na Netshoes e Zattini"
+          },
+          {
+            "category": "rewards",
+            "key": "installments",
+            "label": "Parcelamento",
+            "value": "Até 15x sem juros na Netshoes"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/itau-n-card.avif",
+        "alt_text": "N Card"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado a partir da listagem oficial Itaú; co-brand Netshoes; revalidar anuidade na página do produto."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "itau-pao-de-acucar-black",
+        "display_name": "Pão de Açúcar Black",
+        "issuer": {
+          "raw": "Itaú",
+          "normalized": "itau",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Black",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "premium",
+        "co_brand_detected_from_name": true
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Pão de Açúcar Black",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": false,
+          "raw_text": "Anuidade não divulgada na página de listagem.",
+          "amount_brl_numeric": null,
+          "is_zero_fee_claim": false
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Anuidade não divulgada na página de listagem.",
+          "rules": [],
+          "has_full_waiver_option": false
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Até 5 pontos por dólar gasto.",
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: não divulgada"
+          ],
+          "rewards": [
+            "Pontuação: até 5 pontos por dólar gasto",
+            "20% OFF em vinhos, espumantes e linha Qualitá"
+          ],
+          "other": []
+        },
+        "characteristics": [
+          {
+            "category": "rewards",
+            "key": "earning_rate",
+            "label": "Pontuação",
+            "value": "Até 5 pts/USD"
+          },
+          {
+            "category": "rewards",
+            "key": "store_benefit",
+            "label": "Desconto Pão de Açúcar",
+            "value": "20% OFF vinhos, espumantes e linha Qualitá"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/itau-pao-de-acucar-black.avif",
+        "alt_text": "Pão de Açúcar Black"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado a partir da listagem oficial Itaú; revalidar anuidade e detalhes de pontuação na página do produto."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "itau-passai-gold",
+        "display_name": "Passaí Gold",
+        "issuer": {
+          "raw": "Itaú",
+          "normalized": "itau",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Gold",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": true
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Passaí Gold",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": false,
+          "raw_text": "Anuidade não divulgada na página de listagem.",
+          "amount_brl_numeric": null,
+          "is_zero_fee_claim": false
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Anuidade não divulgada na página de listagem.",
+          "rules": [],
+          "has_full_waiver_option": false
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Sem programa de pontos divulgado; preços de atacado a partir de 1 unidade.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: não divulgada"
+          ],
+          "rewards": [],
+          "other": [
+            "Preço de atacado a partir de 1 unidade com o cartão",
+            "Condições exclusivas de parcelamento"
+          ]
+        },
+        "characteristics": [
+          {
+            "category": "rewards",
+            "key": "store_benefit",
+            "label": "Benefício Passaí",
+            "value": "Preço de atacado a partir de 1 unidade"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/itau-passai-gold.avif",
+        "alt_text": "Passaí Gold"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado a partir da listagem oficial Itaú; co-brand Passaí (atacado GPA); revalidar detalhes."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "itau-instituto-ayrton-senna-master",
+        "display_name": "Instituto Ayrton Senna Master",
+        "issuer": {
+          "raw": "Itaú",
+          "normalized": "itau",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Mastercard",
+        "variant_band": "Internacional",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": true
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Instituto Ayrton Senna Master",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "Sem anuidade.",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Sem anuidade.",
+          "rules": [],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Sem programa de pontos; parte das compras revertida ao Instituto Ayrton Senna.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: gratuita",
+            "Limite: até R$ 20.000"
+          ],
+          "rewards": [],
+          "other": [
+            "Parte do valor das compras revertida ao Instituto Ayrton Senna"
+          ]
+        },
+        "characteristics": [
+          {
+            "category": "fees",
+            "key": "annual_fee",
+            "label": "Anuidade",
+            "value": "Grátis"
+          },
+          {
+            "category": "other",
+            "key": "charity",
+            "label": "Impacto social",
+            "value": "Compras apoiam projetos educacionais do Instituto Ayrton Senna"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/itau-instituto-ayrton-senna-master.avif",
+        "alt_text": "Instituto Ayrton Senna Master"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado a partir da listagem oficial Itaú; co-brand social/educacional."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "itau-instituto-ayrton-senna-visa",
+        "display_name": "Instituto Ayrton Senna Visa",
+        "issuer": {
+          "raw": "Itaú",
+          "normalized": "itau",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa",
+        "variant_band": "Internacional",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": true
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Instituto Ayrton Senna Visa",
+          "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": false,
+          "raw_text": "Anuidade não divulgada na página de listagem.",
+          "amount_brl_numeric": null,
+          "is_zero_fee_claim": false
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Anuidade não divulgada na página de listagem.",
+          "rules": [],
+          "has_full_waiver_option": false
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Sem programa de pontos; parte das compras revertida ao Instituto Ayrton Senna.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: não divulgada"
+          ],
+          "rewards": [],
+          "other": [
+            "Parte do valor das compras revertida ao Instituto Ayrton Senna"
+          ]
+        },
+        "characteristics": [
+          {
+            "category": "other",
+            "key": "charity",
+            "label": "Impacto social",
+            "value": "Compras apoiam projetos educacionais do Instituto Ayrton Senna"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/itau-instituto-ayrton-senna-visa.avif",
+        "alt_text": "Instituto Ayrton Senna Visa"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Adicionado a partir da listagem oficial Itaú; co-brand social/educacional; revalidar anuidade."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "santander-free",
+        "display_name": "Santander FREE",
+        "issuer": {
+          "raw": "Santander",
+          "normalized": "santander",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa / Mastercard",
+        "variant_band": "Standard",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Santander FREE",
+          "source_url": "https://www.santander.com.br/cartao-credito-santander",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "Anuidade grátis pra sempre, sem condicionantes.",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Anuidade grátis pra sempre, sem condicionantes.",
+          "rules": [],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Sem programa de pontos divulgado; descontos em parceiros.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: gratuita permanentemente"
+          ],
+          "rewards": [
+            "Descontos em parceiros"
+          ],
+          "other": [
+            "Pré-venda de ingressos em shows internacionais",
+            "Parcelamento de compras em até 18x"
+          ]
+        },
+        "characteristics": [
+          {
+            "category": "fees",
+            "key": "annual_fee",
+            "label": "Anuidade",
+            "value": "Grátis (permanente, sem condições)"
+          },
+          {
+            "category": "other",
+            "key": "perk",
+            "label": "Benefícios",
+            "value": "Pré-venda de ingressos shows internacionais; parcelamento em até 18x"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/santander-free.jpg",
+        "alt_text": "Santander FREE"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.santander.com.br/cartao-credito-santander",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Anuidade permanentemente gratuita confirmada na página oficial Santander em 2026-05-10."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "banco-do-brasil-ourocard-facil",
+        "display_name": "Ourocard Fácil",
+        "issuer": {
+          "raw": "Banco do Brasil",
+          "normalized": "banco_do_brasil",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa",
+        "variant_band": "Internacional",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ourocard Fácil",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "Sem anuidade.",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Sem anuidade.",
+          "rules": [],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Sem programa de pontos divulgado.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: gratuita"
+          ],
+          "rewards": [],
+          "other": [
+            "Cartão internacional cheio de vantagens e zero anuidade"
+          ]
+        },
+        "characteristics": [
+          {
+            "category": "fees",
+            "key": "annual_fee",
+            "label": "Anuidade",
+            "value": "Grátis"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/banco-do-brasil-ourocard-facil.png",
+        "alt_text": "Ourocard Fácil"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Anuidade zero confirmada na página oficial BB em 2026-05-10."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "banco-do-brasil-ourocard-universitario",
+        "display_name": "Ourocard Universitário",
+        "issuer": {
+          "raw": "Banco do Brasil",
+          "normalized": "banco_do_brasil",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa",
+        "variant_band": "Internacional",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ourocard Universitário",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "Sem anuidade.",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Sem anuidade.",
+          "rules": [],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Sem programa de pontos divulgado.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: gratuita"
+          ],
+          "rewards": [],
+          "other": [
+            "Cartão internacional para universitários com zero anuidade"
+          ]
+        },
+        "characteristics": [
+          {
+            "category": "fees",
+            "key": "annual_fee",
+            "label": "Anuidade",
+            "value": "Grátis"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/banco-do-brasil-ourocard-universitario.png",
+        "alt_text": "Ourocard Universitário"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Anuidade zero confirmada na página oficial BB em 2026-05-10."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "banco-do-brasil-ourocard-elo",
+        "display_name": "Ourocard Elo",
+        "issuer": {
+          "raw": "Banco do Brasil",
+          "normalized": "banco_do_brasil",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Elo",
+        "variant_band": "Internacional",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": false
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Ourocard Elo",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "12x de R$ 17,50 (R$ 210,00). Parcela da anuidade gratuita de acordo com gastos.",
+          "amount_brl_numeric": 210,
+          "is_zero_fee_claim": false
+        },
+        "waiver_and_discounts": {
+          "policy_text": "12x de R$ 17,50 (R$ 210,00). Parcela da anuidade gratuita de acordo com gastos.",
+          "rules": [
+            {
+              "category": "monthly_spend",
+              "full_waiver": false,
+              "description": "Desconto na parcela da anuidade por gastos no cartão.",
+              "raw_text": "Parcela da anuidade gratuita de acordo com os gastos."
+            }
+          ],
+          "has_full_waiver_option": false
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Participante do programa Benefícios BB.",
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: R$ 210/ano (12x R$ 17,50)",
+            "Desconto na parcela por gastos"
+          ],
+          "rewards": [
+            "Programa Benefícios BB"
+          ],
+          "other": []
+        },
+        "characteristics": [
+          {
+            "category": "fees",
+            "key": "annual_fee",
+            "label": "Anuidade",
+            "value": "R$ 210/ano (12x R$ 17,50)"
+          },
+          {
+            "category": "rewards",
+            "key": "program",
+            "label": "Programa",
+            "value": "Benefícios BB"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/banco-do-brasil-ourocard-elo.png",
+        "alt_text": "Ourocard Elo"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Anuidade R$210/ano confirmada na página oficial BB em 2026-05-10."
+      ]
+    },
+    {
+      "identity": {
+        "stable_id": "banco-do-brasil-petrobras-visa",
+        "display_name": "Petrobras Visa",
+        "issuer": {
+          "raw": "Banco do Brasil",
+          "normalized": "banco_do_brasil",
+          "is_multi_issuer_listing": false
+        },
+        "network_primary": "Visa",
+        "variant_band": "Internacional",
+        "product_kind": "named_credit_card_product"
+      },
+      "categorization": {
+        "market_segment_guess": "mass_or_general",
+        "co_brand_detected_from_name": true
+      },
+      "co_brand": null,
+      "application_availability": {
+        "channels": [
+          "official_site"
+        ],
+        "notes": "Captura inicial a partir da página oficial."
+      },
+      "source_claims": [
+        {
+          "field_path": "identity.product_exists",
+          "value_text": "Petrobras Visa",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "confidence_0_to_1": 0.88,
+          "dynamic": false
+        }
+      ],
+      "cashback_details": null,
+      "store_benefits": [],
+      "secured_limit_options": [],
+      "eligibility": {
+        "requirements_text": "Sujeito a análise de crédito.",
+        "minimum_income_brl": null
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "Sem anuidade.",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
+        },
+        "waiver_and_discounts": {
+          "policy_text": "Sem anuidade.",
+          "rules": [],
+          "has_full_waiver_option": true
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "Pontuação turbinada no Programa Premmia.",
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "airport_lounge_notes": null,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false,
+        "forex_spread_or_iof_text": "unknown"
+      },
+      "benefits": {
+        "benefit_groups": {
+          "fees": [
+            "Anuidade: gratuita"
+          ],
+          "rewards": [
+            "Pontuação turbinada no Programa Premmia"
+          ],
+          "other": []
+        },
+        "characteristics": [
+          {
+            "category": "fees",
+            "key": "annual_fee",
+            "label": "Anuidade",
+            "value": "Grátis"
+          },
+          {
+            "category": "rewards",
+            "key": "program",
+            "label": "Programa",
+            "value": "Premmia (pontuação turbinada)"
+          }
+        ]
+      },
+      "media": {
+        "card_art_url": "/card-images/banco-do-brasil-petrobras-visa.png",
+        "alt_text": "Petrobras Visa"
+      },
+      "evidence": {
+        "primary_evidence_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+        "source_is_official_issuer_domain": true
+      },
+      "verification": {
+        "cross_check_status": "official_issuer_initial_capture",
+        "confidence_score_0_to_1": 0.88,
+        "recommended_human_cross_check_actions": [
+          "Revalidar tarifas na página oficial antes de publicar cálculos financeiros."
+        ]
+      },
+      "data_quality_notes": [
+        "Anuidade zero e programa Premmia confirmados na página oficial BB em 2026-05-10."
+      ]
     }
   ]
 }
