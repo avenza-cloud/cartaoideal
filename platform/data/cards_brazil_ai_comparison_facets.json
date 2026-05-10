@@ -57747,6 +57747,998 @@
         "Dados Ailos atualizados com base em páginas oficiais Ailos e contexto fornecido; valores exatos de anuidade, renda mínima e tabela Comprou Zerou não foram encontrados.",
         "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
       ]
+    },
+    {
+      "card_stable_id": "itau-uniclass-black",
+      "display_name": "Itaú Uniclass Black",
+      "issuer_raw": "Itaú",
+      "network_primary": "Mastercard",
+      "variant_band": "Black",
+      "market_segment_guess": "premium",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "application_url": "https://www.itau.com.br/cartoes/escolha/g/itau-uniclass-black/",
+      "review_source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "Itaú Uniclass Black"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "Pontos por dólar gasto."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": true,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Isenta ou 50% de desconto"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": null,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Itaú Uniclass Black"
+    },
+    {
+      "card_stable_id": "itau-uniclass-mastercard-platinum",
+      "display_name": "Itaú Uniclass Mastercard Platinum",
+      "issuer_raw": "Itaú",
+      "network_primary": "Mastercard",
+      "variant_band": "Platinum",
+      "market_segment_guess": "upper_mass",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "application_url": "https://www.itau.com.br/cartoes/escolha/g/itau-uniclass-mastercard-platinum/",
+      "review_source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "Itaú Uniclass Mastercard Platinum"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "1,5 pontos por dólar gasto."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": true,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Isenta por gastos"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_rate",
+          "label": "Pontuação",
+          "value": "1,5 pts/USD"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": null,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Itaú Uniclass Mastercard Platinum"
+    },
+    {
+      "card_stable_id": "itau-uniclass-visa-signature",
+      "display_name": "Itaú Uniclass Visa Signature",
+      "issuer_raw": "Itaú",
+      "network_primary": "Visa",
+      "variant_band": "Signature",
+      "market_segment_guess": "upper_mass",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "application_url": "https://www.itau.com.br/cartoes/escolha/g/itau-uniclass-signature/",
+      "review_source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "Itaú Uniclass Visa Signature"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "Sem programa de pontos divulgado."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Grátis"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 0,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Itaú Uniclass Visa Signature"
+    },
+    {
+      "card_stable_id": "itau-n-card",
+      "display_name": "N Card",
+      "issuer_raw": "Itaú",
+      "network_primary": "Mastercard",
+      "variant_band": "Internacional",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "application_url": "https://www.itau.com.br/cartoes/escolha/g/n-card/",
+      "review_source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "N Card"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "Até 30% OFF na Netshoes e Zattini."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": true,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "rewards",
+          "key": "store_benefit",
+          "label": "Desconto",
+          "value": "Até 30% OFF na Netshoes e Zattini"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": null,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "N Card"
+    },
+    {
+      "card_stable_id": "itau-pao-de-acucar-black",
+      "display_name": "Pão de Açúcar Black",
+      "issuer_raw": "Itaú",
+      "network_primary": "Mastercard",
+      "variant_band": "Black",
+      "market_segment_guess": "premium",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "application_url": "https://www.itau.com.br/cartoes/escolha/g/pao-de-acucar-black/",
+      "review_source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "Pão de Açúcar Black"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "Até 5 pontos por dólar gasto."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": true,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "rewards",
+          "key": "earning_rate",
+          "label": "Pontuação",
+          "value": "Até 5 pts/USD"
+        },
+        {
+          "category": "rewards",
+          "key": "store_benefit",
+          "label": "Desconto",
+          "value": "20% OFF vinhos e Qualitá no GPA"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": null,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Pão de Açúcar Black"
+    },
+    {
+      "card_stable_id": "itau-passai-gold",
+      "display_name": "Passaí Gold",
+      "issuer_raw": "Itaú",
+      "network_primary": "Mastercard",
+      "variant_band": "Gold",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "application_url": "https://www.itau.com.br/cartoes/escolha/g/passai-gold/",
+      "review_source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "Passaí Gold"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "Preço de atacado a partir de 1 unidade."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": true,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "rewards",
+          "key": "store_benefit",
+          "label": "Benefício",
+          "value": "Preço atacado a partir de 1 unidade — Passaí"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": null,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Passaí Gold"
+    },
+    {
+      "card_stable_id": "itau-instituto-ayrton-senna-master",
+      "display_name": "Instituto Ayrton Senna Master",
+      "issuer_raw": "Itaú",
+      "network_primary": "Mastercard",
+      "variant_band": "Internacional",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "application_url": "https://www.itau.com.br/cartoes/escolha/g/instituto-ayrton-senna-master/",
+      "review_source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "Instituto Ayrton Senna Master"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "Sem pontos; compras apoiam Instituto Ayrton Senna."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Grátis"
+        },
+        {
+          "category": "other",
+          "key": "charity",
+          "label": "Impacto social",
+          "value": "Projetos educacionais Instituto Ayrton Senna"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 0,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Instituto Ayrton Senna Master"
+    },
+    {
+      "card_stable_id": "itau-instituto-ayrton-senna-visa",
+      "display_name": "Instituto Ayrton Senna Visa",
+      "issuer_raw": "Itaú",
+      "network_primary": "Visa",
+      "variant_band": "Internacional",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "application_url": "https://www.itau.com.br/cartoes/escolha/g/instituto-ayrton-senna-visa/",
+      "review_source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "Instituto Ayrton Senna Visa"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "Sem pontos; compras apoiam Instituto Ayrton Senna."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": true,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "other",
+          "key": "charity",
+          "label": "Impacto social",
+          "value": "Projetos educacionais Instituto Ayrton Senna"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": null,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Instituto Ayrton Senna Visa"
+    },
+    {
+      "card_stable_id": "santander-free",
+      "display_name": "Santander FREE",
+      "issuer_raw": "Santander",
+      "network_primary": "Visa / Mastercard",
+      "variant_band": "Standard",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.santander.com.br/cartao-credito-santander",
+      "application_url": "https://www.santander.com.br/cartao-credito-santander",
+      "review_source_url": "https://www.santander.com.br/cartao-credito-santander",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.santander.com.br/cartao-credito-santander",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "Santander FREE"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "Sem pontos; descontos em parceiros."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Grátis (permanente)"
+        },
+        {
+          "category": "other",
+          "key": "perk",
+          "label": "Benefício",
+          "value": "Pré-venda ingressos shows internacionais"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 0,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Santander FREE"
+    },
+    {
+      "card_stable_id": "banco-do-brasil-ourocard-facil",
+      "display_name": "Ourocard Fácil",
+      "issuer_raw": "Banco do Brasil",
+      "network_primary": "Visa",
+      "variant_band": "Internacional",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+      "application_url": "https://www.bb.com.br/pbb/pagina-inicial/voce/produtos-e-servicos/cartoes/ourocard-facil",
+      "review_source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "Ourocard Fácil"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "Sem programa de pontos."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Grátis"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 0,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Ourocard Fácil"
+    },
+    {
+      "card_stable_id": "banco-do-brasil-ourocard-universitario",
+      "display_name": "Ourocard Universitário",
+      "issuer_raw": "Banco do Brasil",
+      "network_primary": "Visa",
+      "variant_band": "Internacional",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+      "application_url": "https://www.bb.com.br/pbb/pagina-inicial/voce/produtos-e-servicos/cartoes/ourocard-universitario",
+      "review_source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "Ourocard Universitário"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "Sem programa de pontos."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Grátis"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 0,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Ourocard Universitário"
+    },
+    {
+      "card_stable_id": "banco-do-brasil-ourocard-elo",
+      "display_name": "Ourocard Elo",
+      "issuer_raw": "Banco do Brasil",
+      "network_primary": "Elo",
+      "variant_band": "Internacional",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+      "application_url": "https://www.bb.com.br/pbb/pagina-inicial/voce/produtos-e-servicos/cartoes/ourocard-elo",
+      "review_source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "Ourocard Elo"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "Programa Benefícios BB."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "R$ 210/ano (12x R$ 17,50)"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 210,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Ourocard Elo"
+    },
+    {
+      "card_stable_id": "banco-do-brasil-petrobras-visa",
+      "display_name": "Petrobras Visa",
+      "issuer_raw": "Banco do Brasil",
+      "network_primary": "Visa",
+      "variant_band": "Internacional",
+      "market_segment_guess": "mass_or_general",
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.88,
+      "primary_evidence_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+      "application_url": "https://www.bb.com.br/pbb/pagina-inicial/voce/produtos-e-servicos/cartoes/petrobras",
+      "review_source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+      "source_label": "Link direto do cartão",
+      "review_source_label": "Fonte oficial do emissor",
+      "source_tier": "official_issuer",
+      "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+      "ranking_position": null,
+      "ranking_score": null,
+      "media": {
+        "card_art_url": null,
+        "alt_text": "Petrobras Visa"
+      },
+      "reward_return": {
+        "has_cashlike_return": false,
+        "earning_summary": "Pontuação turbinada no Programa Premmia."
+      },
+      "lounge_access": {
+        "has_lounge_access": false,
+        "unlimited": false,
+        "complimentary_access_confirmed": false,
+        "policy_varies_by_issuer": false
+      },
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": false,
+        "availability_status": "available",
+        "recommendation_blocking_unknowns": false,
+        "source_status": "official_or_structured"
+      },
+      "benefit_groups": {},
+      "characteristics": [
+        {
+          "category": "fees",
+          "key": "annual_fee",
+          "label": "Anuidade",
+          "value": "Grátis"
+        },
+        {
+          "category": "rewards",
+          "key": "program",
+          "label": "Programa",
+          "value": "Premmia"
+        }
+      ],
+      "facets_numeric_or_special": {
+        "annual_fee_brl_best_estimate": 0,
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "lounge_visits_per_year_hint": "unknown",
+        "official_forex_or_iof_note": "unknown"
+      },
+      "facets_boolean": {
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "earn_investback": false,
+        "has_any_lounge_claim": false,
+        "has_named_lounge_program": false,
+        "lounge_unlimited_claim": false,
+        "mentions_travel_insurance": false,
+        "mentions_concierge": false,
+        "co_brand_name_detected": false,
+        "issuer_multi_entity_row": false,
+        "generic_article_not_single_product": false
+      },
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Petrobras Visa"
     }
   ]
 }
