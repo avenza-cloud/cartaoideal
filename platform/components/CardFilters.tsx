@@ -44,7 +44,7 @@ export function CardFilters() {
   }, [searchParamValue]);
 
   const setParam = useCallback(
-    (key: string, value: string | null, method: "push" | "replace" = "push") => {
+    (key: string, value: string | null) => {
       const params = new URLSearchParams(searchParams.toString());
       if (value === null || value === "") {
         params.delete(key);
@@ -52,11 +52,7 @@ export function CardFilters() {
         params.set(key, value);
       }
       const url = params.toString() ? `/cartoes?${params.toString()}` : "/cartoes";
-      if (method === "replace") {
-        router.replace(url, { scroll: false });
-      } else {
-        router.push(url, { scroll: false });
-      }
+      router.replace(url, { scroll: false });
     },
     [router, searchParams]
   );
@@ -74,7 +70,7 @@ export function CardFilters() {
     if (nextSearch === searchParamValue) return;
 
     const handle = window.setTimeout(() => {
-      setParam("search", nextSearch || null, "replace");
+      setParam("search", nextSearch || null);
     }, 250);
 
     return () => window.clearTimeout(handle);
@@ -103,7 +99,7 @@ export function CardFilters() {
               onClick={() => {
                 setSearchValue("");
                 if (searchParamValue) {
-                  setParam("search", null, "replace");
+                  setParam("search", null);
                 }
               }}
               aria-label="Limpar busca"

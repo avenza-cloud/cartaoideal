@@ -57800,7 +57800,7 @@
         }
       ],
       "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": null,
+        "annual_fee_brl_best_estimate": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
         "lounge_visits_per_year_hint": "unknown",
@@ -57880,7 +57880,7 @@
         }
       ],
       "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": null,
+        "annual_fee_brl_best_estimate": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
         "lounge_visits_per_year_hint": "unknown",
@@ -58028,7 +58028,7 @@
         }
       ],
       "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": null,
+        "annual_fee_brl_best_estimate": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
         "lounge_visits_per_year_hint": "unknown",
@@ -58108,7 +58108,7 @@
         }
       ],
       "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": null,
+        "annual_fee_brl_best_estimate": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
         "lounge_visits_per_year_hint": "unknown",
@@ -58182,7 +58182,7 @@
         }
       ],
       "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": null,
+        "annual_fee_brl_best_estimate": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
         "lounge_visits_per_year_hint": "unknown",
@@ -58336,7 +58336,7 @@
         }
       ],
       "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": null,
+        "annual_fee_brl_best_estimate": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
         "lounge_visits_per_year_hint": "unknown",

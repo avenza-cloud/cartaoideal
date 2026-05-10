@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { RefObject } from "react";
-import { useSearchParams } from "next/navigation";
 import { CardCard } from "@/components/CardCard";
 import { scoreCardValues } from "@/lib/card-value";
 import { useProfileStore } from "@/lib/store";
@@ -13,13 +12,12 @@ const PAGE_SIZE = 48;
 
 interface ProfileRankedCatalogProps {
   cards: CardFacet[];
+  rankingMode: "profile" | "general";
 }
 
-export function ProfileRankedCatalog({ cards }: ProfileRankedCatalogProps) {
+export function ProfileRankedCatalog({ cards, rankingMode }: ProfileRankedCatalogProps) {
   const profile = useProfileStore((state) => state.profile);
-  const searchParams = useSearchParams();
   const assumptions = useValueAssumptions();
-  const rankingMode = searchParams.get("rank") === "general" ? "general" : "profile";
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
 

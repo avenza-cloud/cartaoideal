@@ -164,7 +164,12 @@ export function filterCards(filters: CardFilters): CardFacet[] {
 
   if (filters.network) {
     const net = filters.network.toLowerCase();
-    cards = cards.filter((c) => c.network_primary.toLowerCase() === net);
+    cards = cards.filter((c) =>
+      c.network_primary
+        .toLowerCase()
+        .split(/\s*[\/,]\s*/)
+        .some((n) => n === net)
+    );
   }
 
   if (filters.lounge === true) {

@@ -27,6 +27,7 @@ export default async function CartoesPage({ searchParams }: PageProps) {
 
   const cards = filterCards(filters);
   const total = getAllCards().length;
+  const rankingMode = params.rank === "general" ? "general" : "profile";
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.06),transparent_28rem)]">
@@ -38,7 +39,7 @@ export default async function CartoesPage({ searchParams }: PageProps) {
         </Suspense>
 
         <main className="flex-1 min-w-0">
-          <ProfileRankedCatalog cards={cards} />
+          <ProfileRankedCatalog cards={cards} rankingMode={rankingMode} />
         </main>
       </div>
 
