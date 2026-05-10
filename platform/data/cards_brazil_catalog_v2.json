@@ -147799,13 +147799,13 @@
         {
           "field_path": "media.card_art_url",
           "value_text": "/card-images/magalu-visa-platinum.png",
-          "source_url": "https://especiais.magazineluiza.com.br/assets/cartao-luiza/magalu-cartao-luiza-luizacred_03.png",
-          "source_type": "official_issuer",
+          "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s",
+          "source_type": "manual",
           "captured_at": "2026-05-10",
           "last_verified_at": "2026-05-10",
-          "confidence_0_to_1": 0.95,
+          "confidence_0_to_1": 0.75,
           "dynamic": false,
-          "raw_excerpt": "Card artwork formatted into the local 611x408 card-image canvas for Cartão Magalu Visa Platinum."
+          "raw_excerpt": "User-provided Google image thumbnail formatted into local 611x408 card-image canvas for Cartão Magalu Visa Platinum."
         }
       ],
       "cashback_details": {
@@ -147884,8 +147884,8 @@
       "media": {
         "card_art_url": "/card-images/magalu-visa-platinum.png",
         "alt_text": "Cartão Magalu Visa Platinum",
-        "source_url": "https://especiais.magazineluiza.com.br/assets/cartao-luiza/magalu-cartao-luiza-luizacred_03.png",
-        "remote_card_art_url": "https://especiais.magazineluiza.com.br/assets/cartao-luiza/magalu-cartao-luiza-luizacred_03.png"
+        "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s",
+        "remote_card_art_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s"
       }
     },
     {
@@ -148163,13 +148163,13 @@
         {
           "field_path": "media.card_art_url",
           "value_text": "/card-images/neon-cartao-de-credito.png",
-          "source_url": "https://static.devneon.com.br/assets/images/cartao-de-credito/hero-1-1920x568.jpg",
-          "source_type": "official_issuer",
+          "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s",
+          "source_type": "manual",
           "captured_at": "2026-05-10",
           "last_verified_at": "2026-05-10",
-          "confidence_0_to_1": 0.95,
+          "confidence_0_to_1": 0.75,
           "dynamic": false,
-          "raw_excerpt": "Card artwork formatted into the local 611x408 card-image canvas for Cartão de Crédito Neon."
+          "raw_excerpt": "User-provided Google image thumbnail formatted into local 611x408 card-image canvas for Cartão de Crédito Neon."
         }
       ],
       "cashback_details": {
@@ -148250,8 +148250,8 @@
       "media": {
         "card_art_url": "/card-images/neon-cartao-de-credito.png",
         "alt_text": "Cartão de Crédito Neon",
-        "source_url": "https://static.devneon.com.br/assets/images/cartao-de-credito/hero-1-1920x568.jpg",
-        "remote_card_art_url": "https://static.devneon.com.br/assets/images/cartao-de-credito/hero-1-1920x568.jpg"
+        "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s",
+        "remote_card_art_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s"
       }
     },
     {
