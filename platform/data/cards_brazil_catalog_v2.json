@@ -122641,7 +122641,7 @@
     {
       "identity": {
         "stable_id": "banco-pan-banco-pan-mastercard-platinum-8a57720e28",
-        "display_name": "Banco PAN Mastercard Platinum",
+        "display_name": "Banco PAN Estelar Mastercard Platinum",
         "issuer": {
           "raw": "Banco PAN",
           "normalized": "banco_pan",
@@ -122662,53 +122662,24 @@
         "co_brand_detected_from_name": false
       },
       "media": {
-        "card_art_url": "/card-images/banco-pan-banco-pan-mastercard-platinum.png",
-        "source_url": "https://passageirodeprimeira.com/cartao-de-credito/banco-pan-mastercard-platinum/",
-        "source_tier": "trusted_catalog",
-        "alt_text": "Banco PAN Mastercard Platinum",
-        "remote_card_art_url": "https://passageirodeprimeira.com/wp-content/uploads/2022/04/passageirodeprimeira.com-banco-pan-mastercard-platinum-banco-pan-mastercard-platinum-230x146.png"
+        "card_art_url": "/card-images/pan-estelar.png",
+        "alt_text": "Banco PAN Estelar Mastercard Platinum"
       },
       "fees": {
-        "annual": {
-          "has_explicit_amount": true,
-          "raw_text": "R$ 500",
-          "amount_brl_numeric": 500,
-          "is_zero_fee_claim": false
-        },
-        "waiver_and_discounts": {
-          "policy_text": "Anuidade isenta com gasto acima de 5 mil reais por mês.",
-          "rules": [
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 5000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "Anuidade isenta com gasto acima de 5 mil reais por mês."
-            }
-          ],
-          "has_full_waiver_option": true
-        }
+        "annual_fee_brl": 0,
+        "annual_fee_notes": "Anuidade grátis nos primeiros 3 meses."
       },
       "rewards": {
-        "earning_rules_text": "1,5 pontos por dólar gasto",
-        "earn_points_or_miles_mentioned": true,
-        "earn_cashback_mentioned": false,
-        "earn_investback_mentioned": false,
-        "return_cashlike": {
-          "has_points_or_miles": true,
-          "has_cashlike_return": false,
-          "earning_summary": "1,5 pontos por dólar gasto"
-        }
+        "earn_cashback": true,
+        "cashback_pct": 0.75,
+        "program_notes": "Cashback de 0,75% por real gasto em transações elegíveis. Programa Mastercard Surpreenda."
       },
       "travel_and_protection": {
         "airport_lounge_offered": false,
-        "airport_lounge_unlimited_claim": false,
-        "airport_lounge_complimentary_access_confirmed": false,
-        "airport_lounge_policy_varies_by_issuer": false,
-        "travel_insurance_mentioned": false,
-        "concierge_mentioned": false,
-        "forex_spread_or_iof_text": "unknown"
+        "travel_insurance_mentioned": true,
+        "concierge_mentioned": true,
+        "concierge_notes": "Mastercard Concierge",
+        "travel_insurance_notes": "Seguro médico em viagens internacionais"
       },
       "benefits": {
         "benefit_groups": {
@@ -123117,6 +123088,16 @@
           }
         },
         "needs_human_review": false
+      },
+      "source_claims": {
+        "benefits_list": [
+          "Anuidade grátis nos primeiros 3 meses",
+          "Programa Mastercard Surpreenda",
+          "Cashback de 0,75% por real gasto (transações elegíveis)",
+          "Seguro médico em viagens",
+          "Mastercard Concierge",
+          "Global Services (suporte 24h)"
+        ]
       }
     },
     {
@@ -129642,7 +129623,7 @@
     {
       "identity": {
         "stable_id": "banco-pan-banco-pan-mastercard-gold-9e5d19f640",
-        "display_name": "Banco PAN Mastercard Gold",
+        "display_name": "Banco PAN Atmosfera Mastercard Gold",
         "issuer": {
           "raw": "Banco PAN",
           "normalized": "banco_pan",
@@ -129663,53 +129644,22 @@
         "co_brand_detected_from_name": true
       },
       "media": {
-        "card_art_url": "/card-images/banco-pan-banco-pan-mastercard-gold.jpg",
-        "source_url": "https://passageirodeprimeira.com/cartao-de-credito/banco-pan-mastercard-gold/",
-        "source_tier": "trusted_catalog",
-        "alt_text": "Banco PAN Mastercard Gold",
-        "remote_card_art_url": "https://passageirodeprimeira.com/wp-content/uploads/2022/04/passageirodeprimeira.com-banco-pan-mastercard-gold-banco-pan-mastercard-gold-230x146.jpg"
+        "card_art_url": "/card-images/pan-atmosfera.png",
+        "alt_text": "Banco PAN Atmosfera Mastercard Gold"
       },
       "fees": {
-        "annual": {
-          "has_explicit_amount": true,
-          "raw_text": "R$ 350",
-          "amount_brl_numeric": 350,
-          "is_zero_fee_claim": false
-        },
-        "waiver_and_discounts": {
-          "policy_text": "Anuidade isenta com gasto acima de 3 mil reais por mês.",
-          "rules": [
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 3000,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "Anuidade isenta com gasto acima de 3 mil reais por mês."
-            }
-          ],
-          "has_full_waiver_option": true
-        }
+        "annual_fee_brl": 0,
+        "annual_fee_notes": "Sem anuidade."
       },
       "rewards": {
-        "earning_rules_text": "1,2 pontos por dólar gasto",
-        "earn_points_or_miles_mentioned": true,
-        "earn_cashback_mentioned": false,
-        "earn_investback_mentioned": false,
-        "return_cashlike": {
-          "has_points_or_miles": true,
-          "has_cashlike_return": false,
-          "earning_summary": "1,2 pontos por dólar gasto"
-        }
+        "earn_points_or_miles": false,
+        "earn_cashback": false,
+        "program_notes": "Programa Mastercard Surpreenda. Sem cashback direto."
       },
       "travel_and_protection": {
         "airport_lounge_offered": false,
-        "airport_lounge_unlimited_claim": false,
-        "airport_lounge_complimentary_access_confirmed": false,
-        "airport_lounge_policy_varies_by_issuer": false,
         "travel_insurance_mentioned": false,
-        "concierge_mentioned": false,
-        "forex_spread_or_iof_text": "unknown"
+        "concierge_mentioned": false
       },
       "benefits": {
         "benefit_groups": {
@@ -130118,6 +130068,16 @@
           }
         },
         "needs_human_review": false
+      },
+      "source_claims": {
+        "benefits_list": [
+          "Sem anuidade",
+          "Programa Mastercard Surpreenda",
+          "Seguro Proteção de Preço",
+          "Seguro Compra Protegida",
+          "Garantia Estendida Original",
+          "Global Services (suporte 24h)"
+        ]
       }
     },
     {
@@ -148695,6 +148655,46 @@
       },
       "evidence": {
         "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/simulador-cartoes/Paginas/default.aspx"
+      },
+      "verification": {
+        "status": "verified",
+        "last_checked": "2026-05-10"
+      }
+    },
+    {
+      "identity": {
+        "stable_id": "banco-pan-estelar-elo",
+        "display_name": "Banco PAN Estelar Elo",
+        "issuer_raw": "Banco PAN",
+        "issuer_normalized": "banco_pan",
+        "network_primary": "Elo",
+        "variant_band": "estelar"
+      },
+      "categorization": {
+        "market_segment_guess": "upper_mass",
+        "card_type": "credit"
+      },
+      "fees": {
+        "annual_fee_brl": 432,
+        "annual_fee_notes": "R$432/ano (12x R$36). Isenção 100% com R$4.000/mês na fatura ou R$25.000 investidos no PAN. Grátis nos primeiros 6 meses.",
+        "fee_waiver_notes": "Gastos ≥ R$4.000/mês → 100% isenção. Investimentos ≥ R$25.000 → 100% isenção."
+      },
+      "rewards": {
+        "earn_cashback": true,
+        "cashback_pct": 0.8,
+        "program_notes": "Cashback de 0,8% em todas as compras. Benefícios Elo Estelar: 50% de desconto em cinemas Kinoplex e Cinemark."
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": false,
+        "travel_insurance_mentioned": false,
+        "concierge_mentioned": false
+      },
+      "media": {
+        "card_art_url": "/card-images/pan-estelar.png",
+        "alt_text": "Banco PAN Estelar Elo"
+      },
+      "evidence": {
+        "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/"
       },
       "verification": {
         "status": "verified",
