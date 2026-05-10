@@ -57915,9 +57915,10 @@
       "ranking_position": "unknown",
       "ranking_score": "unknown",
       "media": {
-        "card_art_url": "unknown",
+        "card_art_url": "/card-images/magalu-visa-platinum.png",
         "alt_text": "Cartão Magalu Visa Platinum",
-        "source_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html"
+        "source_url": "https://especiais.magazineluiza.com.br/assets/cartao-luiza/magalu-cartao-luiza-luizacred_03.png",
+        "remote_card_art_url": "https://especiais.magazineluiza.com.br/assets/cartao-luiza/magalu-cartao-luiza-luizacred_03.png"
       },
       "reward_return": {
         "has_cashlike_return": true,
@@ -58052,6 +58053,17 @@
           "confidence_0_to_1": 0.85,
           "dynamic": true,
           "raw_excerpt": "Renda mínima R$ 800,00; Anuidade Grátis; 2% de dinheiro de volta em compras dentro do Magalu com MagaluPay ativo."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/magalu-visa-platinum.png",
+          "source_url": "https://especiais.magazineluiza.com.br/assets/cartao-luiza/magalu-cartao-luiza-luizacred_03.png",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.95,
+          "dynamic": false,
+          "raw_excerpt": "Card artwork formatted into the local 611x408 card-image canvas for Cartão Magalu Visa Platinum."
         }
       ],
       "cashback_details": {
@@ -58086,9 +58098,10 @@
       "ranking_position": "unknown",
       "ranking_score": "unknown",
       "media": {
-        "card_art_url": "unknown",
+        "card_art_url": "/card-images/santander-sx.png",
         "alt_text": "Santander SX",
-        "source_url": "https://www.santander.com.br/sx"
+        "source_url": "https://s3.amazonaws.com/marketplace.comparaonline.com/marketplace/marketplace/br/credit-card/santander/santander-sx.png",
+        "remote_card_art_url": "https://s3.amazonaws.com/marketplace.comparaonline.com/marketplace/marketplace/br/credit-card/santander/santander-sx.png"
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -58237,6 +58250,17 @@
           "confidence_0_to_1": 0.85,
           "dynamic": true,
           "raw_excerpt": "Cartão Free: cartão livre da anuidade; 100% gratuito, sem condicionantes de uso mínimo."
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/santander-sx.png",
+          "source_url": "https://s3.amazonaws.com/marketplace.comparaonline.com/marketplace/marketplace/br/credit-card/santander/santander-sx.png",
+          "source_type": "aggregator",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.8,
+          "dynamic": false,
+          "raw_excerpt": "Card artwork formatted into the local 611x408 card-image canvas for Santander SX."
         }
       ],
       "cashback_details": null,
@@ -58261,9 +58285,10 @@
       "ranking_position": "unknown",
       "ranking_score": "unknown",
       "media": {
-        "card_art_url": "unknown",
+        "card_art_url": "/card-images/neon-cartao-de-credito.png",
         "alt_text": "Cartão de Crédito Neon",
-        "source_url": "https://neon.com.br/cartao-de-credito"
+        "source_url": "https://static.devneon.com.br/assets/images/cartao-de-credito/hero-1-1920x568.jpg",
+        "remote_card_art_url": "https://static.devneon.com.br/assets/images/cartao-de-credito/hero-1-1920x568.jpg"
       },
       "reward_return": {
         "has_cashlike_return": true,
@@ -58451,6 +58476,17 @@
           "confidence_0_to_1": 0.7,
           "dynamic": true,
           "raw_excerpt": "em complicação. Viracrédito Neon Novo Mais limite no cartão de crédito. Cashback Dinheiro de volta nas suas compras. Cartão de débito Bandeira Visa e internacional. Cartão virtual Seguro para compras online. Carteira digital Guarde seus cartões com segurança. Para você Conta digital Neon completa Conta com cartão e muito mais. CDBs Neon Novo Rentabilidade, segurança e lucro certo. Em"
+        },
+        {
+          "field_path": "media.card_art_url",
+          "value_text": "/card-images/neon-cartao-de-credito.png",
+          "source_url": "https://static.devneon.com.br/assets/images/cartao-de-credito/hero-1-1920x568.jpg",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-10",
+          "last_verified_at": "2026-05-10",
+          "confidence_0_to_1": 0.95,
+          "dynamic": false,
+          "raw_excerpt": "Card artwork formatted into the local 611x408 card-image canvas for Cartão de Crédito Neon."
         }
       ],
       "cashback_details": {
