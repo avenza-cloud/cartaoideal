@@ -55593,15 +55593,14 @@
           "category": "fees",
           "key": "annual_fee",
           "label": "Anuidade",
-          "value": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 no crédito por fatura ou mantendo CPF e celular como chaves Pix no Santander.",
-          "source_excerpt": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 em compras ou cadastrando CPF e celular como chaves Pix no Santander."
+          "value": "R$ 399/ano (R$ 33,25/mês)",
+          "details": "Isento com ≥R$ 100 em compras/fatura ou chaves Pix CPF+celular no Santander"
         },
         {
-          "category": "eligibility",
-          "key": "requirements",
-          "label": "Elegibilidade",
-          "value": "Sujeito à análise de crédito pelo Santander.",
-          "source_excerpt": "12 parcelas de R$ 33,25; livre de anuidade ao gastar R$ 100 em compras ou cadastrando CPF e celular como chaves Pix no Santander."
+          "category": "rewards",
+          "key": "rewards_summary",
+          "label": "Recompensas",
+          "value": "Descontos em parceiros Esfera"
         }
       ],
       "facets_numeric_or_special": {
@@ -55776,15 +55775,13 @@
           "category": "fees",
           "key": "annual_fee",
           "label": "Anuidade",
-          "value": "Cartão 100% grátis / sem anuidade",
-          "source_excerpt": "Cartão grátis com Viracrédito, cashback e limite elástico."
+          "value": "Grátis"
         },
         {
-          "category": "eligibility",
-          "key": "requirements",
-          "label": "Elegibilidade",
-          "value": "Solicitação pelo app; sujeito à análise de crédito. Viracrédito pode transformar CDB Neon em limite.",
-          "source_excerpt": "Cartão grátis com Viracrédito, cashback e limite elástico."
+          "category": "rewards",
+          "key": "cashback",
+          "label": "Cashback",
+          "value": "Sim — percentual não divulgado oficialmente"
         }
       ],
       "facets_numeric_or_special": {
@@ -55800,7 +55797,7 @@
         "has_named_lounge_program": false,
         "lounge_unlimited_claim": false,
         "earn_points_or_miles": false,
-        "earn_cashback": false,
+        "earn_cashback": true,
         "earn_investback": false,
         "reward_return_cashlike": false,
         "mentions_travel_insurance": false,
@@ -56041,15 +56038,13 @@
           "category": "fees",
           "key": "annual_fee",
           "label": "Anuidade",
-          "value": "Sem anuidade",
-          "source_excerpt": "Cartão sem anuidade; reserve saldo da conta ou invista a partir de R$ 300 em CDBs para compor limite."
+          "value": "Grátis"
         },
         {
           "category": "eligibility",
-          "key": "requirements",
-          "label": "Elegibilidade",
-          "value": "Sem análise de crédito para limite garantido; pode reservar saldo da conta ou investir em CDB para compor limite.",
-          "source_excerpt": "Cartão sem anuidade; reserve saldo da conta ou invista a partir de R$ 300 em CDBs para compor limite."
+          "key": "secured_limit",
+          "label": "Limite",
+          "value": "Garantido por saldo ou CDB (a partir de R$ 300)"
         }
       ],
       "facets_numeric_or_special": {
@@ -56407,19 +56402,18 @@
           "category": "fees",
           "key": "annual_fee",
           "label": "Anuidade",
-          "value": "Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour; condição promocional pode mudar.",
-          "source_excerpt": "Anuidade zero: use o Cartão Carrefour uma vez por mês em qualquer Carrefour."
+          "value": "Grátis",
+          "details": "Basta usar o cartão ≥1×/mês em loja Carrefour, Atacadão ou Sam's Club"
         },
         {
-          "category": "eligibility",
-          "key": "requirements",
-          "label": "Elegibilidade",
-          "value": "Sujeito à análise de crédito.",
-          "source_excerpt": "Anuidade zero: use o Cartão Carrefour uma vez por mês em qualquer Carrefour."
+          "category": "rewards",
+          "key": "cashback",
+          "label": "Cashback",
+          "value": "Sim — programa Comprou, Voltou (% no regulamento)"
         }
       ],
       "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": "unknown",
+        "annual_fee_brl_best_estimate": 0,
         "monthly_fee_brl_after_intro_official_hint": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
@@ -56431,7 +56425,7 @@
         "has_named_lounge_program": false,
         "lounge_unlimited_claim": false,
         "earn_points_or_miles": false,
-        "earn_cashback": false,
+        "earn_cashback": true,
         "earn_investback": false,
         "reward_return_cashlike": false,
         "mentions_travel_insurance": false,
@@ -57483,8 +57477,7 @@
       },
       "reward_return": {
         "has_cashlike_return": false,
-        "subtypes": [],
-        "earning_summary": "2,2 pontos por dólar gasto; pontos podem ser trocados por crédito na fatura, aportes na previdência, milhas aéreas ou produtos."
+        "earning_summary": "2,2 pontos por dólar (internacional); taxa doméstica não divulgada."
       },
       "lounge_access": {
         "has_lounge_access": true,
@@ -57492,11 +57485,10 @@
           "LoungeKey"
         ],
         "unlimited": false,
-        "annual_visits": 4,
-        "guest_policy": "unknown",
+        "complimentary_visits_per_year": 4,
         "complimentary_access_confirmed": true,
-        "policy_varies_by_issuer": true,
-        "summary": "4 acessos gratuitos por ano às Salas VIP LoungeKey; não cumulativos."
+        "policy_varies_by_issuer": false,
+        "summary": "LoungeKey — 4 acessos gratuitos/ano em mais de 1.100 aeroportos."
       },
       "eligibility": {
         "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
@@ -57587,6 +57579,19 @@
           "key": "lounge_visits",
           "label": "Salas VIP",
           "value": "4 acessos LoungeKey/ano"
+        },
+        {
+          "category": "travel",
+          "key": "lounge_access",
+          "label": "Sala VIP",
+          "value": "LoungeKey — 4 acessos/ano",
+          "details": "Mais de 1.100 aeroportos"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_rate",
+          "label": "Pontuação",
+          "value": "2,2 pts/USD (internacional)"
         }
       ],
       "facets_numeric_or_special": {

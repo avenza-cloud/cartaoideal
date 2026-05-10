@@ -145218,11 +145218,12 @@
         "cross_check_status": "official_issuer_initial_capture",
         "confidence_score_0_to_1": 0.9,
         "recommended_human_cross_check_actions": [
-          "Revalidar tarifas e benefícios na página oficial antes de publicar cálculos financeiros."
+          "URL de evidência primária não retorna dados de tarifas — revalidar manualmente antes de publicar cálculos financeiros."
         ]
       },
       "data_quality_notes": [
-        "Adicionado como captura inicial da fase 2; campos dinâmicos exigem revalidação periódica."
+        "Adicionado como captura inicial da fase 2; campos dinâmicos exigem revalidação periódica.",
+        "[fonte-inacessível] Página redireciona para funil de abertura de conta; dados de tarifas não acessíveis via URL fornecida."
       ]
     },
     {
@@ -145412,11 +145413,12 @@
         "cross_check_status": "official_issuer_initial_capture",
         "confidence_score_0_to_1": 0.9,
         "recommended_human_cross_check_actions": [
-          "Revalidar tarifas e benefícios na página oficial antes de publicar cálculos financeiros."
+          "URL de evidência primária não retorna dados de tarifas — revalidar manualmente antes de publicar cálculos financeiros."
         ]
       },
       "data_quality_notes": [
-        "Adicionado como captura inicial da fase 2; campos dinâmicos exigem revalidação periódica."
+        "Adicionado como captura inicial da fase 2; campos dinâmicos exigem revalidação periódica.",
+        "[fonte-inacessível] URL retorna erro HTTP — página de formulário removida/descontinuada pelo Itaú."
       ],
       "media": {
         "card_art_url": "/card-images/magalu-visa-platinum.png",
@@ -145729,27 +145731,20 @@
       "fees": {
         "annual": {
           "has_explicit_amount": true,
-          "raw_text": "Cartão 100% grátis / sem anuidade",
+          "raw_text": "Sem anuidade — cartão 100% gratuito.",
           "amount_brl_numeric": 0,
           "is_zero_fee_claim": true
         },
         "waiver_and_discounts": {
-          "policy_text": "Cartão 100% grátis / sem anuidade",
-          "rules": [
-            {
-              "category": "general",
-              "full_waiver": true,
-              "description": "Sem anuidade conforme página oficial da Neon.",
-              "raw_text": "Cartão de crédito Neon 100% grátis."
-            }
-          ],
+          "policy_text": "Sem anuidade permanente, sem condicionantes.",
+          "rules": [],
           "has_full_waiver_option": true
         }
       },
       "rewards": {
-        "earning_rules_text": "A página oficial cita cashback, mas não publica taxa/regras suficientes para estimar retorno; tratado como não quantificável.",
+        "earning_rules_text": "Cashback em compras acima de R$ 1 (percentual não divulgado na página oficial).",
         "earn_points_or_miles": false,
-        "earn_cashback": false,
+        "earn_cashback": true,
         "earn_investback": false
       },
       "travel_and_protection": {
@@ -145909,25 +145904,18 @@
       "fees": {
         "annual": {
           "has_explicit_amount": true,
-          "raw_text": "Sem anuidade",
+          "raw_text": "Sem anuidade.",
           "amount_brl_numeric": 0,
           "is_zero_fee_claim": true
         },
         "waiver_and_discounts": {
-          "policy_text": "Sem anuidade",
-          "rules": [
-            {
-              "category": "general",
-              "full_waiver": true,
-              "description": "Cartão sem anuidade conforme página oficial do PagBank.",
-              "raw_text": "Cartão sem anuidade."
-            }
-          ],
+          "policy_text": "Sem anuidade permanente.",
+          "rules": [],
           "has_full_waiver_option": true
         }
       },
       "rewards": {
-        "earning_rules_text": "Não identificado na captura oficial inicial.",
+        "earning_rules_text": "Sem programa de pontos — limite garantido por saldo/CDB.",
         "earn_points_or_miles": false,
         "earn_cashback": false,
         "earn_investback": false
@@ -146077,11 +146065,12 @@
         "cross_check_status": "official_issuer_initial_capture",
         "confidence_score_0_to_1": 0.88,
         "recommended_human_cross_check_actions": [
-          "Revalidar tarifas, disponibilidade e regulamentos antes de publicar cálculos financeiros."
+          "URL de evidência primária não retorna dados de tarifas — revalidar manualmente antes de publicar cálculos financeiros."
         ]
       },
       "data_quality_notes": [
-        "Adicionado como captura inicial; campos dinâmicos exigem revalidação periódica."
+        "Adicionado como captura inicial; campos dinâmicos exigem revalidação periódica.",
+        "[fonte-inacessível] Página pública não exibe tabela de tarifas ou taxa de pontos; dados requerem acesso ao ambiente logado ou tarifa PDF."
       ]
     },
     {
@@ -146156,35 +146145,30 @@
       },
       "fees": {
         "annual": {
-          "has_explicit_amount": false,
-          "raw_text": "Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour; condição promocional pode mudar.",
-          "amount_brl_numeric": null,
-          "is_zero_fee_claim": false
+          "has_explicit_amount": true,
+          "raw_text": "Anuidade zero — basta usar o cartão ao menos uma vez por mês em qualquer Carrefour.",
+          "amount_brl_numeric": 0,
+          "is_zero_fee_claim": true
         },
         "waiver_and_discounts": {
-          "policy_text": "Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour; condição promocional pode mudar.",
+          "policy_text": "Anuidade zero ao usar o cartão ao menos uma vez por mês em qualquer loja Carrefour (Carrefour, Atacadão ou Sam's Club).",
           "rules": [
             {
               "category": "monthly_spend",
+              "threshold_brl": null,
               "period": "monthly",
               "full_waiver": true,
-              "description": "Isenção ao realizar no mínimo uma compra por ciclo de fatura nas lojas do Grupo Carrefour.",
-              "raw_text": "Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour."
-            },
-            {
-              "category": "promotional_period",
-              "full_waiver": true,
-              "description": "Condição promocional sujeita a alteração mediante comunicação.",
-              "raw_text": "Condição promocional, podendo ser alterada ou extinta mediante prévia comunicação."
+              "description": "Isenção ao realizar ao menos uma compra por mês em qualquer loja Carrefour.",
+              "raw_text": "É só usar uma vez por mês em qualquer Carrefour e pronto: zerou a anuidade."
             }
           ],
           "has_full_waiver_option": true
         }
       },
       "rewards": {
-        "earning_rules_text": "Benefícios de loja e ofertas Carrefour; regras variam.",
+        "earning_rules_text": "Programa Comprou, Voltou (cashback em compras no Carrefour — percentual no regulamento PDF).",
         "earn_points_or_miles": false,
-        "earn_cashback": false,
+        "earn_cashback": true,
         "earn_investback": false
       },
       "travel_and_protection": {
@@ -147140,10 +147124,11 @@
         }
       },
       "rewards": {
-        "earning_rules_text": "2,2 pontos por dólar gasto; pontos podem ser trocados por crédito na fatura, aportes na previdência, milhas aéreas ou produtos.",
+        "earning_rules_text": "2,2 pontos por dólar gasto em compras internacionais. Taxa doméstica não divulgada oficialmente.",
         "earn_points_or_miles": true,
         "earn_cashback": false,
-        "earn_investback": false
+        "earn_investback": false,
+        "points_per_usd_international": 2.2
       },
       "travel_and_protection": {
         "airport_lounge_offered": true,
@@ -147152,7 +147137,10 @@
         ],
         "airport_lounge_unlimited_claim": false,
         "airport_lounge_visits_per_year": 4,
-        "forex_spread_or_iof_text": "unknown"
+        "forex_spread_or_iof_text": "unknown",
+        "airport_lounge_program": "LoungeKey",
+        "airport_lounge_complimentary_visits": 4,
+        "airport_lounge_notes": "4 acessos gratuitos/ano em mais de 1.100 aeroportos pelo LoungeKey."
       },
       "benefits": {
         "atomic_benefit_statements": [
