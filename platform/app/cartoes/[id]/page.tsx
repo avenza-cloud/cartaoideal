@@ -2,9 +2,11 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getCardById, getAllCards } from "@/lib/cards";
 import { formatFee, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
+import { affiliateClickUrl } from "@/lib/affiliate";
 import { AppHeader } from "@/components/AppHeader";
 import { CardDetailActions } from "@/components/CardDetailActions";
 import { CardProfileInsights } from "@/components/CardProfileInsights";
+import { AdSlot } from "@/components/AdSlot";
 import { ArrowLeft, Coins, CreditCard, ExternalLink, Plane, ReceiptText, WalletCards } from "lucide-react";
 import type { BenefitGroupKey, CardCharacteristic, CardFacet, FeeWaiverRule } from "@/types/cards";
 
@@ -100,10 +102,18 @@ export default async function CartaoDetailPage({ params }: PageProps) {
         : "Acesso VIP"
     : "Sem lounge";
 
+  const adSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_DETAIL ?? "";
+
   return (
     <>
       <AppHeader totalCards={getAllCards().length} />
-      <main className="mx-auto w-full max-w-4xl px-3 pb-28 pt-4 sm:px-4 sm:pt-6 md:pb-12">
+      <div className="mx-auto flex w-full max-w-7xl items-start gap-4 px-3 sm:px-4">
+        {/* Left sidebar ad — desktop only */}
+        <div className="hidden xl:block w-[160px] shrink-0 sticky top-4 pt-6">
+          <AdSlot slot={adSlot} format="vertical" />
+        </div>
+
+      <main className="min-w-0 flex-1 max-w-4xl pb-28 pt-4 sm:pt-6 md:pb-12">
         <Link
           href="/cartoes"
           className="mb-4 hidden items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
@@ -284,7 +294,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
             </div>
             <div className="flex shrink-0 gap-2">
               <a
-                href={card.source_url}
+                href={affiliateClickUrl(card.card_stable_id, card.source_url)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-1.5 rounded-lg border bg-background/40 px-2.5 py-1.5 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
@@ -296,6 +306,12 @@ export default async function CartaoDetailPage({ params }: PageProps) {
           </div>
         </div>
       </main>
+
+        {/* Right sidebar ad — desktop only */}
+        <div className="hidden xl:block w-[160px] shrink-0 sticky top-4 pt-6">
+          <AdSlot slot={adSlot} format="vertical" />
+        </div>
+      </div>
 
       <CardDetailActions
         cardId={card.card_stable_id}

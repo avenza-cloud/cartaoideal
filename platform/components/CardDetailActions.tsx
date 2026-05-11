@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowLeft, ExternalLink, Plus, Check } from "lucide-react";
 import { useCompareStore } from "@/lib/store";
 import { CardCorrectionForm } from "@/components/CardCorrectionForm";
+import { affiliateClickUrl } from "@/lib/affiliate";
 
 interface CardDetailActionsProps {
   cardId: string;
@@ -49,7 +50,7 @@ export function CardDetailActions({ cardId, cardName, issuer, sourceUrl }: CardD
         triggerClassName="h-10 w-full min-w-0 rounded-xl px-2 text-xs text-muted-foreground"
       />
       <a
-        href={sourceUrl}
+        href={affiliateClickUrl(cardId, sourceUrl)}
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex h-10 min-w-0 items-center justify-center gap-1.5 rounded-xl border px-2 text-xs text-muted-foreground"

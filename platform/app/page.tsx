@@ -5,6 +5,7 @@ import { PersonalizedRanking } from "@/components/PersonalizedRanking";
 import { CardProgressionPath } from "@/components/CardProgressionPath";
 import { ProfileOnboarding } from "@/components/ProfileOnboarding";
 import { AppHeader } from "@/components/AppHeader";
+import { AdSlot } from "@/components/AdSlot";
 import { Badge } from "@/components/ui/badge";
 import { BarChart3, Coins, Sparkles } from "lucide-react";
 import { getAllCards } from "@/lib/cards";
@@ -71,6 +72,12 @@ export default function HomePage() {
           <section className="mx-auto max-w-4xl">
             <CardProgressionPath />
           </section>
+
+          <AdSlot
+            slot={process.env.NEXT_PUBLIC_ADSENSE_SLOT_CATALOG ?? ""}
+            format="auto"
+            className="mx-auto max-w-4xl"
+          />
         </main>
 
         <footer className="border-t border-border/70 px-6 py-4 text-center">
