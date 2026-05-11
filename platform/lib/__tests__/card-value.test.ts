@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_VALUE_ASSUMPTIONS, scoreCardValue, scoreCardValues } from "@/lib/card-value";
-import { getCardById } from "@/lib/cards";
+import { getCardById, getAllCards } from "@/lib/cards";
 import type { UserProfile } from "@/types/cards";
 
 const baseProfile: UserProfile = {
@@ -230,6 +230,75 @@ describe("scoreCardValue", () => {
     expect(belowTier.effectiveAnnualFeeBrl).toBe(1650);
     expect(halfTier.effectiveAnnualFeeBrl).toBe(825);
     expect(fullTier.effectiveAnnualFeeBrl).toBe(0);
+  });
+
+  it("scores Porto Bank Visa Infinite Privilege with non-zero points return", () => {
+    const card = getCardById("porto-bank-porto-bank-visa-infinite-privilege-54faff3c16");
+    expect(card).toBeDefined();
+
+    // earning_summary is "Até 5,0 pontos por dólar gasto" — ceiling-only phrasing
+    // must still produce a non-zero points return
+    const score = scoreCardValue(card!, baseProfile, "profile", {
+      ...DEFAULT_VALUE_ASSUMPTIONS,
+      ptaxBrlPerUsd: 5,
+    });
+
+    expect(score.pointsRewardMonthlyBrl).toBeGreaterThan(0);
+    expect(score.grossRewardMonthlyBrl).toBeGreaterThan(0);
+    expect(score.dataQualityNotes).toContain(
+      "Taxa de pontos informada como teto máximo; retorno calculado com taxa máxima declarada de forma conservadora."
+    );
+  });
+
+  it("scores Banco do Brasil Visa Altus with non-zero points return", () => {
+    const card = getCardById("banco-do-brasil-banco-do-brasil-visa-altus-07dee92c5a");
+    expect(card).toBeDefined();
+
+    const score = scoreCardValue(card!, baseProfile, "profile", {
+      ...DEFAULT_VALUE_ASSUMPTIONS,
+      ptaxBrlPerUsd: 5,
+    });
+
+    expect(score.pointsRewardMonthlyBrl).toBeGreaterThan(0);
+    expect(score.grossRewardMonthlyBrl).toBeGreaterThan(0);
+  });
+
+  it("scores Banco do Brasil Visa Altus Liv with non-zero points return", () => {
+    const card = getCardById("banco-do-brasil-banco-do-brasil-visa-altus-liv-0ba9e1e5c9");
+    expect(card).toBeDefined();
+
+    const score = scoreCardValue(card!, baseProfile, "profile", {
+      ...DEFAULT_VALUE_ASSUMPTIONS,
+      ptaxBrlPerUsd: 5,
+    });
+
+    expect(score.pointsRewardMonthlyBrl).toBeGreaterThan(0);
+    expect(score.grossRewardMonthlyBrl).toBeGreaterThan(0);
+  });
+
+  it("cards with only 'até X pontos por dólar' earning data produce non-zero gross return", () => {
+    // These cards previously returned R$0 because their earning rate was phrased as
+    // a ceiling ("até X pts/USD") and was silently dropped. The fix uses the ceiling
+    // rate as a conservative fallback when no other structured rate is present.
+    const allCards = getAllCards();
+    const brokenCards = allCards.filter((card) => {
+      if (!card.facets_boolean?.earn_points_or_miles) return false;
+      const summary = card.reward_return?.earning_summary ?? "";
+      // Only check cards whose earning is expressed as a per-dollar ceiling
+      if (!/até\s+\d.*pontos?\s+por\s+(d[oó]lar|usd)/i.test(summary)) return false;
+      const earningChars = (card.characteristics ?? []).filter(
+        (c) => c.key === "earning_rate" || c.key === "earning_detail"
+      );
+      const allTexts = [summary, ...earningChars.map((c) => String(c.value))];
+      // Only flag cards where every earning text is ceiling-only (no domestic/international split)
+      const hasSplit = allTexts.some(
+        (t) => /brasil|nacion|exterior|internacion/i.test(t)
+      );
+      if (hasSplit) return false;
+      const score = scoreCardValue(card, baseProfile);
+      return score.grossRewardMonthlyBrl === 0 && score.pointsRewardMonthlyBrl === 0;
+    });
+    expect(brokenCards.map((c) => c.display_name)).toEqual([]);
   });
 
   it("applies Centurion account-holder annual fee condition", () => {

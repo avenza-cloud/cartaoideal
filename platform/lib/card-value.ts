@@ -227,6 +227,7 @@ function parsePointsRates(card: CardFacet): {
   const international: number[] = [];
   const generic: number[] = [];
   const ignoredGenericCeilings: string[] = [];
+  const ceilingRates: number[] = [];
 
   for (const text of candidates) {
     const normalized = normalizeText(text);
@@ -240,6 +241,7 @@ function parsePointsRates(card: CardFacet): {
       } else if (/brasil|nacion/.test(normalized)) {
         domestic.push(rate);
       } else if (/ate|até/.test(normalized)) {
+        ceilingRates.push(rate);
         ignoredGenericCeilings.push(String(text));
       } else {
         generic.push(rate);
@@ -248,11 +250,23 @@ function parsePointsRates(card: CardFacet): {
   }
 
   const maxOrNull = (values: number[]) => (values.length > 0 ? Math.max(...values) : null);
+
+  // When only ceiling ("até X pts/USD") rates are found, use the max as a conservative
+  // fallback rather than zeroing out the return entirely.
+  const noStructuredRates =
+    domestic.length === 0 && international.length === 0 && generic.length === 0;
+  if (noStructuredRates && ceilingRates.length > 0) {
+    generic.push(Math.max(...ceilingRates));
+    ignoredGenericCeilings.length = 0;
+  }
+
   const fallbackRate = maxOrNull(generic);
   const note =
     ignoredGenericCeilings.length > 0 && domestic.length === 0 && international.length === 0
       ? "Pontuação informada apenas como teto ('até X pontos/USD'); retorno em pontos não aplicado sem regra efetiva estruturada."
-      : undefined;
+      : noStructuredRates && ceilingRates.length > 0
+        ? "Taxa de pontos informada como teto máximo; retorno calculado com taxa máxima declarada de forma conservadora."
+        : undefined;
   return {
     domesticRate: maxOrNull(domestic) ?? fallbackRate,
     internationalRate: maxOrNull(international) ?? fallbackRate,
