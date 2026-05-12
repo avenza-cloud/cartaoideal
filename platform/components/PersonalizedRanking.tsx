@@ -9,7 +9,11 @@ import {
   resolveClientCardByName,
 } from "@/lib/client-card-options";
 import { feeTier, feeNote, FEE_TIER_COLOR, FEE_TIER_LABEL } from "@/lib/roi";
-import { formatFee } from "@/lib/formatting";
+import {
+  formatFee,
+  formatGrossRewardMonthlyDisplay,
+  formatNetMonthlyDisplay,
+} from "@/lib/formatting";
 import { feeWaiverBadgeClassName, feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
 import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
 import { DEFAULT_SCORING_PROFILE, scoreCardValue, scoreCardValues } from "@/lib/card-value";
@@ -17,7 +21,7 @@ import { useCardDetailHref } from "@/lib/use-card-detail-href";
 import { useValueAssumptions } from "@/lib/use-value-assumptions";
 import { Button } from "@/components/ui/button";
 import { CreditCard, ListFilter } from "lucide-react";
-import type { CardFacet, CardScore, CardValueScore } from "@/types/cards";
+import type { CardFacet, CardScore, CardValueScore, TravelFrequency } from "@/types/cards";
 import type { FeeWaiverBadge } from "@/lib/fee-waiver-badges";
 
 interface TopCard {
@@ -70,6 +74,7 @@ function CardRow({
   scoreBar,
   valueScore,
   badges = [],
+  travelFrequency,
 }: {
   rank: number;
   id: string;
@@ -85,6 +90,7 @@ function CardRow({
   scoreBar?: number;
   valueScore?: CardValueScore;
   badges?: FeeWaiverBadge[];
+  travelFrequency?: TravelFrequency;
 }) {
   const hasImage = cardArtUrl && cardArtUrl !== "unknown";
   const detailHref = useCardDetailHref(id);
@@ -112,9 +118,9 @@ function CardRow({
       <div className="min-w-0 space-y-0.5">
         <p className="truncate font-medium">{nome}</p>
         <p className="truncate font-mono text-[10px] text-muted-foreground">{note}</p>
-        <p className="truncate text-[10px] text-muted-foreground/70">
+        <p className="text-[10px] text-muted-foreground/70 break-words [overflow-wrap:anywhere]">
           {valueScore
-            ? `Retorno ${moneyPerMonth(valueScore.grossRewardMonthlyBrl)} · Benefícios ${moneyPerMonth(valueScore.intangibleMonthlyValueBrl)}`
+            ? `Retorno: ${formatGrossRewardMonthlyDisplay(valueScore, travelFrequency ?? "none")} · Benefícios: ${moneyPerMonth(valueScore.intangibleMonthlyValueBrl)}`
             : earningsSummary}
         </p>
         {badges.length > 0 && (
@@ -128,7 +134,7 @@ function CardRow({
         )}
       </div>
 
-      <div className="flex flex-col items-end gap-1 text-right">
+      <div className="flex min-w-[7.5rem] max-w-[48%] flex-col items-end gap-1 text-right sm:min-w-[9.5rem] sm:max-w-[42%]">
         <span
           className={`text-[11px] font-semibold font-mono ${
             valueScore ? scoreTextColor(valueScore.score0To100) : tierColor
@@ -139,11 +145,13 @@ function CardRow({
         <span className="font-mono text-[10px] text-muted-foreground">{formatFee(anuidade)}</span>
         {valueScore && (
           <span
-            className={`font-mono text-[10px] ${
-              valueScore.netMonthlyValueBrl >= 0 ? "text-emerald-500" : "text-rose-500"
+            className={`font-mono text-[10px] leading-snug break-words ${
+              Math.max(valueScore.netMonthlyValueBrl, valueScore.netMonthlyValueRangeHighBrl) >= 0
+                ? "text-emerald-500"
+                : "text-rose-500"
             }`}
           >
-            {moneyPerMonth(valueScore.netMonthlyValueBrl)}
+            {formatNetMonthlyDisplay(valueScore, travelFrequency ?? "none")}
           </span>
         )}
         {scoreBar !== undefined && (
@@ -181,11 +189,13 @@ function CurrentCardSummary({
   score,
   rank,
   spend,
+  travelFrequency,
 }: {
   card: CardFacet;
   score?: CardValueScore;
   rank?: number;
   spend: number;
+  travelFrequency: TravelFrequency;
 }) {
   const tier = feeTier(card, spend, score?.effectiveAnnualFeeBrl);
   const note = feeNote(card, spend, score?.effectiveAnnualFeeBrl);
@@ -222,8 +232,8 @@ function CurrentCardSummary({
         <p className="mt-0.5 truncate text-[11px] text-muted-foreground">{note}</p>
         {score && (
           <p className="mt-1 text-[10px] text-muted-foreground/75">
-            Retorno {moneyPerMonth(score.grossRewardMonthlyBrl)} · Benefícios{" "}
-            {moneyPerMonth(score.intangibleMonthlyValueBrl)} · Anuidade{" "}
+            Retorno: {formatGrossRewardMonthlyDisplay(score, travelFrequency)} · Benefícios:{" "}
+            {moneyPerMonth(score.intangibleMonthlyValueBrl)} · Anuidade:{" "}
             {moneyPerMonth(-score.effectiveMonthlyFeeBrl)}
           </p>
         )}
@@ -243,11 +253,13 @@ function CurrentCardSummary({
           </span>
           {score && (
             <span
-              className={`font-mono text-[10px] ${
-                score.netMonthlyValueBrl >= 0 ? "text-emerald-500" : "text-rose-500"
+              className={`max-w-[11rem] break-words font-mono text-[10px] leading-snug ${
+                Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl) >= 0
+                  ? "text-emerald-500"
+                  : "text-rose-500"
               }`}
             >
-              {moneyPerMonth(score.netMonthlyValueBrl)}
+              {formatNetMonthlyDisplay(score, travelFrequency)}
             </span>
           )}
           {score && (
@@ -330,6 +342,7 @@ export function PersonalizedRanking() {
           score={currentCardScore}
           rank={currentCardRanking?.rank}
           spend={profile.avgMonthlySpendBrl}
+          travelFrequency={profile.travelFrequency ?? "none"}
         />
       )}
 
@@ -388,6 +401,7 @@ export function PersonalizedRanking() {
                 valueScore={scored.valueScore}
                 scoreBar={Math.round(scored.totalScore * 100)}
                 badges={feeWaiverBadgesForCard(card, profile)}
+                travelFrequency={profile.travelFrequency ?? "none"}
               />
             );
           })}
@@ -419,6 +433,7 @@ export function PersonalizedRanking() {
                 valueScore={c.score}
                 scoreBar={c.score.score0To100}
                 badges={feeWaiverBadgesForCard(c.score.card)}
+                travelFrequency={DEFAULT_SCORING_PROFILE.travelFrequency}
               />
             );
           })}

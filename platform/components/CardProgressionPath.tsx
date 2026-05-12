@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { useProfileStore } from "@/lib/store";
-import { formatFee } from "@/lib/formatting";
+import { formatFee, formatNetMonthlyDisplay } from "@/lib/formatting";
 import { formatBrlCurrency, formatBrlInput, parseBrlInput } from "@/lib/brl";
 import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
 import { useCardDetailHref } from "@/lib/use-card-detail-href";
@@ -14,7 +14,7 @@ import {
   TrendingUp,
   ChevronRight,
 } from "lucide-react";
-import type { CardScore } from "@/types/cards";
+import type { CardScore, TravelFrequency } from "@/types/cards";
 
 /* ─── helpers ─── */
 function money(v: number) {
@@ -60,16 +60,22 @@ function CardRow({
   scored,
   badge,
   highlight,
+  travelFrequency,
 }: {
   scored: CardScore;
   badge?: string;
   highlight?: boolean;
+  travelFrequency: TravelFrequency;
 }) {
   const { card, valueScore } = scored;
   const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
   const detailHref = useCardDetailHref(card.card_stable_id);
-  const net = valueScore?.netMonthlyValueBrl;
-  const positive = (net ?? 0) >= 0;
+  const netLow = valueScore?.netMonthlyValueBrl;
+  const netHigh = valueScore?.netMonthlyValueRangeHighBrl;
+  const positive =
+    netLow !== undefined && netHigh !== undefined
+      ? Math.max(netLow, netHigh) >= 0
+      : (netLow ?? 0) >= 0;
   const restricted = valueScore?.dataQualityNotes.some((note) =>
     /convite|restrit|private/i.test(note)
   );
@@ -115,14 +121,14 @@ function CardRow({
         </p>
       </div>
 
-      <div className="shrink-0 text-right">
-        {net !== undefined && (
+      <div className="max-w-[11rem] shrink-0 text-right">
+        {valueScore && (
           <p
-            className={`font-mono text-xs font-semibold ${
+            className={`font-mono text-[10px] font-semibold leading-snug break-words sm:text-xs ${
               positive ? "text-emerald-400" : "text-rose-400"
             }`}
           >
-            {money(net)}/mês
+            {formatNetMonthlyDisplay(valueScore, travelFrequency)}
           </p>
         )}
         <ChevronRight className="ml-auto h-3 w-3 text-muted-foreground/40" />
@@ -217,6 +223,8 @@ export function CardProgressionPath() {
 
   if (!profile || !onboardingDone) return null;
 
+  const travelFrequency = profile.travelFrequency ?? "none";
+
   return (
     <div className="rounded-3xl border bg-card/50 p-4">
       <div className="mb-4 flex items-start justify-between gap-3 px-1">
@@ -252,6 +260,7 @@ export function CardProgressionPath() {
                   key={s.card.card_stable_id}
                   scored={s}
                   badge={i === 0 ? "melhor" : undefined}
+                  travelFrequency={travelFrequency}
                 />
               ))}
             </div>
@@ -348,6 +357,7 @@ export function CardProgressionPath() {
                     scored={s}
                     badge="novo"
                     highlight
+                    travelFrequency={travelFrequency}
                   />
                 ))}
               </div>
@@ -356,7 +366,7 @@ export function CardProgressionPath() {
                   <p className="mb-2 text-[11px] text-muted-foreground">
                     Melhor cartão no novo perfil:
                   </p>
-                  <CardRow scored={simResult.top[0]} />
+                  <CardRow scored={simResult.top[0]} travelFrequency={travelFrequency} />
                 </div>
               )}
             </>
@@ -366,7 +376,7 @@ export function CardProgressionPath() {
                 Sem novos cartões no radar — mas o ranking muda:
               </p>
               {simResult.top.slice(0, 2).map((s) => (
-                <CardRow key={s.card.card_stable_id} scored={s} />
+                <CardRow key={s.card.card_stable_id} scored={s} travelFrequency={travelFrequency} />
               ))}
             </div>
           )}

@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Check, CreditCard, Plane, Coins, ExternalLink } from "lucide-react";
-import { formatFee, loungeSummary, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
+import { formatFee, formatNetMonthlyDisplay, loungeSummary, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
 import { feeWaiverBadgeClassName, feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
 // lib/cards.ts re-exports same helpers but is server-only; formatting is shared
 import type { CardFacet, CardValueScore } from "@/types/cards";
@@ -26,18 +26,12 @@ const SEGMENT_COLORS = {
   mass_or_general: "bg-muted text-muted-foreground",
 } as const;
 
-function moneyPerMonth(value: number) {
-  const sign = value > 0 ? "+" : value < 0 ? "-" : "";
-  return `${sign}R$${Math.abs(value).toLocaleString("pt-BR", {
-    maximumFractionDigits: 0,
-  })}/mês`;
-}
-
 function classification(score: CardValueScore) {
+  const hi = Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl);
   if (!score.eligible) return "Não elegível";
-  if (score.netMonthlyValueBrl >= 200) return "Excelente";
-  if (score.netMonthlyValueBrl >= 50) return "Bom";
-  if (score.netMonthlyValueBrl >= 0) return "Neutro";
+  if (hi >= 200) return "Excelente";
+  if (hi >= 50) return "Bom";
+  if (hi >= 0) return "Neutro";
   return "Não compensa";
 }
 
@@ -117,7 +111,7 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
             </div>
           )}
           {valueScore && (
-            <div className="grid grid-cols-[1fr_auto] items-center gap-2 rounded-xl border bg-background/60 px-3 py-2">
+            <div className="grid grid-cols-1 items-center gap-2 rounded-xl border bg-background/60 px-3 py-2 min-[400px]:grid-cols-[1fr_minmax(0,46%)]">
               <div className="min-w-0">
                 <p className="text-[10px] uppercase tracking-wider text-muted-foreground">
                   Para seu perfil
@@ -126,16 +120,18 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
                   {classification(valueScore)} · {valueScore.rankReason}
                 </p>
               </div>
-              <div className="text-right">
+              <div className="min-w-0 text-left min-[400px]:text-right">
                 <p className="font-mono text-xs font-semibold">
                   {valueScore.score0To100}/100
                 </p>
                 <p
-                  className={`font-mono text-[11px] ${
-                    valueScore.netMonthlyValueBrl >= 0 ? "text-emerald-500" : "text-rose-500"
+                  className={`font-mono text-[10px] leading-snug min-[400px]:text-[11px] break-words ${
+                    Math.max(valueScore.netMonthlyValueBrl, valueScore.netMonthlyValueRangeHighBrl) >= 0
+                      ? "text-emerald-500"
+                      : "text-rose-500"
                   }`}
                 >
-                  {moneyPerMonth(valueScore.netMonthlyValueBrl)}
+                  {formatNetMonthlyDisplay(valueScore, profile?.travelFrequency ?? "none")}
                 </p>
               </div>
             </div>

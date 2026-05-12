@@ -1,11 +1,13 @@
 "use client";
 
-import type { CardValueScore, ScoreBreakdown } from "@/types/cards";
+import type { CardValueScore, ScoreBreakdown, TravelFrequency } from "@/types/cards";
+import { formatNetMonthlyDisplay } from "@/lib/formatting";
 
 interface Props {
   breakdown: ScoreBreakdown;
   totalScore: number;
   valueScore?: CardValueScore;
+  travelFrequency?: TravelFrequency;
 }
 
 function formatMoney(value: number) {
@@ -15,7 +17,12 @@ function formatMoney(value: number) {
   })}`;
 }
 
-export function ScoreBreakdownBar({ breakdown, totalScore, valueScore }: Props) {
+export function ScoreBreakdownBar({
+  breakdown,
+  totalScore,
+  valueScore,
+  travelFrequency = "none",
+}: Props) {
   if (valueScore) {
     return (
       <div className="space-y-2">
@@ -24,11 +31,13 @@ export function ScoreBreakdownBar({ breakdown, totalScore, valueScore }: Props) 
             Valor líquido estimado
           </span>
           <span
-            className={`text-lg font-bold font-mono ${
-              valueScore.netMonthlyValueBrl >= 0 ? "text-emerald-500" : "text-rose-500"
+            className={`max-w-[72%] text-right text-lg font-bold font-mono leading-snug break-words ${
+              Math.max(valueScore.netMonthlyValueBrl, valueScore.netMonthlyValueRangeHighBrl) >= 0
+                ? "text-emerald-500"
+                : "text-rose-500"
             }`}
           >
-            {formatMoney(valueScore.netMonthlyValueBrl)}/mês
+            {formatNetMonthlyDisplay(valueScore, travelFrequency)}
           </span>
         </div>
         <p className="text-[11px] text-muted-foreground">{valueScore.verdict}</p>

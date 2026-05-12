@@ -5,8 +5,18 @@ import type {
   CardValueAssumptions,
   CardValueComponent,
   CardValueScore,
+  TravelFrequency,
   UserProfile,
 } from "@/types/cards";
+
+/** Valor usado para ordenar ranking: teto (utilização) se o perfil viaja, senão base conservadora (venda). */
+export function netMonthlyValueForRanking(score: CardValueScore, profile: UserProfile): number {
+  const tf: TravelFrequency = profile.travelFrequency ?? "none";
+  if (tf === "occasional" || tf === "frequent") {
+    return Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl);
+  }
+  return score.netMonthlyValueBrl;
+}
 
 export const DEFAULT_VALUE_ASSUMPTIONS: CardValueAssumptions = {
   ptaxBrlPerUsd: 4.96,
@@ -1031,7 +1041,15 @@ export function scoreCardValue(
   const cashlikeInternationalRate = hasTiers ? tieredRate : (cashlike.internationalRate ?? cashlike.generalRate);
   const cashlikeRewardMonthly =
     domesticSpend * cashlikeDomesticRate + internationalSpend * cashlikeInternationalRate;
-  const grossRewardMonthly = Math.max(pointsRewardMonthlySale, cashlikeRewardMonthly);
+  const grossRewardMonthlyAtSaleValuation = Math.max(
+    pointsRewardMonthlySale,
+    cashlikeRewardMonthly
+  );
+  const grossRewardMonthlyAtTravelValuation = Math.max(
+    pointsRewardMonthlyTravel,
+    cashlikeRewardMonthly
+  );
+  const grossRewardMonthly = grossRewardMonthlyAtSaleValuation;
   const rewardChoice =
     pointsRewardMonthlySale >= cashlikeRewardMonthly ? "milhas/pontos" : "retorno financeiro";
 
@@ -1055,7 +1073,12 @@ export function scoreCardValue(
     internationalSpend * ((1 + spread.spread) * (1 + iofRate) - 1);
 
   const netMonthlyValue =
-    grossRewardMonthly + intangibleMonthlyValue - effectiveMonthlyFee - internationalMonthlyCost;
+    grossRewardMonthlyAtSaleValuation + intangibleMonthlyValue - effectiveMonthlyFee - internationalMonthlyCost;
+  const netMonthlyValueRangeHighUnrounded =
+    grossRewardMonthlyAtTravelValuation +
+    intangibleMonthlyValue -
+    effectiveMonthlyFee -
+    internationalMonthlyCost;
   const netContributionRateOverSpend =
     profile.avgMonthlySpendBrl > 0
       ? (grossRewardMonthly + intangibleMonthlyValue - internationalMonthlyCost) /
@@ -1136,6 +1159,10 @@ export function scoreCardValue(
   ];
 
   const roundedNetMonthly = roundMoney(netMonthlyValue);
+  const roundedNetRangeHigh = roundMoney(Math.max(netMonthlyValueRangeHighUnrounded, netMonthlyValue));
+  const travelerNetLiquidityRange =
+    (profile.travelFrequency === "occasional" || profile.travelFrequency === "frequent") &&
+    Math.abs(roundedNetRangeHigh - roundedNetMonthly) >= 1;
   const netAnnualValue = netMonthlyValue * 12;
   const feeBurden =
     profile.avgMonthlySpendBrl > 0
@@ -1143,7 +1170,9 @@ export function scoreCardValue(
       : null;
   const roiMultiple = effectiveAnnualFee > 0 ? netAnnualValue / effectiveAnnualFee : null;
   const scoreDrivers = [
-    `Valor líquido: R$${roundMoney(netMonthlyValue).toLocaleString("pt-BR")}/mês`,
+    travelerNetLiquidityRange
+      ? `Valor líquido: R$${roundedNetMonthly.toLocaleString("pt-BR")}–R$${roundedNetRangeHigh.toLocaleString("pt-BR")}/mês (venda → utilização em viagem)`
+      : `Valor líquido: R$${roundedNetMonthly.toLocaleString("pt-BR")}/mês`,
     `Anuidade efetiva: R$${roundMoney(effectiveAnnualFee).toLocaleString("pt-BR")}/ano`,
     `Retorno bruto: R$${roundMoney(grossRewardMonthly).toLocaleString("pt-BR")}/mês`,
     `Benefícios valorizados: R$${roundMoney(intangibleMonthlyValue).toLocaleString("pt-BR")}/mês`,
@@ -1166,7 +1195,9 @@ export function scoreCardValue(
   const rankReason = !eligibility.eligible
     ? `Bloqueado por elegibilidade: ${eligibilityReasons.join(" ")}`
     : roundedNetMonthly >= 0
-      ? `Rankeado por valor líquido positivo de R$${roundedNetMonthly.toLocaleString("pt-BR")}/mês após anuidade e custos.`
+      ? travelerNetLiquidityRange
+        ? `Rankeado por valor líquido positivo entre R$${roundedNetMonthly.toLocaleString("pt-BR")} e R$${roundedNetRangeHigh.toLocaleString("pt-BR")}/mês (venda–utilização) após anuidade e custos.`
+        : `Rankeado por valor líquido positivo de R$${roundedNetMonthly.toLocaleString("pt-BR")}/mês após anuidade e custos.`
       : `Rankeado abaixo por destruir R$${Math.abs(roundedNetMonthly).toLocaleString("pt-BR")}/mês após anuidade e custos.`;
   const verdict =
     !eligibility.eligible
@@ -1205,10 +1236,14 @@ export function scoreCardValue(
     feeBurdenPctOfAnnualSpend: feeBurden === null ? null : roundMoney(feeBurden * 100),
     scoreDrivers,
     netMonthlyValueBrl: roundedNetMonthly,
+    netMonthlyValueRangeHighBrl: roundedNetRangeHigh,
     netAnnualValueBrl: roundMoney(netAnnualValue),
     effectiveMonthlyFeeBrl: roundMoney(effectiveMonthlyFee),
     effectiveAnnualFeeBrl: roundMoney(effectiveAnnualFee),
     grossRewardMonthlyBrl: roundMoney(grossRewardMonthly),
+    grossRewardMonthlyRangeHighBrl: roundMoney(
+      Math.max(grossRewardMonthlyAtTravelValuation, grossRewardMonthlyAtSaleValuation)
+    ),
     pointsRewardMonthlyBrl: roundMoney(pointsRewardMonthlySale),
     pointsRewardMonthlySaleBrl: roundMoney(pointsRewardMonthlySale),
     pointsRewardMonthlyTravelBrl: roundMoney(pointsRewardMonthlyTravel),
@@ -1238,6 +1273,8 @@ export function scoreCardValues(
     .map((card) => scoreCardValue(card, profile, mode, assumptions))
     .sort((a, b) => {
       if (a.eligible !== b.eligible) return a.eligible ? -1 : 1;
-      return b.netMonthlyValueBrl - a.netMonthlyValueBrl || b.score0To100 - a.score0To100;
+      const vb = netMonthlyValueForRanking(b, profile);
+      const va = netMonthlyValueForRanking(a, profile);
+      return vb - va || b.score0To100 - a.score0To100;
     });
 }

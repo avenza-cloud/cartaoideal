@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_VALUE_ASSUMPTIONS, scoreCardValue, scoreCardValues } from "@/lib/card-value";
+import {
+  DEFAULT_VALUE_ASSUMPTIONS,
+  netMonthlyValueForRanking,
+  scoreCardValue,
+  scoreCardValues,
+} from "@/lib/card-value";
 import { getCardById, getAllCards } from "@/lib/cards";
-import type { CardFacet, UserProfile } from "@/types/cards";
+import type { CardFacet, CardValueScore, UserProfile } from "@/types/cards";
 
 const baseProfile: UserProfile = {
   monthlySalaryBrl: 10000,
@@ -482,5 +487,48 @@ describe("scoreCardValue", () => {
     expect(score.dataQualityNotes).toContain(
       "Anuidade de correntista aplicada por condição estruturada."
     );
+  });
+});
+
+describe("netMonthlyValueForRanking", () => {
+  it("uses conservative net for non-travelers", () => {
+    const s = {
+      netMonthlyValueBrl: 100,
+      netMonthlyValueRangeHighBrl: 300,
+    } as CardValueScore;
+    expect(netMonthlyValueForRanking(s, { ...baseProfile, travelFrequency: "none" })).toBe(100);
+  });
+
+  it("uses max net (utilização) for occasional and frequent", () => {
+    const s = {
+      netMonthlyValueBrl: 100,
+      netMonthlyValueRangeHighBrl: 300,
+    } as CardValueScore;
+    expect(netMonthlyValueForRanking(s, { ...baseProfile, travelFrequency: "occasional" })).toBe(
+      300
+    );
+    expect(netMonthlyValueForRanking(s, { ...baseProfile, travelFrequency: "frequent" })).toBe(300);
+  });
+});
+
+describe("scoreCardValues sort key", () => {
+  it("orders by netMonthlyValueBrl when user does not travel", () => {
+    const hiNet = { netMonthlyValueBrl: 200, netMonthlyValueRangeHighBrl: 200 } as CardValueScore;
+    const loNet = { netMonthlyValueBrl: 50, netMonthlyValueRangeHighBrl: 400 } as CardValueScore;
+    const profile = { ...baseProfile, travelFrequency: "none" as const };
+    const sorted = [loNet, hiNet].sort(
+      (a, b) => netMonthlyValueForRanking(b, profile) - netMonthlyValueForRanking(a, profile)
+    );
+    expect(sorted[0]).toBe(hiNet);
+  });
+
+  it("orders by max(net, rangeHigh) when user travels occasionally", () => {
+    const hiNet = { netMonthlyValueBrl: 200, netMonthlyValueRangeHighBrl: 200 } as CardValueScore;
+    const loNet = { netMonthlyValueBrl: 50, netMonthlyValueRangeHighBrl: 400 } as CardValueScore;
+    const profile = { ...baseProfile, travelFrequency: "occasional" as const };
+    const sorted = [hiNet, loNet].sort(
+      (a, b) => netMonthlyValueForRanking(b, profile) - netMonthlyValueForRanking(a, profile)
+    );
+    expect(sorted[0]).toBe(loNet);
   });
 });

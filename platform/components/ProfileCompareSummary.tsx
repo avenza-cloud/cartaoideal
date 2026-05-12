@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { scoreCardValue } from "@/lib/card-value";
+import { scoreCardValue, netMonthlyValueForRanking } from "@/lib/card-value";
 import { useProfileStore } from "@/lib/store";
 import { useCardDetailHrefBuilder } from "@/lib/use-card-detail-href";
 import { useValueAssumptions } from "@/lib/use-value-assumptions";
+import { formatNetMonthlyDisplay, formatGrossRewardMonthlyDisplay } from "@/lib/formatting";
 import type { CardFacet, CardValueScore } from "@/types/cards";
 
 interface ProfileCompareSummaryProps {
@@ -40,7 +41,10 @@ export function ProfileCompareSummary({ cards }: ProfileCompareSummaryProps) {
   const scores = cards.map((card) => scoreCardValue(card, profile, "profile", assumptions));
   const best = scores.reduce<CardValueScore | null>(
     (winner, score) =>
-      !winner || score.netMonthlyValueBrl > winner.netMonthlyValueBrl ? score : winner,
+      !winner ||
+      netMonthlyValueForRanking(score, profile) > netMonthlyValueForRanking(winner, profile)
+        ? score
+        : winner,
     null
   );
   const delta =
@@ -81,12 +85,18 @@ export function ProfileCompareSummary({ cards }: ProfileCompareSummaryProps) {
                 <p className="truncate text-sm font-medium">{score.card.display_name}</p>
                 <p className="text-[11px] text-muted-foreground">{score.verdict}</p>
               </div>
-              <p className={score.netMonthlyValueBrl >= 0 ? "font-mono text-sm text-emerald-500" : "font-mono text-sm text-rose-500"}>
-                {money(score.netMonthlyValueBrl)}
+              <p
+                className={`max-w-[58%] break-words text-right font-mono text-sm leading-snug ${
+                  Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl) >= 0
+                    ? "text-emerald-500"
+                    : "text-rose-500"
+                }`}
+              >
+                {formatNetMonthlyDisplay(score, profile.travelFrequency ?? "none")}
               </p>
             </div>
             <div className="mt-2 grid grid-cols-3 gap-1.5 text-[10px]">
-              <Metric label="Retorno" value={money(score.grossRewardMonthlyBrl)} />
+              <Metric label="Retorno" value={formatGrossRewardMonthlyDisplay(score, profile.travelFrequency ?? "none")} />
               <Metric label="Benefícios" value={money(score.intangibleMonthlyValueBrl)} />
               <Metric label="Anuidade" value={`-${money(score.effectiveMonthlyFeeBrl).replace("+", "")}`} />
             </div>

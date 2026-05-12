@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import { scoreCardValue } from "@/lib/card-value";
+import { formatGrossRewardMonthlyDisplay, formatNetMonthlyDisplay } from "@/lib/formatting";
 import { useProfileStore } from "@/lib/store";
 import { useValueAssumptions } from "@/lib/use-value-assumptions";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
@@ -62,7 +63,8 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
     );
   }
 
-  const positive = score.netMonthlyValueBrl >= 0;
+  const positive =
+    Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl) >= 0;
   const accent = positive ? "text-emerald-400" : "text-rose-400";
   const accentBg = positive ? "bg-emerald-500/10" : "bg-rose-500/10";
 
@@ -81,10 +83,15 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
     `lounge R$${a.loungeVisitValueBrl}/visita`,
   ].join(" · ");
 
+  const netMonthlyLabel = formatNetMonthlyDisplay(
+    score,
+    profile.travelFrequency ?? "none"
+  ).replace(/\/mês$/, "");
+
   return (
     <section className="overflow-hidden rounded-2xl border bg-card/60">
       {/* Main row: verdict + net value */}
-      <div className="grid gap-0 sm:grid-cols-[minmax(0,1fr)_auto]">
+      <div className="grid gap-0 sm:grid-cols-[minmax(0,1fr)_minmax(12.5rem,42%)]">
         <div className="p-4">
           <div className="flex flex-wrap items-center gap-1.5">
            
@@ -115,16 +122,18 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
         </div>
 
         {/* Net value — shown once */}
-        <div className="flex flex-col items-end justify-center border-t bg-background/30 px-4 py-3 sm:border-l sm:border-t-0">
-          <p className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+        <div className="flex min-w-0 flex-col items-stretch justify-center border-t bg-background/30 px-4 py-3 sm:border-l sm:border-t-0 sm:items-end">
+          <p className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground sm:text-right">
             Valor líquido
           </p>
-          <p className={`font-mono text-3xl font-semibold tracking-tight ${accent}`}>
-            {money(score.netMonthlyValueBrl)}
+          <p
+            className={`mt-0.5 w-full font-mono text-xl font-semibold leading-snug tracking-tight break-words sm:text-right sm:text-2xl md:text-3xl ${accent}`}
+          >
+            {netMonthlyLabel}
           </p>
-          <p className="font-mono text-[10px] text-muted-foreground">por mês</p>
+          <p className="font-mono text-[10px] text-muted-foreground sm:text-right">por mês</p>
           {score.feeAppliedReason && (
-            <p className="mt-1 max-w-[180px] text-right text-[10px] leading-snug text-muted-foreground/60">
+            <p className="mt-1 w-full max-w-none text-right text-[10px] leading-snug text-muted-foreground/60 sm:max-w-[min(22rem,100%)]">
               {score.feeAppliedReason}
             </p>
           )}
@@ -135,7 +144,7 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
       <div className="grid grid-cols-2 border-t sm:grid-cols-4">
         <Strip
           label="Retorno"
-          value={`${money(score.grossRewardMonthlyBrl)}/mês`}
+          value={formatGrossRewardMonthlyDisplay(score, profile.travelFrequency ?? "none")}
           color="text-emerald-400"
           tooltip={
             reward ? (
@@ -189,10 +198,10 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
             {international && (
               <FormulaLine sign="−" component={international} accent="text-rose-400" />
             )}
-            <div className="flex items-center justify-between border-t pt-1.5">
+            <div className="flex items-center justify-between gap-2 border-t pt-1.5">
               <span className="text-xs font-medium">Líquido</span>
-              <span className={`font-mono text-sm font-semibold ${accent}`}>
-                {money(score.netMonthlyValueBrl)}/mês
+              <span className={`min-w-0 max-w-[65%] text-right font-mono text-xs font-semibold leading-snug break-words ${accent}`}>
+                {formatNetMonthlyDisplay(score, profile.travelFrequency ?? "none")}
               </span>
             </div>
 

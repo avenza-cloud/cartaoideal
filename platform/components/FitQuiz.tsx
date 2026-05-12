@@ -333,6 +333,7 @@ export function FitQuiz() {
                   breakdown={item.breakdown}
                   totalScore={item.totalScore}
                   valueScore={item.valueScore}
+                  travelFrequency={profile.travelFrequency ?? "none"}
                 />
                 <Link
                   href={cardDetailHref(item.card.card_stable_id)}

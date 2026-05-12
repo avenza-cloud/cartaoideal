@@ -326,10 +326,14 @@ export interface CardValueScore {
   feeBurdenPctOfAnnualSpend: number | null;
   scoreDrivers: string[];
   netMonthlyValueBrl: number;
+  /** Com pontos/milhas: teto de valor líquido mensal se os pontos forem usados em viagem (preço de utilização). Igual a `netMonthlyValueBrl` quando só há cashback ou não há spread. */
+  netMonthlyValueRangeHighBrl: number;
   netAnnualValueBrl: number;
   effectiveMonthlyFeeBrl: number;
   effectiveAnnualFeeBrl: number;
   grossRewardMonthlyBrl: number;
+  /** Teto de retorno bruto mensal com pontos valorados em utilização (viagem); igual a `grossRewardMonthlyBrl` quando só há cashback ou não há spread. */
+  grossRewardMonthlyRangeHighBrl: number;
   pointsRewardMonthlyBrl: number;
   pointsRewardMonthlySaleBrl: number;
   pointsRewardMonthlyTravelBrl: number;
