@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CreditCard, Home, UserRound } from "lucide-react";
+import { BrandWordmark } from "@/components/BrandWordmark";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
@@ -21,11 +22,11 @@ export function AppHeader({ totalCards: _totalCards }: AppHeaderProps) {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/88 px-3 py-3 backdrop-blur sm:px-4 md:px-6">
       <div className="flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border bg-card text-lg">
+        <Link href="/" className="flex items-center gap-1">
+          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border bg-card text-base leading-none">
             <span aria-hidden="true">💳</span>
           </div>
-          <span className="text-sm font-semibold">Meu Cartão Ideal</span>
+          <BrandWordmark />
         </Link>
 
         <nav className="flex shrink-0 items-center gap-1 overflow-x-auto">

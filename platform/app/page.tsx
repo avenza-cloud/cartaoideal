@@ -12,7 +12,7 @@ import { BarChart3, Coins, Sparkles } from "lucide-react";
 import { getAllCards } from "@/lib/cards";
 
 export const metadata = {
-  title: "Meu Cartão Ideal — Compare os melhores cartões de crédito",
+  title: "Cartão Ideal — Compare os melhores cartões de crédito",
   description:
     "Encontre o cartão de crédito ideal para o seu perfil. Compare anuidades, benefícios e recompensas de cartões brasileiros.",
 };

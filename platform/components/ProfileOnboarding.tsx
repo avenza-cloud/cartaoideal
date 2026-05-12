@@ -6,6 +6,7 @@ import { useProfileStore } from "@/lib/store";
 import { CLIENT_CARD_OPTIONS, CURATED_CARDS, normalizeCardSearchText } from "@/lib/client-card-options";
 import { ArrowRight, ArrowLeft, CreditCard } from "lucide-react";
 import type { UserProfile } from "@/types/cards";
+import { BrandWordmark } from "@/components/BrandWordmark";
 import { cn } from "@/lib/utils";
 import { formatBrlInput, parseBrlInput } from "@/lib/brl";
 
@@ -138,7 +139,7 @@ export function ProfileOnboarding() {
             Voltar
           </button>
         ) : (
-          <span className="text-sm font-semibold tracking-tight">Meu Cartão Ideal</span>
+          <BrandWordmark />
         )}
 
         <div className="flex items-center gap-4">

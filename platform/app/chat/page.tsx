@@ -2,7 +2,7 @@ import { ChatInterface } from "@/components/ChatInterface";
 import { AppHeader } from "@/components/AppHeader";
 
 export const metadata = {
-  title: "Assistente IA — Meu Cartão Ideal",
+  title: "Assistente IA — Cartão Ideal",
   description: "Converse com nossa IA para encontrar o cartão de crédito ideal.",
 };
 

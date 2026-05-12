@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Meu Cartão Ideal — Compare e escolha o melhor cartão",
+  title: "Cartão Ideal — Compare e escolha o melhor cartão",
   description:
     "Plataforma de comparação de cartões de crédito brasileiros. Encontre o cartão ideal para seu perfil de renda, gastos e benefícios.",
 };
