@@ -9,9 +9,21 @@ import type {
   UserProfile,
 } from "@/types/cards";
 
+/**
+ * Frequência usada no modelo de valor (faixas venda→utilização, demanda de lounge/seguro, teto de venda de pontos).
+ * "Não viajo" + preferência por pontos/milhas ou lounge VIP → trata como "às vezes" (ponderação de utilização).
+ */
+export function travelFrequencyForValueModeling(profile: UserProfile): TravelFrequency {
+  const declared = profile.travelFrequency ?? "none";
+  if (declared !== "none") return declared;
+  const { prefersPoints, wantsLounge } = profile.preferences;
+  if (prefersPoints || wantsLounge) return "occasional";
+  return "none";
+}
+
 /** Valor usado para ordenar ranking: teto (utilização) se o perfil viaja, senão base conservadora (venda). */
 export function netMonthlyValueForRanking(score: CardValueScore, profile: UserProfile): number {
-  const tf: TravelFrequency = profile.travelFrequency ?? "none";
+  const tf = travelFrequencyForValueModeling(profile);
   if (tf === "occasional" || tf === "frequent") {
     return Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl);
   }
@@ -91,8 +103,9 @@ function pointValuationForCard(
   travelLabel: string;
   note: string;
 } {
+  const valueTf = travelFrequencyForValueModeling(profile);
   const nonTravelerSaleCap =
-    profile.travelFrequency === "none"
+    valueTf === "none"
       ? NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL
       : Number.POSITIVE_INFINITY;
 
@@ -256,7 +269,7 @@ function parsePointsRates(card: CardFacet): {
     for (const segment of segmentList) {
       const segNorm = normalizeText(segment);
       for (const match of segment.matchAll(
-        /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)(?:\s*(?:por|\/)\s*(?:d[oó]lar|usd)|\/usd)/gi
+        /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?|milhas?)(?:\s*(?:por|\/)\s*(?:d[oó]lar|usd)|\/usd)/gi
       )) {
         const rate = Number(match[1].replace(",", "."));
         if (!Number.isFinite(rate) || rate <= 0) continue;
@@ -273,7 +286,7 @@ function parsePointsRates(card: CardFacet): {
       }
 
       for (const match of segment.matchAll(
-        /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)(?:\s*(?:por|\/)\s*(?:real|r\$)|\/r\$)/gi
+        /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?|milhas?)(?:\s*(?:por|\/)\s*(?:real|r\$)|\/r\$)/gi
       )) {
         const rate = Number(match[1].replace(",", "."));
         if (!Number.isFinite(rate) || rate <= 0) continue;
@@ -628,6 +641,20 @@ function inferAnnualFeeFromCharacteristicsWhenFacetZero(
   return positive.length > 0 ? Math.max(...positive) : null;
 }
 
+/** Clube Smiles plano entrada — custo além da anuidade do cartão para modelar 5,5 milhas/USD no gasto geral (Diamante). */
+const GOL_SMILES_CLUB_ENTRY_MONTHLY_BRL = 43.7;
+
+const GOL_SMILES_INFINITE_STABLE_IDS = new Set<string>([
+  "bradesco-bradesco-gol-smiles-visa-infinite-18c34f9e87",
+  "banco-do-brasil-ourocard-gol-smiles-visa-infinite-5bf0562a07",
+  "santander-gol-smiles-santander-visa-infinite-b765e023db",
+]);
+
+function bundledSmilesClubAnnualAddonBrl(card: CardFacet): number {
+  if (!GOL_SMILES_INFINITE_STABLE_IDS.has(card.card_stable_id)) return 0;
+  return GOL_SMILES_CLUB_ENTRY_MONTHLY_BRL * 12;
+}
+
 function computeEffectiveAnnualFee(
   card: CardFacet,
   profile: UserProfile
@@ -753,12 +780,27 @@ function computeEffectiveAnnualFee(
     }
   }
 
-  const reason =
-    effectiveFee < baseFee
-      ? `Anuidade efetiva de R$${effectiveFee.toLocaleString("pt-BR")} após regra estruturada.`
-      : "Sem regra de isenção suficientemente estruturada para este perfil; anuidade cheia aplicada.";
+  const feeBeforeSmilesClub = effectiveFee;
+  const smilesClubAnnual = bundledSmilesClubAnnualAddonBrl(card);
+  if (smilesClubAnnual > 0) {
+    effectiveFee += smilesClubAnnual;
+    notes.push(
+      `Clube Smiles: somado ao cartão o plano mínimo (~R$${GOL_SMILES_CLUB_ENTRY_MONTHLY_BRL.toFixed(2).replace(".", ",")}/mês × 12) para modelar 5,5 milhas/USD no dia a dia; planos maiores chegam a ~R$819/mês.`
+    );
+  }
 
-  if (effectiveFee === baseFee && (feeWaivers.length > 0 || structuredRules.length > 0)) {
+  const reason =
+    smilesClubAnnual > 0
+      ? `Custo anual modelado R$${roundMoney(effectiveFee).toLocaleString("pt-BR")} (cartão R$${roundMoney(feeBeforeSmilesClub).toLocaleString("pt-BR")} + Clube Smiles R$${roundMoney(smilesClubAnnual).toLocaleString("pt-BR")}).`
+      : effectiveFee < baseFee
+        ? `Anuidade efetiva de R$${effectiveFee.toLocaleString("pt-BR")} após regra estruturada.`
+        : "Sem regra de isenção suficientemente estruturada para este perfil; anuidade cheia aplicada.";
+
+  if (
+    effectiveFee === baseFee &&
+    smilesClubAnnual === 0 &&
+    (feeWaivers.length > 0 || structuredRules.length > 0)
+  ) {
     notes.push("Há menção de isenção/desconto, mas sem condição estruturada aplicável ao perfil.");
   }
 
@@ -800,8 +842,9 @@ function effectiveIofRate(card: CardFacet, assumptions: CardValueAssumptions): n
 }
 
 function estimateAnnualTravelDemand(profile: UserProfile): number {
-  if (profile.travelFrequency === "frequent") return 10;
-  if (profile.travelFrequency === "occasional") return 6;
+  const tf = travelFrequencyForValueModeling(profile);
+  if (tf === "frequent") return 10;
+  if (tf === "occasional") return 6;
   return 1;
 }
 
@@ -1160,8 +1203,9 @@ export function scoreCardValue(
 
   const roundedNetMonthly = roundMoney(netMonthlyValue);
   const roundedNetRangeHigh = roundMoney(Math.max(netMonthlyValueRangeHighUnrounded, netMonthlyValue));
+  const valueTf = travelFrequencyForValueModeling(profile);
   const travelerNetLiquidityRange =
-    (profile.travelFrequency === "occasional" || profile.travelFrequency === "frequent") &&
+    (valueTf === "occasional" || valueTf === "frequent") &&
     Math.abs(roundedNetRangeHigh - roundedNetMonthly) >= 1;
   const netAnnualValue = netMonthlyValue * 12;
   const feeBurden =

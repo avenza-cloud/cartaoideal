@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { scoreCardValue } from "@/lib/card-value";
+import { scoreCardValue, travelFrequencyForValueModeling } from "@/lib/card-value";
 import { formatGrossRewardMonthlyDisplay, formatNetMonthlyDisplay } from "@/lib/formatting";
 import { useProfileStore } from "@/lib/store";
 import { useValueAssumptions } from "@/lib/use-value-assumptions";
@@ -85,7 +85,7 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
 
   const netMonthlyLabel = formatNetMonthlyDisplay(
     score,
-    profile.travelFrequency ?? "none"
+    travelFrequencyForValueModeling(profile)
   ).replace(/\/mês$/, "");
 
   return (
@@ -144,7 +144,7 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
       <div className="grid grid-cols-2 border-t sm:grid-cols-4">
         <Strip
           label="Retorno"
-          value={formatGrossRewardMonthlyDisplay(score, profile.travelFrequency ?? "none")}
+          value={formatGrossRewardMonthlyDisplay(score, travelFrequencyForValueModeling(profile))}
           color="text-emerald-400"
           tooltip={
             reward ? (
@@ -201,7 +201,7 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
             <div className="flex items-center justify-between gap-2 border-t pt-1.5">
               <span className="text-xs font-medium">Líquido</span>
               <span className={`min-w-0 max-w-[65%] text-right font-mono text-xs font-semibold leading-snug break-words ${accent}`}>
-                {formatNetMonthlyDisplay(score, profile.travelFrequency ?? "none")}
+                {formatNetMonthlyDisplay(score, travelFrequencyForValueModeling(profile))}
               </span>
             </div>
 

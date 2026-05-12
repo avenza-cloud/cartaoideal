@@ -129,27 +129,30 @@ export function feeWaiverBadgesFromRules(
   /** `general` costuma duplicar "sem anuidade" já mostrado no preço da linha; não exibimos chip. */
   return order
     .filter((category) => categories.has(category))
-    .map((category) => {
+    .flatMap((category): FeeWaiverBadge[] => {
       if (
         category === "monthly_spend" &&
         shouldOmitMonthlySpendBadgeForInvestmentWaiver(rules, annualFeeBrl, profile)
       ) {
-        return null;
+        return [];
       }
       if (category === "monthly_spend" && shouldShowPaidFeeDefaultForSpendWaiver(rules, annualFeeBrl)) {
-        return {
-          key: category,
-          label: "Anuidade se paga",
-          variant: "paid_fee_default" as const,
-        };
+        return [
+          {
+            key: "monthly_spend",
+            label: "Anuidade se paga",
+            variant: "paid_fee_default" as const,
+          },
+        ];
       }
-      return {
-        key: category,
-        label: BADGE_LABELS[category],
-        variant: "waiver_benefit" as const,
-      };
-    })
-    .filter((badge): badge is FeeWaiverBadge => badge !== null);
+      return [
+        {
+          key: category,
+          label: BADGE_LABELS[category],
+          variant: "waiver_benefit" as const,
+        },
+      ];
+    });
 }
 
 export function feeWaiverBadgesForCard(card: CardFacet, profile?: UserProfile | null): FeeWaiverBadge[] {

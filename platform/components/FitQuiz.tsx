@@ -12,6 +12,7 @@ import { formatFee, segmentLabel } from "@/lib/formatting";
 import { CLIENT_CARD_OPTIONS } from "@/lib/client-card-options";
 import { formatBrlInput, formatBrlNumber, parseBrlInput } from "@/lib/brl";
 import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
+import { travelFrequencyForValueModeling } from "@/lib/card-value";
 import { useCardDetailHrefBuilder } from "@/lib/use-card-detail-href";
 import Link from "next/link";
 import type { CardScore, SpendingCategory, TravelFrequency, UserProfile } from "@/types/cards";
@@ -333,7 +334,7 @@ export function FitQuiz() {
                   breakdown={item.breakdown}
                   totalScore={item.totalScore}
                   valueScore={item.valueScore}
-                  travelFrequency={profile.travelFrequency ?? "none"}
+                  travelFrequency={travelFrequencyForValueModeling(profile)}
                 />
                 <Link
                   href={cardDetailHref(item.card.card_stable_id)}

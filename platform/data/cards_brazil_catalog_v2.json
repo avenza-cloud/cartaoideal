@@ -34949,14 +34949,14 @@
         }
       },
       "rewards": {
-        "earning_rules_text": "Até 4,0 pontos por dólar gasto",
+        "earning_rules_text": "2,5 milhas por dólar em compras nacionais; 3,5 milhas por dólar em compras internacionais; 4 milhas por dólar em compras no FlyTAP",
         "earn_points_or_miles_mentioned": true,
         "earn_cashback_mentioned": false,
         "earn_investback_mentioned": false,
         "return_cashlike": {
           "has_points_or_miles": true,
           "has_cashlike_return": false,
-          "earning_summary": "Até 4,0 pontos por dólar gasto"
+          "earning_summary": "2,5 milhas por dólar em compras nacionais; 3,5 milhas por dólar em compras internacionais; 4 milhas por dólar em compras no FlyTAP"
         }
       },
       "travel_and_protection": {
@@ -34985,7 +34985,7 @@
             "Desconto progressivo: R$ 10 a cada R$ 1.000 gastos"
           ],
           "rewards": [
-            "Pontuação: Até 4,0 pontos por dólar gasto",
+            "Milhas de consumo: 2,5/USD Brasil; 3,5/USD exterior; 4/USD FlyTAP",
             "Bônus de adesão: 45.000 milhas (mantendo o gasto de R$ 20 mil por fatura durante os 3 primeiros meses)",
             "Programa de fidelidade: TAP Miles&Go",
             "Validade dos pontos: Não expiram"
@@ -35030,8 +35030,8 @@
           {
             "category": "rewards",
             "key": "earning_rate",
-            "label": "Pontuação",
-            "value": "Até 4,0 pontos por dólar gasto"
+            "label": "Milhas de consumo",
+            "value": "2,5 milhas/USD Brasil; 3,5 milhas/USD exterior; 4 milhas/USD FlyTAP"
           },
           {
             "category": "travel",
@@ -35139,7 +35139,7 @@
           "Custo anual equivalente: R$ 1.200",
           "Isenção completa: R$ 10.000/mês em compras no crédito",
           "Desconto progressivo: R$ 10 a cada R$ 1.000 gastos",
-          "Pontuação: Até 4,0 pontos por dólar gasto",
+          "Milhas de consumo: 2,5/USD Brasil; 3,5/USD exterior; 4/USD FlyTAP",
           "Bônus de adesão: 45.000 milhas (mantendo o gasto de R$ 20 mil por fatura durante os 3 primeiros meses)",
           "Programa de fidelidade: TAP Miles&Go",
           "Validade dos pontos: Não expiram",
@@ -35175,7 +35175,7 @@
           "value": {
             "has_points_or_miles": true,
             "has_cashlike_return": false,
-            "earning_summary": "Até 4,0 pontos por dólar gasto"
+            "earning_summary": "2,5 milhas por dólar em compras nacionais; 3,5 milhas por dólar em compras internacionais; 4 milhas por dólar em compras no FlyTAP"
           },
           "evidence": [
             {
@@ -35185,7 +35185,7 @@
               "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
               "internal_confidence": 1,
               "retrieved_at_utc": "2026-05-07T00:24:31.518573+00:00",
-              "excerpt": "Até 4,0 pontos por dólar gasto"
+              "excerpt": "2,5 milhas por dólar em compras nacionais; 3,5 milhas por dólar em compras internacionais; 4 milhas por dólar em compras no FlyTAP"
             }
           ]
         },
@@ -35228,7 +35228,7 @@
                 "Adicionais gratuitos: 3"
               ],
               "rewards": [
-                "Pontuação: Até 4,0 pontos por dólar gasto",
+                "Milhas de consumo: 2,5/USD Brasil; 3,5/USD exterior; 4/USD FlyTAP",
                 "Bônus de adesão: 45.000 milhas (mantendo o gasto de R$ 20 mil por fatura durante os 3 primeiros meses)",
                 "Programa de fidelidade: TAP Miles&Go",
                 "Validade dos pontos: Não expiram"
@@ -35418,7 +35418,7 @@
       "raw_source_snapshot": {
         "card_info_list": {
           "Anuidade": "R$ 1.200",
-          "Pontuação": "Até 4,0 pontos por dólar gasto",
+          "Milhas de consumo": "2,5 milhas por dólar em compras nacionais; 3,5 milhas por dólar em compras internacionais; 4 milhas por dólar em compras no FlyTAP",
           "Salas VIP": "Sim",
           "Bandeira": "Mastercard"
         },
@@ -35521,13 +35521,13 @@
             }
           },
           "rewards": {
-            "earning_summary": "Até 4,0 pontos por dólar gasto"
+            "earning_summary": "2,5 milhas por dólar em compras nacionais; 3,5 milhas por dólar em compras internacionais; 4 milhas por dólar em compras no FlyTAP"
           }
         },
         "audit_notes": [
-          "Pontuação usa teto ('até') sem regras doméstica/exterior estruturadas."
+          "Milhas de consumo estruturadas por canal: 2,5/3,5/4 por USD (Brasil, exterior, FlyTAP)."
         ],
-        "needs_human_review": true
+        "needs_human_review": false
       }
     },
     {
@@ -45980,14 +45980,14 @@
         }
       },
       "rewards": {
-        "earning_rules_text": "Até 5,5 pontos por dólar gasto",
+        "earning_rules_text": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)",
         "earn_points_or_miles_mentioned": true,
         "earn_cashback_mentioned": false,
         "earn_investback_mentioned": false,
         "return_cashlike": {
           "has_points_or_miles": true,
           "has_cashlike_return": false,
-          "earning_summary": "Até 5,5 pontos por dólar gasto"
+          "earning_summary": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
         }
       },
       "travel_and_protection": {
@@ -46010,13 +46010,14 @@
         "benefit_groups": {
           "fees": [
             "Anuidade: R$ 1.188",
+            "Clube Smiles (5,5 milhas/dólar): planos mensais de ~R$ 43,70 a ~R$ 819; custo anual efetivo modela anuidade do cartão + (clube mín. R$ 43,70 × 12).",
             "Adicionais com benefícios: Sim",
             "Isenção da anuidade: 100% de isenção da parcela mensal da anuidade a partir de R$ 15 mil em gastos",
             "Anuidade: R$ 1.188",
             "Adicionais gratuitos: 4"
           ],
           "rewards": [
-            "Pontuação: Até 5,5 pontos por dólar gasto",
+            "Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante)",
             "Bônus de adesão: 15.000 milhas (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação)",
             "Programa de fidelidade: Smiles",
             "Validade dos pontos: Não expiram"
@@ -46051,7 +46052,7 @@
             "category": "rewards",
             "key": "earning_rate",
             "label": "Pontuação",
-            "value": "Até 5,5 pontos por dólar gasto"
+            "value": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
           },
           {
             "category": "travel",
@@ -46161,7 +46162,7 @@
         ],
         "atomic_benefit_statements": [
           "Anuidade: R$ 1.188",
-          "Pontuação: Até 5,5 pontos por dólar gasto",
+          "Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante)",
           "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
           "Programa de sala VIP: Visa Airport Companion",
           "Programa de sala VIP: GOL Premium Lounge",
@@ -46200,7 +46201,7 @@
           "value": {
             "has_points_or_miles": true,
             "has_cashlike_return": false,
-            "earning_summary": "Até 5,5 pontos por dólar gasto"
+            "earning_summary": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
           },
           "evidence": [
             {
@@ -46210,7 +46211,7 @@
               "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
               "internal_confidence": 1,
               "retrieved_at_utc": "2026-05-07T00:24:31.559978+00:00",
-              "excerpt": "Até 5,5 pontos por dólar gasto"
+              "excerpt": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
             }
           ]
         },
@@ -46252,7 +46253,7 @@
                 "Adicionais gratuitos: 4"
               ],
               "rewards": [
-                "Pontuação: Até 5,5 pontos por dólar gasto",
+                "Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante)",
                 "Bônus de adesão: 15.000 milhas (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação)",
                 "Programa de fidelidade: Smiles",
                 "Validade dos pontos: Não expiram"
@@ -46287,7 +46288,7 @@
                 "category": "rewards",
                 "key": "earning_rate",
                 "label": "Pontuação",
-                "value": "Até 5,5 pontos por dólar gasto"
+                "value": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
               },
               {
                 "category": "travel",
@@ -46436,7 +46437,7 @@
       "raw_source_snapshot": {
         "card_info_list": {
           "Anuidade": "R$ 1.188",
-          "Pontuação": "Até 5,5 pontos por dólar gasto",
+          "Pontuação": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)",
           "Salas VIP": "Sim",
           "Bandeira": "Visa"
         },
@@ -46537,13 +46538,13 @@
             }
           },
           "rewards": {
-            "earning_summary": "Até 5,5 pontos por dólar gasto"
+            "earning_summary": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
           }
         },
         "audit_notes": [
-          "Pontuação usa teto ('até') sem regras doméstica/exterior estruturadas."
+          "Pontuação em milhas no dia a dia: 3/USD (cliente Smiles) ou 5,5/USD (Clube Smiles ou Diamante); 5,5 exige assinatura do Clube (planos mensais publicados)."
         ],
-        "needs_human_review": true
+        "needs_human_review": false
       }
     },
     {
@@ -50842,14 +50843,14 @@
         }
       },
       "rewards": {
-        "earning_rules_text": "Até 5,5 pontos por dólar gasto",
+        "earning_rules_text": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)",
         "earn_points_or_miles_mentioned": true,
         "earn_cashback_mentioned": false,
         "earn_investback_mentioned": false,
         "return_cashlike": {
           "has_points_or_miles": true,
           "has_cashlike_return": false,
-          "earning_summary": "Até 5,5 pontos por dólar gasto"
+          "earning_summary": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
         }
       },
       "travel_and_protection": {
@@ -50872,13 +50873,14 @@
         "benefit_groups": {
           "fees": [
             "Anuidade: R$ 1.428",
+            "Clube Smiles (5,5 milhas/dólar): planos mensais de ~R$ 43,70 a ~R$ 819; custo anual efetivo modela anuidade do cartão + (clube mín. R$ 43,70 × 12).",
             "Adicionais com benefícios: Sim",
             "Isenção da anuidade: Não há nenhuma publicada",
             "Anuidade: R$ 1.428",
             "Adicionais gratuitos: 4"
           ],
           "rewards": [
-            "Pontuação: Até 5,5 pontos por dólar gasto",
+            "Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante)",
             "Bônus de adesão: 15.000 milhas (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação)",
             "Programa de fidelidade: Smiles",
             "Validade dos pontos: Não expiram"
@@ -50913,7 +50915,7 @@
             "category": "rewards",
             "key": "earning_rate",
             "label": "Pontuação",
-            "value": "Até 5,5 pontos por dólar gasto"
+            "value": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
           },
           {
             "category": "travel",
@@ -51023,7 +51025,7 @@
         ],
         "atomic_benefit_statements": [
           "Anuidade: R$ 1.428",
-          "Pontuação: Até 5,5 pontos por dólar gasto",
+          "Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante)",
           "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
           "Programa de sala VIP: Visa Airport Companion",
           "Programa de sala VIP: GOL Premium Lounge",
@@ -51062,7 +51064,7 @@
           "value": {
             "has_points_or_miles": true,
             "has_cashlike_return": false,
-            "earning_summary": "Até 5,5 pontos por dólar gasto"
+            "earning_summary": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
           },
           "evidence": [
             {
@@ -51072,7 +51074,7 @@
               "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
               "internal_confidence": 1,
               "retrieved_at_utc": "2026-05-07T00:24:31.580044+00:00",
-              "excerpt": "Até 5,5 pontos por dólar gasto"
+              "excerpt": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
             }
           ]
         },
@@ -51114,7 +51116,7 @@
                 "Adicionais gratuitos: 4"
               ],
               "rewards": [
-                "Pontuação: Até 5,5 pontos por dólar gasto",
+                "Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante)",
                 "Bônus de adesão: 15.000 milhas (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação)",
                 "Programa de fidelidade: Smiles",
                 "Validade dos pontos: Não expiram"
@@ -51149,7 +51151,7 @@
                 "category": "rewards",
                 "key": "earning_rate",
                 "label": "Pontuação",
-                "value": "Até 5,5 pontos por dólar gasto"
+                "value": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
               },
               {
                 "category": "travel",
@@ -51298,7 +51300,7 @@
       "raw_source_snapshot": {
         "card_info_list": {
           "Anuidade": "R$ 1.428",
-          "Pontuação": "Até 5,5 pontos por dólar gasto",
+          "Pontuação": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)",
           "Salas VIP": "Sim",
           "Bandeira": "Visa"
         },
@@ -51395,13 +51397,13 @@
             }
           },
           "rewards": {
-            "earning_summary": "Até 5,5 pontos por dólar gasto"
+            "earning_summary": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
           }
         },
         "audit_notes": [
-          "Pontuação usa teto ('até') sem regras doméstica/exterior estruturadas."
+          "Pontuação em milhas no dia a dia: 3/USD (cliente Smiles) ou 5,5/USD (Clube Smiles ou Diamante); 5,5 exige assinatura do Clube (planos mensais publicados)."
         ],
-        "needs_human_review": true
+        "needs_human_review": false
       }
     },
     {
@@ -53725,14 +53727,14 @@
         }
       },
       "rewards": {
-        "earning_rules_text": "Até 5,5 pontos por dólar gasto",
+        "earning_rules_text": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)",
         "earn_points_or_miles_mentioned": true,
         "earn_cashback_mentioned": false,
         "earn_investback_mentioned": false,
         "return_cashlike": {
           "has_points_or_miles": true,
           "has_cashlike_return": false,
-          "earning_summary": "Até 5,5 pontos por dólar gasto"
+          "earning_summary": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
         }
       },
       "travel_and_protection": {
@@ -53754,13 +53756,14 @@
         "benefit_groups": {
           "fees": [
             "Anuidade: R$ 1.360",
+            "Clube Smiles (5,5 milhas/dólar): planos mensais de ~R$ 43,70 a ~R$ 819; custo anual efetivo modela anuidade do cartão + (clube mín. R$ 43,70 × 12).",
             "Adicionais com benefícios: Não ()",
             "Isenção da anuidade: Não há nenhuma publicada",
             "Anuidade: R$ 1.360",
             "Adicionais gratuitos: 5"
           ],
           "rewards": [
-            "Pontuação: Até 5,5 pontos por dólar gasto",
+            "Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante)",
             "Bônus de adesão: 15.000 (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação)",
             "Programa de fidelidade: Smiles",
             "Validade dos pontos: Não expiram"
@@ -53795,7 +53798,7 @@
             "category": "rewards",
             "key": "earning_rate",
             "label": "Pontuação",
-            "value": "Até 5,5 pontos por dólar gasto"
+            "value": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
           },
           {
             "category": "travel",
@@ -53905,7 +53908,7 @@
         ],
         "atomic_benefit_statements": [
           "Anuidade: R$ 1.360",
-          "Pontuação: Até 5,5 pontos por dólar gasto",
+          "Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante)",
           "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
           "Programa de sala VIP: Visa Airport Companion",
           "Programa de sala VIP: GOL Premium Lounge",
@@ -53944,7 +53947,7 @@
           "value": {
             "has_points_or_miles": true,
             "has_cashlike_return": false,
-            "earning_summary": "Até 5,5 pontos por dólar gasto"
+            "earning_summary": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
           },
           "evidence": [
             {
@@ -53954,7 +53957,7 @@
               "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
               "internal_confidence": 1,
               "retrieved_at_utc": "2026-05-07T00:24:31.588005+00:00",
-              "excerpt": "Até 5,5 pontos por dólar gasto"
+              "excerpt": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
             }
           ]
         },
@@ -53995,7 +53998,7 @@
                 "Adicionais gratuitos: 5"
               ],
               "rewards": [
-                "Pontuação: Até 5,5 pontos por dólar gasto",
+                "Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante)",
                 "Bônus de adesão: 15.000 (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação)",
                 "Programa de fidelidade: Smiles",
                 "Validade dos pontos: Não expiram"
@@ -54030,7 +54033,7 @@
                 "category": "rewards",
                 "key": "earning_rate",
                 "label": "Pontuação",
-                "value": "Até 5,5 pontos por dólar gasto"
+                "value": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
               },
               {
                 "category": "travel",
@@ -54179,7 +54182,7 @@
       "raw_source_snapshot": {
         "card_info_list": {
           "Anuidade": "R$ 1.360",
-          "Pontuação": "Até 5,5 pontos por dólar gasto",
+          "Pontuação": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)",
           "Salas VIP": "Sim",
           "Bandeira": "Visa"
         },
@@ -54276,13 +54279,13 @@
             }
           },
           "rewards": {
-            "earning_summary": "Até 5,5 pontos por dólar gasto"
+            "earning_summary": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
           }
         },
         "audit_notes": [
-          "Pontuação usa teto ('até') sem regras doméstica/exterior estruturadas."
+          "Pontuação em milhas no dia a dia: 3/USD (cliente Smiles) ou 5,5/USD (Clube Smiles ou Diamante); 5,5 exige assinatura do Clube (planos mensais publicados)."
         ],
-        "needs_human_review": true
+        "needs_human_review": false
       }
     },
     {

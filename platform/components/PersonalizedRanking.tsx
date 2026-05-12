@@ -16,7 +16,7 @@ import {
 } from "@/lib/formatting";
 import { feeWaiverBadgeClassName, feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
 import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
-import { DEFAULT_SCORING_PROFILE, scoreCardValue, scoreCardValues } from "@/lib/card-value";
+import { DEFAULT_SCORING_PROFILE, scoreCardValue, scoreCardValues, travelFrequencyForValueModeling } from "@/lib/card-value";
 import { useCardDetailHref } from "@/lib/use-card-detail-href";
 import { useValueAssumptions } from "@/lib/use-value-assumptions";
 import { Button } from "@/components/ui/button";
@@ -342,7 +342,7 @@ export function PersonalizedRanking() {
           score={currentCardScore}
           rank={currentCardRanking?.rank}
           spend={profile.avgMonthlySpendBrl}
-          travelFrequency={profile.travelFrequency ?? "none"}
+          travelFrequency={travelFrequencyForValueModeling(profile)}
         />
       )}
 
@@ -401,7 +401,7 @@ export function PersonalizedRanking() {
                 valueScore={scored.valueScore}
                 scoreBar={Math.round(scored.totalScore * 100)}
                 badges={feeWaiverBadgesForCard(card, profile)}
-                travelFrequency={profile.travelFrequency ?? "none"}
+                travelFrequency={travelFrequencyForValueModeling(profile)}
               />
             );
           })}
@@ -433,7 +433,7 @@ export function PersonalizedRanking() {
                 valueScore={c.score}
                 scoreBar={c.score.score0To100}
                 badges={feeWaiverBadgesForCard(c.score.card)}
-                travelFrequency={DEFAULT_SCORING_PROFILE.travelFrequency}
+                travelFrequency={travelFrequencyForValueModeling(DEFAULT_SCORING_PROFILE)}
               />
             );
           })}

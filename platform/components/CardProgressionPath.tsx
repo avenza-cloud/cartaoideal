@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { useProfileStore } from "@/lib/store";
 import { formatFee, formatNetMonthlyDisplay } from "@/lib/formatting";
+import { travelFrequencyForValueModeling } from "@/lib/card-value";
 import { formatBrlCurrency, formatBrlInput, parseBrlInput } from "@/lib/brl";
 import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
 import { useCardDetailHref } from "@/lib/use-card-detail-href";
@@ -223,7 +224,7 @@ export function CardProgressionPath() {
 
   if (!profile || !onboardingDone) return null;
 
-  const travelFrequency = profile.travelFrequency ?? "none";
+  const travelFrequency = travelFrequencyForValueModeling(profile);
 
   return (
     <div className="rounded-3xl border bg-card/50 p-4">

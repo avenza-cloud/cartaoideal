@@ -4,6 +4,7 @@ import {
   netMonthlyValueForRanking,
   scoreCardValue,
   scoreCardValues,
+  travelFrequencyForValueModeling,
 } from "@/lib/card-value";
 import { getCardById, getAllCards } from "@/lib/cards";
 import type { CardFacet, CardValueScore, UserProfile } from "@/types/cards";
@@ -508,6 +509,42 @@ describe("netMonthlyValueForRanking", () => {
       300
     );
     expect(netMonthlyValueForRanking(s, { ...baseProfile, travelFrequency: "frequent" })).toBe(300);
+  });
+
+  it("uses max net when declared non-traveler but prefers points (modelo às vezes)", () => {
+    const s = {
+      netMonthlyValueBrl: 100,
+      netMonthlyValueRangeHighBrl: 300,
+    } as CardValueScore;
+    const profile: UserProfile = {
+      ...baseProfile,
+      travelFrequency: "none",
+      preferences: { ...baseProfile.preferences, prefersCashback: false, prefersPoints: true },
+    };
+    expect(netMonthlyValueForRanking(s, profile)).toBe(300);
+  });
+});
+
+describe("travelFrequencyForValueModeling", () => {
+  it('maps "não viajo" + pontos ou lounge to occasional', () => {
+    const withPoints: UserProfile = {
+      ...baseProfile,
+      travelFrequency: "none",
+      preferences: { ...baseProfile.preferences, prefersPoints: true, wantsLounge: false },
+    };
+    const withLounge: UserProfile = {
+      ...baseProfile,
+      travelFrequency: "none",
+      preferences: { ...baseProfile.preferences, prefersPoints: false, wantsLounge: true },
+    };
+    expect(travelFrequencyForValueModeling(withPoints)).toBe("occasional");
+    expect(travelFrequencyForValueModeling(withLounge)).toBe("occasional");
+  });
+
+  it("keeps declared frequency when not none", () => {
+    expect(travelFrequencyForValueModeling({ ...baseProfile, travelFrequency: "frequent" })).toBe(
+      "frequent"
+    );
   });
 });
 

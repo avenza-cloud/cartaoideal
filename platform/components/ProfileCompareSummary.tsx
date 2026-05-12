@@ -1,7 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { scoreCardValue, netMonthlyValueForRanking } from "@/lib/card-value";
+import {
+  netMonthlyValueForRanking,
+  scoreCardValue,
+  travelFrequencyForValueModeling,
+} from "@/lib/card-value";
 import { useProfileStore } from "@/lib/store";
 import { useCardDetailHrefBuilder } from "@/lib/use-card-detail-href";
 import { useValueAssumptions } from "@/lib/use-value-assumptions";
@@ -92,11 +96,14 @@ export function ProfileCompareSummary({ cards }: ProfileCompareSummaryProps) {
                     : "text-rose-500"
                 }`}
               >
-                {formatNetMonthlyDisplay(score, profile.travelFrequency ?? "none")}
+                {formatNetMonthlyDisplay(score, travelFrequencyForValueModeling(profile))}
               </p>
             </div>
             <div className="mt-2 grid grid-cols-3 gap-1.5 text-[10px]">
-              <Metric label="Retorno" value={formatGrossRewardMonthlyDisplay(score, profile.travelFrequency ?? "none")} />
+              <Metric
+                label="Retorno"
+                value={formatGrossRewardMonthlyDisplay(score, travelFrequencyForValueModeling(profile))}
+              />
               <Metric label="Benefícios" value={money(score.intangibleMonthlyValueBrl)} />
               <Metric label="Anuidade" value={`-${money(score.effectiveMonthlyFeeBrl).replace("+", "")}`} />
             </div>

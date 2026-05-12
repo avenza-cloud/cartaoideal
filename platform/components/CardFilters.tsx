@@ -1,11 +1,13 @@
 "use client";
 
+import { useMemo } from "react";
 import { Search, X } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { useProfileStore } from "@/lib/store";
 
 const SEGMENTS = [
   { value: "", label: "Todos" },
@@ -16,13 +18,6 @@ const SEGMENTS = [
 ];
 
 const NETWORKS = ["Visa", "Mastercard", "American Express", "Elo", "Hipercard"];
-
-const BOOLEAN_FILTERS = [
-  { key: "lounge" as const, label: "Lounge" },
-  { key: "rewardReturn" as const, label: "Retorno financeiro" },
-  { key: "points" as const, label: "Pontos/Milhas" },
-  { key: "zeroFee" as const, label: "Sem anuidade" },
-];
 
 const RANKING_MODES = [
   { value: "profile" as const, label: "Seu perfil", title: "Ordenar pelo seu perfil" },
@@ -48,6 +43,24 @@ interface CardFiltersProps {
 }
 
 export function CardFilters({ active, update, totalFiltered, totalAll }: CardFiltersProps) {
+  const profile = useProfileStore((s) => s.profile);
+
+  const booleanFilters = useMemo(() => {
+    const prefersCashbackLens =
+      !!profile &&
+      (profile.preferences.prefersCashback || profile.preferences.prefersInvestback) &&
+      !profile.preferences.prefersPoints;
+    return [
+      { key: "lounge" as const, label: "Lounge" },
+      {
+        key: "rewardReturn" as const,
+        label: prefersCashbackLens ? "Cashback" : "Retorno financeiro",
+      },
+      { key: "points" as const, label: "Pontos/Milhas" },
+      { key: "zeroFee" as const, label: "Sem anuidade" },
+    ];
+  }, [profile]);
+
   const content = (
     <>
       <div>
@@ -158,7 +171,7 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
           Benefícios
         </p>
         <div className="flex flex-wrap gap-1.5">
-          {BOOLEAN_FILTERS.map((f) => (
+          {booleanFilters.map((f) => (
             <Badge
               key={f.key}
               variant={active[f.key] ? "default" : "outline"}

@@ -13695,7 +13695,7 @@
       },
       "reward_return": {
         "has_cashlike_return": false,
-        "earning_summary": "Até 4,0 pontos por dólar gasto"
+        "earning_summary": "2,5 milhas por dólar em compras nacionais; 3,5 milhas por dólar em compras internacionais; 4 milhas por dólar em compras no FlyTAP"
       },
       "lounge_access": {
         "has_lounge_access": true,
@@ -13728,7 +13728,7 @@
           "Desconto progressivo: R$ 10 a cada R$ 1.000 gastos"
         ],
         "rewards": [
-          "Pontuação: Até 4,0 pontos por dólar gasto",
+          "Milhas de consumo (TAP Miles&Go): 2,5/USD Brasil, 3,5/USD exterior, 4/USD FlyTAP",
           "Bônus de adesão: 45.000 milhas (mantendo o gasto de R$ 20 mil por fatura durante os 3 primeiros meses)",
           "Programa de fidelidade: TAP Miles&Go",
           "Validade dos pontos: Não expiram"
@@ -13773,8 +13773,26 @@
         {
           "category": "rewards",
           "key": "earning_rate",
-          "label": "Pontuação",
-          "value": "Até 4,0 pontos por dólar gasto"
+          "label": "Milhas de consumo",
+          "value": "2,5 milhas/USD Brasil; 3,5 milhas/USD exterior; 4 milhas/USD FlyTAP"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Nacional",
+          "value": "2,5 milhas por dólar gasto em compras nacionais"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Internacional",
+          "value": "3,5 milhas por dólar gasto em compras internacionais"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "FlyTAP",
+          "value": "4 milhas por dólar gasto em compras no FlyTAP"
         },
         {
           "category": "travel",
@@ -13904,7 +13922,7 @@
         "travel:lounge",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "TAP BTG Pactual Black \nEmissor: BTG Pactual \nBandeira: Mastercard \nFaixa: Black \nElegibilidade: unknown \nGanhos: Até 4,0 pontos por dólar gasto \nProgramas: unknown \nMensalidade: R$ 100; isenção com R$ 10.000/mês ou desconto de R$ 10 a cada R$ 1.000 gastos\nSalas VIP / programa: Salas VIP do LoungeKey - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano | TAP Premium Lounge - Aeroporto de Lisboa - 3 acessos gratuitos para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: R$ 1.200; Pontuação: Até 4,0 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Sala VIP Mastercard Black; Programa de sala VIP: TAP Premium Lounge; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: 45.000 milhas (mantendo o gasto de R$ 20 mil por fatura durante os 3 primeiros meses); Salas VIP: Salas VIP do LoungeKey - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano; Salas VIP: TAP Premium Lounge - Aeroporto de Lisboa - 3 acessos gratuitos para o portador e 0 acompanhante gratuito por ano \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
+      "text_for_embedding_compare": "TAP BTG Pactual Black \nEmissor: BTG Pactual \nBandeira: Mastercard \nFaixa: Black \nElegibilidade: unknown \nGanhos: 2,5 milhas/USD Brasil; 3,5 milhas/USD exterior; 4 milhas/USD FlyTAP \nProgramas: unknown \nMensalidade: R$ 100; isenção com R$ 10.000/mês ou desconto de R$ 10 a cada R$ 1.000 gastos\nSalas VIP / programa: Salas VIP do LoungeKey - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano | TAP Premium Lounge - Aeroporto de Lisboa - 3 acessos gratuitos para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: R$ 1.200; Milhas de consumo: 2,5/USD Brasil; 3,5/USD exterior; 4/USD FlyTAP; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: LoungeKey; Programa de sala VIP: Sala VIP Mastercard Black; Programa de sala VIP: TAP Premium Lounge; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: 45.000 milhas (mantendo o gasto de R$ 20 mil por fatura durante os 3 primeiros meses); Salas VIP: Salas VIP do LoungeKey - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano; Salas VIP: TAP Premium Lounge - Aeroporto de Lisboa - 3 acessos gratuitos para o portador e 0 acompanhante gratuito por ano \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
@@ -18019,7 +18037,7 @@
       },
       "reward_return": {
         "has_cashlike_return": false,
-        "earning_summary": "Até 5,5 pontos por dólar gasto"
+        "earning_summary": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
       },
       "lounge_access": {
         "has_lounge_access": true,
@@ -18046,13 +18064,14 @@
       "benefit_groups": {
         "fees": [
           "Anuidade: R$ 1.188",
+          "Clube Smiles (5,5 milhas/dólar): planos mensais de ~R$ 43,70 a ~R$ 819; custo anual efetivo modela anuidade do cartão + (clube mín. R$ 43,70 × 12).",
           "Adicionais com benefícios: Sim",
           "Isenção da anuidade: 100% de isenção da parcela mensal da anuidade a partir de R$ 15 mil em gastos",
           "Anuidade: R$ 1.188",
           "Adicionais gratuitos: 4"
         ],
         "rewards": [
-          "Pontuação: Até 5,5 pontos por dólar gasto",
+          "Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante)",
           "Bônus de adesão: 15.000 milhas (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação)",
           "Programa de fidelidade: Smiles",
           "Validade dos pontos: Não expiram"
@@ -18086,8 +18105,26 @@
         {
           "category": "rewards",
           "key": "earning_rate",
-          "label": "Pontuação",
-          "value": "Até 5,5 pontos por dólar gasto"
+          "label": "Milhas (dia a dia)",
+          "value": "3 milhas/USD (cliente Smiles); 5,5 milhas/USD (Clube Smiles ou Diamante)"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Cliente Smiles",
+          "value": "3 milhas por dólar em compras do dia a dia"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Clube Smiles ou Diamante",
+          "value": "5,5 milhas por dólar em compras do dia a dia"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Renovação (milhas)",
+          "value": "Cliente Smiles: 5.000 milhas por ano; Clube Smiles ou Diamante: 7.000 milhas por ano"
         },
         {
           "category": "travel",
@@ -18222,7 +18259,7 @@
         "travel:lounge",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "Ourocard GOL Smiles Visa Infinite \nEmissor: Banco do Brasil \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: unknown \nGanhos: Até 5,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 1.188 \nSalas VIP / programa: Salas VIP do Visa Airport Companion - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita \nBenefícios (lista): Anuidade: R$ 1.188; Pontuação: Até 5,5 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Programa de sala VIP: GOL Premium Lounge; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: 15.000 milhas (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação); Salas VIP: Salas VIP do Visa Airport Companion - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Salas VIP: GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita; Programa de fidelidade: Smiles; Validade dos pontos: Não expiram \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
+      "text_for_embedding_compare": "Ourocard GOL Smiles Visa Infinite \nEmissor: Banco do Brasil \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: unknown \nGanhos: 3 milhas/USD (cliente Smiles); 5,5 milhas/USD (Clube Smiles ou Diamante) \nProgramas: unknown \nAnuidade (campo principal): R$ 1.188 \nSalas VIP / programa: Salas VIP do Visa Airport Companion - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita \nBenefícios (lista): Anuidade: R$ 1.188; Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante); Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Programa de sala VIP: GOL Premium Lounge; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: 15.000 milhas (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação); Salas VIP: Salas VIP do Visa Airport Companion - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Salas VIP: GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita; Programa de fidelidade: Smiles; Validade dos pontos: Não expiram \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)",
       "fee_waiver_rules": [
         {
           "category": "monthly_spend",
@@ -19921,7 +19958,7 @@
       },
       "reward_return": {
         "has_cashlike_return": false,
-        "earning_summary": "Até 5,5 pontos por dólar gasto"
+        "earning_summary": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
       },
       "lounge_access": {
         "has_lounge_access": true,
@@ -19948,13 +19985,14 @@
       "benefit_groups": {
         "fees": [
           "Anuidade: R$ 1.428",
+          "Clube Smiles (5,5 milhas/dólar): planos mensais de ~R$ 43,70 a ~R$ 819; custo anual efetivo modela anuidade do cartão + (clube mín. R$ 43,70 × 12).",
           "Adicionais com benefícios: Sim",
           "Isenção da anuidade: Não há nenhuma publicada",
           "Anuidade: R$ 1.428",
           "Adicionais gratuitos: 4"
         ],
         "rewards": [
-          "Pontuação: Até 5,5 pontos por dólar gasto",
+          "Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante)",
           "Bônus de adesão: 15.000 milhas (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação)",
           "Programa de fidelidade: Smiles",
           "Validade dos pontos: Não expiram"
@@ -19988,8 +20026,26 @@
         {
           "category": "rewards",
           "key": "earning_rate",
-          "label": "Pontuação",
-          "value": "Até 5,5 pontos por dólar gasto"
+          "label": "Milhas (dia a dia)",
+          "value": "3 milhas/USD (cliente Smiles); 5,5 milhas/USD (Clube Smiles ou Diamante)"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Cliente Smiles",
+          "value": "3 milhas por dólar em compras do dia a dia"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Clube Smiles ou Diamante",
+          "value": "5,5 milhas por dólar em compras do dia a dia"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Renovação (milhas)",
+          "value": "Cliente Smiles: 5.000 milhas por ano; Clube Smiles ou Diamante: 7.000 milhas por ano"
         },
         {
           "category": "travel",
@@ -20124,7 +20180,7 @@
         "travel:lounge",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "Bradesco GOL Smiles Visa Infinite \nEmissor: Bradesco \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: unknown \nGanhos: Até 5,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 1.428 \nSalas VIP / programa: Salas VIP do Visa Airport Companion - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita \nBenefícios (lista): Anuidade: R$ 1.428; Pontuação: Até 5,5 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Programa de sala VIP: GOL Premium Lounge; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: 15.000 milhas (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação); Salas VIP: Salas VIP do Visa Airport Companion - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Salas VIP: GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita; Programa de fidelidade: Smiles; Validade dos pontos: Não expiram \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
+      "text_for_embedding_compare": "Bradesco GOL Smiles Visa Infinite \nEmissor: Bradesco \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: unknown \nGanhos: 3 milhas/USD (cliente Smiles); 5,5 milhas/USD (Clube Smiles ou Diamante) \nProgramas: unknown \nAnuidade (campo principal): R$ 1.428 \nSalas VIP / programa: Salas VIP do Visa Airport Companion - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita \nBenefícios (lista): Anuidade: R$ 1.428; Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante); Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Programa de sala VIP: GOL Premium Lounge; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: 15.000 milhas (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação); Salas VIP: Salas VIP do Visa Airport Companion - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Salas VIP: GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita; Programa de fidelidade: Smiles; Validade dos pontos: Não expiram \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
     },
     {
       "card_stable_id": "c6-bank-c6-mastercard-platinum-d8b91abb5d",
@@ -21022,7 +21078,7 @@
       },
       "reward_return": {
         "has_cashlike_return": false,
-        "earning_summary": "Até 5,5 pontos por dólar gasto"
+        "earning_summary": "3 milhas por dólar (cliente Smiles); 5,5 milhas por dólar (Clube Smiles ou categoria Diamante)"
       },
       "lounge_access": {
         "has_lounge_access": true,
@@ -21048,13 +21104,14 @@
       "benefit_groups": {
         "fees": [
           "Anuidade: R$ 1.360",
+          "Clube Smiles (5,5 milhas/dólar): planos mensais de ~R$ 43,70 a ~R$ 819; custo anual efetivo modela anuidade do cartão + (clube mín. R$ 43,70 × 12).",
           "Adicionais com benefícios: Não ()",
           "Isenção da anuidade: Não há nenhuma publicada",
           "Anuidade: R$ 1.360",
           "Adicionais gratuitos: 5"
         ],
         "rewards": [
-          "Pontuação: Até 5,5 pontos por dólar gasto",
+          "Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante)",
           "Bônus de adesão: 15.000 (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação)",
           "Programa de fidelidade: Smiles",
           "Validade dos pontos: Não expiram"
@@ -21088,8 +21145,26 @@
         {
           "category": "rewards",
           "key": "earning_rate",
-          "label": "Pontuação",
-          "value": "Até 5,5 pontos por dólar gasto"
+          "label": "Milhas (dia a dia)",
+          "value": "3 milhas/USD (cliente Smiles); 5,5 milhas/USD (Clube Smiles ou Diamante)"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Cliente Smiles",
+          "value": "3 milhas por dólar em compras do dia a dia"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Clube Smiles ou Diamante",
+          "value": "5,5 milhas por dólar em compras do dia a dia"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Renovação (milhas)",
+          "value": "Cliente Smiles: 5.000 milhas por ano; Clube Smiles ou Diamante: 7.000 milhas por ano"
         },
         {
           "category": "travel",
@@ -21224,7 +21299,7 @@
         "travel:lounge",
         "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "Gol Smiles Santander Visa Infinite \nEmissor: Santander \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: unknown \nGanhos: Até 5,5 pontos por dólar gasto \nProgramas: unknown \nAnuidade (campo principal): R$ 1.360 \nSalas VIP / programa: Salas VIP do Visa Airport Companion - 1 acesso gratuito para o portador e 0 acompanhante gratuito por ano | GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita \nBenefícios (lista): Anuidade: R$ 1.360; Pontuação: Até 5,5 pontos por dólar gasto; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Programa de sala VIP: GOL Premium Lounge; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: 15.000 (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação); Salas VIP: Salas VIP do Visa Airport Companion - 1 acesso gratuito para o portador e 0 acompanhante gratuito por ano; Salas VIP: GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita; Programa de fidelidade: Smiles; Validade dos pontos: Não expiram \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
+      "text_for_embedding_compare": "Gol Smiles Santander Visa Infinite \nEmissor: Santander \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: unknown \nGanhos: 3 milhas/USD (cliente Smiles); 5,5 milhas/USD (Clube Smiles ou Diamante) \nProgramas: unknown \nAnuidade (campo principal): R$ 1.360 \nSalas VIP / programa: Salas VIP do Visa Airport Companion - 1 acesso gratuito para o portador e 0 acompanhante gratuito por ano | GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita \nBenefícios (lista): Anuidade: R$ 1.360; Milhas no dia a dia: 3/USD (cliente Smiles); 5,5/USD (Clube Smiles ou Diamante); Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Programa de sala VIP: GOL Premium Lounge; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Bônus de adesão: 15.000 (Assinantes do Clube Smiles recebem 20.000 como bônus de adesão e 7.000 na renovação); Salas VIP: Salas VIP do Visa Airport Companion - 1 acesso gratuito para o portador e 0 acompanhante gratuito por ano; Salas VIP: GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita; Programa de fidelidade: Smiles; Validade dos pontos: Não expiram \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
     },
     {
       "card_stable_id": "bradesco-bradesco-visa-infinite-8e85d7b01b",

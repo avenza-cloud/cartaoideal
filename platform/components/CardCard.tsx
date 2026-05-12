@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Check, CreditCard, Plane, Coins, ExternalLink } from "lucide-react";
 import { formatFee, formatNetMonthlyDisplay, loungeSummary, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
+import { travelFrequencyForValueModeling } from "@/lib/card-value";
 import { feeWaiverBadgeClassName, feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
 // lib/cards.ts re-exports same helpers but is server-only; formatting is shared
 import type { CardFacet, CardValueScore } from "@/types/cards";
@@ -131,7 +132,10 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
                       : "text-rose-500"
                   }`}
                 >
-                  {formatNetMonthlyDisplay(valueScore, profile?.travelFrequency ?? "none")}
+                  {formatNetMonthlyDisplay(
+                    valueScore,
+                    profile ? travelFrequencyForValueModeling(profile) : "none"
+                  )}
                 </p>
               </div>
             </div>

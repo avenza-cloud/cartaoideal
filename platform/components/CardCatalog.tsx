@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { filterCards } from "@/lib/filter-cards";
+import { useProfileStore } from "@/lib/store";
 import { CardFilters } from "@/components/CardFilters";
 import { ProfileRankedCatalog } from "@/components/ProfileRankedCatalog";
 import type { CardFacet, CardFilters as IFilters, MarketSegment } from "@/types/cards";
@@ -30,11 +31,15 @@ const EMPTY: ActiveFilters = {
 };
 
 function fromSearchParams(params: URLSearchParams): ActiveFilters {
+  const rewardReturnFromQuery =
+    params.get("rewardReturn") === "true" ||
+    params.get("cashback") === "true" ||
+    params.get("investback") === "true";
   return {
     segment: params.get("segment") ?? "",
     network: params.get("network") ?? "",
     lounge: params.get("lounge") === "true",
-    rewardReturn: params.get("rewardReturn") === "true",
+    rewardReturn: rewardReturnFromQuery,
     points: params.get("points") === "true",
     zeroFee: params.get("zeroFee") === "true",
     search: params.get("search") ?? "",
@@ -74,10 +79,30 @@ interface CardCatalogProps {
 export function CardCatalog({ allCards }: CardCatalogProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const profile = useProfileStore((s) => s.profile);
 
   const [active, setActive] = useState<ActiveFilters>(() =>
     fromSearchParams(searchParams)
   );
+
+  // Alinhar filtros de benefício ao perfil quando o usuário não veio com query explícita
+  useEffect(() => {
+    if (!profile) return;
+    const p = profile.preferences;
+    const wantsCashbackLens =
+      (p.prefersCashback || p.prefersInvestback) && !p.prefersPoints;
+    const wantsPointsLens =
+      p.prefersPoints && !p.prefersCashback && !p.prefersInvestback;
+    if (!wantsCashbackLens && !wantsPointsLens) return;
+
+    setActive((prev) => {
+      const benefitsTouched = prev.rewardReturn || prev.points || prev.lounge;
+      if (benefitsTouched) return prev;
+      if (wantsCashbackLens) return { ...prev, rewardReturn: true, points: false };
+      if (wantsPointsLens) return { ...prev, points: true, rewardReturn: false };
+      return prev;
+    });
+  }, [profile]);
 
   // Track whether the last update came from the search input (needs debounce)
   const isSearchUpdate = useRef(false);
