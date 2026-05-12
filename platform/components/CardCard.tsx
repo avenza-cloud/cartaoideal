@@ -6,10 +6,11 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Check, CreditCard, Plane, Coins, ExternalLink } from "lucide-react";
 import { formatFee, loungeSummary, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
-import { feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
+import { feeWaiverBadgeClassName, feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
 // lib/cards.ts re-exports same helpers but is server-only; formatting is shared
 import type { CardFacet, CardValueScore } from "@/types/cards";
-import { useCompareStore } from "@/lib/store";
+import { useCompareStore, useProfileStore } from "@/lib/store";
+import { useCardDetailHref } from "@/lib/use-card-detail-href";
 
 interface CardCardProps {
   card: CardFacet;
@@ -42,7 +43,9 @@ function classification(score: CardValueScore) {
 
 export function CardCard({ card, compact = false, valueScore, rank }: CardCardProps) {
   const { ids, add, remove, canAdd } = useCompareStore();
+  const profile = useProfileStore((s) => s.profile);
   const isSelected = ids.includes(card.card_stable_id);
+  const detailHref = useCardDetailHref(card.card_stable_id);
 
   function toggleCompare(e: React.MouseEvent) {
     e.preventDefault();
@@ -53,10 +56,10 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
   const fee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
   const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
   const hasReturn = card.reward_return.has_cashlike_return;
-  const feeWaiverBadges = feeWaiverBadgesForCard(card);
+  const feeWaiverBadges = feeWaiverBadgesForCard(card, profile);
 
   return (
-    <Link href={`/cartoes/${card.card_stable_id}`} className="group">
+    <Link href={detailHref} className="group">
       <Card className="h-full cursor-pointer overflow-hidden transition-colors hover:border-border/80 hover:bg-card/80">
         <CardHeader className={compact ? "space-y-2 p-3 pb-2" : "space-y-3 pb-2"}>
           <div className={`relative flex items-center justify-center overflow-hidden rounded-xl border bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 ${compact ? "h-20" : "h-28"}`}>
@@ -107,10 +110,7 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
           {feeWaiverBadges.length > 0 && (
             <div className="flex flex-wrap gap-1">
               {feeWaiverBadges.map((badge) => (
-                <span
-                  key={badge.key}
-                  className="rounded-md border border-emerald-500/25 bg-emerald-500/5 px-1.5 py-0.5 text-[9px] font-medium text-emerald-500"
-                >
+                <span key={badge.key} className={feeWaiverBadgeClassName(badge.variant)}>
                   {badge.label}
                 </span>
               ))}

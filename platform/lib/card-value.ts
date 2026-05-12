@@ -214,7 +214,10 @@ function parsePointsRate(card: CardFacet): number | null {
 function parsePointsRates(card: CardFacet): {
   domesticRate: number | null;
   internationalRate: number | null;
+  domesticRatePerBrl: number | null;
+  internationalRatePerBrl: number | null;
   fallbackRate: number | null;
+  fallbackRatePerBrl: number | null;
   note?: string;
 } {
   const candidates = [
@@ -226,25 +229,51 @@ function parsePointsRates(card: CardFacet): {
   const domestic: number[] = [];
   const international: number[] = [];
   const generic: number[] = [];
+  const domesticPerBrl: number[] = [];
+  const internationalPerBrl: number[] = [];
+  const genericPerBrl: number[] = [];
   const ignoredGenericCeilings: string[] = [];
   const ceilingRates: number[] = [];
 
   for (const text of candidates) {
-    const normalized = normalizeText(text);
-    for (const match of text.matchAll(
-      /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)(?:\s*(?:por|\/)\s*(?:d[oó]lar|usd)|\/usd)/gi
-    )) {
-      const rate = Number(match[1].replace(",", "."));
-      if (!Number.isFinite(rate) || rate <= 0) continue;
-      if (/exterior|internacion/.test(normalized)) {
-        international.push(rate);
-      } else if (/brasil|nacion/.test(normalized)) {
-        domestic.push(rate);
-      } else if (/ate|até/.test(normalized)) {
-        ceilingRates.push(rate);
-        ignoredGenericCeilings.push(String(text));
-      } else {
-        generic.push(rate);
+    const raw = String(text);
+    const segments = raw
+      .split(/;/)
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
+    const segmentList = segments.length > 0 ? segments : [raw];
+
+    for (const segment of segmentList) {
+      const segNorm = normalizeText(segment);
+      for (const match of segment.matchAll(
+        /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)(?:\s*(?:por|\/)\s*(?:d[oó]lar|usd)|\/usd)/gi
+      )) {
+        const rate = Number(match[1].replace(",", "."));
+        if (!Number.isFinite(rate) || rate <= 0) continue;
+        if (/exterior|internacion/.test(segNorm)) {
+          international.push(rate);
+        } else if (/brasil|nacion/.test(segNorm)) {
+          domestic.push(rate);
+        } else if (/ate|até/.test(segNorm)) {
+          ceilingRates.push(rate);
+          ignoredGenericCeilings.push(segment);
+        } else {
+          generic.push(rate);
+        }
+      }
+
+      for (const match of segment.matchAll(
+        /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)(?:\s*(?:por|\/)\s*(?:real|r\$)|\/r\$)/gi
+      )) {
+        const rate = Number(match[1].replace(",", "."));
+        if (!Number.isFinite(rate) || rate <= 0) continue;
+        if (/exterior|internacion/.test(segNorm)) {
+          internationalPerBrl.push(rate);
+        } else if (/brasil|nacion/.test(segNorm)) {
+          domesticPerBrl.push(rate);
+        } else {
+          genericPerBrl.push(rate);
+        }
       }
     }
   }
@@ -261,6 +290,7 @@ function parsePointsRates(card: CardFacet): {
   }
 
   const fallbackRate = maxOrNull(generic);
+  const fallbackRatePerBrl = maxOrNull(genericPerBrl);
   const note =
     ignoredGenericCeilings.length > 0 && domestic.length === 0 && international.length === 0
       ? "Pontuação informada apenas como teto ('até X pontos/USD'); retorno em pontos não aplicado sem regra efetiva estruturada."
@@ -270,7 +300,10 @@ function parsePointsRates(card: CardFacet): {
   return {
     domesticRate: maxOrNull(domestic) ?? fallbackRate,
     internationalRate: maxOrNull(international) ?? fallbackRate,
+    domesticRatePerBrl: maxOrNull(domesticPerBrl) ?? fallbackRatePerBrl,
+    internationalRatePerBrl: maxOrNull(internationalPerBrl) ?? fallbackRatePerBrl,
     fallbackRate,
+    fallbackRatePerBrl,
     note,
   };
 }
@@ -316,16 +349,16 @@ function parseCashlikeRates(card: CardFacet): {
   };
   const ignoredCategorySpecific: string[] = [];
 
+  const partnerOnlyCashlike =
+    /(magalu|magazine luiza|amazon|mercado livre|extra|pao de acucar|pão de açúcar|nu viagens|passagens?|hoteis|hot[eé]is|hotel|companhia aerea|vivo)/;
+
   for (const raw of cashlikeTextCandidates(card)) {
     const text = normalizeText(raw);
-    if (!/(cashback|investback|credito na fatura)/.test(text)) continue;
+    if (!/(cashback|investback|credito na fatura|dinheiro de volta)/.test(text)) continue;
     const rate = parsePercent(text);
     if (rate === null || rate <= 0 || rate > 0.08) continue;
 
-    const categorySpecific =
-      /(amazon|mercado livre|extra|pao de acucar|pão de açúcar|nu viagens|passagens?|hoteis|hot[eé]is|hotel|companhia aerea|vivo)/.test(
-        text
-      );
+    const categorySpecific = partnerOnlyCashlike.test(text);
     if (categorySpecific) {
       ignoredCategorySpecific.push(String(raw).trim());
       continue;
@@ -565,6 +598,26 @@ function parseInvestmentThresholdAnyOrder(text: string): number | null {
   );
 }
 
+/** When the numeric facet says R$0 but there is a spend-based waiver, infer base fee from textual fields. */
+function inferAnnualFeeFromCharacteristicsWhenFacetZero(
+  card: CardFacet,
+  structuredRules: NonNullable<CardFacet["fee_waiver_rules"]>
+): number | null {
+  const hasSpendBasedWaiver = structuredRules.some(
+    (rule) => rule.category === "monthly_spend" && typeof rule.threshold_brl === "number"
+  );
+  if (!hasSpendBasedWaiver) return null;
+
+  const annualFeeTexts = [
+    ...characteristicsByKey(card, "annual_fee"),
+    ...characteristicsByKey(card, "annual_fee_detail"),
+  ].map((item) => `${item.value} ${item.details ?? ""}`);
+
+  const amounts = annualFeeTexts.flatMap((text) => parseBrlAmounts(text));
+  const positive = amounts.filter((n) => n > 0);
+  return positive.length > 0 ? Math.max(...positive) : null;
+}
+
 function computeEffectiveAnnualFee(
   card: CardFacet,
   profile: UserProfile
@@ -578,13 +631,24 @@ function computeEffectiveAnnualFee(
     };
   }
 
-  const baseFee = typeof rawFee === "number" ? rawFee : 0;
-  if (baseFee <= 0) return { annualFee: 0, reason: "Sem anuidade estruturada.", notes: [] };
-
+  const structuredRules = card.fee_waiver_rules ?? [];
   const notes: string[] = [];
+  let baseFee = typeof rawFee === "number" ? rawFee : 0;
+
+  if (baseFee <= 0) {
+    const inferred = inferAnnualFeeFromCharacteristicsWhenFacetZero(card, structuredRules);
+    if (inferred !== null && inferred > 0) {
+      baseFee = inferred;
+      notes.push(
+        "Anuidade base inferida dos campos textuais (facet numérico inconsistente com regra de isenção por gasto)."
+      );
+    } else {
+      return { annualFee: 0, reason: "Sem anuidade estruturada.", notes: [] };
+    }
+  }
+
   let effectiveFee = baseFee;
   const feeWaivers = characteristicsByKey(card, "fee_waiver");
-  const structuredRules = card.fee_waiver_rules ?? [];
   const conditionalAnnualFee = characteristicsByKey(card, "annual_fee_condition")
     .map((item) => `${item.value} ${item.details ?? ""}`)
     .find((text) => /correntista/i.test(text));
@@ -598,7 +662,8 @@ function computeEffectiveAnnualFee(
   }
 
   for (const rule of structuredRules) {
-    if (!rule.full_waiver && !/50%|metade|parcial/i.test(rule.description)) continue;
+    const waiverPhrase = `${rule.description ?? ""} ${rule.raw_text ?? ""}`;
+    if (!rule.full_waiver && !/50%|metade|parcial/i.test(waiverPhrase)) continue;
 
     const qualifiesBySpend =
       rule.category === "monthly_spend" &&
@@ -616,7 +681,7 @@ function computeEffectiveAnnualFee(
       break;
     }
 
-    if (!rule.full_waiver && qualifiesBySpend && /50%|metade|parcial/i.test(rule.description)) {
+    if (!rule.full_waiver && qualifiesBySpend && /50%|metade|parcial/i.test(waiverPhrase)) {
       effectiveFee = Math.min(effectiveFee, baseFee * 0.5);
       notes.push("Desconto/cashback parcial de anuidade aplicado por regra estruturada.");
     }
@@ -920,7 +985,10 @@ export function scoreCardValue(
     const nomadRate = tier?.rate ?? 0;
     pointsRates.domesticRate = nomadRate;
     pointsRates.internationalRate = nomadRate;
+    pointsRates.domesticRatePerBrl = null;
+    pointsRates.internationalRatePerBrl = null;
     pointsRates.fallbackRate = nomadRate;
+    pointsRates.fallbackRatePerBrl = null;
     if (!tier) {
       pointsRates.note =
         "Nomad Explorer: investimento abaixo de US$ 1.000 — pontuação não aplicada. A taxa sobe para 1,6–3,0 pts/USD com saldo a partir de US$ 1 mil.";
@@ -933,21 +1001,25 @@ export function scoreCardValue(
 
   const internationalSpend = profile.monthlyInternationalSpendBrl ?? 0;
   const domesticSpend = Math.max(0, profile.avgMonthlySpendBrl - internationalSpend);
+  const hasPointRate =
+    pointsRates.domesticRate !== null ||
+    pointsRates.internationalRate !== null ||
+    pointsRates.domesticRatePerBrl !== null ||
+    pointsRates.internationalRatePerBrl !== null;
   const pointsEarnedMonthly =
-    card.facets_boolean.earn_points_or_miles &&
-    (pointsRates.domesticRate !== null || pointsRates.internationalRate !== null)
-      ? (domesticSpend / assumptions.ptaxBrlPerUsd) * (pointsRates.domesticRate ?? 0) +
+    card.facets_boolean.earn_points_or_miles && hasPointRate
+      ? domesticSpend * (pointsRates.domesticRatePerBrl ?? 0) +
+        (domesticSpend / assumptions.ptaxBrlPerUsd) * (pointsRates.domesticRate ?? 0) +
+        internationalSpend * (pointsRates.internationalRatePerBrl ?? pointsRates.domesticRatePerBrl ?? 0) +
         (internationalSpend / assumptions.ptaxBrlPerUsd) *
           (pointsRates.internationalRate ?? pointsRates.domesticRate ?? 0)
       : 0;
   const pointsRewardMonthlySale =
-    card.facets_boolean.earn_points_or_miles &&
-    (pointsRates.domesticRate !== null || pointsRates.internationalRate !== null)
+    card.facets_boolean.earn_points_or_miles && hasPointRate
       ? (pointsEarnedMonthly * pointValuation.saleValuePerThousandBrl) / 1000
       : 0;
   const pointsRewardMonthlyTravel =
-    card.facets_boolean.earn_points_or_miles &&
-    (pointsRates.domesticRate !== null || pointsRates.internationalRate !== null)
+    card.facets_boolean.earn_points_or_miles && hasPointRate
       ? (pointsEarnedMonthly * pointValuation.travelValuePerThousandBrl) / 1000
       : 0;
 
@@ -997,8 +1069,7 @@ export function scoreCardValue(
     netContributionRateOverSpend > 0 ? effectiveMonthlyFee / netContributionRateOverSpend : null;
 
   const pointsValuationNote =
-    card.facets_boolean.earn_points_or_miles &&
-    (pointsRates.domesticRate !== null || pointsRates.internationalRate !== null)
+    card.facets_boolean.earn_points_or_miles && hasPointRate
       ? pointValuation.note
       : undefined;
 
@@ -1035,6 +1106,7 @@ export function scoreCardValue(
       }`,
       pointsRates.note ??
         (pointsRates.fallbackRate === null &&
+        pointsRates.fallbackRatePerBrl === null &&
         cashlike.generalRate === 0 &&
         cashlike.domesticRate === null &&
         cashlike.internationalRate === null

@@ -4,7 +4,7 @@
     "reference_as_of_date_for_freshness_checks": "2026-05-05",
     "generated_at_utc": "2026-05-07T00:24:31.965218+00:00",
     "source_file": "https://passageirodeprimeira.com/ranking-cartao-de-credito/ + https://passageirodeprimeira.com/categoria-cartao-de-credito/cartoes-de-cashback/",
-    "card_count": 269,
+    "card_count": 299,
     "source_meta": {
       "sources": [
         {
@@ -65551,34 +65551,35 @@
           "is_zero_fee_claim": false
         },
         "waiver_and_discounts": {
-          "policy_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 8 mil ou 100% de cashback com gastos acima de R$ 4 mil",
+          "policy_text": "Cashback de anuidade: 50% de volta da parcela mensal da anuidade para fatura mensal a partir de R$ 4.000,00; 100% de volta para fatura mensal a partir de R$ 8.000,00. É necessário pagar a fatura, entre o valor mínimo e o total, até a data de vencimento.",
           "rules": [
+            {
+              "category": "monthly_spend",
+              "threshold_brl": 4000,
+              "period": "monthly",
+              "full_waiver": false,
+              "description": "50% de cashback da parcela mensal da anuidade",
+              "raw_text": "50% de cashback da parcela mensal da anuidade para fatura mensal a partir de R$ 4.000,00"
+            },
             {
               "category": "monthly_spend",
               "threshold_brl": 8000,
               "period": "monthly",
-              "full_waiver": false,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 8 mil ou 100% de cashback com gastos acima de R$ 4 mil"
-            },
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 4000,
-              "period": "monthly",
               "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 8 mil ou 100% de cashback com gastos acima de R$ 4 mil"
+              "description": "100% de cashback da parcela mensal da anuidade",
+              "raw_text": "100% de cashback da parcela mensal da anuidade para fatura mensal a partir de R$ 8.000,00"
             },
             {
               "category": "cashback",
-              "threshold_brl": 4000,
+              "threshold_brl": 8000,
               "period": "monthly",
               "full_waiver": true,
               "description": "Cashback da anuidade",
-              "raw_text": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 8 mil ou 100% de cashback com gastos acima de R$ 4 mil"
+              "raw_text": "Cashback de anuidade: 50% de volta da parcela mensal da anuidade para fatura mensal a partir de R$ 4.000,00; 100% de volta para fatura mensal a partir de R$ 8.000,00. É necessário pagar a fatura, entre o valor mínimo e o total, até a data de vencimento."
             }
           ],
-          "has_full_waiver_option": true
+          "has_full_waiver_option": true,
+          "has_partial_waiver_option": true
         }
       },
       "rewards": {
@@ -65616,8 +65617,7 @@
           "fees": [
             "Anuidade: R$ 921",
             "Adicionais com benefícios: Sim",
-            "Isenção da anuidade: 50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 8 mil ou 100% de cashback com gastos acima de R$ 4 mil",
-            "Anuidade: R$ 921",
+            "Cashback de anuidade: 50% de volta da parcela mensal da anuidade para fatura mensal a partir de R$ 4.000,00; 100% de volta para fatura mensal a partir de R$ 8.000,00. É necessário pagar a fatura, entre o valor mínimo e o total, até a data de vencimento.",
             "Adicionais gratuitos: 4"
           ],
           "rewards": [
@@ -65742,7 +65742,7 @@
             "category": "fees",
             "key": "fee_waiver",
             "label": "Isenção da anuidade",
-            "value": "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 8 mil ou 100% de cashback com gastos acima de R$ 4 mil"
+            "value": "Cashback de anuidade: 50% de volta da parcela mensal da anuidade para fatura mensal a partir de R$ 4.000,00; 100% de volta para fatura mensal a partir de R$ 8.000,00. É necessário pagar a fatura, entre o valor mínimo e o total, até a data de vencimento."
           },
           {
             "category": "fees",
@@ -66164,7 +66164,21 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "fees.waiver_and_discounts.policy_text",
+          "value_text": "Cashback de anuidade: 50% de volta da parcela mensal da anuidade para fatura mensal a partir de R$ 4.000,00; 100% de volta para fatura mensal a partir de R$ 8.000,00. É necessário pagar a fatura, entre o valor mínimo e o total, até a data de vencimento.",
+          "source_url": "https://passageirodeprimeira.com/cartao-de-credito/caixa-mastercard-black/",
+          "source_type": "user_correction",
+          "captured_at": "2026-05-11",
+          "confidence_0_to_1": 0.95,
+          "dynamic": true
+        }
+      ],
+      "data_quality_notes": [
+        "Correção manual 2026-05-11: cashback de anuidade CAIXA Mastercard Black é 50% a partir de R$ 4.000/mês e 100% a partir de R$ 8.000/mês, condicionado ao pagamento da fatura até o vencimento."
+      ]
     },
     {
       "identity": {
@@ -102564,14 +102578,14 @@
         }
       },
       "rewards": {
-        "earning_rules_text": "Até 5,0 pontos por dólar gasto",
+        "earning_rules_text": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
         "earn_points_or_miles_mentioned": true,
         "earn_cashback_mentioned": false,
         "earn_investback_mentioned": false,
         "return_cashlike": {
           "has_points_or_miles": true,
           "has_cashlike_return": false,
-          "earning_summary": "Até 5,0 pontos por dólar gasto"
+          "earning_summary": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
         }
       },
       "travel_and_protection": {
@@ -102593,10 +102607,11 @@
             "Adicionais gratuitos: 0"
           ],
           "rewards": [
-            "Pontuação: Até 5,0 pontos por dólar gasto",
+            "Pontuação: 2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
             "Bônus de adesão: (Não há)",
-            "Programa de fidelidade: GPA",
-            "Validade dos pontos: 24 meses"
+            "Programa de fidelidade: GPA; transferência para TudoAzul, LATAM Pass e Smiles (app Itaú: Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos)",
+            "Validade dos pontos: 24 meses",
+            "Transferência de pontos: app Itaú → Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos → TudoAzul, LATAM Pass ou Smiles"
           ],
           "lifestyle": [
             "Carteira digital: Apple Pay"
@@ -102616,7 +102631,7 @@
             "category": "rewards",
             "key": "earning_rate",
             "label": "Pontuação",
-            "value": "Até 5,0 pontos por dólar gasto"
+            "value": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
           },
           {
             "category": "rewards",
@@ -102628,7 +102643,7 @@
             "category": "rewards",
             "key": "loyalty_program",
             "label": "Programa de fidelidade",
-            "value": "GPA"
+            "value": "GPA; transferência para TudoAzul, LATAM Pass e Smiles (app Itaú: Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos)"
           },
           {
             "category": "rewards",
@@ -102706,7 +102721,7 @@
           "value": {
             "has_points_or_miles": true,
             "has_cashlike_return": false,
-            "earning_summary": "Até 5,0 pontos por dólar gasto"
+            "earning_summary": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
           },
           "evidence": [
             {
@@ -102716,7 +102731,7 @@
               "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
               "internal_confidence": 1,
               "retrieved_at_utc": "2026-05-07T00:24:31.740008+00:00",
-              "excerpt": "Até 5,0 pontos por dólar gasto"
+              "excerpt": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
             }
           ]
         },
@@ -102750,7 +102765,7 @@
                 "Adicionais gratuitos: 0"
               ],
               "rewards": [
-                "Pontuação: Até 5,0 pontos por dólar gasto",
+                "Pontuação: 2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
                 "Bônus de adesão: (Não há)",
                 "Programa de fidelidade: GPA",
                 "Validade dos pontos: 24 meses"
@@ -102773,7 +102788,7 @@
                 "category": "rewards",
                 "key": "earning_rate",
                 "label": "Pontuação",
-                "value": "Até 5,0 pontos por dólar gasto"
+                "value": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
               },
               {
                 "category": "rewards",
@@ -102871,7 +102886,7 @@
       "raw_source_snapshot": {
         "card_info_list": {
           "Anuidade": "R$ 650",
-          "Pontuação": "Até 5,0 pontos por dólar gasto",
+          "Pontuação": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
           "Salas VIP": "Não",
           "Bandeira": "Visa"
         },
@@ -102985,8 +103000,8 @@
         "product_kind": "named_credit_card_product"
       },
       "ranking": {
-        "source_rank": 162,
-        "source_score": 122.04,
+        "source_rank": 39,
+        "source_score": 37.24,
         "source_name": "Passageiro de Primeira",
         "source_url": "https://passageirodeprimeira.com/cartao-de-credito/dotz-bv-mastercard-platinum-2/"
       },
@@ -103004,34 +103019,25 @@
       "fees": {
         "annual": {
           "has_explicit_amount": true,
-          "raw_text": "R$ 260",
-          "amount_brl_numeric": 260,
+          "raw_text": "R$ 259",
+          "amount_brl_numeric": 259,
           "is_zero_fee_claim": false
         },
         "waiver_and_discounts": {
-          "policy_text": "Anuidade isenta com gasto a partir de 4 mil e 500 reais por mês.",
-          "rules": [
-            {
-              "category": "monthly_spend",
-              "threshold_brl": 4500,
-              "period": "monthly",
-              "full_waiver": true,
-              "description": "Gasto mensal mínimo",
-              "raw_text": "Anuidade isenta com gasto a partir de 4 mil e 500 reais por mês."
-            }
-          ],
-          "has_full_waiver_option": true
+          "policy_text": "Não informado na correção manual.",
+          "rules": [],
+          "has_full_waiver_option": false
         }
       },
       "rewards": {
-        "earning_rules_text": "0,6 ponto por real gasto",
-        "earn_points_or_miles_mentioned": true,
-        "earn_cashback_mentioned": false,
+        "earning_rules_text": "0,6% de cashback",
+        "earn_points_or_miles_mentioned": false,
+        "earn_cashback_mentioned": true,
         "earn_investback_mentioned": false,
         "return_cashlike": {
-          "has_points_or_miles": true,
-          "has_cashlike_return": false,
-          "earning_summary": "0,6 ponto por real gasto"
+          "has_points_or_miles": false,
+          "has_cashlike_return": true,
+          "earning_summary": "0,6% de cashback"
         }
       },
       "travel_and_protection": {
@@ -103041,29 +103047,17 @@
         "airport_lounge_policy_varies_by_issuer": false,
         "travel_insurance_mentioned": false,
         "concierge_mentioned": false,
-        "forex_spread_or_iof_text": "unknown"
+        "forex_spread_or_iof_text": "unknown",
+        "airport_lounge_notes": "Não"
       },
       "benefits": {
         "benefit_groups": {
           "fees": [
-            "Anuidade: R$ 260",
-            "Adicionais com benefícios: Sim",
-            "Isenção da anuidade: Anuidade isenta com gasto a partir de 4 mil e 500 reais por mês.",
-            "Anuidade: R$ 260",
-            "Adicionais gratuitos: 0"
+            "Anuidade: R$ 259",
+            "Adicionais com os mesmos benefícios do titular: Sim"
           ],
           "rewards": [
-            "Pontuação: 0,6 ponto por real gasto",
-            "Regra de pontuação: 0,6 pontopor real gasto",
-            "Bônus de adesão: 3.000",
-            "Programa de fidelidade: Dotz",
-            "Validade dos pontos: 48 meses"
-          ],
-          "lifestyle": [
-            "Carteira digital: Samsung Pay"
-          ],
-          "eligibility": [
-            "Precisa ser correntista: Não"
+            "Pontuação: 0,6% de cashback"
           ]
         },
         "characteristics": [
@@ -103071,73 +103065,31 @@
             "category": "fees",
             "key": "annual_fee",
             "label": "Anuidade",
-            "value": "R$ 260"
+            "value": "R$ 259"
+          },
+          {
+            "category": "rewards",
+            "key": "cashback_rate",
+            "label": "Pontuação",
+            "value": "0,6% de cashback"
           },
           {
             "category": "rewards",
             "key": "earning_rate",
-            "label": "Pontuação",
-            "value": "0,6 ponto por real gasto"
-          },
-          {
-            "category": "rewards",
-            "key": "earning_detail",
-            "label": "Regra de pontuação",
-            "value": "0,6 pontopor real gasto"
-          },
-          {
-            "category": "rewards",
-            "key": "welcome_bonus",
-            "label": "Bônus de adesão",
-            "value": "3.000"
-          },
-          {
-            "category": "rewards",
-            "key": "loyalty_program",
-            "label": "Programa de fidelidade",
-            "value": "Dotz"
-          },
-          {
-            "category": "rewards",
-            "key": "points_expiration",
-            "label": "Validade dos pontos",
-            "value": "48 meses"
+            "label": "Cashback",
+            "value": "0,6% de cashback"
           },
           {
             "category": "fees",
             "key": "additional_card_benefits",
-            "label": "Adicionais com benefícios",
+            "label": "Adicionais com os mesmos benefícios do titular",
             "value": "Sim"
-          },
-          {
-            "category": "fees",
-            "key": "fee_waiver",
-            "label": "Isenção da anuidade",
-            "value": "Anuidade isenta com gasto a partir de 4 mil e 500 reais por mês."
           },
           {
             "category": "fees",
             "key": "annual_fee_detail",
             "label": "Anuidade",
-            "value": "R$ 260"
-          },
-          {
-            "category": "lifestyle",
-            "key": "digital_wallet",
-            "label": "Carteira digital",
-            "value": "Samsung Pay"
-          },
-          {
-            "category": "eligibility",
-            "key": "requires_account",
-            "label": "Precisa ser correntista",
-            "value": "Não"
-          },
-          {
-            "category": "fees",
-            "key": "free_additional_cards",
-            "label": "Adicionais gratuitos",
-            "value": "0"
+            "value": "R$ 259"
           }
         ],
         "atomic_benefit_statements": [
@@ -103450,7 +103402,34 @@
           }
         },
         "needs_human_review": false
-      }
+      },
+      "source_claims": [
+        {
+          "field_path": "rewards.earning_rules_text",
+          "value_text": "0,6% de cashback",
+          "source_url": "https://passageirodeprimeira.com/cartao-de-credito/dotz-bv-mastercard-platinum-2/",
+          "source_type": "user_correction",
+          "captured_at": "2026-05-11",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true
+        },
+        {
+          "field_path": "fees.annual.raw_text",
+          "value_text": "R$ 259",
+          "source_url": "https://passageirodeprimeira.com/cartao-de-credito/dotz-bv-mastercard-platinum-2/",
+          "source_type": "user_correction",
+          "captured_at": "2026-05-11",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true
+        }
+      ],
+      "cashback_details": {
+        "general_rate_text": "0,6% de cashback",
+        "notes": "Correção manual: este cartão deve ser tratado como cashback, não como pontos por real."
+      },
+      "data_quality_notes": [
+        "Correção manual 2026-05-11: usuário informou anuidade R$259, 0,6% de cashback, sem salas VIP e adicionais com mesmos benefícios do titular."
+      ]
     },
     {
       "identity": {
@@ -104071,14 +104050,14 @@
         }
       },
       "rewards": {
-        "earning_rules_text": "Até 5,0 pontos por dólar gasto",
+        "earning_rules_text": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
         "earn_points_or_miles_mentioned": true,
         "earn_cashback_mentioned": false,
         "earn_investback_mentioned": false,
         "return_cashlike": {
           "has_points_or_miles": true,
           "has_cashlike_return": false,
-          "earning_summary": "Até 5,0 pontos por dólar gasto"
+          "earning_summary": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
         }
       },
       "travel_and_protection": {
@@ -104105,10 +104084,11 @@
             "Adicionais gratuitos: 0"
           ],
           "rewards": [
-            "Pontuação: Até 5,0 pontos por dólar gasto",
+            "Pontuação: 2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
             "Bônus de adesão: (Não há)",
-            "Programa de fidelidade: GPA",
-            "Validade dos pontos: 24 meses"
+            "Programa de fidelidade: GPA; transferência para TudoAzul, LATAM Pass e Smiles (app Itaú: Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos)",
+            "Validade dos pontos: 24 meses",
+            "Transferência de pontos: app Itaú → Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos → TudoAzul, LATAM Pass ou Smiles"
           ],
           "travel": [
             "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
@@ -104135,7 +104115,7 @@
             "category": "rewards",
             "key": "earning_rate",
             "label": "Pontuação",
-            "value": "Até 5,0 pontos por dólar gasto"
+            "value": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
           },
           {
             "category": "travel",
@@ -104179,7 +104159,7 @@
             "category": "rewards",
             "key": "loyalty_program",
             "label": "Programa de fidelidade",
-            "value": "GPA"
+            "value": "GPA; transferência para TudoAzul, LATAM Pass e Smiles (app Itaú: Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos)"
           },
           {
             "category": "rewards",
@@ -104262,7 +104242,7 @@
           "value": {
             "has_points_or_miles": true,
             "has_cashlike_return": false,
-            "earning_summary": "Até 5,0 pontos por dólar gasto"
+            "earning_summary": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
           },
           "evidence": [
             {
@@ -104272,7 +104252,7 @@
               "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
               "internal_confidence": 1,
               "retrieved_at_utc": "2026-05-07T00:24:31.744178+00:00",
-              "excerpt": "Até 5,0 pontos por dólar gasto"
+              "excerpt": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
             }
           ]
         },
@@ -104312,7 +104292,7 @@
                 "Adicionais gratuitos: 0"
               ],
               "rewards": [
-                "Pontuação: Até 5,0 pontos por dólar gasto",
+                "Pontuação: 2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
                 "Bônus de adesão: (Não há)",
                 "Programa de fidelidade: GPA",
                 "Validade dos pontos: 24 meses"
@@ -104342,7 +104322,7 @@
                 "category": "rewards",
                 "key": "earning_rate",
                 "label": "Pontuação",
-                "value": "Até 5,0 pontos por dólar gasto"
+                "value": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
               },
               {
                 "category": "travel",
@@ -104472,7 +104452,7 @@
       "raw_source_snapshot": {
         "card_info_list": {
           "Anuidade": "R$ 678",
-          "Pontuação": "Até 5,0 pontos por dólar gasto",
+          "Pontuação": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
           "Salas VIP": "Sim",
           "Bandeira": "Mastercard"
         },
@@ -117445,14 +117425,14 @@
         }
       },
       "rewards": {
-        "earning_rules_text": "Até 3,0 pontos por dólar gasto",
+        "earning_rules_text": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
         "earn_points_or_miles_mentioned": true,
         "earn_cashback_mentioned": false,
         "earn_investback_mentioned": false,
         "return_cashlike": {
           "has_points_or_miles": true,
           "has_cashlike_return": false,
-          "earning_summary": "Até 3,0 pontos por dólar gasto"
+          "earning_summary": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
         }
       },
       "travel_and_protection": {
@@ -117474,10 +117454,11 @@
             "Adicionais gratuitos: 0"
           ],
           "rewards": [
-            "Pontuação: Até 3,0 pontos por dólar gasto",
+            "Pontuação: 2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
             "Bônus de adesão: (Não há)",
-            "Programa de fidelidade: GPA",
-            "Validade dos pontos: 12 meses"
+            "Programa de fidelidade: GPA; transferência para TudoAzul, LATAM Pass e Smiles (app Itaú: Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos)",
+            "Validade dos pontos: 12 meses",
+            "Transferência de pontos: app Itaú → Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos → TudoAzul, LATAM Pass ou Smiles"
           ],
           "lifestyle": [
             "Carteira digital: Apple Pay"
@@ -117497,7 +117478,7 @@
             "category": "rewards",
             "key": "earning_rate",
             "label": "Pontuação",
-            "value": "Até 3,0 pontos por dólar gasto"
+            "value": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
           },
           {
             "category": "rewards",
@@ -117509,7 +117490,7 @@
             "category": "rewards",
             "key": "loyalty_program",
             "label": "Programa de fidelidade",
-            "value": "GPA"
+            "value": "GPA; transferência para TudoAzul, LATAM Pass e Smiles (app Itaú: Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos)"
           },
           {
             "category": "rewards",
@@ -117587,7 +117568,7 @@
           "value": {
             "has_points_or_miles": true,
             "has_cashlike_return": false,
-            "earning_summary": "Até 3,0 pontos por dólar gasto"
+            "earning_summary": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
           },
           "evidence": [
             {
@@ -117597,7 +117578,7 @@
               "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
               "internal_confidence": 1,
               "retrieved_at_utc": "2026-05-07T00:24:31.793832+00:00",
-              "excerpt": "Até 3,0 pontos por dólar gasto"
+              "excerpt": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
             }
           ]
         },
@@ -117631,7 +117612,7 @@
                 "Adicionais gratuitos: 0"
               ],
               "rewards": [
-                "Pontuação: Até 3,0 pontos por dólar gasto",
+                "Pontuação: 2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
                 "Bônus de adesão: (Não há)",
                 "Programa de fidelidade: GPA",
                 "Validade dos pontos: 12 meses"
@@ -117654,7 +117635,7 @@
                 "category": "rewards",
                 "key": "earning_rate",
                 "label": "Pontuação",
-                "value": "Até 3,0 pontos por dólar gasto"
+                "value": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
               },
               {
                 "category": "rewards",
@@ -117752,7 +117733,7 @@
       "raw_source_snapshot": {
         "card_info_list": {
           "Anuidade": "R$ 405",
-          "Pontuação": "Até 3,0 pontos por dólar gasto",
+          "Pontuação": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
           "Salas VIP": "Não",
           "Bandeira": "Mastercard"
         },
@@ -119360,14 +119341,14 @@
         }
       },
       "rewards": {
-        "earning_rules_text": "Até 3,0 pontos por dólar gasto",
+        "earning_rules_text": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
         "earn_points_or_miles_mentioned": true,
         "earn_cashback_mentioned": false,
         "earn_investback_mentioned": false,
         "return_cashlike": {
           "has_points_or_miles": true,
           "has_cashlike_return": false,
-          "earning_summary": "Até 3,0 pontos por dólar gasto"
+          "earning_summary": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
         }
       },
       "travel_and_protection": {
@@ -119389,10 +119370,11 @@
             "Adicionais gratuitos: 0"
           ],
           "rewards": [
-            "Pontuação: Até 3,0 pontos por dólar gasto",
+            "Pontuação: 2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
             "Bônus de adesão: (Não há)",
-            "Programa de fidelidade: GPA",
-            "Validade dos pontos: 12 meses"
+            "Programa de fidelidade: GPA; transferência para TudoAzul, LATAM Pass e Smiles (app Itaú: Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos)",
+            "Validade dos pontos: 12 meses",
+            "Transferência de pontos: app Itaú → Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos → TudoAzul, LATAM Pass ou Smiles"
           ],
           "lifestyle": [
             "Carteira digital: Apple Pay"
@@ -119412,7 +119394,7 @@
             "category": "rewards",
             "key": "earning_rate",
             "label": "Pontuação",
-            "value": "Até 3,0 pontos por dólar gasto"
+            "value": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
           },
           {
             "category": "rewards",
@@ -119424,7 +119406,7 @@
             "category": "rewards",
             "key": "loyalty_program",
             "label": "Programa de fidelidade",
-            "value": "GPA"
+            "value": "GPA; transferência para TudoAzul, LATAM Pass e Smiles (app Itaú: Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos)"
           },
           {
             "category": "rewards",
@@ -119502,7 +119484,7 @@
           "value": {
             "has_points_or_miles": true,
             "has_cashlike_return": false,
-            "earning_summary": "Até 3,0 pontos por dólar gasto"
+            "earning_summary": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
           },
           "evidence": [
             {
@@ -119512,7 +119494,7 @@
               "url": "https://passageirodeprimeira.com/ranking-cartao-de-credito/",
               "internal_confidence": 1,
               "retrieved_at_utc": "2026-05-07T00:24:31.801134+00:00",
-              "excerpt": "Até 3,0 pontos por dólar gasto"
+              "excerpt": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
             }
           ]
         },
@@ -119546,7 +119528,7 @@
                 "Adicionais gratuitos: 0"
               ],
               "rewards": [
-                "Pontuação: Até 3,0 pontos por dólar gasto",
+                "Pontuação: 2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
                 "Bônus de adesão: (Não há)",
                 "Programa de fidelidade: GPA",
                 "Validade dos pontos: 12 meses"
@@ -119569,7 +119551,7 @@
                 "category": "rewards",
                 "key": "earning_rate",
                 "label": "Pontuação",
-                "value": "Até 3,0 pontos por dólar gasto"
+                "value": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
               },
               {
                 "category": "rewards",
@@ -119667,7 +119649,7 @@
       "raw_source_snapshot": {
         "card_info_list": {
           "Anuidade": "R$ 405",
-          "Pontuação": "Até 3,0 pontos por dólar gasto",
+          "Pontuação": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
           "Salas VIP": "Não",
           "Bandeira": "Visa"
         },
@@ -122193,7 +122175,7 @@
     {
       "identity": {
         "stable_id": "banco-pan-banco-pan-mastercard-platinum-8a57720e28",
-        "display_name": "Banco PAN Estelar Mastercard Platinum",
+        "display_name": "Banco PAN Mastercard Platinum",
         "issuer": {
           "raw": "Banco PAN",
           "normalized": "banco_pan",
@@ -122215,11 +122197,11 @@
       },
       "media": {
         "card_art_url": "/card-images/pan-estelar.png",
-        "alt_text": "Banco PAN Estelar Mastercard Platinum"
+        "alt_text": "Banco PAN Mastercard Platinum"
       },
       "fees": {
-        "annual_fee_brl": 0,
-        "annual_fee_notes": "Anuidade grátis nos primeiros 3 meses."
+        "annual_fee_brl": 500,
+        "annual_fee_notes": "Anuidade de R$ 500/ano; isenção total com gasto a partir de R$ 5.000/mês na fatura (consulte condições do emissor)."
       },
       "rewards": {
         "earn_cashback": true,
@@ -122243,6 +122225,7 @@
             "Adicionais gratuitos: 1"
           ],
           "rewards": [
+            "Cashback: 0,75% por real gasto em transações elegíveis",
             "Pontuação: 1,5 pontos por dólar gasto",
             "Regra de pontuação: 1,5 pontos por dólar gasto",
             "Bônus de adesão: (Não há)",
@@ -146710,9 +146693,30 @@
           "captured_at": "2026-05-10",
           "confidence_0_to_1": 0.88,
           "dynamic": false
+        },
+        {
+          "field_path": "rewards.earning_rules_text",
+          "value_text": "Até 2,0 pontos por dólar gasto ou até 1% de cashback na fatura.",
+          "source_url": "https://www.itau.com.br/uniclass/cartoes/cartao-de-credito-mastercard-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-11",
+          "confidence_0_to_1": 0.86,
+          "dynamic": true
+        },
+        {
+          "field_path": "travel_and_protection.airport_lounge_offered",
+          "value_text": "Sala VIP Mastercard Black em GRU e até 2 acessos por ano para clientes nível 5 no Minhas Vantagens.",
+          "source_url": "https://www.itau.com.br/uniclass/cartoes/cartao-de-credito-mastercard-black",
+          "source_type": "official_issuer",
+          "captured_at": "2026-05-11",
+          "confidence_0_to_1": 0.8,
+          "dynamic": true
         }
       ],
-      "cashback_details": null,
+      "cashback_details": {
+        "general_rate_text": "Até 1% de cashback na fatura",
+        "notes": "Alternativa ao acúmulo de pontos, conforme regras do emissor."
+      },
       "store_benefits": [],
       "secured_limit_options": [],
       "eligibility": {
@@ -146740,17 +146744,22 @@
         }
       },
       "rewards": {
-        "earning_rules_text": "Pontos por dólar gasto (taxa não divulgada na página de listagem).",
+        "earning_rules_text": "Até 2,0 pontos por dólar gasto ou até 1% de cashback na fatura.",
         "earn_points_or_miles": true,
-        "earn_cashback": false,
+        "earn_cashback": true,
         "earn_investback": false
       },
       "travel_and_protection": {
-        "airport_lounge_offered": false,
-        "airport_lounge_notes": null,
-        "travel_insurance_mentioned": false,
-        "concierge_mentioned": false,
-        "forex_spread_or_iof_text": "unknown"
+        "airport_lounge_offered": true,
+        "airport_lounge_notes": "Sala VIP Mastercard Black em GRU e até 2 acessos por ano para clientes nível 5 no Minhas Vantagens.",
+        "travel_insurance_mentioned": true,
+        "concierge_mentioned": true,
+        "forex_spread_or_iof_text": "unknown",
+        "airport_lounge_annual_visits_hint": 2,
+        "airport_lounge_programs_detected": [
+          "Mastercard Black",
+          "Mastercard Airport Experiences"
+        ]
       },
       "benefits": {
         "benefit_groups": {
@@ -146758,22 +146767,59 @@
             "Anuidade: isenta ou 50% de desconto por gastos/investimentos"
           ],
           "rewards": [
-            "Pontos por dólar gasto"
+            "Até 2,0 pontos por dólar gasto",
+            "Até 1% de cashback na fatura"
           ],
-          "other": []
+          "travel": [
+            "Sala VIP Mastercard Black em GRU",
+            "Até 2 acessos por ano a salas VIP no nível 5 do Minhas Vantagens"
+          ],
+          "insurance": [
+            "Seguros de viagem Mastercard Black"
+          ],
+          "lifestyle": [
+            "Concierge Mastercard Black"
+          ]
         },
         "characteristics": [
           {
             "category": "fees",
             "key": "annual_fee",
             "label": "Anuidade",
-            "value": "Isenta ou 50% de desconto por gastos/investimentos"
+            "value": "Isenta ou 50% de desconto"
           },
           {
             "category": "rewards",
             "key": "earning_rate",
             "label": "Pontuação",
-            "value": "Pontos por dólar gasto (taxa não divulgada)"
+            "value": "Até 2,0 pts/USD",
+            "details": "Pontuação máxima informada na página oficial do Itaú Uniclass Mastercard Black."
+          },
+          {
+            "category": "rewards",
+            "key": "cashback_rate",
+            "label": "Cashback",
+            "value": "Até 1% de cashback",
+            "details": "Alternativa de retorno em crédito na fatura conforme regras do emissor."
+          },
+          {
+            "category": "travel",
+            "key": "lounge_visits",
+            "label": "Salas VIP",
+            "value": "Até 2 acessos/ano",
+            "details": "Benefício condicionado ao nível 5 no Minhas Vantagens; inclui sala Mastercard Black em GRU."
+          },
+          {
+            "category": "insurance",
+            "key": "travel_insurance",
+            "label": "Seguro viagem",
+            "value": "Benefícios Mastercard Black"
+          },
+          {
+            "category": "lifestyle",
+            "key": "concierge",
+            "label": "Concierge",
+            "value": "Concierge Mastercard Black"
           }
         ]
       },
@@ -146782,7 +146828,7 @@
         "alt_text": "Itaú Uniclass Black"
       },
       "evidence": {
-        "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+        "primary_evidence_url": "https://www.itau.com.br/uniclass/cartoes/cartao-de-credito-mastercard-black",
         "source_is_official_issuer_domain": true
       },
       "verification": {
@@ -146793,7 +146839,8 @@
         ]
       },
       "data_quality_notes": [
-        "Adicionado a partir da listagem oficial Itaú; taxa de pontos e detalhes de anuidade requerem revalidação na página do produto."
+        "Revisão manual 2026-05-11: página oficial Itaú Uniclass Mastercard Black informa até 2 pontos por dólar ou até 1% de cashback; o registro anterior não tinha taxa numérica.",
+        "Benefícios de sala VIP podem depender do nível 5 no Minhas Vantagens; confirmar regra antes de exibir elegibilidade garantida."
       ]
     },
     {
@@ -147201,7 +147248,7 @@
         }
       },
       "rewards": {
-        "earning_rules_text": "Até 5 pontos por dólar gasto.",
+        "earning_rules_text": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
         "earn_points_or_miles": true,
         "earn_cashback": false,
         "earn_investback": false
@@ -147219,8 +147266,9 @@
             "Anuidade: não divulgada"
           ],
           "rewards": [
-            "Pontuação: até 5 pontos por dólar gasto",
-            "20% OFF em vinhos, espumantes e linha Qualitá"
+            "Pontuação: 2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra",
+            "20% OFF em vinhos, espumantes e linha Qualitá",
+            "Transferência de pontos: app Itaú → Cartões → Pontos e benefícios → Programa de pontos → Resgatar pontos → TudoAzul, LATAM Pass ou Smiles"
           ],
           "other": []
         },
@@ -147229,7 +147277,7 @@
             "category": "rewards",
             "key": "earning_rate",
             "label": "Pontuação",
-            "value": "Até 5 pts/USD"
+            "value": "2 pontos por dólar no Brasil; 3 pontos por dólar no exterior; 5 pontos por dólar no Pão de Açúcar ou Extra"
           },
           {
             "category": "rewards",
@@ -148064,10 +148112,33 @@
           "captured_at": "2026-05-10",
           "confidence_0_to_1": 0.88,
           "dynamic": false
+        },
+        {
+          "field_path": "rewards.earning_rules_text",
+          "value_text": "1 ponto por dólar gasto; pontos convertíveis em desconto na fatura; Premmia com pontos em dobro em postos Petrobras e até 4x no Posto Preferido.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "user_correction",
+          "captured_at": "2026-05-11",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true
+        },
+        {
+          "field_path": "fees.annual.raw_text",
+          "value_text": "Anuidade grátis para sempre e sem taxa de administração.",
+          "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
+          "source_type": "user_correction",
+          "captured_at": "2026-05-11",
+          "confidence_0_to_1": 0.9,
+          "dynamic": true
         }
       ],
-      "cashback_details": null,
-      "store_benefits": [],
+      "cashback_details": {
+        "general_rate_text": "1 ponto por dólar gasto convertido em desconto na fatura",
+        "notes": "O retorno é tratado como cashback/crédito na fatura porque os pontos podem virar desconto na fatura."
+      },
+      "store_benefits": [
+        "Descontos em postos BR/Petrobras participantes"
+      ],
       "secured_limit_options": [],
       "eligibility": {
         "requirements_text": "Sujeito a análise de crédito.",
@@ -148076,20 +148147,27 @@
       "fees": {
         "annual": {
           "has_explicit_amount": true,
-          "raw_text": "Sem anuidade.",
+          "raw_text": "Sem anuidade para sempre; sem taxa de administração.",
           "amount_brl_numeric": 0,
           "is_zero_fee_claim": true
         },
         "waiver_and_discounts": {
-          "policy_text": "Sem anuidade.",
-          "rules": [],
+          "policy_text": "Sem anuidade para sempre.",
+          "rules": [
+            {
+              "category": "general",
+              "description": "Sem anuidade para sempre",
+              "full_waiver": true,
+              "raw_text": "Anuidade grátis; sem custo de anuidade para sempre."
+            }
+          ],
           "has_full_waiver_option": true
         }
       },
       "rewards": {
-        "earning_rules_text": "Pontuação turbinada no Programa Premmia.",
+        "earning_rules_text": "1 ponto por dólar gasto; pontos podem ser convertidos em desconto na fatura. Programa Premmia: pontos em dobro em postos Petrobras e até 4x no Posto Preferido.",
         "earn_points_or_miles": true,
-        "earn_cashback": false,
+        "earn_cashback": true,
         "earn_investback": false
       },
       "travel_and_protection": {
@@ -148102,25 +148180,85 @@
       "benefits": {
         "benefit_groups": {
           "fees": [
-            "Anuidade: gratuita"
+            "Anuidade grátis para sempre",
+            "Sem taxa de administração",
+            "Até 4 cartões adicionais gratuitos"
           ],
           "rewards": [
-            "Pontuação turbinada no Programa Premmia"
+            "1 ponto por dólar gasto",
+            "Pontos convertíveis em desconto na fatura",
+            "Programa Premmia com pontos em dobro em postos Petrobras e até 4x no Posto Preferido"
           ],
-          "other": []
+          "issuer_specific": [
+            "Descontos em postos BR/Petrobras participantes"
+          ],
+          "lifestyle": [
+            "Pagamento por aproximação",
+            "Apple Pay, Google Pay e Samsung Pay"
+          ]
         },
         "characteristics": [
           {
             "category": "fees",
             "key": "annual_fee",
             "label": "Anuidade",
-            "value": "Grátis"
+            "value": "Grátis para sempre"
+          },
+          {
+            "category": "fees",
+            "key": "admin_fee",
+            "label": "Taxa de administração",
+            "value": "Não cobra"
+          },
+          {
+            "category": "fees",
+            "key": "fee_waiver",
+            "label": "Isenção da anuidade",
+            "value": "Sem anuidade"
           },
           {
             "category": "rewards",
-            "key": "program",
-            "label": "Programa",
-            "value": "Premmia (pontuação turbinada)"
+            "key": "earning_rate",
+            "label": "Cashback/Pontos",
+            "value": "1 ponto por dólar gasto",
+            "details": "Pontos podem ser convertidos em desconto na fatura."
+          },
+          {
+            "category": "rewards",
+            "key": "earning_detail",
+            "label": "Programa Premmia",
+            "value": "Pontos em dobro em postos Petrobras e até 4x no Posto Preferido",
+            "details": "Benefício do Programa Premmia para compras em postos BR/Petrobras participantes."
+          },
+          {
+            "category": "rewards",
+            "key": "redemption",
+            "label": "Resgate",
+            "value": "Desconto na fatura"
+          },
+          {
+            "category": "issuer_specific",
+            "key": "gas_station_discount",
+            "label": "Postos BR",
+            "value": "Descontos em postos BR/Petrobras participantes"
+          },
+          {
+            "category": "fees",
+            "key": "free_additional_cards",
+            "label": "Adicionais gratuitos",
+            "value": "Até 4 cartões adicionais gratuitos"
+          },
+          {
+            "category": "lifestyle",
+            "key": "contactless_payment",
+            "label": "Aproximação",
+            "value": "Pagamento por aproximação"
+          },
+          {
+            "category": "lifestyle",
+            "key": "digital_wallet",
+            "label": "Carteiras digitais",
+            "value": "Apple Pay, Google Pay, Samsung Pay"
           }
         ]
       },
@@ -148140,7 +148278,8 @@
         ]
       },
       "data_quality_notes": [
-        "Anuidade zero e programa Premmia confirmados na página oficial BB em 2026-05-10."
+        "Correção manual 2026-05-11: usuário informou anuidade grátis, sem taxa de administração, 1 ponto por dólar, conversão em desconto na fatura, Premmia, descontos em postos BR, adicionais gratuitos e carteiras digitais.",
+        "Emissão principal Banco do Brasil; há também oferta via parceria com o BRB conforme dado informado pelo usuário."
       ]
     },
     {
@@ -148197,7 +148336,7 @@
       },
       "rewards": {
         "earn_points_or_miles": true,
-        "points_per_usd_international": 1.0,
+        "points_per_usd_international": 1,
         "program": "Pontos CAIXA",
         "program_notes": "1 ponto por USD gasto ou equivalente em R$."
       },
@@ -148251,6 +148390,47 @@
       "verification": {
         "status": "verified",
         "last_checked": "2026-05-10"
+      }
+    },
+    {
+      "identity": {
+        "stable_id": "itau-itau-personnalite-visa-infinite-194dedbeda",
+        "display_name": "Itaú Personnalité Visa Infinite",
+        "issuer_raw": "Itaú",
+        "issuer_normalized": "itau",
+        "network_primary": "Visa",
+        "variant_band": "Infinite"
+      },
+      "categorization": {
+        "market_segment_guess": "premium",
+        "card_type": "credit"
+      },
+      "fees": {
+        "annual_fee_brl": 1056,
+        "annual_fee_notes": "R$ 1.056/ano (12x R$ 88). Primeiros 90 dias após desbloqueio sem anuidade (Manual das Milhas).",
+        "fee_waiver_notes": "Isenção após intro: R$ 50 mil investidos no Personnalité OU Minhas Vantagens nível 2+ OU gastos mensais a partir de R$ 10 mil; 50% de desconto a partir de R$ 5 mil/mês."
+      },
+      "rewards": {
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
+        "program_notes": "3 pontos por USD no exterior e 2 pontos por real no Brasil; pontos não expiram; programa Pontos/Cashback Personnalité (Manual das Milhas)."
+      },
+      "travel": {
+        "lounge_program_notes": "DragonPass via Visa Airport Companion — 2 acessos gratuitos/ano para titular e adicional (Manual das Milhas).",
+        "concierge_notes": "Concierge 24h citado pela fonte."
+      },
+      "media": {
+        "card_art_url": "/card-images/itau-itau-personnalite-visa-infinite-194dedbeda.png",
+        "alt_text": "Itaú Personnalité Visa Infinite"
+      },
+      "evidence": {
+        "source_url": "https://www.manualdasmilhas.com.br/docs/cartoes/lista/itau_personnalite_visa_infinite/",
+        "official_product_url": "https://www.itau.com.br/personnalite/cartoes/cartao-de-credito-visa-infinite",
+        "provenance_note_pt": "Campos preenchidos a partir do Manual das Milhas; página oficial Itaú retornou 403 no fetch automatizado."
+      },
+      "verification": {
+        "status": "secondary_source",
+        "last_checked": "2026-05-11"
       }
     }
   ]

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { ChatInterface } from "@/components/ChatInterface";
 import { CompareBar } from "@/components/CompareBar";
 import { PersonalizedRanking } from "@/components/PersonalizedRanking";
@@ -65,12 +66,16 @@ export default function HomePage() {
 
           {/* Personalized ranking (profile setup or results) */}
           <section className="mx-auto max-w-4xl">
-            <PersonalizedRanking />
+            <Suspense>
+              <PersonalizedRanking />
+            </Suspense>
           </section>
 
           {/* Progression pathway */}
           <section className="mx-auto max-w-4xl">
-            <CardProgressionPath />
+            <Suspense>
+              <CardProgressionPath />
+            </Suspense>
           </section>
 
           <AdSlot

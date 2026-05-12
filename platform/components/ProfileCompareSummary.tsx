@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { scoreCardValue } from "@/lib/card-value";
 import { useProfileStore } from "@/lib/store";
+import { useCardDetailHrefBuilder } from "@/lib/use-card-detail-href";
 import { useValueAssumptions } from "@/lib/use-value-assumptions";
 import type { CardFacet, CardValueScore } from "@/types/cards";
 
@@ -26,6 +27,7 @@ function annual(value: number) {
 
 export function ProfileCompareSummary({ cards }: ProfileCompareSummaryProps) {
   const profile = useProfileStore((state) => state.profile);
+  const cardDetailHref = useCardDetailHrefBuilder();
   const assumptions = useValueAssumptions();
   if (!profile) {
     return (
@@ -71,7 +73,7 @@ export function ProfileCompareSummary({ cards }: ProfileCompareSummaryProps) {
         {scores.map((score) => (
           <Link
             key={score.card.card_stable_id}
-            href={`/cartoes/${score.card.card_stable_id}`}
+            href={cardDetailHref(score.card.card_stable_id)}
             className="rounded-xl border bg-background/35 p-3 transition-colors hover:bg-background/55"
           >
             <div className="flex items-start justify-between gap-3">

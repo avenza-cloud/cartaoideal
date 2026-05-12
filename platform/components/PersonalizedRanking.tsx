@@ -10,13 +10,15 @@ import {
 } from "@/lib/client-card-options";
 import { feeTier, feeNote, FEE_TIER_COLOR, FEE_TIER_LABEL } from "@/lib/roi";
 import { formatFee } from "@/lib/formatting";
-import { feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
+import { feeWaiverBadgeClassName, feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
 import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
-import { scoreCardValue, scoreCardValues } from "@/lib/card-value";
+import { DEFAULT_SCORING_PROFILE, scoreCardValue, scoreCardValues } from "@/lib/card-value";
+import { useCardDetailHref } from "@/lib/use-card-detail-href";
 import { useValueAssumptions } from "@/lib/use-value-assumptions";
 import { Button } from "@/components/ui/button";
 import { CreditCard, ListFilter } from "lucide-react";
 import type { CardFacet, CardScore, CardValueScore } from "@/types/cards";
+import type { FeeWaiverBadge } from "@/lib/fee-waiver-badges";
 
 interface TopCard {
   id: string;
@@ -82,12 +84,14 @@ function CardRow({
   earningsSummary?: string;
   scoreBar?: number;
   valueScore?: CardValueScore;
-  badges?: string[];
+  badges?: FeeWaiverBadge[];
 }) {
   const hasImage = cardArtUrl && cardArtUrl !== "unknown";
+  const detailHref = useCardDetailHref(id);
+
   return (
     <Link
-      href={`/cartoes/${id}`}
+      href={detailHref}
       className="grid grid-cols-[28px_64px_minmax(0,1fr)_auto] items-center gap-3 bg-background/40 px-3 py-2.5 text-xs transition-colors hover:bg-muted/40"
     >
       <span className="font-mono text-[11px] text-muted-foreground">#{rank}</span>
@@ -116,11 +120,8 @@ function CardRow({
         {badges.length > 0 && (
           <div className="flex flex-wrap gap-1 pt-0.5">
             {badges.map((badge) => (
-              <span
-                key={badge}
-                className="rounded-md border border-emerald-500/25 bg-emerald-500/5 px-1.5 py-0.5 text-[9px] font-medium text-emerald-500"
-              >
-                {badge}
+              <span key={badge.key} className={feeWaiverBadgeClassName(badge.variant)}>
+                {badge.label}
               </span>
             ))}
           </div>
@@ -186,13 +187,14 @@ function CurrentCardSummary({
   rank?: number;
   spend: number;
 }) {
-  const tier = feeTier(card, spend);
-  const note = feeNote(card, spend);
+  const tier = feeTier(card, spend, score?.effectiveAnnualFeeBrl);
+  const note = feeNote(card, spend, score?.effectiveAnnualFeeBrl);
   const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
+  const detailHref = useCardDetailHref(card.card_stable_id);
 
   return (
     <Link
-      href={`/cartoes/${card.card_stable_id}`}
+      href={detailHref}
       className="mb-3 grid grid-cols-[28px_56px_minmax(0,1fr)] items-center gap-3 rounded-2xl border bg-background/45 p-3 transition-colors hover:bg-muted/35 sm:grid-cols-[28px_64px_minmax(0,1fr)_auto]"
     >
       <span className="font-mono text-[11px] text-muted-foreground">
@@ -367,7 +369,8 @@ export function PersonalizedRanking() {
         <div className="divide-y divide-border overflow-hidden rounded-2xl border">
           {results.map((scored, idx) => {
             const card = scored.card;
-            const tier = feeTier(card, profile.avgMonthlySpendBrl);
+            const eff = scored.valueScore?.effectiveAnnualFeeBrl;
+            const tier = feeTier(card, profile.avgMonthlySpendBrl, eff);
             return (
               <CardRow
                 key={card.card_stable_id}
@@ -378,13 +381,13 @@ export function PersonalizedRanking() {
                 anuidade={card.facets_numeric_or_special.annual_fee_brl_best_estimate}
                 cardArtUrl={card.media.card_art_url}
                 altText={card.media.alt_text}
-                note={feeNote(card, profile.avgMonthlySpendBrl)}
+                note={feeNote(card, profile.avgMonthlySpendBrl, eff)}
                 tierLabel={FEE_TIER_LABEL[tier]}
                 tierColor={FEE_TIER_COLOR[tier]}
                 earningsSummary={card.reward_return.earning_summary}
                 valueScore={scored.valueScore}
                 scoreBar={Math.round(scored.totalScore * 100)}
-                badges={feeWaiverBadgesForCard(card).map((badge) => badge.label)}
+                badges={feeWaiverBadgesForCard(card, profile)}
               />
             );
           })}
@@ -394,13 +397,11 @@ export function PersonalizedRanking() {
       {!loading && !profile && topCards && (
         <div className="divide-y divide-border overflow-hidden rounded-2xl border">
           {topCards.map((c, idx) => {
-            const feeNum = typeof c.anuidade === "number" ? c.anuidade : 0;
-            const tier: "free" | "optimal" | "good" | "consider" | "heavy" | "unknown" =
-              feeNum === 0 ? "free" : "unknown";
-            const note =
-              feeNum === 0
-                ? "Sem anuidade"
-                : `R$${feeNum.toLocaleString("pt-BR")}/ano`;
+            const cardFromScore = c.score.card;
+            const defaultSpend = DEFAULT_SCORING_PROFILE.avgMonthlySpendBrl;
+            const eff = c.score.effectiveAnnualFeeBrl;
+            const tier = feeTier(cardFromScore, defaultSpend, eff);
+            const note = feeNote(cardFromScore, defaultSpend, eff);
             return (
               <CardRow
                 key={c.id}
@@ -417,7 +418,7 @@ export function PersonalizedRanking() {
                 earningsSummary={c.retornoFinanceiro?.earning_summary}
                 valueScore={c.score}
                 scoreBar={c.score.score0To100}
-                badges={feeWaiverBadgesForCard(c.score.card).map((badge) => badge.label)}
+                badges={feeWaiverBadgesForCard(c.score.card)}
               />
             );
           })}

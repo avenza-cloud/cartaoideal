@@ -35,12 +35,12 @@ function executeGetInvestmentWaiverCards(
 }
 
 describe("getInvestmentWaiverCards execute logic", () => {
-  it("with R$10k — totalEncontrado is 47 and all cards are accounted for", () => {
+  it("with R$10k — totalEncontrado is 48 and all cards are accounted for", () => {
     const result = executeGetInvestmentWaiverCards(10_000);
-    expect(result.totalEncontrado).toBe(47);
+    expect(result.totalEncontrado).toBe(48);
     expect("acessiveisAgora" in result).toBe(true);
     if ("acessiveisAgora" in result) {
-      expect(result.acessiveisAgora!.length + result.precisamDeMaisInvestimento!.length).toBe(47);
+      expect(result.acessiveisAgora!.length + result.precisamDeMaisInvestimento!.length).toBe(48);
     }
   });
 
@@ -76,11 +76,11 @@ describe("getInvestmentWaiverCards execute logic", () => {
     expect(nubank).toBeDefined();
   });
 
-  it("with no profile or input — returns flat cartoes array with totalEncontrado:47", () => {
+  it("with no profile or input — returns flat cartoes array with totalEncontrado:48", () => {
     const result = executeGetInvestmentWaiverCards(undefined, null);
-    expect(result.totalEncontrado).toBe(47);
+    expect(result.totalEncontrado).toBe(48);
     assert("cartoes" in result, "expected flat result");
-    expect(result.cartoes!).toHaveLength(47);
+    expect(result.cartoes!).toHaveLength(48);
   });
 
   it("each card has investment mention in text or structured rules", () => {

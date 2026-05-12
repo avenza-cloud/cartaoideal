@@ -1,13 +1,14 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
+import { Suspense } from "react";
 import { getCardById, getAllCards } from "@/lib/cards";
 import { formatFee, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
 import { affiliateClickUrl } from "@/lib/affiliate";
 import { AppHeader } from "@/components/AppHeader";
+import { CardDetailBackLink } from "@/components/CardDetailBackLink";
 import { CardDetailActions } from "@/components/CardDetailActions";
 import { CardProfileInsights } from "@/components/CardProfileInsights";
 import { AdSlot } from "@/components/AdSlot";
-import { ArrowLeft, Coins, CreditCard, ExternalLink, Plane, ReceiptText, WalletCards } from "lucide-react";
+import { Coins, CreditCard, ExternalLink, Plane, ReceiptText, WalletCards } from "lucide-react";
 import type { BenefitGroupKey, CardCharacteristic, CardFacet, FeeWaiverRule } from "@/types/cards";
 
 interface PageProps {
@@ -114,13 +115,9 @@ export default async function CartaoDetailPage({ params }: PageProps) {
         </div>
 
       <main className="min-w-0 flex-1 max-w-4xl pb-28 pt-4 sm:pt-6 md:pb-12">
-        <Link
-          href="/cartoes"
-          className="mb-4 hidden items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
-        >
-          <ArrowLeft className="h-3.5 w-3.5" />
-          Todos os cartões
-        </Link>
+        <Suspense>
+          <CardDetailBackLink />
+        </Suspense>
 
         {/* ─── Hero ─── */}
         <div className="overflow-hidden rounded-2xl border bg-card/70 shadow-[0_28px_100px_rgba(0,0,0,0.26)] sm:rounded-[2rem]">

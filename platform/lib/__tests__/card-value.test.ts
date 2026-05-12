@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_VALUE_ASSUMPTIONS, scoreCardValue, scoreCardValues } from "@/lib/card-value";
 import { getCardById, getAllCards } from "@/lib/cards";
-import type { UserProfile } from "@/types/cards";
+import type { CardFacet, UserProfile } from "@/types/cards";
 
 const baseProfile: UserProfile = {
   monthlySalaryBrl: 10000,
@@ -17,6 +17,34 @@ const baseProfile: UserProfile = {
     prefersInvestback: false,
   },
 };
+
+function rewardAuditText(card: CardFacet): string {
+  return [
+    card.display_name,
+    card.variant_band,
+    card.reward_return?.earning_summary,
+    card.lounge_access?.summary,
+    ...(card.characteristics ?? []).map((item) => `${item.label} ${item.value} ${item.details ?? ""}`),
+  ].join(" ");
+}
+
+function isPremiumVariant(card: CardFacet): boolean {
+  return (
+    card.market_segment_guess === "premium" ||
+    card.market_segment_guess === "ultra_premium" ||
+    /black|platinum|infinite|signature|grafite|private|personnalit|uniclass/i.test(
+      `${card.display_name} ${card.variant_band}`
+    )
+  );
+}
+
+function hasExplicitNumericRewardSignal(card: CardFacet): boolean {
+  const text = rewardAuditText(card);
+  return (
+    /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)\s*(?:por|\/)\s*(?:d[oó]lar|usd|real|r\$)/i.test(text) ||
+    /(\d+(?:[,.]\d+)?)\s*%\s*(?:de\s*)?(cashback|investback|retorno|cr[eé]dito na fatura)/i.test(text)
+  );
+}
 
 describe("scoreCardValue", () => {
   it("does not value conditional Rico lounge access when neither spend nor investment gate is met", () => {
@@ -227,9 +255,55 @@ describe("scoreCardValue", () => {
     const halfTier = scoreCardValue(card!, { ...baseProfile, avgMonthlySpendBrl: 12_500 });
     const fullTier = scoreCardValue(card!, { ...baseProfile, avgMonthlySpendBrl: 25_000 });
 
+    const midTier = scoreCardValue(card!, { ...baseProfile, avgMonthlySpendBrl: 12_600 });
+    expect(midTier.effectiveAnnualFeeBrl).toBe(825);
+
     expect(belowTier.effectiveAnnualFeeBrl).toBe(1650);
     expect(halfTier.effectiveAnnualFeeBrl).toBe(825);
     expect(fullTier.effectiveAnnualFeeBrl).toBe(0);
+  });
+
+  it("applies CAIXA Mastercard Black monthly-fee cashback tiers correctly", () => {
+    const card = getCardById("caixa-caixa-mastercard-black-fee0bdc264");
+    expect(card).toBeDefined();
+
+    const belowTier = scoreCardValue(card!, { ...baseProfile, avgMonthlySpendBrl: 3_999 });
+    const halfTier = scoreCardValue(card!, { ...baseProfile, avgMonthlySpendBrl: 4_500 });
+    const fullTier = scoreCardValue(card!, { ...baseProfile, avgMonthlySpendBrl: 8_000 });
+
+    expect(belowTier.effectiveAnnualFeeBrl).toBe(921);
+    expect(halfTier.effectiveAnnualFeeBrl).toBe(460.5);
+    expect(fullTier.effectiveAnnualFeeBrl).toBe(0);
+    expect(card!.fee_waiver_rules).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ threshold_brl: 4000, full_waiver: false }),
+        expect.objectContaining({ threshold_brl: 8000, full_waiver: true }),
+      ])
+    );
+  });
+
+  it("applies Banco PAN Mastercard Platinum annual fee waiver only from R$5k/month spend", () => {
+    const card = getCardById("banco-pan-banco-pan-mastercard-platinum-8a57720e28");
+    expect(card).toBeDefined();
+
+    const belowWaiver = scoreCardValue(card!, { ...baseProfile, avgMonthlySpendBrl: 4_999 });
+    const atWaiver = scoreCardValue(card!, { ...baseProfile, avgMonthlySpendBrl: 5_000 });
+
+    expect(belowWaiver.effectiveAnnualFeeBrl).toBe(500);
+    expect(atWaiver.effectiveAnnualFeeBrl).toBe(0);
+  });
+
+  it("does not apply Magalu-only Dinheiro de Volta to general monthly spend (no 1% fallback)", () => {
+    const card = getCardById("itau-magalu-visa-platinum");
+    expect(card).toBeDefined();
+
+    const score = scoreCardValue(card!, { ...baseProfile, avgMonthlySpendBrl: 3_000 });
+    expect(score.grossRewardMonthlyBrl).toBe(0);
+    expect(score.dataQualityNotes).toEqual(
+      expect.arrayContaining([
+        "Cashback identificado apenas como bônus/categoria específica; não aplicado ao gasto geral.",
+      ])
+    );
   });
 
   it("scores Porto Bank Visa Infinite Privilege with non-zero points return", () => {
@@ -274,6 +348,100 @@ describe("scoreCardValue", () => {
 
     expect(score.pointsRewardMonthlyBrl).toBeGreaterThan(0);
     expect(score.grossRewardMonthlyBrl).toBeGreaterThan(0);
+  });
+
+  it("scores Itaú Uniclass Black with non-zero rewards and premium benefits", () => {
+    const card = getCardById("itau-uniclass-black");
+    expect(card).toBeDefined();
+
+    const score = scoreCardValue(card!, baseProfile, "profile", {
+      ...DEFAULT_VALUE_ASSUMPTIONS,
+      ptaxBrlPerUsd: 5,
+    });
+
+    expect(score.grossRewardMonthlyBrl).toBeGreaterThan(0);
+    expect(score.intangibleMonthlyValueBrl).toBeGreaterThan(0);
+    expect(score.dataQualityNotes.join(" ")).not.toMatch(/Sem taxa de retorno estruturada/);
+  });
+
+  it("scores Petrobras Visa as no-fee card with statement-credit rewards", () => {
+    const card = getCardById("banco-do-brasil-petrobras-visa");
+    expect(card).toBeDefined();
+
+    const score = scoreCardValue(card!, baseProfile, "profile", {
+      ...DEFAULT_VALUE_ASSUMPTIONS,
+      ptaxBrlPerUsd: 5,
+    });
+
+    expect(score.effectiveAnnualFeeBrl).toBe(0);
+    expect(score.grossRewardMonthlyBrl).toBeGreaterThan(0);
+    expect(card!.reward_return.has_cashlike_return).toBe(true);
+    expect(card!.facets_boolean.earn_cashback).toBe(true);
+    expect(card!.reward_return.earning_summary).toContain("desconto na fatura");
+    expect(card!.characteristics?.some((item) => String(item.value).includes("Posto Preferido"))).toBe(true);
+  });
+
+  it("scores Dotz BV Mastercard Platinum as cashback, not points", () => {
+    const card = getCardById("banco-bv-dotz-bv-mastercard-platinum-34f0748cf2");
+    expect(card).toBeDefined();
+
+    const score = scoreCardValue(card!, baseProfile);
+
+    expect(score.effectiveAnnualFeeBrl).toBe(259);
+    expect(score.cashlikeRewardMonthlyBrl).toBe(18);
+    expect(score.pointsRewardMonthlyBrl).toBe(0);
+    expect(card!.reward_return.has_cashlike_return).toBe(true);
+    expect(card!.reward_return.earning_summary).toBe("0,6% de cashback");
+    expect(card!.facets_boolean.earn_cashback).toBe(true);
+    expect(card!.facets_boolean.earn_points_or_miles).toBe(false);
+    expect(card!.lounge_access.has_lounge_access).toBe(false);
+  });
+
+  it("does not silently zero cards with explicit numeric points or cashback", () => {
+    const auditProfile: UserProfile = {
+      ...baseProfile,
+      avgInvestedBrl: 100_000,
+      monthlyInternationalSpendBrl: 500,
+    };
+    const brokenCards = getAllCards().filter((card) => {
+      if (!hasExplicitNumericRewardSignal(card)) return false;
+      if (!card.facets_boolean.earn_points_or_miles && !card.reward_return.has_cashlike_return) return false;
+
+      const score = scoreCardValue(card, auditProfile);
+      return score.grossRewardMonthlyBrl === 0;
+    });
+
+    expect(brokenCards.map((card) => card.display_name)).toEqual([]);
+  });
+
+  it("does not leave premium point claims without a structured earning rate", () => {
+    const unstructuredPremiumClaims = getAllCards().filter((card) => {
+      if (!isPremiumVariant(card)) return false;
+      if (!card.facets_boolean.earn_points_or_miles) return false;
+
+      const text = rewardAuditText(card);
+      return /\bpontos?\s+por\s+d[oó]lar\b/i.test(text) && !hasExplicitNumericRewardSignal(card);
+    });
+
+    expect(unstructuredPremiumClaims.map((card) => card.display_name)).toEqual([]);
+  });
+
+  it("does not give zero card-value to premium cards that declare rewards or benefits", () => {
+    const zeroValuePremiumCards = getAllCards().filter((card) => {
+      if (!isPremiumVariant(card)) return false;
+
+      const declaresValue =
+        hasExplicitNumericRewardSignal(card) ||
+        card.lounge_access.has_lounge_access ||
+        card.facets_boolean.mentions_travel_insurance ||
+        card.facets_boolean.mentions_concierge;
+      if (!declaresValue) return false;
+
+      const score = scoreCardValue(card, baseProfile);
+      return score.grossRewardMonthlyBrl === 0 && score.intangibleMonthlyValueBrl === 0;
+    });
+
+    expect(zeroValuePremiumCards.map((card) => card.display_name)).toEqual([]);
   });
 
   it("cards with only 'até X pontos por dólar' earning data produce non-zero gross return", () => {

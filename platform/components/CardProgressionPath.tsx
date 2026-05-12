@@ -6,6 +6,7 @@ import { useProfileStore } from "@/lib/store";
 import { formatFee } from "@/lib/formatting";
 import { formatBrlCurrency, formatBrlInput, parseBrlInput } from "@/lib/brl";
 import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
+import { useCardDetailHref } from "@/lib/use-card-detail-href";
 import {
   CreditCard,
   ArrowRight,
@@ -66,6 +67,7 @@ function CardRow({
 }) {
   const { card, valueScore } = scored;
   const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
+  const detailHref = useCardDetailHref(card.card_stable_id);
   const net = valueScore?.netMonthlyValueBrl;
   const positive = (net ?? 0) >= 0;
   const restricted = valueScore?.dataQualityNotes.some((note) =>
@@ -74,7 +76,7 @@ function CardRow({
 
   return (
     <Link
-      href={`/cartoes/${card.card_stable_id}`}
+      href={detailHref}
       className={`flex items-center gap-3 rounded-2xl border px-3 py-2.5 text-xs transition-colors hover:bg-muted/30 ${
         highlight
           ? "border-emerald-500/30 bg-emerald-500/5"

@@ -40,6 +40,11 @@ import {
 import Link from "next/link";
 import type { UIMessage } from "ai";
 import type { FeeWaiverRule } from "@/types/cards";
+import {
+  feeWaiverBadgeClassName,
+  feeWaiverRuleBadgeVariant,
+  feeWaiverRuleDisplayLabel,
+} from "@/lib/fee-waiver-badges";
 import { cn } from "@/lib/utils";
 
 interface ChatInterfaceProps {
@@ -104,14 +109,6 @@ function feeLabel(anuidade: number | string) {
   if (typeof anuidade === "number")
     return `R$${anuidade.toLocaleString("pt-BR")}/ano`;
   return String(anuidade);
-}
-
-function waiverBadgeLabel(rule: FeeWaiverRule) {
-  if (rule.category === "monthly_spend") return "Isento por gasto";
-  if (rule.category === "investment") return "Isento por investimento";
-  if (rule.category === "cashback") return "Isento por cashback";
-  if (rule.category === "miles") return "Isento por milhas";
-  return "Sem anuidade";
 }
 
 function messageText(message: UIMessage) {
@@ -233,6 +230,7 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
   const selected = ids.includes(card.id);
   const hasImage = card.cardArtUrl && card.cardArtUrl !== "unknown";
   const badges = (card.regrasIsencao ?? []).slice(0, 3);
+  const annualFeeHint = typeof card.anuidade === "number" ? card.anuidade : undefined;
   return (
     <div className="flex items-start gap-2 rounded-xl border bg-card/60 px-2.5 py-2 text-xs">
       <Link
@@ -266,9 +264,9 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
               {badges.map((rule, index) => (
                 <span
                   key={`${rule.category}-${rule.threshold_brl ?? index}`}
-                  className="rounded-md border border-emerald-500/25 bg-emerald-500/5 px-1.5 py-0.5 text-[9px] font-medium text-emerald-500"
+                  className={feeWaiverBadgeClassName(feeWaiverRuleBadgeVariant(rule, annualFeeHint))}
                 >
-                  {waiverBadgeLabel(rule)}
+                  {feeWaiverRuleDisplayLabel(rule, annualFeeHint)}
                 </span>
               ))}
             </div>

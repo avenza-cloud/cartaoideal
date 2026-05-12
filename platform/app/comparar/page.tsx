@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { Suspense } from "react";
 import { getCardsByIds } from "@/lib/cards";
 import { formatFee, loungeSummary, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
 import { AppHeader } from "@/components/AppHeader";
@@ -20,6 +21,11 @@ export default async function CompararPage({ searchParams }: PageProps) {
   const cards = getCardsByIds(cardIds);
 
   if (cards.length < 2) notFound();
+  const comparePath = `/comparar?ids=${encodeURIComponent(ids)}`;
+  const cardDetailHref = (cardId: string) => {
+    const params = new URLSearchParams({ from: comparePath });
+    return `/cartoes/${cardId}?${params.toString()}`;
+  };
 
   return (
     <div className="min-h-screen">
@@ -36,7 +42,9 @@ export default async function CompararPage({ searchParams }: PageProps) {
       </div>
 
       <div className="mx-auto max-w-6xl space-y-4 px-3 py-5 sm:px-4">
-        <ProfileCompareSummary cards={cards} />
+        <Suspense>
+          <ProfileCompareSummary cards={cards} />
+        </Suspense>
 
         <div className="overflow-x-auto rounded-xl border bg-card/35">
         <table className="w-full min-w-[620px] border-collapse text-sm">
@@ -52,7 +60,7 @@ export default async function CompararPage({ searchParams }: PageProps) {
                       {card.issuer_raw}
                     </p>
                     <Link
-                      href={`/cartoes/${card.card_stable_id}`}
+                      href={cardDetailHref(card.card_stable_id)}
                       className="font-semibold hover:underline underline-offset-2 text-sm leading-tight"
                     >
                       {card.display_name}

@@ -12,6 +12,7 @@ import { formatFee, segmentLabel } from "@/lib/formatting";
 import { CLIENT_CARD_OPTIONS } from "@/lib/client-card-options";
 import { formatBrlInput, formatBrlNumber, parseBrlInput } from "@/lib/brl";
 import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
+import { useCardDetailHrefBuilder } from "@/lib/use-card-detail-href";
 import Link from "next/link";
 import type { CardScore, SpendingCategory, TravelFrequency, UserProfile } from "@/types/cards";
 import { ArrowRight, ArrowLeft, Loader2 } from "lucide-react";
@@ -50,6 +51,7 @@ const INITIAL_PROFILE: UserProfile = {
 
 export function FitQuiz() {
   const [step, setStep] = useState<Step>(1);
+  const cardDetailHref = useCardDetailHrefBuilder();
   const [profile, setProfile] = useState<UserProfile>(INITIAL_PROFILE);
   const [salaryInput, setSalaryInput] = useState("");
   const [spendInput, setSpendInput] = useState("");
@@ -333,7 +335,7 @@ export function FitQuiz() {
                   valueScore={item.valueScore}
                 />
                 <Link
-                  href={`/cartoes/${item.card.card_stable_id}`}
+                  href={cardDetailHref(item.card.card_stable_id)}
                   className="text-xs text-muted-foreground hover:text-foreground transition-colors underline underline-offset-2"
                 >
                   Ver detalhes

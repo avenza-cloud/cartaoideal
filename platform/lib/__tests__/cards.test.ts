@@ -60,9 +60,9 @@ describe("filterCards", () => {
     expect(cards.some((card) => card.display_name === "LATAM Pass Itaú Visa Internacional")).toBe(false);
   });
 
-  it("feeWaiverByInvestment:true returns exactly 47 cards", () => {
+  it("feeWaiverByInvestment:true returns exactly 48 cards", () => {
     const cards = filterCards({ feeWaiverByInvestment: true });
-    expect(cards).toHaveLength(47);
+    expect(cards).toHaveLength(48);
   });
 
   it("feeWaiverByInvestment result is sorted by fee ascending", () => {

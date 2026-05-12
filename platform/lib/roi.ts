@@ -4,19 +4,31 @@ export type FeeTier = "free" | "optimal" | "good" | "consider" | "heavy" | "unkn
 
 export function feeShareOfSpend(
   card: CardFacet,
-  monthlySpend: number
+  monthlySpend: number,
+  /** Quando o score já aplicou isenções (ex.: CAIXA Ícone), usar anuidade efetiva em vez da nominal. */
+  effectiveAnnualFeeBrl?: number | null
 ): number | null {
-  const fee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
+  const fee =
+    typeof effectiveAnnualFeeBrl === "number" && Number.isFinite(effectiveAnnualFeeBrl)
+      ? effectiveAnnualFeeBrl
+      : card.facets_numeric_or_special.annual_fee_brl_best_estimate;
   if (typeof fee !== "number" || monthlySpend <= 0) return null;
   if (fee === 0) return 0;
   return fee / (monthlySpend * 12);
 }
 
-export function feeTier(card: CardFacet, monthlySpend: number): FeeTier {
-  const fee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
+export function feeTier(
+  card: CardFacet,
+  monthlySpend: number,
+  effectiveAnnualFeeBrl?: number | null
+): FeeTier {
+  const fee =
+    typeof effectiveAnnualFeeBrl === "number" && Number.isFinite(effectiveAnnualFeeBrl)
+      ? effectiveAnnualFeeBrl
+      : card.facets_numeric_or_special.annual_fee_brl_best_estimate;
   if (fee === "unknown") return "unknown";
   if (typeof fee === "number" && fee === 0) return "free";
-  const share = feeShareOfSpend(card, monthlySpend);
+  const share = feeShareOfSpend(card, monthlySpend, effectiveAnnualFeeBrl);
   if (share === null) return "unknown";
   if (share < 0.01) return "optimal";
   if (share < 0.02) return "good";
@@ -24,9 +36,16 @@ export function feeTier(card: CardFacet, monthlySpend: number): FeeTier {
   return "heavy";
 }
 
-export function feeNote(card: CardFacet, monthlySpend: number): string {
-  const fee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
-  const tier = feeTier(card, monthlySpend);
+export function feeNote(
+  card: CardFacet,
+  monthlySpend: number,
+  effectiveAnnualFeeBrl?: number | null
+): string {
+  const fee =
+    typeof effectiveAnnualFeeBrl === "number" && Number.isFinite(effectiveAnnualFeeBrl)
+      ? effectiveAnnualFeeBrl
+      : card.facets_numeric_or_special.annual_fee_brl_best_estimate;
+  const tier = feeTier(card, monthlySpend, effectiveAnnualFeeBrl);
 
   if (tier === "free") return "Sem anuidade — todo retorno é ganho líquido";
   if (tier === "unknown") return "Anuidade não informada";
