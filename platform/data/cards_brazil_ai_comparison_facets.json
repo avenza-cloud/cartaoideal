@@ -2544,11 +2544,8 @@
         "remote_card_art_url": "https://passageirodeprimeira.com/wp-content/uploads/2023/11/santander-unique-mc-black-230x146.jpg"
       },
       "reward_return": {
-        "has_cashlike_return": true,
-        "subtypes": [
-          "cashback"
-        ],
-        "earning_summary": "1,2% de cashback"
+        "has_cashlike_return": false,
+        "earning_summary": "Até 3,3 pontos Esfera por dólar (nacional) e até 4,5 (internacional) com Santander Rewards; base 2,2 e 3 pontos."
       },
       "lounge_access": {
         "has_lounge_access": true,
@@ -2577,16 +2574,16 @@
       },
       "benefit_groups": {
         "fees": [
-          "Anuidade: R$ 1.050",
+          "Anuidade: 12x de R$ 96,25 (R$ 1.155/ano)",
           "Adicionais com benefícios: Sim",
           "Isenção da anuidade: 100% de isenção na parcela mensal da anuidade do cumprir dois dos seguintes critérios - faturas acima de R$ 8 mil, investimentos acima de R$ 50 e ser correntista com pacote de serviços ativos (exceto essencial e pacote FREE)",
-          "Anuidade: R$ 1.050",
+          "Anuidade: 12x de R$ 96,25 (R$ 1.155/ano)",
           "Adicionais gratuitos: 5"
         ],
         "rewards": [
-          "Pontuação: 1,2% de cashback",
-          "Retorno financeiro: cashback",
-          "Regra de pontuação: 1,2% de cashback",
+          "Pontuação: 2,2 pontos Esfera/US$ (nacional), 3 pontos/US$ (internacional); até 3,3 e 4,5 com Santander Rewards",
+          "Retorno financeiro: pontos Esfera",
+          "Regra de pontuação: 1 dólar em compras nacionais = 2,2 pontos Esfera (até 3,3 com Santander Rewards); 1 dólar em compras internacionais = 3 pontos (até 4,5 com Santander Rewards).",
           "Bônus de adesão: (Não há)",
           "Programa de fidelidade: Esfera",
           "Validade dos pontos: 36 meses"
@@ -2612,19 +2609,19 @@
           "category": "fees",
           "key": "annual_fee",
           "label": "Anuidade",
-          "value": "R$ 1.050"
+          "value": "12x de R$ 96,25 (R$ 1.155/ano)"
         },
         {
           "category": "rewards",
           "key": "earning_rate",
           "label": "Pontuação",
-          "value": "1,2% de cashback"
+          "value": "2,2 pontos Esfera/US$ (nacional), 3 pontos/US$ (internacional); até 3,3 e 4,5 com Santander Rewards"
         },
         {
           "category": "rewards",
           "key": "financial_return",
           "label": "Retorno financeiro",
-          "value": "cashback"
+          "value": "pontos Esfera"
         },
         {
           "category": "travel",
@@ -2661,7 +2658,7 @@
           "category": "rewards",
           "key": "earning_detail",
           "label": "Regra de pontuação",
-          "value": "1,2% de cashback"
+          "value": "1 dólar em compras nacionais = 2,2 pontos Esfera (até 3,3 com Santander Rewards); 1 dólar em compras internacionais = 3 pontos (até 4,5 com Santander Rewards)."
         },
         {
           "category": "rewards",
@@ -2712,7 +2709,7 @@
           "category": "fees",
           "key": "annual_fee_detail",
           "label": "Anuidade",
-          "value": "R$ 1.050"
+          "value": "12x de R$ 96,25 (R$ 1.155/ano)"
         },
         {
           "category": "lifestyle",
@@ -2734,7 +2731,7 @@
         }
       ],
       "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": 1050,
+        "annual_fee_brl_best_estimate": 1155,
         "monthly_fee_brl_after_intro_official_hint": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
@@ -2745,10 +2742,10 @@
         "has_any_lounge_claim": true,
         "has_named_lounge_program": true,
         "lounge_unlimited_claim": true,
-        "earn_points_or_miles": false,
-        "earn_cashback": true,
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
         "earn_investback": false,
-        "reward_return_cashlike": true,
+        "reward_return_cashlike": false,
         "mentions_travel_insurance": false,
         "mentions_concierge": false,
         "co_brand_name_detected": false,
@@ -2758,10 +2755,9 @@
       "labels_for_filtering": [
         "segment:premium",
         "travel:lounge",
-        "rewards:cashback",
-        "rewards:return_cashlike"
+        "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "Santander Unique Mastercard Black \nEmissor: Santander \nBandeira: Mastercard \nFaixa: Black \nElegibilidade: unknown \nGanhos: 1,2% de cashback \nProgramas: unknown \nAnuidade (campo principal): R$ 1.050 \nSalas VIP / programa: Salas VIP do Mastercard Airport Experience - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: R$ 1.050; Pontuação: 1,2% de cashback; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Mastercard Airport Experience; Programa de sala VIP: Sala VIP Mastercard Black; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Regra de pontuação: 1,2% de cashback; Bônus de adesão: (Não há); Salas VIP: Salas VIP do Mastercard Airport Experience - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
+      "text_for_embedding_compare": "Santander Unique Mastercard Black \nEmissor: Santander \nBandeira: Mastercard \nFaixa: Black \nElegibilidade: unknown \nGanhos: Até 3,3 pontos Esfera por dólar (nacional) e até 4,5 (internacional) com Santander Rewards; base 2,2 e 3 pontos. \nProgramas: unknown \nAnuidade (campo principal): 12x de R$ 96,25 (R$ 1155) \nSalas VIP / programa: Salas VIP do Mastercard Airport Experience - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: 12x de R$ 96,25 (R$ 1.155/ano); Adicionais com benefícios: Sim; Isenção da anuidade: 100% de isenção na parcela mensal da anuidade do cumprir dois dos seguintes critérios - faturas acima de R$ 8 mil, investimentos acima de R$ 50 e ser correntista com pacote de serviços ativos (exceto essencial e pacote FREE); Anuidade: 12x de R$ 96,25 (R$ 1.155/ano); Adicionais gratuitos: 5; Pontuação: 2,2 pontos Esfera/US$ (nacional), 3 pontos/US$ (internacional); até 3,3 e 4,5 com Santander Rewards; Retorno financeiro: pontos Esfera; Regra de pontuação: 1 dólar em compras nacionais = 2,2 pontos Esfera (até 3,3 com Santander Rewards); 1 dólar em compras internacionais = 3 pontos (até 4,5 com Santander Rewards).; Bônus de adesão: (Não há); Programa de fidelidade: Esfera; Validade dos pontos: 36 meses; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Mastercard Airport Experience; Programa de sala VIP: Sala VIP Mastercard Black; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: Ilimitados; Salas VIP: Salas VIP do Mastercard Airport Experience - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano; Carteira digital: Apple Pay, Samsung Pay, Garmin Pay, Google Pay; Precisa ser correntista: Sim \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
     },
     {
       "card_stable_id": "banescard-banescard-absoluto-visa-infinite-d2b75bb084",
@@ -3050,7 +3046,7 @@
       "card_stable_id": "santander-santander-unique-visa-infinite-29301f622d",
       "display_name": "Santander Unique Visa Infinite",
       "issuer_raw": "Santander",
-      "network_primary": "Mastercard",
+      "network_primary": "Visa",
       "variant_band": "Infinite",
       "market_segment_guess": "premium",
       "product_kind": "named_credit_card_product",
@@ -3072,11 +3068,8 @@
         "remote_card_art_url": "https://passageirodeprimeira.com/wp-content/uploads/2022/04/passageirodeprimeira.com-cartoes-visa-infinite-unique-e-unlimeted-do-santander-estao-oferecendo-acessos-gratuitos-a-salas-vip-atraves-do-dragon-pass-unique-230x146.png"
       },
       "reward_return": {
-        "has_cashlike_return": true,
-        "subtypes": [
-          "cashback"
-        ],
-        "earning_summary": "1,2% de cashback"
+        "has_cashlike_return": false,
+        "earning_summary": "Até 3,3 pontos Esfera por dólar (nacional) e até 4,5 (internacional) com Santander Rewards; base 2,2 e 3 pontos."
       },
       "lounge_access": {
         "has_lounge_access": true,
@@ -3088,7 +3081,7 @@
         "guest_policy": "0 acompanhante(s)",
         "complimentary_access_confirmed": true,
         "policy_varies_by_issuer": false,
-        "summary": "Salas VIP do Visa Airport Companion - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano"
+        "summary": "Visa Airport Companion: 2 acessos gratuitos por ano ao titular; confira critérios de elegibilidade no programa Santander/Visa."
       },
       "eligibility": {
         "requirements_text": "unknown",
@@ -3104,16 +3097,16 @@
       },
       "benefit_groups": {
         "fees": [
-          "Anuidade: R$ 1.050",
+          "Anuidade: 12x de R$ 96,25 (R$ 1.155/ano)",
           "Adicionais com benefícios: Sim",
           "Isenção da anuidade: 100% de isenção na parcela mensal da anuidade do cumprir dois dos seguintes critérios - faturas acima de R$ 8 mil, investimentos acima de R$ 50 e ser correntista com pacote de serviços ativos (exceto essencial e pacote FREE)",
-          "Anuidade: R$ 1.050",
+          "Anuidade: 12x de R$ 96,25 (R$ 1.155/ano)",
           "Adicionais gratuitos: 5"
         ],
         "rewards": [
-          "Pontuação: 1,2% de cashback",
-          "Retorno financeiro: cashback",
-          "Regra de pontuação: 1,2% de cashback",
+          "Pontuação: 2,2 pontos Esfera/US$ (nacional), 3 pontos/US$ (internacional); até 3,3 e 4,5 com Santander Rewards",
+          "Retorno financeiro: pontos Esfera",
+          "Regra de pontuação: 1 dólar em compras nacionais = 2,2 pontos Esfera (até 3,3 com Santander Rewards); 1 dólar em compras internacionais = 3 pontos (até 4,5 com Santander Rewards).",
           "Bônus de adesão: (Não há)",
           "Programa de fidelidade: Esfera",
           "Validade dos pontos: 36 meses"
@@ -3123,7 +3116,7 @@
           "Programa de sala VIP: Visa Airport Companion",
           "Acompanhantes em sala VIP: 0 acompanhante(s)",
           "Acessos a sala VIP: 2 por ano",
-          "Salas VIP: Salas VIP do Visa Airport Companion - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano"
+          "Salas VIP: Visa Airport Companion — 2 acessos gratuitos por ano; confira critérios de elegibilidade no Santander/Visa"
         ],
         "lifestyle": [
           "Carteira digital: Apple Pay, Google Pay, Samsung Pay, Garmin Pay"
@@ -3137,19 +3130,19 @@
           "category": "fees",
           "key": "annual_fee",
           "label": "Anuidade",
-          "value": "R$ 1.050"
+          "value": "12x de R$ 96,25 (R$ 1.155/ano)"
         },
         {
           "category": "rewards",
           "key": "earning_rate",
           "label": "Pontuação",
-          "value": "1,2% de cashback"
+          "value": "2,2 pontos Esfera/US$ (nacional), 3 pontos/US$ (internacional); até 3,3 e 4,5 com Santander Rewards"
         },
         {
           "category": "rewards",
           "key": "financial_return",
           "label": "Retorno financeiro",
-          "value": "cashback"
+          "value": "pontos Esfera"
         },
         {
           "category": "travel",
@@ -3180,7 +3173,7 @@
           "category": "rewards",
           "key": "earning_detail",
           "label": "Regra de pontuação",
-          "value": "1,2% de cashback"
+          "value": "1 dólar em compras nacionais = 2,2 pontos Esfera (até 3,3 com Santander Rewards); 1 dólar em compras internacionais = 3 pontos (até 4,5 com Santander Rewards)."
         },
         {
           "category": "rewards",
@@ -3193,7 +3186,7 @@
           "key": "salas_vip",
           "label": "Salas VIP",
           "value": "Salas VIP do Visa Airport Companion",
-          "details": "2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano"
+          "details": "2 acessos gratuitos por ano; confira critérios de elegibilidade no Santander/Visa"
         },
         {
           "category": "rewards",
@@ -3224,7 +3217,7 @@
           "category": "fees",
           "key": "annual_fee_detail",
           "label": "Anuidade",
-          "value": "R$ 1.050"
+          "value": "12x de R$ 96,25 (R$ 1.155/ano)"
         },
         {
           "category": "lifestyle",
@@ -3246,7 +3239,7 @@
         }
       ],
       "facets_numeric_or_special": {
-        "annual_fee_brl_best_estimate": 1050,
+        "annual_fee_brl_best_estimate": 1155,
         "monthly_fee_brl_after_intro_official_hint": "unknown",
         "minimum_income_brl_best_estimate": "unknown",
         "minimum_investment_brl_best_estimate": "unknown",
@@ -3257,10 +3250,10 @@
         "has_any_lounge_claim": true,
         "has_named_lounge_program": true,
         "lounge_unlimited_claim": false,
-        "earn_points_or_miles": false,
-        "earn_cashback": true,
+        "earn_points_or_miles": true,
+        "earn_cashback": false,
         "earn_investback": false,
-        "reward_return_cashlike": true,
+        "reward_return_cashlike": false,
         "mentions_travel_insurance": false,
         "mentions_concierge": false,
         "co_brand_name_detected": false,
@@ -3270,10 +3263,9 @@
       "labels_for_filtering": [
         "segment:premium",
         "travel:lounge",
-        "rewards:cashback",
-        "rewards:return_cashlike"
+        "rewards:points_or_miles"
       ],
-      "text_for_embedding_compare": "Santander Unique Visa Infinite \nEmissor: Santander \nBandeira: Mastercard \nFaixa: Infinite \nElegibilidade: unknown \nGanhos: 1,2% de cashback \nProgramas: unknown \nAnuidade (campo principal): R$ 1.050 \nSalas VIP / programa: Salas VIP do Visa Airport Companion - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano \nBenefícios (lista): Anuidade: R$ 1.050; Pontuação: 1,2% de cashback; Retorno financeiro: cashback; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: 2 por ano; Regra de pontuação: 1,2% de cashback; Bônus de adesão: (Não há); Salas VIP: Salas VIP do Visa Airport Companion - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano; Programa de fidelidade: Esfera; Validade dos pontos: 36 meses \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
+      "text_for_embedding_compare": "Santander Unique Visa Infinite \nEmissor: Santander \nBandeira: Visa \nFaixa: Infinite \nElegibilidade: unknown \nGanhos: Até 3,3 pontos Esfera por dólar (nacional) e até 4,5 (internacional) com Santander Rewards; base 2,2 e 3 pontos. \nProgramas: unknown \nAnuidade (campo principal): 12x de R$ 96,25 (R$ 1155) \nSalas VIP / programa: Visa Airport Companion: 2 acessos gratuitos por ano ao titular; confira critérios de elegibilidade no programa Santander/Visa. \nBenefícios (lista): Anuidade: 12x de R$ 96,25 (R$ 1.155/ano); Adicionais com benefícios: Sim; Isenção da anuidade: 100% de isenção na parcela mensal da anuidade do cumprir dois dos seguintes critérios - faturas acima de R$ 8 mil, investimentos acima de R$ 50 e ser correntista com pacote de serviços ativos (exceto essencial e pacote FREE); Anuidade: 12x de R$ 96,25 (R$ 1.155/ano); Adicionais gratuitos: 5; Pontuação: 2,2 pontos Esfera/US$ (nacional), 3 pontos/US$ (internacional); até 3,3 e 4,5 com Santander Rewards; Retorno financeiro: pontos Esfera; Regra de pontuação: 1 dólar em compras nacionais = 2,2 pontos Esfera (até 3,3 com Santander Rewards); 1 dólar em compras internacionais = 3 pontos (até 4,5 com Santander Rewards).; Bônus de adesão: (Não há); Programa de fidelidade: Esfera; Validade dos pontos: 36 meses; Sala VIP: Acesso disponível - Gratuidade indicada pela fonte; Programa de sala VIP: Visa Airport Companion; Acompanhantes em sala VIP: 0 acompanhante(s); Acessos a sala VIP: 2 por ano; Salas VIP: Visa Airport Companion — 2 acessos gratuitos por ano; confira critérios de elegibilidade no Santander/Visa; Carteira digital: Apple Pay, Google Pay, Samsung Pay, Garmin Pay; Precisa ser correntista: Sim \nVerificação automática: trusted_passageiro_de_primeira_ranking (confiança 1.0)"
     },
     {
       "card_stable_id": "itau-itau-private-visa-infinite-privilege-2159612aee",

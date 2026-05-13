@@ -49,20 +49,6 @@ export default function HomePage() {
           </section>
 
           {/* Quick-access tiles */}
-          <section className="mx-auto grid max-w-4xl gap-2 md:grid-cols-2">
-            <QuickTile
-              href="/cartoes"
-              icon={BarChart3}
-              label="Catálogo"
-              detail="Filtros densos"
-            />
-            <QuickTile
-              href="/cartoes?cashback=true"
-              icon={Coins}
-              label="Cashback"
-              detail="Retorno direto"
-            />
-          </section>
 
           {/* Personalized ranking (profile setup or results) */}
           <section className="mx-auto max-w-4xl">

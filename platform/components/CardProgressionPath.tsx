@@ -1,27 +1,20 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, type ReactNode } from "react";
 import Link from "next/link";
 import { useProfileStore } from "@/lib/store";
-import { formatFee, formatNetMonthlyDisplay } from "@/lib/formatting";
+import { formatNetMonthlyDisplay } from "@/lib/formatting";
 import { travelFrequencyForValueModeling } from "@/lib/card-value";
 import { formatBrlCurrency, formatBrlInput, parseBrlInput } from "@/lib/brl";
-import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
-import { useCardDetailHref } from "@/lib/use-card-detail-href";
 import {
-  CreditCard,
-  ArrowRight,
-  Sparkles,
-  TrendingUp,
-  ChevronRight,
-} from "lucide-react";
+  fetchRecommendationsWithFallback,
+  scoreSingleClientCard,
+} from "@/lib/recommend-fallback";
+import { useCardDetailHref } from "@/lib/use-card-detail-href";
+import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
 import type { CardScore, TravelFrequency } from "@/types/cards";
 
-/* ─── helpers ─── */
-function money(v: number) {
-  const sign = v > 0 ? "+" : v < 0 ? "−" : "";
-  return `${sign}R$${Math.abs(v).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}`;
-}
 function shortMoney(v: number) {
   if (v >= 1_000_000) return `R$${(v / 1_000_000).toFixed(1).replace(".", ",")}M`;
   if (v >= 1_000) return `R$${(v / 1_000).toLocaleString("pt-BR", { maximumFractionDigits: 0 })}k`;
@@ -56,20 +49,18 @@ function projectionSpendBase(currentIncome: number, currentSpend: number) {
   return looksLikeLegacyExtraZero ? correctedSpend : currentSpend;
 }
 
-/* ─── small card row ─── */
 function CardRow({
   scored,
-  badge,
-  highlight,
+  caption,
   travelFrequency,
-}: {
+  size = "compact",
+}: Readonly<{
   scored: CardScore;
-  badge?: string;
-  highlight?: boolean;
+  caption?: string;
   travelFrequency: TravelFrequency;
-}) {
+  size?: "compact" | "comfortable";
+}>) {
   const { card, valueScore } = scored;
-  const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
   const detailHref = useCardDetailHref(card.card_stable_id);
   const netLow = valueScore?.netMonthlyValueBrl;
   const netHigh = valueScore?.netMonthlyValueRangeHighBrl;
@@ -77,80 +68,55 @@ function CardRow({
     netLow !== undefined && netHigh !== undefined
       ? Math.max(netLow, netHigh) >= 0
       : (netLow ?? 0) >= 0;
-  const restricted = valueScore?.dataQualityNotes.some((note) =>
-    /convite|restrit|private/i.test(note)
-  );
+
+  const labelForA11y = caption ? `${caption}: ${card.display_name}` : card.display_name;
+
+  const comfortable = size === "comfortable";
 
   return (
     <Link
       href={detailHref}
-      className={`flex items-center gap-3 rounded-2xl border px-3 py-2.5 text-xs transition-colors hover:bg-muted/30 ${
-        highlight
-          ? "border-emerald-500/30 bg-emerald-500/5"
-          : "bg-background/40"
-      }`}
+      aria-label={labelForA11y}
+      className={cn(
+        "block border border-border/70 bg-background/40 text-left transition-colors hover:bg-muted/30",
+        comfortable
+          ? "rounded-xl px-2.5 py-2"
+          : "rounded-lg px-2 py-1.5"
+      )}
     >
-      <div className="flex h-9 w-14 shrink-0 items-center justify-center rounded-lg border bg-zinc-950">
-        {hasImage ? (
-          <img
-            src={card.media.card_art_url}
-            alt={card.media.alt_text}
-            className="max-h-6 max-w-[44px] object-contain"
-            loading="lazy"
-          />
-        ) : (
-          <CreditCard className="h-3.5 w-3.5 text-muted-foreground" />
+      <p
+        className={cn(
+          "truncate font-medium leading-snug",
+          comfortable ? "text-xs" : "text-[11px] leading-tight"
         )}
-      </div>
-
-      <div className="min-w-0 flex-1">
-        <div className="flex items-center gap-1.5">
-          {badge && (
-            <span className="shrink-0 rounded-md bg-emerald-500/15 px-1.5 py-0.5 font-mono text-[9px] text-emerald-400">
-              {badge}
-            </span>
+      >
+        {card.display_name}
+      </p>
+      {valueScore ? (
+        <p
+          className={cn(
+            "font-mono font-semibold leading-snug",
+            comfortable ? "mt-0.5 text-[10px]" : "mt-px text-[9px] leading-tight",
+            positive ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"
           )}
-          {restricted && (
-            <span className="shrink-0 rounded-md bg-amber-500/15 px-1.5 py-0.5 font-mono text-[9px] text-amber-400">
-              restrito
-            </span>
-          )}
-          <p className="truncate font-medium leading-tight">{card.display_name}</p>
-        </div>
-        <p className="mt-0.5 text-[10px] text-muted-foreground">
-          {formatFee(card.facets_numeric_or_special.annual_fee_brl_best_estimate)}
+        >
+          {formatNetMonthlyDisplay(valueScore, travelFrequency)}
         </p>
-      </div>
-
-      <div className="max-w-[11rem] shrink-0 text-right">
-        {valueScore && (
-          <p
-            className={`font-mono text-[10px] font-semibold leading-snug break-words sm:text-xs ${
-              positive ? "text-emerald-400" : "text-rose-400"
-            }`}
-          >
-            {formatNetMonthlyDisplay(valueScore, travelFrequency)}
-          </p>
-        )}
-        <ChevronRight className="ml-auto h-3 w-3 text-muted-foreground/40" />
-      </div>
+      ) : null}
     </Link>
   );
 }
 
-/* ─── main ─── */
 export function CardProgressionPath() {
   const { profile, onboardingDone } = useProfileStore();
 
-  // current top cards
-  const [current, setCurrent] = useState<CardScore[] | null>(null);
-  const [loadingCurrent, setLoadingCurrent] = useState(false);
+  const [bestReco, setBestReco] = useState<CardScore | null>(null);
+  const [currentReco, setCurrentReco] = useState<CardScore | null>(null);
+  const [loadingReco, setLoadingReco] = useState(false);
 
-  // future inputs
   const [futureIncome, setFutureIncome] = useState("");
   const [futureInvested, setFutureInvested] = useState("");
 
-  // simulation result
   const [simResult, setSimResult] = useState<{
     top: CardScore[];
     newUnlocked: CardScore[];
@@ -158,14 +124,39 @@ export function CardProgressionPath() {
   } | null>(null);
   const [simLoading, setSimLoading] = useState(false);
 
-  // fetch current top cards
   useEffect(() => {
-    if (!profile) { setCurrent(null); return; }
-    setLoadingCurrent(true);
-    fetchRecommendationsWithFallback(profile, 3)
-      .then((d: CardScore[]) => setCurrent(Array.isArray(d) ? d : null))
-      .catch(() => setCurrent(null))
-      .finally(() => setLoadingCurrent(false));
+    if (!profile) {
+      setBestReco(null);
+      setCurrentReco(null);
+      return;
+    }
+    setLoadingReco(true);
+    fetchRecommendationsWithFallback(profile, 12)
+      .then((list: CardScore[]) => {
+        if (!Array.isArray(list) || list.length === 0) {
+          setBestReco(null);
+          setCurrentReco(null);
+          return;
+        }
+        const best = list[0] ?? null;
+        setBestReco(best);
+        const id = profile.currentPrimaryCardId;
+        if (!id) {
+          setCurrentReco(null);
+          return;
+        }
+        const fromList = list.find((s) => s.card.card_stable_id === id) ?? null;
+        if (fromList) {
+          setCurrentReco(fromList);
+          return;
+        }
+        setCurrentReco(scoreSingleClientCard(profile, id));
+      })
+      .catch(() => {
+        setBestReco(null);
+        setCurrentReco(null);
+      })
+      .finally(() => setLoadingReco(false));
   }, [profile]);
 
   const futureIncomeNum = parseBrlInput(futureIncome);
@@ -177,7 +168,6 @@ export function CardProgressionPath() {
     ? projectionSpendBase(currentIncomeForProjection, profile.avgMonthlySpendBrl)
     : 0;
 
-  // proportional spend estimate
   const estimatedFutureSpend =
     profile && futureIncomeNum > 0 && currentIncomeForProjection > 0
       ? currentSpendForProjection * (futureIncomeNum / currentIncomeForProjection)
@@ -204,8 +194,10 @@ export function CardProgressionPath() {
       const future = await fetchRecommendationsWithFallback(futureProfile, 10);
       if (!Array.isArray(future)) return;
 
-      const currentIds = new Set((current ?? []).map((s) => s.card.card_stable_id));
-      const newUnlocked = future.filter((s) => !currentIds.has(s.card.card_stable_id));
+      const baselineIds = new Set<string>();
+      if (bestReco) baselineIds.add(bestReco.card.card_stable_id);
+      if (currentReco) baselineIds.add(currentReco.card.card_stable_id);
+      const newUnlocked = future.filter((s) => !baselineIds.has(s.card.card_stable_id));
 
       setSimResult({
         top: future.slice(0, 3),
@@ -220,207 +212,254 @@ export function CardProgressionPath() {
     } finally {
       setSimLoading(false);
     }
-  }, [profile, canSimulate, futureIncomeNum, futureInvestedNum, currentIncomeForProjection, estimatedFutureSpend, current]);
+  }, [
+    profile,
+    canSimulate,
+    futureIncomeNum,
+    futureInvestedNum,
+    currentIncomeForProjection,
+    estimatedFutureSpend,
+    bestReco,
+    currentReco,
+  ]);
 
   if (!profile || !onboardingDone) return null;
 
   const travelFrequency = travelFrequencyForValueModeling(profile);
+  const sameAsBest =
+    currentReco?.card.card_stable_id != null &&
+    currentReco.card.card_stable_id === bestReco?.card.card_stable_id;
+
+  let agoraContent: ReactNode;
+  if (loadingReco) {
+    agoraContent = (
+      <div className="space-y-2">
+        <div className="h-[52px] animate-pulse rounded-xl border bg-muted/30" />
+        <div className="h-[52px] animate-pulse rounded-xl border bg-muted/30" />
+      </div>
+    );
+  } else if (!bestReco) {
+    agoraContent = (
+      <p className="rounded-md border bg-muted/20 px-2 py-1 text-[9px] leading-snug text-muted-foreground">
+        Nenhum cartão elegível encontrado.
+      </p>
+    );
+  } else if (sameAsBest) {
+    agoraContent = (
+      <div>
+        <p className="mb-0.5 text-[9px] uppercase tracking-wide text-muted-foreground">
+          Seu cartão · melhor recomendação
+        </p>
+        <CardRow
+          scored={bestReco}
+          caption="Seu cartão · melhor recomendação"
+          travelFrequency={travelFrequency}
+          size="comfortable"
+        />
+      </div>
+    );
+  } else {
+    agoraContent = (
+      <div className="space-y-2">
+        {currentReco ? (
+          <div>
+            <p className="mb-0.5 text-[9px] uppercase tracking-wide text-muted-foreground">Seu cartão</p>
+            <CardRow
+              scored={currentReco}
+              caption="Seu cartão"
+              travelFrequency={travelFrequency}
+              size="comfortable"
+            />
+          </div>
+        ) : profile.currentPrimaryCardId ? (
+          <p className="rounded-md border border-dashed bg-muted/10 px-2 py-1 text-[9px] leading-snug text-muted-foreground">
+            O cartão do cadastro não aparece como elegível com este perfil.{" "}
+            <Link href="/perfil" className="underline underline-offset-2 hover:text-foreground">
+              Ajustar perfil
+            </Link>
+          </p>
+        ) : (
+          <p className="rounded-md border border-dashed bg-muted/10 px-2 py-1 text-[9px] leading-snug text-muted-foreground">
+            Nenhum cartão principal no cadastro.{" "}
+            <Link href="/perfil" className="underline underline-offset-2 hover:text-foreground">
+              Definir no perfil
+            </Link>
+          </p>
+        )}
+        <div>
+          <p className="mb-0.5 text-[9px] uppercase tracking-wide text-muted-foreground">Melhor recomendação</p>
+          <CardRow
+            scored={bestReco}
+            caption="Melhor recomendação"
+            travelFrequency={travelFrequency}
+            size="comfortable"
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="rounded-3xl border bg-card/50 p-4">
-      <div className="mb-4 flex items-start justify-between gap-3 px-1">
-        <div>
-          <h2 className="text-sm font-semibold">Sua jornada de cartões</h2>
-          <p className="mt-0.5 text-[11px] text-muted-foreground">
-            Veja onde você está agora e simule o próximo passo.
-          </p>
-        </div>
-        <TrendingUp className="h-4 w-4 shrink-0 text-muted-foreground/40 mt-0.5" />
+    <div className="rounded-2xl border bg-card/50 p-2">
+      <div className="mb-2 px-0.5">
+        <h2 className="text-[11px] font-semibold leading-tight">Sua jornada de cartões</h2>
+        <p className="mt-0.5 text-[9px] leading-snug text-muted-foreground">
+          Cartão atual, melhor opção e simulação rápida.
+        </p>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2">
-        {/* ── Left: now ── */}
-        <div className="rounded-2xl border bg-background/30 p-3">
-          <p className="mb-2.5 text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-            Agora
-          </p>
+      <div className="grid gap-1.5 md:grid-cols-2">
+        <div className="rounded-lg border bg-background/30 p-2.5">
+          <p className="mb-2 text-[9px] uppercase tracking-widest text-muted-foreground">Agora</p>
 
-          {loadingCurrent ? (
-            <div className="space-y-1.5">
-              {[1, 2].map((i) => (
-                <div
-                  key={i}
-                  className="h-[52px] animate-pulse rounded-2xl border bg-muted/30"
-                />
-              ))}
-            </div>
-          ) : current && current.length > 0 ? (
-            <div className="space-y-1.5">
-              {current.map((s, i) => (
-                <CardRow
-                  key={s.card.card_stable_id}
-                  scored={s}
-                  badge={i === 0 ? "melhor" : undefined}
-                  travelFrequency={travelFrequency}
-                />
-              ))}
-            </div>
-          ) : (
-            <p className="rounded-xl border bg-muted/20 px-3 py-2 text-[11px] text-muted-foreground/60">
-              Nenhum cartão elegível encontrado.
-            </p>
-          )}
+          {agoraContent}
 
-          {/* Current profile summary */}
-          <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 border-t pt-2.5">
-            <Stat label="Renda" value={`R$${profile.monthlySalaryBrl.toLocaleString("pt-BR")}/mês`} />
-            <Stat label="Gasto" value={`R$${profile.avgMonthlySpendBrl.toLocaleString("pt-BR")}/mês`} />
-            <Stat label="Investido" value={shortMoney(profile.avgInvestedBrl)} />
+          <div className="mt-2 flex flex-wrap gap-x-3 gap-y-0.5 border-t border-border/50 pt-2 text-[10px] leading-snug text-muted-foreground">
+            <span>
+              Renda <span className="font-mono text-foreground/80">R${profile.monthlySalaryBrl.toLocaleString("pt-BR")}/mês</span>
+            </span>
+            <span>
+              Gasto <span className="font-mono text-foreground/80">R${profile.avgMonthlySpendBrl.toLocaleString("pt-BR")}/mês</span>
+            </span>
+            <span>
+              Investido <span className="font-mono text-foreground/80">{shortMoney(profile.avgInvestedBrl)}</span>
+            </span>
+            <Link href="/perfil" className="ml-auto text-foreground/70 underline-offset-2 hover:underline">
+              Editar
+            </Link>
           </div>
         </div>
 
-        {/* ── Right: future simulation ── */}
-        <div className="rounded-2xl border bg-background/30 p-3">
-          <p className="mb-2.5 text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-            Em 1 ano
-          </p>
+        <div className="rounded-lg border bg-background/30 p-2.5">
+          <p className="text-[8px] uppercase tracking-widest text-muted-foreground">Em ~1 ano</p>
+          <p className="mt-px text-[9px] leading-tight text-muted-foreground">Vazio = cadastro.</p>
 
-          <div className="space-y-2">
-            <FutureInput
-              label="Renda esperada / mês"
-              value={futureIncome}
-              onChange={(v) => {
-                setFutureIncome(formatBrlInput(v));
-                setSimResult(null);
-              }}
-              placeholder={`Atual: R$${profile.monthlySalaryBrl.toLocaleString("pt-BR")}`}
-            />
-            <FutureInput
-              label="Total investido"
-              value={futureInvested}
-              onChange={(v) => {
-                setFutureInvested(formatBrlInput(v));
-                setSimResult(null);
-              }}
-              placeholder={`Atual: ${shortMoney(profile.avgInvestedBrl)}`}
-            />
+          <div className="mt-2 space-y-3">
+            <div className="space-y-1.5">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5">
+                <span className="text-[11px] font-medium leading-tight text-foreground">Renda / mês</span>
+                <span className="text-[10px] tabular-nums text-muted-foreground">
+                  Atual{" "}
+                  <span className="font-mono text-foreground/85">
+                    R${profile.monthlySalaryBrl.toLocaleString("pt-BR")}
+                  </span>
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5 rounded-md border border-border/80 bg-background px-2 py-1.5 transition-colors focus-within:border-foreground/35 focus-within:ring-1 focus-within:ring-foreground/15">
+                <span className="w-5 shrink-0 text-[11px] font-medium tabular-nums text-muted-foreground">R$</span>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  value={futureIncome}
+                  onChange={(e) => {
+                    setFutureIncome(formatBrlInput(e.target.value));
+                    setSimResult(null);
+                  }}
+                  placeholder="—"
+                  aria-label="Renda mensal esperada em cerca de um ano"
+                  className="min-w-0 flex-1 bg-transparent text-[11px] font-medium leading-none tabular-nums placeholder:text-muted-foreground/35 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5">
+                <span className="text-[11px] font-medium leading-tight text-foreground">Investido</span>
+                <span className="text-[10px] tabular-nums text-muted-foreground">
+                  Atual <span className="font-mono text-foreground/85">{shortMoney(profile.avgInvestedBrl)}</span>
+                </span>
+              </div>
+              <div className="flex items-center gap-1.5 rounded-md border border-border/80 bg-background px-2 py-1.5 transition-colors focus-within:border-foreground/35 focus-within:ring-1 focus-within:ring-foreground/15">
+                <span className="w-5 shrink-0 text-[11px] font-medium tabular-nums text-muted-foreground">R$</span>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  value={futureInvested}
+                  onChange={(e) => {
+                    setFutureInvested(formatBrlInput(e.target.value));
+                    setSimResult(null);
+                  }}
+                  placeholder="—"
+                  aria-label="Total investido esperado em cerca de um ano"
+                  className="min-w-0 flex-1 bg-transparent text-[11px] font-medium leading-none tabular-nums placeholder:text-muted-foreground/35 focus:outline-none"
+                />
+              </div>
+            </div>
           </div>
 
-          {/* Estimated spend */}
           {estimatedFutureSpend > 0 && estimatedFutureSpend !== profile.avgMonthlySpendBrl && (
-            <div className="mt-2 flex items-center justify-between rounded-xl border border-dashed bg-background/20 px-3 py-2">
-              <span className="text-[11px] text-muted-foreground">Gasto estimado</span>
-              <span className="font-mono text-[11px] text-foreground">
+            <div className="mt-1.5 flex items-center justify-between gap-1.5 rounded border border-dashed border-border/60 bg-muted/5 px-1.5 py-1">
+              <span className="text-[9px] text-muted-foreground">Gasto est.</span>
+              <span className="font-mono text-[9px] tabular-nums text-foreground/90">
                 {formatBrlCurrency(estimatedFutureSpend)}/mês
               </span>
             </div>
           )}
 
           <button
+            type="button"
             onClick={simulate}
             disabled={!canSimulate || simLoading}
-            className={`mt-3 flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium transition-all ${
+            className={cn(
+              "mt-2.5 flex w-full items-center justify-center gap-1.5 rounded-md px-2.5 py-1.5 text-[11px] font-medium transition-all",
               canSimulate && !simLoading
                 ? "bg-foreground text-background hover:opacity-90"
                 : "cursor-not-allowed border bg-muted/20 text-muted-foreground/40"
-            }`}
+            )}
           >
-            <span>{simLoading ? "Simulando..." : "Simular próximo passo"}</span>
-            {!simLoading && <ArrowRight className="h-4 w-4" />}
+            <span>{simLoading ? "…" : "Simular"}</span>
+            {!simLoading && <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />}
           </button>
+          {!canSimulate && (
+            <p className="mt-1 text-center text-[8px] text-muted-foreground">Renda ou investido para simular.</p>
+          )}
         </div>
       </div>
 
-      {/* ── Simulation result ── */}
       {simResult && (
-        <div className="mt-3 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-3">
-          <div className="mb-3 flex items-center gap-2">
-            <Sparkles className="h-3.5 w-3.5 text-emerald-400" />
-            <p className="text-xs font-semibold text-emerald-400">
-              Com esse perfil em 1 ano
-            </p>
-            <span className="ml-auto font-mono text-[10px] text-muted-foreground">
-              gasto ≈ {formatBrlCurrency(simResult.futureSpend)}/mês
-            </span>
-          </div>
-
+        <div className="mt-1.5 rounded-lg border bg-muted/10 p-2">
+          <p className="mb-1 text-[9px] font-medium leading-tight text-muted-foreground">
+            Simulado · gasto ≈ {formatBrlCurrency(simResult.futureSpend)}/mês
+          </p>
           {simResult.newUnlocked.length > 0 ? (
             <>
-              <p className="mb-2 text-[11px] text-muted-foreground">
+              <p className="mb-1 text-[9px] leading-tight text-muted-foreground">
                 {simResult.newUnlocked.length === 1
-                  ? "1 cartão novo entra no radar:"
-                  : `${simResult.newUnlocked.length} cartões novos entram no radar:`}
+                  ? "Novo no radar"
+                  : `${simResult.newUnlocked.length} novos no radar`}
               </p>
               <div className="space-y-1.5">
                 {simResult.newUnlocked.map((s) => (
-                  <CardRow
-                    key={s.card.card_stable_id}
-                    scored={s}
-                    badge="novo"
-                    highlight
-                    travelFrequency={travelFrequency}
-                  />
+                  <div key={s.card.card_stable_id}>
+                    <p className="mb-px text-[8px] uppercase tracking-wide text-muted-foreground">Novo</p>
+                    <CardRow scored={s} caption="Novo no radar" travelFrequency={travelFrequency} />
+                  </div>
                 ))}
               </div>
-              {simResult.top.length > 0 && (
-                <div className="mt-3 border-t border-emerald-500/20 pt-3">
-                  <p className="mb-2 text-[11px] text-muted-foreground">
-                    Melhor cartão no novo perfil:
-                  </p>
-                  <CardRow scored={simResult.top[0]} travelFrequency={travelFrequency} />
+              {simResult.top[0] && (
+                <div className="mt-1.5 border-t border-border/50 pt-1.5">
+                  <p className="mb-px text-[8px] uppercase tracking-wide text-muted-foreground">Melhor no cenário</p>
+                  <CardRow scored={simResult.top[0]} caption="Melhor no cenário" travelFrequency={travelFrequency} />
                 </div>
               )}
             </>
           ) : (
             <div className="space-y-1.5">
-              <p className="mb-2 text-[11px] text-muted-foreground">
-                Sem novos cartões no radar — mas o ranking muda:
-              </p>
-              {simResult.top.slice(0, 2).map((s) => (
-                <CardRow key={s.card.card_stable_id} scored={s} travelFrequency={travelFrequency} />
+              <p className="text-[9px] leading-tight text-muted-foreground">Ranking (sem novos)</p>
+              {simResult.top.slice(0, 2).map((s, i) => (
+                <div key={s.card.card_stable_id}>
+                  <p className="mb-px text-[8px] uppercase tracking-wide text-muted-foreground">{i + 1}º no cenário</p>
+                  <CardRow
+                    scored={s}
+                    caption={`${i + 1}º no cenário`}
+                    travelFrequency={travelFrequency}
+                  />
+                </div>
               ))}
             </div>
           )}
         </div>
       )}
-    </div>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <p className="text-[9px] uppercase tracking-[0.12em] text-muted-foreground/50">{label}</p>
-      <p className="font-mono text-[10px] text-muted-foreground">{value}</p>
-    </div>
-  );
-}
-
-function FutureInput({
-  label,
-  value,
-  onChange,
-  placeholder,
-}: {
-  label: string;
-  value: string;
-  onChange: (v: string) => void;
-  placeholder: string;
-}) {
-  return (
-    <div className="rounded-xl border bg-background/40 px-3 py-2">
-      <p className="text-[10px] text-muted-foreground/60">{label}</p>
-      <div className="mt-0.5 flex items-baseline gap-1.5">
-        <span className="text-xs text-muted-foreground">R$</span>
-        <input
-          type="text"
-          inputMode="numeric"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder={placeholder}
-          className="flex-1 bg-transparent text-sm font-medium text-foreground placeholder:text-muted-foreground/30 focus:outline-none"
-        />
-      </div>
     </div>
   );
 }

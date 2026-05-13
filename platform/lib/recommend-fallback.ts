@@ -33,6 +33,14 @@ export function getClientFallbackRecommendations(
   );
 }
 
+/** Pontua um único cartão do catálogo cliente (ex.: cartão atual fora do top-N da API). */
+export function scoreSingleClientCard(profile: UserProfile, stableId: string): CardScore | null {
+  const card = FALLBACK_CARDS.find((c) => c.card_stable_id === stableId);
+  if (!card) return null;
+  const scored = scoreCards([card], profile, DEFAULT_VALUE_ASSUMPTIONS);
+  return scored[0] ?? null;
+}
+
 export async function fetchRecommendationsWithFallback(
   profile: UserProfile,
   limit = 10
