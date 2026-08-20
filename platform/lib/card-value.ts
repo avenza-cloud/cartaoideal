@@ -1,3 +1,13 @@
+import { parseBrlNumber } from "@/lib/brl";
+import {
+  COOPERATIVE_SPREAD,
+  DEFAULT_SPREAD,
+  DEFAULT_VALUE_ASSUMPTIONS,
+  NOMAD_CARD_ID,
+  NOMAD_TIERS,
+  NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL,
+  RETAIL_BANK_SPREAD,
+} from "@/lib/assumptions";
 import type {
   CardCharacteristic,
   CardFacet,
@@ -30,19 +40,15 @@ export function netMonthlyValueForRanking(score: CardValueScore, profile: UserPr
   return score.netMonthlyValueBrl;
 }
 
-export const DEFAULT_VALUE_ASSUMPTIONS: CardValueAssumptions = {
-  ptaxBrlPerUsd: 4.96,
-  mileValuePerThousandBrl: 22,
-  liveloPointSaleValuePerThousandBrl: 22,
-  liveloPointTravelValuePerThousandBrl: 45,
-  membershipRewardsPointTravelValuePerThousandBrl: 95,
-  membershipRewardsPointSaleValuePerThousandBrl: 45,
-  defaultPointValuePerThousandBrl: 22,
-  iof: 0.035,
-  loungeVisitValueBrl: 160,
-  travelInsuranceMonthlyValueBrl: 25,
-  conciergeMonthlyValueBrl: 15,
-};
+export {
+  DEFAULT_VALUE_ASSUMPTIONS,
+  RETAIL_BANK_SPREAD,
+  DEFAULT_SPREAD,
+  COOPERATIVE_SPREAD,
+  NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL,
+  NOMAD_CARD_ID,
+  NOMAD_TIERS,
+} from "@/lib/assumptions";
 
 export const DEFAULT_SCORING_PROFILE: UserProfile = {
   monthlySalaryBrl: 8000,
@@ -58,19 +64,6 @@ export const DEFAULT_SCORING_PROFILE: UserProfile = {
     prefersInvestback: false,
   },
 };
-
-const RETAIL_BANK_SPREAD = 0.055;
-const DEFAULT_SPREAD = 0.045;
-const COOPERATIVE_SPREAD = 0.01;
-const NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL = 20;
-
-// Nomad Explorer earning tiers (investment in USD)
-const NOMAD_CARD_ID = "nomad-nomad-explorer-visa-infinite-aae26793ed";
-const NOMAD_TIERS: { minUsd: number; rate: number }[] = [
-  { minUsd: 5000, rate: 3.0 },
-  { minUsd: 2500, rate: 2.2 },
-  { minUsd: 1000, rate: 1.6 },
-];
 
 function isMembershipRewardsCard(card: CardFacet): boolean {
   return (card.characteristics ?? []).some(
@@ -215,23 +208,6 @@ function parseBrlAmounts(text: string): number[] {
   return [...text.matchAll(/R\$\s*([\d.]+(?:,\d+)?)/gi)]
     .map((match) => Number(match[1].replace(/\./g, "").replace(",", ".")))
     .filter((value) => Number.isFinite(value));
-}
-
-function parsePointsRate(card: CardFacet): number | null {
-  const candidates = [
-    card.reward_return.earning_summary,
-    ...characteristicsByKey(card, "earning_rate").map((item) => String(item.value)),
-    ...characteristicsByKey(card, "earning_detail").map((item) => String(item.value)),
-  ];
-  const rates = candidates.flatMap((text) =>
-    [
-      ...text.matchAll(
-        /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)(?:\s*(?:por|\/)\s*(?:d[oó]lar|usd)|\/usd)/gi
-      ),
-    ].map((match) => Number(match[1].replace(",", ".")))
-  );
-  const validRates = rates.filter((rate) => Number.isFinite(rate) && rate > 0);
-  return validRates.length > 0 ? Math.max(...validRates) : null;
 }
 
 function parsePointsRates(card: CardFacet): {
@@ -443,11 +419,6 @@ function parseCashlikeRates(card: CardFacet): {
 
 function formatBrl(value: number): string {
   return `R$${value.toLocaleString("pt-BR")}`;
-}
-
-function parseBrlNumber(str: string): number | null {
-  const val = parseFloat(str.replace(/\./g, "").replace(",", "."));
-  return isNaN(val) ? null : val;
 }
 
 // Returns tiered cashback rates keyed by minimum monthly spend.

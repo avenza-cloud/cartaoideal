@@ -1,43 +1,38 @@
-import facetsFile from "@/data/cards_brazil_ai_comparison_facets.json";
+import { getAllCards } from "@/lib/cards";
 import { DEFAULT_VALUE_ASSUMPTIONS } from "@/lib/card-value";
 import { scoreCards } from "@/lib/scoring";
-import type { CardFacet, CardScore, FacetsFile, UserProfile } from "@/types/cards";
+import type { CardScore, CardValueAssumptions, UserProfile } from "@/types/cards";
 
-const data = facetsFile as FacetsFile;
-
-function uniqueByStableId(cards: CardFacet[]): CardFacet[] {
-  const byId = new Map<string, CardFacet>();
-  for (const card of cards) {
-    if (!byId.has(card.card_stable_id)) {
-      byId.set(card.card_stable_id, card);
-    }
+async function getLiveAssumptions(): Promise<CardValueAssumptions> {
+  try {
+    const res = await fetch("/api/exchange-rate", { cache: "no-store" });
+    if (!res.ok) return DEFAULT_VALUE_ASSUMPTIONS;
+    const data = await res.json();
+    const usdBrl = Number(data?.usdBrl);
+    if (!Number.isFinite(usdBrl) || usdBrl <= 0) return DEFAULT_VALUE_ASSUMPTIONS;
+    return { ...DEFAULT_VALUE_ASSUMPTIONS, ptaxBrlPerUsd: usdBrl };
+  } catch {
+    return DEFAULT_VALUE_ASSUMPTIONS;
   }
-  return [...byId.values()];
 }
 
-const FALLBACK_CARDS: CardFacet[] = uniqueByStableId(
-  data.cards.filter(
-    (card) =>
-      !card.facets_boolean.generic_article_not_single_product &&
-      !card.facets_boolean.issuer_multi_entity_row
-  )
-);
-
-export function getClientFallbackRecommendations(
+export async function getClientFallbackRecommendations(
   profile: UserProfile,
   limit = 10
-): CardScore[] {
-  return scoreCards(FALLBACK_CARDS, profile, DEFAULT_VALUE_ASSUMPTIONS).slice(
-    0,
-    limit
-  );
+): Promise<CardScore[]> {
+  const assumptions = await getLiveAssumptions();
+  return scoreCards(getAllCards(), profile, assumptions).slice(0, limit);
 }
 
 /** Pontua um único cartão do catálogo cliente (ex.: cartão atual fora do top-N da API). */
-export function scoreSingleClientCard(profile: UserProfile, stableId: string): CardScore | null {
-  const card = FALLBACK_CARDS.find((c) => c.card_stable_id === stableId);
+export async function scoreSingleClientCard(
+  profile: UserProfile,
+  stableId: string
+): Promise<CardScore | null> {
+  const card = getAllCards().find((c) => c.card_stable_id === stableId);
   if (!card) return null;
-  const scored = scoreCards([card], profile, DEFAULT_VALUE_ASSUMPTIONS);
+  const assumptions = await getLiveAssumptions();
+  const scored = scoreCards([card], profile, assumptions);
   return scored[0] ?? null;
 }
 

@@ -150,7 +150,7 @@ export function CardProgressionPath() {
           setCurrentReco(fromList);
           return;
         }
-        setCurrentReco(scoreSingleClientCard(profile, id));
+        scoreSingleClientCard(profile, id).then((scored) => setCurrentReco(scored));
       })
       .catch(() => {
         setBestReco(null);

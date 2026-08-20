@@ -1,4 +1,3 @@
-import "server-only";
 import facetsFile from "@/data/cards_brazil_ai_comparison_facets.json";
 import {
   normalizeSearchText,

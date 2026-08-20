@@ -1,7 +1,6 @@
-import facetsFile from "@/data/cards_brazil_ai_comparison_facets.json";
-import type { CardFacet, FacetsFile } from "@/types/cards";
-
-const data = facetsFile as FacetsFile;
+import { getAllCards } from "@/lib/cards";
+import { normalizeSearchText } from "@/lib/filter-cards";
+import type { CardFacet } from "@/types/cards";
 
 export interface ClientCardOption {
   id: string;
@@ -55,12 +54,7 @@ const POPULAR_HINTS = [
   "will",
 ];
 
-export function normalizeCardSearchText(value: string): string {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-}
+export const normalizeCardSearchText = normalizeSearchText;
 
 function popularityRank(name: string, issuer: string): number {
   const search = normalizeCardSearchText(`${issuer} ${name}`);
@@ -70,11 +64,7 @@ function popularityRank(name: string, issuer: string): number {
 
 const curatedMap = new Map(CURATED_POPULAR.map((c) => [c.id, c.description]));
 
-export const CLIENT_CARD_FACETS: CardFacet[] = data.cards.filter(
-  (card) =>
-    !card.facets_boolean.generic_article_not_single_product &&
-    !card.facets_boolean.issuer_multi_entity_row
-);
+export const CLIENT_CARD_FACETS: CardFacet[] = getAllCards();
 
 const CLIENT_CARD_FACETS_BY_ID = new Map(
   CLIENT_CARD_FACETS.map((card) => [card.card_stable_id, card])

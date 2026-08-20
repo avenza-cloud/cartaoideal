@@ -23,7 +23,7 @@ function profileSchema() {
   });
 }
 
-function toToolProfile(profile: UserProfile) {
+export function toToolProfile(profile: UserProfile) {
   return {
     monthlySalaryBrl: profile.monthlySalaryBrl,
     avgMonthlySpendBrl: profile.avgMonthlySpendBrl,
