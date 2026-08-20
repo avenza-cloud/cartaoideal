@@ -345,7 +345,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
             </div>
             <div className="flex shrink-0 gap-2">
               <a
-                href={affiliateClickUrl(card.card_stable_id, card.source_url)}
+                href={affiliateClickUrl(card.card_stable_id)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-1.5 rounded-lg border bg-background/40 px-2.5 py-1.5 text-[11px] text-muted-foreground transition-colors hover:text-foreground"

@@ -1,3 +1,5 @@
+import type { CardFacet } from "@/types/cards";
+
 // Add card-specific affiliate override URLs here.
 // Key: card_stable_id, Value: your affiliate URL (already includes tracking params).
 // When empty, falls back to the card's application_url with UTM params appended.
@@ -32,6 +34,27 @@ export function getApplicationUrl(card: {
   }
 }
 
-export function affiliateClickUrl(cardId: string, applicationUrl: string): string {
-  return `/api/affiliate/${cardId}?dest=${encodeURIComponent(applicationUrl)}`;
+/**
+ * Resolve o destino de afiliado para um cartão. Apenas URLs http(s) são aceitas;
+ * o servidor decide o destino — o cliente nunca controla o redirect.
+ */
+export function getAffiliateDestination(card: CardFacet): string | null {
+  const appUrl = getApplicationUrl(card);
+  if (appUrl && isHttpUrl(appUrl)) return appUrl;
+
+  if (card.source_url && isHttpUrl(card.source_url)) return card.source_url;
+  return null;
+}
+
+function isHttpUrl(value: string): boolean {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" || url.protocol === "http:";
+  } catch {
+    return false;
+  }
+}
+
+export function affiliateClickUrl(cardId: string): string {
+  return `/api/affiliate/${cardId}`;
 }

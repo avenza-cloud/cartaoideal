@@ -475,18 +475,15 @@ function effectiveCashlikeRate(card: CardFacet, totalMonthlySpendBrl: number): n
 }
 
 function getMinimumInvestment(card: CardFacet): number | "unknown" {
-  return (
-    card.eligibility?.minimum_investment_brl_best_estimate ??
-    card.facets_numeric_or_special.minimum_investment_brl_best_estimate
-  );
+  const facet = card.facets_numeric_or_special.minimum_investment_brl_best_estimate;
+  if (typeof facet === "number") return facet;
+  return card.eligibility?.minimum_investment_brl_best_estimate ?? "unknown";
 }
 
 function getMinimumIncome(card: CardFacet): number | "unknown" {
-  return (
-    card.eligibility?.minimum_income_brl_best_estimate ??
-    card.facets_numeric_or_special.minimum_income_brl_best_estimate ??
-    "unknown"
-  );
+  const facet = card.facets_numeric_or_special.minimum_income_brl_best_estimate;
+  if (typeof facet === "number") return facet;
+  return card.eligibility?.minimum_income_brl_best_estimate ?? "unknown";
 }
 
 function evaluateEligibility(
