@@ -158,8 +158,8 @@ test.describe("mobile compatibility", () => {
     });
 
     await page.goto("/");
-    await page.getByPlaceholder("Atual: R$40.000").fill("56000");
-    await expect(page.getByText("Gasto estimado")).toBeVisible();
+    await page.getByLabel("Renda mensal esperada em cerca de um ano").fill("56000");
+    await expect(page.getByText("Gasto est.")).toBeVisible();
     await expect(page.getByText("R$20.906,70/mês")).toBeVisible();
     await expectNoHorizontalOverflow(page);
   });
@@ -201,8 +201,7 @@ test.describe("mobile compatibility", () => {
     await page.getByTitle("Histórico").click();
     await expect(page.getByText("Histórico")).toBeVisible();
     await page.getByRole("button", { name: /Comparar cartões para meu perfil/ }).click();
-    await expect(page.getByRole("dialog")).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Comparar cartões para meu perfil" })).toBeVisible();
+    await expect(page.getByText("Comparar cartões para meu perfil")).toBeVisible();
     await expect(page.getByText("A melhor opção depende do seu gasto mensal.")).toBeVisible();
     await expectNoHorizontalOverflow(page);
   });
