@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Credit DB — Cartão Ideal
 
-## Getting Started
+Comparador de cartões de crédito brasileiros. Catálogo estruturado de 299 cartões com
+scoring de valor personalizado (renda, gasto, investimento, viagens), ranking, chat com IA,
+comparação lado a lado e correções da comunidade via GitHub Issues.
 
-First, run the development server:
+## Estrutura do repositório
+
+- `platform/` — aplicação Next.js 16 (App Router, React 19, Tailwind 4, zustand, Vercel AI SDK).
+- `tools/` — pipeline de dados em Python (scraping, localização de imagens, auditoria).
+- `.github/workflows/ci.yml` — testes, typecheck, build e validação de dados em cada push/PR.
+- `.github/workflows/correction-pr.yml` — transforma issues de correção em PRs.
+
+## Dados
+
+- `platform/data/cards_brazil_ai_comparison_facets.json` — fonte consumida em runtime (facets achatados).
+- `platform/data/cards_brazil_catalog_v2.json` — catálogo aninhado completo.
+- `platform/data/cards_brazil_raw_sources.json` — capturas brutas das fontes.
+- `platform/data/corrections/pending/` — correções da comunidade pendentes de revisão.
+
+Edições manuais no JSON são permitidas, mas o schema é validado em CI
+(`lib/__tests__/data-schema.test.ts` e `tools/validate_card_data.py`).
+
+## Começando
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd platform
+pnpm install
+pnpm dev          # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Testes
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cd platform
+pnpm test:unit            # vitest + thresholds de cobertura
+pnpm test:e2e             # playwright (desktop/mobile, sem IA real)
+pnpm test:chat            # e2e do chat com backend de IA real
+pnpm exec tsc --noEmit    # typecheck
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Pipeline de dados (Python)
 
-## Learn More
+```bash
+python3 tools/build_credit_cards_catalog.py   # gera os 3 JSON em tools/ e platform/data/
+python3 tools/localize_card_images.py          # baixa artes em public/card-images/
+python3 tools/validate_card_data.py            # valida os facets usados na recomendação
+pnpm --dir platform audit:card-sources         # auditoria de fontes (Node)
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Vercel. URL pública e metadados de SEO derivam de `NEXT_PUBLIC_SITE_URL`
+(ou `VERCEL_PROJECT_PRODUCTION_URL`), com fallback para `https://cartaoideal.com`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Env
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `NEXT_PUBLIC_ADSENSE_PUBLISHER_ID` / `NEXT_PUBLIC_ADSENSE_SLOT_CATALOG` /
+  `NEXT_PUBLIC_ADSENSE_SLOT_DETAIL` — anúncios (opcional, vazio desativa).
+- `GITHUB_CORRECTIONS_TOKEN` / `GITHUB_CORRECTIONS_REPO` — automação de correções (server-only).
