@@ -15,6 +15,7 @@ export async function GET(req: Request) {
   return Response.json(
     cards.map((score) => {
       const c = score.card;
+      const { text_for_embedding_compare: _text, labels_for_filtering: _labels, ...card } = c;
       return {
       id: c.card_stable_id,
       nome: c.display_name,
@@ -24,7 +25,7 @@ export async function GET(req: Request) {
       anuidade: c.facets_numeric_or_special.annual_fee_brl_best_estimate,
       rankingPosition: c.ranking_position,
       rankingScore: c.ranking_score,
-      score,
+      score: { ...score, card, assumptions: undefined },
       lounge: c.lounge_access,
       retornoFinanceiro: c.reward_return,
       pontos: c.facets_boolean.earn_points_or_miles,

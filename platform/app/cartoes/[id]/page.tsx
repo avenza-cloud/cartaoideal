@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getCardById, getAllCards } from "@/lib/cards";
 import { formatFee, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
@@ -19,6 +20,43 @@ export async function generateStaticParams() {
   return getAllCards().map((c) => ({ id: c.card_stable_id }));
 }
 
+function cardReturnLabel(card: CardFacet): string | null {
+  return card.reward_return.has_cashlike_return
+    ? rewardReturnLabel(card.reward_return)
+    : card.facets_boolean.earn_points_or_miles
+      ? "Pontos/milhas"
+      : null;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const card = getCardById(id);
+  if (!card) return { title: "Cartão não encontrado" };
+
+  const returnType = cardReturnLabel(card);
+  const lounge = card.lounge_access.has_lounge_access
+    ? "com sala VIP"
+    : "sem sala VIP";
+  const description = `${card.issuer_raw} ${card.display_name} — cartão ${segmentLabel(
+    card.market_segment_guess
+  ).toLowerCase()}, anuidade ${formatFee(
+    card.facets_numeric_or_special.annual_fee_brl_best_estimate
+  ).toLowerCase()}, ${returnType?.toLowerCase() ?? "sem retorno financeiro"}, ${lounge}. Confira condições e isenções na fonte oficial.`;
+
+  return {
+    title: card.display_name,
+    description,
+    openGraph: {
+      title: `${card.display_name} — anuidade e benefícios`,
+      description,
+      type: "website",
+      images: card.media.card_art_url
+        ? [{ url: card.media.card_art_url, alt: card.media.alt_text }]
+        : undefined,
+    },
+  };
+}
+
 export default async function CartaoDetailPage({ params }: PageProps) {
   const { id } = await params;
   const card = getCardById(id);
@@ -28,11 +66,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
   const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
   const hasLounge = card.lounge_access.has_lounge_access;
 
-  const returnType = card.reward_return.has_cashlike_return
-    ? rewardReturnLabel(card.reward_return)
-    : card.facets_boolean.earn_points_or_miles
-      ? "Pontos/milhas"
-      : null;
+  const returnType = cardReturnLabel(card);
 
   const earningSummary =
     card.reward_return.earning_summary !== "unknown"
@@ -105,8 +139,28 @@ export default async function CartaoDetailPage({ params }: PageProps) {
 
   const adSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_DETAIL ?? "";
 
+  const numericFee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: card.display_name,
+    image: card.media.card_art_url,
+    description: card.reward_return.earning_summary ?? "",
+    brand: { "@type": "Brand", name: card.issuer_raw },
+    offers: {
+      "@type": "Offer",
+      priceCurrency: "BRL",
+      price: typeof numericFee === "number" ? numericFee : undefined,
+      availability: "https://schema.org/InStock",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <AppHeader />
       <div className="mx-auto flex w-full max-w-7xl items-start gap-4 px-3 sm:px-4">
         {/* Left sidebar ad — desktop only */}

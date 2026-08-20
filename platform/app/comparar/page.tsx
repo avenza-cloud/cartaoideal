@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Suspense } from "react";
 import { getCardsByIds } from "@/lib/cards";
 import { formatFee, loungeSummary, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
@@ -8,6 +9,12 @@ import { ProfileCompareSummary } from "@/components/ProfileCompareSummary";
 import { Badge } from "@/components/ui/badge";
 import { ArrowLeft, Check, X } from "lucide-react";
 import type { CardFacet } from "@/types/cards";
+
+export const metadata: Metadata = {
+  title: "Comparar cartões de crédito",
+  description:
+    "Compare lado a lado anuidade, retorno, salas VIP e benefícios de até 4 cartões de crédito brasileiros.",
+};
 
 interface PageProps {
   searchParams: Promise<{ ids?: string }>;

@@ -15,10 +15,29 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "https://cartaoideal.com");
+
 export const metadata: Metadata = {
-  title: "Cartão Ideal — Compare e escolha o melhor cartão",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Cartão Ideal — Compare e escolha o melhor cartão",
+    template: "%s | Cartão Ideal",
+  },
   description:
     "Plataforma de comparação de cartões de crédito brasileiros. Encontre o cartão ideal para seu perfil de renda, gastos e benefícios.",
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    siteName: "Cartão Ideal",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export const viewport: Viewport = {

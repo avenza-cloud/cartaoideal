@@ -1,8 +1,15 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { getAllCards } from "@/lib/cards";
 import { CardCatalog } from "@/components/CardCatalog";
 import { CompareBar } from "@/components/CompareBar";
 import { AppHeader } from "@/components/AppHeader";
+
+export const metadata: Metadata = {
+  title: "Todos os cartões de crédito",
+  description:
+    "Catálogo completo de cartões de crédito brasileiros. Filtre por anuidade, cashback, pontos, sala VIP e segmento para encontrar o melhor cartão.",
+};
 
 export default async function CartoesPage() {
   const allCards = getAllCards();
