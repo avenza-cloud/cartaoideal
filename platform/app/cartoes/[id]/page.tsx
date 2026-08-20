@@ -387,7 +387,16 @@ function formatRuleAmount(rule: FeeWaiverRule) {
 
 function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
   const ordered = [...rules].sort((a, b) => {
-    const order = { monthly_spend: 0, investment: 1, subscription: 2, cashback: 3, miles: 4, general: 5 };
+    const order: Record<FeeWaiverRule["category"], number> = {
+      monthly_spend: 0,
+      investment: 1,
+      subscription: 2,
+      cashback: 3,
+      miles: 4,
+      general: 5,
+      pix_key: 6,
+      promotional_period: 7,
+    };
     return order[a.category] - order[b.category];
   });
   const hasOnlyGeneralFullWaiver =
@@ -434,7 +443,9 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
                 ? Coins
                 : rule.category === "miles"
                     ? Plane
-                    : CreditCard;
+                    : rule.category === "pix_key"
+                      ? ReceiptText
+                      : CreditCard;
           const label = isSpend
             ? "Gasto mensal"
             : isInvestment
@@ -445,7 +456,11 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
                 ? "Cashback"
                 : rule.category === "miles"
                     ? "Milhas"
-                    : "Geral";
+                    : rule.category === "pix_key"
+                      ? "Pix"
+                      : rule.category === "promotional_period"
+                        ? "Promoção"
+                        : "Geral";
             return (
               <div
                 key={`${rule.category}-${rule.threshold_brl ?? "general"}-${index}`}

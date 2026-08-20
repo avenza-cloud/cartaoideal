@@ -1,9 +1,9 @@
 import type { CardValueScore, LoungeAccess, MarketSegment, RewardReturn, TravelFrequency } from "@/types/cards";
 
 export function formatFee(
-  fee: number | string | "variable_pricing_claim"
+  fee: number | string | "variable_pricing_claim" | null
 ): string {
-  if (fee === "unknown") return "Consulte";
+  if (fee === null || fee === "unknown") return "Consulte";
   if (fee === "variable_pricing_claim") return "Variável";
   if (fee === 0) return "Grátis";
   if (typeof fee === "number")

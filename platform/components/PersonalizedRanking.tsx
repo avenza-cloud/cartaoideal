@@ -28,7 +28,7 @@ interface TopCard {
   id: string;
   nome: string;
   emissor: string;
-  anuidade: number | string;
+  anuidade: CardFacet["facets_numeric_or_special"]["annual_fee_brl_best_estimate"];
   rankingPosition: number;
   lounge: boolean;
   retornoFinanceiro: { earning_summary?: string };
@@ -80,7 +80,7 @@ function CardRow({
   id: string;
   nome: string;
   emissor: string;
-  anuidade: number | string;
+  anuidade: CardFacet["facets_numeric_or_special"]["annual_fee_brl_best_estimate"];
   cardArtUrl: string;
   altText: string;
   note: string;

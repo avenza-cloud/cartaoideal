@@ -1,6 +1,6 @@
 // Facets — flattened format for filtering, LLM calls, and scoring
 export interface CardFacetsNumeric {
-  annual_fee_brl_best_estimate: number | "unknown" | "variable_pricing_claim";
+  annual_fee_brl_best_estimate: number | "unknown" | "variable_pricing_claim" | null;
   monthly_fee_brl_after_intro_official_hint: number | "unknown";
   minimum_income_brl_best_estimate?: number | "unknown";
   minimum_investment_brl_best_estimate: number | "unknown";
@@ -39,7 +39,8 @@ export interface LoungeAccess {
   has_lounge_access: boolean;
   programs?: string[];
   unlimited: boolean;
-  annual_visits: number | "unknown";
+  /** Ausente/omito quando o lounge é ilimitado (sem limite anual aplicável). */
+  annual_visits?: number | "unknown";
   guest_policy: string;
   complimentary_access_confirmed: boolean;
   policy_varies_by_issuer: boolean;
@@ -94,7 +95,9 @@ export type FeeWaiverRuleCategory =
   | "subscription"
   | "cashback"
   | "miles"
-  | "general";
+  | "general"
+  | "pix_key"
+  | "promotional_period";
 
 export interface FeeWaiverRule {
   category: FeeWaiverRuleCategory;

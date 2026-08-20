@@ -2275,7 +2275,9 @@
       "ranking_position": 5,
       "ranking_score": 323.35,
       "media": {
-        "card_art_url": "/card-images/caixa-caixa-icone-visa-infinite.png"
+        "card_art_url": "/card-images/caixa-caixa-icone-visa-infinite.png",
+        "alt_text": "CAIXA Ícone Visa Infinite",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": true,
@@ -20387,7 +20389,9 @@
       "ranking_position": 62,
       "ranking_score": 188.9,
       "media": {
-        "card_art_url": "/card-images/caixa-caixa-elo-diners-club.png"
+        "card_art_url": "/card-images/caixa-caixa-elo-diners-club.png",
+        "alt_text": "CAIXA Elo Diners Club",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -22699,7 +22703,9 @@
       "ranking_position": 73,
       "ranking_score": 177.77,
       "media": {
-        "card_art_url": "/card-images/caixa-caixa-visa-infinite.png"
+        "card_art_url": "/card-images/caixa-caixa-visa-infinite.png",
+        "alt_text": "CAIXA Visa Infinite",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": true,
@@ -28417,7 +28423,9 @@
       "ranking_position": 102,
       "ranking_score": 151.97,
       "media": {
-        "card_art_url": "/card-images/caixa-caixa-elo-nanquim.png"
+        "card_art_url": "/card-images/caixa-caixa-elo-nanquim.png",
+        "alt_text": "CAIXA Elo Nanquim",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -38192,7 +38200,9 @@
       "ranking_position": 155,
       "ranking_score": 126.99,
       "media": {
-        "card_art_url": "/card-images/caixa-caixa-elo-grafite.png"
+        "card_art_url": "/card-images/caixa-caixa-elo-grafite.png",
+        "alt_text": "CAIXA Elo Grafite",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -39017,7 +39027,9 @@
       "ranking_position": 159,
       "ranking_score": 122.59,
       "media": {
-        "card_art_url": "/card-images/caixa-caixa-visa-platinum.png"
+        "card_art_url": "/card-images/caixa-caixa-visa-platinum.png",
+        "alt_text": "CAIXA Visa Platinum",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": true,
@@ -42273,7 +42285,9 @@
       "ranking_position": 177,
       "ranking_score": 112.79,
       "media": {
-        "card_art_url": "/card-images/caixa-caixa-visa-gold.png"
+        "card_art_url": "/card-images/caixa-caixa-visa-gold.png",
+        "alt_text": "CAIXA Visa Gold",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -42606,7 +42620,9 @@
       "ranking_position": 179,
       "ranking_score": 108.79,
       "media": {
-        "card_art_url": "/card-images/caixa-caixa-elo-mais.png"
+        "card_art_url": "/card-images/caixa-caixa-elo-mais.png",
+        "alt_text": "CAIXA Elo Mais",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -46666,7 +46682,8 @@
       "ranking_score": 82.5,
       "media": {
         "card_art_url": "/card-images/pan-estelar.png",
-        "alt_text": "Banco PAN Mastercard Platinum"
+        "alt_text": "Banco PAN Mastercard Platinum",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": true,
@@ -49382,7 +49399,8 @@
       "ranking_score": 72.65,
       "media": {
         "card_art_url": "/card-images/pan-atmosfera.png",
-        "alt_text": "Banco PAN Atmosfera Mastercard Gold"
+        "alt_text": "Banco PAN Atmosfera Mastercard Gold",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -56601,7 +56619,7 @@
       "lounge_access": {
         "has_lounge_access": false,
         "programs": [],
-        "unlimited": "unknown",
+        "unlimited": false,
         "annual_visits": "unknown",
         "guest_policy": "unknown",
         "complimentary_access_confirmed": false,
@@ -56621,13 +56639,7 @@
         "recommendation_blocking_unknowns": true,
         "source_status": "official_issuer_partial_capture"
       },
-      "fee_waiver_rules": [
-        {
-          "type": "spend_based",
-          "summary": "Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura.",
-          "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
-        }
-      ],
+      "fee_waiver_rules": [],
       "benefit_groups": {
         "fees": [
           "Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura."
@@ -56823,7 +56835,7 @@
       "lounge_access": {
         "has_lounge_access": false,
         "programs": [],
-        "unlimited": "unknown",
+        "unlimited": false,
         "annual_visits": "unknown",
         "guest_policy": "unknown",
         "complimentary_access_confirmed": false,
@@ -56843,13 +56855,7 @@
         "recommendation_blocking_unknowns": true,
         "source_status": "official_issuer_partial_capture"
       },
-      "fee_waiver_rules": [
-        {
-          "type": "spend_based",
-          "summary": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
-          "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
-        }
-      ],
+      "fee_waiver_rules": [],
       "benefit_groups": {
         "fees": [
           "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela."
@@ -57060,7 +57066,7 @@
       "lounge_access": {
         "has_lounge_access": false,
         "programs": [],
-        "unlimited": "unknown",
+        "unlimited": false,
         "annual_visits": "unknown",
         "guest_policy": "unknown",
         "complimentary_access_confirmed": false,
@@ -57080,13 +57086,7 @@
         "recommendation_blocking_unknowns": true,
         "source_status": "official_issuer_partial_capture"
       },
-      "fee_waiver_rules": [
-        {
-          "type": "spend_based",
-          "summary": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
-          "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
-        }
-      ],
+      "fee_waiver_rules": [],
       "benefit_groups": {
         "fees": [
           "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela."
@@ -57303,7 +57303,7 @@
       "lounge_access": {
         "has_lounge_access": false,
         "programs": [],
-        "unlimited": "unknown",
+        "unlimited": false,
         "annual_visits": "unknown",
         "guest_policy": "unknown",
         "complimentary_access_confirmed": false,
@@ -57323,13 +57323,7 @@
         "recommendation_blocking_unknowns": true,
         "source_status": "official_issuer_partial_capture"
       },
-      "fee_waiver_rules": [
-        {
-          "type": "spend_based",
-          "summary": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
-          "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
-        }
-      ],
+      "fee_waiver_rules": [],
       "benefit_groups": {
         "fees": [
           "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela."
@@ -57584,13 +57578,7 @@
         "recommendation_blocking_unknowns": true,
         "source_status": "official_issuer_partial_capture"
       },
-      "fee_waiver_rules": [
-        {
-          "type": "spend_based",
-          "summary": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
-          "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
-        }
-      ],
+      "fee_waiver_rules": [],
       "benefit_groups": {
         "fees": [
           "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela."
@@ -57846,11 +57834,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
         "card_art_url": "/card-images/itau-uniclass-black.png",
-        "alt_text": "Itaú Uniclass Black"
+        "alt_text": "Itaú Uniclass Black",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": true,
@@ -57993,11 +57982,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
         "card_art_url": "/card-images/itau-uniclass-mastercard-platinum.png",
-        "alt_text": "Itaú Uniclass Mastercard Platinum"
+        "alt_text": "Itaú Uniclass Mastercard Platinum",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -58073,10 +58063,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
-        "card_art_url": "/card-images/itau-uniclass-visa-signature.png"
+        "card_art_url": "/card-images/itau-uniclass-visa-signature.png",
+        "alt_text": "Itaú Uniclass Visa Signature",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -58146,11 +58138,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
         "card_art_url": "/card-images/itau-n-card.png",
-        "alt_text": "N Card"
+        "alt_text": "N Card",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -58220,11 +58213,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
         "card_art_url": "/card-images/itau-pao-de-acucar-black.png",
-        "alt_text": "Pão de Açúcar Black"
+        "alt_text": "Pão de Açúcar Black",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -58312,11 +58306,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
         "card_art_url": "/card-images/itau-passai-gold.png",
-        "alt_text": "Passaí Gold"
+        "alt_text": "Passaí Gold",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -58386,11 +58381,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
         "card_art_url": "/card-images/itau-instituto-ayrton-senna-master.png",
-        "alt_text": "Instituto Ayrton Senna Master"
+        "alt_text": "Instituto Ayrton Senna Master",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -58466,11 +58462,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
         "card_art_url": "/card-images/itau-instituto-ayrton-senna-visa.png",
-        "alt_text": "Instituto Ayrton Senna Visa"
+        "alt_text": "Instituto Ayrton Senna Visa",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -58540,11 +58537,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.santander.com.br/cartao-credito-santander",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
         "card_art_url": "/card-images/santander-free.png",
-        "alt_text": "Santander FREE"
+        "alt_text": "Santander FREE",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -58664,11 +58662,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
         "card_art_url": "/card-images/ourocard-facil.png",
-        "alt_text": "Ourocard Fácil"
+        "alt_text": "Ourocard Fácil",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -58776,11 +58775,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
         "card_art_url": "/card-images/ourocard-universitario.png",
-        "alt_text": "Ourocard Universitário"
+        "alt_text": "Ourocard Universitário",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -58894,11 +58894,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
         "card_art_url": "/card-images/ourocard-elo.png",
-        "alt_text": "Ourocard Elo"
+        "alt_text": "Ourocard Elo",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": false,
@@ -59008,11 +59009,12 @@
       "review_source_label": "Fonte oficial do emissor",
       "source_tier": "official_issuer",
       "source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
-      "ranking_position": null,
-      "ranking_score": null,
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
       "media": {
         "card_art_url": "/card-images/petrobras-visa.jpg",
-        "alt_text": "Petrobras Visa"
+        "alt_text": "Petrobras Visa",
+        "source_url": ""
       },
       "reward_return": {
         "has_cashlike_return": true,
@@ -59207,7 +59209,31 @@
         "earning_summary": "Sem recompensas"
       },
       "media": {
-        "card_art_url": "/card-images/caixa-sim.jpg"
+        "card_art_url": "/card-images/caixa-sim.jpg",
+        "alt_text": "CAIXA SIM",
+        "source_url": "https://www.caixa.gov.br/"
+      },
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.6,
+      "primary_evidence_url": "https://www.caixa.gov.br/",
+      "source_url": "https://www.caixa.gov.br/",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "benefit_groups": {},
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "CAIXA SIM\nEmissor: Caixa Econômica Federal\nBandeira: Visa\nFaixa: básico\nGanhos: Sem recompensas\nAnuidade: R$ 0",
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": true,
+        "availability_status": "available",
+        "hard_gate_fields": [],
+        "recommendation_blocking_unknowns": false,
+        "source_status": "not_structured"
       }
     },
     {
@@ -59252,7 +59278,9 @@
         "earning_summary": "1 ponto por USD"
       },
       "media": {
-        "card_art_url": "/card-images/caixa-visa-universitario.png"
+        "card_art_url": "/card-images/caixa-visa-universitario.png",
+        "alt_text": "CAIXA Visa Universitário",
+        "source_url": "https://www.caixa.gov.br/"
       },
       "characteristics": [
         {
@@ -59261,7 +59289,29 @@
           "label": "Isenção de anuidade",
           "value": "Anuidade isenta nas primeiras 5 anuidades automaticamente."
         }
-      ]
+      ],
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.6,
+      "primary_evidence_url": "https://www.caixa.gov.br/",
+      "source_url": "https://www.caixa.gov.br/",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "benefit_groups": {},
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "CAIXA Visa Universitário\nEmissor: Caixa Econômica Federal\nBandeira: Visa\nFaixa: universitário\nGanhos: Acumula pontos/milhas\nAnuidade: R$ 0\nIsenção da anuidade: Anuidade isenta nas primeiras 5 anuidades automaticamente.",
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": true,
+        "availability_status": "available",
+        "hard_gate_fields": [],
+        "recommendation_blocking_unknowns": false,
+        "source_status": "not_structured"
+      }
     },
     {
       "card_stable_id": "banco-pan-estelar-elo",
@@ -59308,7 +59358,9 @@
         "earning_summary": "0,8% de cashback em todas as compras"
       },
       "media": {
-        "card_art_url": "/card-images/pan-estelar.png"
+        "card_art_url": "/card-images/pan-estelar.png",
+        "alt_text": "Banco PAN Estelar Elo",
+        "source_url": "https://www.bancopan.com.br/cartoes"
       },
       "characteristics": [
         {
@@ -59345,7 +59397,29 @@
           "full_waiver": true,
           "description": "Investimentos ≥ R$25.000 no PAN → 100% isenção"
         }
-      ]
+      ],
+      "product_kind": "named_credit_card_product",
+      "verification_cross_check_status": "official_issuer_initial_capture",
+      "verification_confidence_0_to_1": 0.6,
+      "primary_evidence_url": "https://www.bancopan.com.br/cartoes",
+      "source_url": "https://www.bancopan.com.br/cartoes",
+      "source_label": "Página oficial do emissor",
+      "source_tier": "official_issuer",
+      "ranking_position": "unknown",
+      "ranking_score": "unknown",
+      "benefit_groups": {},
+      "labels_for_filtering": [],
+      "text_for_embedding_compare": "Banco PAN Estelar Elo\nEmissor: Banco PAN\nBandeira: Elo\nFaixa: estelar\nGanhos: 0,8% de cashback em todas as compras\nAnuidade: R$ 432\nIsenção da anuidade: Isenção 100% com R$4.000/mês na fatura ou R$25.000 investidos no PAN. Grátis nos primeiros 6 meses.",
+      "eligibility": {
+        "requirements_text": "unknown",
+        "minimum_income_brl_best_estimate": "unknown",
+        "minimum_investment_brl_best_estimate": "unknown",
+        "requires_bank_account_claim": true,
+        "availability_status": "available",
+        "hard_gate_fields": [],
+        "recommendation_blocking_unknowns": false,
+        "source_status": "not_structured"
+      }
     }
   ]
 }

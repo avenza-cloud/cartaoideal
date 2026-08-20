@@ -145765,13 +145765,7 @@
           "best_estimate_brl": "unknown"
         },
         "waiver_and_discounts": {
-          "rules": [
-            {
-              "type": "spend_based",
-              "summary": "Isenção de anuidade em caso de compras faturadas dentro de cada fechamento de fatura.",
-              "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
-            }
-          ]
+          "rules": []
         }
       },
       "rewards": {
@@ -145950,13 +145944,7 @@
           "best_estimate_brl": "unknown"
         },
         "waiver_and_discounts": {
-          "rules": [
-            {
-              "type": "spend_based",
-              "summary": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
-              "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
-            }
-          ]
+          "rules": []
         }
       },
       "rewards": {
@@ -146139,13 +146127,7 @@
           "best_estimate_brl": "unknown"
         },
         "waiver_and_discounts": {
-          "rules": [
-            {
-              "type": "spend_based",
-              "summary": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
-              "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
-            }
-          ]
+          "rules": []
         }
       },
       "rewards": {
@@ -146343,13 +146325,7 @@
           "best_estimate_brl": "unknown"
         },
         "waiver_and_discounts": {
-          "rules": [
-            {
-              "type": "spend_based",
-              "summary": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
-              "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
-            }
-          ]
+          "rules": []
         }
       },
       "rewards": {
@@ -146566,13 +146542,7 @@
           "best_estimate_brl": "unknown"
         },
         "waiver_and_discounts": {
-          "rules": [
-            {
-              "type": "spend_based",
-              "summary": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela.",
-              "source_url": "https://www.ailos.coop.br/para-voce/cartoes"
-            }
-          ]
+          "rules": []
         }
       },
       "rewards": {

@@ -16,6 +16,8 @@ const BADGE_LABELS: Record<FeeWaiverRuleCategory, string> = {
   cashback: "Isento por cashback",
   miles: "Isento por milhas",
   general: "Sem anuidade",
+  pix_key: "Isento por chave Pix",
+  promotional_period: "Promoção",
 };
 
 function hasPositiveAnnualFee(annualFeeBrl: AnnualFeeHint | undefined): annualFeeBrl is number {
