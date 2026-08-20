@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { Suspense } from "react";
 import { ChatInterface } from "@/components/ChatInterface";
 import { CompareBar } from "@/components/CompareBar";
@@ -8,7 +7,6 @@ import { ProfileOnboarding } from "@/components/ProfileOnboarding";
 import { AppHeader } from "@/components/AppHeader";
 import { AdSlot } from "@/components/AdSlot";
 import { Badge } from "@/components/ui/badge";
-import { BarChart3, Coins, Sparkles } from "lucide-react";
 import { getAllCards } from "@/lib/cards";
 
 export const metadata = {
@@ -48,8 +46,6 @@ export default function HomePage() {
             <ChatInterface variant="hero" />
           </section>
 
-          {/* Quick-access tiles */}
-
           {/* Personalized ranking (profile setup or results) */}
           <section className="mx-auto max-w-4xl">
             <Suspense>
@@ -81,31 +77,5 @@ export default function HomePage() {
 
       <CompareBar />
     </>
-  );
-}
-interface QuickTileProps {
-  href: string;
-  icon: typeof Sparkles;
-  label: string;
-  detail: string;
-}
-
-function QuickTile({
-  href,
-  icon: Icon,
-  label,
-  detail,
-}: React.PropsWithChildren<QuickTileProps>) {
-  return (
-    <Link
-      href={href}
-      className="group flex items-center justify-between rounded-xl border bg-card/60 px-4 py-3 transition-colors hover:bg-muted/40"
-    >
-      <div>
-        <p className="text-sm font-medium">{label}</p>
-        <p className="text-[11px] text-muted-foreground">{detail}</p>
-      </div>
-      <Icon className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-foreground" />
-    </Link>
   );
 }

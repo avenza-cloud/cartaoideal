@@ -107,7 +107,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
 
   return (
     <>
-      <AppHeader totalCards={getAllCards().length} />
+      <AppHeader />
       <div className="mx-auto flex w-full max-w-7xl items-start gap-4 px-3 sm:px-4">
         {/* Left sidebar ad — desktop only */}
         <div className="hidden xl:block w-[160px] shrink-0 sticky top-4 pt-6">

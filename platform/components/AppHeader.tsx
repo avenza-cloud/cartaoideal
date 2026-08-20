@@ -12,11 +12,7 @@ const NAV_ITEMS = [
   { href: "/perfil", label: "Perfil", icon: UserRound },
 ];
 
-interface AppHeaderProps {
-  totalCards?: number;
-}
-
-export function AppHeader({ totalCards: _totalCards }: AppHeaderProps) {
+export function AppHeader() {
   const pathname = usePathname();
 
   return (
