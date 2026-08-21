@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Corrigir dados de um cartão pelo site
+    url: https://cartaoideal.com/cartoes
+    about: O formulário "Sugerir correção" na página do cartão cria a issue no formato certo automaticamente.
