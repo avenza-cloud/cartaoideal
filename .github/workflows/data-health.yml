@@ -1,0 +1,88 @@
+name: Data health
+
+# Weekly link-rot / evidence audit over the card dataset. Non-blocking by
+# construction: it uploads a report artifact and upserts a tracking issue
+# instead of failing any build.
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: data-health
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: platform
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: platform/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm data:build
+      - name: Freshness report
+        run: node scripts/report-data-freshness.mjs
+      - name: Source audit (link rot + evidence)
+        env:
+          AUDIT_CONTACT_URL: ${{ github.server_url }}/${{ github.repository }}
+        run: node scripts/audit-card-sources.mjs
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-health-report
+          path: platform/audit-reports/
+          if-no-files-found: ignore
+          retention-days: 90
+      - name: Upsert tracking issue
+        if: always()
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        with:
+          script: |
+            const title = "Data health report";
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              `Última execução: ${new Date().toISOString()}`,
+              "",
+              `Relatório completo (artifact): ${runUrl}`,
+              "",
+              "Workflow semanal de saúde dos dados: frescor das verificações e link-rot das fontes.",
+            ].join("\n");
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              labels: "data-health",
+              per_page: 1,
+            });
+            if (issues.length > 0) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issues[0].number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ["data-health"],
+              });
+            }
