@@ -15,7 +15,7 @@ export async function GET(req: Request) {
   return Response.json(
     cards.map((score) => {
       const c = score.card;
-      const { text_for_embedding_compare: _text, labels_for_filtering: _labels, ...card } = c;
+      const { labels_for_filtering: _labels, ...card } = c;
       return {
       id: c.card_stable_id,
       nome: c.display_name,
