@@ -6,10 +6,7 @@ import { useProfileStore } from "@/lib/store";
 import { formatNetMonthlyDisplay } from "@/lib/formatting";
 import { travelFrequencyForValueModeling } from "@/lib/card-value";
 import { formatBrlCurrency, formatBrlInput, parseBrlInput } from "@/lib/brl";
-import {
-  fetchRecommendationsWithFallback,
-  scoreSingleClientCard,
-} from "@/lib/recommend-fallback";
+import { fetchRecommendations } from "@/lib/recommend-client";
 import { useCardDetailHref } from "@/lib/use-card-detail-href";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
@@ -131,26 +128,37 @@ export function CardProgressionPath() {
       return;
     }
     setLoadingReco(true);
-    fetchRecommendationsWithFallback(profile, 12)
-      .then((list: CardScore[]) => {
-        if (!Array.isArray(list) || list.length === 0) {
-          setBestReco(null);
-          setCurrentReco(null);
-          return;
-        }
-        const best = list[0] ?? null;
+    fetchRecommendations(profile, 12)
+      .then(({ scores, currentCard }) => {
+        const best = scores[0] ?? null;
         setBestReco(best);
         const id = profile.currentPrimaryCardId;
         if (!id) {
           setCurrentReco(null);
           return;
         }
-        const fromList = list.find((s) => s.card.card_stable_id === id) ?? null;
+        const fromList = scores.find((s) => s.card.card_stable_id === id) ?? null;
         if (fromList) {
           setCurrentReco(fromList);
           return;
         }
-        scoreSingleClientCard(profile, id).then((scored) => setCurrentReco(scored));
+        // Current card outside the top list: the API resolves and scores it.
+        setCurrentReco(
+          currentCard
+            ? {
+                card: currentCard.score.card,
+                totalScore: 0,
+                breakdown: {
+                  eligibilityMet: currentCard.score.eligible,
+                  feeAffordability: 0,
+                  rewardsMatch: 0,
+                  travelBenefits: 0,
+                  segmentFit: 0,
+                },
+                valueScore: currentCard.score,
+              }
+            : null
+        );
       })
       .catch(() => {
         setBestReco(null);
@@ -191,8 +199,7 @@ export function CardProgressionPath() {
     };
 
     try {
-      const future = await fetchRecommendationsWithFallback(futureProfile, 10);
-      if (!Array.isArray(future)) return;
+      const { scores: future } = await fetchRecommendations(futureProfile, 10);
 
       const baselineIds = new Set<string>();
       if (bestReco) baselineIds.add(bestReco.card.card_stable_id);

@@ -21,7 +21,7 @@ import {
   PromptInputSubmit,
 } from "@/components/ui/ai-prompt-box";
 import { useCompareStore, useProfileStore } from "@/lib/store";
-import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
+import { fetchRecommendations } from "@/lib/recommend-client";
 import {
   CreditCard,
   Coins,
@@ -304,7 +304,7 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
         type="button"
         title={selected ? "Remover da comparação" : "Adicionar à comparação"}
         disabled={!selected && !canAdd()}
-        onClick={() => (selected ? remove(card.id) : add(card.id))}
+        onClick={() => (selected ? remove(card.id) : add({ id: card.id, name: card.nome }))}
         className={cn(
           "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border transition-colors",
           selected
@@ -941,10 +941,10 @@ export function ChatInterface({
     }
 
     let cancelled = false;
-    fetchRecommendationsWithFallback(profile)
-      .then((data) => {
-        if (cancelled || !Array.isArray(data)) return;
-        const best = data.find(
+    fetchRecommendations(profile)
+      .then(({ scores }) => {
+        if (cancelled) return;
+        const best = scores.find(
           (item) => item.card.card_stable_id !== profile.currentPrimaryCardId,
         );
         setBestCardName(best?.card?.display_name ?? null);

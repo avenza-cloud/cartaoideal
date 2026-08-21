@@ -26,10 +26,6 @@ export const COOPERATIVE_SPREAD = 0.01;
 /** Teto de valor de venda de pontos para quem não viaja. */
 export const NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL = 20;
 
-// Nomad Explorer earning tiers (investment in USD)
-export const NOMAD_CARD_ID = "nomad-nomad-explorer-visa-infinite-aae26793ed";
-export const NOMAD_TIERS: { minUsd: number; rate: number }[] = [
-  { minUsd: 5000, rate: 3.0 },
-  { minUsd: 2500, rate: 2.2 },
-  { minUsd: 1000, rate: 1.6 },
-];
+// Card-specific tiers/bundles (Nomad, Smiles) live in data/card_overrides.json
+// via lib/card-overrides.ts — data, not code.
+export { NOMAD_CARD_ID, NOMAD_TIERS } from "@/lib/card-overrides";

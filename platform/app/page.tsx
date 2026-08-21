@@ -8,6 +8,7 @@ import { AppHeader } from "@/components/AppHeader";
 import { AdSlot } from "@/components/AdSlot";
 import { Badge } from "@/components/ui/badge";
 import { getAllCards } from "@/lib/cards";
+import { CARD_OPTIONS, CURATED_CARD_OPTIONS } from "@/lib/card-options.server";
 
 export const metadata = {
   title: "Cartão Ideal — Compare os melhores cartões de crédito",
@@ -21,7 +22,7 @@ export default function HomePage() {
   return (
     <>
       {/* Fullscreen onboarding — renders as overlay until completed or skipped */}
-      <ProfileOnboarding />
+      <ProfileOnboarding cardOptions={CARD_OPTIONS} curatedOptions={CURATED_CARD_OPTIONS} />
 
       <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_28rem)]">
         <AppHeader />

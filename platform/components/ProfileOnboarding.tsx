@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useProfileStore } from "@/lib/store";
-import { CLIENT_CARD_OPTIONS, CURATED_CARDS, normalizeCardSearchText } from "@/lib/client-card-options";
+import { searchCardOptions, type ClientCardOption } from "@/lib/card-options";
 import { ArrowRight, ArrowLeft, CreditCard } from "lucide-react";
 import type { UserProfile } from "@/types/cards";
 import { BrandWordmark } from "@/components/BrandWordmark";
@@ -29,20 +29,13 @@ const TRAVEL_OPTIONS: { value: TravelFrequency; label: string }[] = [
 
 const HEADLINE = "O cartão certo para você.";
 
-function cardMatchScore(card: (typeof CLIENT_CARD_OPTIONS)[number], query: string): number {
-  if (!query) return 100 - card.popularityRank;
-  const issuer = normalizeCardSearchText(card.issuer);
-  const name = normalizeCardSearchText(card.name);
-  if (issuer === query || name === query) return 1000;
-  if (issuer.startsWith(query)) return 900;
-  if (name.startsWith(query)) return 850;
-  if (card.searchText.split(/\s+/).some((token) => token === query)) return 800;
-  if (card.searchText.split(/\s+/).some((token) => token.startsWith(query))) return 700;
-  if (card.searchText.includes(query)) return 500;
-  return -1;
+export interface ProfileOnboardingProps {
+  /** Slim card options built server-side (lib/card-options.server.ts). */
+  cardOptions: ClientCardOption[];
+  curatedOptions: ClientCardOption[];
 }
 
-export function ProfileOnboarding() {
+export function ProfileOnboarding({ cardOptions, curatedOptions }: ProfileOnboardingProps) {
   const { onboardingDone, setProfile, skipOnboarding } = useProfileStore();
   const [mounted, setMounted] = useState(false);
   const [step, setStep] = useState(0);
@@ -58,23 +51,10 @@ export function ProfileOnboarding() {
 
   useEffect(() => setMounted(true), []);
 
-  const currentCardMatches = useMemo(() => {
-    const query = normalizeCardSearchText(currentCardQuery.trim());
-    if (!query) return CURATED_CARDS;
-    return CLIENT_CARD_OPTIONS.map((card) => ({
-      card,
-      score: cardMatchScore(card, query),
-    }))
-      .filter((item) => item.score >= 0)
-      .sort(
-        (a, b) =>
-          b.score - a.score ||
-          a.card.popularityRank - b.card.popularityRank ||
-          a.card.name.localeCompare(b.card.name, "pt-BR")
-      )
-      .map((item) => item.card)
-      .slice(0, 7);
-  }, [currentCardQuery]);
+  const currentCardMatches = useMemo(
+    () => searchCardOptions(cardOptions, curatedOptions, currentCardQuery, 7),
+    [cardOptions, curatedOptions, currentCardQuery]
+  );
 
   if (!mounted) return <div className="fixed inset-0 z-50 bg-background" />;
   if (onboardingDone) return null;
@@ -364,9 +344,9 @@ function StepCurrentCard({
 }: {
   value: string;
   selectedId?: string;
-  matches: typeof CLIENT_CARD_OPTIONS;
+  matches: ClientCardOption[];
   onChange: (value: string) => void;
-  onSelect: (card: (typeof CLIENT_CARD_OPTIONS)[number]) => void;
+  onSelect: (card: ClientCardOption) => void;
   onNext: () => void;
 }) {
   return (
