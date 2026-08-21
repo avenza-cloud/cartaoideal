@@ -33,9 +33,5 @@ jobs:
       - name: Typecheck
         run: pnpm exec tsc --noEmit
 
-      - name: Card data validation (Python)
-        working-directory: .
-        run: python3 tools/validate_card_data.py
-
       - name: Build
         run: pnpm build

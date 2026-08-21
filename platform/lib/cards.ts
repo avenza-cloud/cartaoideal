@@ -6,9 +6,16 @@ import {
   getCardFeeWaiver,
   filterCards as clientFilterCards,
 } from "@/lib/filter-cards";
+import { FacetsFileSchema } from "@/lib/card-schema";
 import type { CardFacet, CardFilters, FeeWaiverRule, FacetsFile, MarketSegment } from "@/types/cards";
 
-const data = facetsFile as FacetsFile;
+// In prod the cast is safe: CI parses the whole catalog against the schema on
+// every PR (lib/__tests__/card-data.test.ts). Dev/test parse eagerly so a bad
+// local data edit fails at boot, not at render.
+const data =
+  process.env.NODE_ENV === "production"
+    ? (facetsFile as FacetsFile)
+    : FacetsFileSchema.parse(facetsFile);
 
 function uniqueByStableId(cards: CardFacet[]): CardFacet[] {
   const byId = new Map<string, CardFacet>();
