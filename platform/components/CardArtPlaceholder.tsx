@@ -14,7 +14,12 @@ interface CardArtPlaceholderProps {
  * (media.card_art_url === "unknown"). Card-shaped, issuer initials over a
  * network-tinted gradient.
  */
-export function CardArtPlaceholder({ issuerRaw, network, displayName, className }: CardArtPlaceholderProps) {
+export function CardArtPlaceholder({
+  issuerRaw,
+  network,
+  displayName,
+  className,
+}: CardArtPlaceholderProps) {
   return (
     <div
       role="img"

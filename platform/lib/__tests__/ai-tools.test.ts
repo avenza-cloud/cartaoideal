@@ -19,7 +19,11 @@ function executeGetInvestmentWaiverCards(
     isGratuito: getCardFeeWaiver(c)?.isGratuito ?? false,
   });
   if (invested !== null) {
-    const { accessible, needsMore } = groupCardsByInvestment(cards, invested, extractInvestmentThreshold);
+    const { accessible, needsMore } = groupCardsByInvestment(
+      cards,
+      invested,
+      extractInvestmentThreshold
+    );
     return {
       totalEncontrado: cards.length,
       investidoUsuario: invested,

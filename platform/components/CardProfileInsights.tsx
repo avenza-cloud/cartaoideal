@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import type React from "react";
+import { useMemo, useState } from "react";
 import { scoreCardValue, travelFrequencyForValueModeling } from "@/lib/card-value";
 import { formatGrossRewardMonthlyDisplay, formatNetMonthlyDisplay } from "@/lib/formatting";
 import { useProfileStore } from "@/lib/store";
@@ -32,7 +33,8 @@ function RetornoTooltip({
         Livelo R${assumptions.liveloPointSaleValuePerThousandBrl}/1k venda · Livelo R$
         {assumptions.liveloPointTravelValuePerThousandBrl}/1k uso · MR R$
         {assumptions.membershipRewardsPointSaleValuePerThousandBrl}/1k venda · MR R$
-        {assumptions.membershipRewardsPointTravelValuePerThousandBrl}/1k uso · PTAX R${assumptions.ptaxBrlPerUsd}
+        {assumptions.membershipRewardsPointTravelValuePerThousandBrl}/1k uso · PTAX R$
+        {assumptions.ptaxBrlPerUsd}
       </p>
       {component.dataQualityNote && (
         <p className="text-amber-300/70">{component.dataQualityNote}</p>
@@ -63,10 +65,9 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
     );
   }
 
-  const positive =
-    Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl) >= 0;
+  const positive = Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl) >= 0;
   const accent = positive ? "text-emerald-400" : "text-rose-400";
-  const accentBg = positive ? "bg-emerald-500/10" : "bg-rose-500/10";
+  const _accentBg = positive ? "bg-emerald-500/10" : "bg-rose-500/10";
 
   const reward = score.components.find((c) => c.key === "rewards");
   const intangibles = score.components.find((c) => c.key === "intangibles");
@@ -94,7 +95,6 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
       <div className="grid gap-0 sm:grid-cols-[minmax(0,1fr)_minmax(12.5rem,42%)]">
         <div className="p-4">
           <div className="flex flex-wrap items-center gap-1.5">
-           
             {score.feeBurdenPctOfAnnualSpend !== null && score.feeBurdenPctOfAnnualSpend > 0 && (
               <span className="rounded-full border px-2.5 py-0.5 font-mono text-[10px] text-muted-foreground">
                 anuidade {score.feeBurdenPctOfAnnualSpend}% do gasto
@@ -104,9 +104,7 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
           <p className="mt-2 text-base font-semibold leading-snug tracking-tight">
             {score.verdict}
           </p>
-          <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-            {score.rankReason}
-          </p>
+          <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{score.rankReason}</p>
           {score.scoreDrivers.length > 0 && (
             <div className="mt-2 flex flex-wrap gap-1">
               {score.scoreDrivers.slice(0, 3).map((d) => (
@@ -179,6 +177,7 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
       {/* Collapsible formula */}
       <div className="border-t">
         <button
+          type="button"
           onClick={() => setShowCalc((v) => !v)}
           className="flex w-full items-center justify-between px-4 py-2.5 text-[11px] text-muted-foreground/60 transition-colors hover:text-muted-foreground"
         >
@@ -200,7 +199,9 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
             )}
             <div className="flex items-center justify-between gap-2 border-t pt-1.5">
               <span className="text-xs font-medium">Líquido</span>
-              <span className={`min-w-0 max-w-[65%] text-right font-mono text-xs font-semibold leading-snug break-words ${accent}`}>
+              <span
+                className={`min-w-0 max-w-[65%] text-right font-mono text-xs font-semibold leading-snug break-words ${accent}`}
+              >
                 {formatNetMonthlyDisplay(score, travelFrequencyForValueModeling(profile))}
               </span>
             </div>

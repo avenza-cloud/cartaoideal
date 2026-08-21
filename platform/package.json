@@ -15,7 +15,10 @@
     "audit:card-sources": "node scripts/audit-card-sources.mjs",
     "test:e2e": "playwright test --ignore-snapshots --grep-invert chat-waiver",
     "test:e2e:mobile": "playwright test --project=mobile-small --project=mobile-chrome --project=mobile-large --grep-invert chat-waiver",
-    "test:chat": "playwright test tests/e2e/chat-waiver.spec.ts"
+    "test:chat": "playwright test tests/e2e/chat-waiver.spec.ts",
+    "check": "biome check",
+    "check:fix": "biome check --write",
+    "format": "biome format --write"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.61",
@@ -48,6 +51,7 @@
     "zustand": "^5.0.13"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.10",
     "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

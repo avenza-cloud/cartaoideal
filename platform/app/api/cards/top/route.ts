@@ -21,8 +21,12 @@ export async function GET(req: Request) {
   const limit = limitSchema.parse(url.searchParams.get("limit") ?? "10");
 
   const assumptions = await getValueAssumptionsWithLiveUsd();
-  const scored = scoreCardValues(getAllCards(), DEFAULT_SCORING_PROFILE, "default", assumptions)
-    .slice(0, limit);
+  const scored = scoreCardValues(
+    getAllCards(),
+    DEFAULT_SCORING_PROFILE,
+    "default",
+    assumptions
+  ).slice(0, limit);
 
   const defaultSpend = DEFAULT_SCORING_PROFILE.avgMonthlySpendBrl;
 

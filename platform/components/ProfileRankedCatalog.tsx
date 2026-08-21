@@ -31,7 +31,7 @@ export function ProfileRankedCatalog({ cards, rankingMode }: ProfileRankedCatalo
 
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
-  }, [cards, profile, rankingMode]);
+  }, []);
 
   useEffect(() => {
     if (!hasMore) return;
@@ -50,7 +50,7 @@ export function ProfileRankedCatalog({ cards, rankingMode }: ProfileRankedCatalo
 
     observer.observe(target);
     return () => observer.disconnect();
-  }, [hasMore, totalCount, visibleCount]);
+  }, [hasMore, totalCount]);
 
   if (cards.length === 0) {
     return (

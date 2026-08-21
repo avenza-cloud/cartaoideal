@@ -4,12 +4,14 @@ import { filterCards, groupCardsByInvestment, getCardFeeWaiver } from "@/lib/car
 
 describe("extractInvestmentThreshold", () => {
   it("C6 Mastercard Black — picks investment amount (R$20k), not gasto (R$3.5k)", () => {
-    const texto = "Anuidade isenta com gasto a partir de R$ 3,5 mil por mês ou R$ 20 mil em investimentos em renda fixa no C6 Bank";
+    const texto =
+      "Anuidade isenta com gasto a partir de R$ 3,5 mil por mês ou R$ 20 mil em investimentos em renda fixa no C6 Bank";
     expect(extractInvestmentThreshold(texto)).toBe(20_000);
   });
 
   it("Nubank Ultravioleta — R$50k investment threshold", () => {
-    const texto = "Isento para clientes a partir de R$ 50 mil em investimentos ou gastos mensais a partir de R$ 5 mil";
+    const texto =
+      "Isento para clientes a partir de R$ 50 mil em investimentos ou gastos mensais a partir de R$ 5 mil";
     expect(extractInvestmentThreshold(texto)).toBe(50_000);
   });
 
@@ -22,12 +24,14 @@ describe("extractInvestmentThreshold", () => {
   });
 
   it("C6 Carbon — R$50k investment threshold", () => {
-    const texto = "Anuidade isenta com gasto a partir de R$ 8 mil por mês ou a partir de R$ 50 mil em investimentos no C6 Bank";
+    const texto =
+      "Anuidade isenta com gasto a partir de R$ 8 mil por mês ou a partir de R$ 50 mil em investimentos no C6 Bank";
     expect(extractInvestmentThreshold(texto)).toBe(50_000);
   });
 
   it("Porto Bank Visa Infinite — R$100k investment threshold", () => {
-    const texto = "Anuidade isenta com gasto a partir de R$ 18.000 por mês ou a partir de R$ 100 mil em investimentos no Porto Bank";
+    const texto =
+      "Anuidade isenta com gasto a partir de R$ 18.000 por mês ou a partir de R$ 100 mil em investimentos no Porto Bank";
     expect(extractInvestmentThreshold(texto)).toBe(100_000);
   });
 
@@ -48,7 +52,8 @@ describe("extractInvestmentThreshold", () => {
 
 describe("extractFeeWaiverRules", () => {
   it("splits mixed spend + investment waiver into category-specific rules", () => {
-    const texto = "Isento para clientes a partir de R$ 300 mil em investimentos ou gastos mensais a partir de R$ 15 mil";
+    const texto =
+      "Isento para clientes a partir de R$ 300 mil em investimentos ou gastos mensais a partir de R$ 15 mil";
     expect(extractFeeWaiverRules(texto)).toEqual([
       expect.objectContaining({
         category: "investment",
@@ -65,7 +70,8 @@ describe("extractFeeWaiverRules", () => {
   });
 
   it("adds cashback badge rule when the fee waiver is refunded as cashback", () => {
-    const texto = "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 2 mil ou 100% de cashback com gastos acima de R$ 4 mil";
+    const texto =
+      "50% de cashback da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 2 mil ou 100% de cashback com gastos acima de R$ 4 mil";
     expect(extractFeeWaiverRules(texto)).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ category: "monthly_spend", threshold_brl: 2_000 }),
@@ -76,7 +82,8 @@ describe("extractFeeWaiverRules", () => {
   });
 
   it("does not cross-assign PicPay spend and investment thresholds", () => {
-    const texto = "100% de isenção da anuidade com faturas acima de R$ 5 mil, investimentos acima de R$ 50 mil ou fazendo a portabilidade de salário e mantendo o recebimento no PicPay";
+    const texto =
+      "100% de isenção da anuidade com faturas acima de R$ 5 mil, investimentos acima de R$ 50 mil ou fazendo a portabilidade de salário e mantendo o recebimento no PicPay";
     expect(extractFeeWaiverRules(texto)).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ category: "monthly_spend", threshold_brl: 5_000 }),
@@ -96,7 +103,8 @@ describe("extractFeeWaiverRules", () => {
   });
 
   it("treats 'isenta' as a full waiver term", () => {
-    const texto = "Anuidade isenta com gasto a partir de R$ 3,5 mil por mês ou R$ 20 mil em investimentos em renda fixa no C6 Bank";
+    const texto =
+      "Anuidade isenta com gasto a partir de R$ 3,5 mil por mês ou R$ 20 mil em investimentos em renda fixa no C6 Bank";
     expect(extractFeeWaiverRules(texto)).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ category: "monthly_spend", full_waiver: true }),
@@ -110,7 +118,11 @@ describe("groupCardsByInvestment", () => {
   const allWaiverCards = filterCards({ feeWaiverByInvestment: true });
 
   it("accessible + needsMore covers every investment-waiver card", () => {
-    const { accessible, needsMore } = groupCardsByInvestment(allWaiverCards, 10_000, extractInvestmentThreshold);
+    const { accessible, needsMore } = groupCardsByInvestment(
+      allWaiverCards,
+      10_000,
+      extractInvestmentThreshold
+    );
     expect(accessible.length + needsMore.length).toBe(allWaiverCards.length);
     expect(allWaiverCards.length).toBeGreaterThan(45);
   });
@@ -118,7 +130,11 @@ describe("groupCardsByInvestment", () => {
   it("C6 Carbon with R$10k → needsMore (threshold=50k)", () => {
     const c6 = allWaiverCards.find((c) => c.display_name === "C6 Carbon")!;
     expect(c6).toBeDefined();
-    const { accessible, needsMore } = groupCardsByInvestment([c6], 10_000, extractInvestmentThreshold);
+    const { accessible, needsMore } = groupCardsByInvestment(
+      [c6],
+      10_000,
+      extractInvestmentThreshold
+    );
     expect(accessible).toHaveLength(0);
     expect(needsMore).toHaveLength(1);
     expect(needsMore[0].threshold).toBe(50_000);
@@ -148,7 +164,11 @@ describe("groupCardsByInvestment", () => {
 
   it("BTG Pactual Black with R$20k → needsMore (threshold=120k)", () => {
     const btgBlack = allWaiverCards.find((c) => c.display_name === "BTG Pactual Black")!;
-    const { accessible, needsMore } = groupCardsByInvestment([btgBlack], 20_000, extractInvestmentThreshold);
+    const { accessible, needsMore } = groupCardsByInvestment(
+      [btgBlack],
+      20_000,
+      extractInvestmentThreshold
+    );
     expect(accessible).toHaveLength(0);
     expect(needsMore).toHaveLength(1);
     expect(needsMore[0].threshold).toBe(120_000);
@@ -156,8 +176,14 @@ describe("groupCardsByInvestment", () => {
   });
 
   it("BTG Pactual Black Cashback with R$20k → needsMore (threshold=90k)", () => {
-    const btgCashback = allWaiverCards.find((c) => c.display_name === "BTG Pactual Black Cashback")!;
-    const { accessible, needsMore } = groupCardsByInvestment([btgCashback], 20_000, extractInvestmentThreshold);
+    const btgCashback = allWaiverCards.find(
+      (c) => c.display_name === "BTG Pactual Black Cashback"
+    )!;
+    const { accessible, needsMore } = groupCardsByInvestment(
+      [btgCashback],
+      20_000,
+      extractInvestmentThreshold
+    );
     expect(accessible).toHaveLength(0);
     expect(needsMore).toHaveLength(1);
     expect(needsMore[0].threshold).toBe(90_000);
@@ -165,12 +191,20 @@ describe("groupCardsByInvestment", () => {
   });
 
   it("with R$1M invested, most cards are accessible", () => {
-    const { accessible, needsMore } = groupCardsByInvestment(allWaiverCards, 1_000_000, extractInvestmentThreshold);
+    const { accessible, needsMore } = groupCardsByInvestment(
+      allWaiverCards,
+      1_000_000,
+      extractInvestmentThreshold
+    );
     expect(accessible.length).toBeGreaterThan(needsMore.length);
   });
 
   it("all items have valid card data", () => {
-    const { accessible, needsMore } = groupCardsByInvestment(allWaiverCards, 50_000, extractInvestmentThreshold);
+    const { accessible, needsMore } = groupCardsByInvestment(
+      allWaiverCards,
+      50_000,
+      extractInvestmentThreshold
+    );
     for (const c of accessible) {
       expect(c.card_stable_id).toBeTruthy();
       expect(getCardFeeWaiver(c)?.viaInvestimento).toBe(true);

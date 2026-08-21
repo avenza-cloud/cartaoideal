@@ -17,8 +17,9 @@ export function AdSlot({ slot, format = "auto", className }: AdSlotProps) {
   useEffect(() => {
     if (!PUB_ID || !insRef.current) return;
     try {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+      const w = window as Window & { adsbygoogle?: unknown[] };
+      w.adsbygoogle = w.adsbygoogle ?? [];
+      w.adsbygoogle.push({});
     } catch {
       // adsbygoogle not yet loaded — Script lazyOnload will trigger it
     }

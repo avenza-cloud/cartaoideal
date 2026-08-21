@@ -19,7 +19,7 @@ interface ActiveFilters {
   rank: "profile" | "general";
 }
 
-const EMPTY: ActiveFilters = {
+const _EMPTY: ActiveFilters = {
   segment: "",
   network: "",
   lounge: false,
@@ -81,18 +81,14 @@ export function CardCatalog({ allCards }: CardCatalogProps) {
   const searchParams = useSearchParams();
   const profile = useProfileStore((s) => s.profile);
 
-  const [active, setActive] = useState<ActiveFilters>(() =>
-    fromSearchParams(searchParams)
-  );
+  const [active, setActive] = useState<ActiveFilters>(() => fromSearchParams(searchParams));
 
   // Alinhar filtros de benefício ao perfil quando o usuário não veio com query explícita
   useEffect(() => {
     if (!profile) return;
     const p = profile.preferences;
-    const wantsCashbackLens =
-      (p.prefersCashback || p.prefersInvestback) && !p.prefersPoints;
-    const wantsPointsLens =
-      p.prefersPoints && !p.prefersCashback && !p.prefersInvestback;
+    const wantsCashbackLens = (p.prefersCashback || p.prefersInvestback) && !p.prefersPoints;
+    const wantsPointsLens = p.prefersPoints && !p.prefersCashback && !p.prefersInvestback;
     if (!wantsCashbackLens && !wantsPointsLens) return;
 
     setActive((prev) => {
@@ -146,14 +142,16 @@ export function CardCatalog({ allCards }: CardCatalogProps) {
     setActive((prev) => ({ ...prev, ...patch }));
   }, []);
 
-  const filtered = useMemo(
-    () => filterCards(allCards, toFilters(active)),
-    [allCards, active]
-  );
+  const filtered = useMemo(() => filterCards(allCards, toFilters(active)), [allCards, active]);
 
   return (
     <>
-      <CardFilters active={active} update={update} totalFiltered={filtered.length} totalAll={allCards.length} />
+      <CardFilters
+        active={active}
+        update={update}
+        totalFiltered={filtered.length}
+        totalAll={allCards.length}
+      />
       <main className="flex-1 min-w-0">
         <ProfileRankedCatalog cards={filtered} rankingMode={active.rank} />
       </main>

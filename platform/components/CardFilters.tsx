@@ -125,6 +125,7 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
         <div className="grid grid-cols-2 gap-1 md:flex md:flex-col">
           {SEGMENTS.map((s) => (
             <button
+              type="button"
               key={s.value}
               onClick={() => update({ segment: s.value })}
               className={cn(
@@ -149,6 +150,7 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
         <div className="grid grid-cols-2 gap-1 md:flex md:flex-col">
           {NETWORKS.map((n) => (
             <button
+              type="button"
               key={n}
               onClick={() => update({ network: active.network === n ? "" : n })}
               className={cn(
