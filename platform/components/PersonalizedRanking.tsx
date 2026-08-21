@@ -12,6 +12,7 @@ import {
 import { feeWaiverBadgeClassName, feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
 import { fetchRecommendations, type CurrentCardResult } from "@/lib/recommend-client";
 import { DEFAULT_SCORING_PROFILE, travelFrequencyForValueModeling } from "@/lib/card-value";
+import { cardArtSrc } from "@/lib/card-display";
 import { useCardDetailHref } from "@/lib/use-card-detail-href";
 import { Button } from "@/components/ui/button";
 import { CreditCard, ListFilter } from "lucide-react";
@@ -92,7 +93,7 @@ function CardRow({
   badges?: FeeWaiverBadge[];
   travelFrequency?: TravelFrequency;
 }) {
-  const hasImage = cardArtUrl && cardArtUrl !== "unknown";
+  const artSrc = cardArtSrc(cardArtUrl);
   const detailHref = useCardDetailHref(id);
 
   return (
@@ -103,9 +104,9 @@ function CardRow({
       <span className="font-mono text-[11px] text-muted-foreground">#{rank}</span>
 
       <div className="flex h-10 items-center justify-center rounded-lg border bg-zinc-950">
-        {hasImage ? (
+        {artSrc ? (
           <img
-            src={cardArtUrl}
+            src={artSrc}
             alt={altText}
             className="max-h-8 max-w-[52px] object-contain"
             loading="lazy"
@@ -199,7 +200,7 @@ function CurrentCardSummary({
 }) {
   const tier = feeTier(card, spend, score?.effectiveAnnualFeeBrl);
   const note = feeNote(card, spend, score?.effectiveAnnualFeeBrl);
-  const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
+  const artSrc = cardArtSrc(card.media.card_art_url);
   const detailHref = useCardDetailHref(card.card_stable_id);
 
   return (
@@ -212,9 +213,9 @@ function CurrentCardSummary({
       </span>
 
       <div className="flex h-12 items-center justify-center rounded-xl border bg-zinc-950">
-        {hasImage ? (
+        {artSrc ? (
           <img
-            src={card.media.card_art_url}
+            src={artSrc}
             alt={card.media.alt_text}
             className="max-h-9 max-w-[48px] object-contain"
             loading="lazy"

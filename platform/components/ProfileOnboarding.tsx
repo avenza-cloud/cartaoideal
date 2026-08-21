@@ -7,6 +7,7 @@ import { searchCardOptions, type ClientCardOption } from "@/lib/card-options";
 import { ArrowRight, ArrowLeft, CreditCard } from "lucide-react";
 import type { UserProfile } from "@/types/cards";
 import { BrandWordmark } from "@/components/BrandWordmark";
+import { cardArtSrc } from "@/lib/card-display";
 import { cn } from "@/lib/utils";
 import { formatBrlInput, parseBrlInput } from "@/lib/brl";
 
@@ -388,7 +389,7 @@ function StepCurrentCard({
               )}
             >
               <span className="flex h-10 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-zinc-950">
-                {card.artUrl && card.artUrl !== "unknown" ? (
+                {cardArtSrc(card.artUrl) ? (
                   <img
                     src={card.artUrl}
                     alt={card.altText || card.name}

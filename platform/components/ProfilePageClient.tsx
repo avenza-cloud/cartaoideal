@@ -6,6 +6,7 @@ import { useProfileStore } from "@/lib/store";
 import { AppHeader } from "@/components/AppHeader";
 import { searchCardOptions, type ClientCardOption } from "@/lib/card-options";
 import { Sparkles, CheckCircle2, ArrowLeft, CreditCard, X } from "lucide-react";
+import { cardArtSrc } from "@/lib/card-display";
 import { cn } from "@/lib/utils";
 import { formatBrlInput, formatBrlNumber, parseBrlInput } from "@/lib/brl";
 import type { UserProfile } from "@/types/cards";
@@ -175,7 +176,7 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
             {selectedCard ? (
               <div className="flex items-center gap-3 rounded-xl border border-foreground/20 bg-foreground/5 px-3 py-2.5">
                 <span className="flex h-10 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-zinc-950">
-                  {selectedCard.artUrl && selectedCard.artUrl !== "unknown" ? (
+                  {cardArtSrc(selectedCard.artUrl) ? (
                     <img
                       src={selectedCard.artUrl}
                       alt={selectedCard.altText || selectedCard.name}
@@ -225,7 +226,7 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                         className="flex w-full items-center gap-3 rounded-xl border border-border/50 bg-card/60 px-2.5 py-2 text-left transition-colors hover:border-border hover:bg-card"
                       >
                         <span className="flex h-9 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-zinc-950">
-                          {c.artUrl && c.artUrl !== "unknown" ? (
+                          {cardArtSrc(c.artUrl) ? (
                             <img src={c.artUrl} alt={c.altText || c.name} className="max-h-7 max-w-[48px] object-contain" loading="lazy" />
                           ) : (
                             <CreditCard className="h-3.5 w-3.5 text-muted-foreground" />
