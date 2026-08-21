@@ -1,0 +1,136 @@
+{
+  "card_stable_id": "banco-bv-dotz-bv-mastercard-platinum-34f0748cf2",
+  "display_name": "Dotz BV Mastercard Platinum",
+  "issuer_raw": "Banco BV",
+  "network_primary": "Mastercard",
+  "variant_band": "Platinum",
+  "market_segment_guess": "upper_mass",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
+  "verification_confidence_0_to_1": 1,
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/dotz-bv-mastercard-platinum-2/",
+  "application_url": "https://www.bv.com.br/cartao/cartao-dotz",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/dotz-bv-mastercard-platinum-2/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://www.bv.com.br/cartao/cartao-dotz",
+  "ranking_position": 39,
+  "ranking_score": 37.24,
+  "media": {
+    "alt_text": "Dotz BV Mastercard Platinum",
+    "card_art_url": "unknown",
+    "source_url": "https://passageirodeprimeira.com/cartao-de-credito/dotz-bv-mastercard-platinum-2/"
+  },
+  "reward_return": {
+    "earning_summary": "0,6% de cashback",
+    "has_cashlike_return": true,
+    "subtypes": [
+      "cashback"
+    ]
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "summary": "Não",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "unknown",
+    "requires_bank_account_claim": false,
+    "source_status": "not_structured"
+  },
+  "fee_waiver_rules": [],
+  "benefit_groups": {
+    "fees": [
+      "Anuidade: R$ 259",
+      "Adicionais com os mesmos benefícios do titular: Sim"
+    ],
+    "rewards": [
+      "Pontuação: 0,6% de cashback"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 259"
+    },
+    {
+      "category": "rewards",
+      "key": "cashback_rate",
+      "label": "Pontuação",
+      "value": "0,6% de cashback"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Cashback",
+      "value": "0,6% de cashback"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com os mesmos benefícios do titular",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 259"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 259,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": true,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": true
+  },
+  "labels_for_filtering": [
+    "segment:upper_mass",
+    "rewards:cashback",
+    "cashback"
+  ],
+  "data_quality_notes": [
+    "Correção manual 2026-05-11: usuário informou ranking 39º, score 37.24, anuidade R$259, 0,6% de cashback, sem salas VIP e adicionais com os mesmos benefícios do titular."
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "trusted_catalog",
+        "url": "https://www.bv.com.br/cartao/cartao-dotz"
+      },
+      {
+        "label": "Evidência primária",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/dotz-bv-mastercard-platinum-2/"
+      }
+    ]
+  }
+}

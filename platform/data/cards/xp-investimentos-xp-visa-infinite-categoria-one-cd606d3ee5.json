@@ -1,0 +1,224 @@
+{
+  "card_stable_id": "xp-investimentos-xp-visa-infinite-categoria-one-cd606d3ee5",
+  "display_name": "XP Visa Infinite Categoria One",
+  "issuer_raw": "XP Investimentos",
+  "network_primary": "Visa",
+  "variant_band": "Infinite",
+  "market_segment_guess": "premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_catalog_with_curated_official_override",
+  "verification_confidence_0_to_1": 1,
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/xp-visa-infinite-categoria-one/",
+  "application_url": "https://lp.xpi.com.br/cartao-credito-xp",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/xp-visa-infinite-categoria-one/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://lp.xpi.com.br/cartao-credito-xp",
+  "ranking_position": 18,
+  "ranking_score": 63,
+  "media": {
+    "alt_text": "XP Visa Infinite Categoria One",
+    "card_art_url": "unknown",
+    "source_url": "https://passageirodeprimeira.com/cartao-de-credito/xp-visa-infinite-categoria-one/"
+  },
+  "reward_return": {
+    "earning_summary": "1,0% de cashback",
+    "has_cashlike_return": true,
+    "subtypes": [
+      "cashback"
+    ]
+  },
+  "lounge_access": {
+    "annual_visits": 2,
+    "complimentary_access_confirmed": true,
+    "guest_policy": "0 acompanhante(s)",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "programs": [
+      "Visa Airport Companion"
+    ],
+    "summary": "2 acessos por ano",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [
+      "minimum_investment"
+    ],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": 5000,
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "A partir de R$ 5 mil em investimentos líquidos.",
+    "requires_bank_account_claim": true,
+    "source_status": "official_or_structured"
+  },
+  "benefit_groups": {
+    "eligibility": [
+      "Investimento mínimo: R$ 5.000",
+      "Precisa ser cliente XP",
+      "Aprovação sujeita à análise"
+    ],
+    "fees": [
+      "Anuidade: R$ 0",
+      "Sem anuidade para clientes com mais de R$ 5.000 investidos"
+    ],
+    "lifestyle": [
+      "Carteira digital: Apple Pay, Samsung Pay, Google Pay"
+    ],
+    "rewards": [
+      "Pontuação: 1,0% de cashback",
+      "Retorno financeiro: cashback",
+      "Regra de pontuação: 1,0% de cashback"
+    ],
+    "travel": [
+      "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
+      "Programa de sala VIP: Visa Airport Companion",
+      "Acompanhantes em sala VIP: 0 acompanhante(s)",
+      "Acessos a sala VIP: 2 por ano",
+      "Salas VIP: Salas VIP do Visa Airport Companion - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 0"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "1,0% de cashback"
+    },
+    {
+      "category": "rewards",
+      "key": "financial_return",
+      "label": "Retorno financeiro",
+      "value": "cashback"
+    },
+    {
+      "category": "travel",
+      "details": "Gratuidade indicada pela fonte",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Acesso disponível"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Visa Airport Companion"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_guest_policy",
+      "label": "Acompanhantes em sala VIP",
+      "value": "0 acompanhante(s)"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_visits",
+      "label": "Acessos a sala VIP",
+      "value": "2 por ano"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_detail",
+      "label": "Regra de pontuação",
+      "value": "1,0% de cashback"
+    },
+    {
+      "category": "travel",
+      "details": "2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Salas VIP do Visa Airport Companion"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com benefícios",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 0"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Apple Pay, Samsung Pay, Google Pay"
+    },
+    {
+      "category": "eligibility",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "free_additional_cards",
+      "label": "Adicionais gratuitos",
+      "value": "6"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "Sem anuidade para clientes com mais de R$ 5.000 investidos"
+    },
+    {
+      "category": "eligibility",
+      "key": "minimum_investment",
+      "label": "Investimento mínimo",
+      "value": "R$ 5.000"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 0,
+    "lounge_visits_per_year_hint": 2,
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": 5000,
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": true,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": true,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": true
+  },
+  "labels_for_filtering": [
+    "segment:premium",
+    "travel:lounge",
+    "rewards:cashback",
+    "rewards:return_cashlike"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "trusted_catalog",
+        "url": "https://lp.xpi.com.br/cartao-credito-xp"
+      },
+      {
+        "label": "Evidência primária",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/xp-visa-infinite-categoria-one/"
+      }
+    ]
+  }
+}

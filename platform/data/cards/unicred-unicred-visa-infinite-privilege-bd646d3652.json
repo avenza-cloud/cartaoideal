@@ -1,0 +1,325 @@
+{
+  "card_stable_id": "unicred-unicred-visa-infinite-privilege-bd646d3652",
+  "display_name": "Unicred Visa Infinite Privilege",
+  "issuer_raw": "Unicred",
+  "network_primary": "Visa",
+  "variant_band": "Infinite Privilege",
+  "market_segment_guess": "ultra_premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
+  "verification_confidence_0_to_1": 1,
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/unicred-visa-infinite-privilege/",
+  "application_url": "https://www.unicred.com.br/solucoes/cartoes?utm_medium=site",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/unicred-visa-infinite-privilege/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://www.unicred.com.br/solucoes/cartoes?utm_medium=site",
+  "ranking_position": 4,
+  "ranking_score": 337,
+  "media": {
+    "alt_text": "Unicred Visa Infinite Privilege",
+    "card_art_url": "unknown",
+    "source_url": "https://passageirodeprimeira.com/cartao-de-credito/unicred-visa-infinite-privilege/"
+  },
+  "reward_return": {
+    "earning_summary": "Até 7,0 pontos por dólar gasto",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": true,
+    "guest_policy": "8 acompanhante(s)",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "programs": [
+      "LoungeKey",
+      "Visa Airport Companion",
+      "Visa Infinite Privilege Lounge"
+    ],
+    "summary": "Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Visa Infinite Privilege Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita",
+    "unlimited": true
+  },
+  "eligibility": {
+    "availability_status": "private_or_segment_restricted",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": 300000,
+    "minimum_investment_brl_best_estimate": 30000000,
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Exclusivamente por convite; R$ 30 milhões de investimento/patrimônio e/ou renda a partir de R$ 300 mil.",
+    "requires_bank_account_claim": true,
+    "source_status": "manual_curated"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "monthly_spend",
+      "description": "50% de desconto na anuidade",
+      "discount_brl": 750,
+      "full_waiver": false,
+      "period": "monthly",
+      "raw_text": "50% de isenção com gastos acima de R$ 60 mil",
+      "threshold_brl": 60000
+    },
+    {
+      "category": "monthly_spend",
+      "description": "Isenção total por gasto mensal",
+      "full_waiver": true,
+      "period": "monthly",
+      "raw_text": "100% de isenção para gastos acima de R$ 120 mil",
+      "threshold_brl": 120000
+    },
+    {
+      "category": "investment",
+      "description": "Isenção total por investimentos/patrimônio na cooperativa",
+      "full_waiver": true,
+      "period": "annual",
+      "raw_text": "Isenção por investimentos: R$ 30 milhões em investimentos na cooperativa",
+      "threshold_brl": 30000000
+    }
+  ],
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista: Sim"
+    ],
+    "fees": [
+      "Anuidade: R$ 18.000",
+      "Adicionais com benefícios: Sim",
+      "Isenção da anuidade: 3 primeiros meses gratuitos. Após esse período, 50% de isenção com gastos acima de R$ 60 mil e 100% para gastos acima de R$ 120 mil. Isenção por Investimentos - R$ 30 milhões em investimentos na cooperativa",
+      "Anuidade: R$ 18.000",
+      "Adicionais gratuitos: 0"
+    ],
+    "lifestyle": [
+      "Carteira digital: Apple Pay, Samsung Pay, Google Pay"
+    ],
+    "rewards": [
+      "Pontuação: Até 7,0 pontos por dólar gasto",
+      "Regra de pontuação: 5,0 pontos por dólar gasto no Brasil",
+      "Regra de pontuação: 7,0 pontos por dólar gasto no exterior",
+      "Bônus de adesão: Único - (Não há)",
+      "Bônus de adesão: Livelo - (Não há)",
+      "Programa de fidelidade: Único",
+      "Programa de fidelidade: Livelo",
+      "Validade dos pontos: Único - 60 meses",
+      "Validade dos pontos: Livelo - 24 meses"
+    ],
+    "travel": [
+      "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
+      "Programa de sala VIP: LoungeKey",
+      "Programa de sala VIP: Visa Airport Companion",
+      "Programa de sala VIP: Visa Infinite Privilege Lounge",
+      "Acompanhantes em sala VIP: 8 acompanhante(s)",
+      "Acessos a sala VIP: Ilimitados",
+      "Salas VIP: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita",
+      "Salas VIP: Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita",
+      "Salas VIP: Visa Infinite Privilege Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita",
+      "Descrição do benefício em companhias aéreas: A experiência em aeroportos é elevada a um novo nível, com direito a 1 (um) trajeto de helicóptero gratuito por ano em São Paulo e atendimento Meet & Greet no GRU Airport."
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 18.000"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "Até 7,0 pontos por dólar gasto"
+    },
+    {
+      "category": "travel",
+      "details": "Gratuidade indicada pela fonte",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Acesso disponível"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "LoungeKey"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Visa Airport Companion"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Visa Infinite Privilege Lounge"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_guest_policy",
+      "label": "Acompanhantes em sala VIP",
+      "value": "8 acompanhante(s)"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_visits",
+      "label": "Acessos a sala VIP",
+      "value": "Ilimitados"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_detail",
+      "label": "Regra de pontuação",
+      "value": "5,0 pontos por dólar gasto no Brasil"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_detail",
+      "label": "Regra de pontuação",
+      "value": "7,0 pontos por dólar gasto no exterior"
+    },
+    {
+      "category": "rewards",
+      "details": "(Não há)",
+      "key": "welcome_bonus",
+      "label": "Bônus de adesão",
+      "value": "Único"
+    },
+    {
+      "category": "rewards",
+      "details": "(Não há)",
+      "key": "welcome_bonus",
+      "label": "Bônus de adesão",
+      "value": "Livelo"
+    },
+    {
+      "category": "travel",
+      "details": "Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Salas VIP do LoungeKey"
+    },
+    {
+      "category": "travel",
+      "details": "Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Salas VIP do Visa Airport Companion"
+    },
+    {
+      "category": "travel",
+      "details": "Acessos gratuitos e ilimitados para o portador e acompanhantes por visita",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Visa Infinite Privilege Lounge"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Único"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Livelo"
+    },
+    {
+      "category": "rewards",
+      "details": "60 meses",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "Único"
+    },
+    {
+      "category": "rewards",
+      "details": "24 meses",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "Livelo"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com benefícios",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "details": "R$ 30 milhões em investimentos na cooperativa",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "3 primeiros meses gratuitos. Após esse período, 50% de isenção com gastos acima de R$ 60 mil e 100% para gastos acima de R$ 120 mil. Isenção por Investimentos"
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 18.000"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Apple Pay, Samsung Pay, Google Pay"
+    },
+    {
+      "category": "eligibility",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "free_additional_cards",
+      "label": "Adicionais gratuitos",
+      "value": "0"
+    },
+    {
+      "category": "travel",
+      "key": "descricao_do_beneficio_em_companhias_aereas",
+      "label": "Descrição do benefício em companhias aéreas",
+      "value": "A experiência em aeroportos é elevada a um novo nível, com direito a 1 (um) trajeto de helicóptero gratuito por ano em São Paulo e atendimento Meet & Greet no GRU Airport."
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 18000,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": 300000,
+    "minimum_investment_brl_best_estimate": 30000000,
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": true,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": true,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:ultra_premium",
+    "travel:lounge",
+    "rewards:points_or_miles"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "trusted_catalog",
+        "url": "https://www.unicred.com.br/solucoes/cartoes?utm_medium=site"
+      },
+      {
+        "label": "Evidência primária",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/unicred-visa-infinite-privilege/"
+      }
+    ]
+  }
+}

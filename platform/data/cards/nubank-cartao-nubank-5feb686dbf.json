@@ -1,0 +1,171 @@
+{
+  "card_stable_id": "nubank-cartao-nubank-5feb686dbf",
+  "display_name": "Cartão Nubank",
+  "issuer_raw": "Nubank",
+  "network_primary": "Mastercard",
+  "variant_band": "Gold/Platinum",
+  "market_segment_guess": "mass_or_general",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_nubank_card_page_curated",
+  "verification_confidence_0_to_1": 0.92,
+  "primary_evidence_url": "https://nubank.com.br/nu/cartao",
+  "application_url": "unknown",
+  "review_source_url": "https://nubank.com.br/nu/cartao",
+  "source_label": "Nubank",
+  "review_source_label": "Nubank",
+  "source_tier": "official_issuer",
+  "source_url": "https://nubank.com.br/nu/cartao",
+  "ranking_position": 9998,
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "Cartão Nubank roxo",
+    "card_art_url": "unknown",
+    "source_url": "https://s2-techtudo.glbimg.com/nLo2y4dk-xrUwLW26kXu69TQfEI=/0x0:960x611/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2019/D/0/2eNl0kQFSRGlRT8GB6Ow/nu-card-large.png"
+  },
+  "reward_return": {
+    "earning_summary": "Sem pontos/cashback estruturado",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "annual_visits": "unknown",
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "summary": "unknown",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Sujeito a análise individual de crédito pelo Nubank.",
+    "requires_bank_account_claim": false,
+    "source_status": "not_structured"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "general",
+      "description": "Isento para todos os clientes",
+      "full_waiver": true,
+      "raw_text": "Sem anuidade"
+    }
+  ],
+  "benefit_groups": {
+    "fees": [
+      "Anuidade: R$ 0",
+      "Isenção da anuidade: Sem anuidade",
+      "Precisa ser correntista: Não",
+      "Cartão adicional: Compartilhe limite com familiares ou amigos com controle pelo app"
+    ],
+    "issuer_specific": [
+      "Limite: Acompanhe seu NuScore e veja seu limite crescer com o tempo",
+      "Nu Limite Garantido: Dinheiro guardado nas Caixinhas pode virar limite do cartão",
+      "Fatura: Compras em tempo real, antecipação de parcelas com desconto, ajuste de vencimento e parcelamento pelo app",
+      "Passa Tudo no Crédito: Pague contas, faça Pix ou adicione saldo à conta usando limite do cartão com parcelamento em até 12 vezes",
+      "Versões: Nubank Mastercard Gold e Nubank Mastercard Platinum disponíveis conforme perfil"
+    ],
+    "lifestyle": [
+      "Carteira digital: Google Pay, Apple Pay, Samsung Pay"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 0"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "Sem anuidade"
+    },
+    {
+      "category": "fees",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Não"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Google Pay, Apple Pay, Samsung Pay"
+    },
+    {
+      "category": "issuer_specific",
+      "key": "credit_limit",
+      "label": "Limite",
+      "value": "Acompanhe seu NuScore e veja seu limite crescer com o tempo"
+    },
+    {
+      "category": "issuer_specific",
+      "key": "nu_limite_garantido",
+      "label": "Nu Limite Garantido",
+      "value": "Dinheiro guardado nas Caixinhas pode virar limite do cartão"
+    },
+    {
+      "category": "issuer_specific",
+      "key": "bill_control",
+      "label": "Fatura",
+      "value": "Compras em tempo real, antecipação de parcelas com desconto, ajuste de vencimento e parcelamento pelo app"
+    },
+    {
+      "category": "issuer_specific",
+      "key": "credit_payments",
+      "label": "Passa Tudo no Crédito",
+      "value": "Pague contas, faça Pix ou adicione saldo à conta usando limite do cartão com parcelamento em até 12 vezes"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Cartão adicional",
+      "value": "Compartilhe limite com familiares ou amigos com controle pelo app"
+    },
+    {
+      "category": "issuer_specific",
+      "key": "card_tiers",
+      "label": "Versões",
+      "value": "Nubank Mastercard Gold e Nubank Mastercard Platinum disponíveis conforme perfil"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 0,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:mass_or_general"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Nubank",
+        "tier": "official_issuer",
+        "url": "https://nubank.com.br/nu/cartao"
+      }
+    ]
+  }
+}

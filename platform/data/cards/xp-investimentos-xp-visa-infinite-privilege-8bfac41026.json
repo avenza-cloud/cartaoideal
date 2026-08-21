@@ -1,0 +1,275 @@
+{
+  "card_stable_id": "xp-investimentos-xp-visa-infinite-privilege-8bfac41026",
+  "display_name": "XP Visa Infinite Privilege",
+  "issuer_raw": "XP Investimentos",
+  "network_primary": "Visa",
+  "variant_band": "Infinite Privilege",
+  "market_segment_guess": "ultra_premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
+  "verification_confidence_0_to_1": 1,
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/xp-visa-infinite-privilege/",
+  "application_url": "https://atendimento.xpi.com.br/categoria/cartoes-xp/cartao-de-credito-xp?utm_medium=site",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/xp-visa-infinite-privilege/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://atendimento.xpi.com.br/categoria/cartoes-xp/cartao-de-credito-xp?utm_medium=site",
+  "ranking_position": 10,
+  "ranking_score": 314,
+  "media": {
+    "alt_text": "XP Visa Infinite Privilege",
+    "card_art_url": "unknown",
+    "source_url": "https://passageirodeprimeira.com/cartao-de-credito/xp-visa-infinite-privilege/"
+  },
+  "reward_return": {
+    "earning_summary": "5,0 pts/USD Brasil; 11,0 pts/USD exterior com bônus de IOF",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "annual_visits": 20,
+    "complimentary_access_confirmed": true,
+    "guest_policy": "20 acompanhante(s)",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "programs": [
+      "Visa Airport Companion",
+      "Visa Infinite Privilege Lounge"
+    ],
+    "summary": "Visa Airport Companion ilimitado para titular e 20 acompanhantes gratuitos por ano; Visa Infinite Privilege Lounge ilimitado para titular e acompanhantes por visita.",
+    "unlimited": true
+  },
+  "eligibility": {
+    "availability_status": "private_or_segment_restricted",
+    "hard_gate_fields": [
+      "minimum_investment",
+      "availability"
+    ],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": 30000000,
+    "recommendation_blocking_unknowns": true,
+    "requirements_text": "Cartão super premium para clientes XP Private/altíssima renda; revisão externa indica cerca de R$ 30 milhões investidos ou patrimônio superior a R$ 30 milhões.",
+    "requires_bank_account_claim": true,
+    "source_status": "official_or_structured"
+  },
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista: Sim"
+    ],
+    "fees": [
+      "Anuidade: R$ 18.000",
+      "Adicionais com benefícios: Sim",
+      "Isenção da anuidade: Não há nenhuma publicada",
+      "Anuidade: R$ 18.000",
+      "Adicionais gratuitos: 6"
+    ],
+    "lifestyle": [
+      "Carteira digital: Apple Pay, Samsung Pay, Google Pay"
+    ],
+    "rewards": [
+      "Pontuação: Até 11,0 pontos por dólar gasto",
+      "Bônus de adesão: (Não há)",
+      "Programa de fidelidade: Livelo",
+      "Validade dos pontos: Não expiram",
+      "Regra de pontuação: 5,0 pontos por dólar gasto no Brasil",
+      "Regra de pontuação: 7,0 pontos por dólar gasto no exterior",
+      "Bônus de IOF: 4 pontos adicionais por dólar em compras internacionais, totalizando 11,0 pontos por dólar"
+    ],
+    "travel": [
+      "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
+      "Programa de sala VIP: Visa Airport Companion",
+      "Programa de sala VIP: Visa Infinite Privilege Lounge",
+      "Acompanhantes em sala VIP: 20 acompanhante(s)",
+      "Acessos a sala VIP: Ilimitados",
+      "Salas VIP: Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 20 acompanhantes gratuitos por ano",
+      "Salas VIP: Visa Infinite Privilege Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita",
+      "Descrição do benefício em companhias aéreas: A experiência em aeroportos é elevada a um novo nível, com direito a 1 (um) trajeto de helicóptero gratuito por ano em São Paulo e atendimento Meet & Greet no GRU Airport.",
+      "Benefício em companhias aéreas: 1 trajeto de helicóptero gratuito por ano em São Paulo e atendimento Meet & Greet no GRU Airport"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 18.000"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "Até 11,0 pontos por dólar gasto"
+    },
+    {
+      "category": "travel",
+      "details": "Gratuidade indicada pela fonte",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Acesso disponível"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Visa Airport Companion"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Visa Infinite Privilege Lounge"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_guest_policy",
+      "label": "Acompanhantes em sala VIP",
+      "value": "20 acompanhante(s)"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_visits",
+      "label": "Acessos a sala VIP",
+      "value": "Ilimitados"
+    },
+    {
+      "category": "rewards",
+      "key": "welcome_bonus",
+      "label": "Bônus de adesão",
+      "value": "(Não há)"
+    },
+    {
+      "category": "travel",
+      "details": "Acessos gratuitos e ilimitados para o portador e 20 acompanhantes gratuitos por ano",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Salas VIP do Visa Airport Companion"
+    },
+    {
+      "category": "travel",
+      "details": "Acessos gratuitos e ilimitados para o portador e acompanhantes por visita",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Visa Infinite Privilege Lounge"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Livelo"
+    },
+    {
+      "category": "rewards",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "Não expiram"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com benefícios",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "Não há nenhuma publicada"
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 18.000"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Apple Pay, Samsung Pay, Google Pay"
+    },
+    {
+      "category": "eligibility",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "free_additional_cards",
+      "label": "Adicionais gratuitos",
+      "value": "6"
+    },
+    {
+      "category": "travel",
+      "key": "descricao_do_beneficio_em_companhias_aereas",
+      "label": "Descrição do benefício em companhias aéreas",
+      "value": "A experiência em aeroportos é elevada a um novo nível, com direito a 1 (um) trajeto de helicóptero gratuito por ano em São Paulo e atendimento Meet & Greet no GRU Airport."
+    },
+    {
+      "category": "rewards",
+      "key": "earning_detail",
+      "label": "Regra de pontuação",
+      "value": "5,0 pontos por dólar gasto no Brasil"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_detail",
+      "label": "Regra de pontuação",
+      "value": "7,0 pontos por dólar gasto no exterior"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_detail",
+      "label": "Bônus de IOF",
+      "value": "4 pontos adicionais por dólar em compras internacionais, totalizando 11,0 pontos por dólar"
+    },
+    {
+      "category": "travel",
+      "key": "airline_benefit",
+      "label": "Benefício em companhias aéreas",
+      "value": "1 trajeto de helicóptero gratuito por ano em São Paulo e atendimento Meet & Greet no GRU Airport"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 18000,
+    "lounge_visits_per_year_hint": 20,
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": 30000000,
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": true,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": true,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:ultra_premium",
+    "travel:lounge",
+    "rewards:points_or_miles"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "trusted_catalog",
+        "url": "https://atendimento.xpi.com.br/categoria/cartoes-xp/cartao-de-credito-xp?utm_medium=site"
+      },
+      {
+        "label": "Evidência primária",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/xp-visa-infinite-privilege/"
+      }
+    ],
+    "verification_note": "LLM/human judgement: do not map XP Visa Infinite Privilege to the regular XP Infinite line. PP page gives R$18.000 fee, Privilege lounge benefits and enhanced points; web cross-checks point to XP Private/30M+ target."
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "card_stable_id": "banco-pan-estelar-elo",
+  "display_name": "Banco PAN Estelar Elo",
+  "issuer_raw": "Banco PAN",
+  "network_primary": "Elo",
+  "variant_band": "estelar",
+  "market_segment_guess": "upper_mass",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_issuer_initial_capture",
+  "verification_confidence_0_to_1": 0.6,
+  "primary_evidence_url": "https://www.bancopan.com.br/cartoes",
+  "source_label": "Página oficial do emissor",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.bancopan.com.br/cartoes",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "Banco PAN Estelar Elo",
+    "card_art_url": "unknown",
+    "source_url": "https://www.bancopan.com.br/cartoes"
+  },
+  "reward_return": {
+    "earning_summary": "0,8% de cashback em todas as compras",
+    "has_cashlike_return": true,
+    "subtypes": [
+      "cashback"
+    ]
+  },
+  "lounge_access": {
+    "annual_visits": "unknown",
+    "complimentary_access_confirmed": false,
+    "guest_policy": "",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "summary": "",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "unknown",
+    "requires_bank_account_claim": true,
+    "source_status": "not_structured"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "monthly_spend",
+      "description": "Gastos ≥ R$4.000/mês → 100% isenção",
+      "full_waiver": true,
+      "period": "monthly",
+      "raw_text": "Gastos ≥ R$4.000/mês → 100% isenção",
+      "threshold_brl": 4000
+    },
+    {
+      "category": "investment",
+      "description": "Investimentos ≥ R$25.000 no PAN → 100% isenção",
+      "full_waiver": true,
+      "raw_text": "Investimentos ≥ R$25.000 no PAN → 100% isenção",
+      "threshold_brl": 25000
+    }
+  ],
+  "benefit_groups": {},
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 432"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "Isenção 100% com R$4.000/mês na fatura ou R$25.000 investidos no PAN. Grátis nos primeiros 6 meses."
+    },
+    {
+      "category": "rewards",
+      "details": "Em todas as compras",
+      "key": "earning_rate",
+      "label": "Cashback",
+      "value": "0,8%"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 432,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": 36,
+    "official_forex_or_iof_note": ""
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": true,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": true
+  },
+  "labels_for_filtering": [],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Página oficial do emissor",
+        "tier": "official_issuer",
+        "url": "https://www.bancopan.com.br/cartoes"
+      }
+    ]
+  }
+}

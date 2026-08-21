@@ -1,4 +1,4 @@
-import facetsFile from "@/data/cards_brazil_ai_comparison_facets.json";
+import facetsFile from "@/data/generated/cards.json";
 import {
   normalizeSearchText,
   tokenizeSearchText,

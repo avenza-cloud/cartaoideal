@@ -1,0 +1,245 @@
+{
+  "card_stable_id": "ailos-mastercard-gold-official",
+  "display_name": "Ailos Mastercard Gold",
+  "issuer_raw": "Ailos",
+  "network_primary": "Mastercard",
+  "variant_band": "Gold",
+  "market_segment_guess": "mass_or_general",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_issuer_initial_capture",
+  "verification_confidence_0_to_1": 0.88,
+  "primary_evidence_url": "https://www.ailos.coop.br/para-voce/cartoes",
+  "application_url": "https://www.ailos.coop.br/para-voce/cartoes",
+  "source_label": "Página oficial do emissor",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "Ailos Mastercard Gold",
+    "card_art_url": "unknown",
+    "source_url": "https://cardfacil.com/r2-cartao-de-credito-ailos-gold/"
+  },
+  "reward_return": {
+    "earning_summary": "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura.",
+    "has_cashlike_return": false,
+    "subtypes": []
+  },
+  "lounge_access": {
+    "annual_visits": "unknown",
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": true,
+    "programs": [],
+    "summary": "Não identificado na captura oficial.",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [
+      "cooperative_membership",
+      "credit_analysis"
+    ],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": true,
+    "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
+    "requires_bank_account_claim": true,
+    "source_status": "official_issuer_partial_capture"
+  },
+  "fee_waiver_rules": [],
+  "benefit_groups": {
+    "fees": [
+      "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela."
+    ],
+    "insurance": [
+      "Garantia Estendida",
+      "Compra Protegida",
+      "Proteção de Preço"
+    ],
+    "issuer_specific": [
+      "Mastercard Surpreenda",
+      "Mastercard Global Service",
+      "Garantia Estendida",
+      "Compra Protegida",
+      "Proteção de Preço",
+      "Comprou, Zerou pode isentar a anuidade",
+      "Programa de pontos com resgate por produtos, milhas, previdência e crédito na fatura",
+      "Cartão virtual e gestão pelo App Ailos Cartões"
+    ],
+    "lifestyle": [
+      "Cartão virtual e gestão pelo App Ailos Cartões",
+      "Compras internacionais e por aproximação",
+      "Gestão pelo App Ailos Cartões",
+      "Cartão virtual",
+      "Compras internacionais",
+      "Pagamento por aproximação",
+      "Apple Pay e Samsung Pay"
+    ],
+    "rewards": [
+      "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura."
+    ],
+    "travel": []
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Anuidade",
+      "value": "Comprou, Zerou pode isentar/reduzir anuidade; valores e tabela não foram encontrados na captura oficial."
+    },
+    {
+      "category": "rewards",
+      "key": "rewards",
+      "label": "Recompensas",
+      "value": "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura."
+    },
+    {
+      "category": "issuer_specific",
+      "key": "official_highlights",
+      "label": "Destaques oficiais",
+      "value": "Mastercard Surpreenda; Mastercard Global Service; Garantia Estendida; Compra Protegida; Proteção de Preço; Comprou, Zerou pode isentar a anuidade"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": "unknown",
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "cooperativa",
+    "official_issuer"
+  ],
+  "application_availability": {
+    "channels": [
+      "app",
+      "branch",
+      "phone"
+    ],
+    "notes": "Não cooperados abrem conta e solicitam pelo app Ailos+; cooperados solicitam pelo 0800 647 2200 ou em postos. Sujeito à análise de crédito."
+  },
+  "source_claims": [
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.9,
+      "dynamic": true,
+      "field_path": "identity.product_exists",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Cartão de Crédito Ailos: Ailos Now, Ailos Mastercard Clássico, Gold, Platinum e Black.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "value_text": "Ailos Mastercard Gold aparece no portfólio oficial de Cartões Ailos."
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.88,
+      "dynamic": true,
+      "field_path": "rewards",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Ailos Mastercard Gold: Programa de pontos: cada compra acumula pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "value_text": "Programa de pontos: compras acumulam pontos para resgate por produtos, milhas, aporte na previdência e crédito na fatura."
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.88,
+      "dynamic": true,
+      "field_path": "benefits.insurance",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Ailos Mastercard Gold: Garantia Estendida. Compra Protegida. Proteção de Preço.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "value_text": "Garantia Estendida, Compra Protegida e Proteção de Preço."
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.7,
+      "dynamic": true,
+      "field_path": "benefits.promotions",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Promoção Ailos Coopere com a Sorte; Cartão de Crédito; regulamento.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.ailos.coop.br/cooperecomasorte",
+      "value_text": "Cartões de crédito Ailos aparecem como produto participante da promoção Coopere com a Sorte, conforme regulamento/campanha vigente ou encerrada."
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.95,
+      "dynamic": false,
+      "field_path": "media.card_art_url",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Local card artwork file added under platform/public/card-images for Ailos Mastercard Gold. Remote/source image retained in media.remote_card_art_url/source_url.",
+      "source_type": "manual",
+      "source_url": "https://cardfacil.com/r2-cartao-de-credito-ailos-gold/",
+      "value_text": "/card-images/alios-gold.png"
+    },
+    {
+      "captured_at": "2026-05-10",
+      "confidence_0_to_1": 0.9,
+      "dynamic": true,
+      "field_path": "application_availability",
+      "last_verified_at": "2026-05-10",
+      "raw_excerpt": "Se ainda não é Cooperado: abra sua conta pelo app Ailos+; faça a solicitação do cartão através do app Ailos+. Se já é Cooperado: solicite através do 0800 647 2200 ou em um Posto de Atendimento. Sujeito à análise de crédito.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "value_text": "Não cooperado: abrir conta e solicitar pelo app Ailos+. Cooperado: solicitar pelo 0800 647 2200 ou posto de atendimento; sujeito à análise de crédito."
+    },
+    {
+      "captured_at": "2026-05-10",
+      "confidence_0_to_1": 0.9,
+      "dynamic": true,
+      "field_path": "fees.annual",
+      "last_verified_at": "2026-05-10",
+      "raw_excerpt": "Comprou Zerou: quanto mais você usa o seu cartão, maior o desconto. Possibilidade de anuidade zero. Consulte na sua Cooperativa.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "value_text": "Comprou, Zerou: quanto mais usa o cartão, maior o desconto; possibilidade de anuidade zero, consulte a cooperativa/tabela."
+    },
+    {
+      "captured_at": "2026-05-10",
+      "confidence_0_to_1": 0.9,
+      "dynamic": true,
+      "field_path": "benefits.app",
+      "last_verified_at": "2026-05-10",
+      "raw_excerpt": "Faça a gestão completa do seu cartão no App Ailos Cartões: controle seus gastos, bloqueie e desbloqueie, compras internacionais, pagamento por aproximação, cartões virtuais, Apple Pay e Samsung Pay.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.ailos.coop.br/para-voce/cartoes",
+      "value_text": "App Ailos Cartões permite controle de gastos, bloqueio/desbloqueio, compras internacionais, aproximação, cartões virtuais, Apple Pay e Samsung Pay."
+    }
+  ],
+  "store_benefits": [],
+  "secured_limit_options": [],
+  "data_quality_notes": [
+    "Dados Ailos atualizados com base em páginas oficiais Ailos e contexto fornecido; valores exatos de anuidade, renda mínima e tabela Comprou Zerou não foram encontrados.",
+    "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-10",
+    "sources": [
+      {
+        "label": "Página oficial do emissor",
+        "tier": "official_issuer",
+        "url": "https://www.ailos.coop.br/para-voce/cartoes"
+      }
+    ]
+  }
+}

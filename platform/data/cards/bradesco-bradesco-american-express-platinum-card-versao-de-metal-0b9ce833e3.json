@@ -1,0 +1,350 @@
+{
+  "card_stable_id": "bradesco-bradesco-american-express-platinum-card-versao-de-metal-0b9ce833e3",
+  "display_name": "Bradesco American Express® Platinum Card – versão de metal",
+  "issuer_raw": "Bradesco",
+  "network_primary": "American Express",
+  "variant_band": "Platinum",
+  "market_segment_guess": "premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
+  "verification_confidence_0_to_1": 1,
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-american-express-platinum-card-versao-de-metal/",
+  "application_url": "https://banco.bradesco/html/classic/produtos-servicos/cartoes/conheca-os-cartoes/the-platinum-card.shtm",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-american-express-platinum-card-versao-de-metal/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://banco.bradesco/html/classic/produtos-servicos/cartoes/conheca-os-cartoes/the-platinum-card.shtm",
+  "ranking_position": 39,
+  "ranking_score": 212.25,
+  "media": {
+    "alt_text": "Bradesco American Express® Platinum Card – versão de metal",
+    "card_art_url": "unknown",
+    "source_url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-american-express-platinum-card-versao-de-metal/"
+  },
+  "reward_return": {
+    "earning_summary": "Até 3,0 pontos por dólar gasto",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "annual_visits": 10,
+    "complimentary_access_confirmed": true,
+    "guest_policy": "0 acompanhante(s); 1 acompanhante(s); 2 acompanhante(s)",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "programs": [
+      "Priority Pass",
+      "American Express Lounge",
+      "Bradesco Cartões Lounge",
+      "VIP Club BSB",
+      "Ambaar Lounge CNF",
+      "Delta Sky Club",
+      "Escape Lounge",
+      "Airspace Lounge"
+    ],
+    "summary": "Salas VIP do Priority Pass - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | American Express Lounge - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita | Bradesco Cartões Lounge - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita | VIP Club BSB - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita",
+    "unlimited": true
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "unknown",
+    "requires_bank_account_claim": true,
+    "source_status": "not_structured"
+  },
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista: Sim"
+    ],
+    "fees": [
+      "Anuidade: R$ 1.750",
+      "Adicionais com benefícios: Sim",
+      "Isenção da anuidade: Não há nenhuma publicada",
+      "Anuidade: R$ 1.750",
+      "Adicionais gratuitos: 5"
+    ],
+    "insurance": [
+      "Descrição dos status em locadoras de veículos: Five Stars no Hertz Gold Plus Rewards® e Platinum no SIXT's Loyalty Program."
+    ],
+    "issuer_specific": [
+      "Descrição do benefício em companhias aéreas: Desconto de até 20% na Qatar Airways."
+    ],
+    "lifestyle": [
+      "Carteira digital: Apple Pay",
+      "Descrição dos status em hotéis: Gold no Hilton Honors e Gold no MeliáRewards."
+    ],
+    "rewards": [
+      "Pontuação: Até 3,0 pontos por dólar gasto",
+      "Regra de pontuação: 2,2 pontos por dólar gasto no Brasil",
+      "Regra de pontuação: 3,0 pontos por dólar gasto no exterior",
+      "Bônus de adesão: (Não há)",
+      "Programa de fidelidade: Livelo",
+      "Validade dos pontos: Não expiram"
+    ],
+    "travel": [
+      "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
+      "Programa de sala VIP: Priority Pass",
+      "Programa de sala VIP: American Express Lounge",
+      "Programa de sala VIP: Bradesco Cartões Lounge",
+      "Programa de sala VIP: VIP Club BSB",
+      "Programa de sala VIP: Ambaar Lounge CNF",
+      "Programa de sala VIP: Delta Sky Club",
+      "Programa de sala VIP: Escape Lounge",
+      "Programa de sala VIP: Airspace Lounge",
+      "Acompanhantes em sala VIP: 0 acompanhante(s); 1 acompanhante(s); 2 acompanhante(s)",
+      "Acessos a sala VIP: Ilimitados",
+      "Salas VIP: Salas VIP do Priority Pass - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 1.750"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "Até 3,0 pontos por dólar gasto"
+    },
+    {
+      "category": "travel",
+      "details": "Gratuidade indicada pela fonte",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Acesso disponível"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Priority Pass"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "American Express Lounge"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Bradesco Cartões Lounge"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "VIP Club BSB"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Ambaar Lounge CNF"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Delta Sky Club"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Escape Lounge"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Airspace Lounge"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_guest_policy",
+      "label": "Acompanhantes em sala VIP",
+      "value": "0 acompanhante(s); 1 acompanhante(s); 2 acompanhante(s)"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_visits",
+      "label": "Acessos a sala VIP",
+      "value": "Ilimitados"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_detail",
+      "label": "Regra de pontuação",
+      "value": "2,2 pontos por dólar gasto no Brasil"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_detail",
+      "label": "Regra de pontuação",
+      "value": "3,0 pontos por dólar gasto no exterior"
+    },
+    {
+      "category": "rewards",
+      "key": "welcome_bonus",
+      "label": "Bônus de adesão",
+      "value": "(Não há)"
+    },
+    {
+      "category": "travel",
+      "details": "2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Salas VIP do Priority Pass"
+    },
+    {
+      "category": "travel",
+      "details": "Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "American Express Lounge"
+    },
+    {
+      "category": "travel",
+      "details": "Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Bradesco Cartões Lounge"
+    },
+    {
+      "category": "travel",
+      "details": "Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "VIP Club BSB"
+    },
+    {
+      "category": "travel",
+      "details": "Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Ambaar Lounge CNF"
+    },
+    {
+      "category": "travel",
+      "details": "10 acessos gratuitos para o portador e 2 acompanhantes gratuitos por visita",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Delta Sky Club"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Livelo"
+    },
+    {
+      "category": "rewards",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "Não expiram"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com benefícios",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "Não há nenhuma publicada"
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 1.750"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Apple Pay"
+    },
+    {
+      "category": "eligibility",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "free_additional_cards",
+      "label": "Adicionais gratuitos",
+      "value": "5"
+    },
+    {
+      "category": "issuer_specific",
+      "key": "descricao_do_beneficio_em_companhias_aereas",
+      "label": "Descrição do benefício em companhias aéreas",
+      "value": "Desconto de até 20% na Qatar Airways."
+    },
+    {
+      "category": "insurance",
+      "key": "descricao_dos_status_em_locadoras_de_veiculos",
+      "label": "Descrição dos status em locadoras de veículos",
+      "value": "Five Stars no Hertz Gold Plus Rewards® e Platinum no SIXT's Loyalty Program."
+    },
+    {
+      "category": "lifestyle",
+      "key": "descricao_dos_status_em_hoteis",
+      "label": "Descrição dos status em hotéis",
+      "value": "Gold no Hilton Honors e Gold no MeliáRewards."
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 1750,
+    "lounge_visits_per_year_hint": 10,
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": true,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": true,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:premium",
+    "travel:lounge",
+    "rewards:points_or_miles"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "trusted_catalog",
+        "url": "https://banco.bradesco/html/classic/produtos-servicos/cartoes/conheca-os-cartoes/the-platinum-card.shtm"
+      },
+      {
+        "label": "Evidência primária",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-american-express-platinum-card-versao-de-metal/"
+      }
+    ]
+  }
+}
