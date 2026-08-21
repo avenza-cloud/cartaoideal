@@ -130,7 +130,7 @@ export function createCardTools(savedProfile?: UserProfile | null) {
         network: z
           .string()
           .optional()
-          .describe("Bandeira: Visa, Mastercard, American Express, Elo, Hipercard"),
+          .describe("Bandeira: Visa, Mastercard, American Express, Elo"),
         lounge: z.boolean().optional().describe("Somente cartões com acesso a lounge"),
         rewardReturn: z
           .boolean()
