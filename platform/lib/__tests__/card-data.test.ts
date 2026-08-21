@@ -55,6 +55,26 @@ describe("card data contract", () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
+  it("issuer_id and issuer_raw map one-to-one", () => {
+    const idToRaw = new Map<string, string>();
+    const rawToId = new Map<string, string>();
+    const conflicts: string[] = [];
+    for (const c of artifact.cards) {
+      const card = c as { card_stable_id: string; issuer_id: string; issuer_raw: string };
+      const prevRaw = idToRaw.get(card.issuer_id);
+      if (prevRaw && prevRaw !== card.issuer_raw) {
+        conflicts.push(`${card.card_stable_id}: issuer_id ${card.issuer_id} → "${prevRaw}" e "${card.issuer_raw}"`);
+      }
+      const prevId = rawToId.get(card.issuer_raw);
+      if (prevId && prevId !== card.issuer_id) {
+        conflicts.push(`${card.card_stable_id}: issuer "${card.issuer_raw}" → ${prevId} e ${card.issuer_id}`);
+      }
+      idToRaw.set(card.issuer_id, card.issuer_raw);
+      rawToId.set(card.issuer_raw, card.issuer_id);
+    }
+    expect(conflicts).toEqual([]);
+  });
+
   it("every card has eligibility data", () => {
     const missing = artifact.cards
       .filter((c) => !c.eligibility)

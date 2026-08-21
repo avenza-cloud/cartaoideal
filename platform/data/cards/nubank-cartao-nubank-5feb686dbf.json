@@ -2,12 +2,12 @@
   "card_stable_id": "nubank-cartao-nubank-5feb686dbf",
   "display_name": "Cartão Nubank",
   "issuer_raw": "Nubank",
+  "issuer_id": "nubank",
   "network_primary": "Mastercard",
-  "variant_band": "Gold/Platinum",
+  "variant_band": "unknown",
   "market_segment_guess": "mass_or_general",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "official_nubank_card_page_curated",
-  "verification_confidence_0_to_1": 0.92,
+  "verification_cross_check_status": "official_verified",
   "primary_evidence_url": "https://nubank.com.br/nu/cartao",
   "application_url": "unknown",
   "review_source_url": "https://nubank.com.br/nu/cartao",
@@ -166,6 +166,7 @@
         "tier": "official_issuer",
         "url": "https://nubank.com.br/nu/cartao"
       }
-    ]
+    ],
+    "verification_note": "Verificação original: official_nubank_card_page_curated"
   }
 }

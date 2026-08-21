@@ -2,12 +2,12 @@
   "card_stable_id": "banco-pan-cartao-de-credito",
   "display_name": "Cartão de Crédito PAN",
   "issuer_raw": "Banco PAN",
+  "issuer_id": "banco-pan",
   "network_primary": "Mastercard",
   "variant_band": "Internacional",
   "market_segment_guess": "mass_or_general",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "official_issuer_initial_capture",
-  "verification_confidence_0_to_1": 0.88,
+  "verification_cross_check_status": "official_partial",
   "primary_evidence_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
   "application_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
   "source_label": "Página oficial do emissor",
@@ -45,7 +45,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "Solicitação pelo app; sujeito à análise de crédito.",
     "requires_bank_account_claim": "unknown",
-    "source_status": "official_issuer_initial_capture"
+    "source_status": "official_partial"
   },
   "fee_waiver_rules": [],
   "benefit_groups": {

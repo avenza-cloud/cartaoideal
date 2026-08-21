@@ -1,13 +1,13 @@
 {
   "card_stable_id": "cartao-cartao-de-credito-saraiva-ada05cbac5",
   "display_name": "Cartão de Crédito Saraiva",
-  "issuer_raw": "Cartão",
+  "issuer_raw": "Banco do Brasil",
+  "issuer_id": "banco-do-brasil",
   "network_primary": "Visa",
-  "variant_band": "Visa",
+  "variant_band": "unknown",
   "market_segment_guess": "mass_or_general",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/cartao-de-credito-saraiva-2/",
   "application_url": "https://www.bb.com.br/pbb/pagina-inicial/voce/produtos-e-servicos/cartoes/cartao-de-credito-saraiva#/",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/cartao-de-credito-saraiva-2/",
@@ -35,7 +35,7 @@
     "unlimited": false
   },
   "eligibility": {
-    "availability_status": "available",
+    "availability_status": "unavailable",
     "hard_gate_fields": [],
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
@@ -173,6 +173,9 @@
   "labels_for_filtering": [
     "segment:mass_or_general",
     "rewards:points_or_miles"
+  ],
+  "data_quality_notes": [
+    "Produto descontinuado — a rede Saraiva encerrou as operações."
   ],
   "provenance": {
     "last_verified_date": "2026-05-07",

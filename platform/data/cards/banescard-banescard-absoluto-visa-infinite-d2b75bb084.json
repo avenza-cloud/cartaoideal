@@ -2,12 +2,12 @@
   "card_stable_id": "banescard-banescard-absoluto-visa-infinite-d2b75bb084",
   "display_name": "Banescard Absoluto Visa Infinite",
   "issuer_raw": "Banescard",
+  "issuer_id": "banescard",
   "network_primary": "Visa",
   "variant_band": "Infinite",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/banescard-absoluto-visa-infinite/",
   "application_url": "unknown",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/banescard-absoluto-visa-infinite/",
@@ -50,7 +50,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "Obtido apenas mediante convite; dentre os critérios de aquisição, é preciso ter no mínimo R$ 1 milhão em investimentos no Banestes.",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

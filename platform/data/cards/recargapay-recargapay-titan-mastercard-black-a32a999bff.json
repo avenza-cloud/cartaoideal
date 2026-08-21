@@ -2,12 +2,12 @@
   "card_stable_id": "recargapay-recargapay-titan-mastercard-black-a32a999bff",
   "display_name": "RecargaPay Titan Mastercard Black",
   "issuer_raw": "RecargaPay",
+  "issuer_id": "recargapay",
   "network_primary": "Mastercard",
   "variant_band": "Black",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/recargapay-titan-mastercard-black/",
   "application_url": "https://recargapay.com.br/cartao-de-credito/titan?utm_medium=site",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/recargapay-titan-mastercard-black/",
@@ -52,7 +52,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "Investimento mínimo de R$ 30.000 no CDB Titan; limite de crédito definido pelo valor investido.",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

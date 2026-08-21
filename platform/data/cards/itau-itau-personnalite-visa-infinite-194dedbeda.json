@@ -2,12 +2,12 @@
   "card_stable_id": "itau-itau-personnalite-visa-infinite-194dedbeda",
   "display_name": "Itaú Personnalité Visa Infinite",
   "issuer_raw": "Itaú",
+  "issuer_id": "itau",
   "network_primary": "Visa",
   "variant_band": "Infinite",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "manual_das_milhas_secondary_official_product_url",
-  "verification_confidence_0_to_1": 0.82,
+  "verification_cross_check_status": "manual_curated",
   "primary_evidence_url": "https://www.manualdasmilhas.com.br/docs/cartoes/lista/itau_personnalite_visa_infinite/",
   "application_url": "https://www.itau.com.br/personnalite/cartoes/cartao-de-credito-visa-infinite",
   "review_source_url": "https://www.manualdasmilhas.com.br/docs/cartoes/lista/itau_personnalite_visa_infinite/",
@@ -49,7 +49,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "Segmento Personnalité Itaú (cartão vinculado à conta no segmento)",
     "requires_bank_account_claim": true,
-    "source_status": "aggregator_secondary"
+    "source_status": "aggregator"
   },
   "fee_waiver_rules": [
     {
@@ -222,6 +222,7 @@
         "label": "Evidência primária",
         "url": "https://www.manualdasmilhas.com.br/docs/cartoes/lista/itau_personnalite_visa_infinite/"
       }
-    ]
+    ],
+    "verification_note": "Verificação original: manual_das_milhas_secondary_official_product_url"
   }
 }

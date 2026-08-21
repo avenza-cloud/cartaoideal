@@ -2,12 +2,12 @@
   "card_stable_id": "ailos-mastercard-gold-official",
   "display_name": "Ailos Mastercard Gold",
   "issuer_raw": "Ailos",
+  "issuer_id": "ailos",
   "network_primary": "Mastercard",
   "variant_band": "Gold",
   "market_segment_guess": "mass_or_general",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "official_issuer_initial_capture",
-  "verification_confidence_0_to_1": 0.88,
+  "verification_cross_check_status": "official_partial",
   "primary_evidence_url": "https://www.ailos.coop.br/para-voce/cartoes",
   "application_url": "https://www.ailos.coop.br/para-voce/cartoes",
   "source_label": "Página oficial do emissor",
@@ -46,7 +46,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "Solicitação sujeita à análise de crédito; disponibilidade e condições podem variar por cooperativa.",
     "requires_bank_account_claim": true,
-    "source_status": "official_issuer_partial_capture"
+    "source_status": "official_partial"
   },
   "fee_waiver_rules": [],
   "benefit_groups": {

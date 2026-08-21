@@ -2,12 +2,12 @@
   "card_stable_id": "unicred-unicred-impar-f919a2ec32",
   "display_name": "Unicred Ímpar",
   "issuer_raw": "Unicred",
+  "issuer_id": "unicred",
   "network_primary": "Visa",
-  "variant_band": "Visa",
+  "variant_band": "unknown",
   "market_segment_guess": "ultra_premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/unicred-impar/",
   "application_url": "https://www.unicred.com.br/solucoes/impar?utm_medium=site",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/unicred-impar/",
@@ -50,7 +50,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "O Unicred Ímpar é um cartão da bandeira Visa Infinite direcionado ao público de alta renda da cooperativa. Com design exclusivo em metal, o produto é destino para clientes com investimentos acima de R$ 3 milhões.",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

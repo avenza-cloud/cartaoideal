@@ -2,12 +2,12 @@
   "card_stable_id": "inter-inter-win-mastercard-black-413a8a343c",
   "display_name": "Inter Win Mastercard Black",
   "issuer_raw": "Inter",
+  "issuer_id": "inter",
   "network_primary": "Mastercard",
   "variant_band": "Black",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/inter-win-mastercard-black/",
   "application_url": "https://inter.co/pra-voce/relacionamento/inter-win/?utm_medium=site",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/inter-win-mastercard-black/",
@@ -49,7 +49,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "Relacionamento Inter Win disponível para clientes com investimentos acima de R$ 1 milhão no Inter. Elegibilidade final sujeita à análise do Inter.",
     "requires_bank_account_claim": true,
-    "source_status": "official_current"
+    "source_status": "official"
   },
   "benefit_groups": {
     "eligibility": [

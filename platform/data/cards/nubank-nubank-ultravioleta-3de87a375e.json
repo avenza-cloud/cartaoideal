@@ -2,12 +2,12 @@
   "card_stable_id": "nubank-nubank-ultravioleta-3de87a375e",
   "display_name": "Nubank Ultravioleta",
   "issuer_raw": "Nubank",
+  "issuer_id": "nubank",
   "network_primary": "Mastercard",
-  "variant_band": "Mastercard",
+  "variant_band": "unknown",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_catalog_with_curated_official_override",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "manual_curated",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/nubank-ultravioleta/",
   "application_url": "https://nubank.com.br/ultravioleta/",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/nubank-ultravioleta/",
@@ -284,6 +284,6 @@
         "url": "https://passageirodeprimeira.com/cartao-de-credito/nubank-ultravioleta/"
       }
     ],
-    "verification_note": "Segmento revisado manualmente: Ultravioleta é premium pelo pacote Mastercard Black, cashback e salas VIP, mas não é ultra premium."
+    "verification_note": "Segmento revisado manualmente: Ultravioleta é premium pelo pacote Mastercard Black, cashback e salas VIP, mas não é ultra premium. — Verificação original: trusted_catalog_with_curated_official_override"
   }
 }

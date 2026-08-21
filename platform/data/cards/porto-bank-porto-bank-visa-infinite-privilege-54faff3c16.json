@@ -2,12 +2,12 @@
   "card_stable_id": "porto-bank-porto-bank-visa-infinite-privilege-54faff3c16",
   "display_name": "Porto Bank Visa Infinite Privilege",
   "issuer_raw": "Porto Bank",
+  "issuer_id": "porto-bank",
   "network_primary": "Visa",
   "variant_band": "Infinite Privilege",
   "market_segment_guess": "ultra_premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/porto-bank-visa-infinite-privilege/",
   "application_url": "https://maisbeneficios.portoseguro.com.br/cartao-de-credito/privilege/visa-infinite-privilege/?utm_medium=site",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/porto-bank-visa-infinite-privilege/",
@@ -48,7 +48,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "exclusivamente por convite a clientes com investimentos no Porto Bank e tem uma proposta de valor que inclui proteção patrimonial.",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

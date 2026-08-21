@@ -2,12 +2,12 @@
   "card_stable_id": "banco-do-brasil-ourocard-facil",
   "display_name": "Ourocard Fácil",
   "issuer_raw": "Banco do Brasil",
+  "issuer_id": "banco-do-brasil",
   "network_primary": "Visa",
   "variant_band": "Internacional",
   "market_segment_guess": "mass_or_general",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "official_issuer_initial_capture",
-  "verification_confidence_0_to_1": 0.88,
+  "verification_cross_check_status": "official_partial",
   "primary_evidence_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
   "application_url": "https://www.bb.com.br/pbb/pagina-inicial/voce/produtos-e-servicos/cartoes/ourocard-facil",
   "review_source_url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/",
@@ -42,7 +42,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "unknown",
     "requires_bank_account_claim": false,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

@@ -2,12 +2,12 @@
   "card_stable_id": "neon-cartao-de-credito",
   "display_name": "Cartão de Crédito Neon",
   "issuer_raw": "Neon",
+  "issuer_id": "neon",
   "network_primary": "Visa",
   "variant_band": "Internacional",
   "market_segment_guess": "mass_or_general",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "official_issuer_initial_capture",
-  "verification_confidence_0_to_1": 0.9,
+  "verification_cross_check_status": "official_partial",
   "primary_evidence_url": "https://neon.com.br/cartao-de-credito",
   "application_url": "https://neon.com.br/cartao-de-credito",
   "source_label": "Página oficial do emissor",
@@ -43,7 +43,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "Solicitação pelo app; sujeito à análise de crédito em até 5 dias corridos. Se negado, nova tentativa após 30 dias. Viracrédito permite usar CDB Neon como limite.",
     "requires_bank_account_claim": true,
-    "source_status": "official_issuer_initial_capture"
+    "source_status": "official_partial"
   },
   "fee_waiver_rules": [
     {

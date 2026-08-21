@@ -2,12 +2,12 @@
   "card_stable_id": "santander-santander-unlimited-visa-infinite-private-736af4429a",
   "display_name": "Santander Unlimited Visa Infinite Private",
   "issuer_raw": "Santander",
+  "issuer_id": "santander",
   "network_primary": "Visa",
   "variant_band": "Infinite",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/santander-unlimited-visa-infinite-private/",
   "application_url": "https://www.santander.com.br/cartao-credito-santander/unlimited?utm_medium=site",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/santander-unlimited-visa-infinite-private/",
@@ -47,7 +47,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "unknown",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

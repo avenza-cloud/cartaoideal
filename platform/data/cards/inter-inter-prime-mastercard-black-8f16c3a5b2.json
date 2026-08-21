@@ -2,12 +2,12 @@
   "card_stable_id": "inter-inter-prime-mastercard-black-8f16c3a5b2",
   "display_name": "Inter Prime Mastercard Black",
   "issuer_raw": "Inter",
+  "issuer_id": "inter",
   "network_primary": "Mastercard",
   "variant_band": "Black",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "official_issuer_with_trusted_review_context",
-  "verification_confidence_0_to_1": 0.92,
+  "verification_cross_check_status": "official_verified",
   "primary_evidence_url": "https://inter.co/pra-voce/cartoes/v2/c/",
   "application_url": "https://inter.co/pra-voce/cartoes/v2/c/",
   "review_source_url": "https://www.melhorescartoes.com.br/cartao-inter-guia-completo-dos-cartoes-de-credito-do-superapp.html",
@@ -54,7 +54,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "Assinar o plano anual Duo Gourmet (R$ 708/ano) ou gastar em média R$ 7.000 no crédito por 4 faturas consecutivas. Liberação de crédito sujeita à análise.",
     "requires_bank_account_claim": true,
-    "source_status": "official_current_prime"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

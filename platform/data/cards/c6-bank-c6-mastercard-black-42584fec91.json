@@ -2,12 +2,12 @@
   "card_stable_id": "c6-bank-c6-mastercard-black-42584fec91",
   "display_name": "C6 Mastercard Black",
   "issuer_raw": "C6 Bank",
+  "issuer_id": "c6-bank",
   "network_primary": "Mastercard",
   "variant_band": "Black",
   "market_segment_guess": "mass_or_general",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "official_issuer_with_user_reported_context",
-  "verification_confidence_0_to_1": 0.9,
+  "verification_cross_check_status": "official_partial",
   "primary_evidence_url": "https://www.c6bank.com.br/cartao-black/",
   "application_url": "https://www.c6bank.com.br/cartao-black/",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/c6-mastercard-black/",
@@ -49,7 +49,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "Correntista C6 Bank; aprovação sujeita à análise de crédito.",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {
@@ -196,6 +196,7 @@
         "tier": "trusted_catalog",
         "url": "https://www.c6bank.com.br/cartao-black/"
       }
-    ]
+    ],
+    "verification_note": "Verificação original: official_issuer_with_user_reported_context"
   }
 }

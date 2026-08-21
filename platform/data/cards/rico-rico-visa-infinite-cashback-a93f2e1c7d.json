@@ -2,12 +2,12 @@
   "card_stable_id": "rico-rico-visa-infinite-cashback-a93f2e1c7d",
   "display_name": "Rico Visa Infinite Cashback",
   "issuer_raw": "Rico",
+  "issuer_id": "rico",
   "network_primary": "Visa",
   "variant_band": "Infinite",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "official_issuer_with_trusted_ranking_context",
-  "verification_confidence_0_to_1": 0.93,
+  "verification_cross_check_status": "official_verified",
   "primary_evidence_url": "https://www.rico.com.vc/produtos/cartao-de-credito/",
   "application_url": "https://www.rico.com.vc/produtos/cartao-de-credito/",
   "review_source_url": "https://www.melhorescartoes.com.br/melhores-cartoes-credito-sem-anuidade",
@@ -56,7 +56,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "Invista pelo menos R$ 1.000 na Rico e peça o cartão. Elegibilidade sujeita às análises de cadastro, compliance e crédito.",
     "requires_bank_account_claim": true,
-    "source_status": "official_current"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

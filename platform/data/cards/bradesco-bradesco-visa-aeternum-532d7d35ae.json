@@ -2,12 +2,12 @@
   "card_stable_id": "bradesco-bradesco-visa-aeternum-532d7d35ae",
   "display_name": "Bradesco Visa Aeternum",
   "issuer_raw": "Bradesco",
+  "issuer_id": "bradesco",
   "network_primary": "Visa",
-  "variant_band": "Visa",
+  "variant_band": "Aeternum",
   "market_segment_guess": "ultra_premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-visa-aeternum/",
   "application_url": "https://banco.bradesco/cartoes/aeternum/",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-visa-aeternum/",
@@ -47,7 +47,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "Página oficial Bradesco Aeternum descreve o produto como convite especial para cliente Private Bank; a página pública de cartões também informa isenção para R$ 5 milhões em investimentos, mas isso é política de anuidade, não gate público de solicitação.",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

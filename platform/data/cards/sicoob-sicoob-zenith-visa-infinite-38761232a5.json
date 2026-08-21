@@ -2,12 +2,12 @@
   "card_stable_id": "sicoob-sicoob-zenith-visa-infinite-38761232a5",
   "display_name": "Sicoob Zenith Visa Infinite",
   "issuer_raw": "Sicoob",
+  "issuer_id": "sicoob",
   "network_primary": "Visa",
   "variant_band": "Infinite",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/sicoob-zenith-visa-infinite/",
   "application_url": "https://www.sicoob.com.br/web/sicoob/bandeira-visa-pf?utm_medium=site",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/sicoob-zenith-visa-infinite/",
@@ -47,7 +47,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "O Sicoob Zenith é o novo cartão da cooperativa voltada para clientes de mais alta renda. Para solicitar o cartão, o cooperado deve entrar em contato com o gerente, atendendo a pelo menos um dos seguintes critérios:",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

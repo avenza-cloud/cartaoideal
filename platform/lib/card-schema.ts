@@ -13,6 +13,57 @@ import { z } from "zod";
 const unknown = z.literal("unknown");
 export const numberOrUnknown = z.union([z.number(), unknown]);
 
+export const CardNetworkSchema = z.enum(["Visa", "Mastercard", "Elo", "American Express"]);
+
+// Card tier within the network/issuer line-up ("unknown" when the product has
+// no public tier). Values may be ADDED (minor schema bump) — see data README.
+export const VariantBandSchema = z.enum([
+  "Nacional",
+  "Internacional",
+  "Básico",
+  "Standard",
+  "Classic",
+  "Universitário",
+  "Gold",
+  "Platinum",
+  "Signature",
+  "Infinite",
+  "Infinite Privilege",
+  "Aeternum",
+  "Black",
+  "World Legend",
+  "Centurion",
+  "Grafite",
+  "Nanquim",
+  "Mais",
+  "Diners Club",
+  "Green",
+  "Quartz",
+  "Estelar",
+  "unknown",
+]);
+
+export const SourceTierSchema = z.enum([
+  "official_issuer",
+  "trusted_catalog",
+  "aggregator_secondary",
+]);
+
+export const EligibilitySourceStatusSchema = z.enum([
+  "official",
+  "official_partial",
+  "aggregator",
+  "manual_curated",
+  "not_structured",
+]);
+
+export const VerificationStatusSchema = z.enum([
+  "official_verified",
+  "official_partial",
+  "trusted_aggregator",
+  "manual_curated",
+]);
+
 export const MarketSegmentSchema = z.enum([
   "ultra_premium",
   "premium",
@@ -121,7 +172,7 @@ export const CardEligibilityFacetSchema = z.strictObject({
   availability_status: CardAvailabilityStatusSchema,
   hard_gate_fields: z.array(z.string()),
   recommendation_blocking_unknowns: z.boolean(),
-  source_status: z.string(),
+  source_status: EligibilitySourceStatusSchema,
 });
 
 // Characteristics accept one extra bucket ("other") beyond the benefit-group
@@ -213,18 +264,19 @@ export const CardFacetSchema = z.strictObject({
   card_stable_id: z.string().min(1),
   display_name: z.string().min(1),
   issuer_raw: z.string().min(1),
-  network_primary: z.string().min(1),
-  variant_band: z.string(),
+  issuer_id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/),
+  network_primary: CardNetworkSchema,
+  network_alternatives: z.array(CardNetworkSchema).optional(),
+  variant_band: VariantBandSchema,
   market_segment_guess: MarketSegmentSchema,
-  product_kind: z.string(),
-  verification_cross_check_status: z.string(),
-  verification_confidence_0_to_1: z.number().min(0).max(1),
+  product_kind: z.literal("named_credit_card_product"),
+  verification_cross_check_status: VerificationStatusSchema,
   primary_evidence_url: z.string(),
   application_url: z.string().optional(),
   review_source_url: z.string().optional(),
   source_label: z.string(),
   review_source_label: z.string().optional(),
-  source_tier: z.string(),
+  source_tier: SourceTierSchema,
   source_url: z.string(),
   ranking_position: numberOrUnknown,
   ranking_score: numberOrUnknown,
@@ -245,7 +297,7 @@ export const CardFacetSchema = z.strictObject({
   cashback_details: CashbackDetailsSchema.nullish(),
   co_brand: CoBrandSchema.nullish(),
   data_quality_notes: z.array(z.string()).nullish(),
-  provenance: CardProvenanceSchema.optional(),
+  provenance: CardProvenanceSchema,
 });
 
 export const FacetsMetaSchema = z.strictObject({

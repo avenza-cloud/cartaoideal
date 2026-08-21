@@ -2,12 +2,12 @@
   "card_stable_id": "xp-investimentos-xp-legacy-versao-cashback-426bdd49e8",
   "display_name": "XP Legacy (versão cashback)",
   "issuer_raw": "XP Investimentos",
+  "issuer_id": "xp-investimentos",
   "network_primary": "Visa",
-  "variant_band": "Visa",
+  "variant_band": "unknown",
   "market_segment_guess": "ultra_premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_catalog_with_curated_official_override",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "manual_curated",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/xp-legacy-versao-cashback/",
   "application_url": "https://lp.xpi.com.br/cartao-xp-legacy?utm_medium=site",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/xp-legacy-versao-cashback/",
@@ -50,7 +50,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "A partir de R$ 1 milhão em investimentos líquidos",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {
@@ -259,6 +259,6 @@
         "url": "https://passageirodeprimeira.com/cartao-de-credito/xp-legacy-versao-cashback/"
       }
     ],
-    "verification_note": "Segmento revisado manualmente: XP Legacy exige cerca de R$ 1 milhão investido e tem pacote/lounges de cartão topo de linha."
+    "verification_note": "Segmento revisado manualmente: XP Legacy exige cerca de R$ 1 milhão investido e tem pacote/lounges de cartão topo de linha. — Verificação original: trusted_catalog_with_curated_official_override"
   }
 }

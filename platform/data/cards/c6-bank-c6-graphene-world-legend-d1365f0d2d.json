@@ -2,12 +2,12 @@
   "card_stable_id": "c6-bank-c6-graphene-world-legend-d1365f0d2d",
   "display_name": "C6 Graphene World Legend",
   "issuer_raw": "C6 Bank",
+  "issuer_id": "c6-bank",
   "network_primary": "Mastercard",
   "variant_band": "World Legend",
   "market_segment_guess": "ultra_premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/c6-graphene/",
   "application_url": "https://www.c6bank.com.br/c6-graphene?utm_medium=site",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/c6-graphene/",
@@ -55,7 +55,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "convites são para aqueles com investimentos a partir de R$ 5 milhões na plataforma.",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

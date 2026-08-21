@@ -2,12 +2,15 @@
   "card_stable_id": "carrefour-cartao-de-credito",
   "display_name": "Cartão Carrefour",
   "issuer_raw": "Carrefour Soluções Financeiras",
-  "network_primary": "Visa / Mastercard",
+  "issuer_id": "carrefour-solucoes-financeiras",
+  "network_primary": "Visa",
+  "network_alternatives": [
+    "Mastercard"
+  ],
   "variant_band": "Internacional",
   "market_segment_guess": "mass_or_general",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "official_issuer_initial_capture",
-  "verification_confidence_0_to_1": 0.88,
+  "verification_cross_check_status": "official_partial",
   "primary_evidence_url": "https://www.carrefoursolucoes.com.br/",
   "application_url": "https://www.carrefoursolucoes.com.br/",
   "source_label": "Página oficial do emissor",
@@ -43,7 +46,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "Sujeito à análise de crédito.",
     "requires_bank_account_claim": "unknown",
-    "source_status": "official_issuer_initial_capture"
+    "source_status": "official_partial"
   },
   "fee_waiver_rules": [
     {

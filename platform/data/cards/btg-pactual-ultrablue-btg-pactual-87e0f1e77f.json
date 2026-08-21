@@ -2,12 +2,12 @@
   "card_stable_id": "btg-pactual-ultrablue-btg-pactual-87e0f1e77f",
   "display_name": "Ultrablue BTG Pactual",
   "issuer_raw": "BTG Pactual",
+  "issuer_id": "btg-pactual",
   "network_primary": "Mastercard",
-  "variant_band": "Mastercard",
+  "variant_band": "unknown",
   "market_segment_guess": "ultra_premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/ultrablue-btg-pactual-modalidade-cashback/",
   "application_url": "https://banking.btgpactual.com/cartao-de-credito/cartao-ultrablue?utm_channel=Patrocinio&utm_medium=partners&utm_network={network}:{placement}&utm_campaign=PAR_AWN_BUINST_ultrablue_sazonal_202412&utm_campaign_id={campaignid}&utm_content=PAR_AWN_BUINST_ultrablue_sazonal_202412_afinidade_20241210&utm_content_id={adgroupid}&utm_term=PAR_AWN_BUINST_ultrablue_sazonal_202412_afinidade_20241210_conteudo_&utm_term_id={targetid}:{adposition}:{matchtype}:{keyword}:{creative}",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/ultrablue-btg-pactual-modalidade-cashback/",
@@ -51,7 +51,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "Para solicitar o cartão, é necessário ter, no mínimo, R$ 1 milhão em investimentos no banco.",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

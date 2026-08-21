@@ -2,12 +2,12 @@
   "card_stable_id": "xp-investimentos-xp-visa-infinite-ed295c18e0",
   "display_name": "XP Visa Infinite",
   "issuer_raw": "XP Investimentos",
+  "issuer_id": "xp-investimentos",
   "network_primary": "Visa",
   "variant_band": "Infinite",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_catalog_with_curated_official_override",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "manual_curated",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/xp-visa-infinite/",
   "application_url": "https://lp.xpi.com.br/cartao-credito-xp",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/xp-visa-infinite/",
@@ -51,7 +51,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "A partir de R$ 50 mil em investimentos líquidos",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "benefit_groups": {
     "eligibility": [
@@ -214,6 +214,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/xp-visa-infinite/"
       }
-    ]
+    ],
+    "verification_note": "Verificação original: trusted_catalog_with_curated_official_override"
   }
 }

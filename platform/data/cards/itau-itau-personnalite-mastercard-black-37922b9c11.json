@@ -2,12 +2,12 @@
   "card_stable_id": "itau-itau-personnalite-mastercard-black-37922b9c11",
   "display_name": "Itaú Personnalité Mastercard Black",
   "issuer_raw": "Itaú",
+  "issuer_id": "itau",
   "network_primary": "Mastercard",
   "variant_band": "Black",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/itau-personnalite-mastercard-black/",
   "application_url": "https://www.itau.com.br/personnalite/cartoes/black/",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/itau-personnalite-mastercard-black/",
@@ -48,7 +48,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "unknown",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

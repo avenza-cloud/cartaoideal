@@ -2,12 +2,12 @@
   "card_stable_id": "genial-genial-black-59b41b4a94",
   "display_name": "Genial Black",
   "issuer_raw": "Genial",
+  "issuer_id": "genial",
   "network_primary": "Mastercard",
   "variant_band": "Black",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "official_issuer_page",
-  "verification_confidence_0_to_1": 0.95,
+  "verification_cross_check_status": "official_verified",
   "primary_evidence_url": "https://www.genialinvestimentos.com.br/cartao-de-credito/cartao-black/",
   "application_url": "https://www.genialinvestimentos.com.br/cartao-de-credito/cartao-black/",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/genial-black/",
@@ -53,7 +53,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "É preciso ter pelo menos R$ 50 mil investidos na Genial para solicitar o Cartão Black; aprovação sujeita à análise.",
     "requires_bank_account_claim": true,
-    "source_status": "official_current"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

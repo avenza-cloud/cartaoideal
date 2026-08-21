@@ -2,12 +2,12 @@
   "card_stable_id": "santander-santander-american-express-the-centurion-card-cd94db3532",
   "display_name": "Santander American Express® The Centurion Card",
   "issuer_raw": "Santander",
+  "issuer_id": "santander",
   "network_primary": "American Express",
   "variant_band": "Centurion",
   "market_segment_guess": "ultra_premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/santander-american-express-centurion-card/",
   "application_url": "https://www.santander.com.br/cartao-credito-santander/amex-centurion",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/santander-american-express-centurion-card/",
@@ -53,7 +53,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "unknown",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "benefit_groups": {
     "eligibility": [

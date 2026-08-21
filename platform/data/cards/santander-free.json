@@ -2,12 +2,12 @@
   "card_stable_id": "santander-free",
   "display_name": "Santander FREE",
   "issuer_raw": "Santander",
+  "issuer_id": "santander",
   "network_primary": "Mastercard",
   "variant_band": "Standard",
   "market_segment_guess": "mass_or_general",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "official_issuer_initial_capture",
-  "verification_confidence_0_to_1": 0.88,
+  "verification_cross_check_status": "official_partial",
   "primary_evidence_url": "https://www.santander.com.br/cartao-credito-santander",
   "application_url": "https://www.santander.com.br/cartao-credito-santander",
   "review_source_url": "https://www.santander.com.br/cartao-credito-santander",
@@ -42,7 +42,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "unknown",
     "requires_bank_account_claim": false,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

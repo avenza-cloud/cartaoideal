@@ -2,12 +2,12 @@
   "card_stable_id": "itau-uniclass-visa-signature",
   "display_name": "Itaú Uniclass Visa Signature",
   "issuer_raw": "Itaú",
+  "issuer_id": "itau",
   "network_primary": "Visa",
   "variant_band": "Signature",
   "market_segment_guess": "upper_mass",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "official_issuer_initial_capture",
-  "verification_confidence_0_to_1": 0.88,
+  "verification_cross_check_status": "official_partial",
   "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
   "application_url": "https://www.itau.com.br/cartoes/escolha/g/itau-uniclass-signature/",
   "review_source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
@@ -42,7 +42,7 @@
     "recommendation_blocking_unknowns": false,
     "requirements_text": "unknown",
     "requires_bank_account_claim": false,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "benefit_groups": {},
   "characteristics": [

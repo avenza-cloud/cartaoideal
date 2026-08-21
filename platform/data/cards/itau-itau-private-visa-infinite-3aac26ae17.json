@@ -2,12 +2,12 @@
   "card_stable_id": "itau-itau-private-visa-infinite-3aac26ae17",
   "display_name": "Itaú Private Visa Infinite",
   "issuer_raw": "Itaú",
+  "issuer_id": "itau",
   "network_primary": "Visa",
   "variant_band": "Infinite",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/itau-private-visa-infinite/",
   "application_url": "https://www.itau.com.br/private-bank/produtos-servicos/banking/cartao-visa-infinite",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/itau-private-visa-infinite/",
@@ -48,7 +48,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "unknown",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "fee_waiver_rules": [
     {

@@ -2,12 +2,12 @@
   "card_stable_id": "santander-santander-unique-mastercard-black-3733991841",
   "display_name": "Santander Unique Mastercard Black",
   "issuer_raw": "Santander",
+  "issuer_id": "santander",
   "network_primary": "Mastercard",
   "variant_band": "Black",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
-  "verification_cross_check_status": "trusted_passageiro_de_primeira_ranking",
-  "verification_confidence_0_to_1": 1,
+  "verification_cross_check_status": "trusted_aggregator",
   "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/santander-unique-mastercard-black-2/",
   "application_url": "https://www.santander.com.br/banco/unique-black?utm_medium=site",
   "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/santander-unique-mastercard-black-2/",
@@ -49,7 +49,7 @@
     "recommendation_blocking_unknowns": true,
     "requirements_text": "unknown",
     "requires_bank_account_claim": true,
-    "source_status": "official_or_structured"
+    "source_status": "official"
   },
   "benefit_groups": {
     "eligibility": [
