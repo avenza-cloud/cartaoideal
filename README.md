@@ -51,17 +51,6 @@ pnpm dev
 (hook `predev`). Veja o [CONTRIBUTING.md](CONTRIBUTING.md) para a referência
 completa de comandos, suítes de teste e o fluxo de edição de dados.
 
-## Monetização e neutralidade
-
-Este projeto pode gerar receita com slots do Google AdSense e com parâmetros
-de afiliado nos links de "solicitar" (`utm_source=cartaoideal`; overrides de
-afiliado por cartão vivem em
-[`web/lib/affiliate.ts`](web/lib/affiliate.ts) e estão vazios neste
-repositório). **A monetização tem zero influência nos rankings**: o código de
-pontuação ([`web/lib/scoring.ts`](web/lib/scoring.ts),
-[`web/lib/card-value.ts`](web/lib/card-value.ts)) lê apenas os dados dos
-cartões e o perfil do usuário — auditável neste repositório.
-
 ## Aviso legal
 
 O Cartão Ideal é conteúdo informativo, não aconselhamento financeiro. Os dados
