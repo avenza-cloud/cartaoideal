@@ -47,7 +47,6 @@ export function CardCorrectionForm({
   const [suggestedValue, setSuggestedValue] = useState("");
   const [correctionSourceUrl, setCorrectionSourceUrl] = useState("");
   const [notes, setNotes] = useState("");
-  const [contact, setContact] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -67,7 +66,6 @@ export function CardCorrectionForm({
         suggestedValue,
         sourceUrl: correctionSourceUrl,
         notes,
-        contact,
         pageSourceUrl: sourceUrl,
       }),
     });
@@ -89,7 +87,6 @@ export function CardCorrectionForm({
       setSuggestedValue("");
       setCorrectionSourceUrl("");
       setNotes("");
-      setContact("");
       setStatus("idle");
       setMessage("");
     }
@@ -160,15 +157,6 @@ export function CardCorrectionForm({
               onChange={(event) => setNotes(event.target.value)}
               placeholder="O que mudou? Onde a fonte confirma?"
               className="min-h-24"
-            />
-          </div>
-
-          <div className="space-y-1.5">
-            <label className="text-xs font-medium text-muted-foreground">Contato opcional</label>
-            <Input
-              value={contact}
-              onChange={(event) => setContact(event.target.value)}
-              placeholder="GitHub, email ou @"
             />
           </div>
 

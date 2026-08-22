@@ -4,6 +4,8 @@ import { Suspense } from "react";
 import { getCardById, getAllCards } from "@/lib/cards";
 import { formatFee, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
 import { affiliateClickUrl } from "@/lib/affiliate";
+import { cardArtSrc, displayValue } from "@/lib/card-display";
+import { CardArtPlaceholder } from "@/components/CardArtPlaceholder";
 import { AppHeader } from "@/components/AppHeader";
 import { CardDetailBackLink } from "@/components/CardDetailBackLink";
 import { CardDetailActions } from "@/components/CardDetailActions";
@@ -50,7 +52,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${card.display_name} — anuidade e benefícios`,
       description,
       type: "website",
-      images: card.media.card_art_url
+      images: cardArtSrc(card.media.card_art_url)
         ? [{ url: card.media.card_art_url, alt: card.media.alt_text }]
         : undefined,
     },
@@ -63,7 +65,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
   if (!card) notFound();
 
   const fee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
-  const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
+  const artSrc = cardArtSrc(card.media.card_art_url);
   const hasLounge = card.lounge_access.has_lounge_access;
 
   const returnType = cardReturnLabel(card);
@@ -144,7 +146,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
     "@context": "https://schema.org",
     "@type": "Product",
     name: card.display_name,
-    image: card.media.card_art_url,
+    image: artSrc ?? undefined,
     description: card.reward_return.earning_summary ?? "",
     brand: { "@type": "Brand", name: card.issuer_raw },
     offers: {
@@ -178,14 +180,19 @@ export default async function CartaoDetailPage({ params }: PageProps) {
           <div className="grid lg:grid-cols-[240px_minmax(0,1fr)]">
             {/* Card art */}
             <div className="relative flex min-h-44 items-center justify-center border-b bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.12),transparent_36%),linear-gradient(145deg,#09090b,#18181b_55%,#050505)] p-6 lg:border-b-0 lg:border-r">
-              {hasImage ? (
+              {artSrc ? (
                 <img
-                  src={card.media.card_art_url}
+                  src={artSrc}
                   alt={card.media.alt_text}
                   className="max-h-32 max-w-[78%] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] sm:max-h-40"
                 />
               ) : (
-                <CreditCard className="h-12 w-12 text-muted-foreground/30" />
+                <CardArtPlaceholder
+                  issuerRaw={card.issuer_raw}
+                  network={card.network_primary}
+                  displayName={card.display_name}
+                  className="max-h-32 w-52 sm:max-h-40"
+                />
               )}
               {card.ranking_position !== "unknown" && (
                 <span className="absolute left-4 top-4 rounded-full border bg-background/60 px-2 py-0.5 font-mono text-[10px] text-muted-foreground backdrop-blur">
@@ -269,8 +276,11 @@ export default async function CartaoDetailPage({ params }: PageProps) {
                     {card.lounge_access.unlimited && (
                       <DataRow label="Limite" value="Ilimitado" />
                     )}
-                    {card.lounge_access.guest_policy !== "unknown" && (
-                      <DataRow label="Acompanhantes" value={card.lounge_access.guest_policy} />
+                    {displayValue(card.lounge_access.guest_policy) && (
+                      <DataRow
+                        label="Acompanhantes"
+                        value={displayValue(card.lounge_access.guest_policy)!}
+                      />
                     )}
                     {loungeCondition(card.lounge_access.summary) && (
                       <FullTextRow

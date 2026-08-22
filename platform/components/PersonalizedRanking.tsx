@@ -1,28 +1,26 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useProfileStore } from "@/lib/store";
-import {
-  CLIENT_CARD_FACETS,
-  getClientCardById,
-  resolveClientCardByName,
-} from "@/lib/client-card-options";
-import { feeTier, feeNote, FEE_TIER_COLOR, FEE_TIER_LABEL } from "@/lib/roi";
+import { feeTier, feeNote, FEE_TIER_COLOR, FEE_TIER_LABEL, type FeeTier } from "@/lib/roi";
 import {
   formatFee,
   formatGrossRewardMonthlyDisplay,
   formatNetMonthlyDisplay,
 } from "@/lib/formatting";
 import { feeWaiverBadgeClassName, feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
-import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
-import { DEFAULT_SCORING_PROFILE, scoreCardValue, scoreCardValues, travelFrequencyForValueModeling } from "@/lib/card-value";
+import { fetchRecommendations, type CurrentCardResult } from "@/lib/recommend-client";
+import { DEFAULT_SCORING_PROFILE, travelFrequencyForValueModeling } from "@/lib/card-value";
+import { cardArtSrc } from "@/lib/card-display";
 import { useCardDetailHref } from "@/lib/use-card-detail-href";
-import { useValueAssumptions } from "@/lib/use-value-assumptions";
 import { Button } from "@/components/ui/button";
 import { CreditCard, ListFilter } from "lucide-react";
 import type { CardFacet, CardScore, CardValueScore, TravelFrequency } from "@/types/cards";
 import type { FeeWaiverBadge } from "@/lib/fee-waiver-badges";
+
+/** Value score as serialized by /api/cards/top: no card object, no assumptions. */
+type SlimValueScore = Omit<CardValueScore, "card" | "assumptions">;
 
 interface TopCard {
   id: string;
@@ -35,7 +33,10 @@ interface TopCard {
   pontos: boolean;
   cardArtUrl: string;
   altText: string;
-  score: CardValueScore;
+  score: SlimValueScore;
+  note: string;
+  tier: FeeTier;
+  badges: FeeWaiverBadge[];
 }
 
 function moneyPerMonth(value: number) {
@@ -88,11 +89,11 @@ function CardRow({
   tierColor: string;
   earningsSummary?: string;
   scoreBar?: number;
-  valueScore?: CardValueScore;
+  valueScore?: SlimValueScore;
   badges?: FeeWaiverBadge[];
   travelFrequency?: TravelFrequency;
 }) {
-  const hasImage = cardArtUrl && cardArtUrl !== "unknown";
+  const artSrc = cardArtSrc(cardArtUrl);
   const detailHref = useCardDetailHref(id);
 
   return (
@@ -103,9 +104,9 @@ function CardRow({
       <span className="font-mono text-[11px] text-muted-foreground">#{rank}</span>
 
       <div className="flex h-10 items-center justify-center rounded-lg border bg-zinc-950">
-        {hasImage ? (
+        {artSrc ? (
           <img
-            src={cardArtUrl}
+            src={artSrc}
             alt={altText}
             className="max-h-8 max-w-[52px] object-contain"
             loading="lazy"
@@ -199,7 +200,7 @@ function CurrentCardSummary({
 }) {
   const tier = feeTier(card, spend, score?.effectiveAnnualFeeBrl);
   const note = feeNote(card, spend, score?.effectiveAnnualFeeBrl);
-  const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
+  const artSrc = cardArtSrc(card.media.card_art_url);
   const detailHref = useCardDetailHref(card.card_stable_id);
 
   return (
@@ -212,9 +213,9 @@ function CurrentCardSummary({
       </span>
 
       <div className="flex h-12 items-center justify-center rounded-xl border bg-zinc-950">
-        {hasImage ? (
+        {artSrc ? (
           <img
-            src={card.media.card_art_url}
+            src={artSrc}
             alt={card.media.alt_text}
             className="max-h-9 max-w-[48px] object-contain"
             loading="lazy"
@@ -278,20 +279,24 @@ function CurrentCardSummary({
 
 export function PersonalizedRanking() {
   const { profile, onboardingDone, resetOnboarding } = useProfileStore();
-  const assumptions = useValueAssumptions();
   const [results, setResults] = useState<CardScore[] | null>(null);
+  const [currentCard, setCurrentCard] = useState<CurrentCardResult | null>(null);
   const [topCards, setTopCards] = useState<TopCard[] | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [retryToken, setRetryToken] = useState(0);
 
   useEffect(() => {
+    setError(false);
     if (!profile) {
       setResults(null);
+      setCurrentCard(null);
       if (onboardingDone) {
         setLoading(true);
         fetch("/api/cards/top?limit=10")
           .then((r) => r.json())
           .then((data) => setTopCards(Array.isArray(data) ? data : null))
-          .catch(() => setTopCards(null))
+          .catch(() => setError(true))
           .finally(() => setLoading(false));
       }
       return;
@@ -299,38 +304,14 @@ export function PersonalizedRanking() {
     setTopCards(null);
     setResults(null);
     setLoading(true);
-    fetchRecommendationsWithFallback(profile)
-      .then((data) => setResults(Array.isArray(data) ? data : null))
-      .catch(() => setResults(null))
+    fetchRecommendations(profile)
+      .then((data) => {
+        setResults(data.scores);
+        setCurrentCard(data.currentCard);
+      })
+      .catch(() => setError(true))
       .finally(() => setLoading(false));
-  }, [profile, onboardingDone]);
-
-  const currentCard =
-    profile?.currentPrimaryCardId
-      ? getClientCardById(profile.currentPrimaryCardId)
-      : profile?.currentPrimaryCardName
-        ? resolveClientCardByName(profile.currentPrimaryCardName)
-        : undefined;
-  const currentCardRanking = useMemo(() => {
-    if (!profile || !currentCard) return undefined;
-    const scores = scoreCardValues(CLIENT_CARD_FACETS, profile, "profile", assumptions);
-    const rankedScores = scores.filter((score) => score.eligible);
-    const currentScore = scores.find(
-      (score) => score.card.card_stable_id === currentCard.card_stable_id
-    );
-    const index = rankedScores.findIndex(
-      (score) => score.card.card_stable_id === currentCard.card_stable_id
-    );
-    return {
-      rank: index >= 0 ? index + 1 : undefined,
-      score: currentScore ?? scoreCardValue(currentCard, profile, "profile", assumptions),
-    };
-  }, [profile, currentCard, assumptions]);
-  const currentCardScore =
-    profile && currentCard
-      ? results?.find((score) => score.card.card_stable_id === currentCard.card_stable_id)
-          ?.valueScore ?? currentCardRanking?.score
-      : undefined;
+  }, [profile, onboardingDone, retryToken]);
 
   if (!onboardingDone) return null;
 
@@ -338,9 +319,9 @@ export function PersonalizedRanking() {
     <div className="rounded-3xl border bg-card/50 p-3">
       {profile && currentCard && (
         <CurrentCardSummary
-          card={currentCard}
-          score={currentCardScore}
-          rank={currentCardRanking?.rank}
+          card={currentCard.score.card}
+          score={currentCard.score}
+          rank={currentCard.rank ?? undefined}
           spend={profile.avgMonthlySpendBrl}
           travelFrequency={travelFrequencyForValueModeling(profile)}
         />
@@ -378,6 +359,22 @@ export function PersonalizedRanking() {
 
       {loading && <SkeletonRows />}
 
+      {!loading && error && (
+        <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed bg-background/40 px-4 py-6 text-center">
+          <p className="text-xs text-muted-foreground">
+            Não foi possível carregar o ranking agora.
+          </p>
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-7 text-[11px]"
+            onClick={() => setRetryToken((t) => t + 1)}
+          >
+            Tentar novamente
+          </Button>
+        </div>
+      )}
+
       {!loading && profile && results && (
         <div className="divide-y divide-border overflow-hidden rounded-2xl border">
           {results.map((scored, idx) => {
@@ -410,33 +407,26 @@ export function PersonalizedRanking() {
 
       {!loading && !profile && topCards && (
         <div className="divide-y divide-border overflow-hidden rounded-2xl border">
-          {topCards.map((c, idx) => {
-            const cardFromScore = c.score.card;
-            const defaultSpend = DEFAULT_SCORING_PROFILE.avgMonthlySpendBrl;
-            const eff = c.score.effectiveAnnualFeeBrl;
-            const tier = feeTier(cardFromScore, defaultSpend, eff);
-            const note = feeNote(cardFromScore, defaultSpend, eff);
-            return (
-              <CardRow
-                key={c.id}
-                rank={idx + 1}
-                id={c.id}
-                nome={c.nome}
-                emissor={c.emissor}
-                anuidade={c.anuidade}
-                cardArtUrl={c.cardArtUrl}
-                altText={c.altText}
-                note={note}
-                tierLabel={FEE_TIER_LABEL[tier]}
-                tierColor={FEE_TIER_COLOR[tier]}
-                earningsSummary={c.retornoFinanceiro?.earning_summary}
-                valueScore={c.score}
-                scoreBar={c.score.score0To100}
-                badges={feeWaiverBadgesForCard(c.score.card)}
-                travelFrequency={travelFrequencyForValueModeling(DEFAULT_SCORING_PROFILE)}
-              />
-            );
-          })}
+          {topCards.map((c, idx) => (
+            <CardRow
+              key={c.id}
+              rank={idx + 1}
+              id={c.id}
+              nome={c.nome}
+              emissor={c.emissor}
+              anuidade={c.anuidade}
+              cardArtUrl={c.cardArtUrl}
+              altText={c.altText}
+              note={c.note}
+              tierLabel={FEE_TIER_LABEL[c.tier]}
+              tierColor={FEE_TIER_COLOR[c.tier]}
+              earningsSummary={c.retornoFinanceiro?.earning_summary}
+              valueScore={c.score}
+              scoreBar={c.score.score0To100}
+              badges={c.badges}
+              travelFrequency={travelFrequencyForValueModeling(DEFAULT_SCORING_PROFILE)}
+            />
+          ))}
         </div>
       )}
     </div>
