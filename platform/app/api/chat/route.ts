@@ -1,5 +1,5 @@
 import { streamText, convertToModelMessages, stepCountIs } from "ai";
-import { openai } from "@ai-sdk/openai";
+import { chatModel } from "@/lib/ai-model";
 import { z } from "zod";
 import { createCardTools, SYSTEM_PROMPT, toToolProfile } from "@/lib/ai-tools";
 import { profileSchema } from "@/lib/profile-schema";
@@ -36,7 +36,7 @@ export async function POST(req: Request) {
   const { messages, profile } = parsed.data;
 
   const result = streamText({
-    model: openai("gpt-5.4-nano"),
+    model: chatModel,
     system: `${SYSTEM_PROMPT}${profileContext(profile as UserProfile | null)}`,
     messages: await convertToModelMessages(
       messages as Parameters<typeof convertToModelMessages>[0]
