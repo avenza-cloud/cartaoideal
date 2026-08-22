@@ -1,0 +1,443 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useProfileStore } from "@/lib/store";
+import { feeTier, feeNote, FEE_TIER_COLOR, FEE_TIER_LABEL, type FeeTier } from "@/lib/roi";
+import {
+  formatFee,
+  formatGrossRewardMonthlyDisplay,
+  formatNetMonthlyDisplay,
+} from "@/lib/formatting";
+import { feeWaiverBadgeClassName, feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
+import { fetchRecommendations, type CurrentCardResult } from "@/lib/recommend-client";
+import { DEFAULT_SCORING_PROFILE, travelFrequencyForValueModeling } from "@/lib/card-value";
+import { cardArtSrc } from "@/lib/card-display";
+import { useCardDetailHref } from "@/lib/use-card-detail-href";
+import { Button } from "@/components/ui/button";
+import { ListFilter } from "lucide-react";
+import { CardArtPlaceholder } from "@/components/CardArtPlaceholder";
+import type { CardFacet, CardScore, CardValueScore, TravelFrequency } from "@/types/cards";
+import type { FeeWaiverBadge } from "@/lib/fee-waiver-badges";
+
+/** Value score as serialized by /api/cards/top: no card object, no assumptions. */
+type SlimValueScore = Omit<CardValueScore, "card" | "assumptions">;
+
+interface TopCard {
+  id: string;
+  nome: string;
+  emissor: string;
+  anuidade: CardFacet["facets_numeric_or_special"]["annual_fee_brl_best_estimate"];
+  rankingPosition: number;
+  bandeira?: string;
+  lounge: boolean;
+  retornoFinanceiro: { earning_summary?: string };
+  pontos: boolean;
+  cardArtUrl: string;
+  altText: string;
+  score: SlimValueScore;
+  note: string;
+  tier: FeeTier;
+  badges: FeeWaiverBadge[];
+}
+
+function moneyPerMonth(value: number) {
+  const sign = value > 0 ? "+" : value < 0 ? "-" : "";
+  return `${sign}R$${Math.abs(value).toLocaleString("pt-BR", {
+    maximumFractionDigits: 0,
+  })}/mês`;
+}
+
+function scoreTextColor(score: number): string {
+  if (score >= 90) return "text-emerald-500";
+  if (score >= 75) return "text-sky-500";
+  if (score >= 50) return "text-amber-500";
+  return "text-rose-500";
+}
+
+function scoreBarColor(score: number): string {
+  if (score >= 90) return "bg-emerald-500";
+  if (score >= 75) return "bg-sky-500";
+  if (score >= 50) return "bg-amber-500";
+  return "bg-rose-500";
+}
+
+function CardRow({
+  rank,
+  id,
+  nome,
+  emissor,
+  bandeira,
+  anuidade,
+  cardArtUrl,
+  altText,
+  note,
+  tierLabel,
+  tierColor,
+  earningsSummary,
+  scoreBar,
+  valueScore,
+  badges = [],
+  travelFrequency,
+}: {
+  rank: number;
+  id: string;
+  nome: string;
+  emissor: string;
+  bandeira?: string;
+  anuidade: CardFacet["facets_numeric_or_special"]["annual_fee_brl_best_estimate"];
+  cardArtUrl: string;
+  altText: string;
+  note: string;
+  tierLabel: string;
+  tierColor: string;
+  earningsSummary?: string;
+  scoreBar?: number;
+  valueScore?: SlimValueScore;
+  badges?: FeeWaiverBadge[];
+  travelFrequency?: TravelFrequency;
+}) {
+  const artSrc = cardArtSrc(cardArtUrl);
+  const detailHref = useCardDetailHref(id);
+
+  return (
+    <Link
+      href={detailHref}
+      className="grid grid-cols-[28px_64px_minmax(0,1fr)_auto] items-center gap-3 bg-background/40 px-3 py-2.5 text-xs transition-colors hover:bg-muted/40"
+    >
+      <span className="font-mono text-[11px] text-muted-foreground">#{rank}</span>
+
+      <div className="flex h-10 items-center justify-center rounded-lg border bg-zinc-950">
+        {artSrc ? (
+          <img
+            src={artSrc}
+            alt={altText}
+            className="max-h-8 max-w-[52px] object-contain"
+            loading="lazy"
+          />
+        ) : (
+          <CardArtPlaceholder compact issuerRaw={emissor} network={bandeira} displayName={nome} />
+        )}
+      </div>
+
+      <div className="min-w-0 space-y-0.5">
+        <p className="truncate font-medium">{nome}</p>
+        <p className="truncate font-mono text-[10px] text-muted-foreground">{note}</p>
+        <p className="text-[10px] text-muted-foreground/70 break-words [overflow-wrap:anywhere]">
+          {valueScore
+            ? `Retorno: ${formatGrossRewardMonthlyDisplay(valueScore, travelFrequency ?? "none")} · Benefícios: ${moneyPerMonth(valueScore.intangibleMonthlyValueBrl)}`
+            : earningsSummary}
+        </p>
+        {badges.length > 0 && (
+          <div className="flex flex-wrap gap-1 pt-0.5">
+            {badges.map((badge) => (
+              <span key={badge.key} className={feeWaiverBadgeClassName(badge.variant)}>
+                {badge.label}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div className="flex min-w-[7.5rem] max-w-[48%] flex-col items-end gap-1 text-right sm:min-w-[9.5rem] sm:max-w-[42%]">
+        <span
+          className={`text-[11px] font-semibold font-mono ${
+            valueScore ? scoreTextColor(valueScore.score0To100) : tierColor
+          }`}
+        >
+          {valueScore ? `${valueScore.score0To100}/100` : tierLabel}
+        </span>
+        <span className="font-mono text-[10px] text-muted-foreground">{formatFee(anuidade)}</span>
+        {valueScore && (
+          <span
+            className={`font-mono text-[10px] leading-snug break-words ${
+              Math.max(valueScore.netMonthlyValueBrl, valueScore.netMonthlyValueRangeHighBrl) >= 0
+                ? "text-emerald-500"
+                : "text-rose-500"
+            }`}
+          >
+            {formatNetMonthlyDisplay(valueScore, travelFrequency ?? "none")}
+          </span>
+        )}
+        {scoreBar !== undefined && (
+          <div className="h-1 w-14 overflow-hidden rounded-full bg-muted">
+            <div
+              className={`h-full rounded-full ${scoreBarColor(scoreBar)}`}
+              style={{ width: `${scoreBar}%` }}
+            />
+          </div>
+        )}
+      </div>
+    </Link>
+  );
+}
+
+function SkeletonRows({ n = 6 }: { n?: number }) {
+  return (
+    <div className="divide-y divide-border overflow-hidden rounded-2xl border">
+      {Array.from({ length: n }).map((_, i) => (
+        <div key={i} className="flex items-center gap-3 bg-background/40 px-3 py-3">
+          <div className="h-4 w-6 animate-pulse rounded bg-muted" />
+          <div className="h-10 w-16 animate-pulse rounded-lg bg-muted" />
+          <div className="flex-1 space-y-1.5">
+            <div className="h-3 w-40 animate-pulse rounded bg-muted" />
+            <div className="h-2.5 w-56 animate-pulse rounded bg-muted" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CurrentCardSummary({
+  card,
+  score,
+  rank,
+  spend,
+  travelFrequency,
+}: {
+  card: CardFacet;
+  score?: CardValueScore;
+  rank?: number;
+  spend: number;
+  travelFrequency: TravelFrequency;
+}) {
+  const tier = feeTier(card, spend, score?.effectiveAnnualFeeBrl);
+  const note = feeNote(card, spend, score?.effectiveAnnualFeeBrl);
+  const artSrc = cardArtSrc(card.media.card_art_url);
+  const detailHref = useCardDetailHref(card.card_stable_id);
+
+  return (
+    <Link
+      href={detailHref}
+      className="mb-3 grid grid-cols-[28px_56px_minmax(0,1fr)] items-center gap-3 rounded-2xl border bg-background/45 p-3 transition-colors hover:bg-muted/35 sm:grid-cols-[28px_64px_minmax(0,1fr)_auto]"
+    >
+      <span className="font-mono text-[11px] text-muted-foreground">{rank ? `#${rank}` : "—"}</span>
+
+      <div className="flex h-12 items-center justify-center rounded-xl border bg-zinc-950">
+        {artSrc ? (
+          <img
+            src={artSrc}
+            alt={card.media.alt_text}
+            className="max-h-9 max-w-[48px] object-contain"
+            loading="lazy"
+          />
+        ) : (
+          <CardArtPlaceholder
+            compact
+            issuerRaw={card.issuer_raw}
+            network={card.network_primary}
+            displayName={card.display_name}
+          />
+        )}
+      </div>
+
+      <div className="min-w-0">
+        <p className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+          Seu cartão atual
+        </p>
+        <p className="truncate text-sm font-semibold">{card.display_name}</p>
+        <p className="mt-0.5 truncate text-[11px] text-muted-foreground">{note}</p>
+        {score && (
+          <p className="mt-1 text-[10px] text-muted-foreground/75">
+            Retorno: {formatGrossRewardMonthlyDisplay(score, travelFrequency)} · Benefícios:{" "}
+            {moneyPerMonth(score.intangibleMonthlyValueBrl)} · Anuidade:{" "}
+            {moneyPerMonth(-score.effectiveMonthlyFeeBrl)}
+          </p>
+        )}
+      </div>
+
+      <div className="col-span-3 flex items-end justify-between gap-3 sm:col-span-1 sm:flex-col sm:justify-center sm:text-right">
+        <div className="flex flex-col items-end gap-1 text-right">
+          <span
+            className={`text-[11px] font-semibold font-mono ${
+              score ? scoreTextColor(score.score0To100) : FEE_TIER_COLOR[tier]
+            }`}
+          >
+            {score ? `${score.score0To100}/100` : FEE_TIER_LABEL[tier]}
+          </span>
+          <span className="font-mono text-[10px] text-muted-foreground">
+            {formatFee(card.facets_numeric_or_special.annual_fee_brl_best_estimate)}
+          </span>
+          {score && (
+            <span
+              className={`max-w-[11rem] break-words font-mono text-[10px] leading-snug ${
+                Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl) >= 0
+                  ? "text-emerald-500"
+                  : "text-rose-500"
+              }`}
+            >
+              {formatNetMonthlyDisplay(score, travelFrequency)}
+            </span>
+          )}
+          {score && (
+            <div className="h-1 w-14 overflow-hidden rounded-full bg-muted">
+              <div
+                className={`h-full rounded-full ${scoreBarColor(score.score0To100)}`}
+                style={{ width: `${score.score0To100}%` }}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+export function PersonalizedRanking() {
+  const { profile, onboardingDone, resetOnboarding } = useProfileStore();
+  const [results, setResults] = useState<CardScore[] | null>(null);
+  const [currentCard, setCurrentCard] = useState<CurrentCardResult | null>(null);
+  const [topCards, setTopCards] = useState<TopCard[] | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [_retryToken, setRetryToken] = useState(0);
+
+  useEffect(() => {
+    setError(false);
+    if (!profile) {
+      setResults(null);
+      setCurrentCard(null);
+      if (onboardingDone) {
+        setLoading(true);
+        fetch("/api/cards/top?limit=10")
+          .then((r) => r.json())
+          .then((data) => setTopCards(Array.isArray(data) ? data : null))
+          .catch(() => setError(true))
+          .finally(() => setLoading(false));
+      }
+      return;
+    }
+    setTopCards(null);
+    setResults(null);
+    setLoading(true);
+    fetchRecommendations(profile)
+      .then((data) => {
+        setResults(data.scores);
+        setCurrentCard(data.currentCard);
+      })
+      .catch(() => setError(true))
+      .finally(() => setLoading(false));
+  }, [profile, onboardingDone]);
+
+  if (!onboardingDone) return null;
+
+  return (
+    <div className="rounded-3xl border bg-card/50 p-3">
+      {profile && currentCard && (
+        <CurrentCardSummary
+          card={currentCard.score.card}
+          score={currentCard.score}
+          rank={currentCard.rank ?? undefined}
+          spend={profile.avgMonthlySpendBrl}
+          travelFrequency={travelFrequencyForValueModeling(profile)}
+        />
+      )}
+
+      <div className="mb-3 flex items-center justify-between px-1">
+        <div>
+          <h2 className="text-sm font-semibold">
+            {profile ? "Ranking personalizado" : "Melhores cartões"}
+          </h2>
+          <p className="text-[11px] text-muted-foreground">
+            {profile
+              ? `R$${profile.monthlySalaryBrl.toLocaleString("pt-BR")} renda · R$${profile.avgMonthlySpendBrl.toLocaleString("pt-BR")} gasto/mês`
+              : "Por pontuação geral · Configure seu perfil para personalizar"}
+          </p>
+        </div>
+        {profile ? (
+          <Link href="/cartoes?profileRank=true">
+            <Button variant="ghost" size="sm" className="h-7 gap-1 text-[11px]">
+              <ListFilter className="h-3 w-3" />
+              Ver lista completa
+            </Button>
+          </Link>
+        ) : (
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-7 gap-1 text-[11px]"
+            onClick={resetOnboarding}
+          >
+            Personalizar
+          </Button>
+        )}
+      </div>
+
+      {loading && <SkeletonRows />}
+
+      {!loading && error && (
+        <div className="flex flex-col items-center gap-2 rounded-2xl border border-dashed bg-background/40 px-4 py-6 text-center">
+          <p className="text-xs text-muted-foreground">
+            Não foi possível carregar o ranking agora.
+          </p>
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-7 text-[11px]"
+            onClick={() => setRetryToken((t) => t + 1)}
+          >
+            Tentar novamente
+          </Button>
+        </div>
+      )}
+
+      {!loading && profile && results && (
+        <div className="divide-y divide-border overflow-hidden rounded-2xl border">
+          {results.map((scored, idx) => {
+            const card = scored.card;
+            const eff = scored.valueScore?.effectiveAnnualFeeBrl;
+            const tier = feeTier(card, profile.avgMonthlySpendBrl, eff);
+            return (
+              <CardRow
+                key={card.card_stable_id}
+                rank={idx + 1}
+                id={card.card_stable_id}
+                nome={card.display_name}
+                emissor={card.issuer_raw}
+                bandeira={card.network_primary}
+                anuidade={card.facets_numeric_or_special.annual_fee_brl_best_estimate}
+                cardArtUrl={card.media.card_art_url}
+                altText={card.media.alt_text}
+                note={feeNote(card, profile.avgMonthlySpendBrl, eff)}
+                tierLabel={FEE_TIER_LABEL[tier]}
+                tierColor={FEE_TIER_COLOR[tier]}
+                earningsSummary={card.reward_return.earning_summary}
+                valueScore={scored.valueScore}
+                scoreBar={Math.round(scored.totalScore * 100)}
+                badges={feeWaiverBadgesForCard(card, profile)}
+                travelFrequency={travelFrequencyForValueModeling(profile)}
+              />
+            );
+          })}
+        </div>
+      )}
+
+      {!loading && !profile && topCards && (
+        <div className="divide-y divide-border overflow-hidden rounded-2xl border">
+          {topCards.map((c, idx) => (
+            <CardRow
+              key={c.id}
+              rank={idx + 1}
+              id={c.id}
+              nome={c.nome}
+              emissor={c.emissor}
+              bandeira={c.bandeira}
+              anuidade={c.anuidade}
+              cardArtUrl={c.cardArtUrl}
+              altText={c.altText}
+              note={c.note}
+              tierLabel={FEE_TIER_LABEL[c.tier]}
+              tierColor={FEE_TIER_COLOR[c.tier]}
+              earningsSummary={c.retornoFinanceiro?.earning_summary}
+              valueScore={c.score}
+              scoreBar={c.score.score0To100}
+              badges={c.badges}
+              travelFrequency={travelFrequencyForValueModeling(DEFAULT_SCORING_PROFILE)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

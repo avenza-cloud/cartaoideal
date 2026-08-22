@@ -5,12 +5,20 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     defaults:
       run:
-        working-directory: platform
+        working-directory: web
     steps:
       - uses: actions/checkout@v4
 
@@ -22,10 +30,19 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          cache-dependency-path: platform/pnpm-lock.yaml
+          cache-dependency-path: web/pnpm-lock.yaml
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Build card-data artifact (validates format)
+        run: node ../scripts/build-cards-artifact.mjs --check
+
+      - name: Data freshness report (non-blocking)
+        run: node ../scripts/report-data-freshness.mjs
+
+      - name: Lint & format check (Biome)
+        run: pnpm check
 
       - name: Unit tests + coverage
         run: pnpm test:unit
@@ -33,9 +50,44 @@ jobs:
       - name: Typecheck
         run: pnpm exec tsc --noEmit
 
-      - name: Card data validation (Python)
-        working-directory: .
-        run: python3 tools/validate_card_data.py
+      - name: Build
+        run: pnpm build
+
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('web/pnpm-lock.yaml') }}
+
+      - name: Install Playwright Chromium
+        run: pnpm exec playwright install --with-deps chromium
 
       - name: Build
         run: pnpm build
+
+      - name: E2E tests (prod server)
+        run: pnpm test:e2e
+        env:
+          CI: "true"

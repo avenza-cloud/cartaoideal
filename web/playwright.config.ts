@@ -1,0 +1,63 @@
+import { defineConfig, devices } from "@playwright/test";
+
+export default defineConfig({
+  testDir: "./tests/e2e",
+  timeout: 30_000,
+  expect: {
+    // Dev server compiles routes on first request; under parallel projects a
+    // 5s assertion window is too tight and causes flaky navigation failures.
+    timeout: 10_000,
+  },
+  use: {
+    baseURL: "http://127.0.0.1:3100",
+    trace: "on-first-retry",
+  },
+  webServer: {
+    // CI runs the prod server (built in a prior step) — faster and immune to
+    // the dev-compile latency that forced wide expect timeouts locally.
+    command: process.env.CI
+      ? "pnpm start --hostname 127.0.0.1 --port 3100"
+      : "pnpm dev --hostname 127.0.0.1 --port 3100",
+    url: "http://127.0.0.1:3100",
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
+  },
+  projects: [
+    {
+      name: "mobile-chrome",
+      use: {
+        ...devices["Pixel 5"],
+        viewport: { width: 390, height: 844 },
+      },
+    },
+    {
+      name: "mobile-small",
+      use: {
+        ...devices["Pixel 5"],
+        viewport: { width: 360, height: 800 },
+      },
+    },
+    {
+      name: "mobile-large",
+      use: {
+        ...devices["Pixel 5"],
+        viewport: { width: 430, height: 932 },
+      },
+    },
+    {
+      name: "tablet",
+      use: {
+        ...devices["Desktop Chrome"],
+        viewport: { width: 768, height: 1024 },
+        isMobile: true,
+        hasTouch: true,
+      },
+    },
+    {
+      name: "desktop",
+      use: {
+        ...devices["Desktop Chrome"],
+      },
+    },
+  ],
+});

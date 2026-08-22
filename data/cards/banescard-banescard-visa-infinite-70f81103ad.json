@@ -1,0 +1,268 @@
+{
+  "card_stable_id": "banescard-banescard-visa-infinite-70f81103ad",
+  "display_name": "Banescard Visa Infinite",
+  "issuer_raw": "Banescard",
+  "issuer_id": "banescard",
+  "network_primary": "Visa",
+  "variant_band": "Infinite",
+  "market_segment_guess": "premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_aggregator",
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/banescard-visa-infinite/",
+  "application_url": "https://banescard.com.br/?utm_medium=site",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/banescard-visa-infinite/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://banescard.com.br/?utm_medium=site",
+  "ranking_position": 40,
+  "ranking_score": 212.1,
+  "media": {
+    "alt_text": "Banescard Visa Infinite",
+    "card_art_url": "/card-images/banescard-banescard-visa-infinite.png",
+    "source_url": "https://passageirodeprimeira.com/cartao-de-credito/banescard-visa-infinite/"
+  },
+  "reward_return": {
+    "earning_summary": "2,7 pontos por dólar gasto",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "annual_visits": 4,
+    "complimentary_access_confirmed": true,
+    "guest_policy": "0 acompanhante(s)",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "programs": [
+      "Visa Airport Companion"
+    ],
+    "summary": "Salas VIP do Visa Airport Companion - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "unknown",
+    "requires_bank_account_claim": true,
+    "source_status": "not_structured"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "monthly_spend",
+      "description": "Gasto mensal mínimo",
+      "full_waiver": true,
+      "period": "monthly",
+      "raw_text": "Primeira anuidade gratuita. Após isso, serão isentos os clientes com gastos a partir de R$12 mil por mês ou com investimento acima de R$150 mil.",
+      "threshold_brl": 12000
+    },
+    {
+      "category": "investment",
+      "description": "Investimento mínimo não informado",
+      "full_waiver": true,
+      "raw_text": "Primeira anuidade gratuita. Após isso, serão isentos os clientes com gastos a partir de R$12 mil por mês ou com investimento acima de R$150 mil."
+    }
+  ],
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista: Sim"
+    ],
+    "fees": [
+      "Anuidade: R$ 900",
+      "Adicionais com benefícios: Sim",
+      "Isenção da anuidade: Primeira anuidade gratuita. Após isso, serão isentos os clientes com gastos a partir de R$12 mil por mês ou com investimento acima de R$150 mil.",
+      "Anuidade: R$ 900",
+      "Adicionais gratuitos: 5"
+    ],
+    "lifestyle": [
+      "Carteira digital: Samsung Pay, Google Pay"
+    ],
+    "rewards": [
+      "Pontuação: 2,7 pontos por dólar gasto",
+      "Regra de pontuação: 2,7 pontos por dólar gasto",
+      "Bônus de adesão: Livelo - (Não há)",
+      "Bônus de adesão: Fidelidade Banescard - (Não há)",
+      "Programa de fidelidade: Livelo",
+      "Programa de fidelidade: Fidelidade Banescard",
+      "Validade dos pontos: Livelo - 24 meses",
+      "Validade dos pontos: Fidelidade Banescard - 24 meses"
+    ],
+    "travel": [
+      "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
+      "Programa de sala VIP: Visa Airport Companion",
+      "Acompanhantes em sala VIP: 0 acompanhante(s)",
+      "Acessos a sala VIP: 4 por ano",
+      "Salas VIP: Salas VIP do Visa Airport Companion - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 900"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "2,7 pontos por dólar gasto"
+    },
+    {
+      "category": "travel",
+      "details": "Gratuidade indicada pela fonte",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Acesso disponível"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Visa Airport Companion"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_guest_policy",
+      "label": "Acompanhantes em sala VIP",
+      "value": "0 acompanhante(s)"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_visits",
+      "label": "Acessos a sala VIP",
+      "value": "4 por ano"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_detail",
+      "label": "Regra de pontuação",
+      "value": "2,7 pontos por dólar gasto"
+    },
+    {
+      "category": "rewards",
+      "details": "(Não há)",
+      "key": "welcome_bonus",
+      "label": "Bônus de adesão",
+      "value": "Livelo"
+    },
+    {
+      "category": "rewards",
+      "details": "(Não há)",
+      "key": "welcome_bonus",
+      "label": "Bônus de adesão",
+      "value": "Fidelidade Banescard"
+    },
+    {
+      "category": "travel",
+      "details": "4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Salas VIP do Visa Airport Companion"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Livelo"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Fidelidade Banescard"
+    },
+    {
+      "category": "rewards",
+      "details": "24 meses",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "Livelo"
+    },
+    {
+      "category": "rewards",
+      "details": "24 meses",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "Fidelidade Banescard"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com benefícios",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "Primeira anuidade gratuita. Após isso, serão isentos os clientes com gastos a partir de R$12 mil por mês ou com investimento acima de R$150 mil."
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 900"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Samsung Pay, Google Pay"
+    },
+    {
+      "category": "eligibility",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "free_additional_cards",
+      "label": "Adicionais gratuitos",
+      "value": "5"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 900,
+    "lounge_visits_per_year_hint": 4,
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": true,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:premium",
+    "travel:lounge",
+    "rewards:points_or_miles"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "trusted_catalog",
+        "url": "https://banescard.com.br/?utm_medium=site"
+      },
+      {
+        "label": "Evidência primária",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/banescard-visa-infinite/"
+      }
+    ]
+  }
+}

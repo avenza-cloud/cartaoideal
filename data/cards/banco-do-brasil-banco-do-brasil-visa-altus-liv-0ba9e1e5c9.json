@@ -1,0 +1,266 @@
+{
+  "card_stable_id": "banco-do-brasil-banco-do-brasil-visa-altus-liv-0ba9e1e5c9",
+  "display_name": "Banco do Brasil Visa Altus Liv",
+  "issuer_raw": "Banco do Brasil",
+  "issuer_id": "banco-do-brasil",
+  "network_primary": "Visa",
+  "variant_band": "unknown",
+  "market_segment_guess": "ultra_premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_aggregator",
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/bb-visa-altus-liv/",
+  "application_url": "unknown",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/bb-visa-altus-liv/",
+  "source_label": "Passageiro de Primeira",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://passageirodeprimeira.com/cartao-de-credito/bb-visa-altus-liv/",
+  "ranking_position": 9,
+  "ranking_score": 317.4,
+  "media": {
+    "alt_text": "Banco do Brasil Visa Altus Liv",
+    "card_art_url": "/card-images/banco-do-brasil-banco-do-brasil-visa-altus-liv.png",
+    "source_url": "https://passageirodeprimeira.com/cartao-de-credito/bb-visa-altus-liv/"
+  },
+  "reward_return": {
+    "earning_summary": "Até 4,0 pontos por dólar gasto",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": true,
+    "guest_policy": "12 acompanhante(s)",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "programs": [
+      "LoungeKey",
+      "Visa Airport Companion"
+    ],
+    "summary": "Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano",
+    "unlimited": true
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "unknown",
+    "requires_bank_account_claim": true,
+    "source_status": "not_structured"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "investment",
+      "description": "Investimento mínimo",
+      "full_waiver": true,
+      "raw_text": "50% de isenção da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 15.000,00 ou 100% de isenção com gastos acima de R$ 25.000,00 ou R$ 2 milhões de investimentos",
+      "threshold_brl": 2000000
+    }
+  ],
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista: Sim"
+    ],
+    "fees": [
+      "Anuidade: R$ 3.600",
+      "Adicionais com benefícios: Sim",
+      "Isenção da anuidade: 50% de isenção da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 15.000,00 ou 100% de isenção com gastos acima de R$ 25.000,00 ou R$ 2 milhões de investimentos",
+      "Anuidade: R$ 3.600",
+      "Adicionais gratuitos: 7"
+    ],
+    "lifestyle": [
+      "Carteira digital: Apple Pay, Samsung Pay, Google Pay"
+    ],
+    "rewards": [
+      "Pontuação: Até 4,0 pontos por dólar gasto",
+      "Bônus de adesão: Livelo - (Não há)",
+      "Bônus de adesão: Dotz - (Não há)",
+      "Programa de fidelidade: Livelo",
+      "Programa de fidelidade: Dotz",
+      "Validade dos pontos: Livelo - Não expiram",
+      "Validade dos pontos: Dotz - Não expiram"
+    ],
+    "travel": [
+      "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
+      "Programa de sala VIP: LoungeKey",
+      "Programa de sala VIP: Visa Airport Companion",
+      "Acompanhantes em sala VIP: 12 acompanhante(s)",
+      "Acessos a sala VIP: Ilimitados",
+      "Salas VIP: Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano",
+      "Salas VIP: Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 3.600"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "Até 4,0 pontos por dólar gasto"
+    },
+    {
+      "category": "travel",
+      "details": "Gratuidade indicada pela fonte",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Acesso disponível"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "LoungeKey"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Visa Airport Companion"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_guest_policy",
+      "label": "Acompanhantes em sala VIP",
+      "value": "12 acompanhante(s)"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_visits",
+      "label": "Acessos a sala VIP",
+      "value": "Ilimitados"
+    },
+    {
+      "category": "rewards",
+      "details": "(Não há)",
+      "key": "welcome_bonus",
+      "label": "Bônus de adesão",
+      "value": "Livelo"
+    },
+    {
+      "category": "rewards",
+      "details": "(Não há)",
+      "key": "welcome_bonus",
+      "label": "Bônus de adesão",
+      "value": "Dotz"
+    },
+    {
+      "category": "travel",
+      "details": "Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Salas VIP do LoungeKey"
+    },
+    {
+      "category": "travel",
+      "details": "Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Salas VIP do Visa Airport Companion"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Livelo"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Dotz"
+    },
+    {
+      "category": "rewards",
+      "details": "Não expiram",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "Livelo"
+    },
+    {
+      "category": "rewards",
+      "details": "Não expiram",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "Dotz"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com benefícios",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "50% de isenção da parcela mensal da anuidade cobrada no mês para gastos acima de R$ 15.000,00 ou 100% de isenção com gastos acima de R$ 25.000,00 ou R$ 2 milhões de investimentos"
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 3.600"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Apple Pay, Samsung Pay, Google Pay"
+    },
+    {
+      "category": "eligibility",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "free_additional_cards",
+      "label": "Adicionais gratuitos",
+      "value": "7"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 3600,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": true,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": true,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:ultra_premium",
+    "travel:lounge",
+    "rewards:points_or_miles"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Passageiro de Primeira",
+        "tier": "trusted_catalog",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/bb-visa-altus-liv/"
+      }
+    ],
+    "verification_note": "Segmento revisado manualmente: Altus Liv é produto topo de linha do Banco do Brasil, com anuidade alta e lounge ilimitado."
+  }
+}

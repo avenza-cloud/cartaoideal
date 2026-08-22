@@ -1,0 +1,176 @@
+{
+  "card_stable_id": "itau-extra-gold-itau-36b6c5b20a",
+  "display_name": "Extra Gold Itaú",
+  "issuer_raw": "Itaú",
+  "issuer_id": "itau",
+  "network_primary": "Visa",
+  "variant_band": "Gold",
+  "market_segment_guess": "upper_mass",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_aggregator",
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/extra-itaucard-gold-visa/",
+  "application_url": "https://www.itau.com.br/cartoes/beneficios/programa-pontos-extra-itaucard?utm_medium=site",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/extra-itaucard-gold-visa/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://www.itau.com.br/cartoes/beneficios/programa-pontos-extra-itaucard?utm_medium=site",
+  "ranking_position": 12,
+  "ranking_score": 77.6,
+  "media": {
+    "alt_text": "Extra Gold Itaú",
+    "card_art_url": "unknown",
+    "source_url": "https://passageirodeprimeira.com/cartao-de-credito/extra-itaucard-gold-visa/"
+  },
+  "reward_return": {
+    "earning_summary": "1,5 ponto por R$100 geral; 3 pontos por R$100 em Extra/Pão de Açúcar",
+    "has_cashlike_return": true,
+    "subtypes": [
+      "store_points_cashback"
+    ]
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "summary": "unknown",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "unknown",
+    "requires_bank_account_claim": false,
+    "source_status": "not_structured"
+  },
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista: Não"
+    ],
+    "fees": [
+      "Anuidade: R$ 405",
+      "Adicionais com benefícios: Sim",
+      "Isenção da anuidade: Zere sua parcela de anuidade do mês comprando no mínimo R$30,00 em qualquer loja física do Extra e Pão de Açúcar",
+      "Anuidade: R$ 405",
+      "Adicionais gratuitos: 0"
+    ],
+    "lifestyle": [
+      "Carteira digital: Apple Pay, Samsung Pay, Google Pay"
+    ],
+    "rewards": [
+      "Retorno financeiro: cashback",
+      "Pontos/cashback geral: 1,5 ponto por R$100 em outros estabelecimentos - Equivalente a 1,5% do valor da compra; resgate em cashback Extra/Pão de Açúcar",
+      "Extra e Pão de Açúcar: 3 pontos por R$100 em lojas Extra e Pão de Açúcar - Categoria/parceiro específico, equivalente a 3,0% do valor da compra; não aplicado como retorno geral do cartão"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 405"
+    },
+    {
+      "category": "rewards",
+      "key": "financial_return",
+      "label": "Retorno financeiro",
+      "value": "cashback"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com benefícios",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "Zere sua parcela de anuidade do mês comprando no mínimo R$30,00 em qualquer loja física do Extra e Pão de Açúcar"
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 405"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Apple Pay, Samsung Pay, Google Pay"
+    },
+    {
+      "category": "eligibility",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Não"
+    },
+    {
+      "category": "fees",
+      "key": "free_additional_cards",
+      "label": "Adicionais gratuitos",
+      "value": "0"
+    },
+    {
+      "category": "rewards",
+      "details": "Equivalente a 1,5% do valor da compra; resgate em cashback Extra/Pão de Açúcar",
+      "key": "earning_rate",
+      "label": "Pontos/cashback geral",
+      "value": "1,5 ponto por R$100 em outros estabelecimentos"
+    },
+    {
+      "category": "rewards",
+      "details": "Categoria/parceiro específico, equivalente a 3,0% do valor da compra; não aplicado como retorno geral do cartão",
+      "key": "earning_detail",
+      "label": "Extra e Pão de Açúcar",
+      "value": "3 pontos por R$100 em lojas Extra e Pão de Açúcar"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 405,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": true,
+    "earn_cashback": true,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": true
+  },
+  "labels_for_filtering": [
+    "segment:upper_mass",
+    "rewards:cashback",
+    "rewards:return_cashlike"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "trusted_catalog",
+        "url": "https://www.itau.com.br/cartoes/beneficios/programa-pontos-extra-itaucard?utm_medium=site"
+      },
+      {
+        "label": "Evidência primária",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/extra-itaucard-gold-visa/"
+      }
+    ],
+    "verification_note": "Manual review 2026-05-06: official Extra Itaú program page states points are earned per R$100, not per dollar: 1.5 point/R$100 outside Extra/Pão and 3 points/R$100 at Extra/Pão, redeemable as cashback."
+  }
+}

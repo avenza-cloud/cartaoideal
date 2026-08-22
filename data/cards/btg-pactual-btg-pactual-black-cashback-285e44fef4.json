@@ -1,0 +1,243 @@
+{
+  "card_stable_id": "btg-pactual-btg-pactual-black-cashback-285e44fef4",
+  "display_name": "BTG Pactual Black Cashback",
+  "issuer_raw": "BTG Pactual",
+  "issuer_id": "btg-pactual",
+  "network_primary": "Mastercard",
+  "variant_band": "Black",
+  "market_segment_guess": "premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_aggregator",
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/btg-opcao-black/",
+  "application_url": "https://www.btgmais.com/cartao-de-credito/",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/btg-opcao-black/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://www.btgmais.com/cartao-de-credito/",
+  "ranking_position": 15,
+  "ranking_score": 68.92,
+  "media": {
+    "alt_text": "BTG Pactual Black Cashback",
+    "card_art_url": "/card-images/btg-pactual-btg-pactual-black-cashback.png",
+    "source_url": "https://passageirodeprimeira.com/cartao-de-credito/btg-opcao-black/"
+  },
+  "reward_return": {
+    "earning_summary": "1,0% de cashback",
+    "has_cashlike_return": true,
+    "subtypes": [
+      "cashback"
+    ]
+  },
+  "lounge_access": {
+    "annual_visits": 4,
+    "complimentary_access_confirmed": true,
+    "guest_policy": "0 acompanhante(s)",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "programs": [
+      "Mastercard Airport Experience",
+      "Sala VIP Mastercard Black"
+    ],
+    "summary": "Salas VIP do Mastercard Airport Experience - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano",
+    "unlimited": true
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "unknown",
+    "requires_bank_account_claim": true,
+    "source_status": "not_structured"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "monthly_spend",
+      "description": "Gasto mensal para isenção total",
+      "full_waiver": true,
+      "period": "monthly",
+      "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade",
+      "threshold_brl": 9000
+    },
+    {
+      "category": "investment",
+      "description": "Investimento para isenção total",
+      "full_waiver": true,
+      "raw_text": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade",
+      "threshold_brl": 90000
+    }
+  ],
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista: Sim"
+    ],
+    "fees": [
+      "Anuidade: R$ 1.080",
+      "Adicionais com benefícios: Sim",
+      "Isenção da anuidade: A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade",
+      "Anuidade: R$ 1.080",
+      "Adicionais gratuitos: 3"
+    ],
+    "lifestyle": [
+      "Carteira digital: Apple Pay, Google Pay, Samsung Pay, Garmin Pay"
+    ],
+    "rewards": [
+      "Pontuação: 1,0% de cashback",
+      "Retorno financeiro: cashback"
+    ],
+    "travel": [
+      "Sala VIP: Acesso disponível - Gratuidade indicada pela fonte",
+      "Programa de sala VIP: Mastercard Airport Experience",
+      "Programa de sala VIP: Sala VIP Mastercard Black",
+      "Acompanhantes em sala VIP: 0 acompanhante(s)",
+      "Acessos a sala VIP: Ilimitados",
+      "Salas VIP: Salas VIP do Mastercard Airport Experience - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano",
+      "Salas VIP: Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 1.080"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "1,0% de cashback"
+    },
+    {
+      "category": "rewards",
+      "key": "financial_return",
+      "label": "Retorno financeiro",
+      "value": "cashback"
+    },
+    {
+      "category": "travel",
+      "details": "Gratuidade indicada pela fonte",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Acesso disponível"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Mastercard Airport Experience"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_program",
+      "label": "Programa de sala VIP",
+      "value": "Sala VIP Mastercard Black"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_guest_policy",
+      "label": "Acompanhantes em sala VIP",
+      "value": "0 acompanhante(s)"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_visits",
+      "label": "Acessos a sala VIP",
+      "value": "Ilimitados"
+    },
+    {
+      "category": "travel",
+      "details": "4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Salas VIP do Mastercard Airport Experience"
+    },
+    {
+      "category": "travel",
+      "details": "Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano",
+      "key": "salas_vip",
+      "label": "Salas VIP",
+      "value": "Sala VIP Mastercard Black"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com benefícios",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "A cada R$ 1.000,00 gastos no crédito ou R$ 10.000 investidos no BTG Pactual, você ganha R$ 10,00 de desconto no valor total do cartão. O desconto sempre será limitado ao valor máximo de mensalidade"
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 1.080"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Apple Pay, Google Pay, Samsung Pay, Garmin Pay"
+    },
+    {
+      "category": "eligibility",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "free_additional_cards",
+      "label": "Adicionais gratuitos",
+      "value": "3"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 1080,
+    "lounge_visits_per_year_hint": 4,
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": true,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": true,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": true,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": true
+  },
+  "labels_for_filtering": [
+    "segment:premium",
+    "travel:lounge",
+    "rewards:cashback",
+    "rewards:return_cashlike"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "trusted_catalog",
+        "url": "https://www.btgmais.com/cartao-de-credito/"
+      },
+      {
+        "label": "Evidência primária",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/btg-opcao-black/"
+      }
+    ]
+  }
+}
