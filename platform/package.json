@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "data:build": "node scripts/build-cards-artifact.mjs",
+    "predev": "node scripts/build-cards-artifact.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/build-cards-artifact.mjs",
     "build": "next build",
     "start": "next start",
+    "pretest:unit": "node scripts/build-cards-artifact.mjs",
     "test:unit": "vitest run",
     "test:unit:watch": "vitest",
     "audit:card-sources": "node scripts/audit-card-sources.mjs",

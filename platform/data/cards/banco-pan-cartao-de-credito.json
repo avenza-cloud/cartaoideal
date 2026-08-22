@@ -1,0 +1,163 @@
+{
+  "card_stable_id": "banco-pan-cartao-de-credito",
+  "display_name": "Cartão de Crédito PAN",
+  "issuer_raw": "Banco PAN",
+  "issuer_id": "banco-pan",
+  "network_primary": "Mastercard",
+  "variant_band": "Internacional",
+  "market_segment_guess": "mass_or_general",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_partial",
+  "primary_evidence_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+  "application_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+  "source_label": "Página oficial do emissor",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "Cartão de Crédito PAN",
+    "card_art_url": "unknown",
+    "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/"
+  },
+  "reward_return": {
+    "earning_summary": "Cashback de 0,75% por real gasto nas transações elegíveis, conforme página oficial capturada.",
+    "has_cashlike_return": true,
+    "subtypes": [
+      "cashback"
+    ]
+  },
+  "lounge_access": {
+    "annual_visits": "unknown",
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "programs": [],
+    "summary": "Não identificado na captura oficial inicial.",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Solicitação pelo app; sujeito à análise de crédito.",
+    "requires_bank_account_claim": "unknown",
+    "source_status": "official_partial"
+  },
+  "fee_waiver_rules": [],
+  "benefit_groups": {
+    "fees": [
+      "Anuidade: Verificar tarifas vigentes no app/site do Banco PAN"
+    ],
+    "issuer_specific": [
+      "Cartão virtual",
+      "Ajuste de limite no app",
+      "Mastercard Surpreenda",
+      "Cashback em transações elegíveis"
+    ],
+    "rewards": [
+      "Cashback de 0,75% por real gasto nas transações elegíveis, conforme página oficial capturada."
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "source_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app.",
+      "value": "Verificar tarifas vigentes no app/site do Banco PAN"
+    },
+    {
+      "category": "eligibility",
+      "key": "requirements",
+      "label": "Elegibilidade",
+      "source_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app.",
+      "value": "Solicitação pelo app; sujeito à análise de crédito."
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": "unknown",
+    "lounge_visits_per_year_hint": 0,
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": true,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": true
+  },
+  "labels_for_filtering": [],
+  "application_availability": {
+    "channels": [
+      "official_site",
+      "app"
+    ],
+    "notes": "Captura inicial a partir da página oficial."
+  },
+  "source_claims": [
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.9,
+      "dynamic": true,
+      "field_path": "fees.annual",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+      "value_text": "Verificar tarifas vigentes no app/site do Banco PAN"
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.82,
+      "dynamic": true,
+      "field_path": "eligibility.requirements_text",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+      "value_text": "Solicitação pelo app; sujeito à análise de crédito."
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.84,
+      "dynamic": true,
+      "field_path": "rewards",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Cashback de 0,75% por real gasto, nas transações elegíveis; solicite pelo app.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/",
+      "value_text": "Cashback de 0,75% por real gasto nas transações elegíveis, conforme página oficial capturada."
+    }
+  ],
+  "store_benefits": [],
+  "secured_limit_options": [],
+  "cashback_details": {
+    "conditions_text": "Transações elegíveis; verificar regulamento vigente no Banco PAN.",
+    "destination": "unknown",
+    "rate_text": "0,75% por real gasto nas transações elegíveis"
+  },
+  "provenance": {
+    "last_verified_date": "2026-05-09",
+    "sources": [
+      {
+        "label": "Página oficial do emissor",
+        "tier": "official_issuer",
+        "url": "https://www.bancopan.com.br/produtos/cartao-de-credito/"
+      }
+    ]
+  }
+}

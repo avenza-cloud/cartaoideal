@@ -1,0 +1,215 @@
+{
+  "card_stable_id": "pagbank-cartao-de-credito",
+  "display_name": "Cartão de Crédito PagBank",
+  "issuer_raw": "PagBank",
+  "issuer_id": "pagbank",
+  "network_primary": "Visa",
+  "network_alternatives": [
+    "Mastercard"
+  ],
+  "variant_band": "Internacional",
+  "market_segment_guess": "mass_or_general",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_partial",
+  "primary_evidence_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+  "application_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+  "source_label": "Página oficial do emissor",
+  "source_tier": "official_issuer",
+  "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "Cartão de Crédito PagBank",
+    "card_art_url": "unknown",
+    "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito"
+  },
+  "reward_return": {
+    "earning_summary": "Não identificado na captura oficial inicial.",
+    "has_cashlike_return": false,
+    "subtypes": []
+  },
+  "lounge_access": {
+    "annual_visits": "unknown",
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "programs": [],
+    "summary": "Não identificado na captura oficial inicial.",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Sem análise de crédito para limite garantido; pode reservar saldo da conta ou investir em CDB para compor limite.",
+    "requires_bank_account_claim": "unknown",
+    "source_status": "official_partial"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "general",
+      "description": "Cartão sem anuidade conforme página oficial do PagBank.",
+      "full_waiver": true,
+      "raw_text": "Cartão sem anuidade."
+    }
+  ],
+  "benefit_groups": {
+    "fees": [
+      "Anuidade: Sem anuidade"
+    ],
+    "issuer_specific": [
+      "Cartão sem anuidade",
+      "Limite garantido por saldo reservado ou CDB",
+      "Uso nacional e internacional"
+    ],
+    "rewards": [
+      "Não identificado na captura oficial inicial."
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "Grátis"
+    },
+    {
+      "category": "eligibility",
+      "key": "secured_limit",
+      "label": "Limite",
+      "value": "Garantido por saldo ou CDB (a partir de R$ 300)"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 0,
+    "lounge_visits_per_year_hint": 0,
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": 0,
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "sem-anuidade"
+  ],
+  "application_availability": {
+    "channels": [
+      "official_site"
+    ],
+    "notes": "Captura inicial a partir da página oficial."
+  },
+  "source_claims": [
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.9,
+      "dynamic": true,
+      "field_path": "fees.annual",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Cartão sem anuidade; reserve saldo da conta ou invista a partir de R$ 300 em CDBs para compor limite.",
+      "source_type": "official_issuer",
+      "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+      "value_text": "Sem anuidade"
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.82,
+      "dynamic": true,
+      "field_path": "eligibility.requirements_text",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Cartão sem anuidade; reserve saldo da conta ou invista a partir de R$ 300 em CDBs para compor limite.",
+      "source_type": "official_issuer",
+      "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+      "value_text": "Sem análise de crédito para limite garantido; pode reservar saldo da conta ou investir em CDB para compor limite."
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.84,
+      "dynamic": true,
+      "field_path": "rewards",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Cartão sem anuidade; reserve saldo da conta ou invista a partir de R$ 300 em CDBs para compor limite.",
+      "source_type": "official_issuer",
+      "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+      "value_text": "Não identificado na captura oficial inicial."
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.7999999999999999,
+      "dynamic": true,
+      "field_path": "fees.annual.raw_text",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "dir cartão Compras internacionais O Cartão de Crédito PagBank funciona no Brasil e no exterior. Para PF e PJ Cartão de crédito para Pessoas Físicas e Pessoas Jurídicas. Cartão sem anuidade Use sem pagar taxas adicionais. Limite na hora Invista ou reserve do saldo e tenha o valor em limite liberado na hora. Parcele em até 24x Rápido e fácil, tudo pelo app. Use seu Cartão PagBank nas principais car",
+      "source_type": "official_issuer",
+      "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+      "value_text": "anuidade Use sem pagar taxas adicionais"
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.84,
+      "dynamic": true,
+      "field_path": "fees.waiver_and_discounts.policy_text",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": ". Pedir cartão Compras internacionais O Cartão de Crédito PagBank funciona no Brasil e no exterior. Para PF e PJ Cartão de crédito para Pessoas Físicas e Pessoas Jurídicas. Cartão sem anuidade Use sem pagar taxas adicionais. Limite na hora Invista ou reserve do saldo e tenha o valor em limite liberado na hora. Parcele em até 24x Rápido e fácil, tudo pelo app. Use seu Cartão PagBank nas principais car",
+      "source_type": "official_issuer",
+      "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+      "value_text": "sem anuidade Use sem pagar taxas adicionais"
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.76,
+      "dynamic": true,
+      "field_path": "eligibility.requirements_text",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "mentos Internacionais Seja um Parceiro PagBank Para Você Voltar para o menu Para Você Conta Digital PagBank Conta PJ PagBank Para Você Conta PJ PagBank Conta PJ Domicílio Bancário Investimentos Para Você Investimentos Renda Fixa CDB PagBank Fundos de Investimento Tesouro Direto Renda Variável Custos Operacionais Poupar Automático Cofrinho Ver todos os investimentos Cartões PagBank Para Você Cartões PagBank Cartão de Crédito Grátis Cartão Pré Pago Cartão de Débito Ver todos os cartões Pix Seguros e PagBank Saúde Para Você Segur",
+      "source_type": "official_issuer",
+      "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+      "value_text": "Investimentos Para Você Investimentos Renda Fixa CDB PagBank Fundos de Investimento Tesouro Direto Renda Variável Custos Operacionais Poupar Automático Cofrinho Ver todos o"
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.7,
+      "dynamic": true,
+      "field_path": "benefits.official_highlights",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "rninha ProFit Moderninha Smart 2 Moderninha Pro 2 Moderninha Plus 2 Minizinha Chip 3 Minizinha NFC 2 Ver todas as maquininhas Compare as maquininhas Taxas e Tarifas Taxas e Planos Vantagens das Maquininhas Para Seu Negócio Vantagens das Maquininhas Recarga de Celular Compartilhamento Transferência Poupar Automático Antecipação de Vendas Pré-Autorização de Pagamentos Conta PJ PagBank Venda Online Para Seu Negócio Venda Online Checkout Link de Pagamento Pagar com PagBank Envio Fácil Gestão de Cobrança Ver todas as soluções Venda Online Via Integ",
+      "source_type": "official_issuer",
+      "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito",
+      "value_text": "Vantagens das Maquininhas Para Seu Negócio Vantagens das Maquininhas Recarga de Celular Compartilhamento Transferência Poupar Automático Antecipação de Vendas Pré-Autorização de Pagamentos"
+    }
+  ],
+  "store_benefits": [],
+  "secured_limit_options": [
+    {
+      "backing_asset": "cdb",
+      "description": "Reserva de saldo da conta ou investimento em CDB pode compor o limite do cartão.",
+      "product_name": "Limite garantido PagBank"
+    }
+  ],
+  "cashback_details": null,
+  "provenance": {
+    "last_verified_date": "2026-05-09",
+    "sources": [
+      {
+        "label": "Página oficial do emissor",
+        "tier": "official_issuer",
+        "url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito"
+      }
+    ]
+  }
+}
