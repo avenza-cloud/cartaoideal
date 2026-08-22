@@ -4,10 +4,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const platformRoot = path.resolve(__dirname, "..");
-const repoRoot = path.resolve(platformRoot, "..");
-const facetsPath = path.join(platformRoot, "data/generated/cards.json");
-const outputDir = path.join(platformRoot, "audit-reports/card-sources");
+const repoRoot = path.resolve(__dirname, "..");
+const facetsPath = path.join(repoRoot, "web/data/generated/cards.json");
+const outputDir = path.join(repoRoot, "audit-reports/card-sources");
 
 // Contact URL comes from env so forks identify themselves, not this repo.
 const USER_AGENT = process.env.AUDIT_CONTACT_URL
@@ -118,7 +117,7 @@ function parseArgs(argv) {
     else if (arg.startsWith("--timeout")) parsed.timeoutMs = Number(readValue());
     else if (arg === "--help" || arg === "-h") {
       console.log(`Usage:
-  node platform/scripts/audit-card-sources.mjs [--search c6] [--card stable_id] [--limit 20]
+  node scripts/audit-card-sources.mjs [--search c6] [--card stable_id] [--limit 20]
 
 Options:
   --search <text>       Audit cards whose id/name/issuer match text.
@@ -128,7 +127,7 @@ Options:
   --timeout <ms>        Per-request timeout. Default: 15000.
   --verbose             Log cards without issues too.
 
-Reports are written to platform/audit-reports/card-sources/ and ignored by git.`);
+Reports are written to audit-reports/card-sources/ and ignored by git.`);
       process.exit(0);
     }
   }

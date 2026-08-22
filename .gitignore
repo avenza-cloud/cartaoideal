@@ -1,5 +1,6 @@
 /.pnpm-store/
-/platform/audit-reports/
+/audit-reports/
+.DS_Store
 .playwright-report/
 .playwright-mcp/
 

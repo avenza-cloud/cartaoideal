@@ -16,7 +16,7 @@ commercially, provided you give appropriate credit. Suggested attribution:
 
 EXCLUSIONS — this license does NOT cover:
 
-1. Card artwork under `platform/public/card-images/`. Card art is the
+1. Card artwork under `web/public/card-images/`. Card art is the
    property of the respective issuers and is used nominatively to identify
    the products; each file's origin is recorded in `media.art_provenance`.
 2. Trademarks, product names and logos of card issuers and networks, which

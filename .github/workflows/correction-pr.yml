@@ -74,14 +74,14 @@ jobs:
               core.setFailed("cardId has an invalid format.");
               return;
             }
-            if (!fs.existsSync(`platform/data/cards/${payload.cardId}.json`)) {
+            if (!fs.existsSync(`data/cards/${payload.cardId}.json`)) {
               core.setFailed(`Card not found in catalog: ${payload.cardId}`);
               return;
             }
 
             fs.writeFileSync("/tmp/correction-payload.json", JSON.stringify(payload));
             const result = execFileSync("node", [
-              "platform/scripts/apply-correction.mjs",
+              "scripts/apply-correction.mjs",
               "--file", "/tmp/correction-payload.json",
               "--issue", String(issue.number),
             ]).toString().trim();
