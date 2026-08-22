@@ -50,7 +50,7 @@ function parseBrlNumber(text) {
 
 // field label (pt-BR, from lib/correction-fields.ts) → mechanical target paths
 const NUMERIC_TARGETS = {
-  "Anuidade": [["facets_numeric_or_special", "annual_fee_brl_best_estimate"]],
+  Anuidade: [["facets_numeric_or_special", "annual_fee_brl_best_estimate"]],
   "Renda mínima": [
     ["eligibility", "minimum_income_brl_best_estimate"],
     ["facets_numeric_or_special", "minimum_income_brl_best_estimate"],

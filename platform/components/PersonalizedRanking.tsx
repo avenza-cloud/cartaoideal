@@ -64,7 +64,7 @@ function CardRow({
   rank,
   id,
   nome,
-  emissor,
+  emissor: _emissor,
   anuidade,
   cardArtUrl,
   altText,
@@ -208,9 +208,7 @@ function CurrentCardSummary({
       href={detailHref}
       className="mb-3 grid grid-cols-[28px_56px_minmax(0,1fr)] items-center gap-3 rounded-2xl border bg-background/45 p-3 transition-colors hover:bg-muted/35 sm:grid-cols-[28px_64px_minmax(0,1fr)_auto]"
     >
-      <span className="font-mono text-[11px] text-muted-foreground">
-        {rank ? `#${rank}` : "—"}
-      </span>
+      <span className="font-mono text-[11px] text-muted-foreground">{rank ? `#${rank}` : "—"}</span>
 
       <div className="flex h-12 items-center justify-center rounded-xl border bg-zinc-950">
         {artSrc ? (
@@ -284,7 +282,7 @@ export function PersonalizedRanking() {
   const [topCards, setTopCards] = useState<TopCard[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [retryToken, setRetryToken] = useState(0);
+  const [_retryToken, setRetryToken] = useState(0);
 
   useEffect(() => {
     setError(false);
@@ -311,7 +309,7 @@ export function PersonalizedRanking() {
       })
       .catch(() => setError(true))
       .finally(() => setLoading(false));
-  }, [profile, onboardingDone, retryToken]);
+  }, [profile, onboardingDone]);
 
   if (!onboardingDone) return null;
 

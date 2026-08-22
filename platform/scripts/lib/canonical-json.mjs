@@ -59,7 +59,9 @@ function sortValue(value) {
 
 export function canonicalizeCard(card) {
   const known = TOP_LEVEL_KEY_ORDER.filter((key) => key in card);
-  const unknown = Object.keys(card).filter((key) => !TOP_LEVEL_KEY_ORDER.includes(key)).sort();
+  const unknown = Object.keys(card)
+    .filter((key) => !TOP_LEVEL_KEY_ORDER.includes(key))
+    .sort();
   const out = {};
   for (const key of [...known, ...unknown]) out[key] = sortValue(card[key]);
   return out;

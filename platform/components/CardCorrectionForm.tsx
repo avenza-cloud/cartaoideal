@@ -115,8 +115,11 @@ export function CardCorrectionForm({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-muted-foreground">Campo</label>
+            <label htmlFor="correction-field" className="text-xs font-medium text-muted-foreground">
+              Campo
+            </label>
             <select
+              id="correction-field"
               value={field}
               onChange={(event) => setField(event.target.value)}
               className="h-9 w-full rounded-lg border border-input bg-background px-2.5 text-sm outline-none focus:ring-1 focus:ring-ring"
@@ -130,8 +133,11 @@ export function CardCorrectionForm({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-muted-foreground">Valor correto</label>
+            <label htmlFor="correction-value" className="text-xs font-medium text-muted-foreground">
+              Valor correto
+            </label>
             <Input
+              id="correction-value"
               required
               value={suggestedValue}
               onChange={(event) => setSuggestedValue(event.target.value)}
@@ -140,8 +146,14 @@ export function CardCorrectionForm({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-muted-foreground">Fonte</label>
+            <label
+              htmlFor="correction-source"
+              className="text-xs font-medium text-muted-foreground"
+            >
+              Fonte
+            </label>
             <Input
+              id="correction-source"
               required
               type="url"
               value={correctionSourceUrl}
@@ -151,8 +163,11 @@ export function CardCorrectionForm({
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-muted-foreground">Notas</label>
+            <label htmlFor="correction-notes" className="text-xs font-medium text-muted-foreground">
+              Notas
+            </label>
             <Textarea
+              id="correction-notes"
               value={notes}
               onChange={(event) => setNotes(event.target.value)}
               placeholder="O que mudou? Onde a fonte confirma?"

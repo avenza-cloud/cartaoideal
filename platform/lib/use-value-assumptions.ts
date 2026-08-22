@@ -6,9 +6,7 @@ import { parseUsdBrl } from "@/lib/usd-brl";
 import type { CardValueAssumptions } from "@/types/cards";
 
 export function useValueAssumptions(): CardValueAssumptions {
-  const [assumptions, setAssumptions] = useState<CardValueAssumptions>(
-    DEFAULT_VALUE_ASSUMPTIONS
-  );
+  const [assumptions, setAssumptions] = useState<CardValueAssumptions>(DEFAULT_VALUE_ASSUMPTIONS);
 
   useEffect(() => {
     let cancelled = false;

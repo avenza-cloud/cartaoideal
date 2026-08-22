@@ -39,9 +39,7 @@ function projectionSpendBase(currentIncome: number, currentSpend: number) {
 
   const correctedSpend = currentSpend / 10;
   const looksLikeLegacyExtraZero =
-    currentSpend > currentIncome * 2 &&
-    correctedSpend > 0 &&
-    correctedSpend <= currentIncome;
+    currentSpend > currentIncome * 2 && correctedSpend > 0 && correctedSpend <= currentIncome;
 
   return looksLikeLegacyExtraZero ? correctedSpend : currentSpend;
 }
@@ -76,9 +74,7 @@ function CardRow({
       aria-label={labelForA11y}
       className={cn(
         "block border border-border/70 bg-background/40 text-left transition-colors hover:bg-muted/30",
-        comfortable
-          ? "rounded-xl px-2.5 py-2"
-          : "rounded-lg px-2 py-1.5"
+        comfortable ? "rounded-xl px-2.5 py-2" : "rounded-lg px-2 py-1.5"
       )}
     >
       <p
@@ -270,7 +266,9 @@ export function CardProgressionPath() {
       <div className="space-y-2">
         {currentReco ? (
           <div>
-            <p className="mb-0.5 text-[9px] uppercase tracking-wide text-muted-foreground">Seu cartão</p>
+            <p className="mb-0.5 text-[9px] uppercase tracking-wide text-muted-foreground">
+              Seu cartão
+            </p>
             <CardRow
               scored={currentReco}
               caption="Seu cartão"
@@ -294,7 +292,9 @@ export function CardProgressionPath() {
           </p>
         )}
         <div>
-          <p className="mb-0.5 text-[9px] uppercase tracking-wide text-muted-foreground">Melhor recomendação</p>
+          <p className="mb-0.5 text-[9px] uppercase tracking-wide text-muted-foreground">
+            Melhor recomendação
+          </p>
           <CardRow
             scored={bestReco}
             caption="Melhor recomendação"
@@ -323,15 +323,27 @@ export function CardProgressionPath() {
 
           <div className="mt-2 flex flex-wrap gap-x-3 gap-y-0.5 border-t border-border/50 pt-2 text-[10px] leading-snug text-muted-foreground">
             <span>
-              Renda <span className="font-mono text-foreground/80">R${profile.monthlySalaryBrl.toLocaleString("pt-BR")}/mês</span>
+              Renda{" "}
+              <span className="font-mono text-foreground/80">
+                R${profile.monthlySalaryBrl.toLocaleString("pt-BR")}/mês
+              </span>
             </span>
             <span>
-              Gasto <span className="font-mono text-foreground/80">R${profile.avgMonthlySpendBrl.toLocaleString("pt-BR")}/mês</span>
+              Gasto{" "}
+              <span className="font-mono text-foreground/80">
+                R${profile.avgMonthlySpendBrl.toLocaleString("pt-BR")}/mês
+              </span>
             </span>
             <span>
-              Investido <span className="font-mono text-foreground/80">{shortMoney(profile.avgInvestedBrl)}</span>
+              Investido{" "}
+              <span className="font-mono text-foreground/80">
+                {shortMoney(profile.avgInvestedBrl)}
+              </span>
             </span>
-            <Link href="/perfil" className="ml-auto text-foreground/70 underline-offset-2 hover:underline">
+            <Link
+              href="/perfil"
+              className="ml-auto text-foreground/70 underline-offset-2 hover:underline"
+            >
               Editar
             </Link>
           </div>
@@ -344,7 +356,9 @@ export function CardProgressionPath() {
           <div className="mt-2 space-y-3">
             <div className="space-y-1.5">
               <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5">
-                <span className="text-[11px] font-medium leading-tight text-foreground">Renda / mês</span>
+                <span className="text-[11px] font-medium leading-tight text-foreground">
+                  Renda / mês
+                </span>
                 <span className="text-[10px] tabular-nums text-muted-foreground">
                   Atual{" "}
                   <span className="font-mono text-foreground/85">
@@ -353,7 +367,9 @@ export function CardProgressionPath() {
                 </span>
               </div>
               <div className="flex items-center gap-1.5 rounded-md border border-border/80 bg-background px-2 py-1.5 transition-colors focus-within:border-foreground/35 focus-within:ring-1 focus-within:ring-foreground/15">
-                <span className="w-5 shrink-0 text-[11px] font-medium tabular-nums text-muted-foreground">R$</span>
+                <span className="w-5 shrink-0 text-[11px] font-medium tabular-nums text-muted-foreground">
+                  R$
+                </span>
                 <input
                   type="text"
                   inputMode="numeric"
@@ -371,13 +387,20 @@ export function CardProgressionPath() {
 
             <div className="space-y-1.5">
               <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5">
-                <span className="text-[11px] font-medium leading-tight text-foreground">Investido</span>
+                <span className="text-[11px] font-medium leading-tight text-foreground">
+                  Investido
+                </span>
                 <span className="text-[10px] tabular-nums text-muted-foreground">
-                  Atual <span className="font-mono text-foreground/85">{shortMoney(profile.avgInvestedBrl)}</span>
+                  Atual{" "}
+                  <span className="font-mono text-foreground/85">
+                    {shortMoney(profile.avgInvestedBrl)}
+                  </span>
                 </span>
               </div>
               <div className="flex items-center gap-1.5 rounded-md border border-border/80 bg-background px-2 py-1.5 transition-colors focus-within:border-foreground/35 focus-within:ring-1 focus-within:ring-foreground/15">
-                <span className="w-5 shrink-0 text-[11px] font-medium tabular-nums text-muted-foreground">R$</span>
+                <span className="w-5 shrink-0 text-[11px] font-medium tabular-nums text-muted-foreground">
+                  R$
+                </span>
                 <input
                   type="text"
                   inputMode="numeric"
@@ -418,7 +441,9 @@ export function CardProgressionPath() {
             {!simLoading && <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />}
           </button>
           {!canSimulate && (
-            <p className="mt-1 text-center text-[8px] text-muted-foreground">Renda ou investido para simular.</p>
+            <p className="mt-1 text-center text-[8px] text-muted-foreground">
+              Renda ou investido para simular.
+            </p>
           )}
         </div>
       </div>
@@ -438,15 +463,23 @@ export function CardProgressionPath() {
               <div className="space-y-1.5">
                 {simResult.newUnlocked.map((s) => (
                   <div key={s.card.card_stable_id}>
-                    <p className="mb-px text-[8px] uppercase tracking-wide text-muted-foreground">Novo</p>
+                    <p className="mb-px text-[8px] uppercase tracking-wide text-muted-foreground">
+                      Novo
+                    </p>
                     <CardRow scored={s} caption="Novo no radar" travelFrequency={travelFrequency} />
                   </div>
                 ))}
               </div>
               {simResult.top[0] && (
                 <div className="mt-1.5 border-t border-border/50 pt-1.5">
-                  <p className="mb-px text-[8px] uppercase tracking-wide text-muted-foreground">Melhor no cenário</p>
-                  <CardRow scored={simResult.top[0]} caption="Melhor no cenário" travelFrequency={travelFrequency} />
+                  <p className="mb-px text-[8px] uppercase tracking-wide text-muted-foreground">
+                    Melhor no cenário
+                  </p>
+                  <CardRow
+                    scored={simResult.top[0]}
+                    caption="Melhor no cenário"
+                    travelFrequency={travelFrequency}
+                  />
                 </div>
               )}
             </>
@@ -455,7 +488,9 @@ export function CardProgressionPath() {
               <p className="text-[9px] leading-tight text-muted-foreground">Ranking (sem novos)</p>
               {simResult.top.slice(0, 2).map((s, i) => (
                 <div key={s.card.card_stable_id}>
-                  <p className="mb-px text-[8px] uppercase tracking-wide text-muted-foreground">{i + 1}º no cenário</p>
+                  <p className="mb-px text-[8px] uppercase tracking-wide text-muted-foreground">
+                    {i + 1}º no cenário
+                  </p>
                   <CardRow
                     scored={s}
                     caption={`${i + 1}º no cenário`}

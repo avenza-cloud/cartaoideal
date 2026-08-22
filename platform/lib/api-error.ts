@@ -22,8 +22,5 @@ const STATUS_BY_CODE: Record<ApiErrorCode, number> = {
 };
 
 export function apiError(code: ApiErrorCode, messagePtBr: string, init?: ResponseInit): Response {
-  return Response.json(
-    { error: messagePtBr, code },
-    { status: STATUS_BY_CODE[code], ...init }
-  );
+  return Response.json({ error: messagePtBr, code }, { status: STATUS_BY_CODE[code], ...init });
 }

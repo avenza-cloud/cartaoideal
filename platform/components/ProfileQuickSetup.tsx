@@ -102,23 +102,14 @@ export function ProfileQuickSetup() {
           <p className="text-[11px] font-medium text-muted-foreground">Viagens</p>
           <div className="flex gap-2">
             {TRAVEL_OPTIONS.map(({ value, label }) => (
-              <ToggleChip
-                key={value}
-                active={travel === value}
-                onClick={() => setTravel(value)}
-              >
+              <ToggleChip key={value} active={travel === value} onClick={() => setTravel(value)}>
                 {label}
               </ToggleChip>
             ))}
           </div>
         </div>
 
-        <Button
-          type="submit"
-          disabled={!salary}
-          className="gap-2"
-          size="sm"
-        >
+        <Button type="submit" disabled={!salary} className="gap-2" size="sm">
           <Sparkles className="h-3.5 w-3.5" />
           Ver meu ranking personalizado
         </Button>
@@ -139,19 +130,13 @@ function Field({
   void placeholder;
   return (
     <div className="space-y-1">
-      <label className="text-[11px] font-medium text-muted-foreground">{label}</label>
+      <span className="text-[11px] font-medium text-muted-foreground">{label}</span>
       {children}
     </div>
   );
 }
 
-function CurrencyInput({
-  value,
-  onChange,
-}: {
-  value: string;
-  onChange: (v: string) => void;
-}) {
+function CurrencyInput({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   return (
     <div className="relative">
       <span className="pointer-events-none absolute left-2.5 top-1/2 -translate-y-1/2 text-[11px] text-muted-foreground">

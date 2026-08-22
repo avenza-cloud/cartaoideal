@@ -77,7 +77,9 @@ export function ScoreBreakdownBar({
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between mb-3">
-        <span className="text-xs text-muted-foreground uppercase tracking-wider">Pontuação total</span>
+        <span className="text-xs text-muted-foreground uppercase tracking-wider">
+          Pontuação total
+        </span>
         <span className="text-lg font-bold font-mono">{Math.round(totalScore * 100)}%</span>
       </div>
       {dims.map(({ value, label }) => {

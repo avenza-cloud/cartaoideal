@@ -40,17 +40,29 @@ test.describe("chat — fee waiver investment query", () => {
       timeout: 40_000,
     });
     // Wait for streaming to finish (no more loading indicators)
-    await page.waitForFunction(
-      () => !document.querySelector('[data-testid="chat-loading"]'),
-      { timeout: 40_000 }
-    );
+    await page.waitForFunction(() => !document.querySelector('[data-testid="chat-loading"]'), {
+      timeout: 40_000,
+    });
 
     const lastMessage = page.locator('[data-testid="chat-message-assistant"]').last();
     const text = (await lastMessage.textContent()) ?? "";
 
     // Must mention at least 3 different issuers besides C6
-    const knownIssuers = ["Nubank", "Porto Bank", "BTG", "Bradesco", "Santander", "PicPay", "Banescard", "Safra", "Itaú"];
+    const knownIssuers = [
+      "Nubank",
+      "Porto Bank",
+      "BTG",
+      "Bradesco",
+      "Santander",
+      "PicPay",
+      "Banescard",
+      "Safra",
+      "Itaú",
+    ];
     const found = knownIssuers.filter((name) => text.includes(name));
-    expect(found.length, `Expected ≥3 issuers, found: ${found.join(", ")}\n\nResponse: ${text.slice(0, 500)}`).toBeGreaterThanOrEqual(3);
+    expect(
+      found.length,
+      `Expected ≥3 issuers, found: ${found.join(", ")}\n\nResponse: ${text.slice(0, 500)}`
+    ).toBeGreaterThanOrEqual(3);
   });
 });

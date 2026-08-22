@@ -25,6 +25,7 @@ export function CompareBar() {
             >
               <span className="max-w-[min(170px,52vw)] truncate text-[10px]">{item.name}</span>
               <button
+                type="button"
                 onClick={() => remove(item.id)}
                 className="text-muted-foreground hover:text-foreground"
               >
