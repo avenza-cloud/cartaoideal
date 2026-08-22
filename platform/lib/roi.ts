@@ -58,8 +58,7 @@ export function feeNote(
   });
   const feeFormatted = feeNum.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
-  if (tier === "optimal")
-    return `Anuidade = ${sharePct}% do seu gasto anual — muito acessível`;
+  if (tier === "optimal") return `Anuidade = ${sharePct}% do seu gasto anual — muito acessível`;
   if (tier === "good")
     return `Anuidade ${feeFormatted}/ano (${sharePct}% do gasto anual) — acessível para seu perfil`;
   if (tier === "consider")

@@ -3,10 +3,7 @@ import { getAffiliateDestination } from "@/lib/affiliate";
 
 export const runtime = "nodejs";
 
-export async function GET(
-  _req: Request,
-  { params }: { params: Promise<{ cardId: string }> }
-) {
+export async function GET(_req: Request, { params }: { params: Promise<{ cardId: string }> }) {
   const { cardId } = await params;
   const card = getCardById(cardId);
   if (!card) {

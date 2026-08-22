@@ -31,7 +31,9 @@ for (const file of readdirSync(cardsDir).sort()) {
     errors.push(`${file}: nome do arquivo difere de card_stable_id ("${card.card_stable_id}")`);
   }
   if (checkMode && raw !== serializeCard(card)) {
-    errors.push(`${file}: formato não-canônico — rode "node scripts/build-cards-artifact.mjs --format"`);
+    errors.push(
+      `${file}: formato não-canônico — rode "node scripts/build-cards-artifact.mjs --format"`
+    );
   }
   if (process.argv.includes("--format") && raw !== serializeCard(card)) {
     writeFileSync(join(cardsDir, file), serializeCard(card));

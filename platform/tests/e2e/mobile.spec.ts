@@ -39,7 +39,9 @@ test.describe("mobile compatibility", () => {
 
     await page.locator('header a[href="/perfil"]').click();
     await expect(page).toHaveURL(/\/perfil/);
-    await expect(page.getByRole("heading", { name: /Configure seu perfil|Editar perfil/ })).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: /Configure seu perfil|Editar perfil/ })
+    ).toBeVisible();
     await expectNoHorizontalOverflow(page);
   });
 
@@ -52,7 +54,12 @@ test.describe("mobile compatibility", () => {
     }
     await page.getByRole("button", { name: "Premium", exact: true }).click();
     await expect(page).toHaveURL(/segment=premium/);
-    await expect(page.getByRole("link").filter({ hasText: /Visa|Mastercard|American Express|Elo|Hipercard/ }).first()).toBeVisible();
+    await expect(
+      page
+        .getByRole("link")
+        .filter({ hasText: /Visa|Mastercard|American Express|Elo|Hipercard/ })
+        .first()
+    ).toBeVisible();
     await expectNoHorizontalOverflow(page);
   });
 
@@ -154,7 +161,11 @@ test.describe("mobile compatibility", () => {
       );
     });
     await page.route("**/api/recommend", async (route) => {
-      await route.fulfill({ status: 200, headers: { "Content-Type": "application/json" }, body: "[]" });
+      await route.fulfill({
+        status: 200,
+        headers: { "Content-Type": "application/json" },
+        body: "[]",
+      });
     });
 
     await page.goto("/");
@@ -242,7 +253,9 @@ test.describe("mobile compatibility", () => {
 
     await page.goto("/chat");
     const requestPromise = page.waitForRequest("**/api/chat");
-    await page.getByPlaceholder("Pergunte sobre cartões...").fill("Compare meus cartões para meu perfil");
+    await page
+      .getByPlaceholder("Pergunte sobre cartões...")
+      .fill("Compare meus cartões para meu perfil");
     await page.getByPlaceholder("Pergunte sobre cartões...").press("Enter");
 
     const request = await requestPromise;

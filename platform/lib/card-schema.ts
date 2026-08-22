@@ -177,10 +177,7 @@ export const CardEligibilityFacetSchema = z.strictObject({
 
 // Characteristics accept one extra bucket ("other") beyond the benefit-group
 // keys — used for perks that fit no group (e.g. social-impact programs).
-export const CharacteristicCategorySchema = z.enum([
-  ...BenefitGroupKeySchema.options,
-  "other",
-]);
+export const CharacteristicCategorySchema = z.enum([...BenefitGroupKeySchema.options, "other"]);
 
 export const CardCharacteristicSchema = z.strictObject({
   category: CharacteristicCategorySchema,
@@ -203,10 +200,7 @@ export const FeeWaiverRuleSchema = z.strictObject({
   raw_text: z.string(),
 });
 
-export const BenefitGroupsSchema = z.partialRecord(
-  BenefitGroupKeySchema,
-  z.array(z.string())
-);
+export const BenefitGroupsSchema = z.partialRecord(BenefitGroupKeySchema, z.array(z.string()));
 
 export const SourceClaimSchema = z.strictObject({
   field_path: z.string(),

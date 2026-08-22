@@ -38,7 +38,9 @@ export async function POST(req: Request) {
   const result = streamText({
     model: openai("gpt-5.4-nano"),
     system: `${SYSTEM_PROMPT}${profileContext(profile as UserProfile | null)}`,
-    messages: await convertToModelMessages(messages as Parameters<typeof convertToModelMessages>[0]),
+    messages: await convertToModelMessages(
+      messages as Parameters<typeof convertToModelMessages>[0]
+    ),
     tools: createCardTools(profile as UserProfile | null),
     stopWhen: stepCountIs(5),
     onStepFinish({ toolCalls }) {

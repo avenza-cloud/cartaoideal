@@ -7,7 +7,13 @@ import { Button } from "@/components/ui/button";
 import { Plus, Check, CreditCard, Plane, Coins, ExternalLink } from "lucide-react";
 import { CardArtPlaceholder } from "@/components/CardArtPlaceholder";
 import { cardArtSrc } from "@/lib/card-display";
-import { formatFee, formatNetMonthlyDisplay, loungeSummary, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
+import {
+  formatFee,
+  formatNetMonthlyDisplay,
+  loungeSummary,
+  rewardReturnLabel,
+  segmentLabel,
+} from "@/lib/formatting";
 import { travelFrequencyForValueModeling } from "@/lib/card-value";
 import { feeWaiverBadgeClassName, feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
 // lib/cards.ts re-exports same helpers but is server-only; formatting is shared
@@ -59,7 +65,9 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
     <Link href={detailHref} className="group">
       <Card className="h-full cursor-pointer overflow-hidden transition-colors hover:border-border/80 hover:bg-card/80">
         <CardHeader className={compact ? "space-y-2 p-3 pb-2" : "space-y-3 pb-2"}>
-          <div className={`relative flex items-center justify-center overflow-hidden rounded-xl border bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 ${compact ? "h-20" : "h-28"}`}>
+          <div
+            className={`relative flex items-center justify-center overflow-hidden rounded-xl border bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 ${compact ? "h-20" : "h-28"}`}
+          >
             {artSrc ? (
               <img
                 src={artSrc}
@@ -81,10 +89,10 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
           </div>
           <div className="flex items-start justify-between gap-2">
             <div className="flex-1 min-w-0">
-              <p className="text-xs text-muted-foreground font-mono truncate">
-                {card.issuer_raw}
-              </p>
-              <h3 className={`${compact ? "text-xs" : "text-sm"} mt-0.5 line-clamp-2 font-medium leading-tight`}>
+              <p className="text-xs text-muted-foreground font-mono truncate">{card.issuer_raw}</p>
+              <h3
+                className={`${compact ? "text-xs" : "text-sm"} mt-0.5 line-clamp-2 font-medium leading-tight`}
+              >
                 {card.display_name}
               </h3>
             </div>
@@ -96,12 +104,8 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
             </Badge>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs font-mono text-muted-foreground">
-              {card.network_primary}
-            </span>
-            {card.card_stable_id && (
-              <span className="text-xs text-muted-foreground">·</span>
-            )}
+            <span className="text-xs font-mono text-muted-foreground">{card.network_primary}</span>
+            {card.card_stable_id && <span className="text-xs text-muted-foreground">·</span>}
             <span className="text-xs font-semibold">
               {formatFee(fee)}
               {typeof fee === "number" && fee > 0 && (
@@ -129,12 +133,13 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
                 </p>
               </div>
               <div className="min-w-0 text-left min-[400px]:text-right">
-                <p className="font-mono text-xs font-semibold">
-                  {valueScore.score0To100}/100
-                </p>
+                <p className="font-mono text-xs font-semibold">{valueScore.score0To100}/100</p>
                 <p
                   className={`font-mono text-[10px] leading-snug min-[400px]:text-[11px] break-words ${
-                    Math.max(valueScore.netMonthlyValueBrl, valueScore.netMonthlyValueRangeHighBrl) >= 0
+                    Math.max(
+                      valueScore.netMonthlyValueBrl,
+                      valueScore.netMonthlyValueRangeHighBrl
+                    ) >= 0
                       ? "text-emerald-500"
                       : "text-rose-500"
                   }`}

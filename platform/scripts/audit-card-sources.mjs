@@ -55,7 +55,9 @@ async function main() {
     reports.push(report);
     const prefix = String(index + 1).padStart(4, "0");
     if (args.verbose || report.issues.length > 0) {
-      console.log(`${prefix}/${cards.length} ${card.display_name}: ${report.issues.length} issue(s)`);
+      console.log(
+        `${prefix}/${cards.length} ${card.display_name}: ${report.issues.length} issue(s)`
+      );
     }
   });
 
@@ -81,7 +83,7 @@ async function main() {
 
   const jsonPath = path.join(outputDir, `${now}.json`);
   const mdPath = path.join(outputDir, `${now}.md`);
-  await fs.writeFile(jsonPath, JSON.stringify({ summary, reports }, null, 2) + "\n");
+  await fs.writeFile(jsonPath, `${JSON.stringify({ summary, reports }, null, 2)}\n`);
   await fs.writeFile(mdPath, renderMarkdown(summary, reports));
 
   console.log(`\nAudited ${summary.cards_audited} card(s), ${summary.urls_seen} source URL(s).`);
@@ -185,9 +187,8 @@ async function fetchEvidence(url, cache) {
       },
     });
     const contentType = response.headers.get("content-type") ?? "";
-    const html = contentType.includes("text") || contentType.includes("html")
-      ? await response.text()
-      : "";
+    const html =
+      contentType.includes("text") || contentType.includes("html") ? await response.text() : "";
     const text = normalizeWhitespace(htmlToText(html));
     const page = {
       url,
@@ -223,7 +224,7 @@ function htmlToText(html) {
     .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ")
     .replace(/&nbsp;/g, " ")
     .replace(/&amp;/g, "&")
-    .replace(/&quot;/g, "\"")
+    .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
     .replace(/<[^>]+>/g, " ");
 }
@@ -243,12 +244,33 @@ function extractEvidence(text) {
   const normalized = normalize(text);
   return {
     annualFees: moneyNear(normalized, /(anuidade|parcela mensal)/),
-    waiverSpendThresholds: moneyNear(normalized, /(isenc|isento|zerad|anuidade)/, /(gasto|fatura|compras|despesas)/),
-    waiverInvestmentThresholds: moneyNear(normalized, /(isenc|isento|zerad|anuidade)/, /(invest|aplicac|patrimonio)/),
-    rewardRates: [...normalized.matchAll(/(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)\s*(?:por|\/)\s*(?:dolar|usd)/g)].map((m) => Number(m[1].replace(",", "."))),
-    cashbackRates: [...normalized.matchAll(/(\d+(?:[,.]\d+)?)\s*%\s*(?:de\s*)?(cashback|credito na fatura|retorno)/g)].map((m) => Number(m[1].replace(",", "."))),
-    loungeUnlimited: /(sala|salas|lounge)[^.!?]{0,120}(ilimitad|sem limite)|(?:acesso|acessos)[^.!?]{0,80}ilimitad/.test(normalized),
-    loungeVisits: [...normalized.matchAll(/(\d+)\s*(?:acessos?|visitas?|entradas?)[^.!?]{0,80}(?:sala|salas|vip|lounge|dragon|priority|visa airport|mastercard)/g)].map((m) => Number(m[1])),
+    waiverSpendThresholds: moneyNear(
+      normalized,
+      /(isenc|isento|zerad|anuidade)/,
+      /(gasto|fatura|compras|despesas)/
+    ),
+    waiverInvestmentThresholds: moneyNear(
+      normalized,
+      /(isenc|isento|zerad|anuidade)/,
+      /(invest|aplicac|patrimonio)/
+    ),
+    rewardRates: [
+      ...normalized.matchAll(/(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)\s*(?:por|\/)\s*(?:dolar|usd)/g),
+    ].map((m) => Number(m[1].replace(",", "."))),
+    cashbackRates: [
+      ...normalized.matchAll(
+        /(\d+(?:[,.]\d+)?)\s*%\s*(?:de\s*)?(cashback|credito na fatura|retorno)/g
+      ),
+    ].map((m) => Number(m[1].replace(",", "."))),
+    loungeUnlimited:
+      /(sala|salas|lounge)[^.!?]{0,120}(ilimitad|sem limite)|(?:acesso|acessos)[^.!?]{0,80}ilimitad/.test(
+        normalized
+      ),
+    loungeVisits: [
+      ...normalized.matchAll(
+        /(\d+)\s*(?:acessos?|visitas?|entradas?)[^.!?]{0,80}(?:sala|salas|vip|lounge|dragon|priority|visa airport|mastercard)/g
+      ),
+    ].map((m) => Number(m[1])),
     mentionedPrograms: [
       ["Priority Pass", /priority pass/.test(normalized)],
       ["Dragon Pass", /dragon pass/.test(normalized)],
@@ -256,8 +278,14 @@ function extractEvidence(text) {
       ["LoungeKey", /loungekey|lounge key/.test(normalized)],
       ["Sala VIP Mastercard Black", /mastercard black/.test(normalized)],
       ["W Premium Lounge", /w premium/.test(normalized)],
-    ].filter(([, hit]) => hit).map(([name]) => name),
-    minInvestment: moneyNear(normalized, /(solicitar|elegib|cliente|ter|precisa|necessario)/, /(invest|aplicac|patrimonio)/),
+    ]
+      .filter(([, hit]) => hit)
+      .map(([name]) => name),
+    minInvestment: moneyNear(
+      normalized,
+      /(solicitar|elegib|cliente|ter|precisa|necessario)/,
+      /(invest|aplicac|patrimonio)/
+    ),
     snippets: evidenceSnippets(text),
   };
 }
@@ -383,7 +411,11 @@ function auditCard(card, pages) {
         });
       }
     }
-  } else if (merged.mentionedPrograms.length > 0 || merged.loungeUnlimited || merged.loungeVisits.length > 0) {
+  } else if (
+    merged.mentionedPrograms.length > 0 ||
+    merged.loungeUnlimited ||
+    merged.loungeVisits.length > 0
+  ) {
     issues.push({
       severity: "medium",
       field: "lounge",
@@ -457,9 +489,11 @@ function parseStructuredPointRates(card) {
       .map((item) => `${item.value} ${item.details ?? ""}`),
   ];
   return texts.flatMap((text) =>
-    [...String(text).matchAll(/(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)\s*(?:por|\/)\s*(?:d[oó]lar|usd)/gi)].map((match) =>
-      Number(match[1].replace(",", "."))
-    )
+    [
+      ...String(text).matchAll(
+        /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)\s*(?:por|\/)\s*(?:d[oó]lar|usd)/gi
+      ),
+    ].map((match) => Number(match[1].replace(",", ".")))
   );
 }
 
@@ -471,9 +505,9 @@ function parseStructuredCashbackRates(card) {
       .map((item) => `${item.value} ${item.details ?? ""}`),
   ];
   return texts.flatMap((text) =>
-    [...String(text).matchAll(/(\d+(?:[,.]\d+)?)\s*%\s*(?:de\s*)?(cashback|credito|retorno)/gi)].map((match) =>
-      Number(match[1].replace(",", "."))
-    )
+    [
+      ...String(text).matchAll(/(\d+(?:[,.]\d+)?)\s*%\s*(?:de\s*)?(cashback|credito|retorno)/gi),
+    ].map((match) => Number(match[1].replace(",", ".")))
   );
 }
 
@@ -519,7 +553,8 @@ function renderMarkdown(summary, reports) {
     lines.push("");
     for (const issue of report.issues) {
       lines.push(`- **${issue.severity} / ${issue.field}**: ${issue.message}`);
-      if (issue.source_values) lines.push(`  Source values: ${JSON.stringify(issue.source_values)}`);
+      if (issue.source_values)
+        lines.push(`  Source values: ${JSON.stringify(issue.source_values)}`);
     }
     if (report.extracted.snippets.length > 0) {
       lines.push("");

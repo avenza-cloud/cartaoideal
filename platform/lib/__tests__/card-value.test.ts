@@ -30,7 +30,9 @@ function rewardAuditText(card: CardFacet): string {
     card.variant_band,
     card.reward_return?.earning_summary,
     card.lounge_access?.summary,
-    ...(card.characteristics ?? []).map((item) => `${item.label} ${item.value} ${item.details ?? ""}`),
+    ...(card.characteristics ?? []).map(
+      (item) => `${item.label} ${item.value} ${item.details ?? ""}`
+    ),
   ].join(" ");
 }
 
@@ -48,7 +50,9 @@ function hasExplicitNumericRewardSignal(card: CardFacet): boolean {
   const text = rewardAuditText(card);
   return (
     /(\d+(?:[,.]\d+)?)\s*(?:pontos?|pts?)\s*(?:por|\/)\s*(?:d[oó]lar|usd|real|r\$)/i.test(text) ||
-    /(\d+(?:[,.]\d+)?)\s*%\s*(?:de\s*)?(cashback|investback|retorno|cr[eé]dito na fatura)/i.test(text)
+    /(\d+(?:[,.]\d+)?)\s*%\s*(?:de\s*)?(cashback|investback|retorno|cr[eé]dito na fatura)/i.test(
+      text
+    )
   );
 }
 
@@ -164,9 +168,9 @@ describe("scoreCardValue", () => {
     expect(score.dataQualityNotes).toContain(
       "Livelo/Esfera: retorno realizável de venda em R$20 por 1.000 pontos; potencial de utilizacao em R$45 por 1.000 pontos."
     );
-    expect(score.components.find((component) => component.key === "rewards")?.explanation).toContain(
-      "Livelo/Esfera a R$20/1k pts (venda)"
-    );
+    expect(
+      score.components.find((component) => component.key === "rewards")?.explanation
+    ).toContain("Livelo/Esfera a R$20/1k pts (venda)");
   });
 
   it("uses a stricter generic sale valuation for non-travelers", () => {
@@ -187,9 +191,9 @@ describe("scoreCardValue", () => {
     expect(score.dataQualityNotes).toContain(
       "Programa de pontos não identificado; usado retorno conservador de R$20 por 1.000 pontos e potencial de utilizacao de R$55 por 1.000 pontos."
     );
-    expect(score.components.find((component) => component.key === "rewards")?.explanation).toContain(
-      "pontos a R$20/1k pts (venda)"
-    );
+    expect(
+      score.components.find((component) => component.key === "rewards")?.explanation
+    ).toContain("pontos a R$20/1k pts (venda)");
   });
 
   it("applies only a light score adjustment for user reward preferences", () => {
@@ -384,7 +388,9 @@ describe("scoreCardValue", () => {
     expect(card!.reward_return.has_cashlike_return).toBe(true);
     expect(card!.facets_boolean.earn_cashback).toBe(true);
     expect(card!.reward_return.earning_summary).toContain("desconto na fatura");
-    expect(card!.characteristics?.some((item) => String(item.value).includes("Posto Preferido"))).toBe(true);
+    expect(
+      card!.characteristics?.some((item) => String(item.value).includes("Posto Preferido"))
+    ).toBe(true);
   });
 
   it("scores Dotz BV Mastercard Platinum as cashback, not points", () => {
@@ -411,7 +417,8 @@ describe("scoreCardValue", () => {
     };
     const brokenCards = getAllCards().filter((card) => {
       if (!hasExplicitNumericRewardSignal(card)) return false;
-      if (!card.facets_boolean.earn_points_or_miles && !card.reward_return.has_cashlike_return) return false;
+      if (!card.facets_boolean.earn_points_or_miles && !card.reward_return.has_cashlike_return)
+        return false;
 
       const score = scoreCardValue(card, auditProfile);
       return score.grossRewardMonthlyBrl === 0;
@@ -465,9 +472,7 @@ describe("scoreCardValue", () => {
       );
       const allTexts = [summary, ...earningChars.map((c) => String(c.value))];
       // Only flag cards where every earning text is ceiling-only (no domestic/international split)
-      const hasSplit = allTexts.some(
-        (t) => /brasil|nacion|exterior|internacion/i.test(t)
-      );
+      const hasSplit = allTexts.some((t) => /brasil|nacion|exterior|internacion/i.test(t));
       if (hasSplit) return false;
       const score = scoreCardValue(card, baseProfile);
       return score.grossRewardMonthlyBrl === 0 && score.pointsRewardMonthlyBrl === 0;
@@ -482,9 +487,7 @@ describe("scoreCardValue", () => {
     const score = scoreCardValue(card!, baseProfile);
 
     expect(score.effectiveAnnualFeeBrl).toBe(18_000);
-    expect(score.feeAppliedReason).toBe(
-      "Anuidade efetiva de R$18.000 após regra estruturada."
-    );
+    expect(score.feeAppliedReason).toBe("Anuidade efetiva de R$18.000 após regra estruturada.");
     expect(score.dataQualityNotes).toContain(
       "Anuidade de correntista aplicada por condição estruturada."
     );

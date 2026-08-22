@@ -49,7 +49,8 @@ export function getCardFeeWaiver(card: CardFacet): {
     lower.startsWith("todos os clientes são isentos") ||
     lower.startsWith("anuidade isenta para todos") ||
     lower.startsWith("não há anuidade");
-  if (texto.startsWith("Não há") && rules.length === 0 && !lower.includes("investimento")) return null;
+  if (texto.startsWith("Não há") && rules.length === 0 && !lower.includes("investimento"))
+    return null;
   return {
     texto,
     rules,
@@ -78,7 +79,7 @@ export function filterCards(allCards: CardFacet[], filters: CardFilters): CardFa
     cards = cards.filter((c) =>
       c.network_primary
         .toLowerCase()
-        .split(/\s*[\/,]\s*/)
+        .split(/\s*[/,]\s*/)
         .some((n) => n === net)
     );
   }

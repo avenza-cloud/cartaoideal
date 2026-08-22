@@ -113,6 +113,7 @@ export function ProfileOnboarding({ cardOptions, curatedOptions }: ProfileOnboar
       <div className="flex items-center justify-between px-4 pt-4 pb-3 sm:px-6 sm:pt-5 sm:pb-4">
         {step > 0 ? (
           <button
+            type="button"
             onClick={goBack}
             className="flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
           >
@@ -138,6 +139,7 @@ export function ProfileOnboarding({ cardOptions, curatedOptions }: ProfileOnboar
             </div>
           )}
           <button
+            type="button"
             onClick={skipOnboarding}
             className="text-xs text-muted-foreground/60 transition-colors hover:text-muted-foreground"
           >
@@ -224,13 +226,7 @@ export function ProfileOnboarding({ cardOptions, curatedOptions }: ProfileOnboar
 }
 
 /* ─── Welcome ─── */
-function StepWelcome({
-  onStart,
-  onSkip,
-}: {
-  onStart: () => void;
-  onSkip: () => void;
-}) {
+function StepWelcome({ onStart, onSkip }: { onStart: () => void; onSkip: () => void }) {
   return (
     <div className="space-y-10">
       <h1 className="text-4xl font-semibold leading-none sm:text-[2.75rem]">
@@ -250,11 +246,10 @@ function StepWelcome({
         transition={{ delay: 0.5, duration: 0.4 }}
         className="space-y-3"
       >
-        <p className="text-sm text-muted-foreground">
-          5 perguntas para calcular seu ranking.
-        </p>
+        <p className="text-sm text-muted-foreground">5 perguntas para calcular seu ranking.</p>
         <div className="flex flex-col gap-2">
           <button
+            type="button"
             onClick={onStart}
             className="flex items-center justify-between rounded-xl bg-foreground px-4 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
           >
@@ -262,6 +257,7 @@ function StepWelcome({
             <ArrowRight className="h-4 w-4" />
           </button>
           <button
+            type="button"
             onClick={onSkip}
             className="rounded-xl border border-border/40 px-4 py-3 text-sm text-muted-foreground transition-colors hover:border-border hover:text-foreground"
           >
@@ -313,10 +309,9 @@ function StepInput({
       </div>
 
       <div className="flex items-center justify-between">
-        {optional && (
-          <span className="text-xs text-muted-foreground/50">Opcional</span>
-        )}
+        {optional && <span className="text-xs text-muted-foreground/50">Opcional</span>}
         <button
+          type="button"
           onClick={onNext}
           disabled={nextDisabled}
           className={cn(
@@ -353,9 +348,7 @@ function StepCurrentCard({
   return (
     <div className="space-y-7">
       <div className="space-y-1.5">
-        <h2 className="text-2xl font-semibold sm:text-3xl">
-          Qual cartão você usa hoje?
-        </h2>
+        <h2 className="text-2xl font-semibold sm:text-3xl">Qual cartão você usa hoje?</h2>
         <p className="text-sm text-muted-foreground">
           Isso ajuda a comparar troca real, não só ranking abstrato.
         </p>
@@ -419,6 +412,7 @@ function StepCurrentCard({
       <div className="flex items-center justify-between">
         <span className="text-xs text-muted-foreground/50">Opcional</span>
         <button
+          type="button"
           onClick={onNext}
           className="ml-auto flex items-center gap-1.5 rounded-lg bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
         >
@@ -454,11 +448,7 @@ function StepPreferences({
       <div className="space-y-4">
         <div className="flex flex-wrap gap-1.5">
           {REWARD_OPTIONS.map(({ value, label }) => (
-            <Chip
-              key={value}
-              active={rewards.has(value)}
-              onClick={() => onToggleReward(value)}
-            >
+            <Chip key={value} active={rewards.has(value)} onClick={() => onToggleReward(value)}>
               {label}
             </Chip>
           ))}
@@ -468,11 +458,7 @@ function StepPreferences({
           <p className="mb-2 text-xs text-muted-foreground">Viagens</p>
           <div className="flex flex-wrap gap-1.5">
             {TRAVEL_OPTIONS.map(({ value, label }) => (
-              <Chip
-                key={value}
-                active={travel === value}
-                onClick={() => onSetTravel(value)}
-              >
+              <Chip key={value} active={travel === value} onClick={() => onSetTravel(value)}>
                 {label}
               </Chip>
             ))}
@@ -481,6 +467,7 @@ function StepPreferences({
       </div>
 
       <button
+        type="button"
         onClick={onSubmit}
         className="flex w-full items-center justify-between rounded-xl bg-foreground px-4 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
       >
