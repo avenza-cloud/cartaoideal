@@ -27,15 +27,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Build card-data artifact (validates format)
+        run: node scripts/build-cards-artifact.mjs --check
+
       - name: Unit tests + coverage
         run: pnpm test:unit
 
       - name: Typecheck
         run: pnpm exec tsc --noEmit
-
-      - name: Card data validation (Python)
-        working-directory: .
-        run: python3 tools/validate_card_data.py
 
       - name: Build
         run: pnpm build

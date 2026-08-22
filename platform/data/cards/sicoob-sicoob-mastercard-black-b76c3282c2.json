@@ -1,0 +1,218 @@
+{
+  "card_stable_id": "sicoob-sicoob-mastercard-black-b76c3282c2",
+  "display_name": "Sicoob Mastercard Black",
+  "issuer_raw": "Sicoob",
+  "issuer_id": "sicoob",
+  "network_primary": "Mastercard",
+  "variant_band": "Black",
+  "market_segment_guess": "premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_aggregator",
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/sicoob-mastercard-black/",
+  "application_url": "https://www.sicoob.com.br/web/sicoob/mastercard-black-pf",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/sicoob-mastercard-black/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://www.sicoob.com.br/web/sicoob/mastercard-black-pf",
+  "ranking_position": 69,
+  "ranking_score": 184.19,
+  "media": {
+    "alt_text": "Sicoob Mastercard Black",
+    "card_art_url": "unknown",
+    "source_url": "https://passageirodeprimeira.com/cartao-de-credito/sicoob-mastercard-black/"
+  },
+  "reward_return": {
+    "earning_summary": "2,2 pontos por dólar gasto",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "summary": "unknown",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "unknown",
+    "requires_bank_account_claim": true,
+    "source_status": "not_structured"
+  },
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista: Sim"
+    ],
+    "fees": [
+      "Anuidade: R$ 810",
+      "Adicionais com benefícios: Sim",
+      "Isenção da anuidade: Não há nenhuma publicada",
+      "Anuidade: R$ 810",
+      "Adicionais gratuitos: 5"
+    ],
+    "lifestyle": [
+      "Carteira digital: Não"
+    ],
+    "rewards": [
+      "Pontuação: 2,2 pontos por dólar gasto",
+      "Regra de pontuação: 2,2 pontos por dólar gasto",
+      "Bônus de adesão: Coopera - (Não há)",
+      "Bônus de adesão: Livelo - (Não há)",
+      "Programa de fidelidade: Coopera",
+      "Programa de fidelidade: Livelo",
+      "Validade dos pontos: Coopera - 24 meses",
+      "Validade dos pontos: Livelo - 24 meses"
+    ],
+    "travel": [
+      "Sala VIP: Acesso disponível"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 810"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "2,2 pontos por dólar gasto"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Acesso disponível"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_detail",
+      "label": "Regra de pontuação",
+      "value": "2,2 pontos por dólar gasto"
+    },
+    {
+      "category": "rewards",
+      "details": "(Não há)",
+      "key": "welcome_bonus",
+      "label": "Bônus de adesão",
+      "value": "Coopera"
+    },
+    {
+      "category": "rewards",
+      "details": "(Não há)",
+      "key": "welcome_bonus",
+      "label": "Bônus de adesão",
+      "value": "Livelo"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Coopera"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Livelo"
+    },
+    {
+      "category": "rewards",
+      "details": "24 meses",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "Coopera"
+    },
+    {
+      "category": "rewards",
+      "details": "24 meses",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "Livelo"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com benefícios",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "Não há nenhuma publicada"
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 810"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Não"
+    },
+    {
+      "category": "eligibility",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "free_additional_cards",
+      "label": "Adicionais gratuitos",
+      "value": "5"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 810,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:premium",
+    "travel:lounge",
+    "rewards:points_or_miles"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "trusted_catalog",
+        "url": "https://www.sicoob.com.br/web/sicoob/mastercard-black-pf"
+      },
+      {
+        "label": "Evidência primária",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/sicoob-mastercard-black/"
+      }
+    ]
+  }
+}

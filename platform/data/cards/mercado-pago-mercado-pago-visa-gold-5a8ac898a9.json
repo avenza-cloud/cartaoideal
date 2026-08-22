@@ -1,0 +1,184 @@
+{
+  "card_stable_id": "mercado-pago-mercado-pago-visa-gold-5a8ac898a9",
+  "display_name": "Mercado Pago Visa Gold",
+  "issuer_raw": "Mercado Pago",
+  "issuer_id": "mercado-pago",
+  "network_primary": "Visa",
+  "variant_band": "Gold",
+  "market_segment_guess": "mass_or_general",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_aggregator",
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/mercado-pago-visa-gold/",
+  "application_url": "https://www.mercadopago.com.br/conta/cartao-de-credito?utm_medium=site",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/mercado-pago-visa-gold/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://www.mercadopago.com.br/conta/cartao-de-credito?utm_medium=site",
+  "ranking_position": 22,
+  "ranking_score": 53,
+  "media": {
+    "alt_text": "Mercado Pago Visa Gold",
+    "card_art_url": "unknown",
+    "source_url": "https://passageirodeprimeira.com/cartao-de-credito/mercado-pago-visa-gold/"
+  },
+  "reward_return": {
+    "earning_summary": "0,5% condicional Meli+ em outras lojas; até 3% no Mercado Livre com limites",
+    "has_cashlike_return": true,
+    "subtypes": [
+      "cashback"
+    ]
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "summary": "unknown",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "unknown",
+    "requires_bank_account_claim": false,
+    "source_status": "not_structured"
+  },
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista: Não"
+    ],
+    "fees": [
+      "Anuidade: R$ 0",
+      "Adicionais com benefícios: Sim",
+      "Isenção da anuidade: Não há nenhuma publicada",
+      "Anuidade: R$ 0",
+      "Adicionais gratuitos: 0"
+    ],
+    "lifestyle": [
+      "Carteira digital: Samsung Pay, Google Pay"
+    ],
+    "rewards": [
+      "Retorno financeiro: cashback",
+      "Cashback geral: 0,5% em outras lojas - Condicional a assinatura Meli+ e sujeito a limite mensal; não aplicado automaticamente ao score sem perfil de assinatura",
+      "Cashback Mercado Livre: Até 3% no Mercado Livre - Condicional a Meli+, com limites por compra e por mês; benefício específico, não retorno geral",
+      "Condição de cashback: Exige assinatura Meli+ - Fonte oficial Mercado Pago/Mercado Livre"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 0"
+    },
+    {
+      "category": "rewards",
+      "key": "financial_return",
+      "label": "Retorno financeiro",
+      "value": "cashback"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com benefícios",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "Não há nenhuma publicada"
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 0"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Samsung Pay, Google Pay"
+    },
+    {
+      "category": "eligibility",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Não"
+    },
+    {
+      "category": "fees",
+      "key": "free_additional_cards",
+      "label": "Adicionais gratuitos",
+      "value": "0"
+    },
+    {
+      "category": "rewards",
+      "details": "Condicional a assinatura Meli+ e sujeito a limite mensal; não aplicado automaticamente ao score sem perfil de assinatura",
+      "key": "earning_rate",
+      "label": "Cashback geral",
+      "value": "0,5% em outras lojas"
+    },
+    {
+      "category": "rewards",
+      "details": "Condicional a Meli+, com limites por compra e por mês; benefício específico, não retorno geral",
+      "key": "earning_detail",
+      "label": "Cashback Mercado Livre",
+      "value": "Até 3% no Mercado Livre"
+    },
+    {
+      "category": "rewards",
+      "details": "Fonte oficial Mercado Pago/Mercado Livre",
+      "key": "reward_condition",
+      "label": "Condição de cashback",
+      "value": "Exige assinatura Meli+"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 0,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": true,
+    "earn_cashback": true,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": true
+  },
+  "labels_for_filtering": [
+    "segment:mass_or_general",
+    "rewards:cashback",
+    "rewards:return_cashlike"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "trusted_catalog",
+        "url": "https://www.mercadopago.com.br/conta/cartao-de-credito?utm_medium=site"
+      },
+      {
+        "label": "Evidência primária",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/mercado-pago-visa-gold/"
+      }
+    ],
+    "verification_note": "Manual review 2026-05-06: official Mercado Pago help pages state cashback is conditional to Meli+ and has category/monthly limits. Do not use PP 'até 5%' as general card return."
+  }
+}

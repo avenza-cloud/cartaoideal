@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const platformRoot = path.resolve(__dirname, "..");
 const repoRoot = path.resolve(platformRoot, "..");
-const facetsPath = path.join(platformRoot, "data/cards_brazil_ai_comparison_facets.json");
+const facetsPath = path.join(platformRoot, "data/generated/cards.json");
 const outputDir = path.join(platformRoot, "audit-reports/card-sources");
 
 const USER_AGENT =
