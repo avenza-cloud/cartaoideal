@@ -19,7 +19,11 @@
   "ranking_score": 323.35,
   "media": {
     "alt_text": "CAIXA Ícone Visa Infinite",
-    "card_art_url": "unknown",
+    "art_provenance": {
+      "retrieved_date": "2026-08-22",
+      "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/icone/Paginas/default.aspx"
+    },
+    "card_art_url": "/card-images/caixa-caixa-icone-visa-infinite.png",
     "source_url": ""
   },
   "reward_return": {
