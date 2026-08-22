@@ -32,7 +32,6 @@ const REQUIRED_KEYS: (keyof CardFacet)[] = [
   "facets_numeric_or_special",
   "facets_boolean",
   "labels_for_filtering",
-  "text_for_embedding_compare",
 ];
 
 const FEE_WAIVER_CATEGORIES: FeeWaiverRuleCategory[] = [
