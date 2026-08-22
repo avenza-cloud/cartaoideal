@@ -1,7 +1,7 @@
 /.pnpm-store/
 /platform/audit-reports/
 .playwright-report/
-.playwright-mcp/** */
+.playwright-mcp/
 
 # Vercel CLI local config (never commit project/org ids)
 /.vercel/
@@ -12,3 +12,6 @@ __pycache__/
 
 # Node
 /node_modules/
+
+# Local Claude Code permission config (per-user)
+.claude/settings.local.json

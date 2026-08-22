@@ -1,74 +1,118 @@
 name: Correction issue to PR
 
+# Runs only when a maintainer (triage+) applies the `correction` label — the
+# site's API route creates issues already labeled via the trusted token, which
+# fires `labeled` at creation. Issue bodies are untrusted input: the payload is
+# schema-validated and rebuilt from an allowlist before touching the tree, and
+# user text never reaches shell steps.
 on:
   issues:
-    types: [opened, labeled]
+    types: [labeled]
 
 permissions:
   contents: write
   issues: write
   pull-requests: write
 
+concurrency:
+  group: correction-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
 jobs:
   correction-pr:
-    if: contains(github.event.issue.labels.*.name, 'correction') || contains(github.event.issue.body, '```json card-correction')
+    if: github.event.label.name == 'correction'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
-      - name: Write pending correction
+      - name: Validate and apply correction
         id: correction
-        uses: actions/github-script@v7
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         with:
           script: |
             const fs = require("fs");
+            const { execFileSync } = require("child_process");
             const issue = context.payload.issue;
-            const match = issue.body.match(/```json card-correction\n([\s\S]*?)\n```/);
+
+            const match = (issue.body ?? "").match(/```json card-correction\n([\s\S]*?)\n```/);
             if (!match) {
               core.setFailed("Correction JSON block not found.");
               return;
             }
 
-            const payload = JSON.parse(match[1]);
-            const dir = "platform/data/corrections/pending";
-            const file = `${dir}/issue-${issue.number}.json`;
-            fs.mkdirSync(dir, { recursive: true });
-            fs.writeFileSync(
-              file,
-              JSON.stringify(
-                {
-                  issueNumber: issue.number,
-                  issueUrl: issue.html_url,
-                  ...payload,
-                },
-                null,
-                2
-              ) + "\n"
-            );
+            let raw;
+            try {
+              raw = JSON.parse(match[1]);
+            } catch {
+              core.setFailed("Correction block is not valid JSON.");
+              return;
+            }
 
-            core.setOutput("file", file);
+            // Rebuild from an allowlist — never spread untrusted input.
+            const str = (v, max) => (typeof v === "string" ? v.slice(0, max) : "");
+            const httpUrl = (v) => {
+              try { return ["http:", "https:"].includes(new URL(v).protocol) ? v : ""; }
+              catch { return ""; }
+            };
+            const payload = {
+              cardId: str(raw.cardId, 200),
+              cardName: str(raw.cardName, 200),
+              issuer: str(raw.issuer, 200),
+              field: str(raw.field, 100),
+              suggestedValue: str(raw.suggestedValue, 2000),
+              sourceUrl: httpUrl(str(raw.sourceUrl, 2000)),
+              notes: str(raw.notes, 2000),
+              pageSourceUrl: httpUrl(str(raw.pageSourceUrl, 2000)),
+              submittedAt: str(raw.submittedAt, 40),
+            };
+            if (!payload.cardId || !payload.field || !payload.suggestedValue || !payload.sourceUrl) {
+              core.setFailed("Correction payload is missing required fields.");
+              return;
+            }
+            if (!/^[a-z0-9-]+$/.test(payload.cardId)) {
+              core.setFailed("cardId has an invalid format.");
+              return;
+            }
+            if (!fs.existsSync(`platform/data/cards/${payload.cardId}.json`)) {
+              core.setFailed(`Card not found in catalog: ${payload.cardId}`);
+              return;
+            }
+
+            fs.writeFileSync("/tmp/correction-payload.json", JSON.stringify(payload));
+            const result = execFileSync("node", [
+              "platform/scripts/apply-correction.mjs",
+              "--file", "/tmp/correction-payload.json",
+              "--issue", String(issue.number),
+            ]).toString().trim();
+
+            const sanitize = (v) => v.replace(/[\r\n`]/g, " ").slice(0, 80);
             core.setOutput("branch", `correction/issue-${issue.number}`);
-            core.setOutput("title", `Correção: ${payload.cardName} — ${payload.field}`);
+            core.setOutput("title", sanitize(`Correção: ${payload.cardName} — ${payload.field}`));
+            core.setOutput("applied", result);
 
       - name: Create correction PR
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8
         with:
           branch: ${{ steps.correction.outputs.branch }}
           title: ${{ steps.correction.outputs.title }}
-          commit-message: Add pending correction from issue ${{ github.event.issue.number }}
+          commit-message: Apply community correction from issue ${{ github.event.issue.number }}
           body: |
-            Pending community correction from #${{ github.event.issue.number }}.
+            Community correction from #${{ github.event.issue.number }} (`${{ steps.correction.outputs.applied }}`).
 
-            Review the source, then apply the accepted change to the canonical card data.
+            The per-card data diff is in this PR. `applied` means the numeric value was
+            written mechanically; `pending` means it landed as a `pending_corrections`
+            entry for maintainer judgment — edit the card file in this branch before merging.
+            CI validates the change against the data contract.
           labels: correction,needs-review
 
       - name: Comment with PR status
-        uses: actions/github-script@v7
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         with:
           script: |
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
-              body: "Correction PR automation ran. Check linked pull requests for review."
+              body: "Automação de correção executada — confira o pull request vinculado."
             });
