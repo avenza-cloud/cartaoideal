@@ -28,7 +28,8 @@ details):
 
 | Variable | Enables | Without it |
 |---|---|---|
-| `OPENAI_API_KEY` | AI chat | Chat UI renders; requests fail |
+| `GEMINI_API_KEY` | AI chat (primary model) | Chat UI renders; requests fail |
+| `DEEPSEEK_API_KEY` | AI chat fallback | No fallback if the Gemini call fails |
 | `NEXT_PUBLIC_SITE_URL` | Canonical SEO URL | Falls back to Vercel/project default |
 | `NEXT_PUBLIC_ADSENSE_*` | Ad slots | Ads disabled entirely |
 | `GITHUB_CORRECTIONS_TOKEN` / `GITHUB_CORRECTIONS_REPO` | Correction form → GitHub issue | `/api/corrections` returns 503 |
@@ -44,7 +45,7 @@ details):
 | `node scripts/build-cards-artifact.mjs --format` | Rewrite card files into canonical format |
 | `pnpm test:unit` | Vitest suite incl. the full data-contract validation |
 | `pnpm test:e2e` | Playwright suite (5 viewports; excludes the live-AI spec) |
-| `pnpm test:chat` | The live-AI e2e spec (needs a real `OPENAI_API_KEY`) |
+| `pnpm test:chat` | The live-AI e2e spec (needs a real `GEMINI_API_KEY`) |
 | `pnpm check` / `pnpm check:fix` | Biome lint + format check / autofix |
 | `pnpm exec tsc --noEmit` | Typecheck |
 

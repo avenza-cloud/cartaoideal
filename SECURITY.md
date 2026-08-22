@@ -32,4 +32,5 @@ Out of scope:
 
 The app stores user financial profiles only in the browser (localStorage),
 never logs IPs or profile contents server-side, and sends chat messages to
-OpenAI for processing. See the Privacy section of the [README](README.md).
+Google (Gemini) — or DeepSeek as an automatic fallback — for processing.
+See the Privacy section of the [README](README.md).
