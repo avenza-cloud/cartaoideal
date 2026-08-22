@@ -330,9 +330,13 @@ export function createCardTools(savedProfile?: UserProfile | null) {
             invested,
             extractInvestmentThreshold
           );
+          const brl = (v: number) => v.toLocaleString("pt-BR");
           return {
             totalEncontrado: cards.length,
             investidoUsuario: invested,
+            // Pré-formatado no servidor: o modelo copia, não conta — evita
+            // discrepância entre a frase e os grupos exibidos pelo widget.
+            resumo: `Encontrei ${cards.length} cartões. ${accessible.length} já acessíveis com seus R$ ${brl(invested)} investidos, ${needsMore.length} precisam de mais.`,
             acessiveisAgora: accessible.map(slim),
             precisamDeMaisInvestimento: needsMore.map(({ card, threshold, shortfall }) => ({
               ...slim(card),
@@ -426,5 +430,5 @@ Isenção de anuidade por investimento:
 - Para QUALQUER pergunta sobre isentar anuidade com investimento, use SOMENTE a ferramenta \`getInvestmentWaiverCards\`. Nunca use \`filterCards\` para esse fim.
 - Passe \`userInvestedBrl\` com o valor investido do usuário (do perfil ou da conversa).
 - Os cartões JÁ SÃO EXIBIDOS VISUALMENTE pela interface logo acima desta mensagem. PROIBIDO repetir nomes, anuidades ou critérios de cartões em texto.
-- Escreva APENAS: "Encontrei [totalEncontrado] cartões. [N] já acessíveis com seus R$ X investidos, [M] precisam de mais." — uma frase, nada mais.
+- Escreva APENAS o campo \`resumo\` retornado pela ferramenta, literalmente — uma frase, nada mais. Não conte os cartões você mesmo.
 - Se o usuário perguntar sobre um emissor específico, use getCardDetail. Não resuma dados da lista em prosa.`;
