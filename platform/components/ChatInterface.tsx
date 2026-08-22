@@ -9,11 +9,7 @@ import {
   ConversationContent,
   ConversationScrollButton,
 } from "@/components/ai-elements/conversation";
-import {
-  Message,
-  MessageContent,
-  MessageResponse,
-} from "@/components/ai-elements/message";
+import { Message, MessageContent, MessageResponse } from "@/components/ai-elements/message";
 import {
   PromptInput,
   PromptInputTextarea,
@@ -107,8 +103,7 @@ function moneyLabel(value: number) {
 
 function feeLabel(anuidade: number | string) {
   if (anuidade === 0 || anuidade === "free") return "Grátis";
-  if (typeof anuidade === "number")
-    return `R$${anuidade.toLocaleString("pt-BR")}/ano`;
+  if (typeof anuidade === "number") return `R$${anuidade.toLocaleString("pt-BR")}/ano`;
   return String(anuidade);
 }
 
@@ -140,9 +135,7 @@ function historyGroupLabel(timestamp: number) {
 function readChatHistory(): ChatHistoryItem[] {
   if (typeof window === "undefined") return [];
   try {
-    const parsed = JSON.parse(
-      window.localStorage.getItem(CHAT_HISTORY_KEY) ?? "[]",
-    );
+    const parsed = JSON.parse(window.localStorage.getItem(CHAT_HISTORY_KEY) ?? "[]");
     if (!Array.isArray(parsed)) return [];
     return parsed
       .filter((item): item is ChatHistoryItem => {
@@ -161,26 +154,20 @@ function readChatHistory(): ChatHistoryItem[] {
 
 function writeChatHistory(history: ChatHistoryItem[]) {
   if (typeof window === "undefined") return;
-  window.localStorage.setItem(
-    CHAT_HISTORY_KEY,
-    JSON.stringify(history.slice(0, MAX_CHAT_HISTORY)),
-  );
+  window.localStorage.setItem(CHAT_HISTORY_KEY, JSON.stringify(history.slice(0, MAX_CHAT_HISTORY)));
 }
 
 function groupedHistory(history: ChatHistoryItem[]) {
-  return history.reduce<Array<{ label: string; items: ChatHistoryItem[] }>>(
-    (groups, item) => {
-      const label = historyGroupLabel(item.updatedAt);
-      const group = groups.find((entry) => entry.label === label);
-      if (group) {
-        group.items.push(item);
-      } else {
-        groups.push({ label, items: [item] });
-      }
-      return groups;
-    },
-    [],
-  );
+  return history.reduce<Array<{ label: string; items: ChatHistoryItem[] }>>((groups, item) => {
+    const label = historyGroupLabel(item.updatedAt);
+    const group = groups.find((entry) => entry.label === label);
+    if (group) {
+      group.items.push(item);
+    } else {
+      groups.push({ label, items: [item] });
+    }
+    return groups;
+  }, []);
 }
 
 function ChatMessageBubble({ message }: { message: UIMessage }) {
@@ -239,9 +226,7 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
         className="flex min-w-0 flex-1 items-start gap-2.5 transition-colors hover:text-foreground"
       >
         {rank !== undefined && (
-          <span className="w-4 shrink-0 font-mono text-[10px] text-muted-foreground">
-            #{rank}
-          </span>
+          <span className="w-4 shrink-0 font-mono text-[10px] text-muted-foreground">#{rank}</span>
         )}
         <div className="flex h-8 w-12 shrink-0 items-center justify-center rounded-md border bg-zinc-950">
           {artSrc ? (
@@ -257,15 +242,15 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
         </div>
         <div className="min-w-0 flex-1">
           <p className="truncate font-medium leading-tight">{card.nome}</p>
-          <p className="truncate text-[10px] text-muted-foreground">
-            {card.emissor}
-          </p>
+          <p className="truncate text-[10px] text-muted-foreground">{card.emissor}</p>
           {badges.length > 0 && (
             <div className="mt-1 flex flex-wrap gap-1">
               {badges.map((rule, index) => (
                 <span
                   key={`${rule.category}-${rule.threshold_brl ?? index}`}
-                  className={feeWaiverBadgeClassName(feeWaiverRuleBadgeVariant(rule, annualFeeHint))}
+                  className={feeWaiverBadgeClassName(
+                    feeWaiverRuleBadgeVariant(rule, annualFeeHint)
+                  )}
                 >
                   {feeWaiverRuleDisplayLabel(rule, annualFeeHint)}
                 </span>
@@ -274,30 +259,21 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
           )}
         </div>
         <div className="hidden shrink-0 text-right min-[390px]:block">
-          <p className="font-mono text-[10px] text-muted-foreground">
-            {feeLabel(card.anuidade)}
-          </p>
+          <p className="font-mono text-[10px] text-muted-foreground">{feeLabel(card.anuidade)}</p>
           {card.valorEstimado?.valorLiquidoMensal !== undefined ? (
             <p
               className={`font-mono text-[10px] ${
-                card.valorEstimado.valorLiquidoMensal >= 0
-                  ? "text-emerald-500"
-                  : "text-rose-500"
+                card.valorEstimado.valorLiquidoMensal >= 0 ? "text-emerald-500" : "text-rose-500"
               }`}
             >
               {moneyLabel(card.valorEstimado.valorLiquidoMensal)}
             </p>
           ) : card.pontuacao !== undefined ? (
-            <p className="font-mono text-[10px] text-foreground/60">
-              {card.pontuacao}pts
-            </p>
+            <p className="font-mono text-[10px] text-foreground/60">{card.pontuacao}pts</p>
           ) : null}
-          {card.pontuacao !== undefined &&
-            card.valorEstimado?.valorLiquidoMensal !== undefined && (
-              <p className="font-mono text-[10px] text-foreground/60">
-                {card.pontuacao}/100
-              </p>
-            )}
+          {card.pontuacao !== undefined && card.valorEstimado?.valorLiquidoMensal !== undefined && (
+            <p className="font-mono text-[10px] text-foreground/60">{card.pontuacao}/100</p>
+          )}
         </div>
         <ArrowUpRight className="h-3 w-3 shrink-0 text-muted-foreground/40" />
       </Link>
@@ -311,14 +287,10 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
           selected
             ? "bg-foreground text-background"
             : "text-muted-foreground hover:text-foreground",
-          !selected && !canAdd() && "opacity-40",
+          !selected && !canAdd() && "opacity-40"
         )}
       >
-        {selected ? (
-          <Check className="h-3.5 w-3.5" />
-        ) : (
-          <Plus className="h-3.5 w-3.5" />
-        )}
+        {selected ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
       </button>
     </div>
   );
@@ -331,11 +303,7 @@ function CardListArtifact({ output }: { output: unknown }) {
   return (
     <div className="mt-2 space-y-1">
       {cards.map((c, i) => (
-        <MiniCard
-          key={c.id}
-          card={c}
-          rank={c.pontuacao !== undefined ? i + 1 : undefined}
-        />
+        <MiniCard key={c.id} card={c} rank={c.pontuacao !== undefined ? i + 1 : undefined} />
       ))}
     </div>
   );
@@ -394,13 +362,11 @@ function CardCompareArtifact({ output }: { output: unknown }) {
       label: "Benefícios",
       key: (c) => {
         const v =
-          c.valorEstimado?.beneficiosMensais ??
-          c.valorEstimado?.beneficiosIntangiveisMensais;
+          c.valorEstimado?.beneficiosMensais ?? c.valorEstimado?.beneficiosIntangiveisMensais;
         return v !== undefined ? moneyLabel(v) : "—";
       },
       numericKey: (c) =>
-        c.valorEstimado?.beneficiosMensais ??
-        c.valorEstimado?.beneficiosIntangiveisMensais,
+        c.valorEstimado?.beneficiosMensais ?? c.valorEstimado?.beneficiosIntangiveisMensais,
     },
     {
       label: "Anuidade efetiva",
@@ -418,13 +384,11 @@ function CardCompareArtifact({ output }: { output: unknown }) {
     { label: "Pontos", key: (c) => (c.pontos ? "Sim" : "Não") },
     {
       label: "Seg. viagem",
-      key: (c) =>
-        c.seguroViagem !== undefined ? (c.seguroViagem ? "Sim" : "Não") : "—",
+      key: (c) => (c.seguroViagem !== undefined ? (c.seguroViagem ? "Sim" : "Não") : "—"),
     },
     {
       label: "Concierge",
-      key: (c) =>
-        c.concierge !== undefined ? (c.concierge ? "Sim" : "Não") : "—",
+      key: (c) => (c.concierge !== undefined ? (c.concierge ? "Sim" : "Não") : "—"),
     },
   ];
 
@@ -434,8 +398,7 @@ function CardCompareArtifact({ output }: { output: unknown }) {
         <div className="rounded-xl border bg-card/65 p-3 text-xs">
           {winner && (
             <p className="font-semibold">
-              Melhor no cálculo:{" "}
-              <span className="text-foreground">{winner.nome}</span>
+              Melhor no cálculo: <span className="text-foreground">{winner.nome}</span>
             </p>
           )}
           {delta && (
@@ -471,9 +434,7 @@ function CardCompareArtifact({ output }: { output: unknown }) {
         <table className="w-full min-w-[420px]">
           <thead>
             <tr className="border-b bg-muted/20">
-              <th className="px-3 py-2 text-left font-normal text-muted-foreground">
-                —
-              </th>
+              <th className="px-3 py-2 text-left font-normal text-muted-foreground">—</th>
               {cards.map((c) => {
                 const isWinner = winner?.id === c.id;
                 return (
@@ -481,15 +442,13 @@ function CardCompareArtifact({ output }: { output: unknown }) {
                     key={c.id}
                     className={cn(
                       "px-3 py-2 text-left font-medium",
-                      isWinner && "text-emerald-400",
+                      isWinner && "text-emerald-400"
                     )}
                   >
                     <Link href={`/cartoes/${c.id}`} className="hover:underline">
                       {c.nome}
                       {isWinner && (
-                        <span className="ml-1 font-mono text-[9px] text-emerald-400/70">
-                          ★
-                        </span>
+                        <span className="ml-1 font-mono text-[9px] text-emerald-400/70">★</span>
                       )}
                     </Link>
                   </th>
@@ -499,22 +458,14 @@ function CardCompareArtifact({ output }: { output: unknown }) {
           </thead>
           <tbody>
             {rows.map((row) => (
-              <tr
-                key={row.label}
-                className="border-b last:border-0 odd:bg-muted/5"
-              >
-                <td className="px-3 py-1.5 text-muted-foreground">
-                  {row.label}
-                </td>
+              <tr key={row.label} className="border-b last:border-0 odd:bg-muted/5">
+                <td className="px-3 py-1.5 text-muted-foreground">{row.label}</td>
                 {cards.map((c) => {
                   const num = row.numericKey?.(c);
                   return (
                     <td
                       key={c.id}
-                      className={cn(
-                        "px-3 py-1.5 font-mono",
-                        row.numericKey ? moneyColor(num) : "",
-                      )}
+                      className={cn("px-3 py-1.5 font-mono", row.numericKey ? moneyColor(num) : "")}
                     >
                       {row.key(c)}
                     </td>
@@ -556,7 +507,7 @@ function MiniMetric({
         className={cn(
           "font-mono text-xs",
           strong && "font-semibold",
-          numericValue !== undefined && moneyColor(numericValue),
+          numericValue !== undefined && moneyColor(numericValue)
         )}
       >
         {value}
@@ -622,9 +573,7 @@ function CardDetailArtifact({ output }: { output: unknown }) {
         </div>
         <div className="rounded-lg border bg-background/40 px-2.5 py-1.5">
           <p className="text-[10px] text-muted-foreground">Lounge</p>
-          <p className="font-mono font-medium">
-            {hasLounge(c.lounge) ? "Sim" : "Não"}
-          </p>
+          <p className="font-mono font-medium">{hasLounge(c.lounge) ? "Sim" : "Não"}</p>
         </div>
       </div>
 
@@ -689,13 +638,7 @@ function waiverRuleLabel(rule: FeeWaiverRule) {
   return rule.description;
 }
 
-function WaiverMiniCard({
-  card,
-  faltam,
-}: {
-  card: WaiverCardItem;
-  faltam?: number;
-}) {
+function WaiverMiniCard({ card, faltam }: { card: WaiverCardItem; faltam?: number }) {
   const artSrc = cardArtSrc(card.cardArtUrl);
   const visibleRules = (card.regrasIsencao ?? []).slice(0, 2);
   return (
@@ -717,9 +660,7 @@ function WaiverMiniCard({
       </div>
       <div className="min-w-0 flex-1">
         <p className="truncate font-medium leading-tight">{card.nome}</p>
-        <p className="truncate text-[10px] text-muted-foreground">
-          {card.emissor}
-        </p>
+        <p className="truncate text-[10px] text-muted-foreground">{card.emissor}</p>
         {visibleRules.length > 0 && (
           <div className="mt-1 flex flex-wrap gap-1">
             {visibleRules.map((rule, index) => {
@@ -745,9 +686,7 @@ function WaiverMiniCard({
         )}
       </div>
       <div className="shrink-0 text-right">
-        <p className="font-mono text-[10px] text-muted-foreground">
-          {feeLabel(card.anuidade)}
-        </p>
+        <p className="font-mono text-[10px] text-muted-foreground">{feeLabel(card.anuidade)}</p>
         {faltam !== undefined ? (
           <p className="font-mono text-[10px] text-rose-400">
             faltam R${faltam.toLocaleString("pt-BR")}
@@ -799,9 +738,7 @@ function InvestmentWaiverArtifact({ output }: { output: unknown }) {
       )}
       {needsMore.length > 0 &&
         (() => {
-          const nearby = needsMore.filter(
-            (c) => (c.faltam ?? Infinity) <= 100_000,
-          );
+          const nearby = needsMore.filter((c) => (c.faltam ?? Infinity) <= 100_000);
           if (!nearby.length) return null;
           return (
             <div className="space-y-1">
@@ -863,16 +800,12 @@ function ToolArtifact({
 }
 
 /* ─── Main component ─── */
-export function ChatInterface({
-  variant = "full",
-  className,
-}: ChatInterfaceProps) {
+export function ChatInterface({ variant = "full", className }: ChatInterfaceProps) {
   const { profile, resetOnboarding } = useProfileStore();
   const profileRef = React.useRef(profile);
   const conversationIdRef = React.useRef<string | null>(null);
   const [history, setHistory] = React.useState<ChatHistoryItem[]>([]);
-  const [selectedHistory, setSelectedHistory] =
-    React.useState<ChatHistoryItem | null>(null);
+  const [selectedHistory, setSelectedHistory] = React.useState<ChatHistoryItem | null>(null);
 
   React.useEffect(() => {
     profileRef.current = profile;
@@ -902,15 +835,14 @@ export function ChatInterface({
         body: {
           profile: profileRef.current,
         },
-      },
+      }
     );
     setExpanded(false);
     setIsFullscreen(true);
   }
 
   React.useEffect(() => {
-    if (isStreaming || messages.length < 2 || !conversationIdRef.current)
-      return;
+    if (isStreaming || messages.length < 2 || !conversationIdRef.current) return;
 
     const nextItem: ChatHistoryItem = {
       id: conversationIdRef.current,
@@ -920,17 +852,16 @@ export function ChatInterface({
     };
 
     setHistory((current) => {
-      const next = [
-        nextItem,
-        ...current.filter((item) => item.id !== nextItem.id),
-      ].slice(0, MAX_CHAT_HISTORY);
+      const next = [nextItem, ...current.filter((item) => item.id !== nextItem.id)].slice(
+        0,
+        MAX_CHAT_HISTORY
+      );
       writeChatHistory(next);
       return next;
     });
   }, [isStreaming, messages]);
 
-  const visibleMessages =
-    expanded || messages.length <= 2 ? messages : messages.slice(-2);
+  const visibleMessages = expanded || messages.length <= 2 ? messages : messages.slice(-2);
   const hiddenCount = messages.length - visibleMessages.length;
 
   const hasMessages = messages.length > 0;
@@ -946,7 +877,7 @@ export function ChatInterface({
       .then(({ scores }) => {
         if (cancelled) return;
         const best = scores.find(
-          (item) => item.card.card_stable_id !== profile.currentPrimaryCardId,
+          (item) => item.card.card_stable_id !== profile.currentPrimaryCardId
         );
         setBestCardName(best?.card?.display_name ?? null);
       })
@@ -967,6 +898,7 @@ export function ChatInterface({
       <ConversationContent className="mx-auto max-w-2xl py-5 space-y-3">
         {hiddenCount > 0 && (
           <button
+            type="button"
             onClick={() => setExpanded(true)}
             className="flex items-center gap-1.5 text-[11px] text-muted-foreground/50 hover:text-muted-foreground transition-colors"
           >
@@ -979,6 +911,7 @@ export function ChatInterface({
         ))}
         {expanded && messages.length > 2 && (
           <button
+            type="button"
             onClick={() => setExpanded(false)}
             className="flex items-center gap-1.5 text-[11px] text-muted-foreground/50 hover:text-muted-foreground transition-colors"
           >
@@ -998,7 +931,7 @@ export function ChatInterface({
         className={cn(
           "flex flex-col overflow-hidden",
           !isHero && "min-h-[520px] flex-1 sm:h-[calc(100vh-120px)]",
-          className,
+          className
         )}
         animate={isHero ? { height: hasMessages ? 420 : "auto" } : {}}
         transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -1072,10 +1005,7 @@ export function ChatInterface({
               <div className="min-h-0 flex-1 overflow-y-auto px-4">
                 <div className="mx-auto max-w-2xl space-y-3 py-5">
                   {selectedHistory.messages.map((msg) => (
-                    <ChatMessageBubble
-                      key={msg.id}
-                      message={msg as UIMessage}
-                    />
+                    <ChatMessageBubble key={msg.id} message={msg as UIMessage} />
                   ))}
                 </div>
               </div>
@@ -1128,8 +1058,8 @@ function ChatPromptBox({
   isLoading,
   onSubmit,
   onStop,
-  onProfile,
-  profileSet,
+  onProfile: _onProfile,
+  profileSet: _profileSet,
   suggestion,
   history,
   onOpenHistory,
@@ -1164,10 +1094,7 @@ function ChatPromptBox({
       const rect = trigger.getBoundingClientRect();
       const viewportWidth = globalThis.window.innerWidth;
       const width = Math.min(288, Math.max(220, viewportWidth - 24));
-      const left = Math.min(
-        Math.max(12, rect.left),
-        Math.max(12, viewportWidth - width - 12),
-      );
+      const left = Math.min(Math.max(12, rect.left), Math.max(12, viewportWidth - width - 12));
       const bottom = Math.max(12, globalThis.window.innerHeight - rect.top + 8);
       setHistoryLayer({ left, bottom, width });
     };
@@ -1213,18 +1140,20 @@ function ChatPromptBox({
     >
       {(onExpand || (!value && !isLoading)) && (
         <div className="flex flex-wrap items-center gap-1.5 px-2 pt-2">
-          {!value && !isLoading && chips.map((chip) => (
-            <button
-              key={chip.label}
-              type="button"
-              onClick={() => {
-                onSubmit(chip.query);
-              }}
-              className="shrink-0 rounded-full border border-border/40 bg-transparent px-2.5 py-1 font-mono text-[10px] text-muted-foreground/60 transition-all hover:border-border/80 hover:text-muted-foreground whitespace-nowrap"
-            >
-              {chip.label}
-            </button>
-          ))}
+          {!value &&
+            !isLoading &&
+            chips.map((chip) => (
+              <button
+                key={chip.label}
+                type="button"
+                onClick={() => {
+                  onSubmit(chip.query);
+                }}
+                className="shrink-0 rounded-full border border-border/40 bg-transparent px-2.5 py-1 font-mono text-[10px] text-muted-foreground/60 transition-all hover:border-border/80 hover:text-muted-foreground whitespace-nowrap"
+              >
+                {chip.label}
+              </button>
+            ))}
           {onExpand && (
             <button
               type="button"
@@ -1242,12 +1171,7 @@ function ChatPromptBox({
         className="px-3 py-2.5 text-sm min-h-[42px]"
       />
       <PromptInputActions className="justify-between px-2 pb-2">
-        <div
-          className={cn(
-            "relative flex items-center gap-1",
-            historyOpen && "z-90",
-          )}
-        >
+        <div className={cn("relative flex items-center gap-1", historyOpen && "z-90")}>
           {historyOpen && historyLayer && (
             <div
               className="fixed z-[130] rounded-xl border bg-popover p-2 text-popover-foreground shadow-2xl"
@@ -1260,9 +1184,7 @@ function ChatPromptBox({
             >
               <div className="mb-1 flex items-center justify-between px-1.5">
                 <p className="text-xs font-medium">Histórico</p>
-                <p className="text-[10px] text-muted-foreground">
-                  {history.length}
-                </p>
+                <p className="text-[10px] text-muted-foreground">{history.length}</p>
               </div>
               {history.length ? (
                 <div className="max-h-64 overflow-y-auto pr-1">
@@ -1282,18 +1204,13 @@ function ChatPromptBox({
                             }}
                             className="w-full rounded-lg px-2 py-2 text-left transition-colors hover:bg-muted/50"
                           >
-                            <p className="line-clamp-1 text-xs font-medium">
-                              {item.title}
-                            </p>
+                            <p className="line-clamp-1 text-xs font-medium">{item.title}</p>
                             <p className="mt-0.5 text-[10px] text-muted-foreground">
                               {item.messages.length} mensagens ·{" "}
-                              {new Date(item.updatedAt).toLocaleTimeString(
-                                "pt-BR",
-                                {
-                                  hour: "2-digit",
-                                  minute: "2-digit",
-                                },
-                              )}
+                              {new Date(item.updatedAt).toLocaleTimeString("pt-BR", {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })}
                             </p>
                           </button>
                         ))}
@@ -1346,7 +1263,7 @@ function ActionButton({
         "flex h-7 w-7 items-center justify-center rounded-lg transition-colors",
         active
           ? "text-foreground/80 hover:text-foreground"
-          : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted/30",
+          : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted/30"
       )}
     >
       {children}

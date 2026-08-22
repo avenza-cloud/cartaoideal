@@ -1,13 +1,16 @@
-import type { CardValueScore, LoungeAccess, MarketSegment, RewardReturn, TravelFrequency } from "@/types/cards";
+import type {
+  CardValueScore,
+  LoungeAccess,
+  MarketSegment,
+  RewardReturn,
+  TravelFrequency,
+} from "@/types/cards";
 
-export function formatFee(
-  fee: number | string | "variable_pricing_claim" | null
-): string {
+export function formatFee(fee: number | string | "variable_pricing_claim" | null): string {
   if (fee === null || fee === "unknown") return "Consulte";
   if (fee === "variable_pricing_claim") return "Variável";
   if (fee === 0) return "Grátis";
-  if (typeof fee === "number")
-    return `R$ ${fee.toLocaleString("pt-BR")}`;
+  if (typeof fee === "number") return `R$ ${fee.toLocaleString("pt-BR")}`;
   return "Consulte";
 }
 
@@ -104,9 +107,10 @@ export function formatNetMonthlyDisplay(
 export function loungeSummary(lounge: LoungeAccess): string {
   if (!lounge.has_lounge_access) return "Sem sala VIP";
   if (lounge.policy_varies_by_issuer) return "Lounge com política variável";
-  const conditional = /(mediante|gasto|fatura|compras|invest|necessário|necessario|acima|partir)/i.test(
-    lounge.summary ?? ""
-  );
+  const conditional =
+    /(mediante|gasto|fatura|compras|invest|necessário|necessario|acima|partir)/i.test(
+      lounge.summary ?? ""
+    );
   if (typeof lounge.annual_visits === "number") {
     const suffix = conditional ? " cond." : "";
     return lounge.unlimited

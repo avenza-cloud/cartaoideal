@@ -12,7 +12,7 @@ import { CardDetailActions } from "@/components/CardDetailActions";
 import { CardProfileInsights } from "@/components/CardProfileInsights";
 import { AdSlot } from "@/components/AdSlot";
 import { Coins, CreditCard, ExternalLink, Plane, ReceiptText, WalletCards } from "lucide-react";
-import type { BenefitGroupKey, CardCharacteristic, CardFacet, FeeWaiverRule } from "@/types/cards";
+import type { CardCharacteristic, CardFacet, FeeWaiverRule } from "@/types/cards";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -36,9 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!card) return { title: "Cartão não encontrado" };
 
   const returnType = cardReturnLabel(card);
-  const lounge = card.lounge_access.has_lounge_access
-    ? "com sala VIP"
-    : "sem sala VIP";
+  const lounge = card.lounge_access.has_lounge_access ? "com sala VIP" : "sem sala VIP";
   const description = `${card.issuer_raw} ${card.display_name} — cartão ${segmentLabel(
     card.market_segment_guess
   ).toLowerCase()}, anuidade ${formatFee(
@@ -71,9 +69,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
   const returnType = cardReturnLabel(card);
 
   const earningSummary =
-    card.reward_return.earning_summary !== "unknown"
-      ? card.reward_return.earning_summary
-      : null;
+    card.reward_return.earning_summary !== "unknown" ? card.reward_return.earning_summary : null;
 
   const minimumInvestment = card.facets_numeric_or_special.minimum_investment_brl_best_estimate;
   const minimumIncome = card.eligibility?.minimum_income_brl_best_estimate;
@@ -85,17 +81,16 @@ export default async function CartaoDetailPage({ params }: PageProps) {
       : null;
 
   // Per-program lounge breakdown from summary field
-  const loungePerProgram: { name: string; detail: string }[] =
-    card.lounge_access.summary
-      ? card.lounge_access.summary
-          .split(" | ")
-          .map((entry) => {
-            const dash = entry.indexOf(" - ");
-            if (dash === -1) return null;
-            return { name: entry.slice(0, dash), detail: entry.slice(dash + 3) };
-          })
-          .filter((x): x is { name: string; detail: string } => x !== null)
-      : [];
+  const loungePerProgram: { name: string; detail: string }[] = card.lounge_access.summary
+    ? card.lounge_access.summary
+        .split(" | ")
+        .map((entry) => {
+          const dash = entry.indexOf(" - ");
+          if (dash === -1) return null;
+          return { name: entry.slice(0, dash), detail: entry.slice(dash + 3) };
+        })
+        .filter((x): x is { name: string; detail: string } => x !== null)
+    : [];
 
   // Reward characteristics: skip travel dups, skip "(Não há)" values, skip cashback/return type echo
   const rewardChars = filterChars(card, ["rewards"]).filter(
@@ -159,6 +154,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
 
   return (
     <>
+      {/* JSON-LD from our own catalog; JSON.stringify-escaped (see biome.json override) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -170,203 +166,201 @@ export default async function CartaoDetailPage({ params }: PageProps) {
           <AdSlot slot={adSlot} format="vertical" />
         </div>
 
-      <main className="min-w-0 flex-1 max-w-4xl pb-28 pt-4 sm:pt-6 md:pb-12">
-        <Suspense>
-          <CardDetailBackLink />
-        </Suspense>
+        <main className="min-w-0 flex-1 max-w-4xl pb-28 pt-4 sm:pt-6 md:pb-12">
+          <Suspense>
+            <CardDetailBackLink />
+          </Suspense>
 
-        {/* ─── Hero ─── */}
-        <div className="overflow-hidden rounded-2xl border bg-card/70 shadow-[0_28px_100px_rgba(0,0,0,0.26)] sm:rounded-[2rem]">
-          <div className="grid lg:grid-cols-[240px_minmax(0,1fr)]">
-            {/* Card art */}
-            <div className="relative flex min-h-44 items-center justify-center border-b bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.12),transparent_36%),linear-gradient(145deg,#09090b,#18181b_55%,#050505)] p-6 lg:border-b-0 lg:border-r">
-              {artSrc ? (
-                <img
-                  src={artSrc}
-                  alt={card.media.alt_text}
-                  className="max-h-32 max-w-[78%] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] sm:max-h-40"
-                />
-              ) : (
-                <CardArtPlaceholder
-                  issuerRaw={card.issuer_raw}
-                  network={card.network_primary}
-                  displayName={card.display_name}
-                  className="max-h-32 w-52 sm:max-h-40"
-                />
-              )}
-              {card.ranking_position !== "unknown" && (
-                <span className="absolute left-4 top-4 rounded-full border bg-background/60 px-2 py-0.5 font-mono text-[10px] text-muted-foreground backdrop-blur">
-                  #{card.ranking_position}
-                </span>
-              )}
-            </div>
-
-            {/* Identity + key metrics */}
-            <div className="flex flex-col justify-between p-5">
-              <div>
-                <div className="flex flex-wrap items-center gap-1">
-                  <Pill>{segmentLabel(card.market_segment_guess)}</Pill>
-                  <Pill>{card.network_primary}</Pill>
-                  <Pill dim>{card.issuer_raw}</Pill>
-                </div>
-                <h1 className="mt-2.5 text-2xl font-semibold leading-tight tracking-[-0.04em] sm:text-[1.75rem]">
-                  {card.display_name}
-                </h1>
-                {earningSummary && (
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                    {earningSummary}
-                  </p>
+          {/* ─── Hero ─── */}
+          <div className="overflow-hidden rounded-2xl border bg-card/70 shadow-[0_28px_100px_rgba(0,0,0,0.26)] sm:rounded-[2rem]">
+            <div className="grid lg:grid-cols-[240px_minmax(0,1fr)]">
+              {/* Card art */}
+              <div className="relative flex min-h-44 items-center justify-center border-b bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.12),transparent_36%),linear-gradient(145deg,#09090b,#18181b_55%,#050505)] p-6 lg:border-b-0 lg:border-r">
+                {artSrc ? (
+                  <img
+                    src={artSrc}
+                    alt={card.media.alt_text}
+                    className="max-h-32 max-w-[78%] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] sm:max-h-40"
+                  />
+                ) : (
+                  <CardArtPlaceholder
+                    issuerRaw={card.issuer_raw}
+                    network={card.network_primary}
+                    displayName={card.display_name}
+                    className="max-h-32 w-52 sm:max-h-40"
+                  />
+                )}
+                {card.ranking_position !== "unknown" && (
+                  <span className="absolute left-4 top-4 rounded-full border bg-background/60 px-2 py-0.5 font-mono text-[10px] text-muted-foreground backdrop-blur">
+                    #{card.ranking_position}
+                  </span>
                 )}
               </div>
 
-              {/* 3 metrics — each datum appears ONLY here */}
-              <div className="mt-4 grid grid-cols-1 gap-px overflow-hidden rounded-xl border bg-border min-[380px]:grid-cols-3">
-                <Metric label="Anuidade" value={formatFee(fee)} />
-                <Metric label="Retorno" value={returnType ?? "—"} />
-                <Metric label="Lounge" value={loungeSummaryLine} />
+              {/* Identity + key metrics */}
+              <div className="flex flex-col justify-between p-5">
+                <div>
+                  <div className="flex flex-wrap items-center gap-1">
+                    <Pill>{segmentLabel(card.market_segment_guess)}</Pill>
+                    <Pill>{card.network_primary}</Pill>
+                    <Pill dim>{card.issuer_raw}</Pill>
+                  </div>
+                  <h1 className="mt-2.5 text-2xl font-semibold leading-tight tracking-[-0.04em] sm:text-[1.75rem]">
+                    {card.display_name}
+                  </h1>
+                  {earningSummary && (
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                      {earningSummary}
+                    </p>
+                  )}
+                </div>
+
+                {/* 3 metrics — each datum appears ONLY here */}
+                <div className="mt-4 grid grid-cols-1 gap-px overflow-hidden rounded-xl border bg-border min-[380px]:grid-cols-3">
+                  <Metric label="Anuidade" value={formatFee(fee)} />
+                  <Metric label="Retorno" value={returnType ?? "—"} />
+                  <Metric label="Lounge" value={loungeSummaryLine} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* ─── Profile insights ─── */}
-        <div className="mt-3">
-          <CardProfileInsights card={card} />
-        </div>
+          {/* ─── Profile insights ─── */}
+          <div className="mt-3">
+            <CardProfileInsights card={card} />
+          </div>
 
-        {/* ─── Content ─── */}
-        <div className="mt-3 space-y-2">
-
-          {/* Row 1: Retorno + Lounge side by side */}
-          <div className="grid gap-2 md:grid-cols-2">
-
-            {/* Retorno */}
-            <Block title="Retorno">
-              {returnType ? (
-                <DataRow label="Tipo" value={returnType} />
-              ) : (
-                <Empty>Sem retorno financeiro neste cartão.</Empty>
-              )}
-              {rewardChars.length > 0 && <CharList items={rewardChars} />}
-              {!returnType && rewardChars.length === 0 && null}
-            </Block>
-
-            {/* Lounge */}
-            <Block title="Lounge">
-              {hasLounge ? (
-                loungePerProgram.length > 0 ? (
-                  <div className="space-y-1.5">
-                    {loungePerProgram.map((prog) => (
-                      <div key={prog.name} className="rounded-xl border bg-background/35 px-3 py-2">
-                        <p className="text-xs font-medium leading-snug">{prog.name}</p>
-                        <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
-                          {prog.detail}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+          {/* ─── Content ─── */}
+          <div className="mt-3 space-y-2">
+            {/* Row 1: Retorno + Lounge side by side */}
+            <div className="grid gap-2 md:grid-cols-2">
+              {/* Retorno */}
+              <Block title="Retorno">
+                {returnType ? (
+                  <DataRow label="Tipo" value={returnType} />
                 ) : (
-                  <>
-                    {typeof card.lounge_access.annual_visits === "number" && (
-                      <DataRow
-                        label="Acessos"
-                        value={`${card.lounge_access.annual_visits}×/ano`}
-                      />
-                    )}
-                    {card.lounge_access.unlimited && (
-                      <DataRow label="Limite" value="Ilimitado" />
-                    )}
-                    {displayValue(card.lounge_access.guest_policy) && (
-                      <DataRow
-                        label="Acompanhantes"
-                        value={displayValue(card.lounge_access.guest_policy)!}
-                      />
-                    )}
-                    {loungeCondition(card.lounge_access.summary) && (
-                      <FullTextRow
-                        label="Condição"
-                        value={loungeCondition(card.lounge_access.summary)!}
-                      />
-                    )}
-                  </>
-                )
-              ) : (
-                <Empty>Sem acesso a sala VIP.</Empty>
-              )}
-            </Block>
-          </div>
+                  <Empty>Sem retorno financeiro neste cartão.</Empty>
+                )}
+                {rewardChars.length > 0 && <CharList items={rewardChars} />}
+                {!returnType && rewardChars.length === 0 && null}
+              </Block>
 
-          {/* Row 2: Custo + Elegibilidade */}
-          <div className="grid gap-2 md:grid-cols-2">
-
-            {/* Custo */}
-            <Block title="Custo">
-              <DataRow label="Anuidade" value={formatFee(fee)} />
-              {feeWaiverRules.length > 0 ? (
-                <FeeWaiverRules rules={feeWaiverRules} />
-              ) : (
-                feeWaiverText &&
-                feeWaiverText !== "unknown" &&
-                !String(feeWaiverText).startsWith("Não há") && (
-                  <FullTextRow label="Isenção da anuidade" value={String(feeWaiverText)} />
-                )
-              )}
-              {forexNote && <DataRow label="Câmbio / IOF" value={forexNote} />}
-              {feeChars.length > 0 && <CharList items={feeChars} />}
-              {!forexNote && feeChars.length === 0 && (
-                <Empty>Câmbio e IOF: verifique na fonte.</Empty>
-              )}
-            </Block>
-
-            {/* Elegibilidade */}
-            <Block title="Elegibilidade">
-              <DataRow label="Segmento" value={segmentLabel(card.market_segment_guess)} />
-              <DataRow label="Bandeira" value={card.network_primary} />
-              {minimumInvestment !== "unknown" && (
-                <DataRow
-                  label="Investimento mín."
-                  value={`R$${(minimumInvestment as number).toLocaleString("pt-BR")}`}
-                />
-              )}
-              {minimumIncome && minimumIncome !== "unknown" && (
-                <DataRow
-                  label="Renda mín."
-                  value={`R$${(minimumIncome as number).toLocaleString("pt-BR")}/mês`}
-                />
-              )}
-              {eligibilityChars.length > 0 && <CharList items={eligibilityChars} />}
-            </Block>
-          </div>
-
-          {/* Row 3: Extras — only if content */}
-          {extrasChars.length > 0 && (
-            <Block title="Benefícios extras">
-              <CharList items={extrasChars} />
-            </Block>
-          )}
-
-          {/* Fonte */}
-          <div className="mb-8 flex flex-col gap-3 rounded-2xl border bg-card/30 px-4 py-3 sm:flex-row sm:items-center">
-            <div className="min-w-0 flex-1">
-              <span className="text-xs font-medium">{card.source_label}</span>
-              <span className="ml-2 text-[11px] text-muted-foreground/60">
-                · confirme condições com o emissor
-              </span>
+              {/* Lounge */}
+              <Block title="Lounge">
+                {hasLounge ? (
+                  loungePerProgram.length > 0 ? (
+                    <div className="space-y-1.5">
+                      {loungePerProgram.map((prog) => (
+                        <div
+                          key={prog.name}
+                          className="rounded-xl border bg-background/35 px-3 py-2"
+                        >
+                          <p className="text-xs font-medium leading-snug">{prog.name}</p>
+                          <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
+                            {prog.detail}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <>
+                      {typeof card.lounge_access.annual_visits === "number" && (
+                        <DataRow
+                          label="Acessos"
+                          value={`${card.lounge_access.annual_visits}×/ano`}
+                        />
+                      )}
+                      {card.lounge_access.unlimited && <DataRow label="Limite" value="Ilimitado" />}
+                      {displayValue(card.lounge_access.guest_policy) && (
+                        <DataRow
+                          label="Acompanhantes"
+                          value={displayValue(card.lounge_access.guest_policy)!}
+                        />
+                      )}
+                      {loungeCondition(card.lounge_access.summary) && (
+                        <FullTextRow
+                          label="Condição"
+                          value={loungeCondition(card.lounge_access.summary)!}
+                        />
+                      )}
+                    </>
+                  )
+                ) : (
+                  <Empty>Sem acesso a sala VIP.</Empty>
+                )}
+              </Block>
             </div>
-            <div className="flex shrink-0 gap-2">
-              <a
-                href={affiliateClickUrl(card.card_stable_id)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-1.5 rounded-lg border bg-background/40 px-2.5 py-1.5 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <ExternalLink className="h-3 w-3" />
-                Abrir
-              </a>
+
+            {/* Row 2: Custo + Elegibilidade */}
+            <div className="grid gap-2 md:grid-cols-2">
+              {/* Custo */}
+              <Block title="Custo">
+                <DataRow label="Anuidade" value={formatFee(fee)} />
+                {feeWaiverRules.length > 0 ? (
+                  <FeeWaiverRules rules={feeWaiverRules} />
+                ) : (
+                  feeWaiverText &&
+                  feeWaiverText !== "unknown" &&
+                  !String(feeWaiverText).startsWith("Não há") && (
+                    <FullTextRow label="Isenção da anuidade" value={String(feeWaiverText)} />
+                  )
+                )}
+                {forexNote && <DataRow label="Câmbio / IOF" value={forexNote} />}
+                {feeChars.length > 0 && <CharList items={feeChars} />}
+                {!forexNote && feeChars.length === 0 && (
+                  <Empty>Câmbio e IOF: verifique na fonte.</Empty>
+                )}
+              </Block>
+
+              {/* Elegibilidade */}
+              <Block title="Elegibilidade">
+                <DataRow label="Segmento" value={segmentLabel(card.market_segment_guess)} />
+                <DataRow label="Bandeira" value={card.network_primary} />
+                {minimumInvestment !== "unknown" && (
+                  <DataRow
+                    label="Investimento mín."
+                    value={`R$${(minimumInvestment as number).toLocaleString("pt-BR")}`}
+                  />
+                )}
+                {minimumIncome && minimumIncome !== "unknown" && (
+                  <DataRow
+                    label="Renda mín."
+                    value={`R$${(minimumIncome as number).toLocaleString("pt-BR")}/mês`}
+                  />
+                )}
+                {eligibilityChars.length > 0 && <CharList items={eligibilityChars} />}
+              </Block>
+            </div>
+
+            {/* Row 3: Extras — only if content */}
+            {extrasChars.length > 0 && (
+              <Block title="Benefícios extras">
+                <CharList items={extrasChars} />
+              </Block>
+            )}
+
+            {/* Fonte */}
+            <div className="mb-8 flex flex-col gap-3 rounded-2xl border bg-card/30 px-4 py-3 sm:flex-row sm:items-center">
+              <div className="min-w-0 flex-1">
+                <span className="text-xs font-medium">{card.source_label}</span>
+                <span className="ml-2 text-[11px] text-muted-foreground/60">
+                  · confirme condições com o emissor
+                </span>
+              </div>
+              <div className="flex shrink-0 gap-2">
+                <a
+                  href={affiliateClickUrl(card.card_stable_id)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-lg border bg-background/40 px-2.5 py-1.5 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <ExternalLink className="h-3 w-3" />
+                  Abrir
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
 
         {/* Right sidebar ad — desktop only */}
         <div className="hidden xl:block w-[160px] shrink-0 sticky top-4 pt-6">
@@ -390,7 +384,9 @@ function Metric({ label, value }: { label: string; value: string }) {
   return (
     <div className="bg-background/45 px-3 py-2.5">
       <p className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">{label}</p>
-      <p className="mt-0.5 truncate text-sm font-semibold" title={value}>{value}</p>
+      <p className="mt-0.5 truncate text-sm font-semibold" title={value}>
+        {value}
+      </p>
     </div>
   );
 }
@@ -438,7 +434,9 @@ function FullTextRow({ label, value }: { label: string; value: string }) {
 
 function loungeCondition(summary?: string): string | null {
   if (!summary) return null;
-  const match = summary.match(/\(([^)]*(?:mediante|gasto|fatura|compras|invest|necessário|necessario|acima|partir)[^)]*)\)|(?:mediante|com|para ter direito)[^.]+/i);
+  const match = summary.match(
+    /\(([^)]*(?:mediante|gasto|fatura|compras|invest|necessário|necessario|acima|partir)[^)]*)\)|(?:mediante|com|para ter direito)[^.]+/i
+  );
   return match?.[1] ?? match?.[0] ?? null;
 }
 
@@ -488,64 +486,65 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
         <>
           {hasAlternativeRules && (
             <p className="mb-2 text-[11px] leading-relaxed text-muted-foreground">
-              Basta cumprir uma das condições abaixo. As regras são alternativas: uma <strong>OU</strong> outra.
+              Basta cumprir uma das condições abaixo. As regras são alternativas: uma{" "}
+              <strong>OU</strong> outra.
             </p>
           )}
           <div className="grid gap-2 min-[420px]:grid-cols-2">
-          {ordered.map((rule, index) => {
-          const isSpend = rule.category === "monthly_spend";
-          const isInvestment = rule.category === "investment";
-          const isSubscription = rule.category === "subscription";
-          const amount = formatRuleAmount(rule);
-          const Icon = isSpend
-            ? ReceiptText
-            : isInvestment
-              ? WalletCards
-              : isSubscription
-                ? CreditCard
-              : rule.category === "cashback"
-                ? Coins
-                : rule.category === "miles"
-                    ? Plane
-                    : rule.category === "pix_key"
-                      ? ReceiptText
-                      : CreditCard;
-          const label = isSpend
-            ? "Gasto mensal"
-            : isInvestment
-              ? "Investimento"
-              : isSubscription
-                ? "Assinatura"
-              : rule.category === "cashback"
-                ? "Cashback"
-                : rule.category === "miles"
-                    ? "Milhas"
-                    : rule.category === "pix_key"
-                      ? "Pix"
-                      : rule.category === "promotional_period"
-                        ? "Promoção"
-                        : "Geral";
-            return (
-              <div
-                key={`${rule.category}-${rule.threshold_brl ?? "general"}-${index}`}
-                className="rounded-lg border bg-background/50 px-2.5 py-2"
-              >
-                <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                  <Icon className="h-3.5 w-3.5" />
-                  {label}
-                </div>
-                {amount && <p className="mt-1 font-mono text-sm font-semibold">{amount}</p>}
-                <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
-                  {rule.description}
-                </p>
-                {hasAlternativeRules && index < ordered.length - 1 && (
-                  <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-500/80">
-                    OU
+            {ordered.map((rule, index) => {
+              const isSpend = rule.category === "monthly_spend";
+              const isInvestment = rule.category === "investment";
+              const isSubscription = rule.category === "subscription";
+              const amount = formatRuleAmount(rule);
+              const Icon = isSpend
+                ? ReceiptText
+                : isInvestment
+                  ? WalletCards
+                  : isSubscription
+                    ? CreditCard
+                    : rule.category === "cashback"
+                      ? Coins
+                      : rule.category === "miles"
+                        ? Plane
+                        : rule.category === "pix_key"
+                          ? ReceiptText
+                          : CreditCard;
+              const label = isSpend
+                ? "Gasto mensal"
+                : isInvestment
+                  ? "Investimento"
+                  : isSubscription
+                    ? "Assinatura"
+                    : rule.category === "cashback"
+                      ? "Cashback"
+                      : rule.category === "miles"
+                        ? "Milhas"
+                        : rule.category === "pix_key"
+                          ? "Pix"
+                          : rule.category === "promotional_period"
+                            ? "Promoção"
+                            : "Geral";
+              return (
+                <div
+                  key={`${rule.category}-${rule.threshold_brl ?? "general"}-${index}`}
+                  className="rounded-lg border bg-background/50 px-2.5 py-2"
+                >
+                  <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                    <Icon className="h-3.5 w-3.5" />
+                    {label}
+                  </div>
+                  {amount && <p className="mt-1 font-mono text-sm font-semibold">{amount}</p>}
+                  <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
+                    {rule.description}
                   </p>
-                )}
-              </div>
-            );
-          })}
+                  {hasAlternativeRules && index < ordered.length - 1 && (
+                    <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-500/80">
+                      OU
+                    </p>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </>
       )}

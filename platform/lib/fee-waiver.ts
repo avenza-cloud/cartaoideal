@@ -2,14 +2,19 @@ import type { FeeWaiverRule } from "@/types/cards";
 
 function parseAmount(numStr: string, suffix?: string): number {
   const raw = parseFloat(numStr.replace(/\./g, "").replace(",", "."));
-  if (isNaN(raw)) return NaN;
+  if (Number.isNaN(raw)) return NaN;
   const s = (suffix ?? "").toLowerCase();
   if (s.startsWith("milh")) return raw * 1_000_000;
   if (s === "mil") return raw * 1_000;
   return raw;
 }
 
-function contextAllowsCategory(text: string, matchText: string, index: number, category: "monthly_spend" | "investment") {
+function contextAllowsCategory(
+  text: string,
+  matchText: string,
+  index: number,
+  category: "monthly_spend" | "investment"
+) {
   const beforeSentence = Math.max(text.lastIndexOf(".", index), text.lastIndexOf(";", index));
   const afterDot = text.indexOf(".", index);
   const afterSemi = text.indexOf(";", index);
@@ -80,13 +85,15 @@ function ruleFullWaiverFromContext(text: string, index: number, fallback: boolea
   const clauseText = clause.toLowerCase();
   const sentenceText = sentence.toLowerCase();
   const hasPartialInClause = /50%|metade|parcial/.test(clauseText);
-  const hasFullSpecificInClause = /100%|isen[cç][aã]o total|isencao total|gratuit|sem anuidade|zero/.test(clauseText);
+  const hasFullSpecificInClause =
+    /100%|isen[cç][aã]o total|isencao total|gratuit|sem anuidade|zero/.test(clauseText);
   const hasFullInClause = hasFullSpecificInClause || /isenta|isento/.test(clauseText);
   if (hasPartialInClause && !hasFullSpecificInClause) return false;
   if (hasFullInClause && !hasPartialInClause) return true;
 
   const hasPartialInSentence = /50%|metade|parcial/.test(sentenceText);
-  const hasFullSpecificInSentence = /100%|isen[cç][aã]o total|isencao total|gratuit|sem anuidade|zero/.test(sentenceText);
+  const hasFullSpecificInSentence =
+    /100%|isen[cç][aã]o total|isencao total|gratuit|sem anuidade|zero/.test(sentenceText);
   const hasFullInSentence = hasFullSpecificInSentence || /isenta|isento/.test(sentenceText);
   if (hasPartialInSentence && !hasFullSpecificInSentence) return false;
   if (hasFullInSentence && !hasPartialInSentence) return true;
@@ -126,10 +133,12 @@ export function extractInvestmentThreshold(texto: string): number | null {
 
   // Pattern A: "R$ X [mil/milhões] em/de [fundos de] investimento(s)"
   // e.g. "R$ 20 mil em investimentos", "R$ 100 mil em fundos de investimento"
-  m = texto.match(/R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?\s+(?:em|de|dos?|nos?)\s+(?:fundos?\s+(?:de|dos?)\s+)?investimento/i);
+  m = texto.match(
+    /R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?\s+(?:em|de|dos?|nos?)\s+(?:fundos?\s+(?:de|dos?)\s+)?investimento/i
+  );
   if (m) {
     const v = parseAmount(m[1], m[2]);
-    if (!isNaN(v)) return v;
+    if (!Number.isNaN(v)) return v;
   }
 
   // Pattern B: "investimento(s) [up to ~60 chars] R$ X [mil/milhões]"
@@ -137,7 +146,7 @@ export function extractInvestmentThreshold(texto: string): number | null {
   m = texto.match(/investimento[^.\n]{0,60}?R\$\s*([\d.,]+)\s*(mil(?:hões?)?)/i);
   if (m) {
     const v = parseAmount(m[1], m[2]);
-    if (!isNaN(v)) return v;
+    if (!Number.isNaN(v)) return v;
   }
 
   // Pattern C: "R$ X [mil] investidos" — BTG Pactual style
@@ -145,7 +154,7 @@ export function extractInvestmentThreshold(texto: string): number | null {
   m = texto.match(/R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?\s+investidos?/i);
   if (m) {
     const v = parseAmount(m[1], m[2]);
-    if (!isNaN(v)) return v;
+    if (!Number.isNaN(v)) return v;
   }
 
   return null;
@@ -163,7 +172,8 @@ export function extractFeeWaiverRules(texto: string): FeeWaiverRule[] {
     const key = `${rule.category}:${rule.threshold_brl ?? "none"}:${rule.period ?? "none"}`;
     if (seen.has(key)) {
       const existing = rules.find(
-        (item) => `${item.category}:${item.threshold_brl ?? "none"}:${item.period ?? "none"}` === key
+        (item) =>
+          `${item.category}:${item.threshold_brl ?? "none"}:${item.period ?? "none"}` === key
       );
       if (existing) Object.assign(existing, rule);
       return;
@@ -185,7 +195,7 @@ export function extractFeeWaiverRules(texto: string): FeeWaiverRule[] {
       const amountIndex = capturedAmountIndex(match);
       if (!contextAllowsCategory(raw, match[0], amountIndex, "investment")) continue;
       const threshold = parseAmount(match[1], match[2]);
-      if (!isNaN(threshold)) {
+      if (!Number.isNaN(threshold)) {
         add({
           category: "investment",
           threshold_brl: threshold,
@@ -202,9 +212,11 @@ export function extractFeeWaiverRules(texto: string): FeeWaiverRule[] {
     /R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?[^.\n]{0,50}?(?:por mês|mensais|mensal|fatura|gastos?|compras|despesas)/gi,
   ];
 
-  for (const match of raw.matchAll(/R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?[^.\n]{0,90}?(?:gastos?|fatura)[^.\n]{0,90}?isen[cç][aã]o total/gi)) {
+  for (const match of raw.matchAll(
+    /R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?[^.\n]{0,90}?(?:gastos?|fatura)[^.\n]{0,90}?isen[cç][aã]o total/gi
+  )) {
     const threshold = parseAmount(match[1], match[2]);
-    if (!isNaN(threshold)) {
+    if (!Number.isNaN(threshold)) {
       add({
         category: "monthly_spend",
         threshold_brl: threshold,
@@ -216,9 +228,11 @@ export function extractFeeWaiverRules(texto: string): FeeWaiverRule[] {
     }
   }
 
-  for (const match of raw.matchAll(/R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?(?:(?!R\$).){0,60}?isen[cç][aã]o\s+de\s+50%/gi)) {
+  for (const match of raw.matchAll(
+    /R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?(?:(?!R\$).){0,60}?isen[cç][aã]o\s+de\s+50%/gi
+  )) {
     const threshold = parseAmount(match[1], match[2]);
-    if (!isNaN(threshold)) {
+    if (!Number.isNaN(threshold)) {
       add({
         category: "monthly_spend",
         threshold_brl: threshold,
@@ -236,7 +250,7 @@ export function extractFeeWaiverRules(texto: string): FeeWaiverRule[] {
       const amountIndex = capturedAmountIndex(match);
       if (!contextAllowsCategory(raw, match[0], amountIndex, "monthly_spend")) continue;
       const threshold = parseAmount(match[1], match[2]);
-      if (!isNaN(threshold)) {
+      if (!Number.isNaN(threshold)) {
         add({
           category: "monthly_spend",
           threshold_brl: threshold,
@@ -307,8 +321,12 @@ export function extractFeeWaiverRules(texto: string): FeeWaiverRule[] {
   }
 
   if (/cashback/i.test(raw) && /(100%|isenc|isent|gratuit|anuidade)/i.test(raw)) {
-    const fullCashbackMatch = raw.match(/100%[^.\n]{0,80}?cashback[^.\n]{0,80}?R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?/i);
-    const threshold = fullCashbackMatch ? parseAmount(fullCashbackMatch[1], fullCashbackMatch[2]) : NaN;
+    const fullCashbackMatch = raw.match(
+      /100%[^.\n]{0,80}?cashback[^.\n]{0,80}?R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?/i
+    );
+    const threshold = fullCashbackMatch
+      ? parseAmount(fullCashbackMatch[1], fullCashbackMatch[2])
+      : NaN;
     add({
       category: "cashback",
       threshold_brl: Number.isFinite(threshold) ? threshold : undefined,

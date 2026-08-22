@@ -42,23 +42,20 @@ function request(body: unknown): Request {
 describe("/api/recommend contract", () => {
   it("returns the same top-10 as scoreCards and resolves the current card", async () => {
     const currentId = getAllCards()[40].card_stable_id;
-    const res = await POST(
-      request({ profile: { ...PROFILE, currentPrimaryCardId: currentId } })
-    );
+    const res = await POST(request({ profile: { ...PROFILE, currentPrimaryCardId: currentId } }));
     expect(res.status).toBe(200);
     const data = await res.json();
 
     const expected = scoreCards(getAllCards(), PROFILE, DEFAULT_VALUE_ASSUMPTIONS)
       .slice(0, 10)
       .map((s) => s.card.card_stable_id);
-    expect(data.scores.map((s: { card: { card_stable_id: string } }) => s.card.card_stable_id))
-      .toEqual(expected);
+    expect(
+      data.scores.map((s: { card: { card_stable_id: string } }) => s.card.card_stable_id)
+    ).toEqual(expected);
 
     expect(data.currentCard).not.toBeNull();
     expect(data.currentCard.score.card.card_stable_id).toBe(currentId);
-    expect(
-      data.currentCard.rank === null || typeof data.currentCard.rank === "number"
-    ).toBe(true);
+    expect(data.currentCard.rank === null || typeof data.currentCard.rank === "number").toBe(true);
   });
 
   it("respects the limit parameter", async () => {

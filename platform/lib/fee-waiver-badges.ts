@@ -52,7 +52,10 @@ function shouldShowPaidFeeDefaultForSpendWaiver(
   return minSpend !== undefined && minSpend >= FULL_WAIVER_HIGH_MONTHLY_SPEND_BRL;
 }
 
-function profileQualifiesFullInvestmentWaiver(rules: FeeWaiverRule[], profile: UserProfile): boolean {
+function profileQualifiesFullInvestmentWaiver(
+  rules: FeeWaiverRule[],
+  profile: UserProfile
+): boolean {
   const invested = profile.avgInvestedBrl ?? 0;
   return rules.some(
     (r) =>
@@ -79,7 +82,10 @@ function shouldOmitMonthlySpendBadgeForInvestmentWaiver(
  * When the card charges anuidade and isenção integral exige gasto mensal alto, "Isento por gasto"
  * soa como benefício garantido — usamos "Anuidade se paga" só nesse caso.
  */
-export function feeWaiverRuleDisplayLabel(rule: FeeWaiverRule, annualFeeBrl?: AnnualFeeHint): string {
+export function feeWaiverRuleDisplayLabel(
+  rule: FeeWaiverRule,
+  annualFeeBrl?: AnnualFeeHint
+): string {
   if (
     rule.category === "monthly_spend" &&
     rule.full_waiver &&
@@ -138,7 +144,10 @@ export function feeWaiverBadgesFromRules(
       ) {
         return [];
       }
-      if (category === "monthly_spend" && shouldShowPaidFeeDefaultForSpendWaiver(rules, annualFeeBrl)) {
+      if (
+        category === "monthly_spend" &&
+        shouldShowPaidFeeDefaultForSpendWaiver(rules, annualFeeBrl)
+      ) {
         return [
           {
             key: "monthly_spend",
@@ -157,7 +166,10 @@ export function feeWaiverBadgesFromRules(
     });
 }
 
-export function feeWaiverBadgesForCard(card: CardFacet, profile?: UserProfile | null): FeeWaiverBadge[] {
+export function feeWaiverBadgesForCard(
+  card: CardFacet,
+  profile?: UserProfile | null
+): FeeWaiverBadge[] {
   return feeWaiverBadgesFromRules(
     card.fee_waiver_rules,
     card.facets_numeric_or_special.annual_fee_brl_best_estimate,

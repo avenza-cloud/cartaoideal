@@ -21,7 +21,11 @@ const TRAVEL_OPTIONS: { value: TravelFrequency; label: string; desc: string }[] 
 ];
 
 const REWARD_OPTIONS: { value: RewardPref; label: string; desc: string }[] = [
-  { value: "cost_benefit", label: "Melhor custo-benefício", desc: "Maximize o retorno líquido total" },
+  {
+    value: "cost_benefit",
+    label: "Melhor custo-benefício",
+    desc: "Maximize o retorno líquido total",
+  },
   { value: "cashback", label: "Cashback", desc: "Dinheiro de volta nas compras" },
   { value: "points", label: "Pontos / milhas", desc: "Acumule para resgatar viagens" },
   { value: "lounge", label: "Lounge VIP", desc: "Acesso a salas em aeroportos" },
@@ -125,6 +129,7 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
         {/* Back link — only when editing */}
         {!isNew && (
           <button
+            type="button"
             onClick={() => router.back()}
             className="mb-6 flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
           >
@@ -189,11 +194,17 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                 </span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-medium">{selectedCard.name}</p>
-                  <p className="truncate font-mono text-[10px] text-muted-foreground">{selectedCard.issuer}</p>
+                  <p className="truncate font-mono text-[10px] text-muted-foreground">
+                    {selectedCard.issuer}
+                  </p>
                 </div>
                 <button
                   type="button"
-                  onClick={() => { setCardId(undefined); setCardQuery(""); setCardFocused(true); }}
+                  onClick={() => {
+                    setCardId(undefined);
+                    setCardQuery("");
+                    setCardFocused(true);
+                  }}
                   className="shrink-0 rounded-full p-1 text-muted-foreground/50 transition-colors hover:text-foreground"
                 >
                   <X className="h-3.5 w-3.5" />
@@ -205,7 +216,10 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                   autoFocus={cardFocused}
                   type="text"
                   value={cardQuery}
-                  onChange={(e) => { setCardQuery(e.target.value); setCardId(undefined); }}
+                  onChange={(e) => {
+                    setCardQuery(e.target.value);
+                    setCardId(undefined);
+                  }}
                   onFocus={() => setCardFocused(true)}
                   onBlur={() => setTimeout(() => setCardFocused(false), 150)}
                   placeholder="Buscar cartão… (opcional)"
@@ -222,12 +236,21 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                       <button
                         key={c.id}
                         type="button"
-                        onMouseDown={() => { setCardId(c.id); setCardQuery(c.name); setCardFocused(false); }}
+                        onMouseDown={() => {
+                          setCardId(c.id);
+                          setCardQuery(c.name);
+                          setCardFocused(false);
+                        }}
                         className="flex w-full items-center gap-3 rounded-xl border border-border/50 bg-card/60 px-2.5 py-2 text-left transition-colors hover:border-border hover:bg-card"
                       >
                         <span className="flex h-9 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-zinc-950">
                           {cardArtSrc(c.artUrl) ? (
-                            <img src={c.artUrl} alt={c.altText || c.name} className="max-h-7 max-w-[48px] object-contain" loading="lazy" />
+                            <img
+                              src={c.artUrl}
+                              alt={c.altText || c.name}
+                              className="max-h-7 max-w-[48px] object-contain"
+                              loading="lazy"
+                            />
                           ) : (
                             <CreditCard className="h-3.5 w-3.5 text-muted-foreground" />
                           )}
@@ -264,7 +287,14 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                       : "border-border bg-background/30 hover:border-border/80"
                   )}
                 >
-                  <p className={cn("text-xs font-medium", rewards.has(value) ? "text-foreground" : "text-muted-foreground")}>{label}</p>
+                  <p
+                    className={cn(
+                      "text-xs font-medium",
+                      rewards.has(value) ? "text-foreground" : "text-muted-foreground"
+                    )}
+                  >
+                    {label}
+                  </p>
                   <p className="mt-0.5 text-[10px] text-muted-foreground/60">{desc}</p>
                 </button>
               ))}
@@ -289,7 +319,14 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                       : "border-border bg-background/30 hover:border-border/80"
                   )}
                 >
-                  <p className={cn("text-xs font-medium", travel === value ? "text-foreground" : "text-muted-foreground")}>{label}</p>
+                  <p
+                    className={cn(
+                      "text-xs font-medium",
+                      travel === value ? "text-foreground" : "text-muted-foreground"
+                    )}
+                  >
+                    {label}
+                  </p>
                   <p className="mt-0.5 text-[10px] text-muted-foreground/60">{desc}</p>
                 </button>
               ))}
@@ -330,7 +367,7 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="mb-1 block text-[11px] text-muted-foreground/70">{label}</label>
+      <span className="mb-1 block text-[11px] text-muted-foreground/70">{label}</span>
       {children}
     </div>
   );

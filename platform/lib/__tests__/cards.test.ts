@@ -4,7 +4,10 @@ import { filterCards, getCardFeeWaiver } from "@/lib/cards";
 describe("getCardFeeWaiver", () => {
   it("Nubank Ultravioleta — viaInvestimento + viaGasto", () => {
     const results = filterCards({ search: "nubank ultravioleta" });
-    const card = results.find((c) => c.card_stable_id.includes("nubank") && c.display_name.toLowerCase().includes("ultravioleta"));
+    const card = results.find(
+      (c) =>
+        c.card_stable_id.includes("nubank") && c.display_name.toLowerCase().includes("ultravioleta")
+    );
     expect(card).toBeDefined();
     const waiver = getCardFeeWaiver(card!);
     expect(waiver).not.toBeNull();
@@ -56,8 +59,12 @@ describe("filterCards", () => {
     const cards = filterCards({ search: "inter" });
 
     expect(cards.length).toBeGreaterThan(0);
-    expect(cards.slice(0, 4).every((card) => card.display_name.toLowerCase().includes("inter"))).toBe(true);
-    expect(cards.some((card) => card.display_name === "LATAM Pass Itaú Visa Internacional")).toBe(false);
+    expect(
+      cards.slice(0, 4).every((card) => card.display_name.toLowerCase().includes("inter"))
+    ).toBe(true);
+    expect(cards.some((card) => card.display_name === "LATAM Pass Itaú Visa Internacional")).toBe(
+      false
+    );
   });
 
   it("feeWaiverByInvestment:true returns a material set of cards", () => {

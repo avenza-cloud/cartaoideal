@@ -14,7 +14,7 @@ const cardsDir = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "data
 const ISSUER_BY_VALUE = {
   CAIXA: "Caixa Econômica Federal",
   digio: "Digio",
-  "Pão": "Pão de Açúcar",
+  Pão: "Pão de Açúcar",
   "Itaú / Magalu": "Itaú", // co-brand partner already modeled in co_brand
 };
 const ISSUER_BY_CARD = {
@@ -44,8 +44,14 @@ const BAND_TOKEN_PATTERNS = [
   [/\bmais\b/i, "Mais"],
   [/internacional/i, "Internacional"],
 ];
-const NETWORK_NAME_BANDS = new Set(["Mastercard", "Visa", "Elo", "American Express", "Gold/Platinum"]);
-const BAND_CASE_FIXES = { "estelar": "Estelar", "básico": "Básico", "universitário": "Universitário" };
+const NETWORK_NAME_BANDS = new Set([
+  "Mastercard",
+  "Visa",
+  "Elo",
+  "American Express",
+  "Gold/Platinum",
+]);
+const BAND_CASE_FIXES = { estelar: "Estelar", básico: "Básico", universitário: "Universitário" };
 
 // ── network_primary: split the 3 non-atomic "Visa / Mastercard" rows ────────
 // None of the three names a network in its display_name; all are genuinely

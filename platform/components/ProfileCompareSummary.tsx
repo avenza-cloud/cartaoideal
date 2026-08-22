@@ -62,14 +62,20 @@ export function ProfileCompareSummary({ cards }: ProfileCompareSummaryProps) {
             Melhor para seu perfil: {best?.card.display_name ?? "—"}
           </p>
           <p className="mt-0.5 text-xs text-muted-foreground">
-            Base: R${profile.avgMonthlySpendBrl.toLocaleString("pt-BR")}/mês de gasto,
-            R${profile.avgInvestedBrl.toLocaleString("pt-BR")} investidos.
+            Base: R${profile.avgMonthlySpendBrl.toLocaleString("pt-BR")}/mês de gasto, R$
+            {profile.avgInvestedBrl.toLocaleString("pt-BR")} investidos.
           </p>
         </div>
         {scores.length >= 2 && (
           <div className="rounded-xl border bg-background/45 px-3 py-2 text-right">
             <p className="text-[10px] text-muted-foreground">Delta 2º vs 1º</p>
-            <p className={delta >= 0 ? "font-mono text-sm text-emerald-500" : "font-mono text-sm text-rose-500"}>
+            <p
+              className={
+                delta >= 0
+                  ? "font-mono text-sm text-emerald-500"
+                  : "font-mono text-sm text-rose-500"
+              }
+            >
               {money(delta)}
             </p>
             <p className="font-mono text-[10px] text-muted-foreground">{annual(delta * 12)}</p>
@@ -102,10 +108,16 @@ export function ProfileCompareSummary({ cards }: ProfileCompareSummaryProps) {
             <div className="mt-2 grid grid-cols-3 gap-1.5 text-[10px]">
               <Metric
                 label="Retorno"
-                value={formatGrossRewardMonthlyDisplay(score, travelFrequencyForValueModeling(profile))}
+                value={formatGrossRewardMonthlyDisplay(
+                  score,
+                  travelFrequencyForValueModeling(profile)
+                )}
               />
               <Metric label="Benefícios" value={money(score.intangibleMonthlyValueBrl)} />
-              <Metric label="Anuidade" value={`-${money(score.effectiveMonthlyFeeBrl).replace("+", "")}`} />
+              <Metric
+                label="Anuidade"
+                value={`-${money(score.effectiveMonthlyFeeBrl).replace("+", "")}`}
+              />
             </div>
             {score.eligibilityReasons.length > 0 && (
               <p className="mt-2 text-[11px] text-rose-400">{score.eligibilityReasons.join(" ")}</p>

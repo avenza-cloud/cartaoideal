@@ -13,9 +13,13 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   webServer: {
-    command: "pnpm dev --hostname 127.0.0.1 --port 3100",
+    // CI runs the prod server (built in a prior step) — faster and immune to
+    // the dev-compile latency that forced wide expect timeouts locally.
+    command: process.env.CI
+      ? "pnpm start --hostname 127.0.0.1 --port 3100"
+      : "pnpm dev --hostname 127.0.0.1 --port 3100",
     url: "http://127.0.0.1:3100",
-    reuseExistingServer: false,
+    reuseExistingServer: !process.env.CI,
     timeout: 120_000,
   },
   projects: [

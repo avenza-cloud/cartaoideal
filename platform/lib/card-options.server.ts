@@ -49,9 +49,7 @@ export const CARD_OPTIONS: ClientCardOption[] = getAllCards()
     ),
     description: curatedDescriptions.get(card.card_stable_id),
   }))
-  .sort(
-    (a, b) => a.popularityRank - b.popularityRank || a.name.localeCompare(b.name, "pt-BR")
-  );
+  .sort((a, b) => a.popularityRank - b.popularityRank || a.name.localeCompare(b.name, "pt-BR"));
 
 /** Ordered "Mais comuns" list shown when the picker query is empty. */
 export const CURATED_CARD_OPTIONS: ClientCardOption[] = CURATED_POPULAR.map((c) =>

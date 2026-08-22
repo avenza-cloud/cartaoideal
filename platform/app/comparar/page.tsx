@@ -54,92 +54,88 @@ export default async function CompararPage({ searchParams }: PageProps) {
         </Suspense>
 
         <div className="overflow-x-auto rounded-xl border bg-card/35">
-        <table className="w-full min-w-[620px] border-collapse text-sm">
-          <thead>
-            <tr>
-              <th className="sticky left-0 z-10 w-44 bg-card px-3 py-3 text-left font-normal text-muted-foreground">
-                Atributo
-              </th>
-              {cards.map((card) => (
-                <th key={card.card_stable_id} className="min-w-[210px] px-3 py-3 text-left">
-                  <div>
-                    <p className="text-xs text-muted-foreground font-mono font-normal">
-                      {card.issuer_raw}
-                    </p>
-                    <Link
-                      href={cardDetailHref(card.card_stable_id)}
-                      className="font-semibold hover:underline underline-offset-2 text-sm leading-tight"
-                    >
-                      {card.display_name}
-                    </Link>
-                  </div>
+          <table className="w-full min-w-[620px] border-collapse text-sm">
+            <thead>
+              <tr>
+                <th className="sticky left-0 z-10 w-44 bg-card px-3 py-3 text-left font-normal text-muted-foreground">
+                  Atributo
                 </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            <CompareRow
-              label="Segmento"
-              values={cards.map((c) => segmentLabel(c.market_segment_guess))}
-              render={(v) => <Badge variant="outline" className="text-xs">{v}</Badge>}
-            />
-            <CompareRow
-              label="Bandeira"
-              values={cards.map((c) => c.network_primary)}
-            />
-            <CompareRow
-              label="Anuidade"
-              values={cards.map((c) =>
-                formatFee(c.facets_numeric_or_special.annual_fee_brl_best_estimate)
-              )}
-              bestIndex={bestFeeIndex(cards)}
-            />
-            <CompareRow
-              label="Investimento mín."
-              values={cards.map((c) => {
-                const v = c.facets_numeric_or_special.minimum_investment_brl_best_estimate;
-                return v === "unknown" ? "—" : `R$ ${(v as number).toLocaleString("pt-BR")}`;
-              })}
-            />
-            <BoolRow
-              label="Sala VIP"
-              values={cards.map((c) => c.lounge_access.has_lounge_access)}
-            />
-            <CompareRow
-              label="Detalhe lounge"
-              values={cards.map((c) => loungeSummary(c.lounge_access))}
-            />
-            <BoolRow
-              label="Pontos / Milhas"
-              values={cards.map((c) => c.facets_boolean.earn_points_or_miles)}
-            />
-            <BoolRow
-              label="Retorno financeiro"
-              values={cards.map((c) => c.reward_return.has_cashlike_return)}
-            />
-            <CompareRow
-              label="Tipo de retorno"
-              values={cards.map((c) =>
-                c.reward_return.has_cashlike_return
-                  ? rewardReturnLabel(c.reward_return)
-                  : "—"
-              )}
-            />
-            <BoolRow
-              label="Seguro Viagem"
-              values={cards.map((c) => c.facets_boolean.mentions_travel_insurance)}
-            />
-            <BoolRow
-              label="Concierge"
-              values={cards.map((c) => c.facets_boolean.mentions_concierge)}
-            />
-            <CompareRow
-              label="Fonte"
-              values={cards.map((c) => c.source_label)}
-            />
-          </tbody>
-        </table>
-      </div>
+                {cards.map((card) => (
+                  <th key={card.card_stable_id} className="min-w-[210px] px-3 py-3 text-left">
+                    <div>
+                      <p className="text-xs text-muted-foreground font-mono font-normal">
+                        {card.issuer_raw}
+                      </p>
+                      <Link
+                        href={cardDetailHref(card.card_stable_id)}
+                        className="font-semibold hover:underline underline-offset-2 text-sm leading-tight"
+                      >
+                        {card.display_name}
+                      </Link>
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border">
+              <CompareRow
+                label="Segmento"
+                values={cards.map((c) => segmentLabel(c.market_segment_guess))}
+                render={(v) => (
+                  <Badge variant="outline" className="text-xs">
+                    {v}
+                  </Badge>
+                )}
+              />
+              <CompareRow label="Bandeira" values={cards.map((c) => c.network_primary)} />
+              <CompareRow
+                label="Anuidade"
+                values={cards.map((c) =>
+                  formatFee(c.facets_numeric_or_special.annual_fee_brl_best_estimate)
+                )}
+                bestIndex={bestFeeIndex(cards)}
+              />
+              <CompareRow
+                label="Investimento mín."
+                values={cards.map((c) => {
+                  const v = c.facets_numeric_or_special.minimum_investment_brl_best_estimate;
+                  return v === "unknown" ? "—" : `R$ ${(v as number).toLocaleString("pt-BR")}`;
+                })}
+              />
+              <BoolRow
+                label="Sala VIP"
+                values={cards.map((c) => c.lounge_access.has_lounge_access)}
+              />
+              <CompareRow
+                label="Detalhe lounge"
+                values={cards.map((c) => loungeSummary(c.lounge_access))}
+              />
+              <BoolRow
+                label="Pontos / Milhas"
+                values={cards.map((c) => c.facets_boolean.earn_points_or_miles)}
+              />
+              <BoolRow
+                label="Retorno financeiro"
+                values={cards.map((c) => c.reward_return.has_cashlike_return)}
+              />
+              <CompareRow
+                label="Tipo de retorno"
+                values={cards.map((c) =>
+                  c.reward_return.has_cashlike_return ? rewardReturnLabel(c.reward_return) : "—"
+                )}
+              />
+              <BoolRow
+                label="Seguro Viagem"
+                values={cards.map((c) => c.facets_boolean.mentions_travel_insurance)}
+              />
+              <BoolRow
+                label="Concierge"
+                values={cards.map((c) => c.facets_boolean.mentions_concierge)}
+              />
+              <CompareRow label="Fonte" values={cards.map((c) => c.source_label)} />
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
@@ -171,7 +167,7 @@ function CompareRow({
 }) {
   return (
     <tr className="hover:bg-muted/20 transition-colors">
-              <td className="sticky left-0 z-10 bg-card px-3 py-2.5 text-muted-foreground">{label}</td>
+      <td className="sticky left-0 z-10 bg-card px-3 py-2.5 text-muted-foreground">{label}</td>
       {values.map((v, i) => (
         <td
           key={i}
@@ -192,9 +188,7 @@ function BoolRow({ label, values }: { label: string; values: boolean[] }) {
       {values.map((v, i) => (
         <td key={i} className="px-3 py-2.5">
           {v ? (
-            <Check
-              className={`h-4 w-4 ${hasAny ? "text-green-400" : "text-muted-foreground"}`}
-            />
+            <Check className={`h-4 w-4 ${hasAny ? "text-green-400" : "text-muted-foreground"}`} />
           ) : (
             <X className="h-4 w-4 text-muted-foreground/30" />
           )}

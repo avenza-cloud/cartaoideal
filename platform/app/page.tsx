@@ -37,8 +37,8 @@ export default function HomePage() {
               Pergunte. Compare. Decida.
             </h1>
             <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
-              Configure seu perfil abaixo para ver o ranking personalizado. Use
-              o chat para tirar dúvidas, comparar cartões e explorar benefícios.
+              Configure seu perfil abaixo para ver o ranking personalizado. Use o chat para tirar
+              dúvidas, comparar cartões e explorar benefícios.
             </p>
           </section>
 
@@ -67,7 +67,6 @@ export default function HomePage() {
             className="mx-auto max-w-4xl"
           />
         </main>
-
       </div>
 
       <CompareBar />

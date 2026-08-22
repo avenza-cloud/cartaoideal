@@ -8,7 +8,7 @@ import {
   filterCards as clientFilterCards,
 } from "@/lib/filter-cards";
 import { FacetsFileSchema } from "@/lib/card-schema";
-import type { CardFacet, CardFilters, FeeWaiverRule, FacetsFile, MarketSegment } from "@/types/cards";
+import type { CardFacet, CardFilters, FacetsFile, MarketSegment } from "@/types/cards";
 
 // In prod the cast is safe: CI parses the whole catalog against the schema on
 // every PR (lib/__tests__/card-data.test.ts). Dev/test parse eagerly so a bad
