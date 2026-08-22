@@ -6,7 +6,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const BUDGET_DAYS = 180; // freshness SLA (see platform/data/README.md)
+const BUDGET_DAYS = 180; // freshness SLA (see data/README.md)
 
 const cardsDir = join(dirname(fileURLToPath(import.meta.url)), "..", "data", "cards");
 const now = Date.now();

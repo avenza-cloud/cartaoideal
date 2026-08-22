@@ -9,23 +9,24 @@ Documentação geral em inglês no [README raiz](../README.md); guia de contribu
 
 ## Estrutura do repositório
 
-- `platform/` — aplicação Next.js 16 (App Router, React 19, Tailwind 4, zustand, Vercel AI SDK).
-- `platform/data/cards/` — **o dataset**: um arquivo JSON por cartão (fonte de verdade).
+- `web/` — aplicação Next.js 16 (App Router, React 19, Tailwind 4, zustand, Vercel AI SDK).
+- `data/cards/` — **o dataset**: um arquivo JSON por cartão (fonte de verdade).
+- `scripts/` — ferramentas de dados (build do artefato, correções, auditorias).
 - `.github/workflows/ci.yml` — dados, lint, testes, typecheck e build em cada push/PR.
 - `.github/workflows/correction-pr.yml` — transforma issues de correção em PRs com o diff do dado.
 - `.github/workflows/data-health.yml` — auditoria semanal de frescor e link-rot das fontes.
 
 ## Dados
 
-- `platform/data/cards/<card_stable_id>.json` — um arquivo por cartão, formato canônico.
-- `platform/data/generated/cards.json` — artefato de runtime compilado no build (gitignored).
-- `platform/data/card_overrides.json` — dados de negócio por cartão (curadoria, tiers Nomad, Smiles).
-- Contrato de dados: `platform/lib/card-schema.ts` (Zod) — validado sobre todos os cartões em CI
+- `data/cards/<card_stable_id>.json` — um arquivo por cartão, formato canônico.
+- `web/data/generated/cards.json` — artefato de runtime compilado no build (gitignored).
+- `data/card_overrides.json` — dados de negócio por cartão (curadoria, tiers Nomad, Smiles).
+- Contrato de dados: `web/lib/card-schema.ts` (Zod) — validado sobre todos os cartões em CI
   (`lib/__tests__/card-data.test.ts`). Convenções (sentinela `"unknown"`, evolução aditiva,
-  procedência) em [`platform/data/README.md`](data/README.md); licença do dataset em
-  [`platform/data/LICENSE`](data/LICENSE) (CC BY 4.0).
+  procedência) em [`data/README.md`](../data/README.md); licença do dataset em
+  [`data/LICENSE`](../data/LICENSE) (CC BY 4.0).
 
-Edite o arquivo do cartão, rode `node scripts/build-cards-artifact.mjs --format` e
+Edite o arquivo do cartão, rode `node ../scripts/build-cards-artifact.mjs --format` e
 `pnpm test:unit` — o fluxo completo está no CONTRIBUTING.
 
 ## Começando
@@ -33,7 +34,7 @@ Edite o arquivo do cartão, rode `node scripts/build-cards-artifact.mjs --format
 ```bash
 nvm use            # Node 22
 corepack enable    # pnpm 10
-cd platform
+cd web
 pnpm install
 cp .env.example .env.local   # opcional
 pnpm dev                     # http://localhost:3000 (compila o dataset via predev)
@@ -42,7 +43,7 @@ pnpm dev                     # http://localhost:3000 (compila o dataset via pred
 ## Testes e qualidade
 
 ```bash
-cd platform
+cd web
 pnpm test:unit            # vitest + contrato de dados + thresholds de cobertura
 pnpm test:e2e             # playwright (desktop/mobile, sem IA real)
 pnpm test:chat            # e2e do chat com backend de IA real (GEMINI_API_KEY)
@@ -53,10 +54,10 @@ pnpm exec tsc --noEmit    # typecheck
 ## Scripts de dados (Node)
 
 ```bash
-pnpm data:build                                   # compila data/cards → artefato de runtime
-node scripts/build-cards-artifact.mjs --check     # + valida formato canônico (modo CI)
-node scripts/build-cards-artifact.mjs --format    # reformata arquivos de cartão
-node scripts/report-data-freshness.mjs            # relatório de frescor (não bloqueante)
+pnpm data:build                                      # compila data/cards → artefato de runtime
+node ../scripts/build-cards-artifact.mjs --check     # + valida formato canônico (modo CI)
+node ../scripts/build-cards-artifact.mjs --format    # reformata arquivos de cartão
+node ../scripts/report-data-freshness.mjs            # relatório de frescor (não bloqueante)
 pnpm audit:card-sources                           # auditoria de fontes / link-rot
 ```
 
@@ -71,7 +72,7 @@ Vercel. URL pública e metadados de SEO derivam de `NEXT_PUBLIC_SITE_URL`
 
 ## Env
 
-Ver `platform/.env.example` (tudo opcional; cada recurso degrada graciosamente):
+Ver `web/.env.example` (tudo opcional; cada recurso degrada graciosamente):
 
 - `GEMINI_API_KEY` — chat com IA (`/api/chat`, modelo primário Gemini; `GEMINI_MODEL` opcional).
 - `DEEPSEEK_API_KEY` — fallback automático do chat quando a chamada ao Gemini falha (`DEEPSEEK_MODEL`/`DEEPSEEK_BASE_URL` opcionais).

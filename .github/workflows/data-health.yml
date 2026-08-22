@@ -22,7 +22,7 @@ jobs:
     timeout-minutes: 30
     defaults:
       run:
-        working-directory: platform
+        working-directory: web
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - uses: pnpm/action-setup@v4
@@ -32,21 +32,21 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          cache-dependency-path: platform/pnpm-lock.yaml
+          cache-dependency-path: web/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
       - run: pnpm data:build
       - name: Freshness report
-        run: node scripts/report-data-freshness.mjs
+        run: node ../scripts/report-data-freshness.mjs
       - name: Source audit (link rot + evidence)
         env:
           AUDIT_CONTACT_URL: ${{ github.server_url }}/${{ github.repository }}
-        run: node scripts/audit-card-sources.mjs
+        run: node ../scripts/audit-card-sources.mjs
       - name: Upload report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: data-health-report
-          path: platform/audit-reports/
+          path: audit-reports/
           if-no-files-found: ignore
           retention-days: 90
       - name: Upsert tracking issue

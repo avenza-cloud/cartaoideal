@@ -26,7 +26,7 @@ Out of scope:
   [card-correction issue](../../issues/new/choose)
 - Issues on card issuers' own websites
 - Rate-limit bypass on a self-hosted/fork deployment using the default
-  in-memory limiter (documented as best-effort; see `platform/lib/rate-limit.ts`)
+  in-memory limiter (documented as best-effort; see `web/lib/rate-limit.ts`)
 
 ## Data handling
 
