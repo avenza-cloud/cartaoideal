@@ -3,7 +3,8 @@ import type { CardFacet } from "@/types/cards";
 // Add card-specific affiliate override URLs here.
 // Key: card_stable_id, Value: your affiliate URL (already includes tracking params).
 // When empty, falls back to the card's application_url with UTM params appended.
-const AFFILIATE_OVERRIDES: Record<string, string> = {
+// Exported so the referential-integrity test can verify the keys exist.
+export const AFFILIATE_OVERRIDES: Record<string, string> = {
   // "nubank-cartao-nubank-5feb686dbf": "https://example.com/ref/nubank",
 };
 

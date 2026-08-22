@@ -1,0 +1,36 @@
+{
+  "curated_popular": [
+    {
+      "card_stable_id": "itau-itau-click-visa-platinum-com-pontos-d763e4b0d0",
+      "description_pt": "Sem anuidade com vantagens da bandeira."
+    },
+    {
+      "card_stable_id": "mercado-pago-mercado-pago-visa-gold-5a8ac898a9",
+      "description_pt": "Muito usado para compras online, fácil aprovação."
+    },
+    {
+      "card_stable_id": "inter-inter-mastercard-gold-c1c8b413cc",
+      "description_pt": "Sem anuidade, cashback e conta digital."
+    },
+    {
+      "card_stable_id": "nubank-cartao-nubank-5feb686dbf",
+      "description_pt": "O roxinho. Sem anuidade, controle pelo app."
+    }
+  ],
+  "nomad_tiers": {
+    "card_stable_id": "nomad-nomad-explorer-visa-infinite-aae26793ed",
+    "tiers": [
+      { "min_usd": 5000, "rate": 3.0 },
+      { "min_usd": 2500, "rate": 2.2 },
+      { "min_usd": 1000, "rate": 1.6 }
+    ]
+  },
+  "smiles_club_bundle": {
+    "monthly_brl": 43.7,
+    "card_stable_ids": [
+      "bradesco-bradesco-gol-smiles-visa-infinite-18c34f9e87",
+      "banco-do-brasil-ourocard-gol-smiles-visa-infinite-5bf0562a07",
+      "santander-gol-smiles-santander-visa-infinite-b765e023db"
+    ]
+  }
+}

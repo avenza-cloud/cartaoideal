@@ -1,39 +1,25 @@
 import { z } from "zod";
+import { getCardById } from "@/lib/cards";
+import { CORRECTION_FIELDS } from "@/lib/correction-fields";
+import { apiError } from "@/lib/api-error";
+import { createRateLimiter, tooManyRequests } from "@/lib/rate-limit";
+import { logEvent } from "@/lib/log";
 
 export const runtime = "nodejs";
 
-const RATE_LIMIT_WINDOW_MS = 60_000;
-const RATE_LIMIT_MAX = 3;
+const limiter = createRateLimiter({ windowMs: 60_000, max: 3, keyPrefix: "corrections" });
 
-const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
-
-function checkRateLimit(ip: string): { allowed: boolean; retryAfter: number } {
-  const now = Date.now();
-  const entry = rateLimitStore.get(ip);
-
-  if (!entry || now >= entry.resetAt) {
-    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    return { allowed: true, retryAfter: 0 };
-  }
-
-  if (entry.count >= RATE_LIMIT_MAX) {
-    return { allowed: false, retryAfter: Math.ceil((entry.resetAt - now) / 1000) };
-  }
-
-  entry.count++;
-  return { allowed: true, retryAfter: 0 };
-}
-
+// No contact field: the issue body is public on GitHub, so we never publish
+// submitter-identifying data. Contributors can comment on the issue afterwards.
 const correctionSchema = z.object({
-  cardId: z.string().min(1),
-  cardName: z.string().min(1),
-  issuer: z.string().optional().default(""),
-  field: z.string().min(1),
-  suggestedValue: z.string().min(1),
-  sourceUrl: z.string().url(),
-  notes: z.string().optional().default(""),
-  contact: z.string().optional().default(""),
-  pageSourceUrl: z.string().url().optional(),
+  cardId: z.string().min(1).max(200),
+  cardName: z.string().min(1).max(200),
+  issuer: z.string().max(200).optional().default(""),
+  field: z.enum(CORRECTION_FIELDS),
+  suggestedValue: z.string().min(1).max(2000),
+  sourceUrl: z.string().url().max(2000),
+  notes: z.string().max(2000).optional().default(""),
+  pageSourceUrl: z.string().url().max(2000).optional(),
 });
 
 function issueBody(payload: z.infer<typeof correctionSchema>) {
@@ -58,47 +44,31 @@ function issueBody(payload: z.infer<typeof correctionSchema>) {
 }
 
 export async function POST(req: Request) {
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
-    req.headers.get("x-real-ip") ??
-    "unknown";
-
-  const { allowed, retryAfter } = checkRateLimit(ip);
-  if (!allowed) {
-    return new Response(JSON.stringify({ error: "Too many requests" }), {
-      status: 429,
-      headers: {
-        "Content-Type": "application/json",
-        "Retry-After": String(retryAfter),
-        "X-RateLimit-Limit": String(RATE_LIMIT_MAX),
-        "X-RateLimit-Window": "60",
-      },
-    });
-  }
+  const decision = await limiter.check(req);
+  if (!decision.allowed) return tooManyRequests(decision, limiter.limit);
 
   const parsed = correctionSchema.safeParse(await req.json().catch(() => null));
-  if (!parsed.success) {
-    return Response.json({ error: "Dados inválidos para correção." }, { status: 400 });
+  if (!parsed.success) return apiError("invalid_input", "Dados inválidos para correção.");
+  if (!getCardById(parsed.data.cardId)) {
+    return apiError("invalid_input", "Cartão não encontrado no catálogo.");
   }
 
   const token = process.env.GITHUB_CORRECTIONS_TOKEN;
-  const repo = process.env.GITHUB_CORRECTIONS_REPO ?? "caiotheodoro/cartaoideal";
-  if (!token) {
-    return Response.json(
-      { error: "Automação de correções não configurada no servidor." },
-      { status: 503 }
-    );
+  const repo = process.env.GITHUB_CORRECTIONS_REPO;
+  if (!token || !repo) {
+    // Fail closed: forks without the env vars must not file issues anywhere.
+    return apiError("not_configured", "Automação de correções não configurada no servidor.");
   }
 
   const [owner, repoName] = repo.split("/");
   if (!owner || !repoName) {
-    return Response.json({ error: "Repositório de correções inválido." }, { status: 500 });
+    return apiError("not_configured", "Repositório de correções inválido.");
   }
 
   const issuePayload = {
-      title: `Correção: ${parsed.data.cardName} — ${parsed.data.field}`,
-      body: issueBody(parsed.data),
-      labels: ["correction", "needs-review"],
+    title: `Correção: ${parsed.data.cardName} — ${parsed.data.field}`,
+    body: issueBody(parsed.data),
+    labels: ["correction", "needs-review"],
   };
 
   const createIssue = (body: typeof issuePayload | Omit<typeof issuePayload, "labels">) =>
@@ -115,19 +85,15 @@ export async function POST(req: Request) {
 
   let response = await createIssue(issuePayload);
   if (!response.ok && response.status === 422) {
-    response = await createIssue({
-      title: issuePayload.title,
-      body: issuePayload.body,
-    });
+    // Repo without the labels — retry unlabeled rather than dropping the report.
+    response = await createIssue({ title: issuePayload.title, body: issuePayload.body });
   }
 
   const issue = await response.json().catch(() => null);
   if (!response.ok) {
-    return Response.json(
-      { error: issue?.message ?? "Falha ao criar issue no GitHub." },
-      { status: 502 }
-    );
+    return apiError("upstream_error", issue?.message ?? "Falha ao criar issue no GitHub.");
   }
 
+  logEvent("/api/corrections", { issueNumber: issue.number });
   return Response.json({ issueUrl: issue.html_url, issueNumber: issue.number });
 }
