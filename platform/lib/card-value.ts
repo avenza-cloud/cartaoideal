@@ -8,6 +8,10 @@ import {
   NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL,
   RETAIL_BANK_SPREAD,
 } from "@/lib/assumptions";
+import {
+  GOL_SMILES_INFINITE_STABLE_IDS,
+  SMILES_CLUB_ENTRY_MONTHLY_BRL,
+} from "@/lib/card-overrides";
 import type {
   CardCharacteristic,
   CardFacet,
@@ -609,14 +613,8 @@ function inferAnnualFeeFromCharacteristicsWhenFacetZero(
   return positive.length > 0 ? Math.max(...positive) : null;
 }
 
-/** Clube Smiles plano entrada — custo além da anuidade do cartão para modelar 5,5 milhas/USD no gasto geral (Diamante). */
-const GOL_SMILES_CLUB_ENTRY_MONTHLY_BRL = 43.7;
-
-const GOL_SMILES_INFINITE_STABLE_IDS = new Set<string>([
-  "bradesco-bradesco-gol-smiles-visa-infinite-18c34f9e87",
-  "banco-do-brasil-ourocard-gol-smiles-visa-infinite-5bf0562a07",
-  "santander-gol-smiles-santander-visa-infinite-b765e023db",
-]);
+/** Clube Smiles plano entrada — custo além da anuidade do cartão para modelar 5,5 milhas/USD no gasto geral (Diamante). Ids e valor em data/card_overrides.json. */
+const GOL_SMILES_CLUB_ENTRY_MONTHLY_BRL = SMILES_CLUB_ENTRY_MONTHLY_BRL;
 
 function bundledSmilesClubAnnualAddonBrl(card: CardFacet): number {
   if (!GOL_SMILES_INFINITE_STABLE_IDS.has(card.card_stable_id)) return 0;

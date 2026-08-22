@@ -60,9 +60,12 @@ function signedMoneyPerMonth(value: number): string {
   })}/mês`;
 }
 
+/** Só os campos numéricos são lidos — aceita o score "slim" das rotas de API. */
+type ValueScoreDisplay = Omit<CardValueScore, "card" | "assumptions">;
+
 /** Retorno bruto/mês: faixa venda–utilização quando o perfil pondera viagens e há spread. */
 export function formatGrossRewardMonthlyDisplay(
-  score: CardValueScore,
+  score: ValueScoreDisplay,
   travelFrequency: TravelFrequency,
   minSpreadBrl = 1
 ): string {
@@ -81,7 +84,7 @@ export function formatGrossRewardMonthlyDisplay(
 
 /** Valor líquido/mês: faixa quando há spread venda–utilização e o perfil pondera viagens. */
 export function formatNetMonthlyDisplay(
-  score: CardValueScore,
+  score: ValueScoreDisplay,
   travelFrequency: TravelFrequency,
   minSpreadBrl = 1
 ): string {

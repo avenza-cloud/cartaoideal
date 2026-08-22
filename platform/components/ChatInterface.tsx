@@ -21,7 +21,7 @@ import {
   PromptInputSubmit,
 } from "@/components/ui/ai-prompt-box";
 import { useCompareStore, useProfileStore } from "@/lib/store";
-import { fetchRecommendationsWithFallback } from "@/lib/recommend-fallback";
+import { fetchRecommendations } from "@/lib/recommend-client";
 import {
   CreditCard,
   Coins,
@@ -45,6 +45,7 @@ import {
   feeWaiverRuleBadgeVariant,
   feeWaiverRuleDisplayLabel,
 } from "@/lib/fee-waiver-badges";
+import { cardArtSrc } from "@/lib/card-display";
 import { cn } from "@/lib/utils";
 
 interface ChatInterfaceProps {
@@ -228,7 +229,7 @@ function ChatMessageBubble({ message }: { message: UIMessage }) {
 function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
   const { ids, add, remove, canAdd } = useCompareStore();
   const selected = ids.includes(card.id);
-  const hasImage = card.cardArtUrl && card.cardArtUrl !== "unknown";
+  const artSrc = cardArtSrc(card.cardArtUrl);
   const badges = (card.regrasIsencao ?? []).slice(0, 3);
   const annualFeeHint = typeof card.anuidade === "number" ? card.anuidade : undefined;
   return (
@@ -243,9 +244,9 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
           </span>
         )}
         <div className="flex h-8 w-12 shrink-0 items-center justify-center rounded-md border bg-zinc-950">
-          {hasImage ? (
+          {artSrc ? (
             <img
-              src={card.cardArtUrl}
+              src={artSrc}
               alt={card.altText ?? card.nome}
               className="max-h-6 max-w-[40px] object-contain"
               loading="lazy"
@@ -304,7 +305,7 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
         type="button"
         title={selected ? "Remover da comparação" : "Adicionar à comparação"}
         disabled={!selected && !canAdd()}
-        onClick={() => (selected ? remove(card.id) : add(card.id))}
+        onClick={() => (selected ? remove(card.id) : add({ id: card.id, name: card.nome }))}
         className={cn(
           "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border transition-colors",
           selected
@@ -586,15 +587,15 @@ function CardDetailArtifact({ output }: { output: unknown }) {
     altText?: string;
   };
   if (!c?.id) return null;
-  const hasImage = c.cardArtUrl && c.cardArtUrl !== "unknown";
+  const artSrc = cardArtSrc(c.cardArtUrl);
 
   return (
     <div className="mt-2 rounded-xl border bg-card/60 p-3 text-xs">
       <div className="flex items-center gap-3 mb-3">
         <div className="flex h-10 w-16 items-center justify-center rounded-lg border bg-zinc-950">
-          {hasImage ? (
+          {artSrc ? (
             <img
-              src={c.cardArtUrl}
+              src={artSrc}
               alt={c.altText ?? c.nome}
               className="max-h-8 max-w-[52px] object-contain"
             />
@@ -695,7 +696,7 @@ function WaiverMiniCard({
   card: WaiverCardItem;
   faltam?: number;
 }) {
-  const hasImage = card.cardArtUrl && card.cardArtUrl !== "unknown";
+  const artSrc = cardArtSrc(card.cardArtUrl);
   const visibleRules = (card.regrasIsencao ?? []).slice(0, 2);
   return (
     <Link
@@ -703,9 +704,9 @@ function WaiverMiniCard({
       className="flex items-start gap-2.5 rounded-xl border bg-card/60 px-2.5 py-2 text-xs transition-colors hover:text-foreground"
     >
       <div className="flex h-8 w-12 shrink-0 items-center justify-center rounded-md border bg-zinc-950">
-        {hasImage ? (
+        {artSrc ? (
           <img
-            src={card.cardArtUrl}
+            src={artSrc}
             alt={card.altText ?? card.nome}
             className="max-h-6 max-w-[40px] object-contain"
             loading="lazy"
@@ -941,10 +942,10 @@ export function ChatInterface({
     }
 
     let cancelled = false;
-    fetchRecommendationsWithFallback(profile)
-      .then((data) => {
-        if (cancelled || !Array.isArray(data)) return;
-        const best = data.find(
+    fetchRecommendations(profile)
+      .then(({ scores }) => {
+        if (cancelled) return;
+        const best = scores.find(
           (item) => item.card.card_stable_id !== profile.currentPrimaryCardId,
         );
         setBestCardName(best?.card?.display_name ?? null);

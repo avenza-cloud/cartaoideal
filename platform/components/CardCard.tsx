@@ -47,7 +47,7 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
   function toggleCompare(e: React.MouseEvent) {
     e.preventDefault();
     if (isSelected) remove(card.card_stable_id);
-    else if (canAdd()) add(card.card_stable_id);
+    else if (canAdd()) add({ id: card.card_stable_id, name: card.display_name });
   }
 
   const fee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;

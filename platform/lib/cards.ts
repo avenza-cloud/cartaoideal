@@ -1,3 +1,4 @@
+import "server-only";
 import facetsFile from "@/data/generated/cards.json";
 import {
   normalizeSearchText,

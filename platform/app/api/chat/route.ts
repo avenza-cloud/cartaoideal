@@ -1,31 +1,23 @@
 import { streamText, convertToModelMessages, stepCountIs } from "ai";
 import { openai } from "@ai-sdk/openai";
+import { z } from "zod";
 import { createCardTools, SYSTEM_PROMPT, toToolProfile } from "@/lib/ai-tools";
+import { profileSchema } from "@/lib/profile-schema";
+import { apiError } from "@/lib/api-error";
+import { createRateLimiter, tooManyRequests } from "@/lib/rate-limit";
+import { logEvent } from "@/lib/log";
 import type { UserProfile } from "@/types/cards";
 
 export const runtime = "nodejs";
 
-const RATE_LIMIT_WINDOW_MS = 60_000;
-const RATE_LIMIT_MAX = 10;
+// Strictest limit of the API: unauthenticated endpoint calling a paid LLM.
+const limiter = createRateLimiter({ windowMs: 60_000, max: 10, keyPrefix: "chat" });
 
-const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
-
-function checkRateLimit(ip: string): { allowed: boolean; retryAfter: number } {
-  const now = Date.now();
-  const entry = rateLimitStore.get(ip);
-
-  if (!entry || now >= entry.resetAt) {
-    rateLimitStore.set(ip, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
-    return { allowed: true, retryAfter: 0 };
-  }
-
-  if (entry.count >= RATE_LIMIT_MAX) {
-    return { allowed: false, retryAfter: Math.ceil((entry.resetAt - now) / 1000) };
-  }
-
-  entry.count++;
-  return { allowed: true, retryAfter: 0 };
-}
+const bodySchema = z.object({
+  // UIMessage shapes come from the AI SDK; cap count and validate loosely.
+  messages: z.array(z.record(z.string(), z.unknown())).min(1).max(60),
+  profile: profileSchema.nullish(),
+});
 
 function profileContext(profile: UserProfile | null | undefined): string {
   if (!profile) return "";
@@ -35,48 +27,28 @@ function profileContext(profile: UserProfile | null | undefined): string {
 }
 
 export async function POST(req: Request) {
-  const ip =
-    req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
-    req.headers.get("x-real-ip") ??
-    "unknown";
-
-  const { allowed, retryAfter } = checkRateLimit(ip);
-  if (!allowed) {
-    return new Response(JSON.stringify({ error: "Too many requests" }), {
-      status: 429,
-      headers: {
-        "Content-Type": "application/json",
-        "Retry-After": String(retryAfter),
-        "X-RateLimit-Limit": String(RATE_LIMIT_MAX),
-        "X-RateLimit-Window": "60",
-      },
-    });
-  }
+  const decision = await limiter.check(req);
+  if (!decision.allowed) return tooManyRequests(decision, limiter.limit);
 
   const start = Date.now();
-  console.log(JSON.stringify({ level: "info", route: "/api/chat", msg: "start", ip }));
-  const { messages, profile } = await req.json();
+  const parsed = bodySchema.safeParse(await req.json().catch(() => null));
+  if (!parsed.success) return apiError("invalid_input", "Corpo da requisição inválido.");
+  const { messages, profile } = parsed.data;
 
   const result = streamText({
     model: openai("gpt-5.4-nano"),
-    system: `${SYSTEM_PROMPT}${profileContext(profile)}`,
-    messages: await convertToModelMessages(messages),
-    tools: createCardTools(profile),
+    system: `${SYSTEM_PROMPT}${profileContext(profile as UserProfile | null)}`,
+    messages: await convertToModelMessages(messages as Parameters<typeof convertToModelMessages>[0]),
+    tools: createCardTools(profile as UserProfile | null),
     stopWhen: stepCountIs(5),
     onStepFinish({ toolCalls }) {
       for (const tc of toolCalls ?? []) {
-        console.log(JSON.stringify({ level: "info", route: "/api/chat", tool: tc.toolName, args: "input" in tc ? tc.input : undefined }));
+        // Tool inputs derive from the user's financial profile — log names only.
+        logEvent("/api/chat", { tool: tc.toolName });
       }
     },
     onFinish({ usage }) {
-      console.log(
-        JSON.stringify({
-          level: "info",
-          route: "/api/chat",
-          tokens: usage?.totalTokens,
-          ms: Date.now() - start,
-        })
-      );
+      logEvent("/api/chat", { tokens: usage?.totalTokens ?? null, ms: Date.now() - start });
     },
   });
 

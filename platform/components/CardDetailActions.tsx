@@ -22,7 +22,7 @@ export function CardDetailActions({ cardId, cardName, issuer, sourceUrl }: CardD
       remove(cardId);
       return;
     }
-    if (canAdd()) add(cardId);
+    if (canAdd()) add({ id: cardId, name: cardName });
   }
 
   return (
