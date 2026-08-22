@@ -1,0 +1,516 @@
+{
+  "meta": {
+    "purpose": "One-time human/LLM-assisted review corrections applied as static data, not as a live LLM step.",
+    "reviewed_at": "2026-05-06",
+    "reviewer": "Codex one-time data review",
+    "policy": "Only encode claims visible in raw source snapshots or curated official snippets. Prefer conservative eligibility blocking when a source says 'para solicitar' or product segment is explicitly private/invite-like."
+  },
+  "overrides": {
+    "recargapay-recargapay-titan-mastercard-black-a32a999bff": {
+      "categorization": {
+        "market_segment_guess": "premium"
+      },
+      "eligibility": {
+        "requirements_text": "Para solicitar, o cliente precisa investir a partir de R$ 30 mil em CDB.",
+        "minimum_first_investment_brl_official": 30000
+      },
+      "review_note": "Raw PP waiver text states this as a solicitation requirement, not only a fee waiver."
+    },
+    "btg-pactual-ultrablue-btg-pactual-87e0f1e77f": {
+      "categorization": {
+        "market_segment_guess": "ultra_premium"
+      },
+      "review_note": "Segmento revisado manualmente: cartão de alta renda com anuidade de R$ 4.800, lounge ilimitado e requisito de R$ 1 milhão em investimentos no BTG."
+    },
+    "banco-do-brasil-banco-do-brasil-visa-altus-07dee92c5a": {
+      "categorization": {
+        "market_segment_guess": "ultra_premium"
+      },
+      "review_note": "Segmento revisado manualmente: Altus é produto topo de linha do Banco do Brasil, com anuidade alta e lounge ilimitado."
+    },
+    "banco-do-brasil-banco-do-brasil-altus-cashback-0bb7113ca3": {
+      "categorization": {
+        "market_segment_guess": "ultra_premium"
+      },
+      "review_note": "Segmento revisado manualmente: Altus Cashback é produto topo de linha do Banco do Brasil, com anuidade alta e lounge ilimitado."
+    },
+    "banco-do-brasil-banco-do-brasil-visa-altus-liv-0ba9e1e5c9": {
+      "categorization": {
+        "market_segment_guess": "ultra_premium"
+      },
+      "review_note": "Segmento revisado manualmente: Altus Liv é produto topo de linha do Banco do Brasil, com anuidade alta e lounge ilimitado."
+    },
+    "xp-investimentos-xp-legacy-versao-cashback-426bdd49e8": {
+      "categorization": {
+        "market_segment_guess": "ultra_premium"
+      },
+      "review_note": "Segmento revisado manualmente: XP Legacy exige cerca de R$ 1 milhão investido e tem pacote/lounges de cartão topo de linha."
+    },
+    "xp-investimentos-xp-legacy-versao-pontos-8595562370": {
+      "categorization": {
+        "market_segment_guess": "ultra_premium"
+      },
+      "review_note": "Segmento revisado manualmente: XP Legacy exige cerca de R$ 1 milhão investido e tem pacote/lounges de cartão topo de linha."
+    },
+    "c6-bank-c6-graphene-world-legend-d1365f0d2d": {
+      "categorization": {
+        "market_segment_guess": "ultra_premium"
+      },
+      "review_note": "Segmento revisado manualmente: C6 Graphene World Legend é produto de altíssima renda, com World Legend, anuidade alta e critério de investimento elevado."
+    },
+    "nubank-nubank-ultravioleta-3de87a375e": {
+      "categorization": {
+        "market_segment_guess": "premium"
+      },
+      "review_note": "Segmento revisado manualmente: Ultravioleta é premium pelo pacote Mastercard Black, cashback e salas VIP, mas não é ultra premium."
+    },
+    "picpay-picpay-epic-8a1bb7c054": {
+      "categorization": {
+        "market_segment_guess": "premium"
+      },
+      "review_note": "Segmento revisado manualmente: PicPay Epic tem anuidade de cartão premium e pacote de viagem/lounges, mas não é ultra premium."
+    },
+    "brb-brb-dux-visa-579a7e239c": {
+      "categorization": {
+        "market_segment_guess": "ultra_premium"
+      },
+      "review_note": "Segmento revisado manualmente: BRB DUX é produto topo de linha com anuidade alta e pacote de viagem/lounges robusto."
+    },
+    "unicred-unicred-impar-f919a2ec32": {
+      "categorization": {
+        "market_segment_guess": "ultra_premium"
+      },
+      "review_note": "Segmento revisado manualmente: Unicred Ímpar tem anuidade elevada, lounge ilimitado e requisito de investimento milionário."
+    },
+    "itau-itau-the-one-mastercard-private-3827962cd4": {
+      "categorization": {
+        "market_segment_guess": "ultra_premium"
+      },
+      "review_note": "Segmento revisado manualmente: The One Private é cartão topo de linha/private com anuidade elevada e lounge ilimitado."
+    },
+    "itau-itau-the-one-mastercard-personnalite-2f44994ecf": {
+      "categorization": {
+        "market_segment_guess": "ultra_premium"
+      },
+      "review_note": "Segmento revisado manualmente: The One Personnalité é cartão topo de linha com anuidade elevada e lounge ilimitado."
+    },
+    "itau-azul-itau-mastercard-skyline-19d7cf32a7": {
+      "categorization": {
+        "market_segment_guess": "premium"
+      },
+      "review_note": "Segmento revisado manualmente: Skyline é premium pelo pacote de viagem e anuidade, mas sem critério ultra/private estruturado."
+    },
+    "bradesco-bradesco-visa-principal-92735ae198": {
+      "categorization": {
+        "market_segment_guess": "premium"
+      },
+      "review_note": "Segmento revisado manualmente: Visa Principal tem anuidade e benefícios de cartão premium, mas não deve ser tratado como cartão comum."
+    },
+    "c6-bank-c6-carbon-a26a81c444": {
+      "categorization": {
+        "market_segment_guess": "premium"
+      },
+      "review_note": "Segmento revisado manualmente: C6 Carbon é Mastercard Black/premium; não ultra premium."
+    },
+    "bradesco-bradesco-elo-nanquim-diners-club-6910210d22": {
+      "categorization": {
+        "market_segment_guess": "premium"
+      },
+      "review_note": "Segmento revisado manualmente: Elo Nanquim Diners Club é premium por benefícios e lounge, mas não ultra premium."
+    },
+    "banco-do-brasil-ourocard-elo-diners-club-8911dce3ef": {
+      "categorization": {
+        "market_segment_guess": "premium"
+      },
+      "review_note": "Segmento revisado manualmente: Elo Diners Club é premium por bandeira/benefícios, mas não ultra premium."
+    },
+    "caixa-caixa-elo-diners-club-bb6d2374dc": {
+      "categorization": {
+        "market_segment_guess": "premium"
+      },
+      "review_note": "Segmento revisado manualmente: Elo Diners Club é premium por bandeira/benefícios, mas não ultra premium."
+    },
+    "itau-itau-click-visa-platinum-com-pontos-d763e4b0d0": {
+      "categorization": {
+        "market_segment_guess": "mass_or_general"
+      },
+      "review_note": "Segmento revisado manualmente: Itaú Click é cartão comum/entrada com anuidade baixa ou promocional, apesar da bandeira Platinum."
+    },
+    "itau-itau-click-mastercard-platinum-com-pontos-6c9b6fde34": {
+      "categorization": {
+        "market_segment_guess": "mass_or_general"
+      },
+      "review_note": "Segmento revisado manualmente: Itaú Click é cartão comum/entrada com anuidade baixa ou promocional, apesar da bandeira Platinum."
+    },
+    "inter-inter-mastercard-gold-c1c8b413cc": {
+      "categorization": {
+        "market_segment_guess": "mass_or_general"
+      },
+      "review_note": "Segmento revisado manualmente: Inter Mastercard Gold é cartão comum/entrada, sem anuidade e sem pacote premium."
+    },
+    "inter-inter-one-mastercard-platinum-2e224e76a6": {
+      "categorization": {
+        "market_segment_guess": "mass_or_general"
+      },
+      "review_note": "Segmento revisado manualmente: Inter One Mastercard Platinum é cartão comum/entrada, sem anuidade e sem pacote premium."
+    },
+    "c6-bank-c6-mastercard-platinum-d8b91abb5d": {
+      "categorization": {
+        "market_segment_guess": "mass_or_general"
+      },
+      "review_note": "Segmento revisado manualmente: C6 Platinum é cartão comum, sem anuidade e sem pacote premium relevante."
+    },
+    "banescard-banescard-absoluto-visa-infinite-d2b75bb084": {
+      "eligibility": {
+        "requirements_text": "Obtido apenas mediante convite; dentre os critérios de aquisição, é preciso ter no mínimo R$ 1 milhão em investimentos no Banestes.",
+        "minimum_liquid_investments_brl_official": 1000000,
+        "minimum_income_brl": "unknown",
+        "availability_status": "invite_only"
+      },
+      "rewards": {
+        "earning_rules_text": "4,2 pontos por dólar em compras nacionais; 5 pontos por dólar em compras internacionais; pontos que não expiram.",
+        "return_cashlike": {
+          "has_points_or_miles": true,
+          "has_cashlike_return": false,
+          "subtypes": [],
+          "earning_summary": "4,2 pts/USD nacionais; 5 pts/USD internacionais"
+        }
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": true,
+        "airport_lounge_unlimited_claim": true,
+        "airport_lounge_annual_visits_hint": 12,
+        "airport_lounge_programs_detected": ["LoungeKey", "Dragon Pass"],
+        "airport_lounge_guest_policy": "Até 12 convidados",
+        "official_airport_lounge_summary": "Acesso às salas VIP LoungeKey e Dragon Pass, até 12 convidados, sem limite de uso.",
+        "forex_spread_or_iof_text": "IOF zero em compras internacionais"
+      },
+      "evidence": {
+        "official_review_url": "https://banescard.com.br/absoluto/"
+      },
+      "replace_characteristics_by_key": ["earning_rate", "earning_detail", "lounge_program", "lounge_guest_policy", "lounge_visits"],
+      "append_characteristics": [
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Compras nacionais",
+          "value": "4,2 pontos por dólar"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Compras internacionais",
+          "value": "5 pontos por dólar"
+        },
+        {
+          "category": "travel",
+          "key": "lounge_program",
+          "label": "Programa de sala VIP",
+          "value": "LoungeKey"
+        },
+        {
+          "category": "travel",
+          "key": "lounge_program",
+          "label": "Programa de sala VIP",
+          "value": "Dragon Pass"
+        },
+        {
+          "category": "travel",
+          "key": "lounge_guest_policy",
+          "label": "Acompanhantes em sala VIP",
+          "value": "Até 12 convidados"
+        },
+        {
+          "category": "travel",
+          "key": "lounge_visits",
+          "label": "Acessos a sala VIP",
+          "value": "Ilimitados"
+        },
+        {
+          "category": "fees",
+          "key": "forex_spread",
+          "label": "Câmbio / IOF",
+          "value": "IOF zero em compras internacionais"
+        }
+      ],
+      "review_note": "Manual review 2026-05-06: official Banescard Absoluto page gives 4.2 pts/USD domestic, 5 pts/USD international, IOF zero, invite-only and R$1M Banestes investment acquisition criterion."
+    },
+    "bradesco-bradesco-visa-aeternum-532d7d35ae": {
+      "categorization": {
+        "market_segment_guess": "ultra_premium"
+      },
+      "eligibility": {
+        "requirements_text": "Página oficial Bradesco Aeternum descreve o produto como convite especial para cliente Private Bank; a página pública de cartões também informa isenção para R$ 5 milhões em investimentos, mas isso é política de anuidade, não gate público de solicitação.",
+        "minimum_liquid_investments_brl_official": "unknown",
+        "minimum_income_brl": "unknown",
+        "availability_status": "private_or_segment_restricted"
+      },
+      "review_note": "Manual review 2026-05-06: official Bradesco Aeternum page identifies the product as Private Bank. Do not convert the R$5M waiver rule into a mandatory eligibility gate."
+    },
+    "mercado-pago-mercado-pago-visa-gold-5a8ac898a9": {
+      "categorization": {
+        "market_segment_guess": "mass_or_general"
+      },
+      "rewards": {
+        "earning_rules_text": "Cashback condicional a assinatura Meli+: até 3% no Mercado Livre com limites oficiais; até 0,5% em outras lojas, também com limite mensal. Benefício creditado em Meli Dólar.",
+        "return_cashlike": {
+          "has_points_or_miles": false,
+          "has_cashlike_return": true,
+          "subtypes": ["cashback"],
+          "earning_summary": "0,5% condicional Meli+ em outras lojas; até 3% no Mercado Livre com limites"
+        }
+      },
+      "replace_characteristics_by_key": ["earning_rate", "earning_detail", "reward_condition"],
+      "append_characteristics": [
+        {
+          "category": "rewards",
+          "key": "earning_rate",
+          "label": "Cashback geral",
+          "value": "0,5% em outras lojas",
+          "details": "Condicional a assinatura Meli+ e sujeito a limite mensal; não aplicado automaticamente ao score sem perfil de assinatura"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Cashback Mercado Livre",
+          "value": "Até 3% no Mercado Livre",
+          "details": "Condicional a Meli+, com limites por compra e por mês; benefício específico, não retorno geral"
+        },
+        {
+          "category": "rewards",
+          "key": "reward_condition",
+          "label": "Condição de cashback",
+          "value": "Exige assinatura Meli+",
+          "details": "Fonte oficial Mercado Pago/Mercado Livre"
+        }
+      ],
+      "review_note": "Manual review 2026-05-06: official Mercado Pago help pages state cashback is conditional to Meli+ and has category/monthly limits. Do not use PP 'até 5%' as general card return."
+    },
+    "amazon-amazon-prime-mastercard-platinum-8313f45d80": {
+      "categorization": {
+        "market_segment_guess": "mass_or_general"
+      },
+      "rewards": {
+        "earning_rules_text": "Pontos Amazon: 1% nas demais compras, 2% em restaurantes/drogarias/viagens/entretenimento/compras internacionais e 5% em compras na Amazon.com.br para clientes Prime. Pontos são usados na Amazon, não crédito livre em fatura.",
+        "return_cashlike": {
+          "has_points_or_miles": false,
+          "has_cashlike_return": true,
+          "subtypes": ["amazon_points"],
+          "earning_summary": "1% demais compras; 5% apenas na Amazon.com.br para Prime"
+        }
+      },
+      "replace_characteristics_by_key": ["earning_rate", "earning_detail"],
+      "append_characteristics": [
+        {
+          "category": "rewards",
+          "key": "earning_rate",
+          "label": "Pontos Amazon",
+          "value": "1% nas demais compras",
+          "details": "Resgate restrito a compras na Amazon.com.br"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Categorias bônus",
+          "value": "2% em restaurantes, drogarias, viagens, entretenimento e compras internacionais"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Amazon.com.br",
+          "value": "5% em compras na Amazon.com.br para clientes Prime",
+          "details": "Categoria específica, não retorno geral do cartão"
+        }
+      ],
+      "review_note": "Manual review 2026-05-06: Mastercard/Amazon launch terms list 1% base, 2% categories and 5% Amazon Prime. Do not expose 5% as general return."
+    },
+    "amazon-com-br-amazon-com-br-mastercard-platinum-e96689cfce": {
+      "categorization": {
+        "market_segment_guess": "mass_or_general"
+      },
+      "rewards": {
+        "earning_rules_text": "Pontos Amazon: 1% nas demais compras, 2% em restaurantes/drogarias/viagens/entretenimento/compras internacionais e 3% em compras na Amazon.com.br. Pontos são usados na Amazon, não crédito livre em fatura.",
+        "return_cashlike": {
+          "has_points_or_miles": false,
+          "has_cashlike_return": true,
+          "subtypes": ["amazon_points"],
+          "earning_summary": "1% demais compras; 3% apenas na Amazon.com.br"
+        }
+      },
+      "replace_characteristics_by_key": ["earning_rate", "earning_detail"],
+      "append_characteristics": [
+        {
+          "category": "rewards",
+          "key": "earning_rate",
+          "label": "Pontos Amazon",
+          "value": "1% nas demais compras",
+          "details": "Resgate restrito a compras na Amazon.com.br"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Categorias bônus",
+          "value": "2% em restaurantes, drogarias, viagens, entretenimento e compras internacionais"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Amazon.com.br",
+          "value": "3% em compras na Amazon.com.br",
+          "details": "Categoria específica, não retorno geral do cartão"
+        }
+      ],
+      "review_note": "Manual review 2026-05-06: Mastercard/Amazon launch terms list 1% base, 2% categories and 3% Amazon. Do not expose 3% as general return."
+    },
+    "itau-extra-gold-itau-36b6c5b20a": {
+      "categorization": {
+        "market_segment_guess": "upper_mass"
+      },
+      "rewards": {
+        "earning_rules_text": "Programa de pontos Extra Itaú: 1,5 ponto por R$100 em outros estabelecimentos; 3 pontos por R$100 em lojas Extra e Pão de Açúcar. Pontos podem ser trocados por cashback em lojas físicas e e-commerce Extra e Pão de Açúcar.",
+        "return_cashlike": {
+          "has_points_or_miles": false,
+          "has_cashlike_return": true,
+          "subtypes": ["store_points_cashback"],
+          "earning_summary": "1,5 ponto por R$100 geral; 3 pontos por R$100 em Extra/Pão de Açúcar"
+        }
+      },
+      "replace_characteristics_by_key": ["earning_rate", "earning_detail"],
+      "append_characteristics": [
+        {
+          "category": "rewards",
+          "key": "earning_rate",
+          "label": "Pontos/cashback geral",
+          "value": "1,5 ponto por R$100 em outros estabelecimentos",
+          "details": "Equivalente a 1,5% do valor da compra; resgate em cashback Extra/Pão de Açúcar"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Extra e Pão de Açúcar",
+          "value": "3 pontos por R$100 em lojas Extra e Pão de Açúcar",
+          "details": "Categoria/parceiro específico, equivalente a 3,0% do valor da compra; não aplicado como retorno geral do cartão"
+        }
+      ],
+      "review_note": "Manual review 2026-05-06: official Extra Itaú program page states points are earned per R$100, not per dollar: 1.5 point/R$100 outside Extra/Pão and 3 points/R$100 at Extra/Pão, redeemable as cashback."
+    },
+    "xp-investimentos-xp-visa-infinite-privilege-versao-cashback-99a6f9cd19": {
+      "eligibility": {
+        "requirements_text": "Cartão super premium para clientes XP Private/altíssima renda; revisão externa indica cerca de R$ 30 milhões investidos ou patrimônio superior a R$ 30 milhões.",
+        "minimum_liquid_investments_brl_official": 30000000,
+        "minimum_income_brl": "unknown",
+        "availability_status": "private_or_segment_restricted"
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "R$ 18.000",
+          "amount_brl_numeric": 18000,
+          "is_zero_fee_claim": false,
+          "official_fee_policy_summary": "Anuidade informada na ficha PP: R$ 18.000"
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "2,5% de cashback em compras nacionais; 3,5% de cashback em compras internacionais; bônus de IOF de 3,5% adicional em compras internacionais, totalizando 7,0% de cashback.",
+        "return_cashlike": {
+          "has_points_or_miles": false,
+          "has_cashlike_return": true,
+          "subtypes": ["cashback"],
+          "earning_summary": "2,5% nacional; 7,0% internacional com bônus de IOF"
+        }
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": true,
+        "airport_lounge_unlimited_claim": true,
+        "airport_lounge_annual_visits_hint": 20,
+        "official_airport_lounge_summary": "Visa Airport Companion ilimitado para titular e 20 acompanhantes gratuitos por ano; Visa Infinite Privilege Lounge ilimitado para titular e acompanhantes por visita."
+      },
+      "append_characteristics": [
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Regra de cashback",
+          "value": "2,5% de cashback em compras nacionais"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Regra de cashback",
+          "value": "3,5% de cashback em compras internacionais"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Bônus de IOF",
+          "value": "3,5% adicional em compras internacionais, totalizando 7,0% de cashback"
+        },
+        {
+          "category": "travel",
+          "key": "airline_benefit",
+          "label": "Benefício em companhias aéreas",
+          "value": "1 trajeto de helicóptero gratuito por ano em São Paulo e atendimento Meet & Greet no GRU Airport"
+        }
+      ],
+      "review_note": "LLM/human judgement: do not map XP Visa Infinite Privilege to the regular XP Infinite line. PP page gives R$18.000 fee, Privilege lounge benefits and enhanced cashback; web cross-checks point to XP Private/30M+ target."
+    },
+    "xp-investimentos-xp-visa-infinite-privilege-8bfac41026": {
+      "eligibility": {
+        "requirements_text": "Cartão super premium para clientes XP Private/altíssima renda; revisão externa indica cerca de R$ 30 milhões investidos ou patrimônio superior a R$ 30 milhões.",
+        "minimum_liquid_investments_brl_official": 30000000,
+        "minimum_income_brl": "unknown",
+        "availability_status": "private_or_segment_restricted"
+      },
+      "fees": {
+        "annual": {
+          "has_explicit_amount": true,
+          "raw_text": "R$ 18.000",
+          "amount_brl_numeric": 18000,
+          "is_zero_fee_claim": false,
+          "official_fee_policy_summary": "Anuidade informada na ficha PP: R$ 18.000"
+        }
+      },
+      "rewards": {
+        "earning_rules_text": "5,0 pontos por dólar gasto no Brasil; 7,0 pontos por dólar gasto no exterior; bônus de IOF de 4 pontos adicionais por dólar em compras internacionais, totalizando 11,0 pontos por dólar.",
+        "return_cashlike": {
+          "has_points_or_miles": true,
+          "has_cashlike_return": false,
+          "subtypes": [],
+          "earning_summary": "5,0 pts/USD Brasil; 11,0 pts/USD exterior com bônus de IOF"
+        }
+      },
+      "travel_and_protection": {
+        "airport_lounge_offered": true,
+        "airport_lounge_unlimited_claim": true,
+        "airport_lounge_annual_visits_hint": 20,
+        "official_airport_lounge_summary": "Visa Airport Companion ilimitado para titular e 20 acompanhantes gratuitos por ano; Visa Infinite Privilege Lounge ilimitado para titular e acompanhantes por visita."
+      },
+      "append_characteristics": [
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Regra de pontuação",
+          "value": "5,0 pontos por dólar gasto no Brasil"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Regra de pontuação",
+          "value": "7,0 pontos por dólar gasto no exterior"
+        },
+        {
+          "category": "rewards",
+          "key": "earning_detail",
+          "label": "Bônus de IOF",
+          "value": "4 pontos adicionais por dólar em compras internacionais, totalizando 11,0 pontos por dólar"
+        },
+        {
+          "category": "travel",
+          "key": "airline_benefit",
+          "label": "Benefício em companhias aéreas",
+          "value": "1 trajeto de helicóptero gratuito por ano em São Paulo e atendimento Meet & Greet no GRU Airport"
+        }
+      ],
+      "review_note": "LLM/human judgement: do not map XP Visa Infinite Privilege to the regular XP Infinite line. PP page gives R$18.000 fee, Privilege lounge benefits and enhanced points; web cross-checks point to XP Private/30M+ target."
+    }
+  }
+}
