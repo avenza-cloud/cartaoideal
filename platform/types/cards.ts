@@ -144,7 +144,6 @@ export interface CardFacet {
   facets_numeric_or_special: CardFacetsNumeric;
   facets_boolean: CardFacetsBoolean;
   labels_for_filtering: string[];
-  text_for_embedding_compare: string;
 }
 
 export interface FacetsMeta {
