@@ -2,85 +2,88 @@
 
 [![CI](https://github.com/caiotheodoro/cartaoideal/actions/workflows/ci.yml/badge.svg)](https://github.com/caiotheodoro/cartaoideal/actions/workflows/ci.yml)
 
-An open-source comparison platform for Brazilian credit cards — 299 cards with
-structured fees, rewards, lounge access and fee-waiver rules, a personalized
-value-scoring engine, side-by-side comparison, and an AI chat assistant.
-Product UI is in Brazilian Portuguese; the codebase and docs welcome
-contributors in English or Portuguese.
+Plataforma open-source de comparação de cartões de crédito brasileiros — 299
+cartões com tarifas, recompensas, acesso a salas VIP e regras de isenção de
+anuidade estruturados, motor de pontuação de valor personalizado, comparação
+lado a lado e assistente de chat com IA. Contribuições são bem-vindas em
+português ou inglês.
 
-**Documentação em português:** [web/README.md](web/README.md) ·
-**Contributing:** [CONTRIBUTING.md](CONTRIBUTING.md)
+**Documentação da aplicação:** [web/README.md](web/README.md) ·
+**Como contribuir:** [CONTRIBUTING.md](CONTRIBUTING.md)
 
-## Features
+## Funcionalidades
 
-- **Catalog** (`/cartoes`) — 299 Brazilian cards, filterable by network,
-  segment, rewards type, fee and fee-waiver conditions.
-- **Personalized ranking** — a value engine (`web/lib/card-value.ts`)
-  estimates net monthly value per card from your income, spend, investments
-  and travel profile, including point valuations, FX spread/IOF and lounge
-  modeling.
-- **Compare** (`/comparar`) — up to 4 cards side by side.
-- **AI chat** (`/chat`) — tool-calling assistant over the same catalog and
-  scoring engine.
-- **Community corrections** — a form on every card page files a GitHub issue;
-  a workflow turns it into a reviewable pull request against the card's data
-  file.
+- **Catálogo** (`/cartoes`) — 299 cartões brasileiros, filtráveis por
+  bandeira, segmento, tipo de recompensa, anuidade e condições de isenção.
+- **Ranking personalizado** — um motor de valor (`web/lib/card-value.ts`)
+  estima o valor líquido mensal de cada cartão a partir da sua renda, gasto,
+  investimentos e perfil de viagem, incluindo valoração de pontos, spread
+  cambial/IOF e modelagem de salas VIP.
+- **Comparação** (`/comparar`) — até 4 cartões lado a lado.
+- **Chat com IA** (`/chat`) — assistente com tool-calling sobre o mesmo
+  catálogo e motor de pontuação.
+- **Correções da comunidade** — um formulário em cada página de cartão abre
+  uma issue no GitHub; um workflow a transforma em pull request revisável
+  contra o arquivo de dados do cartão.
 
-## Repository layout
+## Estrutura do repositório
 
-| Path | What it is |
+| Caminho | O que é |
 |---|---|
-| `web/` | Next.js 16 app (App Router, React 19, Tailwind 4, TypeScript) |
-| `data/cards/` | **The dataset** — one JSON file per card, validated by a Zod contract |
-| `web/lib/` | Domain logic: scoring, fee waivers, filtering, data contract |
-| `scripts/` | Data tooling: artifact build, corrections, source audits |
-| `.github/workflows/` | CI, correction-issue-to-PR automation, weekly data health audit |
+| `web/` | Aplicação Next.js 16 (App Router, React 19, Tailwind 4, TypeScript) |
+| `data/cards/` | **O dataset** — um arquivo JSON por cartão, validado por contrato Zod |
+| `web/lib/` | Lógica de domínio: pontuação, isenções, filtros, contrato de dados |
+| `scripts/` | Ferramentas de dados: build do artefato, correções, auditoria de fontes |
+| `.github/workflows/` | CI, automação de issue-de-correção → PR, auditoria semanal dos dados |
 
-## Quickstart
+## Começando
 
 ```bash
 nvm use                 # Node 22 (.nvmrc)
-corepack enable         # pnpm 10 (package.json packageManager)
+corepack enable         # pnpm 10 (packageManager do package.json)
 cd web
 pnpm install
-cp .env.example .env.local   # optional — everything degrades gracefully
+cp .env.example .env.local   # opcional — tudo degrada graciosamente
 pnpm dev
 ```
 
-`pnpm dev` compiles the per-card dataset into the runtime artifact
-automatically (`predev` hook). See [CONTRIBUTING.md](CONTRIBUTING.md) for the
-full command reference, test suites and the data-editing workflow.
+`pnpm dev` compila o dataset por cartão no artefato de runtime automaticamente
+(hook `predev`). Veja o [CONTRIBUTING.md](CONTRIBUTING.md) para a referência
+completa de comandos, suítes de teste e o fluxo de edição de dados.
 
-## Monetization & neutrality
+## Monetização e neutralidade
 
-This project may earn revenue from Google AdSense slots and from affiliate
-parameters on outbound "apply" links (`utm_source=cartaoideal`; per-card
-affiliate overrides live in
-[`web/lib/affiliate.ts`](web/lib/affiliate.ts) and are empty in this
-repository). **Monetization has zero input into rankings**: the scoring code
-([`web/lib/scoring.ts`](web/lib/scoring.ts),
-[`web/lib/card-value.ts`](web/lib/card-value.ts)) reads only card
-data and user profile — auditable in this repo.
+Este projeto pode gerar receita com slots do Google AdSense e com parâmetros
+de afiliado nos links de "solicitar" (`utm_source=cartaoideal`; overrides de
+afiliado por cartão vivem em
+[`web/lib/affiliate.ts`](web/lib/affiliate.ts) e estão vazios neste
+repositório). **A monetização tem zero influência nos rankings**: o código de
+pontuação ([`web/lib/scoring.ts`](web/lib/scoring.ts),
+[`web/lib/card-value.ts`](web/lib/card-value.ts)) lê apenas os dados dos
+cartões e o perfil do usuário — auditável neste repositório.
 
-## Disclaimer
+## Aviso legal
 
-Cartão Ideal is informational content, not financial advice. Card data can be
-incomplete or out of date (each card carries a `provenance.last_verified_date`);
-always confirm conditions on the issuer's official site before applying.
+O Cartão Ideal é conteúdo informativo, não aconselhamento financeiro. Os dados
+dos cartões podem estar incompletos ou desatualizados (cada cartão carrega um
+`provenance.last_verified_date`); sempre confirme as condições no site oficial
+do emissor antes de solicitar.
 
-## Privacy
+## Privacidade
 
-- Your financial profile (income, spend, investments) is stored **only in
-  your browser** (localStorage) and sent to the server transiently to compute
-  rankings; it is never logged or persisted server-side.
-- Chat messages are processed by Google (Gemini) via the AI SDK, with DeepSeek as an automatic fallback provider.
-- Request IPs are used in-memory for rate limiting only and are not logged.
-- Vercel Analytics collects aggregate usage metrics.
+- Seu perfil financeiro (renda, gasto, investimentos) é armazenado **apenas no
+  seu navegador** (localStorage) e enviado ao servidor de forma transitória
+  para calcular rankings; nunca é registrado ou persistido no servidor.
+- As mensagens do chat são processadas pelo Google (Gemini) via AI SDK, com o
+  DeepSeek como provedor de fallback automático.
+- IPs de requisição são usados em memória apenas para rate limiting e não são
+  registrados.
+- O Vercel Analytics coleta métricas agregadas de uso.
 
-## License
+## Licença
 
-- **Code:** [MIT](LICENSE).
+- **Código:** [MIT](LICENSE).
 - **Dataset** (`data/`): [CC BY 4.0](data/LICENSE) —
-  attribution "Cartão Ideal — github.com/caiotheodoro/cartaoideal". Card
-  artwork and issuer/network trademarks are excluded (property of their
-  owners, used nominatively).
+  atribuição "Cartão Ideal — github.com/caiotheodoro/cartaoideal". A arte dos
+  cartões e as marcas de emissores/bandeiras estão excluídas (propriedade de
+  seus titulares, uso nominativo).
