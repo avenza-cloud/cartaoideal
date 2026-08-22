@@ -553,7 +553,10 @@ function Empty({ children }: { children: React.ReactNode }) {
 
 /* ─── Characteristics ─── */
 
-function filterChars(card: CardFacet, groups: BenefitGroupKey[]): CardCharacteristic[] {
+function filterChars(
+  card: CardFacet,
+  groups: CardCharacteristic["category"][]
+): CardCharacteristic[] {
   const seen = new Set<string>();
   return (card.characteristics ?? []).filter((item) => {
     if (!groups.includes(item.category)) return false;

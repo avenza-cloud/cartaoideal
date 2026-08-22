@@ -1,0 +1,236 @@
+{
+  "card_stable_id": "itau-magalu-visa-platinum",
+  "display_name": "Cartão Magalu Visa Platinum",
+  "issuer_raw": "Itaú",
+  "issuer_id": "itau",
+  "network_primary": "Visa",
+  "variant_band": "Platinum",
+  "market_segment_guess": "mass_or_general",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_partial",
+  "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+  "application_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+  "source_label": "Página oficial do emissor",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "Cartão Magalu Visa Platinum",
+    "card_art_url": "unknown",
+    "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s"
+  },
+  "reward_return": {
+    "earning_summary": "2% de Dinheiro de Volta em compras no Magalu, creditado na carteira MagaluPay em até 30 dias após aprovação da compra.",
+    "has_cashlike_return": true,
+    "subtypes": [
+      "cashback"
+    ]
+  },
+  "lounge_access": {
+    "annual_visits": "unknown",
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "programs": [],
+    "summary": "Não identificado na captura oficial inicial.",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": 800,
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Renda mínima R$ 800,00; sujeito à análise de crédito.",
+    "requires_bank_account_claim": "unknown",
+    "source_status": "official_partial"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "general",
+      "description": "Anuidade grátis conforme página oficial do Itaú.",
+      "full_waiver": true,
+      "raw_text": "Anuidade Grátis"
+    }
+  ],
+  "benefit_groups": {
+    "fees": [
+      "Anuidade grátis."
+    ],
+    "issuer_specific": [
+      "Cashback em lojas, app, site, televendas e Clubes Parceiros Magalu",
+      "Recebimento na carteira MagaluPay em até 30 dias após aprovação da compra",
+      "Sujeito à análise de crédito"
+    ],
+    "rewards": [
+      "2% de Dinheiro de Volta em compras no Magalu, condicionado ao MagaluPay."
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "source_excerpt": "Renda mínima R$ 800,00; Anuidade Grátis; 2% de dinheiro de volta em compras dentro do Magalu com MagaluPay ativo.",
+      "value": "Anuidade grátis"
+    },
+    {
+      "category": "eligibility",
+      "key": "requirements",
+      "label": "Elegibilidade",
+      "source_excerpt": "Renda mínima R$ 800,00; Anuidade Grátis; 2% de dinheiro de volta em compras dentro do Magalu com MagaluPay ativo.",
+      "value": "Renda mínima R$ 800,00; sujeito à análise de crédito."
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 0,
+    "lounge_visits_per_year_hint": 0,
+    "minimum_income_brl_best_estimate": 800,
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": 0,
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": true,
+    "earn_cashback": true,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": true
+  },
+  "labels_for_filtering": [
+    "sem-anuidade"
+  ],
+  "application_availability": {
+    "channels": [
+      "official_site",
+      "partner_site"
+    ],
+    "notes": "Solicitação pelo fluxo Cartão Magalu; sujeito à análise de crédito."
+  },
+  "source_claims": [
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.92,
+      "dynamic": true,
+      "field_path": "fees.annual",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Renda mínima R$ 800,00; Anuidade Grátis; 2% de dinheiro de volta em compras dentro do Magalu com MagaluPay ativo.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+      "value_text": "Anuidade grátis"
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.8,
+      "dynamic": true,
+      "field_path": "eligibility.requirements_text",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Renda mínima R$ 800,00; Anuidade Grátis; 2% de dinheiro de volta em compras dentro do Magalu com MagaluPay ativo.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html",
+      "value_text": "Renda mínima R$ 800,00; sujeito à análise de crédito."
+    },
+    {
+      "captured_at": "2026-05-10",
+      "confidence_0_to_1": 0.75,
+      "dynamic": false,
+      "field_path": "media.card_art_url",
+      "last_verified_at": "2026-05-10",
+      "raw_excerpt": "User-provided Google image thumbnail formatted into local 611x408 card-image canvas for Cartão Magalu Visa Platinum.",
+      "source_type": "manual",
+      "source_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReNmao4BY5xHaV93S8F8Nr-f2Vud5vkuB7Vw&s",
+      "value_text": "/card-images/magalu-visa-platinum.png"
+    },
+    {
+      "captured_at": "2026-05-10",
+      "confidence_0_to_1": 0.9,
+      "dynamic": true,
+      "field_path": "cashback_details.rate_text",
+      "last_verified_at": "2026-05-10",
+      "raw_excerpt": "Você receberá 2% de Dinheiro de Volta nas compras feitas com o Cartão Magalu nas lojas, no aplicativo e no site do Magalu.",
+      "source_type": "official_issuer",
+      "source_url": "https://especiais.magazineluiza.com.br/cartao-luiza/",
+      "value_text": "2% de Dinheiro de Volta em compras feitas com o Cartão Magalu nas lojas, aplicativo e site do Magalu."
+    },
+    {
+      "captured_at": "2026-05-10",
+      "confidence_0_to_1": 0.9,
+      "dynamic": true,
+      "field_path": "cashback_details.destination",
+      "last_verified_at": "2026-05-10",
+      "raw_excerpt": "Você receberá seu dinheiro de volta na carteira digital do MagaluPay.",
+      "source_type": "official_issuer",
+      "source_url": "https://especiais.magazineluiza.com.br/cartao-luiza/",
+      "value_text": "Dinheiro de Volta recebido na carteira digital MagaluPay."
+    },
+    {
+      "captured_at": "2026-05-10",
+      "confidence_0_to_1": 0.9,
+      "dynamic": true,
+      "field_path": "cashback_details.conditions_text",
+      "last_verified_at": "2026-05-10",
+      "raw_excerpt": "O prazo para recebimento... é de até 30 dias após a aprovação da compra... Ative sua conta digital MagaluPay no Superapp Magalu em até 30 dias.",
+      "source_type": "official_issuer",
+      "source_url": "https://especiais.magazineluiza.com.br/cartao-luiza/",
+      "value_text": "Ative a conta MagaluPay em até 30 dias; prazo de recebimento até 30 dias após aprovação da compra."
+    },
+    {
+      "captured_at": "2026-05-10",
+      "confidence_0_to_1": 0.9,
+      "dynamic": true,
+      "field_path": "store_benefits",
+      "last_verified_at": "2026-05-10",
+      "raw_excerpt": "Você recebe Cashback em compras realizadas no Magazineluiza por meio do App, no site, nas lojas e no televendas... Clubes Parceiros.",
+      "source_type": "official_issuer",
+      "source_url": "https://especiais.magazineluiza.com.br/cartao-luiza/",
+      "value_text": "Cashback em compras no Magazine Luiza por app, site, lojas, televendas e Clubes Parceiros."
+    },
+    {
+      "captured_at": "2026-05-10",
+      "confidence_0_to_1": 0.9,
+      "dynamic": true,
+      "field_path": "application_availability",
+      "last_verified_at": "2026-05-10",
+      "raw_excerpt": "Você pode solicitar um Cartão Magalu e estará sujeito à análise de crédito.",
+      "source_type": "official_issuer",
+      "source_url": "https://especiais.magazineluiza.com.br/cartao-luiza/",
+      "value_text": "Solicitação sujeita à análise de crédito."
+    }
+  ],
+  "store_benefits": [
+    {
+      "benefit_type": "cashback",
+      "description": "2% de Dinheiro de Volta em compras no Magalu, recebido na carteira MagaluPay em até 30 dias após aprovação da compra.",
+      "partner_name": "Magalu"
+    }
+  ],
+  "secured_limit_options": [],
+  "cashback_details": {
+    "conditions_text": "Válido para compras nas lojas, app, site, televendas e Clubes Parceiros do Magalu. Recebimento em até 30 dias após aprovação da compra na carteira MagaluPay; é necessário ativar a conta MagaluPay no SuperApp Magalu em até 30 dias.",
+    "destination": "partner_wallet",
+    "rate_text": "2% de Dinheiro de Volta em compras no Magalu."
+  },
+  "co_brand": {
+    "partner_category": "retail",
+    "partner_name": "Magalu"
+  },
+  "provenance": {
+    "last_verified_date": "2026-05-10",
+    "sources": [
+      {
+        "label": "Página oficial do emissor",
+        "tier": "official_issuer",
+        "url": "https://www.itau.com.br/cartoes/escolha/formulario/cartao-magalu-visa-platinum.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,203 @@
+{
+  "card_stable_id": "banco-do-brasil-ourocard-estilo-mastercard-black-70dfff3321",
+  "display_name": "Ourocard Estilo Mastercard Black",
+  "issuer_raw": "Banco do Brasil",
+  "issuer_id": "banco-do-brasil",
+  "network_primary": "Mastercard",
+  "variant_band": "Black",
+  "market_segment_guess": "premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_aggregator",
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/ourocard-estilo-mastercard-black/",
+  "application_url": "https://www.bb.com.br/pbb/pagina-inicial/estilo/produtos-e-servicos/cartoes/todos-os-cartoes/ourocard-estilo-mastercard-black#/",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/ourocard-estilo-mastercard-black/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://www.bb.com.br/pbb/pagina-inicial/estilo/produtos-e-servicos/cartoes/todos-os-cartoes/ourocard-estilo-mastercard-black#/",
+  "ranking_position": 68,
+  "ranking_score": 184.98,
+  "media": {
+    "alt_text": "Ourocard Estilo Mastercard Black",
+    "card_art_url": "unknown",
+    "source_url": "https://passageirodeprimeira.com/cartao-de-credito/ourocard-estilo-mastercard-black/"
+  },
+  "reward_return": {
+    "earning_summary": "2,0 pontos por dólar gasto",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "summary": "unknown",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "unknown",
+    "requires_bank_account_claim": true,
+    "source_status": "not_structured"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "monthly_spend",
+      "description": "Gasto mensal mínimo",
+      "full_waiver": false,
+      "period": "monthly",
+      "raw_text": "Gastos a partir de R$ 10.000",
+      "threshold_brl": 10000
+    }
+  ],
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista: Sim"
+    ],
+    "fees": [
+      "Anuidade: R$ 1.021",
+      "Adicionais com benefícios: Sim",
+      "Isenção da anuidade: Gastos a partir de R$ 10.000",
+      "Anuidade: R$ 1.021",
+      "Adicionais gratuitos: 6"
+    ],
+    "lifestyle": [
+      "Carteira digital: Apple Pay"
+    ],
+    "rewards": [
+      "Pontuação: 2,0 pontos por dólar gasto",
+      "Regra de pontuação: 2,0 pontos por dólar gasto",
+      "Bônus de adesão: (Não há)",
+      "Programa de fidelidade: Livelo",
+      "Validade dos pontos: 48 meses"
+    ],
+    "travel": [
+      "Sala VIP: Acesso disponível"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 1.021"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "2,0 pontos por dólar gasto"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Acesso disponível"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_detail",
+      "label": "Regra de pontuação",
+      "value": "2,0 pontos por dólar gasto"
+    },
+    {
+      "category": "rewards",
+      "key": "welcome_bonus",
+      "label": "Bônus de adesão",
+      "value": "(Não há)"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Livelo"
+    },
+    {
+      "category": "rewards",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "48 meses"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com benefícios",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "Gastos a partir de R$ 10.000"
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 1.021"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Apple Pay"
+    },
+    {
+      "category": "eligibility",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "free_additional_cards",
+      "label": "Adicionais gratuitos",
+      "value": "6"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 1021,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:premium",
+    "travel:lounge",
+    "rewards:points_or_miles"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "trusted_catalog",
+        "url": "https://www.bb.com.br/pbb/pagina-inicial/estilo/produtos-e-servicos/cartoes/todos-os-cartoes/ourocard-estilo-mastercard-black#/"
+      },
+      {
+        "label": "Evidência primária",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/ourocard-estilo-mastercard-black/"
+      }
+    ]
+  }
+}

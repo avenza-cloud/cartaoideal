@@ -1,0 +1,179 @@
+{
+  "card_stable_id": "carrefour-cartao-de-credito",
+  "display_name": "Cartão Carrefour",
+  "issuer_raw": "Carrefour Soluções Financeiras",
+  "issuer_id": "carrefour-solucoes-financeiras",
+  "network_primary": "Visa",
+  "network_alternatives": [
+    "Mastercard"
+  ],
+  "variant_band": "Internacional",
+  "market_segment_guess": "mass_or_general",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_partial",
+  "primary_evidence_url": "https://www.carrefoursolucoes.com.br/",
+  "application_url": "https://www.carrefoursolucoes.com.br/",
+  "source_label": "Página oficial do emissor",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.carrefoursolucoes.com.br/",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "Cartão Carrefour",
+    "card_art_url": "unknown",
+    "source_url": "https://www.carrefoursolucoes.com.br/"
+  },
+  "reward_return": {
+    "earning_summary": "Benefícios de loja e ofertas Carrefour; regras variam.",
+    "has_cashlike_return": false,
+    "subtypes": []
+  },
+  "lounge_access": {
+    "annual_visits": "unknown",
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "programs": [],
+    "summary": "Não identificado na captura oficial inicial.",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Sujeito à análise de crédito.",
+    "requires_bank_account_claim": "unknown",
+    "source_status": "official_partial"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "monthly_spend",
+      "description": "Isenção ao realizar no mínimo uma compra por ciclo de fatura nas lojas do Grupo Carrefour.",
+      "full_waiver": true,
+      "period": "monthly",
+      "raw_text": "Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour."
+    },
+    {
+      "category": "promotional_period",
+      "description": "Condição promocional sujeita a alteração mediante comunicação.",
+      "full_waiver": true,
+      "raw_text": "Condição promocional, podendo ser alterada ou extinta mediante prévia comunicação."
+    }
+  ],
+  "benefit_groups": {
+    "fees": [
+      "Anuidade: Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour; condição promocional pode mudar."
+    ],
+    "issuer_specific": [
+      "Anuidade zero por uso mensal no Carrefour",
+      "Benefícios em compras no Carrefour",
+      "Aceito em estabelecimentos credenciados pela bandeira"
+    ],
+    "rewards": [
+      "Benefícios de loja e ofertas Carrefour; regras variam."
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "details": "Basta usar o cartão ≥1×/mês em loja Carrefour, Atacadão ou Sam's Club",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "Grátis"
+    },
+    {
+      "category": "rewards",
+      "key": "cashback",
+      "label": "Cashback",
+      "value": "Sim — programa Comprou, Voltou (% no regulamento)"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 0,
+    "lounge_visits_per_year_hint": 0,
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": true,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "varejo"
+  ],
+  "application_availability": {
+    "channels": [
+      "official_site"
+    ],
+    "notes": "Captura inicial a partir da página oficial."
+  },
+  "source_claims": [
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.9,
+      "dynamic": true,
+      "field_path": "fees.annual",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Anuidade zero: use o Cartão Carrefour uma vez por mês em qualquer Carrefour.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.carrefoursolucoes.com.br/",
+      "value_text": "Anuidade zero usando o Cartão Carrefour uma vez por mês em qualquer Carrefour; condição promocional pode mudar."
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.82,
+      "dynamic": true,
+      "field_path": "eligibility.requirements_text",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Anuidade zero: use o Cartão Carrefour uma vez por mês em qualquer Carrefour.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.carrefoursolucoes.com.br/",
+      "value_text": "Sujeito à análise de crédito."
+    },
+    {
+      "captured_at": "2026-05-09",
+      "confidence_0_to_1": 0.84,
+      "dynamic": true,
+      "field_path": "rewards",
+      "last_verified_at": "2026-05-09",
+      "raw_excerpt": "Anuidade zero: use o Cartão Carrefour uma vez por mês em qualquer Carrefour.",
+      "source_type": "official_issuer",
+      "source_url": "https://www.carrefoursolucoes.com.br/",
+      "value_text": "Benefícios de loja e ofertas Carrefour; regras variam."
+    }
+  ],
+  "store_benefits": [
+    {
+      "benefit_type": "exclusive_offer",
+      "description": "Benefícios e ofertas para compras no ecossistema Carrefour.",
+      "partner_name": "Carrefour"
+    }
+  ],
+  "secured_limit_options": [],
+  "cashback_details": null,
+  "provenance": {
+    "last_verified_date": "2026-05-09",
+    "sources": [
+      {
+        "label": "Página oficial do emissor",
+        "tier": "official_issuer",
+        "url": "https://www.carrefoursolucoes.com.br/"
+      }
+    ]
+  }
+}

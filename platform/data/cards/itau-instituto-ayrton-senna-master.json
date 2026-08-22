@@ -1,0 +1,95 @@
+{
+  "card_stable_id": "itau-instituto-ayrton-senna-master",
+  "display_name": "Instituto Ayrton Senna Master",
+  "issuer_raw": "Itaú",
+  "issuer_id": "itau",
+  "network_primary": "Mastercard",
+  "variant_band": "Internacional",
+  "market_segment_guess": "mass_or_general",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_partial",
+  "primary_evidence_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+  "application_url": "https://www.itau.com.br/cartoes/escolha/g/instituto-ayrton-senna-master/",
+  "review_source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Fonte oficial do emissor",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "Instituto Ayrton Senna Master",
+    "card_art_url": "unknown",
+    "source_url": ""
+  },
+  "reward_return": {
+    "earning_summary": "Sem pontos; compras apoiam Instituto Ayrton Senna.",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "summary": "unknown",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "unknown",
+    "requires_bank_account_claim": false,
+    "source_status": "official"
+  },
+  "benefit_groups": {},
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "Grátis"
+    },
+    {
+      "category": "other",
+      "key": "charity",
+      "label": "Impacto social",
+      "value": "Projetos educacionais Instituto Ayrton Senna"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 0,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "official_issuer",
+        "url": "https://www.itau.com.br/cartoes/escolha/g/lista-completa/"
+      }
+    ]
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "card_stable_id": "caixa-caixa-elo-mais-99b04cbcad",
+  "display_name": "CAIXA Elo Mais",
+  "issuer_raw": "Caixa Econômica Federal",
+  "issuer_id": "caixa-economica-federal",
+  "network_primary": "Elo",
+  "variant_band": "Mais",
+  "market_segment_guess": "mass_or_general",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "trusted_aggregator",
+  "primary_evidence_url": "https://passageirodeprimeira.com/cartao-de-credito/caixa-elo-mais/",
+  "application_url": "https://www.caixa.gov.br/voce/cartoes/credito/mais/Paginas/default.aspx",
+  "review_source_url": "https://passageirodeprimeira.com/cartao-de-credito/caixa-elo-mais/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Passageiro de Primeira",
+  "source_tier": "trusted_catalog",
+  "source_url": "https://www.caixa.gov.br/voce/cartoes/credito/mais/Paginas/default.aspx",
+  "ranking_position": 179,
+  "ranking_score": 108.79,
+  "media": {
+    "alt_text": "CAIXA Elo Mais",
+    "card_art_url": "unknown",
+    "source_url": ""
+  },
+  "reward_return": {
+    "earning_summary": "1,2 pontos por dólar gasto",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": false,
+    "guest_policy": "unknown",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "summary": "unknown",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "unknown",
+    "requires_bank_account_claim": false,
+    "source_status": "not_structured"
+  },
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista: Não"
+    ],
+    "fees": [
+      "Anuidade: R$ 207",
+      "Adicionais com benefícios: Sim",
+      "Isenção da anuidade: Não há nenhuma publicada",
+      "Anuidade: R$ 207",
+      "Adicionais gratuitos: 0"
+    ],
+    "lifestyle": [
+      "Carteira digital: Não"
+    ],
+    "rewards": [
+      "Pontuação: 1,2 pontos por dólar gasto",
+      "Regra de pontuação: 1,2 pontos por dólar gasto",
+      "Bônus de adesão: (Não há)",
+      "Programa de fidelidade: Uau CAIXA",
+      "Validade dos pontos: 24 meses"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 207"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "1,2 pontos por dólar gasto"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_detail",
+      "label": "Regra de pontuação",
+      "value": "1,2 pontos por dólar gasto"
+    },
+    {
+      "category": "rewards",
+      "key": "welcome_bonus",
+      "label": "Bônus de adesão",
+      "value": "(Não há)"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Uau CAIXA"
+    },
+    {
+      "category": "rewards",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "24 meses"
+    },
+    {
+      "category": "fees",
+      "key": "additional_card_benefits",
+      "label": "Adicionais com benefícios",
+      "value": "Sim"
+    },
+    {
+      "category": "fees",
+      "key": "fee_waiver",
+      "label": "Isenção da anuidade",
+      "value": "Não há nenhuma publicada"
+    },
+    {
+      "category": "fees",
+      "key": "annual_fee_detail",
+      "label": "Anuidade",
+      "value": "R$ 207"
+    },
+    {
+      "category": "lifestyle",
+      "key": "digital_wallet",
+      "label": "Carteira digital",
+      "value": "Não"
+    },
+    {
+      "category": "eligibility",
+      "key": "requires_account",
+      "label": "Precisa ser correntista",
+      "value": "Não"
+    },
+    {
+      "category": "fees",
+      "key": "free_additional_cards",
+      "label": "Adicionais gratuitos",
+      "value": "0"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 207,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "official_forex_or_iof_note": "unknown"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:mass_or_general",
+    "rewards:points_or_miles"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-05-07",
+    "sources": [
+      {
+        "label": "Link direto do cartão",
+        "tier": "trusted_catalog",
+        "url": "https://www.caixa.gov.br/voce/cartoes/credito/mais/Paginas/default.aspx"
+      },
+      {
+        "label": "Evidência primária",
+        "url": "https://passageirodeprimeira.com/cartao-de-credito/caixa-elo-mais/"
+      }
+    ]
+  }
+}
