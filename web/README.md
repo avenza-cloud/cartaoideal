@@ -4,7 +4,7 @@ Comparador de cartões de crédito brasileiros. Catálogo estruturado de 299 car
 scoring de valor personalizado (renda, gasto, investimento, viagens), ranking, chat com IA,
 comparação lado a lado e correções da comunidade via GitHub Issues.
 
-Documentação geral em inglês no [README raiz](../README.md); guia de contribuição em
+Documentação geral no [README raiz](../README.md); guia de contribuição em
 [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## Estrutura do repositório
