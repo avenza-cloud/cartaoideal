@@ -1,18 +1,19 @@
 #!/usr/bin/env node
-// Compiles platform/data/cards/*.json (source of truth, one file per card)
-// into the runtime artifact platform/data/generated/cards.json that the app
-// statically imports. Runs automatically via the predev/prebuild/pretest:unit
-// hooks; CI also runs it explicitly with --check, which additionally verifies
-// every source file is canonically formatted (see scripts/lib/canonical-json.mjs).
+// Compiles data/cards/*.json (source of truth, one file per card) into the
+// runtime artifact web/data/generated/cards.json that the app statically
+// imports, and copies data/card_overrides.json alongside it. Runs
+// automatically via the predev/prebuild/pretest:unit hooks; CI also runs it
+// explicitly with --check, which additionally verifies every source file is
+// canonically formatted (see scripts/lib/canonical-json.mjs).
 import { createHash } from "node:crypto";
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { basename, dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { serializeCard } from "./lib/canonical-json.mjs";
 
-const platformRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
-const cardsDir = join(platformRoot, "data", "cards");
-const outDir = join(platformRoot, "data", "generated");
+const repoRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
+const cardsDir = join(repoRoot, "data", "cards");
+const outDir = join(repoRoot, "web", "data", "generated");
 const checkMode = process.argv.includes("--check");
 
 const errors = [];
@@ -72,4 +73,9 @@ const artifact = {
 
 mkdirSync(outDir, { recursive: true });
 writeFileSync(join(outDir, "cards.json"), JSON.stringify(artifact));
-console.log(`built data/generated/cards.json — ${cards.length} cards, content ${content_hash}`);
+// The app also imports the overrides file; keep the webpack import inside web/.
+writeFileSync(
+  join(outDir, "card_overrides.json"),
+  readFileSync(join(repoRoot, "data", "card_overrides.json"))
+);
+console.log(`built web/data/generated/cards.json — ${cards.length} cards, content ${content_hash}`);

@@ -8,7 +8,7 @@ import { CardFacetSchema, FacetsFileSchema } from "@/lib/card-schema";
 // schema, and the compiled artifact must agree with the sources. Failures
 // print per-card, per-path issues so a data PR author can fix their file
 // without digging through a giant aggregate error.
-const cardsDir = join(__dirname, "..", "..", "data", "cards");
+const cardsDir = join(__dirname, "..", "..", "..", "data", "cards");
 const sourceFiles = readdirSync(cardsDir).filter((f) => f.endsWith(".json"));
 
 describe("card data contract", () => {
