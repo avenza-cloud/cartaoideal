@@ -1,0 +1,14 @@
+/.pnpm-store/
+/platform/audit-reports/
+.playwright-report/
+.playwright-mcp/** */
+
+# Vercel CLI local config (never commit project/org ids)
+/.vercel/
+
+# Python build artifacts
+__pycache__/
+*.pyc
+
+# Node
+/node_modules/
