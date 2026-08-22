@@ -1,0 +1,39 @@
+name: Correção de dados de cartão
+description: Corrija anuidade, benefícios, isenção ou outro dado de um cartão do catálogo.
+title: "Correção: <cartão> — <campo>"
+labels: ["data-error"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por ajudar a manter o catálogo correto! Preencha o bloco JSON
+        abaixo (mantenha a cerca ```json card-correction — é ela que aciona a
+        automação). Um mantenedor aplicará o rótulo `correction` para gerar o
+        pull request automaticamente.
+
+        - `cardId` é o `card_stable_id` — está na URL da página do cartão
+          (`/cartoes/<cardId>`).
+        - `field` deve ser um destes: `Anuidade`, `Pontuação / cashback`,
+          `Lounge`, `Elegibilidade`, `Renda mínima`, `Investimento mínimo`,
+          `IOF / spread`, `Imagem ou nome`, `Outro`.
+        - `sourceUrl` precisa ser uma fonte pública verificável (idealmente a
+          página oficial do emissor).
+  - type: textarea
+    id: correction
+    attributes:
+      label: Correção
+      description: Edite os valores mantendo o formato do bloco.
+      value: |
+        ```json card-correction
+        {
+          "cardId": "",
+          "cardName": "",
+          "issuer": "",
+          "field": "Anuidade",
+          "suggestedValue": "",
+          "sourceUrl": "",
+          "notes": ""
+        }
+        ```
+    validations:
+      required: true

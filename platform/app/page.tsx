@@ -68,12 +68,6 @@ export default function HomePage() {
           />
         </main>
 
-        <footer className="border-t border-border/70 px-6 py-4 text-center">
-          <p className="text-xs text-muted-foreground">
-            Dados do catálogo podem conter imprecisões. Verifique com o emissor
-            antes de contratar.
-          </p>
-        </footer>
       </div>
 
       <CompareBar />

@@ -30,6 +30,9 @@ jobs:
       - name: Build card-data artifact (validates format)
         run: node scripts/build-cards-artifact.mjs --check
 
+      - name: Data freshness report (non-blocking)
+        run: node scripts/report-data-freshness.mjs
+
       - name: Unit tests + coverage
         run: pnpm test:unit
 
