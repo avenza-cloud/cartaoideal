@@ -1,0 +1,30 @@
+Dataset License — CC BY 4.0
+===========================
+
+The structured card dataset in this directory (the JSON files under
+`cards/` and `card_overrides.json`) is a compilation by the maintainer of
+Cartão Ideal and is licensed under the Creative Commons Attribution 4.0
+International license (CC BY 4.0).
+
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by/4.0/
+
+You are free to share and adapt this dataset for any purpose, including
+commercially, provided you give appropriate credit. Suggested attribution:
+
+    "Cartão Ideal — github.com/caiotheodoro/cartaoideal"
+
+EXCLUSIONS — this license does NOT cover:
+
+1. Card artwork under `platform/public/card-images/`. Card art is the
+   property of the respective issuers and is used nominatively to identify
+   the products; each file's origin is recorded in `media.art_provenance`.
+2. Trademarks, product names and logos of card issuers and networks, which
+   belong to their respective owners. Their appearance in the data is
+   nominative and implies no affiliation or endorsement.
+3. The application source code of this repository, which is licensed
+   separately under the MIT license (see the root LICENSE file).
+
+The facts compiled here (fees, benefits, eligibility rules) were gathered
+from public sources cited per card in the `provenance` and `source_url`
+fields. See README.md in this directory for the full provenance statement.

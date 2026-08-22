@@ -248,6 +248,17 @@ export const CoBrandSchema = z.strictObject({
   partner_category: z.string().optional(),
 });
 
+// Community corrections that need maintainer judgment live inside the card
+// file (visible, reviewable) until applied — written by apply-correction.mjs.
+export const PendingCorrectionSchema = z.strictObject({
+  field: z.string(),
+  suggested_value: z.string(),
+  source_url: z.string(),
+  notes: z.string().optional(),
+  submitted_at: z.string(),
+  issue_number: z.number().optional(),
+});
+
 export const CardProvenanceSchema = z.strictObject({
   sources: z.array(
     z.strictObject({
@@ -297,6 +308,7 @@ export const CardFacetSchema = z.strictObject({
   cashback_details: CashbackDetailsSchema.nullish(),
   co_brand: CoBrandSchema.nullish(),
   data_quality_notes: z.array(z.string()).nullish(),
+  pending_corrections: z.array(PendingCorrectionSchema).optional(),
   provenance: CardProvenanceSchema,
 });
 

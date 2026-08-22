@@ -43,6 +43,7 @@ export const TOP_LEVEL_KEY_ORDER = [
   "cashback_details",
   "co_brand",
   "data_quality_notes",
+  "pending_corrections",
   "provenance",
 ];
 

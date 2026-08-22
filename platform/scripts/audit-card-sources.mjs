@@ -9,8 +9,10 @@ const repoRoot = path.resolve(platformRoot, "..");
 const facetsPath = path.join(platformRoot, "data/generated/cards.json");
 const outputDir = path.join(platformRoot, "audit-reports/card-sources");
 
-const USER_AGENT =
-  "Mozilla/5.0 (compatible; MeuCartaoIdealSourceAudit/1.0; +https://github.com/caiotheodoro/cartaoideal)";
+// Contact URL comes from env so forks identify themselves, not this repo.
+const USER_AGENT = process.env.AUDIT_CONTACT_URL
+  ? `Mozilla/5.0 (compatible; CartaoIdealSourceAudit/1.0; +${process.env.AUDIT_CONTACT_URL})`
+  : "Mozilla/5.0 (compatible; CartaoIdealSourceAudit/1.0)";
 
 const args = parseArgs(process.argv.slice(2));
 const now = new Date().toISOString().replace(/[:.]/g, "-");

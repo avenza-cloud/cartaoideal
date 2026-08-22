@@ -1,0 +1,26 @@
+name: Bug report
+description: Algo no site ou no código não funciona como deveria.
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: O que aconteceu?
+      description: Descreva o problema e o que você esperava que acontecesse.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para reproduzir
+      placeholder: |
+        1. Acesse ...
+        2. Clique em ...
+        3. Veja o erro ...
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Ambiente
+      placeholder: "ex: Chrome 130 / iPhone 15 / site em produção ou pnpm dev local"
