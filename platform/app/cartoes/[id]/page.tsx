@@ -22,6 +22,11 @@ export async function generateStaticParams() {
   return getAllCards().map((c) => ({ id: c.card_stable_id }));
 }
 
+// The catalog is closed-world (every valid id is prerendered above), so an
+// unknown id must be a real 404 — without this, Next renders the not-found UI
+// on demand and caches it with a 200 (soft-404).
+export const dynamicParams = false;
+
 function cardReturnLabel(card: CardFacet): string | null {
   return card.reward_return.has_cashlike_return
     ? rewardReturnLabel(card.reward_return)

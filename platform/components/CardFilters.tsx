@@ -17,7 +17,9 @@ const SEGMENTS = [
   { value: "ultra_premium", label: "Ultra Premium" },
 ];
 
-const NETWORKS = ["Visa", "Mastercard", "American Express", "Elo", "Hipercard"];
+// Keep in sync with CardNetworkSchema in lib/card-schema.ts (not imported to
+// avoid pulling zod into this client chunk).
+const NETWORKS = ["Visa", "Mastercard", "American Express", "Elo"];
 
 const RANKING_MODES = [
   { value: "profile" as const, label: "Seu perfil", title: "Ordenar pelo seu perfil" },
