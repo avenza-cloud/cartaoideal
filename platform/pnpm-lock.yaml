@@ -8,9 +8,12 @@ importers:
 
   .:
     dependencies:
-      '@ai-sdk/openai':
-        specifier: ^3.0.61
-        version: 3.0.61(zod@4.4.3)
+      '@ai-sdk/deepseek':
+        specifier: ^2.0.57
+        version: 2.0.57(zod@4.4.3)
+      '@ai-sdk/google':
+        specifier: ^3.0.111
+        version: 3.0.111(zod@4.4.3)
       '@ai-sdk/react':
         specifier: ^3.0.177
         version: 3.0.177(react@19.2.4)(zod@4.4.3)
@@ -93,6 +96,9 @@ importers:
         specifier: ^5.0.13
         version: 5.0.13(@types/react@19.2.14)(react@19.2.4)(use-sync-external-store@1.6.0(react@19.2.4))
     devDependencies:
+      '@ai-sdk/provider':
+        specifier: ^3.0.15
+        version: 3.0.15
       '@biomejs/biome':
         specifier: ^2.5.10
         version: 2.5.10
@@ -129,14 +135,20 @@ importers:
 
 packages:
 
+  '@ai-sdk/deepseek@2.0.57':
+    resolution: {integrity: sha512-dGSieE6Q9JLSuSYajEgYZYL4o1vKEEXOgM8eNQGT+9HdoCYBNqLybVdjJB+iu127s0jKLCxK0Nq53ufN+mofEg==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
   '@ai-sdk/gateway@3.0.110':
     resolution: {integrity: sha512-sbv8+1L9/BRKydn8dMNwoMQKupA4iLJ9N+yvxgW6wMQ/94UepDf3FeYWMj/dLdzolAHZ6izRUP4s5WqQkmJ2Zg==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/openai@3.0.61':
-    resolution: {integrity: sha512-L5FdlTo+7IBOdXbnTZqVzowRdLGWnxPn01vHe4leLPp0G4ydoXhySu0tp0ttkoO0ZSzPjHo7iiAkYoT0J91Q8Q==}
+  '@ai-sdk/google@3.0.111':
+    resolution: {integrity: sha512-XWWju5pVD7Tf30c2VziMfPph3XpN/jDTE5aJhqAPJ2zRmHSSveNYFoosFLOWWFIgQnwGe9AM3bAXR8kHyC2MdA==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -147,8 +159,18 @@ packages:
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
+  '@ai-sdk/provider-utils@4.0.46':
+    resolution: {integrity: sha512-tEtld97plCFiYevsJuOkGkeuhQndeMWFBVrJS4AjnbD5AqrNSXRCe0p+BZ3Cju/sxDeeZ9ym3q9YUV8fASA7aQ==}
+    engines: {node: '>=18.17'}
+    peerDependencies:
+      zod: ^3.25.76 || ^4.1.8
+
   '@ai-sdk/provider@3.0.10':
     resolution: {integrity: sha512-Q3BZ27qfpYqnCYGvE3vt+Qi6LGOF9R5Nmzn+9JoM1lCRsD9mYaIhfJLkSunN48nfGXJ6n+XNV0J/XVpqGQl7Dw==}
+    engines: {node: '>=18'}
+
+  '@ai-sdk/provider@3.0.15':
+    resolution: {integrity: sha512-XeZW1CcDF2GMbH4wejW6xBRI2QCOgnkVYUnxoeDadB1mf85riL2bMUeDoh+6gJ/r4mjNfzUPW8OjLjvwTP0u1Q==}
     engines: {node: '>=18'}
 
   '@ai-sdk/react@3.0.177':
@@ -4085,6 +4107,10 @@ packages:
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
+  undici@6.28.0:
+    resolution: {integrity: sha512-LIY910g9TI13YS95lrMFrs8Rm/u/irgHeTWoKCoteeJ04CUJ92eEfj0rVn+7VKMPBpUPiUoBKfhNyLI23EE/KA==}
+    engines: {node: '>=18.17'}
+
   unicorn-magic@0.3.0:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
     engines: {node: '>=18'}
@@ -4378,6 +4404,12 @@ packages:
 
 snapshots:
 
+  '@ai-sdk/deepseek@2.0.57(zod@4.4.3)':
+    dependencies:
+      '@ai-sdk/provider': 3.0.15
+      '@ai-sdk/provider-utils': 4.0.46(zod@4.4.3)
+      zod: 4.4.3
+
   '@ai-sdk/gateway@3.0.110(zod@4.4.3)':
     dependencies:
       '@ai-sdk/provider': 3.0.10
@@ -4385,10 +4417,10 @@ snapshots:
       '@vercel/oidc': 3.2.0
       zod: 4.4.3
 
-  '@ai-sdk/openai@3.0.61(zod@4.4.3)':
+  '@ai-sdk/google@3.0.111(zod@4.4.3)':
     dependencies:
-      '@ai-sdk/provider': 3.0.10
-      '@ai-sdk/provider-utils': 4.0.26(zod@4.4.3)
+      '@ai-sdk/provider': 3.0.15
+      '@ai-sdk/provider-utils': 4.0.46(zod@4.4.3)
       zod: 4.4.3
 
   '@ai-sdk/provider-utils@4.0.26(zod@4.4.3)':
@@ -4398,7 +4430,19 @@ snapshots:
       eventsource-parser: 3.0.8
       zod: 4.4.3
 
+  '@ai-sdk/provider-utils@4.0.46(zod@4.4.3)':
+    dependencies:
+      '@ai-sdk/provider': 3.0.15
+      '@standard-schema/spec': 1.1.0
+      eventsource-parser: 3.0.8
+      undici: 6.28.0
+      zod: 4.4.3
+
   '@ai-sdk/provider@3.0.10':
+    dependencies:
+      json-schema: 0.4.0
+
+  '@ai-sdk/provider@3.0.15':
     dependencies:
       json-schema: 0.4.0
 
@@ -8732,6 +8776,8 @@ snapshots:
   ufo@1.6.4: {}
 
   undici-types@6.21.0: {}
+
+  undici@6.28.0: {}
 
   unicorn-magic@0.3.0: {}
 

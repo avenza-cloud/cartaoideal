@@ -45,7 +45,7 @@ pnpm dev                     # http://localhost:3000 (compila o dataset via pred
 cd platform
 pnpm test:unit            # vitest + contrato de dados + thresholds de cobertura
 pnpm test:e2e             # playwright (desktop/mobile, sem IA real)
-pnpm test:chat            # e2e do chat com backend de IA real (OPENAI_API_KEY)
+pnpm test:chat            # e2e do chat com backend de IA real (GEMINI_API_KEY)
 pnpm check                # biome (lint + formato)
 pnpm exec tsc --noEmit    # typecheck
 ```
@@ -73,7 +73,8 @@ Vercel. URL pública e metadados de SEO derivam de `NEXT_PUBLIC_SITE_URL`
 
 Ver `platform/.env.example` (tudo opcional; cada recurso degrada graciosamente):
 
-- `OPENAI_API_KEY` — chat com IA (`/api/chat`, lido implicitamente pelo `@ai-sdk/openai`).
+- `GEMINI_API_KEY` — chat com IA (`/api/chat`, modelo primário Gemini; `GEMINI_MODEL` opcional).
+- `DEEPSEEK_API_KEY` — fallback automático do chat quando a chamada ao Gemini falha (`DEEPSEEK_MODEL`/`DEEPSEEK_BASE_URL` opcionais).
 - `NEXT_PUBLIC_SITE_URL` — URL canônica para SEO.
 - `NEXT_PUBLIC_ADSENSE_PUBLISHER_ID` / `NEXT_PUBLIC_ADSENSE_SLOT_CATALOG` /
   `NEXT_PUBLIC_ADSENSE_SLOT_DETAIL` — anúncios (vazio desativa).
