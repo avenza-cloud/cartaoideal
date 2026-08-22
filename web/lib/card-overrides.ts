@@ -1,4 +1,4 @@
-import overrides from "@/data/card_overrides.json";
+import overrides from "@/data/generated/card_overrides.json";
 
 /**
  * Card-specific business data that used to be hardcoded in TS. Lives in

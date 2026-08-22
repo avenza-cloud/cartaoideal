@@ -3,7 +3,7 @@ import { z } from "zod";
 // Single source of truth for the card-data contract. types/cards.ts derives its
 // data types from these schemas (z.infer); CI validates every card against them.
 // Objects are strict on purpose: an unknown key in a data PR is a typo, not an
-// extension — new fields must be added here first (see platform/data/README.md
+// extension — new fields must be added here first (see data/README.md
 // for the additive-evolution policy).
 //
 // Fields whose *values* are still dirty (issuer_raw, variant_band, product_kind,

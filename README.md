@@ -8,14 +8,14 @@ value-scoring engine, side-by-side comparison, and an AI chat assistant.
 Product UI is in Brazilian Portuguese; the codebase and docs welcome
 contributors in English or Portuguese.
 
-**Documentação em português:** [platform/README.md](platform/README.md) ·
+**Documentação em português:** [web/README.md](web/README.md) ·
 **Contributing:** [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Features
 
 - **Catalog** (`/cartoes`) — 299 Brazilian cards, filterable by network,
   segment, rewards type, fee and fee-waiver conditions.
-- **Personalized ranking** — a value engine (`platform/lib/card-value.ts`)
+- **Personalized ranking** — a value engine (`web/lib/card-value.ts`)
   estimates net monthly value per card from your income, spend, investments
   and travel profile, including point valuations, FX spread/IOF and lounge
   modeling.
@@ -30,9 +30,10 @@ contributors in English or Portuguese.
 
 | Path | What it is |
 |---|---|
-| `platform/` | Next.js 16 app (App Router, React 19, Tailwind 4, TypeScript) |
-| `platform/data/cards/` | **The dataset** — one JSON file per card, validated by a Zod contract |
-| `platform/lib/` | Domain logic: scoring, fee waivers, filtering, data contract |
+| `web/` | Next.js 16 app (App Router, React 19, Tailwind 4, TypeScript) |
+| `data/cards/` | **The dataset** — one JSON file per card, validated by a Zod contract |
+| `web/lib/` | Domain logic: scoring, fee waivers, filtering, data contract |
+| `scripts/` | Data tooling: artifact build, corrections, source audits |
 | `.github/workflows/` | CI, correction-issue-to-PR automation, weekly data health audit |
 
 ## Quickstart
@@ -40,7 +41,7 @@ contributors in English or Portuguese.
 ```bash
 nvm use                 # Node 22 (.nvmrc)
 corepack enable         # pnpm 10 (package.json packageManager)
-cd platform
+cd web
 pnpm install
 cp .env.example .env.local   # optional — everything degrades gracefully
 pnpm dev
@@ -55,10 +56,10 @@ full command reference, test suites and the data-editing workflow.
 This project may earn revenue from Google AdSense slots and from affiliate
 parameters on outbound "apply" links (`utm_source=cartaoideal`; per-card
 affiliate overrides live in
-[`platform/lib/affiliate.ts`](platform/lib/affiliate.ts) and are empty in this
+[`web/lib/affiliate.ts`](web/lib/affiliate.ts) and are empty in this
 repository). **Monetization has zero input into rankings**: the scoring code
-([`platform/lib/scoring.ts`](platform/lib/scoring.ts),
-[`platform/lib/card-value.ts`](platform/lib/card-value.ts)) reads only card
+([`web/lib/scoring.ts`](web/lib/scoring.ts),
+[`web/lib/card-value.ts`](web/lib/card-value.ts)) reads only card
 data and user profile — auditable in this repo.
 
 ## Disclaimer
@@ -79,7 +80,7 @@ always confirm conditions on the issuer's official site before applying.
 ## License
 
 - **Code:** [MIT](LICENSE).
-- **Dataset** (`platform/data/`): [CC BY 4.0](platform/data/LICENSE) —
+- **Dataset** (`data/`): [CC BY 4.0](data/LICENSE) —
   attribution "Cartão Ideal — github.com/caiotheodoro/cartaoideal". Card
   artwork and issuer/network trademarks are excluded (property of their
   owners, used nominatively).

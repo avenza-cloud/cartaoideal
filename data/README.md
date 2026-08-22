@@ -8,9 +8,10 @@ Atribuição sugerida: **"Cartão Ideal — github.com/caiotheodoro/cartaoideal"
 
 **Exclusões**: a licença cobre apenas os dados estruturados. Não cobre:
 
-- Arte de cartões (`platform/public/card-images/`) — propriedade dos emissores, usada de forma
+- Arte de cartões (`web/public/card-images/`) — propriedade dos emissores, usada de forma
   nominativa para identificação do produto, cada arquivo com procedência registrada em
-  `media.art_provenance`.
+  `media.art_provenance`. Os valores de `media.card_art_url` são caminhos absolutos do site
+  (ex.: `/card-images/foo.png`) resolvidos contra `web/public/`.
 - Marcas, nomes de produtos e logotipos de emissores e bandeiras — pertencem aos seus titulares.
 
 ## Procedência
@@ -41,7 +42,7 @@ Ver `SCHEMA_CHANGELOG` abaixo. Política:
 
 - Mudanças **aditivas** apenas: campos novos entram como opcionais.
 - Valores de enum podem ser **adicionados** (bump menor de `schema_version`); nunca renomeados ou
-  removidos sem bump maior acompanhado de script de migração em `platform/scripts/migrations/`.
+  removidos sem bump maior acompanhado de script de migração.
 
 ### SCHEMA_CHANGELOG
 
