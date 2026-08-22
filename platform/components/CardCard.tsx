@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Check, CreditCard, Plane, Coins, ExternalLink } from "lucide-react";
+import { CardArtPlaceholder } from "@/components/CardArtPlaceholder";
+import { cardArtSrc } from "@/lib/card-display";
 import { formatFee, formatNetMonthlyDisplay, loungeSummary, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
 import { travelFrequencyForValueModeling } from "@/lib/card-value";
 import { feeWaiverBadgeClassName, feeWaiverBadgesForCard } from "@/lib/fee-waiver-badges";
@@ -49,7 +51,7 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
   }
 
   const fee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
-  const hasImage = card.media.card_art_url && card.media.card_art_url !== "unknown";
+  const artSrc = cardArtSrc(card.media.card_art_url);
   const hasReturn = card.reward_return.has_cashlike_return;
   const feeWaiverBadges = feeWaiverBadgesForCard(card, profile);
 
@@ -58,15 +60,20 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
       <Card className="h-full cursor-pointer overflow-hidden transition-colors hover:border-border/80 hover:bg-card/80">
         <CardHeader className={compact ? "space-y-2 p-3 pb-2" : "space-y-3 pb-2"}>
           <div className={`relative flex items-center justify-center overflow-hidden rounded-xl border bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 ${compact ? "h-20" : "h-28"}`}>
-            {hasImage ? (
+            {artSrc ? (
               <img
-                src={card.media.card_art_url}
+                src={artSrc}
                 alt={card.media.alt_text}
                 className={`object-contain drop-shadow-2xl transition-transform duration-300 group-hover:scale-105 ${compact ? "max-h-full max-w-[88%]" : "max-h-24 max-w-[82%]"}`}
                 loading="lazy"
               />
             ) : (
-              <CreditCard className="h-12 w-12 text-muted-foreground" />
+              <CardArtPlaceholder
+                issuerRaw={card.issuer_raw}
+                network={card.network_primary}
+                displayName={card.display_name}
+                className={compact ? "max-h-16" : ""}
+              />
             )}
             <span className="absolute left-2 top-2 rounded-full bg-background/80 px-2 py-0.5 text-[10px] font-mono text-muted-foreground">
               #{rank ?? card.ranking_position}
