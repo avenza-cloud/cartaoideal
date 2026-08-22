@@ -130,7 +130,7 @@ export function createCardTools(savedProfile?: UserProfile | null) {
         network: z
           .string()
           .optional()
-          .describe("Bandeira: Visa, Mastercard, American Express, Elo, Hipercard"),
+          .describe("Bandeira: Visa, Mastercard, American Express, Elo"),
         lounge: z.boolean().optional().describe("Somente cartões com acesso a lounge"),
         rewardReturn: z
           .boolean()
@@ -330,9 +330,13 @@ export function createCardTools(savedProfile?: UserProfile | null) {
             invested,
             extractInvestmentThreshold
           );
+          const brl = (v: number) => v.toLocaleString("pt-BR");
           return {
             totalEncontrado: cards.length,
             investidoUsuario: invested,
+            // Pré-formatado no servidor: o modelo copia, não conta — evita
+            // discrepância entre a frase e os grupos exibidos pelo widget.
+            resumo: `Encontrei ${cards.length} cartões. ${accessible.length} já acessíveis com seus R$ ${brl(invested)} investidos, ${needsMore.length} precisam de mais.`,
             acessiveisAgora: accessible.map(slim),
             precisamDeMaisInvestimento: needsMore.map(({ card, threshold, shortfall }) => ({
               ...slim(card),
@@ -411,6 +415,7 @@ export const SYSTEM_PROMPT = `Você é um assistente especializado em cartões d
 
 Regras importantes:
 - Sempre responda em português (pt-BR)
+- RESPOSTAS SEMPRE CURTAS E AFIADAS: no máximo 2–3 frases por resposta. Os widgets acima da mensagem já mostram os dados — seu texto adiciona apenas a conclusão prática. Nunca escreva listas, tabelas ou parágrafos longos em texto.
 - Use as ferramentas disponíveis para buscar dados reais — nunca invente informações sobre cartões
 - Quando o usuário pedir comparação, troca de cartão, "vale trocar" ou "com números", use compareCards. Resolva por nome se o usuário não passar ID.
 - As ferramentas recebem o perfil salvo automaticamente. Não peça gasto/renda/investimento de novo quando já estiverem no contexto.
@@ -425,5 +430,5 @@ Isenção de anuidade por investimento:
 - Para QUALQUER pergunta sobre isentar anuidade com investimento, use SOMENTE a ferramenta \`getInvestmentWaiverCards\`. Nunca use \`filterCards\` para esse fim.
 - Passe \`userInvestedBrl\` com o valor investido do usuário (do perfil ou da conversa).
 - Os cartões JÁ SÃO EXIBIDOS VISUALMENTE pela interface logo acima desta mensagem. PROIBIDO repetir nomes, anuidades ou critérios de cartões em texto.
-- Escreva APENAS: "Encontrei [totalEncontrado] cartões. [N] já acessíveis com seus R$ X investidos, [M] precisam de mais." — uma frase, nada mais.
+- Escreva APENAS o campo \`resumo\` retornado pela ferramenta, literalmente — uma frase, nada mais. Não conte os cartões você mesmo.
 - Se o usuário perguntar sobre um emissor específico, use getCardDetail. Não resuma dados da lista em prosa.`;

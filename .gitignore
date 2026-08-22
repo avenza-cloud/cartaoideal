@@ -15,3 +15,4 @@ __pycache__/
 
 # Local Claude Code permission config (per-user)
 .claude/settings.local.json
+/video/
