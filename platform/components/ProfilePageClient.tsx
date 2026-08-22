@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { useProfileStore } from "@/lib/store";
 import { AppHeader } from "@/components/AppHeader";
 import { searchCardOptions, type ClientCardOption } from "@/lib/card-options";
-import { Sparkles, CheckCircle2, ArrowLeft, CreditCard, X } from "lucide-react";
+import { Sparkles, CheckCircle2, ArrowLeft, X } from "lucide-react";
+import { CardArtPlaceholder } from "@/components/CardArtPlaceholder";
 import { cardArtSrc } from "@/lib/card-display";
 import { cn } from "@/lib/utils";
 import { formatBrlInput, formatBrlNumber, parseBrlInput } from "@/lib/brl";
@@ -189,7 +190,11 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                       loading="lazy"
                     />
                   ) : (
-                    <CreditCard className="h-4 w-4 text-muted-foreground" />
+                    <CardArtPlaceholder
+                      compact
+                      issuerRaw={selectedCard.issuer}
+                      displayName={selectedCard.name}
+                    />
                   )}
                 </span>
                 <div className="min-w-0 flex-1">
@@ -252,7 +257,7 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                               loading="lazy"
                             />
                           ) : (
-                            <CreditCard className="h-3.5 w-3.5 text-muted-foreground" />
+                            <CardArtPlaceholder compact issuerRaw={c.issuer} displayName={c.name} />
                           )}
                         </span>
                         <span className="min-w-0 flex-1">

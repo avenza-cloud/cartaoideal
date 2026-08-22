@@ -22,7 +22,7 @@ export function issuerInitials(issuerRaw: string): string {
   return (words[0][0] + words[1][0]).toUpperCase();
 }
 
-export function networkGradientClass(network: CardFacet["network_primary"]): string {
+export function networkGradientClass(network: string): string {
   switch (network) {
     case "Visa":
       return "from-blue-950 via-blue-900 to-indigo-800";

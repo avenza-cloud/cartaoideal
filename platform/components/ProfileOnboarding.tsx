@@ -4,7 +4,8 @@ import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useProfileStore } from "@/lib/store";
 import { searchCardOptions, type ClientCardOption } from "@/lib/card-options";
-import { ArrowRight, ArrowLeft, CreditCard } from "lucide-react";
+import { ArrowRight, ArrowLeft } from "lucide-react";
+import { CardArtPlaceholder } from "@/components/CardArtPlaceholder";
 import type { UserProfile } from "@/types/cards";
 import { BrandWordmark } from "@/components/BrandWordmark";
 import { cardArtSrc } from "@/lib/card-display";
@@ -390,7 +391,7 @@ function StepCurrentCard({
                     loading="lazy"
                   />
                 ) : (
-                  <CreditCard className="h-4 w-4 text-muted-foreground" />
+                  <CardArtPlaceholder compact issuerRaw={card.issuer} displayName={card.name} />
                 )}
               </span>
               <span className="min-w-0 flex-1">

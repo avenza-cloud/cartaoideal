@@ -42,6 +42,7 @@ import {
   feeWaiverRuleDisplayLabel,
 } from "@/lib/fee-waiver-badges";
 import { cardArtSrc } from "@/lib/card-display";
+import { CardArtPlaceholder } from "@/components/CardArtPlaceholder";
 import { cn } from "@/lib/utils";
 
 interface ChatInterfaceProps {
@@ -237,7 +238,7 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
               loading="lazy"
             />
           ) : (
-            <CreditCard className="h-3.5 w-3.5 text-muted-foreground" />
+            <CardArtPlaceholder compact issuerRaw={card.emissor} displayName={card.nome} />
           )}
         </div>
         <div className="min-w-0 flex-1">
@@ -551,7 +552,7 @@ function CardDetailArtifact({ output }: { output: unknown }) {
               className="max-h-8 max-w-[52px] object-contain"
             />
           ) : (
-            <CreditCard className="h-4 w-4 text-muted-foreground" />
+            <CardArtPlaceholder compact issuerRaw={c.emissor} displayName={c.nome} />
           )}
         </div>
         <div className="min-w-0">
@@ -655,7 +656,7 @@ function WaiverMiniCard({ card, faltam }: { card: WaiverCardItem; faltam?: numbe
             loading="lazy"
           />
         ) : (
-          <CreditCard className="h-3.5 w-3.5 text-muted-foreground" />
+          <CardArtPlaceholder compact issuerRaw={card.emissor} displayName={card.nome} />
         )}
       </div>
       <div className="min-w-0 flex-1">

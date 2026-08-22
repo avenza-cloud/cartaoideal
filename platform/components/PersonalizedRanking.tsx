@@ -15,7 +15,8 @@ import { DEFAULT_SCORING_PROFILE, travelFrequencyForValueModeling } from "@/lib/
 import { cardArtSrc } from "@/lib/card-display";
 import { useCardDetailHref } from "@/lib/use-card-detail-href";
 import { Button } from "@/components/ui/button";
-import { CreditCard, ListFilter } from "lucide-react";
+import { ListFilter } from "lucide-react";
+import { CardArtPlaceholder } from "@/components/CardArtPlaceholder";
 import type { CardFacet, CardScore, CardValueScore, TravelFrequency } from "@/types/cards";
 import type { FeeWaiverBadge } from "@/lib/fee-waiver-badges";
 
@@ -28,6 +29,7 @@ interface TopCard {
   emissor: string;
   anuidade: CardFacet["facets_numeric_or_special"]["annual_fee_brl_best_estimate"];
   rankingPosition: number;
+  bandeira?: string;
   lounge: boolean;
   retornoFinanceiro: { earning_summary?: string };
   pontos: boolean;
@@ -64,7 +66,8 @@ function CardRow({
   rank,
   id,
   nome,
-  emissor: _emissor,
+  emissor,
+  bandeira,
   anuidade,
   cardArtUrl,
   altText,
@@ -81,6 +84,7 @@ function CardRow({
   id: string;
   nome: string;
   emissor: string;
+  bandeira?: string;
   anuidade: CardFacet["facets_numeric_or_special"]["annual_fee_brl_best_estimate"];
   cardArtUrl: string;
   altText: string;
@@ -112,7 +116,7 @@ function CardRow({
             loading="lazy"
           />
         ) : (
-          <CreditCard className="h-4 w-4 text-muted-foreground" />
+          <CardArtPlaceholder compact issuerRaw={emissor} network={bandeira} displayName={nome} />
         )}
       </div>
 
@@ -219,7 +223,12 @@ function CurrentCardSummary({
             loading="lazy"
           />
         ) : (
-          <CreditCard className="h-4 w-4 text-muted-foreground" />
+          <CardArtPlaceholder
+            compact
+            issuerRaw={card.issuer_raw}
+            network={card.network_primary}
+            displayName={card.display_name}
+          />
         )}
       </div>
 
@@ -386,6 +395,7 @@ export function PersonalizedRanking() {
                 id={card.card_stable_id}
                 nome={card.display_name}
                 emissor={card.issuer_raw}
+                bandeira={card.network_primary}
                 anuidade={card.facets_numeric_or_special.annual_fee_brl_best_estimate}
                 cardArtUrl={card.media.card_art_url}
                 altText={card.media.alt_text}
@@ -412,6 +422,7 @@ export function PersonalizedRanking() {
               id={c.id}
               nome={c.nome}
               emissor={c.emissor}
+              bandeira={c.bandeira}
               anuidade={c.anuidade}
               cardArtUrl={c.cardArtUrl}
               altText={c.altText}
