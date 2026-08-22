@@ -72,7 +72,7 @@ always confirm conditions on the issuer's official site before applying.
 - Your financial profile (income, spend, investments) is stored **only in
   your browser** (localStorage) and sent to the server transiently to compute
   rankings; it is never logged or persisted server-side.
-- Chat messages are processed by OpenAI via the AI SDK.
+- Chat messages are processed by Google (Gemini) via the AI SDK, with DeepSeek as an automatic fallback provider.
 - Request IPs are used in-memory for rate limiting only and are not logged.
 - Vercel Analytics collects aggregate usage metrics.
 

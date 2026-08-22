@@ -21,7 +21,8 @@
     "format": "biome format --write"
   },
   "dependencies": {
-    "@ai-sdk/openai": "^3.0.61",
+    "@ai-sdk/deepseek": "^2.0.57",
+    "@ai-sdk/google": "^3.0.111",
     "@ai-sdk/react": "^3.0.177",
     "@base-ui/react": "^1.4.1",
     "@streamdown/cjk": "^1.0.3",
@@ -51,6 +52,7 @@
     "zustand": "^5.0.13"
   },
   "devDependencies": {
+    "@ai-sdk/provider": "^3.0.15",
     "@biomejs/biome": "^2.5.10",
     "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4",
