@@ -41,7 +41,7 @@ Ver `SCHEMA_CHANGELOG` abaixo. Política:
 
 - Mudanças **aditivas** apenas: campos novos entram como opcionais.
 - Valores de enum podem ser **adicionados** (bump menor de `schema_version`); nunca renomeados ou
-  removidos sem bump maior acompanhado de script de migração em `platform/scripts/migrations/`.
+  removidos sem bump maior acompanhado de script de migração.
 
 ### SCHEMA_CHANGELOG
 
