@@ -23,7 +23,7 @@
   "dependencies": {
     "@ai-sdk/deepseek": "^2.0.57",
     "@ai-sdk/google": "^3.0.111",
-    "@ai-sdk/react": "^3.0.177",
+    "@ai-sdk/react": "^4.0.82",
     "@base-ui/react": "^1.4.1",
     "@streamdown/cjk": "^1.0.3",
     "@streamdown/code": "^1.1.1",
