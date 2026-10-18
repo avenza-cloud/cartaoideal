@@ -57,8 +57,8 @@ importers:
         specifier: ^1.49.0
         version: 1.49.0(@types/react@19.3.0)(react@19.3.0)
       nanoid:
-        specifier: ^5.1.11
-        version: 5.1.11
+        specifier: ^6.0.1
+        version: 6.0.2
       next:
         specifier: 16.3.7
         version: 16.3.7(@babel/core@7.29.7)(@opentelemetry/api@1.9.0)(@playwright/test@1.63.0)(@types/node@20.19.39)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -3742,9 +3742,9 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanoid@5.1.11:
-    resolution: {integrity: sha512-v+KEsUv2ps74PaSKv0gHTxTCgMXOIfBEbaqa6w6ISIGC7ZsvHN4N9oJ8d4cmf0n5oTzQz2SLmThbQWhjd/8eKg==}
-    engines: {node: ^18 || >=20}
+  nanoid@6.0.2:
+    resolution: {integrity: sha512-hIvVOb9Qr1p/9CNNLOe0OlWvgx/ziTsVwKN/GDSsuArN2K0wDiafP3s0SWmsm7o2BdnyS8Z9Z64NFBUbn6ziBg==}
+    engines: {node: ^22 || ^24 || >=26}
     hasBin: true
 
   negotiator@1.1.0:
@@ -8543,7 +8543,7 @@ snapshots:
 
   nanoid@3.3.19: {}
 
-  nanoid@5.1.11: {}
+  nanoid@6.0.2: {}
 
   negotiator@1.1.0:
     dependencies:
