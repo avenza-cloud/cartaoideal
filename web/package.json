@@ -52,7 +52,7 @@
     "zustand": "^5.0.15"
   },
   "devDependencies": {
-    "@ai-sdk/provider": "^3.0.15",
+    "@ai-sdk/provider": "^4.0.31",
     "@biomejs/biome": "^2.5.14",
     "@playwright/test": "^1.63.0",
     "@tailwindcss/postcss": "^4",
