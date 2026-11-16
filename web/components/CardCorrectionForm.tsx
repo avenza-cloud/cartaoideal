@@ -109,7 +109,7 @@ export function CardCorrectionForm({
         </DialogHeader>
 
         <form onSubmit={submit} className="space-y-3">
-          <div className="rounded-xl border bg-muted/20 px-3 py-2">
+          <div className="rounded-md border bg-muted px-3 py-2">
             <p className="truncate text-sm font-medium">{cardName}</p>
             <p className="truncate text-xs text-muted-foreground">{issuer}</p>
           </div>
@@ -122,7 +122,7 @@ export function CardCorrectionForm({
               id="correction-field"
               value={field}
               onChange={(event) => setField(event.target.value)}
-              className="h-9 w-full rounded-lg border border-input bg-background px-2.5 text-sm outline-none focus:ring-1 focus:ring-ring"
+              className="h-9 w-full rounded-md border border-input bg-background px-2.5 text-sm outline-none transition-colors duration-150 focus-visible:border-foreground"
             >
               {FIELD_OPTIONS.map((option) => (
                 <option key={option} value={option}>
@@ -176,11 +176,11 @@ export function CardCorrectionForm({
           </div>
 
           {message && (
-            <div className="flex items-start gap-2 rounded-xl border bg-muted/20 px-3 py-2 text-xs">
+            <div className="flex items-start gap-2 rounded-md border bg-muted px-3 py-2 text-xs">
               {status === "success" ? (
-                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500" />
+                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-positive" />
               ) : (
-                <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-rose-500" />
+                <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-negative" />
               )}
               <span>{message}</span>
             </div>
@@ -188,6 +188,7 @@ export function CardCorrectionForm({
 
           <Button
             type="submit"
+            variant="mark"
             disabled={status === "submitting" || status === "success"}
             className="w-full"
           >
