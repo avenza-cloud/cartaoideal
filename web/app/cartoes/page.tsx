@@ -15,7 +15,7 @@ export default async function CartoesPage() {
   const allCards = getAllCards();
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.06),transparent_28rem)]">
+    <div className="min-h-screen bg-background">
       <AppHeader />
 
       <div className="mx-auto flex max-w-7xl flex-col gap-5 px-4 pb-28 pt-4 md:flex-row md:px-6">

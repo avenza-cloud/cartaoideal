@@ -65,8 +65,8 @@ export function ProfileRankedCatalog({ cards, rankingMode }: ProfileRankedCatalo
 
     return (
       <div className="space-y-3">
-        <div className="rounded-2xl border bg-card/50 px-4 py-3">
-          <p className="text-sm font-semibold">Classificado para o seu perfil</p>
+        <div className="rounded-md border bg-card px-4 py-3">
+          <p className="text-sm font-medium">Classificado para o seu perfil</p>
           <p className="text-xs text-muted-foreground">
             Ordenado por valor líquido após anuidade, benefícios, retorno e custos internacionais.
           </p>
@@ -97,8 +97,8 @@ export function ProfileRankedCatalog({ cards, rankingMode }: ProfileRankedCatalo
   return (
     <div className="space-y-3">
       {rankingMode === "general" && (
-        <div className="rounded-2xl border bg-card/50 px-4 py-3">
-          <p className="text-sm font-semibold">Ranking geral</p>
+        <div className="rounded-md border bg-card px-4 py-3">
+          <p className="text-sm font-medium">Ranking geral</p>
           <p className="text-xs text-muted-foreground">
             Ordenado pelo ranking padrão do catálogo, sem usar seu perfil.
           </p>
@@ -130,7 +130,7 @@ function LoadMoreMarker({ markerRef, shown, total, hasMore }: LoadMoreMarkerProp
   return (
     <div
       ref={markerRef}
-      className="flex min-h-12 items-center justify-center py-2 text-xs text-muted-foreground"
+      className="num flex min-h-12 items-center justify-center py-2 text-xs text-muted-foreground"
     >
       {hasMore ? `Mostrando ${shown} de ${total}` : `${total} cartões`}
     </div>
