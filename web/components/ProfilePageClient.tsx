@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import { useProfileStore } from "@/lib/store";
 import { AppHeader } from "@/components/AppHeader";
 import { searchCardOptions, type ClientCardOption } from "@/lib/card-options";
-import { Sparkles, CheckCircle2, ArrowLeft, X } from "lucide-react";
-import { CardArtPlaceholder } from "@/components/CardArtPlaceholder";
-import { cardArtSrc } from "@/lib/card-display";
+import { Check, ArrowLeft, X } from "lucide-react";
+import { CardArt } from "@/components/card";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { formatBrlInput, formatBrlNumber, parseBrlInput } from "@/lib/brl";
 import type { UserProfile } from "@/types/cards";
@@ -31,6 +31,9 @@ const REWARD_OPTIONS: { value: RewardPref; label: string; desc: string }[] = [
   { value: "points", label: "Pontos / milhas", desc: "Acumule para resgatar viagens" },
   { value: "lounge", label: "Lounge VIP", desc: "Acesso a salas em aeroportos" },
 ];
+
+const INPUT_CLASS =
+  "h-10 w-full min-w-0 rounded-md border border-input bg-card px-3 text-base outline-none transition-colors duration-150 placeholder:text-muted-foreground focus-visible:border-ring md:text-sm";
 
 export interface ProfilePageClientProps {
   cardOptions: ClientCardOption[];
@@ -103,6 +106,8 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
       monthlySalaryBrl: parseBrlInput(salary),
       avgMonthlySpendBrl: parseBrlInput(spend),
       avgInvestedBrl: parseBrlInput(invested),
+      // Not edited on this page: keep whatever is already stored.
+      monthlyInternationalSpendBrl: profile?.monthlyInternationalSpendBrl,
       travelFrequency: travel,
       spendingCategories: profile?.spendingCategories ?? [],
       currentPrimaryCardId: cardId,
@@ -126,13 +131,13 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
     <div className="min-h-screen">
       <AppHeader />
 
-      <main className="mx-auto max-w-xl px-4 pb-24 pt-10">
+      <main className="mx-auto w-full max-w-xl px-4 pb-24 pt-8">
         {/* Back link — only when editing */}
         {!isNew && (
           <button
             type="button"
             onClick={() => router.back()}
-            className="mb-6 flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+            className="mb-6 flex items-center gap-1.5 text-xs text-muted-foreground transition-colors duration-150 hover:text-foreground"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Voltar
@@ -141,26 +146,23 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
 
         {/* Header */}
         <div className="mb-8">
-          <p className="mb-1 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground/50">
+          <p className="mb-1 text-xs text-muted-foreground">
             {isNew ? "Passo 1 de 1" : "Seu perfil"}
           </p>
-          <h1 className="text-2xl font-semibold tracking-tight">
+          <h1 className="text-3xl font-medium">
             {isNew ? "Configure seu perfil" : "Editar perfil"}
           </h1>
-          <p className="mt-1.5 text-sm text-muted-foreground">
+          <p className="mt-2 text-sm text-muted-foreground">
             {isNew
               ? "Preencha seus dados financeiros para ver o ranking personalizado e sua jornada de cartões."
               : "Atualize seus dados para recalcular o ranking e a simulação de progressão."}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
           {/* Financial inputs */}
-          <div className="rounded-2xl border bg-card/50 p-4">
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-              Financeiro
-            </p>
-            <div className="space-y-3">
+          <Panel title="Financeiro">
+            <div className="space-y-4">
               <Field label="Renda mensal">
                 <CurrencyInput value={salary} onChange={setSalary} placeholder="Ex: 8.000" />
               </Field>
@@ -171,37 +173,22 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                 <CurrencyInput value={invested} onChange={setInvested} placeholder="Ex: 50.000" />
               </Field>
             </div>
-          </div>
+          </Panel>
 
           {/* Current card */}
-          <div className="rounded-2xl border bg-card/50 p-4">
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-              Cartão atual
-            </p>
-
+          <Panel title="Cartão atual">
             {selectedCard ? (
-              <div className="flex items-center gap-3 rounded-xl border border-foreground/20 bg-foreground/5 px-3 py-2.5">
-                <span className="flex h-10 w-16 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-zinc-950">
-                  {cardArtSrc(selectedCard.artUrl) ? (
-                    <img
-                      src={selectedCard.artUrl}
-                      alt={selectedCard.altText || selectedCard.name}
-                      className="max-h-8 max-w-[52px] object-contain"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <CardArtPlaceholder
-                      compact
-                      issuerRaw={selectedCard.issuer}
-                      displayName={selectedCard.name}
-                    />
-                  )}
-                </span>
+              <div className="flex items-center gap-3 rounded-md border border-foreground px-3 py-2">
+                <CardArt
+                  compact
+                  artUrl={selectedCard.artUrl}
+                  issuerRaw={selectedCard.issuer}
+                  displayName={selectedCard.name}
+                  className="h-10 w-16"
+                />
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-sm font-medium">{selectedCard.name}</p>
-                  <p className="truncate font-mono text-[10px] text-muted-foreground">
-                    {selectedCard.issuer}
-                  </p>
+                  <p className="truncate text-xs text-muted-foreground">{selectedCard.issuer}</p>
                 </div>
                 <button
                   type="button"
@@ -210,13 +197,13 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                     setCardQuery("");
                     setCardFocused(true);
                   }}
-                  className="shrink-0 rounded-full p-1 text-muted-foreground/50 transition-colors hover:text-foreground"
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground"
                 >
                   <X className="h-3.5 w-3.5" />
                 </button>
               </div>
             ) : (
-              <div className="relative">
+              <div>
                 <input
                   autoFocus={cardFocused}
                   type="text"
@@ -228,153 +215,151 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                   onFocus={() => setCardFocused(true)}
                   onBlur={() => setTimeout(() => setCardFocused(false), 150)}
                   placeholder="Buscar cartão… (opcional)"
-                  className="w-full rounded-xl border border-input bg-background/60 px-3 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-ring"
+                  className={INPUT_CLASS}
                 />
                 {cardFocused && cardMatches.length > 0 && (
-                  <div className="mt-1.5 max-h-72 space-y-1 overflow-y-auto">
+                  <div className="mt-3">
                     {!cardQuery.trim() && (
-                      <p className="px-1 pb-1 text-[10px] uppercase tracking-[0.16em] text-muted-foreground/50">
-                        Mais comuns
-                      </p>
+                      <p className="mb-2 text-xs text-muted-foreground">Mais comuns</p>
                     )}
-                    {cardMatches.map((c) => (
-                      <button
-                        key={c.id}
-                        type="button"
-                        onMouseDown={() => {
-                          setCardId(c.id);
-                          setCardQuery(c.name);
-                          setCardFocused(false);
-                        }}
-                        className="flex w-full items-center gap-3 rounded-xl border border-border/50 bg-card/60 px-2.5 py-2 text-left transition-colors hover:border-border hover:bg-card"
-                      >
-                        <span className="flex h-9 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-zinc-950">
-                          {cardArtSrc(c.artUrl) ? (
-                            <img
-                              src={c.artUrl}
-                              alt={c.altText || c.name}
-                              className="max-h-7 max-w-[48px] object-contain"
-                              loading="lazy"
-                            />
-                          ) : (
-                            <CardArtPlaceholder compact issuerRaw={c.issuer} displayName={c.name} />
-                          )}
-                        </span>
-                        <span className="min-w-0 flex-1">
-                          <span className="block truncate text-xs font-medium">{c.name}</span>
-                          <span className="block truncate text-[10px] text-muted-foreground">
-                            {c.description ?? c.issuer}
+                    <div className="max-h-72 divide-y overflow-y-auto rounded-md border">
+                      {cardMatches.map((c) => (
+                        <button
+                          key={c.id}
+                          type="button"
+                          onMouseDown={() => {
+                            setCardId(c.id);
+                            setCardQuery(c.name);
+                            setCardFocused(false);
+                          }}
+                          className="flex w-full items-center gap-3 px-3 py-2 text-left transition-colors duration-150 hover:bg-muted"
+                        >
+                          <CardArt
+                            compact
+                            artUrl={c.artUrl}
+                            issuerRaw={c.issuer}
+                            displayName={c.name}
+                            className="h-10 w-16"
+                          />
+                          <span className="min-w-0 flex-1">
+                            <span className="block truncate text-sm font-medium">{c.name}</span>
+                            <span className="block truncate text-xs text-muted-foreground">
+                              {c.description ?? c.issuer}
+                            </span>
                           </span>
-                        </span>
-                      </button>
-                    ))}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
             )}
-          </div>
+          </Panel>
 
           {/* Preferences */}
-          <div className="rounded-2xl border bg-card/50 p-4">
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-              Prefere receber
-            </p>
+          <Panel title="Prefere receber">
             <div className="grid gap-2 min-[380px]:grid-cols-2">
               {REWARD_OPTIONS.map(({ value, label, desc }) => (
-                <button
+                <OptionButton
                   key={value}
-                  type="button"
+                  active={rewards.has(value)}
                   onClick={() => toggleReward(value)}
-                  className={cn(
-                    "rounded-xl border px-3 py-2.5 text-left transition-colors",
-                    rewards.has(value)
-                      ? "border-foreground/60 bg-foreground/5"
-                      : "border-border bg-background/30 hover:border-border/80"
-                  )}
-                >
-                  <p
-                    className={cn(
-                      "text-xs font-medium",
-                      rewards.has(value) ? "text-foreground" : "text-muted-foreground"
-                    )}
-                  >
-                    {label}
-                  </p>
-                  <p className="mt-0.5 text-[10px] text-muted-foreground/60">{desc}</p>
-                </button>
+                  label={label}
+                  desc={desc}
+                />
               ))}
             </div>
-          </div>
+          </Panel>
 
           {/* Travel frequency */}
-          <div className="rounded-2xl border bg-card/50 p-4">
-            <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-              Frequência de viagens
-            </p>
+          <Panel title="Frequência de viagens">
             <div className="grid gap-2 min-[430px]:grid-cols-3">
               {TRAVEL_OPTIONS.map(({ value, label, desc }) => (
-                <button
+                <OptionButton
                   key={value}
-                  type="button"
+                  active={travel === value}
                   onClick={() => setTravel(value)}
-                  className={cn(
-                    "rounded-xl border px-3 py-2.5 text-left transition-colors",
-                    travel === value
-                      ? "border-foreground/60 bg-foreground/5"
-                      : "border-border bg-background/30 hover:border-border/80"
-                  )}
-                >
-                  <p
-                    className={cn(
-                      "text-xs font-medium",
-                      travel === value ? "text-foreground" : "text-muted-foreground"
-                    )}
-                  >
-                    {label}
-                  </p>
-                  <p className="mt-0.5 text-[10px] text-muted-foreground/60">{desc}</p>
-                </button>
+                  label={label}
+                  desc={desc}
+                />
               ))}
             </div>
-          </div>
+          </Panel>
 
-          {/* Submit */}
-          <button
-            type="submit"
-            disabled={!salary || saved}
-            className={cn(
-              "flex w-full items-center justify-center gap-2 rounded-xl py-3 text-sm font-medium transition-all",
-              saved
-                ? "bg-emerald-500/15 text-emerald-400"
-                : salary
-                  ? "bg-foreground text-background hover:opacity-90"
-                  : "cursor-not-allowed bg-muted/30 text-muted-foreground/40"
-            )}
-          >
-            {saved ? (
-              <>
-                <CheckCircle2 className="h-4 w-4" />
-                Salvo! Redirecionando…
-              </>
-            ) : (
-              <>
-                <Sparkles className="h-4 w-4" />
-                {isNew ? "Ver meu ranking personalizado" : "Salvar alterações"}
-              </>
-            )}
-          </button>
+          {/* Submit: the page's one marked action */}
+          {saved ? (
+            <p
+              role="status"
+              className="flex min-h-10 items-center justify-center gap-2 rounded-md border bg-card px-4 py-2 text-sm font-medium text-positive"
+            >
+              <Check className="h-4 w-4 shrink-0" />
+              Salvo! Redirecionando…
+            </p>
+          ) : (
+            <Button
+              type="submit"
+              variant="mark"
+              size="lg"
+              disabled={!salary}
+              className="h-auto min-h-10 w-full whitespace-normal py-2"
+            >
+              {isNew ? "Ver meu ranking personalizado" : "Salvar alterações"}
+            </Button>
+          )}
         </form>
       </main>
     </div>
   );
 }
 
+function Panel({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section className="rounded-md border bg-card p-4">
+      <h2 className="mb-4 text-sm font-medium">{title}</h2>
+      {children}
+    </section>
+  );
+}
+
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div>
-      <span className="mb-1 block text-[11px] text-muted-foreground/70">{label}</span>
+      <span className="mb-1.5 block text-xs text-muted-foreground">{label}</span>
       {children}
     </div>
+  );
+}
+
+function OptionButton({
+  active,
+  onClick,
+  label,
+  desc,
+}: {
+  active: boolean;
+  onClick: () => void;
+  label: string;
+  desc: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={active}
+      className={cn(
+        "rounded-md border px-3 py-2.5 text-left transition-colors duration-150",
+        active
+          ? "border-foreground bg-foreground text-background"
+          : "border-input bg-card text-foreground hover:bg-muted"
+      )}
+    >
+      <span className="block text-sm font-medium">{label}</span>
+      <span
+        className={cn("mt-0.5 block text-xs", active ? "text-background" : "text-muted-foreground")}
+      >
+        {desc}
+      </span>
+    </button>
   );
 }
 
@@ -389,7 +374,7 @@ function CurrencyInput({
 }) {
   return (
     <div className="relative">
-      <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs text-muted-foreground">
+      <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
         R$
       </span>
       <input
@@ -398,7 +383,7 @@ function CurrencyInput({
         value={value}
         onChange={(e) => onChange(formatBrlInput(e.target.value))}
         placeholder={placeholder ?? "0"}
-        className="w-full rounded-xl border border-input bg-background/60 py-2.5 pl-9 pr-3 text-sm focus:outline-none focus:ring-1 focus:ring-ring"
+        className={cn(INPUT_CLASS, "num pl-10")}
       />
     </div>
   );
