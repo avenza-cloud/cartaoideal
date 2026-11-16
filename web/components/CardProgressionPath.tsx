@@ -3,14 +3,17 @@
 import { useEffect, useState, useCallback, type ReactNode } from "react";
 import Link from "next/link";
 import { useProfileStore } from "@/lib/store";
-import { formatNetMonthlyDisplay } from "@/lib/formatting";
-import { travelFrequencyForValueModeling } from "@/lib/card-value";
+import { scoreCardValue } from "@/lib/card-value";
 import { formatBrlCurrency, formatBrlInput, parseBrlInput } from "@/lib/brl";
 import { fetchRecommendations } from "@/lib/recommend-client";
 import { useCardDetailHref } from "@/lib/use-card-detail-href";
-import { cn } from "@/lib/utils";
+import { useValueAssumptions } from "@/lib/use-value-assumptions";
+import { Button } from "@/components/ui/button";
+import { CardArt, LeadFact, Tag } from "@/components/card";
 import { ArrowRight } from "lucide-react";
-import type { CardScore, TravelFrequency } from "@/types/cards";
+import type { CardScore } from "@/types/cards";
+
+const FEE_UNKNOWN = "Anuidade não informada";
 
 function shortMoney(v: number) {
   if (v >= 1_000_000) return `R$${(v / 1_000_000).toFixed(1).replace(".", ",")}M`;
@@ -18,90 +21,103 @@ function shortMoney(v: number) {
   return `R$${v.toLocaleString("pt-BR")}`;
 }
 
-function projectionIncomeBase(currentIncome: number, currentSpend: number, futureIncome: number) {
-  if (currentIncome <= 0) return currentIncome;
-
-  const ratio = futureIncome / currentIncome;
-  const correctedIncome = currentIncome * 10;
-  const correctedRatio = futureIncome / correctedIncome;
-  const looksLikeLegacyMissingZero =
-    currentIncome < 10_000 &&
-    currentSpend > currentIncome * 2 &&
-    ratio >= 8 &&
-    correctedRatio >= 0.5 &&
-    correctedRatio <= 3;
-
-  return looksLikeLegacyMissingZero ? correctedIncome : currentIncome;
+function brl(value: number) {
+  const rounded = Math.round(value);
+  return `${rounded < 0 ? "-" : ""}R$ ${Math.abs(rounded).toLocaleString("pt-BR")}`;
 }
 
-function projectionSpendBase(currentIncome: number, currentSpend: number) {
-  if (currentIncome <= 0 || currentSpend <= 0) return currentSpend;
-
-  const correctedSpend = currentSpend / 10;
-  const looksLikeLegacyExtraZero =
-    currentSpend > currentIncome * 2 && correctedSpend > 0 && correctedSpend <= currentIncome;
-
-  return looksLikeLegacyExtraZero ? correctedSpend : currentSpend;
+function feeLeadValue(
+  fee: CardScore["card"]["facets_numeric_or_special"]["annual_fee_brl_best_estimate"]
+) {
+  if (fee === 0) return "Sem anuidade";
+  if (typeof fee === "number") return `${brl(fee)}/ano`;
+  if (fee === "variable_pricing_claim") return "Variável";
+  return FEE_UNKNOWN;
 }
 
 function CardRow({
   scored,
   caption,
-  travelFrequency,
-  size = "compact",
+  tag,
 }: Readonly<{
   scored: CardScore;
   caption?: string;
-  travelFrequency: TravelFrequency;
-  size?: "compact" | "comfortable";
+  tag?: string;
 }>) {
   const { card, valueScore } = scored;
   const detailHref = useCardDetailHref(card.card_stable_id);
-  const netLow = valueScore?.netMonthlyValueBrl;
-  const netHigh = valueScore?.netMonthlyValueRangeHighBrl;
-  const positive =
-    netLow !== undefined && netHigh !== undefined
-      ? Math.max(netLow, netHigh) >= 0
-      : (netLow ?? 0) >= 0;
-
   const labelForA11y = caption ? `${caption}: ${card.display_name}` : card.display_name;
 
-  const comfortable = size === "comfortable";
+  const low = valueScore
+    ? Math.min(valueScore.netMonthlyValueBrl, valueScore.netMonthlyValueRangeHighBrl)
+    : 0;
+  const high = valueScore
+    ? Math.max(valueScore.netMonthlyValueBrl, valueScore.netMonthlyValueRangeHighBrl)
+    : 0;
+  const feeValue = feeLeadValue(card.facets_numeric_or_special.annual_fee_brl_best_estimate);
 
   return (
     <Link
       href={detailHref}
       aria-label={labelForA11y}
-      className={cn(
-        "block border border-border/70 bg-background/40 text-left transition-colors hover:bg-muted/30",
-        comfortable ? "rounded-xl px-2.5 py-2" : "rounded-lg px-2 py-1.5"
-      )}
+      className="flex items-start gap-3 rounded-md border bg-card p-2.5 text-left transition-colors duration-150 hover:bg-muted"
     >
-      <p
-        className={cn(
-          "truncate font-medium leading-snug",
-          comfortable ? "text-xs" : "text-[11px] leading-tight"
+      <CardArt
+        compact
+        artUrl={card.media.card_art_url}
+        issuerRaw={card.issuer_raw}
+        network={card.network_primary}
+        displayName={card.display_name}
+        className="h-9 w-14"
+      />
+      <div className="min-w-0 flex-1">
+        <p className="truncate text-sm font-medium">{card.display_name}</p>
+        <p className="truncate text-xs text-muted-foreground">{card.issuer_raw}</p>
+        {valueScore ? (
+          <LeadFact
+            size="sm"
+            className="mt-1.5"
+            value={`${brl(valueScore.decisionMonthlyValueBrl)}/mês`}
+            label="valor líquido estimado por mês"
+            hint={high - low >= 1 ? `${brl(low)} a ${brl(high)}` : undefined}
+            tone={valueScore.decisionMonthlyValueBrl < 0 ? "negative" : "default"}
+          />
+        ) : (
+          <LeadFact
+            size="sm"
+            className="mt-1.5"
+            value={feeValue}
+            label={feeValue === FEE_UNKNOWN ? "consulte o emissor" : "anuidade"}
+          />
         )}
-      >
-        {card.display_name}
-      </p>
-      {valueScore ? (
-        <p
-          className={cn(
-            "font-mono font-semibold leading-snug",
-            comfortable ? "mt-0.5 text-[10px]" : "mt-px text-[9px] leading-tight",
-            positive ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"
-          )}
-        >
-          {formatNetMonthlyDisplay(valueScore, travelFrequency)}
-        </p>
-      ) : null}
+        {valueScore && !valueScore.feeKnown && (
+          <p className="mt-0.5 text-xs text-muted-foreground">{FEE_UNKNOWN}</p>
+        )}
+        {tag && (
+          <div className="mt-1.5 flex">
+            <Tag variant="solid">{tag}</Tag>
+          </div>
+        )}
+      </div>
     </Link>
+  );
+}
+
+function RowLabel({ children }: { children: ReactNode }) {
+  return <p className="mb-1 text-xs text-muted-foreground">{children}</p>;
+}
+
+function Notice({ children }: { children: ReactNode }) {
+  return (
+    <p className="rounded-md border border-dashed px-2.5 py-2 text-xs leading-relaxed text-muted-foreground">
+      {children}
+    </p>
   );
 }
 
 export function CardProgressionPath() {
   const { profile, onboardingDone } = useProfileStore();
+  const assumptions = useValueAssumptions();
 
   const [bestReco, setBestReco] = useState<CardScore | null>(null);
   const [currentReco, setCurrentReco] = useState<CardScore | null>(null);
@@ -165,16 +181,12 @@ export function CardProgressionPath() {
 
   const futureIncomeNum = parseBrlInput(futureIncome);
   const futureInvestedNum = parseBrlInput(futureInvested);
-  const currentIncomeForProjection = profile
-    ? projectionIncomeBase(profile.monthlySalaryBrl, profile.avgMonthlySpendBrl, futureIncomeNum)
-    : 0;
-  const currentSpendForProjection = profile
-    ? projectionSpendBase(currentIncomeForProjection, profile.avgMonthlySpendBrl)
-    : 0;
 
+  // Spend follows income proportionally. Profile values are used as given.
+  const scalesSpend = !!profile && futureIncomeNum > 0 && profile.monthlySalaryBrl > 0;
   const estimatedFutureSpend =
-    profile && futureIncomeNum > 0 && currentIncomeForProjection > 0
-      ? currentSpendForProjection * (futureIncomeNum / currentIncomeForProjection)
+    profile && scalesSpend
+      ? profile.avgMonthlySpendBrl * (futureIncomeNum / profile.monthlySalaryBrl)
       : 0;
 
   const canSimulate = futureIncomeNum > 0 || futureInvestedNum > 0;
@@ -184,31 +196,28 @@ export function CardProgressionPath() {
     setSimLoading(true);
     setSimResult(null);
 
+    const futureSpend = scalesSpend ? estimatedFutureSpend : profile.avgMonthlySpendBrl;
     const futureProfile = {
       ...profile,
       monthlySalaryBrl: futureIncomeNum || profile.monthlySalaryBrl,
       avgInvestedBrl: futureInvestedNum || profile.avgInvestedBrl,
-      avgMonthlySpendBrl:
-        futureIncomeNum > 0 && currentIncomeForProjection > 0
-          ? estimatedFutureSpend
-          : profile.avgMonthlySpendBrl,
+      avgMonthlySpendBrl: futureSpend,
     };
 
     try {
       const { scores: future } = await fetchRecommendations(futureProfile, 10);
 
-      const baselineIds = new Set<string>();
-      if (bestReco) baselineIds.add(bestReco.card.card_stable_id);
-      if (currentReco) baselineIds.add(currentReco.card.card_stable_id);
-      const newUnlocked = future.filter((s) => !baselineIds.has(s.card.card_stable_id));
+      // New on the radar: eligible in the projected scenario, not eligible today.
+      const newUnlocked = future.filter(
+        (s) =>
+          s.valueScore?.eligible !== false &&
+          !scoreCardValue(s.card, profile, "profile", assumptions).eligible
+      );
 
       setSimResult({
         top: future.slice(0, 3),
         newUnlocked: newUnlocked.slice(0, 2),
-        futureSpend:
-          futureIncomeNum > 0 && currentIncomeForProjection > 0
-            ? estimatedFutureSpend
-            : profile.avgMonthlySpendBrl,
+        futureSpend,
       });
     } catch {
       // silent
@@ -220,15 +229,13 @@ export function CardProgressionPath() {
     canSimulate,
     futureIncomeNum,
     futureInvestedNum,
-    currentIncomeForProjection,
+    scalesSpend,
     estimatedFutureSpend,
-    bestReco,
-    currentReco,
+    assumptions,
   ]);
 
   if (!profile || !onboardingDone) return null;
 
-  const travelFrequency = travelFrequencyForValueModeling(profile);
   const sameAsBest =
     currentReco?.card.card_stable_id != null &&
     currentReco.card.card_stable_id === bestReco?.card.card_stable_id;
@@ -236,140 +243,109 @@ export function CardProgressionPath() {
   let agoraContent: ReactNode;
   if (loadingReco) {
     agoraContent = (
-      <div className="space-y-2">
-        <div className="h-[52px] animate-pulse rounded-xl border bg-muted/30" />
-        <div className="h-[52px] animate-pulse rounded-xl border bg-muted/30" />
+      <div className="space-y-2" aria-busy="true">
+        <div className="h-16 rounded-md bg-muted" />
+        <div className="h-16 rounded-md bg-muted" />
       </div>
     );
   } else if (!bestReco) {
-    agoraContent = (
-      <p className="rounded-md border bg-muted/20 px-2 py-1 text-[9px] leading-snug text-muted-foreground">
-        Nenhum cartão elegível encontrado.
-      </p>
-    );
+    agoraContent = <Notice>Nenhum cartão elegível encontrado.</Notice>;
   } else if (sameAsBest) {
     agoraContent = (
       <div>
-        <p className="mb-0.5 text-[9px] uppercase tracking-wide text-muted-foreground">
-          Seu cartão · melhor recomendação
-        </p>
-        <CardRow
-          scored={bestReco}
-          caption="Seu cartão · melhor recomendação"
-          travelFrequency={travelFrequency}
-          size="comfortable"
-        />
+        <RowLabel>Seu cartão · melhor recomendação</RowLabel>
+        <CardRow scored={bestReco} caption="Seu cartão · melhor recomendação" />
       </div>
     );
   } else {
     agoraContent = (
-      <div className="space-y-2">
+      <div className="space-y-3">
         {currentReco ? (
           <div>
-            <p className="mb-0.5 text-[9px] uppercase tracking-wide text-muted-foreground">
-              Seu cartão
-            </p>
-            <CardRow
-              scored={currentReco}
-              caption="Seu cartão"
-              travelFrequency={travelFrequency}
-              size="comfortable"
-            />
+            <RowLabel>Seu cartão</RowLabel>
+            <CardRow scored={currentReco} caption="Seu cartão" />
           </div>
         ) : profile.currentPrimaryCardId ? (
-          <p className="rounded-md border border-dashed bg-muted/10 px-2 py-1 text-[9px] leading-snug text-muted-foreground">
+          <Notice>
             O cartão do cadastro não aparece como elegível com este perfil.{" "}
-            <Link href="/perfil" className="underline underline-offset-2 hover:text-foreground">
+            <Link href="/perfil" className="text-foreground underline underline-offset-2">
               Ajustar perfil
             </Link>
-          </p>
+          </Notice>
         ) : (
-          <p className="rounded-md border border-dashed bg-muted/10 px-2 py-1 text-[9px] leading-snug text-muted-foreground">
+          <Notice>
             Nenhum cartão principal no cadastro.{" "}
-            <Link href="/perfil" className="underline underline-offset-2 hover:text-foreground">
+            <Link href="/perfil" className="text-foreground underline underline-offset-2">
               Definir no perfil
             </Link>
-          </p>
+          </Notice>
         )}
         <div>
-          <p className="mb-0.5 text-[9px] uppercase tracking-wide text-muted-foreground">
-            Melhor recomendação
-          </p>
-          <CardRow
-            scored={bestReco}
-            caption="Melhor recomendação"
-            travelFrequency={travelFrequency}
-            size="comfortable"
-          />
+          <RowLabel>Melhor recomendação</RowLabel>
+          <CardRow scored={bestReco} caption="Melhor recomendação" />
         </div>
       </div>
     );
   }
 
+  const newIds = new Set(simResult?.newUnlocked.map((s) => s.card.card_stable_id));
+  const bestInScenario = simResult?.top[0];
+
   return (
-    <div className="rounded-2xl border bg-card/50 p-2">
-      <div className="mb-2 px-0.5">
-        <h2 className="text-[11px] font-semibold leading-tight">Sua jornada de cartões</h2>
-        <p className="mt-0.5 text-[9px] leading-snug text-muted-foreground">
+    <section className="rounded-md border bg-card">
+      <div className="border-b px-3 py-3">
+        <h2 className="text-base font-medium">Sua jornada de cartões</h2>
+        <p className="text-xs text-muted-foreground">
           Cartão atual, melhor opção e simulação rápida.
         </p>
       </div>
 
-      <div className="grid gap-1.5 md:grid-cols-2">
-        <div className="rounded-lg border bg-background/30 p-2.5">
-          <p className="mb-2 text-[9px] uppercase tracking-widest text-muted-foreground">Agora</p>
+      <div className="grid divide-y md:grid-cols-2 md:divide-x md:divide-y-0">
+        <div className="p-3">
+          <p className="mb-2 text-sm font-medium">Agora</p>
 
           {agoraContent}
 
-          <div className="mt-2 flex flex-wrap gap-x-3 gap-y-0.5 border-t border-border/50 pt-2 text-[10px] leading-snug text-muted-foreground">
+          <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 border-t pt-2 text-xs text-muted-foreground">
             <span>
               Renda{" "}
-              <span className="font-mono text-foreground/80">
+              <span className="num text-foreground">
                 R${profile.monthlySalaryBrl.toLocaleString("pt-BR")}/mês
               </span>
             </span>
             <span>
               Gasto{" "}
-              <span className="font-mono text-foreground/80">
+              <span className="num text-foreground">
                 R${profile.avgMonthlySpendBrl.toLocaleString("pt-BR")}/mês
               </span>
             </span>
             <span>
               Investido{" "}
-              <span className="font-mono text-foreground/80">
-                {shortMoney(profile.avgInvestedBrl)}
-              </span>
+              <span className="num text-foreground">{shortMoney(profile.avgInvestedBrl)}</span>
             </span>
-            <Link
-              href="/perfil"
-              className="ml-auto text-foreground/70 underline-offset-2 hover:underline"
-            >
+            <Link href="/perfil" className="ml-auto text-foreground underline underline-offset-2">
               Editar
             </Link>
           </div>
         </div>
 
-        <div className="rounded-lg border bg-background/30 p-2.5">
-          <p className="text-[8px] uppercase tracking-widest text-muted-foreground">Em ~1 ano</p>
-          <p className="mt-px text-[9px] leading-tight text-muted-foreground">Vazio = cadastro.</p>
+        <div className="p-3">
+          <p className="text-sm font-medium">Em ~1 ano</p>
+          <p className="text-xs text-muted-foreground">Vazio = cadastro.</p>
 
-          <div className="mt-2 space-y-3">
-            <div className="space-y-1.5">
+          <div className="mt-3 space-y-3">
+            <div className="space-y-1">
               <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5">
-                <span className="text-[11px] font-medium leading-tight text-foreground">
-                  Renda / mês
-                </span>
-                <span className="text-[10px] tabular-nums text-muted-foreground">
+                <span className="text-xs font-medium">Renda / mês</span>
+                <span className="text-xs text-muted-foreground">
                   Atual{" "}
-                  <span className="font-mono text-foreground/85">
+                  <span className="num text-foreground">
                     R${profile.monthlySalaryBrl.toLocaleString("pt-BR")}
                   </span>
                 </span>
               </div>
-              <div className="flex items-center gap-1.5 rounded-md border border-border/80 bg-background px-2 py-1.5 transition-colors focus-within:border-foreground/35 focus-within:ring-1 focus-within:ring-foreground/15">
-                <span className="w-5 shrink-0 text-[11px] font-medium tabular-nums text-muted-foreground">
-                  R$
-                </span>
+              <div className="flex h-9 items-center gap-1.5 rounded-md border border-input bg-background px-2.5 transition-colors duration-150 focus-within:border-foreground">
+                <span className="shrink-0 text-sm text-muted-foreground">R$</span>
                 <input
                   type="text"
                   inputMode="numeric"
@@ -380,27 +356,21 @@ export function CardProgressionPath() {
                   }}
                   placeholder="—"
                   aria-label="Renda mensal esperada em cerca de um ano"
-                  className="min-w-0 flex-1 bg-transparent text-[11px] font-medium leading-none tabular-nums placeholder:text-muted-foreground/35 focus:outline-none"
+                  className="num min-w-0 flex-1 bg-transparent text-sm font-medium placeholder:text-muted-foreground focus:outline-none"
                 />
               </div>
             </div>
 
-            <div className="space-y-1.5">
+            <div className="space-y-1">
               <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5">
-                <span className="text-[11px] font-medium leading-tight text-foreground">
-                  Investido
-                </span>
-                <span className="text-[10px] tabular-nums text-muted-foreground">
+                <span className="text-xs font-medium">Investido</span>
+                <span className="text-xs text-muted-foreground">
                   Atual{" "}
-                  <span className="font-mono text-foreground/85">
-                    {shortMoney(profile.avgInvestedBrl)}
-                  </span>
+                  <span className="num text-foreground">{shortMoney(profile.avgInvestedBrl)}</span>
                 </span>
               </div>
-              <div className="flex items-center gap-1.5 rounded-md border border-border/80 bg-background px-2 py-1.5 transition-colors focus-within:border-foreground/35 focus-within:ring-1 focus-within:ring-foreground/15">
-                <span className="w-5 shrink-0 text-[11px] font-medium tabular-nums text-muted-foreground">
-                  R$
-                </span>
+              <div className="flex h-9 items-center gap-1.5 rounded-md border border-input bg-background px-2.5 transition-colors duration-150 focus-within:border-foreground">
+                <span className="shrink-0 text-sm text-muted-foreground">R$</span>
                 <input
                   type="text"
                   inputMode="numeric"
@@ -411,37 +381,30 @@ export function CardProgressionPath() {
                   }}
                   placeholder="—"
                   aria-label="Total investido esperado em cerca de um ano"
-                  className="min-w-0 flex-1 bg-transparent text-[11px] font-medium leading-none tabular-nums placeholder:text-muted-foreground/35 focus:outline-none"
+                  className="num min-w-0 flex-1 bg-transparent text-sm font-medium placeholder:text-muted-foreground focus:outline-none"
                 />
               </div>
             </div>
           </div>
 
           {estimatedFutureSpend > 0 && estimatedFutureSpend !== profile.avgMonthlySpendBrl && (
-            <div className="mt-1.5 flex items-center justify-between gap-1.5 rounded border border-dashed border-border/60 bg-muted/5 px-1.5 py-1">
-              <span className="text-[9px] text-muted-foreground">Gasto est.</span>
-              <span className="font-mono text-[9px] tabular-nums text-foreground/90">
-                {formatBrlCurrency(estimatedFutureSpend)}/mês
-              </span>
+            <div className="mt-3 flex items-baseline justify-between gap-2 border-t pt-2 text-xs">
+              <span className="text-muted-foreground">Gasto est.</span>
+              <span className="num font-medium">{formatBrlCurrency(estimatedFutureSpend)}/mês</span>
             </div>
           )}
 
-          <button
+          <Button
             type="button"
             onClick={simulate}
             disabled={!canSimulate || simLoading}
-            className={cn(
-              "mt-2.5 flex w-full items-center justify-center gap-1.5 rounded-md px-2.5 py-1.5 text-[11px] font-medium transition-all",
-              canSimulate && !simLoading
-                ? "bg-foreground text-background hover:opacity-90"
-                : "cursor-not-allowed border bg-muted/20 text-muted-foreground/40"
-            )}
+            className="mt-3 w-full"
           >
             <span>{simLoading ? "…" : "Simular"}</span>
-            {!simLoading && <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />}
-          </button>
+            {!simLoading && <ArrowRight aria-hidden />}
+          </Button>
           {!canSimulate && (
-            <p className="mt-1 text-center text-[8px] text-muted-foreground">
+            <p className="mt-1.5 text-center text-xs text-muted-foreground">
               Renda ou investido para simular.
             </p>
           )}
@@ -449,59 +412,51 @@ export function CardProgressionPath() {
       </div>
 
       {simResult && (
-        <div className="mt-1.5 rounded-lg border bg-muted/10 p-2">
-          <p className="mb-1 text-[9px] font-medium leading-tight text-muted-foreground">
+        <div className="border-t p-3">
+          <p className="num mb-2 text-sm font-medium">
             Simulado · gasto ≈ {formatBrlCurrency(simResult.futureSpend)}/mês
           </p>
           {simResult.newUnlocked.length > 0 ? (
-            <>
-              <p className="mb-1 text-[9px] leading-tight text-muted-foreground">
-                {simResult.newUnlocked.length === 1
-                  ? "Novo no radar"
-                  : `${simResult.newUnlocked.length} novos no radar`}
-              </p>
-              <div className="space-y-1.5">
-                {simResult.newUnlocked.map((s) => (
+            <div className="space-y-3">
+              <div>
+                <RowLabel>
+                  {simResult.newUnlocked.length === 1
+                    ? "Novo no radar"
+                    : `${simResult.newUnlocked.length} novos no radar`}
+                </RowLabel>
+                <div className="grid gap-2 md:grid-cols-2">
+                  {simResult.newUnlocked.map((s) => (
+                    <CardRow
+                      key={s.card.card_stable_id}
+                      scored={s}
+                      caption="Novo no radar"
+                      tag="Novo"
+                    />
+                  ))}
+                </div>
+              </div>
+              {bestInScenario && !newIds.has(bestInScenario.card.card_stable_id) && (
+                <div>
+                  <RowLabel>Melhor no cenário</RowLabel>
+                  <CardRow scored={bestInScenario} caption="Melhor no cenário" />
+                </div>
+              )}
+            </div>
+          ) : (
+            <div>
+              <RowLabel>Ranking (sem novos)</RowLabel>
+              <div className="grid gap-2 md:grid-cols-2">
+                {simResult.top.slice(0, 2).map((s, i) => (
                   <div key={s.card.card_stable_id}>
-                    <p className="mb-px text-[8px] uppercase tracking-wide text-muted-foreground">
-                      Novo
-                    </p>
-                    <CardRow scored={s} caption="Novo no radar" travelFrequency={travelFrequency} />
+                    <RowLabel>{i + 1}º no cenário</RowLabel>
+                    <CardRow scored={s} caption={`${i + 1}º no cenário`} />
                   </div>
                 ))}
               </div>
-              {simResult.top[0] && (
-                <div className="mt-1.5 border-t border-border/50 pt-1.5">
-                  <p className="mb-px text-[8px] uppercase tracking-wide text-muted-foreground">
-                    Melhor no cenário
-                  </p>
-                  <CardRow
-                    scored={simResult.top[0]}
-                    caption="Melhor no cenário"
-                    travelFrequency={travelFrequency}
-                  />
-                </div>
-              )}
-            </>
-          ) : (
-            <div className="space-y-1.5">
-              <p className="text-[9px] leading-tight text-muted-foreground">Ranking (sem novos)</p>
-              {simResult.top.slice(0, 2).map((s, i) => (
-                <div key={s.card.card_stable_id}>
-                  <p className="mb-px text-[8px] uppercase tracking-wide text-muted-foreground">
-                    {i + 1}º no cenário
-                  </p>
-                  <CardRow
-                    scored={s}
-                    caption={`${i + 1}º no cenário`}
-                    travelFrequency={travelFrequency}
-                  />
-                </div>
-              ))}
             </div>
           )}
         </div>
       )}
-    </div>
+    </section>
   );
 }
