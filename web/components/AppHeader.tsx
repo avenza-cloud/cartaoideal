@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CreditCard, Home, UserRound } from "lucide-react";
+import { BrandMark } from "@/components/BrandMark";
 import { BrandWordmark } from "@/components/BrandWordmark";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
@@ -16,12 +18,10 @@ export function AppHeader() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-background/88 px-3 py-3 backdrop-blur sm:px-4 md:px-6">
-      <div className="flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-1">
-          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border bg-card text-base leading-none">
-            <span aria-hidden="true">💳</span>
-          </div>
+    <header className="sticky top-0 z-40 h-14 border-b bg-background px-3 sm:px-4 md:px-6">
+      <div className="flex h-full items-center justify-between">
+        <Link href="/" className="flex items-center gap-2">
+          <BrandMark className="h-6 w-6 shrink-0" />
           <BrandWordmark />
         </Link>
 
@@ -33,7 +33,7 @@ export function AppHeader() {
                 key={href}
                 href={href}
                 className={cn(
-                  "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium transition-colors",
+                  "flex items-center gap-1.5 h-8 rounded-md px-3 text-xs font-medium transition-colors",
                   active
                     ? "bg-foreground text-background"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -44,6 +44,7 @@ export function AppHeader() {
               </Link>
             );
           })}
+          <ThemeToggle />
         </nav>
       </div>
     </header>

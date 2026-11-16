@@ -100,9 +100,9 @@ export function feeWaiverRuleDisplayLabel(
 
 export function feeWaiverBadgeClassName(variant: FeeWaiverBadge["variant"]): string {
   if (variant === "paid_fee_default") {
-    return "rounded-md border border-amber-500/30 bg-amber-500/5 px-1.5 py-0.5 text-[9px] font-medium text-amber-600 dark:text-amber-400";
+    return "rounded-sm border border-border px-1.5 py-0.5 text-2xs font-medium text-muted-foreground";
   }
-  return "rounded-md border border-emerald-500/25 bg-emerald-500/5 px-1.5 py-0.5 text-[9px] font-medium text-emerald-500";
+  return "rounded-sm border border-positive px-1.5 py-0.5 text-2xs font-medium text-positive";
 }
 
 export function feeWaiverRuleBadgeVariant(

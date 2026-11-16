@@ -7,6 +7,7 @@ import {
   NOMAD_TIERS,
   NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL,
   RETAIL_BANK_SPREAD,
+  TRAVEL_REDEMPTION_WEIGHT,
 } from "@/lib/assumptions";
 import {
   GOL_SMILES_INFINITE_STABLE_IDS,
@@ -35,13 +36,48 @@ export function travelFrequencyForValueModeling(profile: UserProfile): TravelFre
   return "none";
 }
 
-/** Valor usado para ordenar ranking: teto (utilização) se o perfil viaja, senão base conservadora (venda). */
-export function netMonthlyValueForRanking(score: CardValueScore, profile: UserProfile): number {
-  const tf = travelFrequencyForValueModeling(profile);
-  if (tf === "occasional" || tf === "frequent") {
-    return Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl);
-  }
-  return score.netMonthlyValueBrl;
+/** Peso do valor de utilização (viagem) no valor de decisão, pela frequência de viagem do perfil. */
+export function travelRedemptionWeight(profile: UserProfile): number {
+  return TRAVEL_REDEMPTION_WEIGHT[travelFrequencyForValueModeling(profile)];
+}
+
+/** Valor de decisão: venda + p × (utilização − venda). */
+export function decisionMonthlyValue(low: number, high: number, profile: UserProfile): number {
+  return low + travelRedemptionWeight(profile) * (Math.max(high, low) - low);
+}
+
+/**
+ * Valor usado para ordenar o ranking. É sempre o valor de decisão, o mesmo
+ * número mostrado no cartão, usado no veredito e na comparação.
+ */
+export function netMonthlyValueForRanking(score: CardValueScore, _profile?: UserProfile): number {
+  return score.decisionMonthlyValueBrl;
+}
+
+/** Ordem canônica: elegíveis, depois anuidade conhecida, depois valor de decisão. */
+export function compareCardValueScores(a: CardValueScore, b: CardValueScore): number {
+  if (a.eligible !== b.eligible) return a.eligible ? -1 : 1;
+  if (a.feeKnown !== b.feeKnown) return a.feeKnown ? -1 : 1;
+  return b.decisionMonthlyValueBrl - a.decisionMonthlyValueBrl;
+}
+
+/**
+ * Score 0–100 = percentil do valor de decisão entre os cartões elegíveis do
+ * conjunto. Segue sempre a ordem do ranking; inelegíveis recebem 0.
+ * Espera a lista já ordenada por `compareCardValueScores`.
+ */
+export function applyPercentileScores(sorted: CardValueScore[]): CardValueScore[] {
+  const eligible = sorted.filter((s) => s.eligible);
+  const n = eligible.length;
+  return sorted.map((s) => {
+    if (!s.eligible) return { ...s, score0To100: 0 };
+    if (n <= 1) return { ...s, score0To100: 100 };
+    // Empates recebem o mesmo percentil (o do primeiro com aquele valor).
+    const firstIndex = eligible.findIndex(
+      (e) => e.feeKnown === s.feeKnown && e.decisionMonthlyValueBrl === s.decisionMonthlyValueBrl
+    );
+    return { ...s, score0To100: Math.round(100 * (1 - firstIndex / (n - 1))) };
+  });
 }
 
 export {
@@ -1255,6 +1291,14 @@ export function scoreCardValue(
     roiMultiple: roiMultiple === null ? null : roundMoney(roiMultiple),
     feeBurdenPctOfAnnualSpend: feeBurden === null ? null : roundMoney(feeBurden * 100),
     scoreDrivers,
+    decisionMonthlyValueBrl: roundMoney(
+      decisionMonthlyValue(
+        netMonthlyValue,
+        Math.max(netMonthlyValueRangeHighUnrounded, netMonthlyValue),
+        profile
+      )
+    ),
+    feeKnown: typeof card.facets_numeric_or_special.annual_fee_brl_best_estimate === "number",
     netMonthlyValueBrl: roundedNetMonthly,
     netMonthlyValueRangeHighBrl: roundedNetRangeHigh,
     netAnnualValueBrl: roundMoney(netAnnualValue),
@@ -1289,12 +1333,9 @@ export function scoreCardValues(
   mode: CardScoreMode = "profile",
   assumptions: CardValueAssumptions = DEFAULT_VALUE_ASSUMPTIONS
 ): CardValueScore[] {
-  return cards
-    .map((card) => scoreCardValue(card, profile, mode, assumptions))
-    .sort((a, b) => {
-      if (a.eligible !== b.eligible) return a.eligible ? -1 : 1;
-      const vb = netMonthlyValueForRanking(b, profile);
-      const va = netMonthlyValueForRanking(a, profile);
-      return vb - va || b.score0To100 - a.score0To100;
-    });
+  return applyPercentileScores(
+    cards
+      .map((card) => scoreCardValue(card, profile, mode, assumptions))
+      .sort(compareCardValueScores)
+  );
 }

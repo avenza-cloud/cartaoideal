@@ -67,11 +67,11 @@ export function feeNote(
 }
 
 export const FEE_TIER_COLOR: Record<FeeTier, string> = {
-  free: "text-green-400",
-  optimal: "text-green-400",
-  good: "text-blue-400",
-  consider: "text-yellow-400",
-  heavy: "text-red-400",
+  free: "text-positive",
+  optimal: "text-positive",
+  good: "text-foreground",
+  consider: "text-foreground",
+  heavy: "text-negative",
   unknown: "text-muted-foreground",
 };
 

@@ -110,6 +110,15 @@ export interface CardValueScore {
   roiMultiple: number | null;
   feeBurdenPctOfAnnualSpend: number | null;
   scoreDrivers: string[];
+  /**
+   * O número que decide: valor líquido mensal esperado para este perfil.
+   * `venda + p × (utilização − venda)`, com `p` pela frequência de viagem.
+   * É o único valor usado para ordenar, pontuar, dar o veredito e comparar.
+   */
+  decisionMonthlyValueBrl: number;
+  /** Falso quando a anuidade não é conhecida: o cartão vai para o fim e nunca é mostrado como "sem anuidade". */
+  feeKnown: boolean;
+  /** Piso da faixa (pontos vendidos). */
   netMonthlyValueBrl: number;
   /** Com pontos/milhas: teto de valor líquido mensal se os pontos forem usados em viagem (preço de utilização). Igual a `netMonthlyValueBrl` quando só há cashback ou não há spread. */
   netMonthlyValueRangeHighBrl: number;

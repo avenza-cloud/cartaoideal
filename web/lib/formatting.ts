@@ -28,20 +28,15 @@ export function confidenceLabel(score: number): {
   label: string;
   color: string;
 } {
-  if (score >= 0.8) return { label: "Alta confiança", color: "text-green-400" };
-  if (score >= 0.4) return { label: "Média confiança", color: "text-yellow-400" };
-  return { label: "Baixa confiança", color: "text-red-400" };
+  if (score >= 0.8) return { label: "Alta confiança", color: "text-positive" };
+  if (score >= 0.4) return { label: "Média confiança", color: "text-foreground" };
+  return { label: "Baixa confiança", color: "text-negative" };
 }
 
 export function networkColor(network: string): string {
-  const map: Record<string, string> = {
-    Visa: "text-blue-400",
-    Mastercard: "text-orange-400",
-    "American Express": "text-green-400",
-    Elo: "text-yellow-400",
-    Hipercard: "text-red-400",
-  };
-  return map[network] ?? "text-muted-foreground";
+  // Networks are mono by design: the name carries the meaning, not a hue.
+  void network;
+  return "text-muted-foreground";
 }
 
 export function rewardReturnLabel(reward: RewardReturn): string {

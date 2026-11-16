@@ -23,6 +23,16 @@ export const RETAIL_BANK_SPREAD = 0.055;
 export const DEFAULT_SPREAD = 0.045;
 export const COOPERATIVE_SPREAD = 0.01;
 
+/**
+ * Probabilidade de usar pontos em viagem (valor de utilização) em vez de
+ * vendê-los, por frequência de viagem. Pondera o valor de decisão.
+ */
+export const TRAVEL_REDEMPTION_WEIGHT = {
+  none: 0,
+  occasional: 0.5,
+  frequent: 0.8,
+} as const;
+
 /** Teto de valor de venda de pontos para quem não viaja. */
 export const NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL = 20;
 
