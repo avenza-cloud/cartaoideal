@@ -5,7 +5,17 @@ import { getCardById, getAllCards } from "@/lib/cards";
 import { formatFee, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
 import { affiliateClickUrl } from "@/lib/affiliate";
 import { cardArtSrc, displayValue } from "@/lib/card-display";
-import { CardArtPlaceholder } from "@/components/CardArtPlaceholder";
+import {
+  Block,
+  CardArt,
+  DataRow,
+  EmptyRow,
+  FullTextRow,
+  type Stat,
+  StatRow,
+  Tag,
+} from "@/components/card";
+import { Button } from "@/components/ui/button";
 import { AppHeader } from "@/components/AppHeader";
 import { CardDetailBackLink } from "@/components/CardDetailBackLink";
 import { CardDetailActions } from "@/components/CardDetailActions";
@@ -139,6 +149,12 @@ export default async function CartaoDetailPage({ params }: PageProps) {
         : "Acesso VIP"
     : "Sem lounge";
 
+  const heroStats: Stat[] = [
+    { label: "Anuidade", value: feeLabel(fee), tone: feeIsKnown(fee) ? "default" : "muted" },
+    { label: "Retorno", value: returnType ?? "—" },
+    { label: "Lounge", value: loungeSummaryLine },
+  ];
+
   const adSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_DETAIL ?? "";
 
   const numericFee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
@@ -167,70 +183,55 @@ export default async function CartaoDetailPage({ params }: PageProps) {
       <AppHeader />
       <div className="mx-auto flex w-full max-w-7xl items-start gap-4 px-3 sm:px-4">
         {/* Left sidebar ad — desktop only */}
-        <div className="hidden xl:block w-[160px] shrink-0 sticky top-4 pt-6">
+        <div className="hidden xl:block w-40 shrink-0 sticky top-4 pt-6">
           <AdSlot slot={adSlot} format="vertical" />
         </div>
 
-        <main className="min-w-0 flex-1 max-w-4xl pb-28 pt-4 sm:pt-6 md:pb-12">
+        <main className="min-w-0 flex-1 max-w-4xl pb-28 pt-4 sm:pt-6">
           <Suspense>
             <CardDetailBackLink />
           </Suspense>
 
           {/* ─── Hero ─── */}
-          <div className="overflow-hidden rounded-2xl border bg-card/70 shadow-[0_28px_100px_rgba(0,0,0,0.26)] sm:rounded-[2rem]">
-            <div className="grid lg:grid-cols-[240px_minmax(0,1fr)]">
-              {/* Card art */}
-              <div className="relative flex min-h-44 items-center justify-center border-b bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.12),transparent_36%),linear-gradient(145deg,#09090b,#18181b_55%,#050505)] p-6 lg:border-b-0 lg:border-r">
-                {artSrc ? (
-                  <img
-                    src={artSrc}
-                    alt={card.media.alt_text}
-                    className="max-h-32 max-w-[78%] object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.6)] sm:max-h-40"
-                  />
-                ) : (
-                  <CardArtPlaceholder
-                    issuerRaw={card.issuer_raw}
-                    network={card.network_primary}
-                    displayName={card.display_name}
-                    className="max-h-32 w-52 sm:max-h-40"
-                  />
-                )}
-                {card.ranking_position !== "unknown" && (
-                  <span className="absolute left-4 top-4 rounded-full border bg-background/60 px-2 py-0.5 font-mono text-[10px] text-muted-foreground backdrop-blur">
-                    #{card.ranking_position}
-                  </span>
+          <div className="rounded-md border bg-card p-4 sm:p-5">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+              <CardArt
+                artUrl={card.media.card_art_url}
+                issuerRaw={card.issuer_raw}
+                network={card.network_primary}
+                displayName={card.display_name}
+                loading="eager"
+                className="h-28 w-44 sm:h-32 sm:w-52"
+              />
+              <div className="min-w-0 flex-1">
+                <h1 className="text-3xl font-medium tracking-tight break-words">
+                  {card.display_name}
+                </h1>
+                <p className="mt-1 text-sm text-muted-foreground">{card.issuer_raw}</p>
+                {earningSummary && (
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {earningSummary}
+                  </p>
                 )}
               </div>
+            </div>
 
-              {/* Identity + key metrics */}
-              <div className="flex flex-col justify-between p-5">
-                <div>
-                  <div className="flex flex-wrap items-center gap-1">
-                    <Pill>{segmentLabel(card.market_segment_guess)}</Pill>
-                    <Pill>{card.network_primary}</Pill>
-                    <Pill dim>{card.issuer_raw}</Pill>
-                  </div>
-                  <h1 className="mt-2.5 text-2xl font-semibold leading-tight tracking-[-0.04em] sm:text-[1.75rem]">
-                    {card.display_name}
-                  </h1>
-                  {earningSummary && (
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                      {earningSummary}
-                    </p>
-                  )}
-                </div>
+            <StatRow
+              stats={heroStats}
+              className="mt-4 bg-background max-[379px]:grid-cols-1! max-[379px]:divide-x-0 max-[379px]:divide-y"
+            />
 
-                {/* 3 metrics — each datum appears ONLY here */}
-                <div className="mt-4 grid grid-cols-1 gap-px overflow-hidden rounded-xl border bg-border min-[380px]:grid-cols-3">
-                  <Metric label="Anuidade" value={formatFee(fee)} />
-                  <Metric label="Retorno" value={returnType ?? "—"} />
-                  <Metric label="Lounge" value={loungeSummaryLine} />
-                </div>
-              </div>
+            <div className="mt-3 flex flex-wrap items-center gap-1.5">
+              <Tag>{segmentLabel(card.market_segment_guess)}</Tag>
+              <Tag>{card.network_primary}</Tag>
+              {card.ranking_position !== "unknown" && (
+                <Tag variant="quiet" className="num">
+                  #{card.ranking_position}
+                </Tag>
+              )}
             </div>
           </div>
 
-          {/* ─── Profile insights ─── */}
           <div className="mt-3">
             <CardProfileInsights card={card} />
           </div>
@@ -244,7 +245,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
                 {returnType ? (
                   <DataRow label="Tipo" value={returnType} />
                 ) : (
-                  <Empty>Sem retorno financeiro neste cartão.</Empty>
+                  <EmptyRow>Sem retorno financeiro neste cartão.</EmptyRow>
                 )}
                 {rewardChars.length > 0 && <CharList items={rewardChars} />}
                 {!returnType && rewardChars.length === 0 && null}
@@ -254,14 +255,11 @@ export default async function CartaoDetailPage({ params }: PageProps) {
               <Block title="Lounge">
                 {hasLounge ? (
                   loungePerProgram.length > 0 ? (
-                    <div className="space-y-1.5">
+                    <div>
                       {loungePerProgram.map((prog) => (
-                        <div
-                          key={prog.name}
-                          className="rounded-xl border bg-background/35 px-3 py-2"
-                        >
-                          <p className="text-xs font-medium leading-snug">{prog.name}</p>
-                          <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
+                        <div key={prog.name} className="border-b py-2 last:border-b-0">
+                          <p className="text-sm font-medium">{prog.name}</p>
+                          <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
                             {prog.detail}
                           </p>
                         </div>
@@ -291,7 +289,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
                     </>
                   )
                 ) : (
-                  <Empty>Sem acesso a sala VIP.</Empty>
+                  <EmptyRow>Sem acesso a sala VIP.</EmptyRow>
                 )}
               </Block>
             </div>
@@ -300,7 +298,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
             <div className="grid gap-2 md:grid-cols-2">
               {/* Custo */}
               <Block title="Custo">
-                <DataRow label="Anuidade" value={formatFee(fee)} />
+                <DataRow label="Anuidade" value={feeLabel(fee)} />
                 {feeWaiverRules.length > 0 ? (
                   <FeeWaiverRules rules={feeWaiverRules} />
                 ) : (
@@ -313,7 +311,7 @@ export default async function CartaoDetailPage({ params }: PageProps) {
                 {forexNote && <DataRow label="Câmbio / IOF" value={forexNote} />}
                 {feeChars.length > 0 && <CharList items={feeChars} />}
                 {!forexNote && feeChars.length === 0 && (
-                  <Empty>Câmbio e IOF: verifique na fonte.</Empty>
+                  <EmptyRow>Câmbio e IOF: verifique na fonte.</EmptyRow>
                 )}
               </Block>
 
@@ -345,30 +343,31 @@ export default async function CartaoDetailPage({ params }: PageProps) {
             )}
 
             {/* Fonte */}
-            <div className="mb-8 flex flex-col gap-3 rounded-2xl border bg-card/30 px-4 py-3 sm:flex-row sm:items-center">
+            <div className="mb-8 flex flex-col gap-3 rounded-md border bg-card px-4 py-3 sm:flex-row sm:items-center">
               <div className="min-w-0 flex-1">
                 <span className="text-xs font-medium">{card.source_label}</span>
-                <span className="ml-2 text-[11px] text-muted-foreground/60">
+                <span className="ml-2 text-xs text-muted-foreground">
                   · confirme condições com o emissor
                 </span>
               </div>
               <div className="flex shrink-0 gap-2">
-                <a
-                  href={affiliateClickUrl(card.card_stable_id)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-lg border bg-background/40 px-2.5 py-1.5 text-[11px] text-muted-foreground transition-colors hover:text-foreground"
-                >
-                  <ExternalLink className="h-3 w-3" />
-                  Abrir
-                </a>
+                <Button asChild variant="outline" size="sm">
+                  <a
+                    href={affiliateClickUrl(card.card_stable_id)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="h-3 w-3" />
+                    Abrir
+                  </a>
+                </Button>
               </div>
             </div>
           </div>
         </main>
 
         {/* Right sidebar ad — desktop only */}
-        <div className="hidden xl:block w-[160px] shrink-0 sticky top-4 pt-6">
+        <div className="hidden xl:block w-40 shrink-0 sticky top-4 pt-6">
           <AdSlot slot={adSlot} format="vertical" />
         </div>
       </div>
@@ -385,56 +384,13 @@ export default async function CartaoDetailPage({ params }: PageProps) {
 
 /* ─── Layout primitives ─── */
 
-function Metric({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="bg-background/45 px-3 py-2.5">
-      <p className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">{label}</p>
-      <p className="mt-0.5 truncate text-sm font-semibold" title={value}>
-        {value}
-      </p>
-    </div>
-  );
+function feeIsKnown(fee: CardFacet["facets_numeric_or_special"]["annual_fee_brl_best_estimate"]) {
+  return typeof fee === "number" || fee === "variable_pricing_claim";
 }
 
-function Pill({ children, dim }: { children: React.ReactNode; dim?: boolean }) {
-  return (
-    <span
-      className={`rounded-full border px-2.5 py-0.5 text-[10px] ${
-        dim ? "text-muted-foreground" : "text-foreground/80"
-      }`}
-    >
-      {children}
-    </span>
-  );
-}
-
-function Block({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section className="rounded-2xl border bg-card/50 p-3.5">
-      <p className="mb-2 text-xs font-semibold">{title}</p>
-      <div className="space-y-1.5">{children}</div>
-    </section>
-  );
-}
-
-function DataRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-baseline justify-between gap-3 rounded-xl border bg-background/35 px-3 py-2">
-      <span className="shrink-0 text-[11px] text-muted-foreground">{label}</span>
-      <span className="min-w-0 truncate text-right text-xs font-medium" title={value}>
-        {value}
-      </span>
-    </div>
-  );
-}
-
-function FullTextRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-xl border bg-background/35 px-3 py-2">
-      <span className="text-[11px] text-muted-foreground">{label}</span>
-      <p className="mt-1 text-xs font-medium leading-relaxed">{value}</p>
-    </div>
-  );
+/** Unknown fees are never shown as free. */
+function feeLabel(fee: CardFacet["facets_numeric_or_special"]["annual_fee_brl_best_estimate"]) {
+  return feeIsKnown(fee) ? formatFee(fee) : "Não informada";
 }
 
 function loungeCondition(summary?: string): string | null {
@@ -471,28 +427,26 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
   const hasAlternativeRules = ordered.length > 1;
 
   return (
-    <div className="rounded-xl border bg-emerald-500/5 p-2.5">
+    <div className="border-b py-2 last:border-b-0">
       <div className="mb-2 flex items-center justify-between gap-2">
-        <span className="text-[11px] font-medium text-emerald-500">Isenção da anuidade</span>
-        <span className="rounded-full border border-emerald-500/25 px-2 py-0.5 text-[10px] text-emerald-500">
+        <span className="text-xs text-muted-foreground">Isenção da anuidade</span>
+        <Tag variant="positive">
           {hasOnlyGeneralFullWaiver
             ? "Sem anuidade"
             : ordered.every((rule) => rule.full_waiver)
               ? "Isenção total"
               : "Condições"}
-        </span>
+        </Tag>
       </div>
       {hasOnlyGeneralFullWaiver && (
-        <p className="rounded-lg border bg-background/50 px-2.5 py-2 text-xs font-medium leading-relaxed">
-          {ordered[0].description}
-        </p>
+        <p className="text-sm leading-relaxed">{ordered[0].description}</p>
       )}
       {!hasOnlyGeneralFullWaiver && (
         <>
           {hasAlternativeRules && (
-            <p className="mb-2 text-[11px] leading-relaxed text-muted-foreground">
+            <p className="mb-2 text-xs leading-relaxed text-muted-foreground">
               Basta cumprir uma das condições abaixo. As regras são alternativas: uma{" "}
-              <strong>OU</strong> outra.
+              <span className="font-medium text-foreground">OU</span> outra.
             </p>
           )}
           <div className="grid gap-2 min-[420px]:grid-cols-2">
@@ -532,20 +486,18 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
               return (
                 <div
                   key={`${rule.category}-${rule.threshold_brl ?? "general"}-${index}`}
-                  className="rounded-lg border bg-background/50 px-2.5 py-2"
+                  className="rounded-md border bg-background px-2.5 py-2"
                 >
-                  <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
                     <Icon className="h-3.5 w-3.5" />
                     {label}
                   </div>
-                  {amount && <p className="mt-1 font-mono text-sm font-semibold">{amount}</p>}
-                  <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground">
+                  {amount && <p className="num mt-1 text-sm font-medium">{amount}</p>}
+                  <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
                     {rule.description}
                   </p>
                   {hasAlternativeRules && index < ordered.length - 1 && (
-                    <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-emerald-500/80">
-                      OU
-                    </p>
+                    <p className="mt-2 text-2xs font-medium text-muted-foreground">OU</p>
                   )}
                 </div>
               );
@@ -556,16 +508,6 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
     </div>
   );
 }
-
-function Empty({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="rounded-xl border bg-background/20 px-3 py-2 text-[11px] text-muted-foreground/60">
-      {children}
-    </p>
-  );
-}
-
-/* ─── Characteristics ─── */
 
 function filterChars(
   card: CardFacet,
@@ -602,22 +544,12 @@ function CharList({ items }: { items: CardCharacteristic[] }) {
             ? item.details
             : null;
         return (
-          <div
+          <DataRow
             key={`${item.category}-${item.key}-${value}`}
-            className="rounded-xl border bg-background/35 px-3 py-2"
-          >
-            <div className="flex items-baseline justify-between gap-3">
-              <span className="shrink-0 text-[11px] text-muted-foreground">{label}</span>
-              <span className="min-w-0 truncate text-right text-xs font-medium" title={value}>
-                {value}
-              </span>
-            </div>
-            {detail && (
-              <p className="mt-0.5 text-[11px] leading-relaxed text-muted-foreground/70">
-                {detail}
-              </p>
-            )}
-          </div>
+            label={label}
+            value={value}
+            detail={detail}
+          />
         );
       })}
     </>

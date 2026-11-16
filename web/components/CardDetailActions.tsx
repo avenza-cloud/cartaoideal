@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Plus, Check } from "lucide-react";
 import { useCompareStore } from "@/lib/store";
+import { Button } from "@/components/ui/button";
 import { CardCorrectionForm } from "@/components/CardCorrectionForm";
 import { affiliateClickUrl } from "@/lib/affiliate";
 
@@ -12,6 +13,9 @@ interface CardDetailActionsProps {
   issuer: string;
   sourceUrl: string;
 }
+
+// Four equal cells; icons drop out below 360px so labels never overflow.
+const ACTION_CLASS = "h-10 w-full min-w-0 gap-1.5 px-1.5 text-xs max-[359px]:[&_svg]:hidden";
 
 export function CardDetailActions({ cardId, cardName, issuer, sourceUrl }: CardDetailActionsProps) {
   const { ids, add, remove, canAdd } = useCompareStore();
@@ -26,38 +30,32 @@ export function CardDetailActions({ cardId, cardName, issuer, sourceUrl }: CardD
   }
 
   return (
-    <div className="fixed inset-x-3 bottom-safe z-40 mx-auto grid max-w-lg grid-cols-4 gap-2 rounded-xl border bg-background/92 p-2 shadow-[0_18px_80px_rgba(0,0,0,0.45)] backdrop-blur">
-      <Link
-        href="/cartoes"
-        className="inline-flex h-10 min-w-0 items-center justify-center gap-1.5 rounded-xl border px-2 text-xs text-muted-foreground"
-      >
-        <ArrowLeft className="h-3.5 w-3.5" />
-        Voltar
-      </Link>
-      <button
-        type="button"
-        onClick={toggleCompare}
-        className="inline-flex h-10 min-w-0 items-center justify-center gap-1.5 rounded-xl bg-foreground px-2 text-xs font-medium text-background sm:px-3"
-      >
-        {selected ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
-        Comparar
-      </button>
-      <CardCorrectionForm
-        cardId={cardId}
-        cardName={cardName}
-        issuer={issuer}
-        sourceUrl={sourceUrl}
-        triggerClassName="h-10 w-full min-w-0 rounded-xl px-2 text-xs text-muted-foreground"
-      />
-      <a
-        href={affiliateClickUrl(cardId)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex h-10 min-w-0 items-center justify-center gap-1.5 rounded-xl border px-2 text-xs text-muted-foreground"
-      >
-        Fonte
-        <ExternalLink className="h-3.5 w-3.5" />
-      </a>
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t bg-card">
+      <div className="mx-auto grid max-w-lg grid-cols-4 gap-2 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+        <Button asChild variant="outline" className={ACTION_CLASS}>
+          <Link href="/cartoes">
+            <ArrowLeft className="h-3.5 w-3.5" />
+            Voltar
+          </Link>
+        </Button>
+        <Button type="button" variant="mark" onClick={toggleCompare} className={ACTION_CLASS}>
+          {selected ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+          Comparar
+        </Button>
+        <CardCorrectionForm
+          cardId={cardId}
+          cardName={cardName}
+          issuer={issuer}
+          sourceUrl={sourceUrl}
+          triggerClassName={ACTION_CLASS}
+        />
+        <Button asChild variant="outline" className={ACTION_CLASS}>
+          <a href={affiliateClickUrl(cardId)} target="_blank" rel="noopener noreferrer">
+            Fonte
+            <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+        </Button>
+      </div>
     </div>
   );
 }
