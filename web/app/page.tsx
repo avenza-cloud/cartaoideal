@@ -6,7 +6,6 @@ import { CardProgressionPath } from "@/components/CardProgressionPath";
 import { ProfileOnboarding } from "@/components/ProfileOnboarding";
 import { AppHeader } from "@/components/AppHeader";
 import { AdSlot } from "@/components/AdSlot";
-import { Badge } from "@/components/ui/badge";
 import { getAllCards } from "@/lib/cards";
 import { CARD_OPTIONS, CURATED_CARD_OPTIONS } from "@/lib/card-options.server";
 
@@ -24,21 +23,19 @@ export default function HomePage() {
       {/* Fullscreen onboarding — renders as overlay until completed or skipped */}
       <ProfileOnboarding cardOptions={CARD_OPTIONS} curatedOptions={CURATED_CARD_OPTIONS} />
 
-      <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_28rem)]">
+      <div className="min-h-screen">
         <AppHeader />
 
-        <main className="mx-auto max-w-7xl space-y-4 px-4 pb-28 pt-5 md:px-6">
+        <main className="mx-auto max-w-7xl space-y-4 px-4 pb-28 pt-8 md:px-6 md:pt-12">
           {/* Hero text */}
-          <section className="mx-auto max-w-3xl text-center">
-            <Badge variant="outline" className="mb-3 font-mono text-[10px]">
-              {totalCards} cartões estruturados
-            </Badge>
-            <h1 className="mx-auto text-4xl font-semibold md:text-5xl">
-              Pergunte. Compare. Decida.
-            </h1>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
+          <section className="mx-auto max-w-4xl pb-2">
+            <h1 className="text-3xl font-medium md:text-5xl">Pergunte. Compare. Decida.</h1>
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground">
               Configure seu perfil abaixo para ver o ranking personalizado. Use o chat para tirar
               dúvidas, comparar cartões e explorar benefícios.
+            </p>
+            <p className="num mt-2 text-xs text-muted-foreground">
+              {totalCards} cartões estruturados
             </p>
           </section>
 

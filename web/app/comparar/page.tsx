@@ -6,7 +6,7 @@ import { getCardsByIds } from "@/lib/cards";
 import { formatFee, loungeSummary, rewardReturnLabel, segmentLabel } from "@/lib/formatting";
 import { AppHeader } from "@/components/AppHeader";
 import { ProfileCompareSummary } from "@/components/ProfileCompareSummary";
-import { Badge } from "@/components/ui/badge";
+import { CardArt, Tag } from "@/components/card";
 import { ArrowLeft, Check, X } from "lucide-react";
 import type { CardFacet } from "@/types/cards";
 
@@ -37,15 +37,15 @@ export default async function CompararPage({ searchParams }: PageProps) {
   return (
     <div className="min-h-screen">
       <AppHeader />
-      <div className="flex items-center gap-3 border-b border-border px-4 py-4 sm:gap-4 sm:px-6 sm:py-5">
+      <div className="flex items-center gap-3 border-b px-4 py-4 sm:gap-4 sm:px-6">
         <Link
           href="/cartoes"
-          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
+          className="inline-flex shrink-0 items-center gap-1.5 text-sm text-muted-foreground transition-colors duration-150 hover:text-foreground"
         >
           <ArrowLeft className="h-4 w-4" />
           Cartões
         </Link>
-        <h1 className="min-w-0 truncate text-xl font-semibold">Comparar Cartões</h1>
+        <h1 className="min-w-0 truncate text-xl font-medium">Comparar Cartões</h1>
       </div>
 
       <div className="mx-auto max-w-6xl space-y-4 px-3 py-5 sm:px-4">
@@ -53,46 +53,51 @@ export default async function CompararPage({ searchParams }: PageProps) {
           <ProfileCompareSummary cards={cards} />
         </Suspense>
 
-        <div className="overflow-x-auto rounded-xl border bg-card/35">
-          <table className="w-full min-w-[620px] border-collapse text-sm">
+        <div className="overflow-x-auto rounded-md border bg-card">
+          <table className="w-full min-w-xl border-collapse text-sm">
             <thead>
-              <tr>
-                <th className="sticky left-0 z-10 w-44 bg-card px-3 py-3 text-left font-normal text-muted-foreground">
+              <tr className="border-b bg-muted">
+                <th className="sticky left-0 z-10 w-28 border-r bg-muted px-3 py-3 text-left align-bottom text-xs font-normal text-muted-foreground sm:w-44">
                   Atributo
                 </th>
                 {cards.map((card) => (
-                  <th key={card.card_stable_id} className="min-w-[210px] px-3 py-3 text-left">
-                    <div>
-                      <p className="text-xs text-muted-foreground font-mono font-normal">
-                        {card.issuer_raw}
-                      </p>
-                      <Link
-                        href={cardDetailHref(card.card_stable_id)}
-                        className="font-semibold hover:underline underline-offset-2 text-sm leading-tight"
-                      >
-                        {card.display_name}
-                      </Link>
+                  <th
+                    key={card.card_stable_id}
+                    className="min-w-48 px-3 py-3 text-left align-bottom font-normal"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <CardArt
+                        compact
+                        artUrl={card.media.card_art_url}
+                        issuerRaw={card.issuer_raw}
+                        network={card.network_primary}
+                        displayName={card.display_name}
+                        className="h-9 w-14 bg-card"
+                      />
+                      <div className="min-w-0">
+                        <Link
+                          href={cardDetailHref(card.card_stable_id)}
+                          className="block text-sm font-medium leading-tight underline-offset-2 hover:underline"
+                        >
+                          {card.display_name}
+                        </Link>
+                        <p className="mt-0.5 text-xs text-muted-foreground">{card.issuer_raw}</p>
+                      </div>
                     </div>
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-border">
+            <tbody className="divide-y">
               <CompareRow
                 label="Segmento"
                 values={cards.map((c) => segmentLabel(c.market_segment_guess))}
-                render={(v) => (
-                  <Badge variant="outline" className="text-xs">
-                    {v}
-                  </Badge>
-                )}
+                render={(v) => <Tag>{v}</Tag>}
               />
               <CompareRow label="Bandeira" values={cards.map((c) => c.network_primary)} />
               <CompareRow
                 label="Anuidade"
-                values={cards.map((c) =>
-                  formatFee(c.facets_numeric_or_special.annual_fee_brl_best_estimate)
-                )}
+                values={cards.map((c) => feeCell(c))}
                 bestIndex={bestFeeIndex(cards)}
               />
               <CompareRow
@@ -141,6 +146,13 @@ export default async function CompararPage({ searchParams }: PageProps) {
   );
 }
 
+/** An unknown fee is said plainly, never shown as free. */
+function feeCell(card: CardFacet): string {
+  const fee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
+  if (fee === null || fee === "unknown") return "Anuidade não informada";
+  return formatFee(fee);
+}
+
 function bestFeeIndex(cards: CardFacet[]): number {
   let best = -1;
   let bestFee = Infinity;
@@ -154,6 +166,9 @@ function bestFeeIndex(cards: CardFacet[]): number {
   return best;
 }
 
+const LABEL_CELL =
+  "sticky left-0 z-10 border-r bg-card px-3 py-2.5 text-xs text-muted-foreground transition-colors duration-150 group-hover:bg-muted";
+
 function CompareRow({
   label,
   values,
@@ -166,14 +181,17 @@ function CompareRow({
   render?: (v: string) => React.ReactNode;
 }) {
   return (
-    <tr className="hover:bg-muted/20 transition-colors">
-      <td className="sticky left-0 z-10 bg-card px-3 py-2.5 text-muted-foreground">{label}</td>
+    <tr className="group transition-colors duration-150 hover:bg-muted">
+      <td className={LABEL_CELL}>{label}</td>
       {values.map((v, i) => (
-        <td
-          key={i}
-          className={`px-3 py-2.5 font-mono ${bestIndex === i ? "text-green-400 font-semibold" : ""}`}
-        >
-          {render ? render(v) : v}
+        <td key={i} className="num px-3 py-2.5">
+          {render ? (
+            render(v)
+          ) : bestIndex === i ? (
+            <span className="bg-mark px-1 font-medium text-mark-foreground">{v}</span>
+          ) : (
+            v
+          )}
         </td>
       ))}
     </tr>
@@ -181,16 +199,15 @@ function CompareRow({
 }
 
 function BoolRow({ label, values }: { label: string; values: boolean[] }) {
-  const hasAny = values.some(Boolean);
   return (
-    <tr className="hover:bg-muted/20 transition-colors">
-      <td className="sticky left-0 z-10 bg-card px-3 py-2.5 text-muted-foreground">{label}</td>
+    <tr className="group transition-colors duration-150 hover:bg-muted">
+      <td className={LABEL_CELL}>{label}</td>
       {values.map((v, i) => (
         <td key={i} className="px-3 py-2.5">
           {v ? (
-            <Check className={`h-4 w-4 ${hasAny ? "text-green-400" : "text-muted-foreground"}`} />
+            <Check className="h-4 w-4 text-foreground" aria-label="Sim" />
           ) : (
-            <X className="h-4 w-4 text-muted-foreground/30" />
+            <X className="h-4 w-4 text-muted-foreground" aria-label="Não" />
           )}
         </td>
       ))}
