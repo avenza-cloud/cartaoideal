@@ -385,6 +385,7 @@ function CardCompareArtifact({ output }: { output: unknown }) {
           beneficiosMensais?: number;
           origemRetorno?: string | null;
         } | null;
+        vencedor?: { id?: string; nome?: string } | null;
         perfilUsado?: unknown;
         naoEncontrados?: string[];
       }
@@ -392,13 +393,17 @@ function CardCompareArtifact({ output }: { output: unknown }) {
   const cards = Array.isArray(payload) ? payload : (payload?.cards ?? []);
   if (cards.length < 2) return null;
   const delta = !Array.isArray(payload) ? payload.delta : null;
+  // The engine names the winner (same rule as the ranking). The delta is only
+  // a fallback for payloads from before that key existed.
+  const namedWinnerId = !Array.isArray(payload) ? payload.vencedor?.id : undefined;
   const winner =
-    cards[1]?.valorEstimado?.valorLiquidoMensal !== undefined &&
+    (namedWinnerId ? cards.find((c) => c.id === namedWinnerId) : undefined) ??
+    (cards[1]?.valorEstimado?.valorLiquidoMensal !== undefined &&
     cards[0]?.valorEstimado?.valorLiquidoMensal !== undefined
       ? delta?.valorLiquidoMensal && delta.valorLiquidoMensal > 0
         ? cards[1]
         : cards[0]
-      : null;
+      : null);
 
   // The net value is each column's lead number, so it is not repeated as a row.
   const rows: {

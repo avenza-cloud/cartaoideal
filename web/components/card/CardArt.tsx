@@ -37,12 +37,7 @@ export function CardArt({
       )}
     >
       {src ? (
-        <img
-          src={src}
-          alt={label}
-          loading={loading}
-          className="h-full w-full object-contain p-1"
-        />
+        <img src={src} alt={label} loading={loading} className="h-full w-full object-contain p-1" />
       ) : (
         <div
           role="img"

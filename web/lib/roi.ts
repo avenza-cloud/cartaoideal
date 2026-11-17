@@ -80,15 +80,6 @@ export function feeNote(
   return `Anuidade ${feeFormatted}/ano (${sharePct}% do gasto anual) — elevada para seu volume de gastos`;
 }
 
-export const FEE_TIER_COLOR: Record<FeeTier, string> = {
-  free: "text-positive",
-  optimal: "text-positive",
-  good: "text-foreground",
-  consider: "text-foreground",
-  heavy: "text-negative",
-  unknown: "text-muted-foreground",
-};
-
 export const FEE_TIER_LABEL: Record<FeeTier, string> = {
   free: "Grátis",
   optimal: "Ótimo",

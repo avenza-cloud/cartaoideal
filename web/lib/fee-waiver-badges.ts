@@ -99,13 +99,6 @@ export function feeWaiverRuleDisplayLabel(
   return BADGE_LABELS[rule.category] ?? "Sem anuidade";
 }
 
-export function feeWaiverBadgeClassName(variant: FeeWaiverBadge["variant"]): string {
-  if (variant === "paid_fee_default") {
-    return "rounded-sm border border-border px-1.5 py-0.5 text-2xs font-medium text-muted-foreground";
-  }
-  return "rounded-sm border border-positive px-1.5 py-0.5 text-2xs font-medium text-positive";
-}
-
 export function feeWaiverRuleBadgeVariant(
   rule: FeeWaiverRule,
   annualFeeBrl?: AnnualFeeHint

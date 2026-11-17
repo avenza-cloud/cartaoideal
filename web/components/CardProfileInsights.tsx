@@ -48,7 +48,7 @@ function RetornoTooltip({
         Livelo R${assumptions.liveloPointSaleValuePerThousandBrl}/1k venda · Livelo R$
         {assumptions.liveloPointTravelValuePerThousandBrl}/1k uso · MR R$
         {assumptions.membershipRewardsPointSaleValuePerThousandBrl}/1k venda · MR R$
-        {assumptions.membershipRewardsPointTravelValuePerThousandBrl}/1k uso · PTAX R$
+        {assumptions.membershipRewardsPointTravelValuePerThousandBrl}/1k uso · dólar comercial R$
         {assumptions.ptaxBrlPerUsd}
       </p>
       {component.dataQualityNote && <p>{component.dataQualityNote}</p>}
@@ -260,7 +260,7 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
 
             <MethodPart title="Premissas usadas">
               <div>
-                <DataRow label="Dólar (PTAX)" value={brl(a.ptaxBrlPerUsd, 4)} />
+                <DataRow label="Dólar comercial" value={brl(a.ptaxBrlPerUsd, 4)} />
                 <DataRow
                   label="Milhas aéreas, venda"
                   value={`${brl(a.mileValuePerThousandBrl)}/mil`}
