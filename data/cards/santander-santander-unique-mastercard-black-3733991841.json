@@ -51,6 +51,58 @@
     "requires_bank_account_claim": true,
     "source_status": "official"
   },
+  "fee_waiver_rules": [
+    {
+      "category": "monthly_spend",
+      "description": "Critério 1 de 3: faturas acima de R$ 8 mil",
+      "full_waiver": true,
+      "min_conditions": 2,
+      "period": "monthly",
+      "raw_text": "100% de isenção na parcela mensal da anuidade ao cumprir dois dos seguintes critérios: faturas acima de R$ 8 mil, investimentos acima de R$ 50 mil e ser correntista com pacote de serviços ativo (exceto Essencial e Free). Cumprindo um critério, 50% de desconto.",
+      "threshold_brl": 8000
+    },
+    {
+      "category": "investment",
+      "description": "Critério 2 de 3: investimentos acima de R$ 50 mil",
+      "full_waiver": true,
+      "min_conditions": 2,
+      "raw_text": "100% de isenção na parcela mensal da anuidade ao cumprir dois dos seguintes critérios: faturas acima de R$ 8 mil, investimentos acima de R$ 50 mil e ser correntista com pacote de serviços ativo (exceto Essencial e Free). Cumprindo um critério, 50% de desconto.",
+      "threshold_brl": 50000
+    },
+    {
+      "category": "subscription",
+      "description": "Critério 3 de 3: correntista com pacote de serviços ativo (exceto Essencial e Free)",
+      "full_waiver": true,
+      "min_conditions": 2,
+      "raw_text": "100% de isenção na parcela mensal da anuidade ao cumprir dois dos seguintes critérios: faturas acima de R$ 8 mil, investimentos acima de R$ 50 mil e ser correntista com pacote de serviços ativo (exceto Essencial e Free). Cumprindo um critério, 50% de desconto.",
+      "requires_bank_account": true
+    },
+    {
+      "category": "monthly_spend",
+      "description": "Um critério só: 50% de desconto (faturas acima de R$ 8 mil)",
+      "discount_pct": 50,
+      "full_waiver": false,
+      "period": "monthly",
+      "raw_text": "100% de isenção na parcela mensal da anuidade ao cumprir dois dos seguintes critérios: faturas acima de R$ 8 mil, investimentos acima de R$ 50 mil e ser correntista com pacote de serviços ativo (exceto Essencial e Free). Cumprindo um critério, 50% de desconto.",
+      "threshold_brl": 8000
+    },
+    {
+      "category": "investment",
+      "description": "Um critério só: 50% de desconto (investimentos acima de R$ 50 mil)",
+      "discount_pct": 50,
+      "full_waiver": false,
+      "raw_text": "100% de isenção na parcela mensal da anuidade ao cumprir dois dos seguintes critérios: faturas acima de R$ 8 mil, investimentos acima de R$ 50 mil e ser correntista com pacote de serviços ativo (exceto Essencial e Free). Cumprindo um critério, 50% de desconto.",
+      "threshold_brl": 50000
+    },
+    {
+      "category": "subscription",
+      "description": "Um critério só: 50% de desconto (correntista com pacote de serviços)",
+      "discount_pct": 50,
+      "full_waiver": false,
+      "raw_text": "100% de isenção na parcela mensal da anuidade ao cumprir dois dos seguintes critérios: faturas acima de R$ 8 mil, investimentos acima de R$ 50 mil e ser correntista com pacote de serviços ativo (exceto Essencial e Free). Cumprindo um critério, 50% de desconto.",
+      "requires_bank_account": true
+    }
+  ],
   "benefit_groups": {
     "eligibility": [
       "Precisa ser correntista: Sim"
@@ -58,7 +110,7 @@
     "fees": [
       "Anuidade: 12x de R$ 96,25 (R$ 1.155/ano)",
       "Adicionais com benefícios: Sim",
-      "Isenção da anuidade: 100% de isenção na parcela mensal da anuidade do cumprir dois dos seguintes critérios - faturas acima de R$ 8 mil, investimentos acima de R$ 50 e ser correntista com pacote de serviços ativos (exceto essencial e pacote FREE)",
+      "Isenção da anuidade: 100% de isenção na parcela mensal da anuidade do cumprir dois dos seguintes critérios - faturas acima de R$ 8 mil, investimentos acima de R$ 50 mil e ser correntista com pacote de serviços ativos (exceto essencial e pacote FREE)",
       "Anuidade: 12x de R$ 96,25 (R$ 1.155/ano)",
       "Adicionais gratuitos: 5"
     ],
@@ -179,7 +231,7 @@
     },
     {
       "category": "fees",
-      "details": "faturas acima de R$ 8 mil, investimentos acima de R$ 50 e ser correntista com pacote de serviços ativos (exceto essencial e pacote FREE)",
+      "details": "faturas acima de R$ 8 mil, investimentos acima de R$ 50 mil e ser correntista com pacote de serviços ativos (exceto essencial e pacote FREE)",
       "key": "fee_waiver",
       "label": "Isenção da anuidade",
       "value": "100% de isenção na parcela mensal da anuidade do cumprir dois dos seguintes critérios"

@@ -7,11 +7,11 @@ import type {
 } from "@/types/cards";
 
 export function formatFee(fee: number | string | "variable_pricing_claim" | null): string {
-  if (fee === null || fee === "unknown") return "Consulte";
+  if (fee === null || fee === "unknown") return "Não informada";
   if (fee === "variable_pricing_claim") return "Variável";
   if (fee === 0) return "Grátis";
   if (typeof fee === "number") return `R$ ${fee.toLocaleString("pt-BR")}`;
-  return "Consulte";
+  return "Não informada";
 }
 
 export function segmentLabel(segment: MarketSegment): string {
@@ -22,26 +22,6 @@ export function segmentLabel(segment: MarketSegment): string {
     ultra_premium: "Ultra Premium",
   };
   return labels[segment];
-}
-
-export function confidenceLabel(score: number): {
-  label: string;
-  color: string;
-} {
-  if (score >= 0.8) return { label: "Alta confiança", color: "text-green-400" };
-  if (score >= 0.4) return { label: "Média confiança", color: "text-yellow-400" };
-  return { label: "Baixa confiança", color: "text-red-400" };
-}
-
-export function networkColor(network: string): string {
-  const map: Record<string, string> = {
-    Visa: "text-blue-400",
-    Mastercard: "text-orange-400",
-    "American Express": "text-green-400",
-    Elo: "text-yellow-400",
-    Hipercard: "text-red-400",
-  };
-  return map[network] ?? "text-muted-foreground";
 }
 
 export function rewardReturnLabel(reward: RewardReturn): string {

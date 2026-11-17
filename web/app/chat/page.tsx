@@ -8,15 +8,17 @@ export const metadata = {
 
 export default function ChatPage() {
   return (
-    <div className="min-h-screen flex flex-col">
+    // From `sm` up the page is exactly one viewport tall, so the chat takes
+    // whatever the 56px header and the title leave, with no page scroll.
+    <div className="flex min-h-dvh flex-col sm:h-dvh">
       <AppHeader />
-      <div className="border-b border-border px-4 py-4 sm:px-6 sm:py-5">
-        <h1 className="text-xl font-semibold">Assistente de Cartões</h1>
-        <p className="text-sm text-muted-foreground mt-1">
+      <div className="shrink-0 border-b px-4 py-4 sm:px-6">
+        <h1 className="text-xl font-medium">Assistente de Cartões</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
           Pergunte sobre qualquer cartão ou peça recomendações personalizadas.
         </p>
       </div>
-      <div className="flex-1 flex flex-col">
+      <div className="flex min-h-0 flex-1 flex-col">
         <ChatInterface />
       </div>
     </div>

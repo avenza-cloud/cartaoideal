@@ -19,7 +19,7 @@ export function CardDetailBackLink() {
   return (
     <Link
       href={href}
-      className="mb-4 hidden items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
+      className="mb-4 hidden items-center gap-1.5 text-xs text-muted-foreground transition-colors duration-150 hover:text-foreground md:inline-flex"
     >
       <ArrowLeft className="h-3.5 w-3.5" />
       {from ? "Voltar para análise" : "Todos os cartões"}

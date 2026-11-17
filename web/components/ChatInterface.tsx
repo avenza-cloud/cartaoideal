@@ -19,7 +19,6 @@ import {
 import { useCompareStore, useProfileStore } from "@/lib/store";
 import { fetchRecommendations } from "@/lib/recommend-client";
 import {
-  CreditCard,
   Coins,
   ChevronDown,
   ChevronUp,
@@ -36,13 +35,8 @@ import {
 import Link from "next/link";
 import type { UIMessage } from "ai";
 import type { FeeWaiverRule } from "@/types/cards";
-import {
-  feeWaiverBadgeClassName,
-  feeWaiverRuleBadgeVariant,
-  feeWaiverRuleDisplayLabel,
-} from "@/lib/fee-waiver-badges";
-import { cardArtSrc } from "@/lib/card-display";
-import { CardArtPlaceholder } from "@/components/CardArtPlaceholder";
+import { feeWaiverRuleBadgeVariant, feeWaiverRuleDisplayLabel } from "@/lib/fee-waiver-badges";
+import { CardArt, DataRow, LeadFact, type Stat, StatRow, Tag } from "@/components/card";
 import { cn } from "@/lib/utils";
 
 interface ChatInterfaceProps {
@@ -91,6 +85,8 @@ interface CardItem {
   concierge?: boolean;
 }
 
+type Anuidade = number | string | null | undefined;
+
 function hasLounge(lounge: CardItem["lounge"]) {
   return typeof lounge === "boolean" ? lounge : !!lounge?.has_lounge_access;
 }
@@ -102,10 +98,41 @@ function moneyLabel(value: number) {
   })}/mês`;
 }
 
-function feeLabel(anuidade: number | string) {
-  if (anuidade === 0 || anuidade === "free") return "Grátis";
+function isFree(anuidade: Anuidade) {
+  return anuidade === 0 || anuidade === "free";
+}
+
+function feeLabel(anuidade: Anuidade) {
+  if (anuidade === null || anuidade === undefined) return "—";
+  if (isFree(anuidade)) return "Grátis";
   if (typeof anuidade === "number") return `R$${anuidade.toLocaleString("pt-BR")}/ano`;
   return String(anuidade);
+}
+
+function signTone(value: number | undefined): "default" | "positive" | "negative" {
+  if (value === undefined || value === 0) return "default";
+  return value > 0 ? "positive" : "negative";
+}
+
+function signClass(value: number | undefined) {
+  const tone = signTone(value);
+  if (tone === "positive") return "text-positive";
+  if (tone === "negative") return "text-negative";
+  return "";
+}
+
+function netMonthly(card: Pick<CardItem, "valorEstimado">) {
+  const value = card?.valorEstimado?.valorLiquidoMensal;
+  return typeof value === "number" ? value : undefined;
+}
+
+/** Index of the single highest value, or null when there is no clear best. */
+function bestIndex(values: Array<number | undefined>): number | null {
+  const defined = values.filter((value): value is number => typeof value === "number");
+  if (defined.length < 2) return null;
+  const max = Math.max(...defined);
+  if (defined.filter((value) => value === max).length !== 1) return null;
+  return values.indexOf(max);
 }
 
 function messageText(message: UIMessage) {
@@ -172,21 +199,16 @@ function groupedHistory(history: ChatHistoryItem[]) {
 }
 
 function ChatMessageBubble({ message }: { message: UIMessage }) {
+  const isUser = message.role === "user";
   return (
     <Message
-      from={message.role === "user" ? "user" : "assistant"}
-      className={message.role === "user" ? "justify-end" : ""}
+      from={isUser ? "user" : "assistant"}
+      data-testid={isUser ? undefined : "chat-message-assistant"}
     >
-      <MessageContent
-        className={
-          message.role === "user"
-            ? "max-w-[86%] rounded-2xl bg-muted px-3.5 py-2 sm:max-w-[78%]"
-            : "w-full"
-        }
-      >
+      <MessageContent className={isUser ? "max-w-[86%] sm:max-w-[78%]" : "w-full"}>
         {message.parts.map((part, i) => {
           if (isTextUIPart(part)) {
-            return message.role === "user" ? (
+            return isUser ? (
               <span key={i} className="text-sm">
                 {part.text}
               </span>
@@ -213,86 +235,120 @@ function ChatMessageBubble({ message }: { message: UIMessage }) {
   );
 }
 
-/* ─── Mini card chip used in list artifacts ─── */
-function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
+/* ─── Mini card used in list artifacts ─── */
+function MiniCard({ card, rank, best }: { card: CardItem; rank?: number; best?: boolean }) {
   const { ids, add, remove, canAdd } = useCompareStore();
   const selected = ids.includes(card.id);
-  const artSrc = cardArtSrc(card.cardArtUrl);
   const badges = (card.regrasIsencao ?? []).slice(0, 3);
   const annualFeeHint = typeof card.anuidade === "number" ? card.anuidade : undefined;
+  const net = netMonthly(card);
+  const grossReturn = card.valorEstimado?.retornoBrutoMensal;
+
+  // The fee leads when there is no estimate, so it is not repeated below.
+  const stats: Stat[] = [];
+  if (net !== undefined) {
+    stats.push({
+      label: "Anuidade",
+      value: feeLabel(card.anuidade),
+      tone: isFree(card.anuidade) ? "positive" : "default",
+    });
+  }
+  stats.push(
+    {
+      label: "Retorno",
+      value:
+        typeof grossReturn === "number"
+          ? moneyLabel(grossReturn)
+          : (card.retornoFinanceiro?.earning_summary ?? "—"),
+    },
+    { label: "Lounge", value: hasLounge(card.lounge) ? "Sim" : "Não" }
+  );
+
   return (
-    <div className="flex items-start gap-2 rounded-xl border bg-card/60 px-2.5 py-2 text-xs">
+    <div className="rounded-md border bg-card p-3">
       <Link
         href={`/cartoes/${card.id}`}
-        className="flex min-w-0 flex-1 items-start gap-2.5 transition-colors hover:text-foreground"
+        className="group/mini flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-3"
       >
-        {rank !== undefined && (
-          <span className="w-4 shrink-0 font-mono text-[10px] text-muted-foreground">#{rank}</span>
-        )}
-        <div className="flex h-8 w-12 shrink-0 items-center justify-center rounded-md border bg-zinc-950">
-          {artSrc ? (
-            <img
-              src={artSrc}
-              alt={card.altText ?? card.nome}
-              className="max-h-6 max-w-[40px] object-contain"
-              loading="lazy"
-            />
-          ) : (
-            <CardArtPlaceholder compact issuerRaw={card.emissor} displayName={card.nome} />
+        <div className="flex min-w-0 flex-1 items-center gap-3">
+          {rank !== undefined && (
+            <span className="num shrink-0 text-xs text-muted-foreground">#{rank}</span>
           )}
-        </div>
-        <div className="min-w-0 flex-1">
-          <p className="truncate font-medium leading-tight">{card.nome}</p>
-          <p className="truncate text-[10px] text-muted-foreground">{card.emissor}</p>
-          {badges.length > 0 && (
-            <div className="mt-1 flex flex-wrap gap-1">
-              {badges.map((rule, index) => (
-                <span
-                  key={`${rule.category}-${rule.threshold_brl ?? index}`}
-                  className={feeWaiverBadgeClassName(
-                    feeWaiverRuleBadgeVariant(rule, annualFeeHint)
-                  )}
-                >
-                  {feeWaiverRuleDisplayLabel(rule, annualFeeHint)}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-        <div className="hidden shrink-0 text-right min-[390px]:block">
-          <p className="font-mono text-[10px] text-muted-foreground">{feeLabel(card.anuidade)}</p>
-          {card.valorEstimado?.valorLiquidoMensal !== undefined ? (
-            <p
-              className={`font-mono text-[10px] ${
-                card.valorEstimado.valorLiquidoMensal >= 0 ? "text-emerald-500" : "text-rose-500"
-              }`}
-            >
-              {moneyLabel(card.valorEstimado.valorLiquidoMensal)}
+          <CardArt
+            artUrl={card.cardArtUrl}
+            issuerRaw={card.emissor ?? ""}
+            displayName={card.nome}
+            compact
+            className="h-10 w-16"
+          />
+          <div className="min-w-0 flex-1">
+            <p className="flex items-center gap-1 text-sm font-medium leading-tight">
+              <span className="truncate group-hover/mini:underline">{card.nome}</span>
+              <ArrowUpRight className="h-3 w-3 shrink-0 text-muted-foreground" />
             </p>
-          ) : card.pontuacao !== undefined ? (
-            <p className="font-mono text-[10px] text-foreground/60">{card.pontuacao}pts</p>
-          ) : null}
-          {card.pontuacao !== undefined && card.valorEstimado?.valorLiquidoMensal !== undefined && (
-            <p className="font-mono text-[10px] text-foreground/60">{card.pontuacao}/100</p>
-          )}
+            <p className="truncate text-xs text-muted-foreground">{card.emissor}</p>
+          </div>
         </div>
-        <ArrowUpRight className="h-3 w-3 shrink-0 text-muted-foreground/40" />
-      </Link>
-      <button
-        type="button"
-        title={selected ? "Remover da comparação" : "Adicionar à comparação"}
-        disabled={!selected && !canAdd()}
-        onClick={() => (selected ? remove(card.id) : add({ id: card.id, name: card.nome }))}
-        className={cn(
-          "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border transition-colors",
-          selected
-            ? "bg-foreground text-background"
-            : "text-muted-foreground hover:text-foreground",
-          !selected && !canAdd() && "opacity-40"
+        {net !== undefined ? (
+          <LeadFact
+            value={moneyLabel(net)}
+            label="Valor líquido"
+            marked={best}
+            tone={signTone(net)}
+            size="sm"
+            className="shrink-0 sm:text-right"
+          />
+        ) : (
+          <LeadFact
+            value={feeLabel(card.anuidade)}
+            label="Anuidade"
+            tone={isFree(card.anuidade) ? "positive" : "default"}
+            size="sm"
+            className="shrink-0 sm:text-right"
+          />
         )}
-      >
-        {selected ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
-      </button>
+      </Link>
+
+      <StatRow stats={stats} className="mt-3" />
+
+      <div className="mt-3 flex items-end justify-between gap-2">
+        <div className="flex min-w-0 flex-wrap gap-1">
+          {card.pontuacao !== undefined && (
+            <Tag variant="quiet">
+              <span className="num">
+                {card.pontuacao}
+                {net !== undefined ? "/100" : "pts"}
+              </span>
+            </Tag>
+          )}
+          {badges.map((rule, index) => (
+            <Tag
+              key={`${rule.category}-${rule.threshold_brl ?? index}`}
+              variant={
+                feeWaiverRuleBadgeVariant(rule, annualFeeHint) === "paid_fee_default"
+                  ? "outline"
+                  : "positive"
+              }
+            >
+              {feeWaiverRuleDisplayLabel(rule, annualFeeHint)}
+            </Tag>
+          ))}
+        </div>
+        <button
+          type="button"
+          title={selected ? "Remover da comparação" : "Adicionar à comparação"}
+          disabled={!selected && !canAdd()}
+          onClick={() => (selected ? remove(card.id) : add({ id: card.id, name: card.nome }))}
+          className={cn(
+            "flex h-7 w-7 shrink-0 items-center justify-center rounded-md border transition-colors duration-150 disabled:opacity-50",
+            selected
+              ? "border-foreground bg-foreground text-background"
+              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+          )}
+        >
+          {selected ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
+        </button>
+      </div>
     </div>
   );
 }
@@ -301,10 +357,16 @@ function MiniCard({ card, rank }: { card: CardItem; rank?: number }) {
 function CardListArtifact({ output }: { output: unknown }) {
   const cards = Array.isArray(output) ? (output as CardItem[]) : [];
   if (!cards.length) return null;
+  const best = bestIndex(cards.map(netMonthly));
   return (
-    <div className="mt-2 space-y-1">
+    <div className="mt-2 space-y-2">
       {cards.map((c, i) => (
-        <MiniCard key={c.id} card={c} rank={c.pontuacao !== undefined ? i + 1 : undefined} />
+        <MiniCard
+          key={c.id}
+          card={c}
+          rank={c.pontuacao !== undefined ? i + 1 : undefined}
+          best={best === i}
+        />
       ))}
     </div>
   );
@@ -323,34 +385,32 @@ function CardCompareArtifact({ output }: { output: unknown }) {
           beneficiosMensais?: number;
           origemRetorno?: string | null;
         } | null;
+        vencedor?: { id?: string; nome?: string } | null;
         perfilUsado?: unknown;
         naoEncontrados?: string[];
       }
     | CardItem[];
-  const cards = Array.isArray(payload) ? payload : (payload.cards ?? []);
+  const cards = Array.isArray(payload) ? payload : (payload?.cards ?? []);
   if (cards.length < 2) return null;
   const delta = !Array.isArray(payload) ? payload.delta : null;
+  // The engine names the winner (same rule as the ranking). The delta is only
+  // a fallback for payloads from before that key existed.
+  const namedWinnerId = !Array.isArray(payload) ? payload.vencedor?.id : undefined;
   const winner =
-    cards[1]?.valorEstimado?.valorLiquidoMensal !== undefined &&
+    (namedWinnerId ? cards.find((c) => c.id === namedWinnerId) : undefined) ??
+    (cards[1]?.valorEstimado?.valorLiquidoMensal !== undefined &&
     cards[0]?.valorEstimado?.valorLiquidoMensal !== undefined
       ? delta?.valorLiquidoMensal && delta.valorLiquidoMensal > 0
         ? cards[1]
         : cards[0]
-      : null;
+      : null);
 
+  // The net value is each column's lead number, so it is not repeated as a row.
   const rows: {
     label: string;
     key: (c: CardItem) => string;
     numericKey?: (c: CardItem) => number | undefined;
   }[] = [
-    {
-      label: "Valor líquido",
-      key: (c) =>
-        c.valorEstimado?.valorLiquidoMensal !== undefined
-          ? moneyLabel(c.valorEstimado.valorLiquidoMensal)
-          : "—",
-      numericKey: (c) => c.valorEstimado?.valorLiquidoMensal,
-    },
     {
       label: "Retorno",
       key: (c) =>
@@ -380,7 +440,12 @@ function CardCompareArtifact({ output }: { output: unknown }) {
           ? -c.valorEstimado.anuidadeEfetivaMensal
           : undefined,
     },
-    { label: "Anuidade", key: (c) => feeLabel(c.anuidade) },
+    {
+      label: "Anuidade",
+      key: (c) => feeLabel(c.anuidade),
+      numericKey: (c) =>
+        isFree(c.anuidade) ? 0 : typeof c.anuidade === "number" ? -c.anuidade : undefined,
+    },
     { label: "Lounge", key: (c) => (hasLounge(c.lounge) ? "Sim" : "Não") },
     { label: "Pontos", key: (c) => (c.pontos ? "Sim" : "Não") },
     {
@@ -396,128 +461,118 @@ function CardCompareArtifact({ output }: { output: unknown }) {
   return (
     <div className="mt-2 space-y-2">
       {(delta || winner) && (
-        <div className="rounded-xl border bg-card/65 p-3 text-xs">
+        <div className="rounded-md border bg-card px-3 py-2">
           {winner && (
-            <p className="font-semibold">
-              Melhor no cálculo: <span className="text-foreground">{winner.nome}</span>
+            <p className="py-1 text-sm">
+              Melhor no cálculo: <span className="font-medium">{winner.nome}</span>
             </p>
           )}
           {delta && (
-            <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4">
-              <MiniMetric
+            <div>
+              <DataRow
                 label="Delta/mês"
-                value={moneyLabel(delta.valorLiquidoMensal ?? 0)}
-                numericValue={delta.valorLiquidoMensal}
-                detail={delta.origemRetorno ?? undefined}
-                strong
+                value={
+                  <span className={signClass(delta.valorLiquidoMensal)}>
+                    {moneyLabel(delta.valorLiquidoMensal ?? 0)}
+                  </span>
+                }
+                detail={delta.origemRetorno}
               />
-              <MiniMetric
+              <DataRow
                 label="Delta/ano"
-                value={`R$${Math.round(delta.valorLiquidoAnual ?? 0).toLocaleString("pt-BR")}`}
-                numericValue={delta.valorLiquidoAnual}
+                value={
+                  <span className={signClass(delta.valorLiquidoAnual)}>
+                    {`R$${Math.round(delta.valorLiquidoAnual ?? 0).toLocaleString("pt-BR")}`}
+                  </span>
+                }
               />
-              <MiniMetric
+              <DataRow
                 label="Retorno"
-                value={moneyLabel(delta.retornoBrutoMensal ?? 0)}
-                numericValue={delta.retornoBrutoMensal}
-                detail={delta.origemRetorno ?? undefined}
+                value={
+                  <span className={signClass(delta.retornoBrutoMensal)}>
+                    {moneyLabel(delta.retornoBrutoMensal ?? 0)}
+                  </span>
+                }
               />
-              <MiniMetric
+              <DataRow
                 label="Anuidade"
-                value={moneyLabel(-(delta.anuidadeMensal ?? 0))}
-                numericValue={-(delta.anuidadeMensal ?? 0)}
+                value={
+                  <span className={signClass(-(delta.anuidadeMensal ?? 0))}>
+                    {moneyLabel(-(delta.anuidadeMensal ?? 0))}
+                  </span>
+                }
               />
             </div>
           )}
         </div>
       )}
-      <div className="overflow-x-auto rounded-xl border text-xs">
+      <div className="overflow-x-auto rounded-md border bg-card text-xs">
         <table className="w-full min-w-[420px]">
           <thead>
-            <tr className="border-b bg-muted/20">
-              <th className="px-3 py-2 text-left font-normal text-muted-foreground">—</th>
+            <tr className="border-b align-top">
+              <th className="px-3 py-3 text-left font-normal text-muted-foreground">—</th>
               {cards.map((c) => {
                 const isWinner = winner?.id === c.id;
+                const net = netMonthly(c);
                 return (
-                  <th
-                    key={c.id}
-                    className={cn(
-                      "px-3 py-2 text-left font-medium",
-                      isWinner && "text-emerald-400"
-                    )}
-                  >
-                    <Link href={`/cartoes/${c.id}`} className="hover:underline">
-                      {c.nome}
-                      {isWinner && (
-                        <span className="ml-1 font-mono text-[9px] text-emerald-400/70">★</span>
-                      )}
+                  <th key={c.id} className="px-3 py-3 text-left font-normal">
+                    <Link href={`/cartoes/${c.id}`} className="group/cmp flex items-center gap-2">
+                      <CardArt
+                        artUrl={c.cardArtUrl}
+                        issuerRaw={c.emissor ?? ""}
+                        displayName={c.nome}
+                        compact
+                        className="h-8 w-12"
+                      />
+                      <span className="min-w-0">
+                        <span className="block text-sm font-medium leading-tight group-hover/cmp:underline">
+                          {c.nome}
+                          {isWinner && <span className="ml-1 text-muted-foreground">★</span>}
+                        </span>
+                        <span className="block text-xs text-muted-foreground">{c.emissor}</span>
+                      </span>
                     </Link>
+                    {net !== undefined ? (
+                      <LeadFact
+                        value={moneyLabel(net)}
+                        label="Valor líquido"
+                        marked={isWinner}
+                        tone={signTone(net)}
+                        size="sm"
+                        className="mt-2"
+                      />
+                    ) : (
+                      <LeadFact
+                        value={feeLabel(c.anuidade)}
+                        label="Anuidade"
+                        size="sm"
+                        className="mt-2"
+                      />
+                    )}
                   </th>
                 );
               })}
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => (
-              <tr key={row.label} className="border-b last:border-0 odd:bg-muted/5">
-                <td className="px-3 py-1.5 text-muted-foreground">{row.label}</td>
-                {cards.map((c) => {
-                  const num = row.numericKey?.(c);
-                  return (
-                    <td
-                      key={c.id}
-                      className={cn("px-3 py-1.5 font-mono", row.numericKey ? moneyColor(num) : "")}
-                    >
-                      {row.key(c)}
+            {rows.map((row) => {
+              const best = row.numericKey ? bestIndex(cards.map(row.numericKey)) : null;
+              return (
+                <tr key={row.label} className="border-b last:border-0">
+                  <td className="px-3 py-1.5 text-muted-foreground">{row.label}</td>
+                  {cards.map((c, i) => (
+                    <td key={c.id} className="num px-3 py-1.5">
+                      <span className={cn(best === i && "bg-mark px-1 text-mark-foreground")}>
+                        {row.key(c)}
+                      </span>
                     </td>
-                  );
-                })}
-              </tr>
-            ))}
+                  ))}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
-    </div>
-  );
-}
-
-function moneyColor(value: number | undefined): string {
-  if (value === undefined) return "";
-  if (value > 0) return "text-emerald-400";
-  if (value < 0) return "text-rose-400";
-  return "text-muted-foreground";
-}
-
-function MiniMetric({
-  label,
-  value,
-  strong,
-  numericValue,
-  detail,
-}: {
-  label: string;
-  value: string;
-  strong?: boolean;
-  numericValue?: number;
-  detail?: string;
-}) {
-  return (
-    <div className="rounded-lg border bg-background/40 px-2.5 py-1.5">
-      <p className="text-[10px] text-muted-foreground">{label}</p>
-      <p
-        className={cn(
-          "font-mono text-xs",
-          strong && "font-semibold",
-          numericValue !== undefined && moneyColor(numericValue)
-        )}
-      >
-        {value}
-      </p>
-      {detail && (
-        <span className="mt-1 inline-flex max-w-full rounded border bg-muted/30 px-1.5 py-0.5 text-[9px] leading-none text-muted-foreground">
-          {detail}
-        </span>
-      )}
     </div>
   );
 }
@@ -539,73 +594,68 @@ function CardDetailArtifact({ output }: { output: unknown }) {
     altText?: string;
   };
   if (!c?.id) return null;
-  const artSrc = cardArtSrc(c.cardArtUrl);
+  const net = c.valorEstimado ? (c.valorEstimado.valorLiquidoMensal ?? 0) : undefined;
+
+  const stats: Stat[] = [];
+  if (net !== undefined) {
+    stats.push({
+      label: "Anuidade",
+      value: feeLabel(c.anuidade),
+      tone: isFree(c.anuidade) ? "positive" : "default",
+    });
+  }
+  if (c.valorEstimado) {
+    stats.push({
+      label: "Retorno bruto",
+      value: moneyLabel(c.valorEstimado.retornoBrutoMensal ?? 0),
+    });
+  }
+  stats.push({ label: "Lounge", value: hasLounge(c.lounge) ? "Sim" : "Não" });
 
   return (
-    <div className="mt-2 rounded-xl border bg-card/60 p-3 text-xs">
-      <div className="flex items-center gap-3 mb-3">
-        <div className="flex h-10 w-16 items-center justify-center rounded-lg border bg-zinc-950">
-          {artSrc ? (
-            <img
-              src={artSrc}
-              alt={c.altText ?? c.nome}
-              className="max-h-8 max-w-[52px] object-contain"
-            />
-          ) : (
-            <CardArtPlaceholder compact issuerRaw={c.emissor} displayName={c.nome} />
-          )}
-        </div>
-        <div className="min-w-0">
-          <p className="font-semibold">{c.nome}</p>
-          <p className="text-[10px] text-muted-foreground">{c.emissor}</p>
-        </div>
-        <Link
-          href={`/cartoes/${c.id}`}
-          className="ml-auto shrink-0 rounded-lg border px-2.5 py-1 text-[10px] text-muted-foreground hover:text-foreground transition-colors"
-        >
-          Ver mais
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-2 gap-2">
-        <div className="rounded-lg border bg-background/40 px-2.5 py-1.5">
-          <p className="text-[10px] text-muted-foreground">Anuidade</p>
-          <p className="font-mono font-medium">{feeLabel(c.anuidade)}</p>
-        </div>
-        <div className="rounded-lg border bg-background/40 px-2.5 py-1.5">
-          <p className="text-[10px] text-muted-foreground">Lounge</p>
-          <p className="font-mono font-medium">{hasLounge(c.lounge) ? "Sim" : "Não"}</p>
+    <div className="mt-2 rounded-md border bg-card p-3">
+      <div className="flex items-center gap-3">
+        <CardArt
+          artUrl={c.cardArtUrl}
+          issuerRaw={c.emissor ?? ""}
+          displayName={c.nome}
+          compact
+          className="h-10 w-16"
+        />
+        <div className="min-w-0 flex-1">
+          <p className="truncate text-sm font-medium leading-tight">{c.nome}</p>
+          <p className="truncate text-xs text-muted-foreground">{c.emissor}</p>
         </div>
       </div>
 
-      {c.valorEstimado && (
-        <div className="mt-2 grid grid-cols-2 gap-2">
-          <div className="rounded-lg border bg-background/40 px-2.5 py-1.5">
-            <p className="text-[10px] text-muted-foreground">Valor líquido</p>
-            <p
-              className={`font-mono font-medium ${
-                (c.valorEstimado.valorLiquidoMensal ?? 0) >= 0
-                  ? "text-emerald-500"
-                  : "text-rose-500"
-              }`}
-            >
-              {moneyLabel(c.valorEstimado.valorLiquidoMensal ?? 0)}
-            </p>
-          </div>
-          <div className="rounded-lg border bg-background/40 px-2.5 py-1.5">
-            <p className="text-[10px] text-muted-foreground">Retorno bruto</p>
-            <p className="font-mono font-medium">
-              {moneyLabel(c.valorEstimado.retornoBrutoMensal ?? 0)}
-            </p>
-          </div>
-        </div>
+      {net !== undefined ? (
+        <LeadFact
+          value={moneyLabel(net)}
+          label="Valor líquido"
+          tone={net >= 0 ? "positive" : "negative"}
+          className="mt-3"
+        />
+      ) : (
+        <LeadFact
+          value={feeLabel(c.anuidade)}
+          label="Anuidade"
+          tone={isFree(c.anuidade) ? "positive" : "default"}
+          className="mt-3"
+        />
       )}
+
+      <StatRow stats={stats} className="mt-3" />
 
       {c.retornoFinanceiro?.earning_summary && (
-        <p className="mt-2 text-[10px] text-muted-foreground">
-          {c.retornoFinanceiro.earning_summary}
-        </p>
+        <p className="mt-2 text-xs text-muted-foreground">{c.retornoFinanceiro.earning_summary}</p>
       )}
+
+      <Link
+        href={`/cartoes/${c.id}`}
+        className="mt-3 inline-flex h-7 items-center rounded-md border px-2.5 text-xs font-medium transition-colors duration-150 hover:bg-muted"
+      >
+        Ver mais
+      </Link>
     </div>
   );
 }
@@ -640,63 +690,61 @@ function waiverRuleLabel(rule: FeeWaiverRule) {
 }
 
 function WaiverMiniCard({ card, faltam }: { card: WaiverCardItem; faltam?: number }) {
-  const artSrc = cardArtSrc(card.cardArtUrl);
   const visibleRules = (card.regrasIsencao ?? []).slice(0, 2);
   return (
     <Link
       href={`/cartoes/${card.id}`}
-      className="flex items-start gap-2.5 rounded-xl border bg-card/60 px-2.5 py-2 text-xs transition-colors hover:text-foreground"
+      className="group/waiver block rounded-md border bg-card p-3 transition-colors duration-150 hover:border-foreground"
     >
-      <div className="flex h-8 w-12 shrink-0 items-center justify-center rounded-md border bg-zinc-950">
-        {artSrc ? (
-          <img
-            src={artSrc}
-            alt={card.altText ?? card.nome}
-            className="max-h-6 max-w-[40px] object-contain"
-            loading="lazy"
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-3">
+        <div className="flex min-w-0 flex-1 items-center gap-3">
+          <CardArt
+            artUrl={card.cardArtUrl}
+            issuerRaw={card.emissor ?? ""}
+            displayName={card.nome}
+            compact
+            className="h-10 w-16"
           />
-        ) : (
-          <CardArtPlaceholder compact issuerRaw={card.emissor} displayName={card.nome} />
-        )}
-      </div>
-      <div className="min-w-0 flex-1">
-        <p className="truncate font-medium leading-tight">{card.nome}</p>
-        <p className="truncate text-[10px] text-muted-foreground">{card.emissor}</p>
-        {visibleRules.length > 0 && (
-          <div className="mt-1 flex flex-wrap gap-1">
-            {visibleRules.map((rule, index) => {
-              const Icon =
-                rule.category === "investment"
-                  ? WalletCards
-                  : rule.category === "cashback"
-                    ? Coins
-                    : rule.category === "miles"
-                      ? Plane
-                      : ReceiptText;
-              return (
-                <span
-                  key={`${rule.category}-${rule.threshold_brl ?? index}`}
-                  className="inline-flex min-w-0 items-center gap-1 rounded-md border bg-background/40 px-1.5 py-0.5 text-[9px] text-muted-foreground"
-                >
-                  <Icon className="h-2.5 w-2.5 shrink-0" />
-                  <span className="truncate">{waiverRuleLabel(rule)}</span>
-                </span>
-              );
-            })}
+          <div className="min-w-0 flex-1">
+            <p className="flex items-center gap-1 text-sm font-medium leading-tight">
+              <span className="truncate group-hover/waiver:underline">{card.nome}</span>
+              <ArrowUpRight className="h-3 w-3 shrink-0 text-muted-foreground" />
+            </p>
+            <p className="truncate text-xs text-muted-foreground">{card.emissor}</p>
           </div>
-        )}
+        </div>
+        <div className="shrink-0 sm:text-right">
+          <LeadFact value={feeLabel(card.anuidade)} label="Anuidade" size="sm" />
+          {faltam !== undefined ? (
+            <p className="num mt-1 text-xs">faltam R${faltam.toLocaleString("pt-BR")}</p>
+          ) : (
+            <p className="mt-1 text-xs text-positive">✓ acessível</p>
+          )}
+        </div>
       </div>
-      <div className="shrink-0 text-right">
-        <p className="font-mono text-[10px] text-muted-foreground">{feeLabel(card.anuidade)}</p>
-        {faltam !== undefined ? (
-          <p className="font-mono text-[10px] text-rose-400">
-            faltam R${faltam.toLocaleString("pt-BR")}
-          </p>
-        ) : (
-          <p className="font-mono text-[10px] text-emerald-400">✓ acessível</p>
-        )}
-      </div>
-      <ArrowUpRight className="h-3 w-3 shrink-0 text-muted-foreground/40" />
+      {visibleRules.length > 0 && (
+        <div className="mt-3 flex min-w-0 flex-wrap gap-1">
+          {visibleRules.map((rule, index) => {
+            const Icon =
+              rule.category === "investment"
+                ? WalletCards
+                : rule.category === "cashback"
+                  ? Coins
+                  : rule.category === "miles"
+                    ? Plane
+                    : ReceiptText;
+            return (
+              <Tag
+                key={`${rule.category}-${rule.threshold_brl ?? index}`}
+                className="min-w-0 max-w-full shrink"
+              >
+                <Icon className="h-3 w-3 shrink-0" />
+                <span className="num truncate">{waiverRuleLabel(rule)}</span>
+              </Tag>
+            );
+          })}
+        </div>
+      )}
     </Link>
   );
 }
@@ -717,7 +765,7 @@ function InvestmentWaiverArtifact({ output }: { output: unknown }) {
 
   if (flat) {
     return (
-      <div className="mt-2 space-y-1">
+      <div className="mt-2 space-y-2">
         {flat.map((c) => (
           <WaiverMiniCard key={c.id} card={c} />
         ))}
@@ -726,11 +774,11 @@ function InvestmentWaiverArtifact({ output }: { output: unknown }) {
   }
 
   return (
-    <div className="mt-2 space-y-3">
+    <div className="mt-2 space-y-4">
       {accessible.length > 0 && (
-        <div className="space-y-1">
-          <p className="text-[10px] font-medium uppercase tracking-widest text-emerald-400/80">
-            Acessíveis agora ({accessible.length})
+        <div className="space-y-2">
+          <p className="text-xs font-medium text-muted-foreground">
+            Acessíveis agora <span className="num">({accessible.length})</span>
           </p>
           {accessible.map((c) => (
             <WaiverMiniCard key={c.id} card={c} />
@@ -742,9 +790,9 @@ function InvestmentWaiverArtifact({ output }: { output: unknown }) {
           const nearby = needsMore.filter((c) => (c.faltam ?? Infinity) <= 100_000);
           if (!nearby.length) return null;
           return (
-            <div className="space-y-1">
-              <p className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
-                Precisam de mais investimento ({nearby.length})
+            <div className="space-y-2">
+              <p className="text-xs font-medium text-muted-foreground">
+                Precisam de mais investimento <span className="num">({nearby.length})</span>
               </p>
               {nearby.map((c) => (
                 <WaiverMiniCard key={c.id} card={c} faltam={c.faltam} />
@@ -777,7 +825,7 @@ function ToolArtifact({
   const isLoading = state === "input-streaming" || state === "input";
   if (isLoading) {
     return (
-      <p className="mt-1 text-xs text-muted-foreground animate-pulse">
+      <p className="mt-1 text-xs text-muted-foreground">
         {TOOL_LOADING_LABELS[toolName] ?? "Processando..."}
       </p>
     );
@@ -799,6 +847,9 @@ function ToolArtifact({
   }
   return null;
 }
+
+const QUIET_BUTTON =
+  "flex items-center gap-1.5 text-xs text-muted-foreground transition-colors duration-150 hover:text-foreground";
 
 /* ─── Main component ─── */
 export function ChatInterface({ variant = "full", className }: ChatInterfaceProps) {
@@ -896,13 +947,9 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
 
   const conversationContent = (
     <Conversation className="h-full overflow-y-auto px-4">
-      <ConversationContent className="mx-auto max-w-2xl py-5 space-y-3">
+      <ConversationContent className="mx-auto max-w-2xl gap-5 px-0 py-5">
         {hiddenCount > 0 && (
-          <button
-            type="button"
-            onClick={() => setExpanded(true)}
-            className="flex items-center gap-1.5 text-[11px] text-muted-foreground/50 hover:text-muted-foreground transition-colors"
-          >
+          <button type="button" onClick={() => setExpanded(true)} className={QUIET_BUTTON}>
             <ChevronUp className="h-3 w-3" />
             {hiddenCount} mensagen{hiddenCount !== 1 ? "s" : ""} anteriores
           </button>
@@ -910,12 +957,18 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
         {(visibleMessages as UIMessage[]).map((message) => (
           <ChatMessageBubble key={message.id} message={message} />
         ))}
-        {expanded && messages.length > 2 && (
-          <button
-            type="button"
-            onClick={() => setExpanded(false)}
-            className="flex items-center gap-1.5 text-[11px] text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+        {isStreaming && (
+          <div
+            data-testid="chat-loading"
+            role="status"
+            aria-label="Carregando"
+            className="flex h-4 items-center"
           >
+            <span className="h-2 w-2 animate-pulse bg-foreground" />
+          </div>
+        )}
+        {expanded && messages.length > 2 && (
+          <button type="button" onClick={() => setExpanded(false)} className={QUIET_BUTTON}>
             <ChevronDown className="h-3 w-3" />
             Recolher
           </button>
@@ -931,7 +984,9 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
       <motion.div
         className={cn(
           "flex flex-col overflow-hidden",
-          !isHero && "min-h-[520px] flex-1 sm:h-[calc(100vh-120px)]",
+          // The chat page is a viewport-tall flex column from `sm` up, so this
+          // fills what the header and title leave; phones keep a usable floor.
+          !isHero && "min-h-[520px] flex-1 sm:min-h-0",
           className
         )}
         animate={isHero ? { height: hasMessages ? 420 : "auto" } : {}}
@@ -941,9 +996,9 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
           {hasMessages && (
             <motion.div
               key="compact-convo"
-              className="flex-1 min-h-0 opacity-60"
+              className="min-h-0 flex-1"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
@@ -967,7 +1022,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
               }}
               onExpand={hasMessages ? () => setIsFullscreen(true) : undefined}
             />
-            <p className="mt-1.5 text-center text-[10px] text-muted-foreground/40">
+            <p className="mt-2 text-center text-2xs text-muted-foreground">
               Dados podem conter imprecisões. Confirme com o emissor.
             </p>
           </div>
@@ -978,15 +1033,15 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
       <AnimatePresence>
         {isFullscreen && (
           <motion.div
-            className="fixed inset-0 z-[60] flex flex-col bg-background"
-            initial={{ opacity: 0, scale: 0.98, y: 16 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.98, y: 8 }}
-            transition={{ duration: 0.26, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="fixed inset-0 z-[60] flex flex-col border border-foreground bg-popover text-popover-foreground"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             {/* Header */}
-            <div className="flex shrink-0 items-center justify-between border-b border-border/40 px-4 py-2.5">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/60">
+            <div className="flex h-14 shrink-0 items-center justify-between gap-3 border-b px-4">
+              <p className="min-w-0 truncate text-sm font-medium">
                 {selectedHistory ? selectedHistory.title : "Chat"}
               </p>
               <button
@@ -995,7 +1050,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
                   setIsFullscreen(false);
                   setSelectedHistory(null);
                 }}
-                className="flex h-7 w-7 items-center justify-center rounded-lg border border-border/50 text-muted-foreground transition-colors hover:border-border hover:text-foreground"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground"
               >
                 <X className="h-3.5 w-3.5" />
               </button>
@@ -1004,7 +1059,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
             {/* Conversation */}
             {selectedHistory ? (
               <div className="min-h-0 flex-1 overflow-y-auto px-4">
-                <div className="mx-auto max-w-2xl space-y-3 py-5">
+                <div className="mx-auto flex max-w-2xl flex-col gap-5 py-5">
                   {selectedHistory.messages.map((msg) => (
                     <ChatMessageBubble key={msg.id} message={msg as UIMessage} />
                   ))}
@@ -1016,9 +1071,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
                   conversationContent
                 ) : (
                   <div className="flex h-full items-center justify-center">
-                    <p className="font-mono text-[11px] text-muted-foreground/30">
-                      Nenhuma mensagem ainda.
-                    </p>
+                    <p className="text-sm text-muted-foreground">Nenhuma mensagem ainda.</p>
                   </div>
                 )}
               </div>
@@ -1027,7 +1080,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
             {/* Input */}
             <div className="shrink-0 px-4 pb-4 pt-2">
               {selectedHistory && (
-                <p className="mx-auto mb-2 max-w-2xl font-mono text-[10px] text-muted-foreground/40">
+                <p className="mx-auto mb-2 max-w-2xl text-xs text-muted-foreground">
                   Nova pergunta
                 </p>
               )}
@@ -1053,6 +1106,9 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
     </>
   );
 }
+
+const CHIP =
+  "flex h-7 max-w-full items-center gap-1 rounded-md border px-2.5 text-xs text-muted-foreground transition-colors duration-150 hover:border-foreground hover:text-foreground";
 
 /* ─── Prompt box ─── */
 function ChatPromptBox({
@@ -1150,18 +1206,14 @@ function ChatPromptBox({
                 onClick={() => {
                   onSubmit(chip.query);
                 }}
-                className="shrink-0 rounded-full border border-border/40 bg-transparent px-2.5 py-1 font-mono text-[10px] text-muted-foreground/60 transition-all hover:border-border/80 hover:text-muted-foreground whitespace-nowrap"
+                className={CHIP}
               >
-                {chip.label}
+                <span className="truncate">{chip.label}</span>
               </button>
             ))}
           {onExpand && (
-            <button
-              type="button"
-              onClick={onExpand}
-              className="ml-auto flex items-center gap-1 rounded-md border border-border/40 px-2 py-0.5 font-mono text-[10px] text-muted-foreground/50 transition-all hover:border-border/70 hover:text-muted-foreground"
-            >
-              <Maximize2 className="h-2.5 w-2.5" />
+            <button type="button" onClick={onExpand} className={cn(CHIP, "ml-auto shrink-0")}>
+              <Maximize2 className="h-3 w-3" />
               Expandir
             </button>
           )}
@@ -1175,7 +1227,7 @@ function ChatPromptBox({
         <div className={cn("relative flex items-center gap-1", historyOpen && "z-90")}>
           {historyOpen && historyLayer && (
             <div
-              className="fixed z-[130] rounded-xl border bg-popover p-2 text-popover-foreground shadow-2xl"
+              className="fixed z-[130] rounded-md border border-foreground bg-popover p-2 text-popover-foreground"
               style={{
                 left: historyLayer.left,
                 bottom: historyLayer.bottom,
@@ -1183,18 +1235,16 @@ function ChatPromptBox({
                 maxWidth: "calc(100vw - 1.5rem)",
               }}
             >
-              <div className="mb-1 flex items-center justify-between px-1.5">
+              <div className="mb-1 flex items-center justify-between px-2">
                 <p className="text-xs font-medium">Histórico</p>
-                <p className="text-[10px] text-muted-foreground">{history.length}</p>
+                <p className="num text-2xs text-muted-foreground">{history.length}</p>
               </div>
               {history.length ? (
-                <div className="max-h-64 overflow-y-auto pr-1">
+                <div className="max-h-64 overflow-y-auto">
                   {groups.map((group) => (
                     <div key={group.label} className="mb-2 last:mb-0">
-                      <p className="px-1.5 py-1 text-[10px] font-medium uppercase text-muted-foreground">
-                        {group.label}
-                      </p>
-                      <div className="space-y-1">
+                      <p className="px-2 py-1 text-2xs text-muted-foreground">{group.label}</p>
+                      <div>
                         {group.items.map((item) => (
                           <button
                             key={item.id}
@@ -1203,10 +1253,10 @@ function ChatPromptBox({
                               onOpenHistory(item);
                               setHistoryOpen(false);
                             }}
-                            className="w-full rounded-lg px-2 py-2 text-left transition-colors hover:bg-muted/50"
+                            className="w-full rounded-sm px-2 py-2 text-left transition-colors duration-150 hover:bg-muted"
                           >
                             <p className="line-clamp-1 text-xs font-medium">{item.title}</p>
-                            <p className="mt-0.5 text-[10px] text-muted-foreground">
+                            <p className="num mt-0.5 text-2xs text-muted-foreground">
                               {item.messages.length} mensagens ·{" "}
                               {new Date(item.updatedAt).toLocaleTimeString("pt-BR", {
                                 hour: "2-digit",
@@ -1261,10 +1311,10 @@ function ActionButton({
       title={tooltip}
       onClick={onClick}
       className={cn(
-        "flex h-7 w-7 items-center justify-center rounded-lg transition-colors",
+        "flex h-8 w-8 items-center justify-center rounded-md transition-colors duration-150",
         active
-          ? "text-foreground/80 hover:text-foreground"
-          : "text-muted-foreground/40 hover:text-muted-foreground hover:bg-muted/30"
+          ? "bg-muted text-foreground"
+          : "text-muted-foreground hover:bg-muted hover:text-foreground"
       )}
     >
       {children}

@@ -47,3 +47,8 @@ Ver `SCHEMA_CHANGELOG` abaixo. Política:
 ### SCHEMA_CHANGELOG
 
 - **1.0** — formato original (`cards_brazil_ai_comparison_facets.json`).
+- **2.0 + aditivos (nov/2026)** — campos opcionais novos:
+  `facets_numeric_or_special.fx_spread_pct` (spread cambial em pontos percentuais, 0–10; o
+  motor usa este valor antes de ler texto ou cair no fallback do emissor) e
+  `fee_waiver_rules[].min_conditions` (regra que é critério de um grupo "cumprir N dos
+  seguintes": o efeito só vale com N regras do mesmo grupo atendidas).

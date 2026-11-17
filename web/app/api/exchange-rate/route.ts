@@ -9,7 +9,8 @@ export async function GET(req: Request) {
   const decision = await limiter.check(req);
   if (!decision.allowed) return tooManyRequests(decision, limiter.limit);
 
-  // getUsdBrlExchangeRate never throws: it degrades to the PTAX fallback and
+  // getUsdBrlExchangeRate never throws: it degrades to the fixed commercial-rate
+  // fallback (AwesomeAPI bid, not PTAX) and
   // its upstream fetch is cached for 30min (next.revalidate).
   const rate = await getUsdBrlExchangeRate();
   return Response.json(rate, {

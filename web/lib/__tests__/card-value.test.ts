@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
+  applyPercentileScores,
+  compareCardValueScores,
   DEFAULT_VALUE_ASSUMPTIONS,
+  decisionMonthlyValue,
   netMonthlyValueForRanking,
+  scoreCardInContext,
   scoreCardValue,
   scoreCardValues,
   travelFrequencyForValueModeling,
@@ -75,7 +79,7 @@ describe("scoreCardValue", () => {
     );
   });
 
-  it("keeps zero-value free cards neutral in the 0-100 score", () => {
+  it("single-card score is the percentile in a set of one (no absolute bump)", () => {
     const card = getCardById("nubank-cartao-nubank-5feb686dbf");
     expect(card).toBeDefined();
 
@@ -89,15 +93,16 @@ describe("scoreCardValue", () => {
 
     const directScore = scoreCardValue(card!, profile);
     expect(directScore.netMonthlyValueBrl).toBe(0);
+    expect(directScore.decisionMonthlyValueBrl).toBe(0);
     expect(directScore.grossRewardMonthlyBrl).toBe(0);
     expect(directScore.intangibleMonthlyValueBrl).toBe(0);
-    expect(directScore.score0To100).toBe(50);
+    expect(directScore.score0To100).toBe(100);
 
     const rankedScore = scoreCardValues([card!], profile)[0];
-    expect(rankedScore.score0To100).toBe(50);
+    expect(rankedScore.score0To100).toBe(100);
   });
 
-  it("rewards gains proportionally for lower-spend profiles", () => {
+  it("Nomad stays near the top for a lower-spend investor (in-context percentile)", () => {
     const card = getCardById("nomad-nomad-explorer-visa-infinite-aae26793ed");
     expect(card).toBeDefined();
 
@@ -109,8 +114,10 @@ describe("scoreCardValue", () => {
       travelFrequency: "occasional",
     };
 
-    const score = scoreCardValue(card!, profile);
-    expect(score.netMonthlyValueBrl).toBeGreaterThanOrEqual(25);
+    // 25.000 / 4,96 = US$5.040 → 3,0 pts/USD; 1.200 / 4,96 × 3 = 725,806 pts × R$22/1k = 15,968;
+    // sala VIP 4 acessos × R$80 / 12 = 26,667 → venda 42,634 → 42,63.
+    const score = scoreCardInContext(card!, getAllCards(), profile);
+    expect(score.netMonthlyValueBrl).toBe(42.63);
     expect(score.score0To100).toBeGreaterThanOrEqual(80);
   });
 
@@ -128,7 +135,7 @@ describe("scoreCardValue", () => {
     expect(score.pointsRewardMonthlyBrl).toBe(32.4);
     expect(score.pointsRewardMonthlyTravelBrl).toBe(68.4);
     expect(score.dataQualityNotes).toContain(
-      "Membership Rewards: retorno realizável de venda em R$45 por 1.000 pontos; potencial de utilizacao em R$95 por 1.000 pontos."
+      "Membership Rewards: retorno realizável de venda em R$45 por 1.000 pontos; potencial de utilização em R$95 por 1.000 pontos."
     );
   });
 
@@ -146,7 +153,7 @@ describe("scoreCardValue", () => {
     expect(score.pointsRewardMonthlyBrl).toBe(30.72);
     expect(score.pointsRewardMonthlyTravelBrl).toBe(43.2);
     expect(score.dataQualityNotes).toContain(
-      "Livelo/Esfera: retorno realizável de venda em R$32 por 1.000 pontos; potencial de utilizacao em R$45 por 1.000 pontos."
+      "Livelo/Esfera: retorno realizável de venda em R$32 por 1.000 pontos; potencial de utilização em R$45 por 1.000 pontos."
     );
   });
 
@@ -166,7 +173,7 @@ describe("scoreCardValue", () => {
     });
 
     expect(score.dataQualityNotes).toContain(
-      "Livelo/Esfera: retorno realizável de venda em R$20 por 1.000 pontos; potencial de utilizacao em R$45 por 1.000 pontos."
+      "Livelo/Esfera: retorno realizável de venda em R$20 por 1.000 pontos; potencial de utilização em R$45 por 1.000 pontos. Venda limitada a R$20/1k porque o perfil não viaja (sem utilização em viagem)."
     );
     expect(
       score.components.find((component) => component.key === "rewards")?.explanation
@@ -189,14 +196,14 @@ describe("scoreCardValue", () => {
     });
 
     expect(score.dataQualityNotes).toContain(
-      "Programa de pontos não identificado; usado retorno conservador de R$20 por 1.000 pontos e potencial de utilizacao de R$55 por 1.000 pontos."
+      "Programa de pontos não identificado; usado retorno conservador de R$20 por 1.000 pontos e potencial de utilização de R$45 por 1.000 pontos (limitado ao da Livelo). Venda limitada a R$20/1k porque o perfil não viaja (sem utilização em viagem)."
     );
     expect(
       score.components.find((component) => component.key === "rewards")?.explanation
     ).toContain("pontos a R$20/1k pts (venda)");
   });
 
-  it("applies only a light score adjustment for user reward preferences", () => {
+  it("reward preferences do not change the value, the decision value or the score", () => {
     const card = getCardById("santander-santander-american-express-gold-card-f813c0b48b");
     expect(card).toBeDefined();
 
@@ -223,8 +230,11 @@ describe("scoreCardValue", () => {
     const pointsScore = scoreCardValue(card!, pointsProfile);
 
     expect(pointsScore.netMonthlyValueBrl).toBe(cashbackScore.netMonthlyValueBrl);
-    expect(pointsScore.score0To100 - cashbackScore.score0To100).toBeGreaterThanOrEqual(5);
-    expect(pointsScore.score0To100 - cashbackScore.score0To100).toBeLessThanOrEqual(6);
+    expect(pointsScore.decisionMonthlyValueBrl).toBe(cashbackScore.decisionMonthlyValueBrl);
+    expect(scoreCardInContext(card!, getAllCards(), pointsProfile).score0To100).toBe(
+      scoreCardInContext(card!, getAllCards(), cashbackProfile).score0To100
+    );
+    expect(pointsScore.scoreDrivers.join(" ")).not.toMatch(/Preferências/);
   });
 
   it("uses a broader break-even that includes benefits and international costs", () => {
@@ -494,42 +504,50 @@ describe("scoreCardValue", () => {
   });
 });
 
+function fakeScore(partial: Partial<CardValueScore>): CardValueScore {
+  return {
+    eligible: true,
+    feeKnown: true,
+    decisionMonthlyValueBrl: 0,
+    netMonthlyValueBrl: 0,
+    netMonthlyValueRangeHighBrl: 0,
+    score0To100: 0,
+    ...partial,
+  } as CardValueScore;
+}
+
 describe("netMonthlyValueForRanking", () => {
-  it("uses conservative net for non-travelers", () => {
-    const s = {
+  it("is the decision value for every travel frequency", () => {
+    const s = fakeScore({
       netMonthlyValueBrl: 100,
       netMonthlyValueRangeHighBrl: 300,
-    } as CardValueScore;
-    expect(netMonthlyValueForRanking(s, { ...baseProfile, travelFrequency: "none" })).toBe(100);
+      decisionMonthlyValueBrl: 200,
+    });
+    for (const travelFrequency of ["none", "occasional", "frequent"] as const) {
+      expect(netMonthlyValueForRanking(s, { ...baseProfile, travelFrequency })).toBe(200);
+    }
   });
 
-  it("uses max net (utilização) for occasional and frequent", () => {
-    const s = {
-      netMonthlyValueBrl: 100,
-      netMonthlyValueRangeHighBrl: 300,
-    } as CardValueScore;
-    expect(netMonthlyValueForRanking(s, { ...baseProfile, travelFrequency: "occasional" })).toBe(
-      300
+  it("decision value = venda + p × (viagem − venda), p by declared frequency only", () => {
+    // p: none 0, occasional 0,5, frequent 0,8.
+    expect(decisionMonthlyValue(100, 300, { ...baseProfile, travelFrequency: "none" })).toBe(100);
+    expect(decisionMonthlyValue(100, 300, { ...baseProfile, travelFrequency: "occasional" })).toBe(
+      200
     );
-    expect(netMonthlyValueForRanking(s, { ...baseProfile, travelFrequency: "frequent" })).toBe(300);
-  });
-
-  it("uses max net when declared non-traveler but prefers points (modelo às vezes)", () => {
-    const s = {
-      netMonthlyValueBrl: 100,
-      netMonthlyValueRangeHighBrl: 300,
-    } as CardValueScore;
-    const profile: UserProfile = {
+    expect(decisionMonthlyValue(100, 300, { ...baseProfile, travelFrequency: "frequent" })).toBe(
+      260
+    );
+    const noneButLikesPoints: UserProfile = {
       ...baseProfile,
       travelFrequency: "none",
-      preferences: { ...baseProfile.preferences, prefersCashback: false, prefersPoints: true },
+      preferences: { ...baseProfile.preferences, prefersPoints: true, wantsLounge: true },
     };
-    expect(netMonthlyValueForRanking(s, profile)).toBe(300);
+    expect(decisionMonthlyValue(100, 300, noneButLikesPoints)).toBe(100);
   });
 });
 
 describe("travelFrequencyForValueModeling", () => {
-  it('maps "não viajo" + pontos ou lounge to occasional', () => {
+  it('keeps "não viajo" even when the user prefers points or wants lounge', () => {
     const withPoints: UserProfile = {
       ...baseProfile,
       travelFrequency: "none",
@@ -540,8 +558,8 @@ describe("travelFrequencyForValueModeling", () => {
       travelFrequency: "none",
       preferences: { ...baseProfile.preferences, prefersPoints: false, wantsLounge: true },
     };
-    expect(travelFrequencyForValueModeling(withPoints)).toBe("occasional");
-    expect(travelFrequencyForValueModeling(withLounge)).toBe("occasional");
+    expect(travelFrequencyForValueModeling(withPoints)).toBe("none");
+    expect(travelFrequencyForValueModeling(withLounge)).toBe("none");
   });
 
   it("keeps declared frequency when not none", () => {
@@ -551,24 +569,27 @@ describe("travelFrequencyForValueModeling", () => {
   });
 });
 
-describe("scoreCardValues sort key", () => {
-  it("orders by netMonthlyValueBrl when user does not travel", () => {
-    const hiNet = { netMonthlyValueBrl: 200, netMonthlyValueRangeHighBrl: 200 } as CardValueScore;
-    const loNet = { netMonthlyValueBrl: 50, netMonthlyValueRangeHighBrl: 400 } as CardValueScore;
-    const profile = { ...baseProfile, travelFrequency: "none" as const };
-    const sorted = [loNet, hiNet].sort(
-      (a, b) => netMonthlyValueForRanking(b, profile) - netMonthlyValueForRanking(a, profile)
+describe("compareCardValueScores + applyPercentileScores", () => {
+  it("orders eligible → known fee → decision value", () => {
+    const ineligibleHigh = fakeScore({ eligible: false, decisionMonthlyValueBrl: 999 });
+    const unknownFeeHigh = fakeScore({ feeKnown: false, decisionMonthlyValueBrl: 500 });
+    const knownLow = fakeScore({ decisionMonthlyValueBrl: 10 });
+    const knownHigh = fakeScore({ decisionMonthlyValueBrl: 50 });
+    const sorted = [ineligibleHigh, unknownFeeHigh, knownLow, knownHigh].sort(
+      compareCardValueScores
     );
-    expect(sorted[0]).toBe(hiNet);
+    expect(sorted).toEqual([knownHigh, knownLow, unknownFeeHigh, ineligibleHigh]);
   });
 
-  it("orders by max(net, rangeHigh) when user travels occasionally", () => {
-    const hiNet = { netMonthlyValueBrl: 200, netMonthlyValueRangeHighBrl: 200 } as CardValueScore;
-    const loNet = { netMonthlyValueBrl: 50, netMonthlyValueRangeHighBrl: 400 } as CardValueScore;
-    const profile = { ...baseProfile, travelFrequency: "occasional" as const };
-    const sorted = [hiNet, loNet].sort(
-      (a, b) => netMonthlyValueForRanking(b, profile) - netMonthlyValueForRanking(a, profile)
-    );
-    expect(sorted[0]).toBe(loNet);
+  it("score is the percentile among eligible cards; ties share it; ineligible is 0", () => {
+    const sorted = [
+      fakeScore({ decisionMonthlyValueBrl: 50 }),
+      fakeScore({ decisionMonthlyValueBrl: 50 }),
+      fakeScore({ decisionMonthlyValueBrl: 10 }),
+      fakeScore({ feeKnown: false, decisionMonthlyValueBrl: 80 }),
+      fakeScore({ eligible: false, decisionMonthlyValueBrl: 999 }),
+    ];
+    // 4 elegíveis → índices 0..3: 100, 100 (empate), 100 × (1 − 2/3) = 33, 0.
+    expect(applyPercentileScores(sorted).map((s) => s.score0To100)).toEqual([100, 100, 33, 0, 0]);
   });
 });

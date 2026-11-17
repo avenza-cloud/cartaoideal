@@ -1,3 +1,4 @@
+import { feeWaiverRuleStatus, feeWaiverRulesForCard } from "@/lib/fee-waiver";
 import type { CardFacet, FeeWaiverRule, FeeWaiverRuleCategory, UserProfile } from "@/types/cards";
 
 export type AnnualFeeHint = CardFacet["facets_numeric_or_special"]["annual_fee_brl_best_estimate"];
@@ -52,17 +53,17 @@ function shouldShowPaidFeeDefaultForSpendWaiver(
   return minSpend !== undefined && minSpend >= FULL_WAIVER_HIGH_MONTHLY_SPEND_BRL;
 }
 
+/** Mesma avaliação do score: investimento atendido que isenta 100% (sozinho, não em grupo). */
 function profileQualifiesFullInvestmentWaiver(
   rules: FeeWaiverRule[],
   profile: UserProfile
 ): boolean {
-  const invested = profile.avgInvestedBrl ?? 0;
   return rules.some(
     (r) =>
       r.category === "investment" &&
       r.full_waiver === true &&
-      typeof r.threshold_brl === "number" &&
-      invested >= r.threshold_brl
+      (r.min_conditions ?? 1) <= 1 &&
+      feeWaiverRuleStatus(r, profile) === "met"
   );
 }
 
@@ -98,13 +99,6 @@ export function feeWaiverRuleDisplayLabel(
   return BADGE_LABELS[rule.category] ?? "Sem anuidade";
 }
 
-export function feeWaiverBadgeClassName(variant: FeeWaiverBadge["variant"]): string {
-  if (variant === "paid_fee_default") {
-    return "rounded-md border border-amber-500/30 bg-amber-500/5 px-1.5 py-0.5 text-[9px] font-medium text-amber-600 dark:text-amber-400";
-  }
-  return "rounded-md border border-emerald-500/25 bg-emerald-500/5 px-1.5 py-0.5 text-[9px] font-medium text-emerald-500";
-}
-
 export function feeWaiverRuleBadgeVariant(
   rule: FeeWaiverRule,
   annualFeeBrl?: AnnualFeeHint
@@ -133,20 +127,35 @@ export function feeWaiverBadgesFromRules(
     "cashback",
     "miles",
   ];
-  const categories = new Set(rules.filter((rule) => rule.full_waiver).map((rule) => rule.category));
+  // Regras de grupo ("cumprir 2 dos seguintes") não isentam sozinhas: um chip só.
+  const groupMin = Math.max(0, ...rules.map((rule) => rule.min_conditions ?? 0));
+  const groupBadges: FeeWaiverBadge[] =
+    groupMin > 1
+      ? [
+          {
+            key: rules.find((rule) => (rule.min_conditions ?? 0) > 1)?.category ?? "general",
+            label: `Isento com ${groupMin} critérios`,
+            variant: hasPositiveAnnualFee(annualFeeBrl) ? "paid_fee_default" : "waiver_benefit",
+          },
+        ]
+      : [];
+  const singleRules = rules.filter((rule) => (rule.min_conditions ?? 1) <= 1);
+  const categories = new Set(
+    singleRules.filter((rule) => rule.full_waiver).map((rule) => rule.category)
+  );
   /** `general` costuma duplicar "sem anuidade" já mostrado no preço da linha; não exibimos chip. */
-  return order
+  const singleBadges = order
     .filter((category) => categories.has(category))
     .flatMap((category): FeeWaiverBadge[] => {
       if (
         category === "monthly_spend" &&
-        shouldOmitMonthlySpendBadgeForInvestmentWaiver(rules, annualFeeBrl, profile)
+        shouldOmitMonthlySpendBadgeForInvestmentWaiver(singleRules, annualFeeBrl, profile)
       ) {
         return [];
       }
       if (
         category === "monthly_spend" &&
-        shouldShowPaidFeeDefaultForSpendWaiver(rules, annualFeeBrl)
+        shouldShowPaidFeeDefaultForSpendWaiver(singleRules, annualFeeBrl)
       ) {
         return [
           {
@@ -164,14 +173,16 @@ export function feeWaiverBadgesFromRules(
         },
       ];
     });
+  return [...singleBadges, ...groupBadges];
 }
 
+/** Badges do cartão a partir da mesma fonte de regras usada pelo score e pelo chat. */
 export function feeWaiverBadgesForCard(
   card: CardFacet,
   profile?: UserProfile | null
 ): FeeWaiverBadge[] {
   return feeWaiverBadgesFromRules(
-    card.fee_waiver_rules,
+    feeWaiverRulesForCard(card),
     card.facets_numeric_or_special.annual_fee_brl_best_estimate,
     profile ?? undefined
   );

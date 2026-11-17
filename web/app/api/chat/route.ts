@@ -2,6 +2,7 @@ import { streamText, convertToModelMessages, stepCountIs } from "ai";
 import { chatModel } from "@/lib/ai-model";
 import { z } from "zod";
 import { createCardTools, SYSTEM_PROMPT, toToolProfile } from "@/lib/ai-tools";
+import { getValueAssumptionsWithLiveUsd } from "@/lib/exchange-rate";
 import { profileSchema } from "@/lib/profile-schema";
 import { apiError } from "@/lib/api-error";
 import { createRateLimiter, tooManyRequests } from "@/lib/rate-limit";
@@ -34,6 +35,9 @@ export async function POST(req: Request) {
   const parsed = bodySchema.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return apiError("invalid_input", "Corpo da requisição inválido.");
   const { messages, profile } = parsed.data;
+  // Same live USD-BRL (commercial rate) the UI and /api/recommend use, so the
+  // chat quotes the same numbers as the ranking.
+  const assumptions = await getValueAssumptionsWithLiveUsd();
 
   const result = streamText({
     model: chatModel,
@@ -41,7 +45,7 @@ export async function POST(req: Request) {
     messages: await convertToModelMessages(
       messages as Parameters<typeof convertToModelMessages>[0]
     ),
-    tools: createCardTools(profile as UserProfile | null),
+    tools: createCardTools(profile as UserProfile | null, assumptions),
     stopWhen: stepCountIs(5),
     onStepFinish({ toolCalls }) {
       for (const tc of toolCalls ?? []) {

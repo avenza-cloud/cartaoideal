@@ -2,7 +2,6 @@
 
 import { useMemo } from "react";
 import { Search, X } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
@@ -66,9 +65,7 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
   const content = (
     <>
       <div>
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          Buscar
-        </p>
+        <p className="mb-2 text-xs text-muted-foreground">Buscar</p>
         <div className="relative">
           <Search className="pointer-events-none absolute left-2.5 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
           <Input
@@ -95,10 +92,8 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
       <Separator />
 
       <div>
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          Ordenação
-        </p>
-        <div className="grid grid-cols-2 rounded-lg border bg-background/40 p-1">
+        <p className="mb-2 text-xs text-muted-foreground">Ordenação</p>
+        <div className="grid grid-cols-2 overflow-hidden rounded-md border bg-card">
           {RANKING_MODES.map((mode) => (
             <button
               key={mode.value}
@@ -106,9 +101,9 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
               title={mode.title}
               onClick={() => update({ rank: mode.value })}
               className={cn(
-                "rounded-md px-2 py-1.5 text-center text-xs transition-colors",
+                "px-2 py-1.5 text-center text-xs transition-colors duration-150",
                 active.rank === mode.value
-                  ? "bg-primary font-medium text-primary-foreground"
+                  ? "bg-foreground font-medium text-background"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground"
               )}
             >
@@ -121,9 +116,7 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
       <Separator />
 
       <div>
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          Segmento
-        </p>
+        <p className="mb-2 text-xs text-muted-foreground">Segmento</p>
         <div className="grid grid-cols-2 gap-1 md:flex md:flex-col">
           {SEGMENTS.map((s) => (
             <button
@@ -131,9 +124,9 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
               key={s.value}
               onClick={() => update({ segment: s.value })}
               className={cn(
-                "rounded px-2 py-1.5 text-left text-sm transition-colors",
+                "rounded-sm px-2 py-1.5 text-left text-sm transition-colors duration-150",
                 active.segment === s.value
-                  ? "bg-primary font-medium text-primary-foreground"
+                  ? "bg-foreground font-medium text-background"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground"
               )}
             >
@@ -146,9 +139,7 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
       <Separator />
 
       <div>
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          Bandeira
-        </p>
+        <p className="mb-2 text-xs text-muted-foreground">Bandeira</p>
         <div className="grid grid-cols-2 gap-1 md:flex md:flex-col">
           {NETWORKS.map((n) => (
             <button
@@ -156,9 +147,9 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
               key={n}
               onClick={() => update({ network: active.network === n ? "" : n })}
               className={cn(
-                "rounded px-2 py-1.5 text-left text-sm transition-colors",
+                "rounded-sm px-2 py-1.5 text-left text-sm transition-colors duration-150",
                 active.network === n
-                  ? "bg-primary font-medium text-primary-foreground"
+                  ? "bg-foreground font-medium text-background"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground"
               )}
             >
@@ -171,25 +162,29 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
       <Separator />
 
       <div>
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-          Benefícios
-        </p>
+        <p className="mb-2 text-xs text-muted-foreground">Benefícios</p>
         <div className="flex flex-wrap gap-1.5">
           {booleanFilters.map((f) => (
-            <Badge
+            <button
+              type="button"
               key={f.key}
-              variant={active[f.key] ? "default" : "outline"}
-              className="min-h-7 cursor-pointer whitespace-normal text-xs"
+              aria-pressed={active[f.key]}
               onClick={() => update({ [f.key]: !active[f.key] })}
+              className={cn(
+                "min-h-7 rounded-sm border px-2 py-1 text-left text-xs transition-colors duration-150",
+                active[f.key]
+                  ? "border-foreground bg-foreground font-medium text-background"
+                  : "bg-card text-foreground hover:bg-muted"
+              )}
             >
               {f.label}
-            </Badge>
+            </button>
           ))}
         </div>
       </div>
 
       {totalFiltered < totalAll && (
-        <p className="text-xs text-muted-foreground">
+        <p className="num text-xs text-muted-foreground">
           {totalFiltered} de {totalAll} cartões
         </p>
       )}
@@ -197,12 +192,12 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
   );
 
   return (
-    <aside className="w-full shrink-0 md:sticky md:top-[73px] md:max-h-[calc(100vh-88px)] md:w-52 md:overflow-y-auto">
-      <details className="rounded-xl border bg-card/50 p-3 md:hidden">
+    <aside className="w-full shrink-0 md:sticky md:top-[72px] md:max-h-[calc(100vh-88px)] md:w-52 md:overflow-y-auto">
+      <details className="rounded-md border bg-card p-3 md:hidden">
         <summary className="cursor-pointer list-none text-sm font-medium">Filtros</summary>
         <div className="mt-3 space-y-4">{content}</div>
       </details>
-      <div className="hidden space-y-4 rounded-xl border bg-card/50 p-3 md:block">{content}</div>
+      <div className="hidden space-y-4 rounded-md border bg-card p-3 md:block">{content}</div>
     </aside>
   );
 }

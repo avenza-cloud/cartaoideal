@@ -14,7 +14,7 @@ const Textarea = React.forwardRef<
     ref={ref}
     rows={1}
     className={cn(
-      "flex w-full resize-none bg-transparent px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/50 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 scrollbar-thin",
+      "flex w-full resize-none bg-transparent px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 scrollbar-thin",
       className
     )}
     {...props}
@@ -85,8 +85,8 @@ export const PromptInput = React.forwardRef<HTMLDivElement, PromptInputProps>(
         <div
           ref={ref}
           className={cn(
-            "rounded-2xl border border-border/60 bg-[#111111] shadow-lg transition-all duration-200",
-            isLoading && "border-border/30",
+            "rounded-md border border-input bg-card transition-colors duration-150 focus-within:border-foreground",
+            isLoading && "border-border",
             className
           )}
           {...props}
@@ -161,12 +161,12 @@ export const PromptInputSubmit: React.FC<PromptInputSubmitProps> = ({
       onClick={isLoading ? onStop : hasContent ? onSubmit : undefined}
       whileTap={{ scale: 0.92 }}
       className={cn(
-        "flex h-8 w-8 items-center justify-center rounded-full transition-all duration-150",
+        "flex h-8 w-8 items-center justify-center rounded-md transition-colors duration-150",
         isLoading
           ? "bg-foreground text-background"
           : hasContent
-          ? "bg-foreground text-background"
-          : "bg-transparent text-muted-foreground/40 cursor-default",
+          ? "bg-mark text-mark-foreground"
+          : "bg-transparent text-muted-foreground cursor-default",
         className
       )}
     >

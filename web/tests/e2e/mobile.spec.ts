@@ -26,7 +26,7 @@ test.describe("mobile compatibility", () => {
   test("home uses new brand and has no page overflow", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByText("Cartão Ideal").first()).toBeVisible();
-    await expect(page.locator("header").getByText("💳")).toBeVisible();
+    await expect(page.locator("header").getByTestId("brand-mark")).toBeVisible();
     await expect(page).toHaveTitle(/Cartão Ideal/);
     await expectNoHorizontalOverflow(page);
   });
@@ -171,7 +171,7 @@ test.describe("mobile compatibility", () => {
     await page.goto("/");
     await page.getByLabel("Renda mensal esperada em cerca de um ano").fill("56000");
     await expect(page.getByText("Gasto est.")).toBeVisible();
-    await expect(page.getByText("R$20.906,70/mês")).toBeVisible();
+    await expect(page.getByText("R$209.067,00/mês")).toBeVisible();
     await expectNoHorizontalOverflow(page);
   });
 

@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useProfileStore } from "@/lib/store";
 import { searchCardOptions, type ClientCardOption } from "@/lib/card-options";
 import { ArrowRight, ArrowLeft } from "lucide-react";
-import { CardArtPlaceholder } from "@/components/CardArtPlaceholder";
+import { CardArt } from "@/components/card";
+import { Button } from "@/components/ui/button";
 import type { UserProfile } from "@/types/cards";
 import { BrandWordmark } from "@/components/BrandWordmark";
-import { cardArtSrc } from "@/lib/card-display";
 import { cn } from "@/lib/utils";
 import { formatBrlInput, parseBrlInput } from "@/lib/brl";
 
@@ -30,6 +30,7 @@ const TRAVEL_OPTIONS: { value: TravelFrequency; label: string }[] = [
 ];
 
 const HEADLINE = "O cartão certo para você.";
+const TOTAL_STEPS = 5;
 
 export interface ProfileOnboardingProps {
   /** Slim card options built server-side (lib/card-options.server.ts). */
@@ -109,14 +110,14 @@ export function ProfileOnboarding({ cardOptions, curatedOptions }: ProfileOnboar
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-background">
+    <div className="fixed inset-0 z-50 flex flex-col overflow-y-auto overflow-x-hidden bg-background">
       {/* Top bar */}
-      <div className="flex items-center justify-between px-4 pt-4 pb-3 sm:px-6 sm:pt-5 sm:pb-4">
+      <div className="flex h-14 shrink-0 items-center justify-between gap-4 px-4 sm:px-6">
         {step > 0 ? (
           <button
             type="button"
             onClick={goBack}
-            className="flex items-center gap-1.5 text-xs text-muted-foreground transition-colors hover:text-foreground"
+            className="flex items-center gap-1.5 text-xs text-muted-foreground transition-colors duration-150 hover:text-foreground"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
             Voltar
@@ -127,31 +128,37 @@ export function ProfileOnboarding({ cardOptions, curatedOptions }: ProfileOnboar
 
         <div className="flex items-center gap-4">
           {step > 0 && (
-            <div className="flex gap-1">
-              {[1, 2, 3, 4, 5].map((i) => (
-                <div
-                  key={i}
-                  className={cn(
-                    "h-[3px] rounded-full transition-all duration-300",
-                    i <= step ? "w-5 bg-foreground" : "w-2 bg-muted-foreground/20"
-                  )}
-                />
-              ))}
-            </div>
+            <span className="num text-xs text-muted-foreground">
+              {step} de {TOTAL_STEPS}
+            </span>
           )}
           <button
             type="button"
             onClick={skipOnboarding}
-            className="text-xs text-muted-foreground/60 transition-colors hover:text-muted-foreground"
+            className="text-xs text-muted-foreground transition-colors duration-150 hover:text-foreground"
           >
             Pular
           </button>
         </div>
       </div>
 
+      {/* Progress: a real sequence, so a thin bar */}
+      <div
+        className="h-0.5 w-full shrink-0 bg-muted"
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={TOTAL_STEPS}
+        aria-valuenow={step}
+      >
+        <div
+          className="h-full bg-foreground transition-[width] duration-150"
+          style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
+        />
+      </div>
+
       {/* Step content */}
-      <div className="flex flex-1 items-center justify-center px-4 py-4 sm:px-6">
-        <div className="w-full max-w-sm">
+      <div className="flex flex-1 items-center justify-center px-4 py-8 sm:px-6">
+        <div className="w-full min-w-0 max-w-sm">
           <AnimatePresence mode="wait" custom={dir}>
             <motion.div
               key={step}
@@ -229,43 +236,57 @@ export function ProfileOnboarding({ cardOptions, curatedOptions }: ProfileOnboar
 /* ─── Welcome ─── */
 function StepWelcome({ onStart, onSkip }: { onStart: () => void; onSkip: () => void }) {
   return (
-    <div className="space-y-10">
-      <h1 className="text-4xl font-semibold leading-none sm:text-[2.75rem]">
-        <motion.span
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="block"
-        >
-          {HEADLINE}
-        </motion.span>
-      </h1>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.4 }}
-        className="space-y-3"
-      >
+    <div className="space-y-8">
+      <div className="space-y-3">
+        <h1 className="text-3xl font-medium sm:text-5xl">{HEADLINE}</h1>
         <p className="text-sm text-muted-foreground">5 perguntas para calcular seu ranking.</p>
-        <div className="flex flex-col gap-2">
-          <button
-            type="button"
-            onClick={onStart}
-            className="flex items-center justify-between rounded-xl bg-foreground px-4 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
-          >
-            Começar
-            <ArrowRight className="h-4 w-4" />
-          </button>
-          <button
-            type="button"
-            onClick={onSkip}
-            className="rounded-xl border border-border/40 px-4 py-3 text-sm text-muted-foreground transition-colors hover:border-border hover:text-foreground"
-          >
-            Ver catálogo sem personalizar
-          </button>
-        </div>
-      </motion.div>
+      </div>
+      <div className="flex flex-col gap-2">
+        <Button type="button" size="lg" onClick={onStart} className="w-full justify-between">
+          Começar
+          <ArrowRight className="h-4 w-4" />
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          size="lg"
+          onClick={onSkip}
+          className="h-auto min-h-10 w-full whitespace-normal py-2"
+        >
+          Ver catálogo sem personalizar
+        </Button>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Step heading ─── */
+function StepHeading({ question, hint }: { question: string; hint: string }) {
+  return (
+    <div className="space-y-2">
+      <h2 className="text-3xl font-medium">{question}</h2>
+      <p className="text-sm text-muted-foreground">{hint}</p>
+    </div>
+  );
+}
+
+/* ─── Step footer ─── */
+function StepFooter({
+  optional,
+  onNext,
+  nextDisabled,
+}: {
+  optional?: boolean;
+  onNext: () => void;
+  nextDisabled?: boolean;
+}) {
+  return (
+    <div className="flex items-center justify-between gap-3">
+      {optional && <span className="text-xs text-muted-foreground">Opcional</span>}
+      <Button type="button" size="lg" onClick={onNext} disabled={nextDisabled} className="ml-auto">
+        Continuar
+        <ArrowRight className="h-3.5 w-3.5" />
+      </Button>
     </div>
   );
 }
@@ -290,13 +311,10 @@ function StepInput({
 }) {
   return (
     <div className="space-y-8">
-      <div className="space-y-1.5">
-        <h2 className="text-2xl font-semibold sm:text-3xl">{question}</h2>
-        <p className="text-sm text-muted-foreground">{hint}</p>
-      </div>
+      <StepHeading question={question} hint={hint} />
 
-      <div className="flex items-baseline gap-2 border-b border-border pb-2">
-        <span className="text-lg text-muted-foreground">R$</span>
+      <div className="flex items-baseline gap-2 border-b border-input pb-2 transition-colors duration-150 focus-within:border-foreground">
+        <span className="text-xl text-muted-foreground">R$</span>
         <input
           autoFocus
           type="text"
@@ -305,27 +323,11 @@ function StepInput({
           onChange={(e) => onChange(formatBrlInput(e.target.value))}
           placeholder="0"
           onKeyDown={(e) => e.key === "Enter" && !nextDisabled && onNext()}
-          className="w-full min-w-0 bg-transparent text-2xl font-semibold placeholder:text-muted-foreground/20 focus:outline-none sm:text-3xl"
+          className="num w-full min-w-0 bg-transparent text-3xl font-medium outline-none placeholder:text-muted-foreground"
         />
       </div>
 
-      <div className="flex items-center justify-between">
-        {optional && <span className="text-xs text-muted-foreground/50">Opcional</span>}
-        <button
-          type="button"
-          onClick={onNext}
-          disabled={nextDisabled}
-          className={cn(
-            "ml-auto flex items-center gap-1.5 rounded-lg px-4 py-2.5 text-sm font-medium transition-all",
-            nextDisabled
-              ? "text-muted-foreground/30"
-              : "bg-foreground text-background hover:opacity-90"
-          )}
-        >
-          Continuar
-          <ArrowRight className="h-3.5 w-3.5" />
-        </button>
-      </div>
+      <StepFooter optional={optional} onNext={onNext} nextDisabled={nextDisabled} />
     </div>
   );
 }
@@ -347,80 +349,68 @@ function StepCurrentCard({
   onNext: () => void;
 }) {
   return (
-    <div className="space-y-7">
-      <div className="space-y-1.5">
-        <h2 className="text-2xl font-semibold sm:text-3xl">Qual cartão você usa hoje?</h2>
-        <p className="text-sm text-muted-foreground">
-          Isso ajuda a comparar troca real, não só ranking abstrato.
-        </p>
-      </div>
+    <div className="space-y-6">
+      <StepHeading
+        question="Qual cartão você usa hoje?"
+        hint="Isso ajuda a comparar troca real, não só ranking abstrato."
+      />
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         <input
           autoFocus
           type="text"
           value={value}
           onChange={(event) => onChange(event.target.value)}
           placeholder="Ex: Nubank Ultravioleta"
-          className="w-full rounded-2xl border bg-card/70 px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground/40 focus:border-foreground/60"
+          className="h-10 w-full min-w-0 rounded-md border border-input bg-card px-3 text-base outline-none transition-colors duration-150 placeholder:text-muted-foreground focus-visible:border-ring md:text-sm"
         />
-        {!value && (
-          <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground/60">
-            Mais comuns
-          </p>
-        )}
-        <div className="max-h-[min(22rem,42vh)] space-y-1.5 overflow-y-auto pr-1">
-          {matches.map((card) => (
-            <button
-              key={card.id}
-              type="button"
-              onClick={() => onSelect(card)}
-              className={cn(
-                "group flex w-full items-center gap-3 rounded-2xl border px-2.5 py-2 text-left text-xs transition-all hover:translate-x-0.5",
-                selectedId === card.id
-                  ? "border-foreground bg-foreground text-background"
-                  : "border-border/50 bg-card/45 text-muted-foreground hover:border-border hover:bg-card/80 hover:text-foreground"
-              )}
-            >
-              <span className="flex h-10 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border bg-zinc-950">
-                {cardArtSrc(card.artUrl) ? (
-                  <img
-                    src={card.artUrl}
-                    alt={card.altText || card.name}
-                    className="max-h-8 max-w-[56px] object-contain drop-shadow-xl transition-transform group-hover:scale-105"
-                    loading="lazy"
+        {!value && <p className="pt-1 text-xs text-muted-foreground">Mais comuns</p>}
+        {matches.length > 0 && (
+          <div className="max-h-[min(22rem,42vh)] divide-y overflow-y-auto rounded-md border bg-card">
+            {matches.map((card) => {
+              const selected = selectedId === card.id;
+              return (
+                <button
+                  key={card.id}
+                  type="button"
+                  onClick={() => onSelect(card)}
+                  aria-pressed={selected}
+                  className={cn(
+                    "flex w-full items-center gap-3 px-3 py-2 text-left transition-colors duration-150",
+                    selected ? "bg-foreground text-background" : "hover:bg-muted"
+                  )}
+                >
+                  <CardArt
+                    compact
+                    artUrl={card.artUrl}
+                    issuerRaw={card.issuer}
+                    displayName={card.name}
+                    className="h-10 w-16"
                   />
-                ) : (
-                  <CardArtPlaceholder compact issuerRaw={card.issuer} displayName={card.name} />
-                )}
-              </span>
-              <span className="min-w-0 flex-1">
-                <span className="block truncate font-medium">{card.name}</span>
-                <span className="block truncate text-[10px] opacity-70">
-                  {card.description ?? card.issuer}
-                </span>
-              </span>
-              {selectedId === card.id && (
-                <span className="rounded-full border border-current px-2 py-0.5 font-mono text-[9px]">
-                  Atual
-                </span>
-              )}
-            </button>
-          ))}
-        </div>
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate text-sm font-medium">{card.name}</span>
+                    <span
+                      className={cn(
+                        "block truncate text-xs",
+                        selected ? "text-background" : "text-muted-foreground"
+                      )}
+                    >
+                      {card.description ?? card.issuer}
+                    </span>
+                  </span>
+                  {selected && (
+                    <span className="shrink-0 rounded-sm border border-background px-1.5 py-0.5 text-2xs">
+                      Atual
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
 
-      <div className="flex items-center justify-between">
-        <span className="text-xs text-muted-foreground/50">Opcional</span>
-        <button
-          type="button"
-          onClick={onNext}
-          className="ml-auto flex items-center gap-1.5 rounded-lg bg-foreground px-4 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-        >
-          Continuar
-          <ArrowRight className="h-3.5 w-3.5" />
-        </button>
-      </div>
+      <StepFooter optional onNext={onNext} />
     </div>
   );
 }
@@ -440,14 +430,11 @@ function StepPreferences({
   onSubmit: () => void;
 }) {
   return (
-    <div className="space-y-7">
-      <div className="space-y-1.5">
-        <h2 className="text-2xl font-semibold sm:text-3xl">O que você quer?</h2>
-        <p className="text-sm text-muted-foreground">Pode selecionar mais de um.</p>
-      </div>
+    <div className="space-y-6">
+      <StepHeading question="O que você quer?" hint="Pode selecionar mais de um." />
 
-      <div className="space-y-4">
-        <div className="flex flex-wrap gap-1.5">
+      <div className="space-y-5">
+        <div className="flex flex-wrap gap-2">
           {REWARD_OPTIONS.map(({ value, label }) => (
             <Chip key={value} active={rewards.has(value)} onClick={() => onToggleReward(value)}>
               {label}
@@ -457,7 +444,7 @@ function StepPreferences({
 
         <div>
           <p className="mb-2 text-xs text-muted-foreground">Viagens</p>
-          <div className="flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-2">
             {TRAVEL_OPTIONS.map(({ value, label }) => (
               <Chip key={value} active={travel === value} onClick={() => onSetTravel(value)}>
                 {label}
@@ -467,14 +454,16 @@ function StepPreferences({
         </div>
       </div>
 
-      <button
+      <Button
         type="button"
+        variant="mark"
+        size="lg"
         onClick={onSubmit}
-        className="flex w-full items-center justify-between rounded-xl bg-foreground px-4 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+        className="w-full justify-between"
       >
         Ver meu ranking
         <ArrowRight className="h-4 w-4" />
-      </button>
+      </Button>
     </div>
   );
 }
@@ -493,11 +482,12 @@ function Chip({
     <button
       type="button"
       onClick={onClick}
+      aria-pressed={active}
       className={cn(
-        "rounded-lg border px-3 py-1.5 text-xs font-medium transition-all",
+        "h-9 rounded-md border px-3 text-sm font-medium transition-colors duration-150",
         active
           ? "border-foreground bg-foreground text-background"
-          : "border-border/50 text-muted-foreground hover:border-border hover:text-foreground"
+          : "border-input bg-card text-foreground hover:bg-muted"
       )}
     >
       {children}

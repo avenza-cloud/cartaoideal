@@ -2,6 +2,7 @@
 
 import Script from "next/script";
 import { useEffect, useRef } from "react";
+import { cn } from "@/lib/utils";
 
 const PUB_ID = process.env.NEXT_PUBLIC_ADSENSE_PUBLISHER_ID;
 
@@ -28,7 +29,8 @@ export function AdSlot({ slot, format = "auto", className }: AdSlotProps) {
   if (!PUB_ID) return null;
 
   return (
-    <div className={className}>
+    <div className={cn("overflow-hidden rounded-md border bg-card p-2", className)}>
+      <p className="mb-1 text-2xs text-muted-foreground">Publicidade</p>
       <Script
         async
         src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${PUB_ID}`}

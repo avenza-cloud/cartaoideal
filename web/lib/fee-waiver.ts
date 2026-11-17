@@ -1,4 +1,4 @@
-import type { FeeWaiverRule } from "@/types/cards";
+import type { CardFacet, FeeWaiverRule } from "@/types/cards";
 
 function parseAmount(numStr: string, suffix?: string): number {
   const raw = parseFloat(numStr.replace(/\./g, "").replace(",", "."));
@@ -8,6 +8,9 @@ function parseAmount(numStr: string, suffix?: string): number {
   if (s === "mil") return raw * 1_000;
   return raw;
 }
+
+const MERCHANT_SPECIFIC_SPEND =
+  /\b(?:vivo|extra|p[aã]o de a[cç][uú]car|magalu|magazine luiza|amazon|mercado livre|carrefour|assa[ií]|lojas?|e-commerce|posto)\b/i;
 
 function contextAllowsCategory(
   text: string,
@@ -49,6 +52,8 @@ function contextAllowsCategory(
   if (isProgressiveDiscount) return false;
 
   if (category === "monthly_spend") {
+    // "R$ 350 em compras Vivo": meta em parceiro, não gasto geral no cartão.
+    if (MERCHANT_SPECIFIC_SPEND.test(sentence)) return false;
     if (hasInvestInClause && !hasSpendInClause) return false;
     if (hasSpendInClause) return true;
     return !isFeeAmount && hasSpendInSentence && !hasInvestInSentence;
@@ -216,7 +221,7 @@ export function extractFeeWaiverRules(texto: string): FeeWaiverRule[] {
     /R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?[^.\n]{0,90}?(?:gastos?|fatura)[^.\n]{0,90}?isen[cç][aã]o total/gi
   )) {
     const threshold = parseAmount(match[1], match[2]);
-    if (!Number.isNaN(threshold)) {
+    if (!Number.isNaN(threshold) && !MERCHANT_SPECIFIC_SPEND.test(match[0])) {
       add({
         category: "monthly_spend",
         threshold_brl: threshold,
@@ -232,7 +237,7 @@ export function extractFeeWaiverRules(texto: string): FeeWaiverRule[] {
     /R\$\s*([\d.,]+)\s*(mil(?:hões?)?)?(?:(?!R\$).){0,60}?isen[cç][aã]o\s+de\s+50%/gi
   )) {
     const threshold = parseAmount(match[1], match[2]);
-    if (!Number.isNaN(threshold)) {
+    if (!Number.isNaN(threshold) && !MERCHANT_SPECIFIC_SPEND.test(match[0])) {
       add({
         category: "monthly_spend",
         threshold_brl: threshold,
@@ -346,5 +351,210 @@ export function extractFeeWaiverRules(texto: string): FeeWaiverRule[] {
     });
   }
 
+  // "cumprir dois dos seguintes critérios": cada condição sozinha não basta.
+  const minConditions = minConditionsFromText(raw);
+  if (minConditions !== null) {
+    for (const rule of rules) {
+      if (rule.category === "monthly_spend" || rule.category === "investment") {
+        rule.min_conditions = minConditions;
+      }
+    }
+  }
+
   return rules;
+}
+
+const COUNT_WORDS: Record<string, number> = { dois: 2, duas: 2, "2": 2, tres: 3, três: 3, "3": 3 };
+
+function minConditionsFromText(text: string): number | null {
+  const match = text.match(
+    /\b(dois|duas|2|tr[eê]s|3)\s+(?:d[oa]s|crit[eé]rios|condi[cç][oõ]es)\b[^.]{0,20}?(?:seguintes|crit[eé]rios|condi[cç][oõ]es)/i
+  );
+  if (!match) return null;
+  return COUNT_WORDS[match[1].toLowerCase()] ?? null;
+}
+
+// ─── Fonte única de regras e de avaliação de isenção ───────────────────────
+// Score (card-value), badges (fee-waiver-badges) e chat (filter-cards →
+// getCardFeeWaiver) usam estas funções, então não podem divergir.
+
+/** Texto de isenção do cartão (valor + detalhes da característica `fee_waiver`). */
+export function feeWaiverText(card: CardFacet): string {
+  const char = card.characteristics?.find((item) => item.key === "fee_waiver");
+  if (!char || char.value === "unknown") return "";
+  return `${String(char.value)} ${char.details ?? ""}`.trim();
+}
+
+/** Regras estruturadas do cartão; sem elas, as regras extraídas do texto de isenção. */
+export function feeWaiverRulesForCard(card: CardFacet): FeeWaiverRule[] {
+  if (card.fee_waiver_rules?.length) return card.fee_waiver_rules;
+  return extractFeeWaiverRules(feeWaiverText(card));
+}
+
+export type FeeWaiverRuleStatus = "met" | "not_met" | "not_evaluable";
+
+export interface FeeWaiverProfile {
+  avgMonthlySpendBrl: number;
+  avgInvestedBrl: number;
+}
+
+/** "Sem anuidade"/"isento para todos": regra geral incondicional (não promoção, não programa). */
+function isUnconditionalGeneralRule(rule: FeeWaiverRule): boolean {
+  const text = `${rule.description} ${rule.raw_text}`.toLowerCase();
+  if (/primeir[oa]s?\s+\d|per[ií]odo|introdut|promo|n[ií]vel|programa|pontua/.test(text)) {
+    return false;
+  }
+  return /sem anuidade|todos os clientes|para todos|gr[aá]tis|gratuit|n[aã]o h[aá] anuidade|sem custo/.test(
+    text
+  );
+}
+
+/** Situação de uma regra para o perfil. Condições que o perfil não coleta são "not_evaluable". */
+export function feeWaiverRuleStatus(
+  rule: FeeWaiverRule,
+  profile: FeeWaiverProfile
+): FeeWaiverRuleStatus {
+  switch (rule.category) {
+    case "monthly_spend":
+      if (typeof rule.threshold_brl !== "number") return "not_evaluable";
+      return profile.avgMonthlySpendBrl >= rule.threshold_brl ? "met" : "not_met";
+    case "cashback":
+      // "Cashback da anuidade" com meta mensal de fatura é uma isenção por gasto.
+      if (typeof rule.threshold_brl !== "number" || rule.period !== "monthly") {
+        return "not_evaluable";
+      }
+      return profile.avgMonthlySpendBrl >= rule.threshold_brl ? "met" : "not_met";
+    case "investment":
+      if (typeof rule.threshold_brl !== "number") return "not_evaluable";
+      return profile.avgInvestedBrl >= rule.threshold_brl ? "met" : "not_met";
+    case "general":
+      return rule.full_waiver && isUnconditionalGeneralRule(rule) ? "met" : "not_evaluable";
+    default:
+      // subscription, miles, pix_key, promotional_period: o perfil não coleta.
+      return "not_evaluable";
+  }
+}
+
+/** Menor percentual (1–99) citado na regra: "5% de isenção … ou 100% …" → 5. */
+function partialPercentFromText(rule: FeeWaiverRule): number | null {
+  const text = `${rule.description} ${rule.raw_text}`;
+  const pcts = [...text.matchAll(/(\d+(?:[,.]\d+)?)\s*%/g)]
+    .map((m) => Number(m[1].replace(",", ".")))
+    .filter((n) => Number.isFinite(n) && n > 0 && n < 100);
+  return pcts.length > 0 ? Math.min(...pcts) : null;
+}
+
+/**
+ * Anuidade anual depois de aplicar a regra (já atendida), ou null quando o
+ * efeito de uma regra parcial não é conhecido.
+ */
+export function feeWaiverRuleEffect(
+  rule: FeeWaiverRule,
+  baseAnnualFee: number,
+  profile: FeeWaiverProfile
+): number | null {
+  if (rule.full_waiver) return 0;
+  if (typeof rule.discount_pct === "number") {
+    const pct = Math.min(100, Math.max(0, rule.discount_pct));
+    return baseAnnualFee * (1 - pct / 100);
+  }
+  const phrase = `${rule.description} ${rule.raw_text}`;
+  if (
+    typeof rule.discount_brl === "number" &&
+    rule.period === "monthly" &&
+    typeof rule.threshold_brl === "number" &&
+    rule.threshold_brl > 0 &&
+    /a cada|progressiv/i.test(phrase)
+  ) {
+    const steps = Math.floor(profile.avgMonthlySpendBrl / rule.threshold_brl);
+    return Math.max(0, baseAnnualFee / 12 - steps * rule.discount_brl) * 12;
+  }
+  const pct = partialPercentFromText(rule);
+  if (pct !== null) return baseAnnualFee * (1 - pct / 100);
+  if (typeof rule.discount_brl === "number") {
+    const annualDiscount = rule.period === "monthly" ? rule.discount_brl * 12 : rule.discount_brl;
+    return Math.max(0, baseAnnualFee - annualDiscount);
+  }
+  return null;
+}
+
+export interface FeeWaiverEvaluation {
+  /** Anuidade anual depois da melhor regra atendida (igual à base se nenhuma). */
+  effectiveAnnualFee: number;
+  /** Regra (ou grupo) que produziu a anuidade efetiva. */
+  appliedRules: FeeWaiverRule[];
+  metRules: FeeWaiverRule[];
+  unmetRules: FeeWaiverRule[];
+  notEvaluableRules: FeeWaiverRule[];
+  /** Regras atendidas cujo desconto não é conhecido (parcial sem valor). */
+  unknownEffectRules: FeeWaiverRule[];
+}
+
+/**
+ * Avalia todas as regras de isenção do cartão para o perfil. Regras com
+ * `min_conditions` formam um grupo: o efeito só vale com N critérios atendidos
+ * (critérios não avaliáveis contam como não atendidos).
+ */
+export function evaluateFeeWaiver(
+  rules: FeeWaiverRule[],
+  baseAnnualFee: number,
+  profile: FeeWaiverProfile
+): FeeWaiverEvaluation {
+  const evaluation: FeeWaiverEvaluation = {
+    effectiveAnnualFee: baseAnnualFee,
+    appliedRules: [],
+    metRules: [],
+    unmetRules: [],
+    notEvaluableRules: [],
+    unknownEffectRules: [],
+  };
+  if (baseAnnualFee <= 0) return evaluation;
+
+  const consider = (fee: number | null, applied: FeeWaiverRule[]) => {
+    if (fee === null || fee >= evaluation.effectiveAnnualFee) return;
+    evaluation.effectiveAnnualFee = fee;
+    evaluation.appliedRules = applied;
+  };
+
+  const groups = new Map<number, FeeWaiverRule[]>();
+  for (const rule of rules) {
+    const status = feeWaiverRuleStatus(rule, profile);
+    if (status === "met") evaluation.metRules.push(rule);
+    else if (status === "not_met") evaluation.unmetRules.push(rule);
+    else evaluation.notEvaluableRules.push(rule);
+
+    const min = rule.min_conditions ?? 1;
+    if (min > 1) {
+      groups.set(min, [...(groups.get(min) ?? []), rule]);
+      continue;
+    }
+    if (status !== "met") continue;
+    const fee = feeWaiverRuleEffect(rule, baseAnnualFee, profile);
+    if (fee === null) evaluation.unknownEffectRules.push(rule);
+    consider(fee, [rule]);
+  }
+
+  for (const [min, groupRules] of groups) {
+    const met = groupRules.filter((rule) => feeWaiverRuleStatus(rule, profile) === "met");
+    if (met.length < min) continue;
+    const fees = groupRules
+      .map((rule) => feeWaiverRuleEffect(rule, baseAnnualFee, profile))
+      .filter((fee): fee is number => fee !== null);
+    if (fees.length > 0) consider(Math.min(...fees), met);
+  }
+
+  return evaluation;
+}
+
+/** Descrição curta da condição de uma regra ("gasto mensal de R$ 5.000"). */
+export function describeFeeWaiverCondition(rule: FeeWaiverRule): string {
+  const amount =
+    typeof rule.threshold_brl === "number"
+      ? `R$ ${rule.threshold_brl.toLocaleString("pt-BR")}`
+      : "";
+  if ((rule.category === "monthly_spend" || rule.category === "cashback") && amount) {
+    return `gasto mensal de ${amount}`;
+  }
+  if (rule.category === "investment" && amount) return `investimento de ${amount}`;
+  return rule.description.replace(/^crit[eé]rio\s+\d+\s+de\s+\d+:\s*/i, "").toLowerCase();
 }

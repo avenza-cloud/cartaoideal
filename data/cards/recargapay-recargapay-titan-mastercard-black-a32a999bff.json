@@ -215,6 +215,7 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 0,
+    "fx_spread_pct": 0,
     "lounge_visits_per_year_hint": 2,
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": 30000,

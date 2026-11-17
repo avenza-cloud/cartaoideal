@@ -1,17 +1,29 @@
 import { parseBrlNumber } from "@/lib/brl";
 import {
+  ANNUAL_TRIPS_BY_TRAVEL_FREQUENCY,
   COOPERATIVE_SPREAD,
   DEFAULT_SPREAD,
   DEFAULT_VALUE_ASSUMPTIONS,
+  FALLBACK_LOUNGE_VISITS_PREMIUM,
+  FALLBACK_LOUNGE_VISITS_STANDARD,
+  MAX_FX_SPREAD,
   NOMAD_CARD_ID,
   NOMAD_TIERS,
   NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL,
   RETAIL_BANK_SPREAD,
+  TRAVEL_REDEMPTION_WEIGHT,
+  UNKNOWN_PROGRAM_POINT_TRAVEL_VALUE_PER_THOUSAND_BRL,
+  UNSTRUCTURED_CASHBACK_FALLBACK_RATE,
 } from "@/lib/assumptions";
 import {
   GOL_SMILES_INFINITE_STABLE_IDS,
   SMILES_CLUB_ENTRY_MONTHLY_BRL,
 } from "@/lib/card-overrides";
+import {
+  describeFeeWaiverCondition,
+  evaluateFeeWaiver,
+  feeWaiverRulesForCard,
+} from "@/lib/fee-waiver";
 import type {
   CardCharacteristic,
   CardFacet,
@@ -24,24 +36,55 @@ import type {
 } from "@/types/cards";
 
 /**
- * Frequência usada no modelo de valor (faixas venda→utilização, demanda de lounge/seguro, teto de venda de pontos).
- * "Não viajo" + preferência por pontos/milhas ou lounge VIP → trata como "às vezes" (ponderação de utilização).
+ * Frequência de viagem do modelo de valor: sempre a declarada pelo perfil.
+ * Preferências (pontos, sala VIP) não mudam o comportamento de viagem modelado.
  */
 export function travelFrequencyForValueModeling(profile: UserProfile): TravelFrequency {
-  const declared = profile.travelFrequency ?? "none";
-  if (declared !== "none") return declared;
-  const { prefersPoints, wantsLounge } = profile.preferences;
-  if (prefersPoints || wantsLounge) return "occasional";
-  return "none";
+  return profile.travelFrequency ?? "none";
 }
 
-/** Valor usado para ordenar ranking: teto (utilização) se o perfil viaja, senão base conservadora (venda). */
-export function netMonthlyValueForRanking(score: CardValueScore, profile: UserProfile): number {
-  const tf = travelFrequencyForValueModeling(profile);
-  if (tf === "occasional" || tf === "frequent") {
-    return Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl);
-  }
-  return score.netMonthlyValueBrl;
+/** Peso do valor de utilização (viagem) no valor de decisão, pela frequência de viagem do perfil. */
+export function travelRedemptionWeight(profile: UserProfile): number {
+  return TRAVEL_REDEMPTION_WEIGHT[travelFrequencyForValueModeling(profile)];
+}
+
+/** Valor de decisão: venda + p × (utilização − venda). */
+export function decisionMonthlyValue(low: number, high: number, profile: UserProfile): number {
+  return low + travelRedemptionWeight(profile) * (Math.max(high, low) - low);
+}
+
+/**
+ * Valor usado para ordenar o ranking. É sempre o valor de decisão, o mesmo
+ * número mostrado no cartão, usado no veredito e na comparação.
+ */
+export function netMonthlyValueForRanking(score: CardValueScore, _profile?: UserProfile): number {
+  return score.decisionMonthlyValueBrl;
+}
+
+/** Ordem canônica: elegíveis, depois anuidade conhecida, depois valor de decisão. */
+export function compareCardValueScores(a: CardValueScore, b: CardValueScore): number {
+  if (a.eligible !== b.eligible) return a.eligible ? -1 : 1;
+  if (a.feeKnown !== b.feeKnown) return a.feeKnown ? -1 : 1;
+  return b.decisionMonthlyValueBrl - a.decisionMonthlyValueBrl;
+}
+
+/**
+ * Score 0–100 = percentil do valor de decisão entre os cartões elegíveis do
+ * conjunto. Segue sempre a ordem do ranking; inelegíveis recebem 0.
+ * Espera a lista já ordenada por `compareCardValueScores`.
+ */
+export function applyPercentileScores(sorted: CardValueScore[]): CardValueScore[] {
+  const eligible = sorted.filter((s) => s.eligible);
+  const n = eligible.length;
+  return sorted.map((s) => {
+    if (!s.eligible) return { ...s, score0To100: 0 };
+    if (n <= 1) return { ...s, score0To100: 100 };
+    // Empates recebem o mesmo percentil (o do primeiro com aquele valor).
+    const firstIndex = eligible.findIndex(
+      (e) => e.feeKnown === s.feeKnown && e.decisionMonthlyValueBrl === s.decisionMonthlyValueBrl
+    );
+    return { ...s, score0To100: Math.round(100 * (1 - firstIndex / (n - 1))) };
+  });
 }
 
 export {
@@ -89,79 +132,83 @@ function hasDirectAirlineProgram(card: CardFacet): boolean {
   );
 }
 
-function pointValuationForCard(
-  card: CardFacet,
-  profile: UserProfile,
-  assumptions: CardValueAssumptions
-): {
+interface PointValuation {
   saleValuePerThousandBrl: number;
   travelValuePerThousandBrl: number;
   saleLabel: string;
   travelLabel: string;
   note: string;
-} {
-  const valueTf = travelFrequencyForValueModeling(profile);
-  const nonTravelerSaleCap =
-    valueTf === "none"
-      ? NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL
-      : Number.POSITIVE_INFINITY;
+}
+
+function pointValuationForCard(
+  card: CardFacet,
+  profile: UserProfile,
+  assumptions: CardValueAssumptions
+): PointValuation {
+  // Quem não viaja só vende pontos/milhas: teto de venda vale para todo programa.
+  const nonTraveler = travelFrequencyForValueModeling(profile) === "none";
+  const capSale = (value: number) =>
+    nonTraveler ? Math.min(value, NON_TRAVELER_DEFAULT_POINT_SALE_VALUE_PER_THOUSAND_BRL) : value;
+  const capNote = (raw: number, capped: number) =>
+    capped < raw
+      ? ` Venda limitada a R$${capped}/1k porque o perfil não viaja (sem utilização em viagem).`
+      : "";
 
   if (isMembershipRewardsCard(card)) {
+    const raw = assumptions.membershipRewardsPointSaleValuePerThousandBrl;
+    const sale = capSale(raw);
+    const travel = assumptions.membershipRewardsPointTravelValuePerThousandBrl;
     return {
-      saleValuePerThousandBrl: assumptions.membershipRewardsPointSaleValuePerThousandBrl,
-      travelValuePerThousandBrl: assumptions.membershipRewardsPointTravelValuePerThousandBrl,
-      saleLabel: `Membership Rewards a R$${assumptions.membershipRewardsPointSaleValuePerThousandBrl}/1k pts (venda)`,
-      travelLabel: `Membership Rewards a R$${assumptions.membershipRewardsPointTravelValuePerThousandBrl}/1k pts (utilizacao)`,
-      note: `Membership Rewards: retorno realizável de venda em R$${assumptions.membershipRewardsPointSaleValuePerThousandBrl} por 1.000 pontos; potencial de utilizacao em R$${assumptions.membershipRewardsPointTravelValuePerThousandBrl} por 1.000 pontos.`,
+      saleValuePerThousandBrl: sale,
+      travelValuePerThousandBrl: travel,
+      saleLabel: `Membership Rewards a R$${sale}/1k pts (venda)`,
+      travelLabel: `Membership Rewards a R$${travel}/1k pts (utilização)`,
+      note: `Membership Rewards: retorno realizável de venda em R$${sale} por 1.000 pontos; potencial de utilização em R$${travel} por 1.000 pontos.${capNote(raw, sale)}`,
     };
   }
 
   if (hasLiveloOrEsferaProgram(card)) {
-    const liveloSaleValuePerThousandBrl = Math.min(
-      assumptions.liveloPointSaleValuePerThousandBrl,
-      nonTravelerSaleCap
-    );
-
+    const raw = assumptions.liveloPointSaleValuePerThousandBrl;
+    const sale = capSale(raw);
+    const travel = assumptions.liveloPointTravelValuePerThousandBrl;
     return {
-      saleValuePerThousandBrl: liveloSaleValuePerThousandBrl,
-      travelValuePerThousandBrl: assumptions.liveloPointTravelValuePerThousandBrl,
-      saleLabel: `Livelo/Esfera a R$${liveloSaleValuePerThousandBrl}/1k pts (venda)`,
-      travelLabel: `Livelo/Esfera a R$${assumptions.liveloPointTravelValuePerThousandBrl}/1k pts (utilizacao)`,
-      note: `Livelo/Esfera: retorno realizável de venda em R$${liveloSaleValuePerThousandBrl} por 1.000 pontos; potencial de utilizacao em R$${assumptions.liveloPointTravelValuePerThousandBrl} por 1.000 pontos.`,
+      saleValuePerThousandBrl: sale,
+      travelValuePerThousandBrl: travel,
+      saleLabel: `Livelo/Esfera a R$${sale}/1k pts (venda)`,
+      travelLabel: `Livelo/Esfera a R$${travel}/1k pts (utilização)`,
+      note: `Livelo/Esfera: retorno realizável de venda em R$${sale} por 1.000 pontos; potencial de utilização em R$${travel} por 1.000 pontos.${capNote(raw, sale)}`,
     };
   }
 
   if (hasDirectAirlineProgram(card)) {
+    const raw = assumptions.mileValuePerThousandBrl;
+    const sale = capSale(raw);
+    const travel = Math.max(raw, assumptions.liveloPointTravelValuePerThousandBrl);
     return {
-      saleValuePerThousandBrl: assumptions.mileValuePerThousandBrl,
-      travelValuePerThousandBrl: Math.max(
-        assumptions.mileValuePerThousandBrl,
-        assumptions.liveloPointTravelValuePerThousandBrl
-      ),
-      saleLabel: `milhas a R$${assumptions.mileValuePerThousandBrl}/1k (venda)`,
-      travelLabel: `milhas a R$${Math.max(
-        assumptions.mileValuePerThousandBrl,
-        assumptions.liveloPointTravelValuePerThousandBrl
-      )}/1k (utilizacao)`,
-      note: `Programa aéreo direto: retorno realizável em R$${assumptions.mileValuePerThousandBrl} por 1.000 milhas; potencial de utilizacao em R$${Math.max(
-        assumptions.mileValuePerThousandBrl,
-        assumptions.liveloPointTravelValuePerThousandBrl
-      )} por 1.000 milhas.`,
+      saleValuePerThousandBrl: sale,
+      travelValuePerThousandBrl: travel,
+      saleLabel: `milhas a R$${sale}/1k (venda)`,
+      travelLabel: `milhas a R$${travel}/1k (utilização)`,
+      note: `Programa aéreo direto: retorno realizável em R$${sale} por 1.000 milhas; potencial de utilização em R$${travel} por 1.000 milhas.${capNote(raw, sale)}`,
     };
   }
 
-  const defaultSaleValuePerThousandBrl = Math.min(
-    assumptions.defaultPointValuePerThousandBrl,
-    nonTravelerSaleCap
+  const raw = assumptions.defaultPointValuePerThousandBrl;
+  const sale = capSale(raw);
+  // Programa não identificado nunca vale mais em viagem que a Livelo.
+  const travel = Math.max(
+    sale,
+    Math.min(
+      UNKNOWN_PROGRAM_POINT_TRAVEL_VALUE_PER_THOUSAND_BRL,
+      assumptions.liveloPointTravelValuePerThousandBrl
+    )
   );
-  const defaultTravelValuePerThousandBrl = Math.max(defaultSaleValuePerThousandBrl, 55);
-
   return {
-    saleValuePerThousandBrl: defaultSaleValuePerThousandBrl,
-    travelValuePerThousandBrl: defaultTravelValuePerThousandBrl,
-    saleLabel: `pontos a R$${defaultSaleValuePerThousandBrl}/1k pts (venda)`,
-    travelLabel: `pontos a R$${defaultTravelValuePerThousandBrl}/1k pts (utilizacao)`,
-    note: `Programa de pontos não identificado; usado retorno conservador de R$${defaultSaleValuePerThousandBrl} por 1.000 pontos e potencial de utilizacao de R$${defaultTravelValuePerThousandBrl} por 1.000 pontos.`,
+    saleValuePerThousandBrl: sale,
+    travelValuePerThousandBrl: travel,
+    saleLabel: `pontos a R$${sale}/1k pts (venda)`,
+    travelLabel: `pontos a R$${travel}/1k pts (utilização)`,
+    note: `Programa de pontos não identificado; usado retorno conservador de R$${sale} por 1.000 pontos e potencial de utilização de R$${travel} por 1.000 pontos (limitado ao da Livelo).${capNote(raw, sale)}`,
   };
 }
 
@@ -180,12 +227,6 @@ function normalizeText(value: string): string {
     .toLowerCase();
 }
 
-function characteristicText(card: CardFacet): string {
-  return (card.characteristics ?? [])
-    .map((item) => `${item.label} ${String(item.value)} ${item.details ?? ""}`)
-    .join(" ");
-}
-
 function characteristicsByKey(card: CardFacet, key: string): CardCharacteristic[] {
   return (card.characteristics ?? []).filter((item) => item.key === key);
 }
@@ -196,12 +237,8 @@ function parsePercent(text: string): number | null {
   return Number(match[1].replace(",", ".")) / 100;
 }
 
-function _parseBrlAmount(text: string): number | null {
-  const match = text.match(/R\$\s*([\d.]+(?:,\d+)?)/i);
-  if (!match) return null;
-  const parsed = Number(match[1].replace(/\./g, "").replace(",", "."));
-  return Number.isFinite(parsed) ? parsed : null;
-}
+/** "até" como palavra (texto já normalizado): não casa com "categoria". */
+const CEILING_WORD = /\bate\b/;
 
 function parseBrlAmounts(text: string): number[] {
   return [...text.matchAll(/R\$\s*([\d.]+(?:,\d+)?)/gi)]
@@ -252,7 +289,7 @@ function parsePointsRates(card: CardFacet): {
           international.push(rate);
         } else if (/brasil|nacion/.test(segNorm)) {
           domestic.push(rate);
-        } else if (/ate|até/.test(segNorm)) {
+        } else if (CEILING_WORD.test(segNorm)) {
           ceilingRates.push(rate);
           ignoredGenericCeilings.push(segment);
         } else {
@@ -370,7 +407,7 @@ function parseCashlikeRates(card: CardFacet): {
       rates.domestic.push(rate);
       continue;
     }
-    if (/por dolar|\/usd/.test(text) && /ate|até/.test(text) && rate >= 0.03) {
+    if (/por dolar|\/usd/.test(text) && CEILING_WORD.test(text) && rate >= 0.03) {
       ignoredCategorySpecific.push(String(raw).trim());
       continue;
     }
@@ -406,11 +443,11 @@ function parseCashlikeRates(card: CardFacet): {
       };
     }
     return {
-      generalRate: 0.01,
+      generalRate: UNSTRUCTURED_CASHBACK_FALLBACK_RATE,
       domesticRate: null,
       internationalRate: null,
       ignoredCategorySpecific,
-      note: "Taxa exata de cashback não estruturada; usado retorno conservador de 1%.",
+      note: `Taxa exata de cashback não estruturada; usado retorno conservador de ${(UNSTRUCTURED_CASHBACK_FALLBACK_RATE * 100).toLocaleString("pt-BR")}%.`,
     };
   }
   return { generalRate: 0, domesticRate: null, internationalRate: null, ignoredCategorySpecific };
@@ -592,24 +629,79 @@ function parseInvestmentThresholdAnyOrder(text: string): number | null {
   );
 }
 
-/** When the numeric facet says R$0 but there is a spend-based waiver, infer base fee from textual fields. */
-function inferAnnualFeeFromCharacteristicsWhenFacetZero(
-  card: CardFacet,
-  structuredRules: NonNullable<CardFacet["fee_waiver_rules"]>
-): number | null {
-  const hasSpendBasedWaiver = structuredRules.some(
-    (rule) => rule.category === "monthly_spend" && typeof rule.threshold_brl === "number"
-  );
-  if (!hasSpendBasedWaiver) return null;
+// ─── Anuidade ──────────────────────────────────────────────────────────────
 
-  const annualFeeTexts = [
+export interface AnnualFeeBase {
+  /** Anuidade nominal anual usada como base do cálculo (0 quando desconhecida). */
+  baseAnnualFeeBrl: number;
+  /** Verdadeiro quando há valor numérico ou um valor lido com segurança do texto da anuidade. */
+  known: boolean;
+  note?: string;
+}
+
+function annualFeeTexts(card: CardFacet): string[] {
+  return [
     ...characteristicsByKey(card, "annual_fee"),
     ...characteristicsByKey(card, "annual_fee_detail"),
   ].map((item) => `${item.value} ${item.details ?? ""}`);
+}
 
-  const amounts = annualFeeTexts.flatMap((text) => parseBrlAmounts(text));
-  const positive = amounts.filter((n) => n > 0);
-  return positive.length > 0 ? Math.max(...positive) : null;
+/** Lê "R$ 1.155/ano" ou "12x de R$ 96,25" do texto da anuidade. Mensal sem anual vira ×12. */
+function annualFeeFromText(card: CardFacet): number | null {
+  const texts = annualFeeTexts(card);
+  const amounts = texts.flatMap((text) => parseBrlAmounts(text)).filter((n) => n > 0);
+  if (amounts.length === 0) return null;
+  const joined = normalizeText(texts.join(" "));
+  const monthlyOnly = /\/\s*mes|por mes|mensal/.test(joined) && !/ano|anual|\d+x/.test(joined);
+  const max = Math.max(...amounts);
+  return monthlyOnly ? max * 12 : max;
+}
+
+/**
+ * Anuidade base do cartão e se ela é conhecida. `null`, "unknown" e
+ * "variable_pricing_claim" só viram anuidade conhecida quando o texto da
+ * anuidade traz o valor; senão `known` é falso e o cartão nunca é "grátis".
+ */
+export function resolveAnnualFeeBase(card: CardFacet): AnnualFeeBase {
+  const raw = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
+  if (typeof raw === "number" && raw > 0) return { baseAnnualFeeBrl: raw, known: true };
+
+  const fromText = annualFeeFromText(card);
+  if (typeof raw === "number") {
+    // Facet R$0 com isenção por gasto: a anuidade cobrada está no texto.
+    const hasSpendWaiver = feeWaiverRulesForCard(card).some(
+      (rule) => rule.category === "monthly_spend" && typeof rule.threshold_brl === "number"
+    );
+    if (hasSpendWaiver && fromText !== null) {
+      return {
+        baseAnnualFeeBrl: fromText,
+        known: true,
+        note: "Anuidade base inferida dos campos textuais (facet numérico inconsistente com regra de isenção por gasto).",
+      };
+    }
+    return { baseAnnualFeeBrl: 0, known: true };
+  }
+
+  if (fromText !== null) {
+    return {
+      baseAnnualFeeBrl: fromText,
+      known: true,
+      note: `Anuidade não estruturada; usado o valor do texto da anuidade (${formatBrl(roundMoney(fromText))}/ano).`,
+    };
+  }
+  const monthlyHint = card.facets_numeric_or_special.monthly_fee_brl_after_intro_official_hint;
+  if (typeof monthlyHint === "number" && monthlyHint > 0) {
+    return {
+      baseAnnualFeeBrl: monthlyHint * 12,
+      known: true,
+      note: `Anuidade não estruturada; usada a mensalidade oficial (${formatBrl(monthlyHint)} × 12).`,
+    };
+  }
+  return {
+    baseAnnualFeeBrl: 0,
+    known: false,
+    note: "Anuidade não informada: o cálculo usa R$0, o cartão não é tratado como gratuito e fica abaixo dos cartões com anuidade conhecida.",
+  };
 }
 
 /** Clube Smiles plano entrada — custo além da anuidade do cartão para modelar 5,5 milhas/USD no gasto geral (Diamante). Ids e valor em data/card_overrides.json. */
@@ -620,133 +712,66 @@ function bundledSmilesClubAnnualAddonBrl(card: CardFacet): number {
   return GOL_SMILES_CLUB_ENTRY_MONTHLY_BRL * 12;
 }
 
+function uniqueConditions(rules: Parameters<typeof describeFeeWaiverCondition>[0][]): string {
+  return [...new Set(rules.map(describeFeeWaiverCondition))].join(" ou ");
+}
+
 function computeEffectiveAnnualFee(
   card: CardFacet,
   profile: UserProfile
-): { annualFee: number; reason: string; notes: string[] } {
-  const rawFee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
-  if (rawFee === "unknown" || rawFee === "variable_pricing_claim") {
+): { annualFee: number; feeKnown: boolean; reason: string; notes: string[] } {
+  const base = resolveAnnualFeeBase(card);
+  const notes: string[] = base.note ? [base.note] : [];
+  if (!base.known) {
     return {
       annualFee: 0,
-      reason: "Anuidade não estruturada; tratada como R$0 com baixa confiança.",
-      notes: ["Anuidade não estruturada; tratada como R$0 no score e marcada como incerteza."],
+      feeKnown: false,
+      reason: "Anuidade não informada pelo emissor; não tratada como gratuita.",
+      notes,
     };
   }
-
-  const structuredRules = card.fee_waiver_rules ?? [];
-  const notes: string[] = [];
-  let baseFee = typeof rawFee === "number" ? rawFee : 0;
-
-  if (baseFee <= 0) {
-    const inferred = inferAnnualFeeFromCharacteristicsWhenFacetZero(card, structuredRules);
-    if (inferred !== null && inferred > 0) {
-      baseFee = inferred;
-      notes.push(
-        "Anuidade base inferida dos campos textuais (facet numérico inconsistente com regra de isenção por gasto)."
-      );
-    } else {
-      return { annualFee: 0, reason: "Sem anuidade estruturada.", notes: [] };
-    }
+  if (base.baseAnnualFeeBrl <= 0) {
+    return { annualFee: 0, feeKnown: true, reason: "Sem anuidade.", notes };
   }
 
-  let effectiveFee = baseFee;
-  const feeWaivers = characteristicsByKey(card, "fee_waiver");
+  let nominalFee = base.baseAnnualFeeBrl;
   const conditionalAnnualFee = characteristicsByKey(card, "annual_fee_condition")
     .map((item) => `${item.value} ${item.details ?? ""}`)
     .find((text) => /correntista/i.test(text));
-
   if (conditionalAnnualFee && card.eligibility?.requires_bank_account_claim === true) {
     const accountHolderFee = Math.min(...parseBrlAmounts(conditionalAnnualFee));
     if (
       Number.isFinite(accountHolderFee) &&
       accountHolderFee > 0 &&
-      accountHolderFee < effectiveFee
+      accountHolderFee < nominalFee
     ) {
-      effectiveFee = accountHolderFee;
+      nominalFee = accountHolderFee;
       notes.push("Anuidade de correntista aplicada por condição estruturada.");
     }
   }
 
-  for (const rule of structuredRules) {
-    const waiverPhrase = `${rule.description ?? ""} ${rule.raw_text ?? ""}`;
-    if (!rule.full_waiver && !/50%|metade|parcial/i.test(waiverPhrase)) continue;
-
-    const qualifiesBySpend =
-      rule.category === "monthly_spend" &&
-      typeof rule.threshold_brl === "number" &&
-      profile.avgMonthlySpendBrl >= rule.threshold_brl;
-    const qualifiesByInvestment =
-      rule.category === "investment" &&
-      typeof rule.threshold_brl === "number" &&
-      profile.avgInvestedBrl >= rule.threshold_brl;
-    const qualifiesByGeneral = rule.category === "general" && rule.full_waiver;
-
-    if (rule.full_waiver && (qualifiesBySpend || qualifiesByInvestment || qualifiesByGeneral)) {
-      effectiveFee = 0;
-      notes.push("Isenção aplicada por regra estruturada de anuidade.");
-      break;
-    }
-
-    if (!rule.full_waiver && qualifiesBySpend && /50%|metade|parcial/i.test(waiverPhrase)) {
-      effectiveFee = Math.min(effectiveFee, baseFee * 0.5);
-      notes.push("Desconto/cashback parcial de anuidade aplicado por regra estruturada.");
-    }
-  }
-
-  for (const waiver of structuredRules.length > 0 ? [] : feeWaivers) {
-    const text = `${waiver.value} ${waiver.details ?? ""}`;
-    const normalized = normalizeText(text);
-    const spendThreshold = parseSpendThreshold(text);
-    const investmentThreshold = parseInvestmentThreshold(text);
-
-    const qualifiesBySpend =
-      spendThreshold !== null && profile.avgMonthlySpendBrl >= spendThreshold;
-    const qualifiesByInvestment =
-      investmentThreshold !== null && profile.avgInvestedBrl >= investmentThreshold;
-
-    const hasExplicitCondition = spendThreshold !== null || investmentThreshold !== null;
-
-    if (
-      hasExplicitCondition &&
-      (qualifiesBySpend || qualifiesByInvestment) &&
-      /100%|isenc|isento|zero/.test(normalized)
-    ) {
-      effectiveFee = 0;
-      notes.push("Isenção aplicada por regra estruturada de gasto ou investimento.");
-      break;
-    }
-
-    if (
-      hasExplicitCondition &&
-      (qualifiesBySpend || qualifiesByInvestment) &&
-      /50%|metade|parcial/.test(normalized)
-    ) {
-      effectiveFee = Math.min(effectiveFee, baseFee * 0.5);
-      notes.push("Desconto parcial de anuidade aplicado de forma conservadora.");
-    }
-  }
-
-  const monthlyFee = baseFee / 12;
-  for (const rule of structuredRules) {
-    if (
-      rule.category !== "monthly_spend" ||
-      rule.full_waiver ||
-      typeof rule.threshold_brl !== "number" ||
-      typeof rule.discount_brl !== "number" ||
-      rule.period !== "monthly"
-    ) {
-      continue;
-    }
-
-    const discountSteps = Math.floor(profile.avgMonthlySpendBrl / rule.threshold_brl);
-    if (discountSteps <= 0) continue;
-
-    const discountedMonthlyFee = Math.max(0, monthlyFee - discountSteps * rule.discount_brl);
-    const discountedAnnualFee = discountedMonthlyFee * 12;
-    if (discountedAnnualFee < effectiveFee) {
-      effectiveFee = discountedAnnualFee;
-      notes.push("Desconto progressivo de mensalidade aplicado por regra estruturada de gasto.");
-    }
+  // Mesma avaliação usada pelas badges e pelo chat (lib/fee-waiver.ts).
+  const rules = feeWaiverRulesForCard(card);
+  const waiver = evaluateFeeWaiver(rules, nominalFee, profile);
+  let effectiveFee = waiver.effectiveAnnualFee;
+  if (waiver.appliedRules.length > 0) {
+    const conditions = waiver.appliedRules.map(describeFeeWaiverCondition).join(" e ");
+    notes.push(
+      effectiveFee === 0
+        ? `Isenção de anuidade aplicada: o perfil atende ${conditions}.`
+        : `Desconto de anuidade aplicado: o perfil atende ${conditions}.`
+    );
+  } else if (waiver.unmetRules.length > 0) {
+    const grouped = waiver.unmetRules.some((rule) => (rule.min_conditions ?? 1) > 1);
+    notes.push(
+      grouped
+        ? `Isenção exige cumprir ${Math.max(...rules.map((r) => r.min_conditions ?? 1))} critérios (${uniqueConditions(rules.filter((r) => (r.min_conditions ?? 1) > 1))}); o perfil não atende, anuidade cheia aplicada.`
+        : `Isenção/desconto exige ${uniqueConditions(waiver.unmetRules)}; o perfil não atende, anuidade cheia aplicada.`
+    );
+  } else if (waiver.notEvaluableRules.length > 0 || waiver.unknownEffectRules.length > 0) {
+    notes.push(
+      "Há condição de isenção que o perfil não permite avaliar (assinatura, chave Pix, limite ou desconto sem valor); anuidade cheia aplicada."
+    );
   }
 
   const feeBeforeSmilesClub = effectiveFee;
@@ -761,60 +786,85 @@ function computeEffectiveAnnualFee(
   const reason =
     smilesClubAnnual > 0
       ? `Custo anual modelado R$${roundMoney(effectiveFee).toLocaleString("pt-BR")} (cartão R$${roundMoney(feeBeforeSmilesClub).toLocaleString("pt-BR")} + Clube Smiles R$${roundMoney(smilesClubAnnual).toLocaleString("pt-BR")}).`
-      : effectiveFee < baseFee
-        ? `Anuidade efetiva de R$${effectiveFee.toLocaleString("pt-BR")} após regra estruturada.`
-        : "Sem regra de isenção suficientemente estruturada para este perfil; anuidade cheia aplicada.";
+      : effectiveFee === 0
+        ? `Anuidade de R$${roundMoney(base.baseAnnualFeeBrl).toLocaleString("pt-BR")} isenta pela condição que o perfil atende.`
+        : effectiveFee < base.baseAnnualFeeBrl
+          ? `Anuidade efetiva de R$${roundMoney(effectiveFee).toLocaleString("pt-BR")} após regra estruturada.`
+          : "Sem regra de isenção atendida por este perfil; anuidade cheia aplicada.";
 
-  if (
-    effectiveFee === baseFee &&
-    smilesClubAnnual === 0 &&
-    (feeWaivers.length > 0 || structuredRules.length > 0)
-  ) {
-    notes.push("Há menção de isenção/desconto, mas sem condição estruturada aplicável ao perfil.");
-  }
-
-  return { annualFee: effectiveFee, reason, notes };
+  return { annualFee: effectiveFee, feeKnown: true, reason, notes };
 }
+
+// ─── Câmbio ────────────────────────────────────────────────────────────────
 
 function issuerSpreadFallback(card: CardFacet): number {
   const issuer = normalizeText(card.issuer_raw);
   if (/(sicredi|sicoob|unicred|uniprime|sisprime|cresol)/.test(issuer)) {
     return COOPERATIVE_SPREAD;
   }
-  if (/(bradesco|itau|itaú|santander|banco do brasil|caixa)/.test(issuer)) {
+  if (/(bradesco|itau|santander|banco do brasil|caixa)/.test(issuer)) {
     return RETAIL_BANK_SPREAD;
   }
   return DEFAULT_SPREAD;
 }
 
-function parseSpread(card: CardFacet): { spread: number; note?: string } {
-  const text = `${card.facets_numeric_or_special.official_forex_or_iof_note} ${characteristicText(card)}`;
-  const normalized = normalizeText(text);
-  const spreadText = normalized
-    .split(/[.;|]/)
-    .filter((part) => part.includes("spread") || part.includes("dolar"))
-    .join(" ");
-  const parsed = parsePercent(spreadText);
-  if (parsed !== null) return { spread: parsed };
+/** Textos que falam de câmbio: a nota de IOF/câmbio e a característica `forex_spread`. */
+function forexTexts(card: CardFacet): string[] {
+  return [
+    card.facets_numeric_or_special.official_forex_or_iof_note,
+    ...characteristicsByKey(card, "forex_spread").map(
+      (item) => `${item.label} ${item.value} ${item.details ?? ""}`
+    ),
+  ].filter((text) => text.trim() !== "" && text.trim() !== "unknown");
+}
+
+// A palavra spread/ágio colada ao percentual: "spread internacional 0%", "0% de spread".
+const EXPLICIT_SPREAD_PATTERNS = [
+  /(?:spread|[aá]gio)\b[^\d%.;|]{0,30}?(\d+(?:[,.]\d+)?)\s*%/i,
+  /(\d+(?:[,.]\d+)?)\s*%\s*(?:de\s+)?(?:spread|[aá]gio)\b/i,
+];
+
+/**
+ * Spread cambial do cartão, em fração (0,04 = 4%), sempre em [0, MAX_FX_SPREAD].
+ * Ordem: `fx_spread_pct` nos dados → frase explícita de spread → fallback do emissor.
+ */
+export function fxSpreadForCard(card: CardFacet): {
+  spread: number;
+  source: "facet" | "text" | "issuer_fallback";
+  note?: string;
+} {
+  const facet = card.facets_numeric_or_special.fx_spread_pct;
+  if (typeof facet === "number" && Number.isFinite(facet)) {
+    return { spread: clamp(facet / 100, 0, MAX_FX_SPREAD), source: "facet" };
+  }
+  for (const text of forexTexts(card)) {
+    for (const pattern of EXPLICIT_SPREAD_PATTERNS) {
+      const match = pattern.exec(text);
+      if (!match) continue;
+      const value = Number(match[1].replace(",", ".")) / 100;
+      if (Number.isFinite(value) && value >= 0 && value <= MAX_FX_SPREAD) {
+        return { spread: value, source: "text" };
+      }
+    }
+  }
   return {
     spread: issuerSpreadFallback(card),
-    note: "Spread não estruturado; usado fallback por tipo de emissor.",
+    source: "issuer_fallback",
+    note: "Spread cambial não informado; usado valor típico do tipo de emissor.",
   };
 }
 
 function effectiveIofRate(card: CardFacet, assumptions: CardValueAssumptions): number {
-  const text = normalizeText(
-    `${card.facets_numeric_or_special.official_forex_or_iof_note} ${characteristicText(card)}`
-  );
-  if (/iof\s*zero|zero\s*iof|0\s*%\s*de\s*iof/.test(text)) return 0;
+  const text = normalizeText(forexTexts(card).join(" "));
+  if (/iof\s*zero|zero\s*(?:de\s*)?iof|\b0\s*%\s*(?:de\s*)?iof|sem\s+iof/.test(text)) return 0;
   return assumptions.iof;
 }
 
+// ─── Benefícios de viagem ──────────────────────────────────────────────────
+
+/** Viagens/ano pela frequência declarada; "não viajo" = 0. */
 function estimateAnnualTravelDemand(profile: UserProfile): number {
-  const tf = travelFrequencyForValueModeling(profile);
-  if (tf === "frequent") return 10;
-  if (tf === "occasional") return 6;
-  return 1;
+  return ANNUAL_TRIPS_BY_TRAVEL_FREQUENCY[travelFrequencyForValueModeling(profile)];
 }
 
 function fallbackAnnualLoungeCap(card: CardFacet): { visits: number; note: string } {
@@ -822,8 +872,8 @@ function fallbackAnnualLoungeCap(card: CardFacet): { visits: number; note: strin
   const segment = card.market_segment_guess;
   const visits =
     /black|infinite|centurion/.test(variant) || segment === "ultra_premium" || segment === "premium"
-      ? 2
-      : 1;
+      ? FALLBACK_LOUNGE_VISITS_PREMIUM
+      : FALLBACK_LOUNGE_VISITS_STANDARD;
   return {
     visits,
     note: `Acessos VIP sem limite anual estruturado; usado fallback conservador de ${visits} acesso${visits === 1 ? "" : "s"}/ano para ${card.variant_band}.`,
@@ -837,6 +887,7 @@ function estimateAnnualLoungeVisits(
   if (!card.lounge_access.has_lounge_access) return { visits: 0 };
 
   const demand = estimateAnnualTravelDemand(profile);
+  if (demand <= 0) return { visits: 0 };
   if (typeof card.lounge_access.annual_visits === "number") {
     return { visits: Math.min(demand, card.lounge_access.annual_visits) };
   }
@@ -851,7 +902,7 @@ function estimateAnnualLoungeVisits(
 }
 
 function travelBenefitDemandFactor(profile: UserProfile): number {
-  return estimateAnnualTravelDemand(profile) / 10;
+  return estimateAnnualTravelDemand(profile) / ANNUAL_TRIPS_BY_TRAVEL_FREQUENCY.frequent;
 }
 
 function loungeConditionText(card: CardFacet): string {
@@ -902,74 +953,6 @@ function hasLoungeGate(card: CardFacet, profile: UserProfile): { allowed: boolea
   };
 }
 
-function normalizeScore({
-  netMonthly,
-  eligible,
-  grossRewardMonthly,
-  intangibleMonthlyValue,
-  effectiveMonthlyFee,
-  monthlySpend,
-}: {
-  netMonthly: number;
-  eligible: boolean;
-  grossRewardMonthly: number;
-  intangibleMonthlyValue: number;
-  effectiveMonthlyFee: number;
-  monthlySpend: number;
-}): number {
-  if (!eligible) return 0;
-
-  const valueCreated = grossRewardMonthly + intangibleMonthlyValue;
-  if (valueCreated <= 0 && effectiveMonthlyFee <= 0 && netMonthly >= 0) return 50;
-
-  const spendBase = Math.max(1, monthlySpend);
-  const spendYield = netMonthly / spendBase;
-
-  if (netMonthly < 0) {
-    const absolutePenalty = Math.min(25, Math.abs(netMonthly) / 2);
-    const proportionalPenalty = Math.min(25, (Math.abs(spendYield) / 0.02) * 25);
-    return Math.round(clamp(50 - absolutePenalty - proportionalPenalty, 0, 49));
-  }
-
-  const absoluteGainScore = Math.min(20, netMonthly / 5);
-  const proportionalGainScore = Math.min(28, (spendYield / 0.025) * 28);
-  const benefitSignal = Math.min(2, valueCreated / 50);
-  return Math.round(clamp(50 + absoluteGainScore + proportionalGainScore + benefitSignal, 0, 100));
-}
-
-function preferenceAdjustment(
-  profile: UserProfile,
-  {
-    pointsRewardMonthlySale,
-    cashlikeRewardMonthly,
-    loungeValue,
-  }: {
-    pointsRewardMonthlySale: number;
-    cashlikeRewardMonthly: number;
-    loungeValue: number;
-  }
-): number {
-  let adjustment = 0;
-  const hasMeaningfulPoints = pointsRewardMonthlySale > 0;
-  const hasMeaningfulCashlike = cashlikeRewardMonthly > 0;
-
-  if (profile.preferences.prefersCashback) {
-    if (hasMeaningfulCashlike || hasMeaningfulPoints) {
-      adjustment += cashlikeRewardMonthly >= pointsRewardMonthlySale ? 3 : -3;
-    }
-  }
-  if (profile.preferences.prefersPoints) {
-    if (hasMeaningfulCashlike || hasMeaningfulPoints) {
-      adjustment += pointsRewardMonthlySale > cashlikeRewardMonthly ? 3 : -3;
-    }
-  }
-  if (profile.preferences.wantsLounge) {
-    adjustment += loungeValue >= 20 ? 2 : -2;
-  }
-
-  return clamp(adjustment, -6, 6);
-}
-
 function makeComponent(
   key: string,
   label: string,
@@ -987,6 +970,20 @@ function makeComponent(
   };
 }
 
+/** "R$1.234,5" / "-R$13,17": sinal fora do símbolo. */
+function signedBrl(value: number): string {
+  const rounded = roundMoney(value);
+  return `${rounded < 0 ? "-" : ""}R$${Math.abs(rounded).toLocaleString("pt-BR")}`;
+}
+
+/**
+ * Valor de um cartão para o perfil. O número que decide é
+ * `decisionMonthlyValueBrl`; `netMonthlyValueBrl` e `netMonthlyValueRangeHighBrl`
+ * são a faixa exibida (pontos vendidos → usados em viagem).
+ *
+ * `score0To100` aqui é o percentil num conjunto de um cartão (100 se elegível,
+ * 0 se não). Para o score exibido use `scoreCardValues` ou `scoreCardInContext`.
+ */
 export function scoreCardValue(
   card: CardFacet,
   profile: UserProfile = DEFAULT_SCORING_PROFILE,
@@ -995,9 +992,12 @@ export function scoreCardValue(
 ): CardValueScore {
   const eligibility = evaluateEligibility(card, profile);
   const eligibilityReasons = eligibility.reasons;
+  const travelFrequency = travelFrequencyForValueModeling(profile);
+  const redemptionWeight = travelRedemptionWeight(profile);
 
   const {
     annualFee: effectiveAnnualFee,
+    feeKnown,
     reason: feeAppliedReason,
     notes: feeNotes,
   } = computeEffectiveAnnualFee(card, profile);
@@ -1026,35 +1026,37 @@ export function scoreCardValue(
 
   const pointValuation = pointValuationForCard(card, profile, assumptions);
 
-  const internationalSpend = profile.monthlyInternationalSpendBrl ?? 0;
-  const domesticSpend = Math.max(0, profile.avgMonthlySpendBrl - internationalSpend);
+  // O gasto internacional é parte do gasto total: nunca maior que ele.
+  const totalSpend = Math.max(0, profile.avgMonthlySpendBrl);
+  const declaredInternationalSpend = Math.max(0, profile.monthlyInternationalSpendBrl ?? 0);
+  const internationalSpend = Math.min(declaredInternationalSpend, totalSpend);
+  const domesticSpend = totalSpend - internationalSpend;
+  const usesUsdRates = pointsRates.domesticRate !== null || pointsRates.internationalRate !== null;
   const hasPointRate =
-    pointsRates.domesticRate !== null ||
-    pointsRates.internationalRate !== null ||
+    usesUsdRates ||
     pointsRates.domesticRatePerBrl !== null ||
     pointsRates.internationalRatePerBrl !== null;
-  const pointsEarnedMonthly =
-    card.facets_boolean.earn_points_or_miles && hasPointRate
-      ? domesticSpend * (pointsRates.domesticRatePerBrl ?? 0) +
-        (domesticSpend / assumptions.ptaxBrlPerUsd) * (pointsRates.domesticRate ?? 0) +
-        internationalSpend *
-          (pointsRates.internationalRatePerBrl ?? pointsRates.domesticRatePerBrl ?? 0) +
-        (internationalSpend / assumptions.ptaxBrlPerUsd) *
-          (pointsRates.internationalRate ?? pointsRates.domesticRate ?? 0)
-      : 0;
-  const pointsRewardMonthlySale =
-    card.facets_boolean.earn_points_or_miles && hasPointRate
-      ? (pointsEarnedMonthly * pointValuation.saleValuePerThousandBrl) / 1000
-      : 0;
-  const pointsRewardMonthlyTravel =
-    card.facets_boolean.earn_points_or_miles && hasPointRate
-      ? (pointsEarnedMonthly * pointValuation.travelValuePerThousandBrl) / 1000
-      : 0;
+  const earnsPoints = card.facets_boolean.earn_points_or_miles && hasPointRate;
+  const pointsEarnedMonthly = earnsPoints
+    ? domesticSpend * (pointsRates.domesticRatePerBrl ?? 0) +
+      (domesticSpend / assumptions.ptaxBrlPerUsd) * (pointsRates.domesticRate ?? 0) +
+      internationalSpend *
+        (pointsRates.internationalRatePerBrl ?? pointsRates.domesticRatePerBrl ?? 0) +
+      (internationalSpend / assumptions.ptaxBrlPerUsd) *
+        (pointsRates.internationalRate ?? pointsRates.domesticRate ?? 0)
+    : 0;
+  const pointsRewardMonthlySale = earnsPoints
+    ? (pointsEarnedMonthly * pointValuation.saleValuePerThousandBrl) / 1000
+    : 0;
+  const pointsRewardMonthlyTravel = earnsPoints
+    ? (pointsEarnedMonthly * pointValuation.travelValuePerThousandBrl) / 1000
+    : 0;
 
   const cashlike = parseCashlikeRates(card);
-  const tieredRate = effectiveCashlikeRate(card, profile.avgMonthlySpendBrl);
+  const spendTiers = parseSpendTieredRates(card);
   // Use tiered rate when spend thresholds exist; otherwise fall back to parsed rates
-  const hasTiers = parseSpendTieredRates(card).length > 0;
+  const hasTiers = spendTiers.length > 0;
+  const tieredRate = hasTiers ? effectiveCashlikeRate(card, totalSpend) : 0;
   const cashlikeDomesticRate = hasTiers
     ? tieredRate
     : (cashlike.domesticRate ?? cashlike.generalRate);
@@ -1069,16 +1071,23 @@ export function scoreCardValue(
   );
   const grossRewardMonthlyAtTravelValuation = Math.max(
     pointsRewardMonthlyTravel,
-    cashlikeRewardMonthly
+    grossRewardMonthlyAtSaleValuation
   );
+  // Retorno bruto esperado: mesma ponderação venda→viagem do valor de decisão.
+  const grossRewardMonthlyDecision =
+    grossRewardMonthlyAtSaleValuation +
+    redemptionWeight * (grossRewardMonthlyAtTravelValuation - grossRewardMonthlyAtSaleValuation);
   const grossRewardMonthly = grossRewardMonthlyAtSaleValuation;
   const rewardChoice =
     pointsRewardMonthlySale >= cashlikeRewardMonthly ? "milhas/pontos" : "retorno financeiro";
 
-  const loungeGate = hasLoungeGate(card, profile);
+  // Benefícios de viagem: zero para quem declara que não viaja.
+  const annualTrips = estimateAnnualTravelDemand(profile);
+  const loungeGate =
+    annualTrips > 0 ? hasLoungeGate(card, profile) : { allowed: false as const, note: undefined };
   const annualLounge = loungeGate.allowed
     ? estimateAnnualLoungeVisits(profile, card)
-    : { visits: 0 };
+    : { visits: 0, note: undefined };
   const loungeValue = (annualLounge.visits * assumptions.loungeVisitValueBrl) / 12;
   const travelDemandFactor = travelBenefitDemandFactor(profile);
   const insuranceValue = card.facets_boolean.mentions_travel_insurance
@@ -1088,8 +1097,12 @@ export function scoreCardValue(
     ? assumptions.conciergeMonthlyValueBrl * travelDemandFactor
     : 0;
   const intangibleMonthlyValue = loungeValue + insuranceValue + conciergeValue;
+  const hasTravelPerks =
+    card.lounge_access.has_lounge_access ||
+    card.facets_boolean.mentions_travel_insurance ||
+    card.facets_boolean.mentions_concierge;
 
-  const spread = parseSpread(card);
+  const spread = fxSpreadForCard(card);
   const iofRate = effectiveIofRate(card, assumptions);
   const internationalMonthlyCost = internationalSpend * ((1 + spread.spread) * (1 + iofRate) - 1);
 
@@ -1098,34 +1111,44 @@ export function scoreCardValue(
     intangibleMonthlyValue -
     effectiveMonthlyFee -
     internationalMonthlyCost;
-  const netMonthlyValueRangeHighUnrounded =
+  const netMonthlyValueRangeHigh =
     grossRewardMonthlyAtTravelValuation +
     intangibleMonthlyValue -
     effectiveMonthlyFee -
     internationalMonthlyCost;
-  const netContributionRateOverSpend =
-    profile.avgMonthlySpendBrl > 0
-      ? (grossRewardMonthly + intangibleMonthlyValue - internationalMonthlyCost) /
-        profile.avgMonthlySpendBrl
-      : 0;
-  const breakEvenByRewardsOnlyMonthlySpend =
-    grossRewardMonthly > 0 && profile.avgMonthlySpendBrl > 0
-      ? (effectiveMonthlyFee / grossRewardMonthly) * profile.avgMonthlySpendBrl
-      : null;
-  const breakEvenMonthlySpend =
-    netContributionRateOverSpend > 0 ? effectiveMonthlyFee / netContributionRateOverSpend : null;
+  const decisionValue = decisionMonthlyValue(netMonthlyValue, netMonthlyValueRangeHigh, profile);
 
-  const pointsValuationNote =
-    card.facets_boolean.earn_points_or_miles && hasPointRate ? pointValuation.note : undefined;
+  // Ponto de equilíbrio: gasto mensal em que o valor de decisão zera. Benefícios
+  // e anuidade são fixos; só retorno e custo internacional escalam com o gasto.
+  const rewardRateOverSpend =
+    totalSpend > 0 ? (grossRewardMonthlyDecision - internationalMonthlyCost) / totalSpend : 0;
+  const fixedGapMonthly = effectiveMonthlyFee - intangibleMonthlyValue;
+  const breakEvenMonthlySpend = !feeKnown
+    ? null
+    : fixedGapMonthly <= 0
+      ? 0
+      : rewardRateOverSpend > 0
+        ? fixedGapMonthly / rewardRateOverSpend
+        : null;
+  const breakEvenByRewardsOnlyMonthlySpend =
+    feeKnown && grossRewardMonthlyDecision > 0 && totalSpend > 0
+      ? (effectiveMonthlyFee / grossRewardMonthlyDecision) * totalSpend
+      : null;
+
+  const pointsValuationNote = earnsPoints ? pointValuation.note : undefined;
 
   const tieredSpendNote = (() => {
-    const tiers = parseSpendTieredRates(card);
-    if (tiers.length === 0) return undefined;
-    const minRequired = Math.min(...tiers.map((t) => t.minSpend));
-    if (profile.avgMonthlySpendBrl < minRequired)
-      return `Cashback requer gasto mínimo de ${formatBrl(minRequired)}/mês; seu perfil (${formatBrl(profile.avgMonthlySpendBrl)}) não atinge o limite — cashback zero aplicado.`;
+    if (spendTiers.length === 0) return undefined;
+    const minRequired = Math.min(...spendTiers.map((t) => t.minSpend));
+    if (totalSpend < minRequired)
+      return `Cashback requer gasto mínimo de ${formatBrl(minRequired)}/mês; seu perfil (${formatBrl(totalSpend)}) não atinge o limite — cashback zero aplicado.`;
     return undefined;
   })();
+
+  const internationalCapNote =
+    declaredInternationalSpend > internationalSpend
+      ? `Gasto internacional informado (${formatBrl(declaredInternationalSpend)}) maior que o gasto total; limitado a ${formatBrl(internationalSpend)}.`
+      : undefined;
 
   const dataQualityNotes = [
     ...eligibility.notes,
@@ -1136,9 +1159,11 @@ export function scoreCardValue(
     ...(cashlike.note && !tieredSpendNote ? [cashlike.note] : []),
     ...(loungeGate.note ? [loungeGate.note] : []),
     ...(annualLounge.note ? [annualLounge.note] : []),
-    ...(spread.note ? [spread.note] : []),
+    ...(internationalCapNote ? [internationalCapNote] : []),
+    ...(spread.note && internationalSpend > 0 ? [spread.note] : []),
   ];
 
+  const rate = assumptions.ptaxBrlPerUsd.toLocaleString("pt-BR", { maximumFractionDigits: 4 });
   const components = [
     makeComponent(
       "rewards",
@@ -1146,7 +1171,7 @@ export function scoreCardValue(
       grossRewardMonthly,
       `Retorno realizável entre pontos/cashback: ${rewardChoice}. ${
         pointsEarnedMonthly > 0
-          ? `${pointsEarnedMonthly.toLocaleString("pt-BR", { maximumFractionDigits: 0 })} pts/mês × ${pointValuation.saleLabel}. Potencial de utilizacao: R$${roundMoney(pointsRewardMonthlyTravel).toLocaleString("pt-BR")}/mês com ${pointValuation.travelLabel}.`
+          ? `${pointsEarnedMonthly.toLocaleString("pt-BR", { maximumFractionDigits: 0 })} pts/mês${usesUsdRates ? ` (gasto convertido pelo dólar comercial a R$${rate})` : ""} × ${pointValuation.saleLabel}. Potencial de utilização: R$${roundMoney(pointsRewardMonthlyTravel).toLocaleString("pt-BR")}/mês com ${pointValuation.travelLabel}.`
           : ""
       }`,
       pointsRates.note ??
@@ -1160,110 +1185,99 @@ export function scoreCardValue(
     ),
     makeComponent(
       "intangibles",
-      "Benefícios valorizados",
+      "Benefícios de viagem",
       intangibleMonthlyValue,
-      `Sala VIP (${annualLounge.visits.toLocaleString("pt-BR", { maximumFractionDigits: 1 })} acessos/ano × R$${assumptions.loungeVisitValueBrl} ÷ 12), seguro viagem (R$${roundMoney(insuranceValue)}/mês) e concierge (R$${roundMoney(conciergeValue)}/mês) ponderados pela frequência de viagem.`,
+      annualTrips === 0
+        ? hasTravelPerks
+          ? "Perfil declara que não viaja: sala VIP, seguro viagem e concierge não entram no valor."
+          : "Sem benefícios de viagem valorizados."
+        : `Sala VIP (${annualLounge.visits.toLocaleString("pt-BR", { maximumFractionDigits: 1 })} acessos/ano × R$${assumptions.loungeVisitValueBrl} ÷ 12), seguro viagem (R$${roundMoney(insuranceValue)}/mês) e concierge (R$${roundMoney(conciergeValue)}/mês) ponderados por ${annualTrips} viagens/ano.`,
       loungeGate.note ?? annualLounge.note
     ),
     makeComponent(
       "fee",
       "Mensalidade efetiva",
       -effectiveMonthlyFee,
-      "Anuidade dividida por 12 após isenções estruturadas."
+      feeKnown
+        ? "Anuidade dividida por 12 após isenções estruturadas."
+        : "Anuidade não informada: considerada R$0 no cálculo, pode ser maior.",
+      feeKnown ? undefined : "Anuidade não informada pelo emissor."
     ),
     makeComponent(
       "international",
       "Custo internacional",
       -internationalMonthlyCost,
       "Custo adicional estimado de IOF e spread sobre gasto internacional.",
-      spread.note
+      internationalSpend > 0 ? spread.note : undefined
     ),
   ];
 
   const roundedNetMonthly = roundMoney(netMonthlyValue);
-  const roundedNetRangeHigh = roundMoney(
-    Math.max(netMonthlyValueRangeHighUnrounded, netMonthlyValue)
-  );
-  const valueTf = travelFrequencyForValueModeling(profile);
-  const travelerNetLiquidityRange =
-    (valueTf === "occasional" || valueTf === "frequent") &&
-    Math.abs(roundedNetRangeHigh - roundedNetMonthly) >= 1;
+  const roundedNetRangeHigh = roundMoney(netMonthlyValueRangeHigh);
+  const roundedDecision = roundMoney(decisionValue);
+  const showsRange =
+    travelFrequency !== "none" && Math.abs(roundedNetRangeHigh - roundedNetMonthly) >= 1;
+  const rangeText = `entre ${signedBrl(roundedNetMonthly)} (pontos vendidos) e ${signedBrl(roundedNetRangeHigh)} (pontos usados em viagem)`;
   const netAnnualValue = netMonthlyValue * 12;
-  const feeBurden =
-    profile.avgMonthlySpendBrl > 0 ? effectiveAnnualFee / (profile.avgMonthlySpendBrl * 12) : null;
-  const roiMultiple = effectiveAnnualFee > 0 ? netAnnualValue / effectiveAnnualFee : null;
+  const feeBurden = totalSpend > 0 ? effectiveAnnualFee / (totalSpend * 12) : null;
+  const roiMultiple = effectiveAnnualFee > 0 ? (decisionValue * 12) / effectiveAnnualFee : null;
+
   const scoreDrivers = [
-    travelerNetLiquidityRange
-      ? `Valor líquido: R$${roundedNetMonthly.toLocaleString("pt-BR")}–R$${roundedNetRangeHigh.toLocaleString("pt-BR")}/mês (venda → utilização em viagem)`
-      : `Valor líquido: R$${roundedNetMonthly.toLocaleString("pt-BR")}/mês`,
-    `Anuidade efetiva: R$${roundMoney(effectiveAnnualFee).toLocaleString("pt-BR")}/ano`,
-    `Retorno bruto: R$${roundMoney(grossRewardMonthly).toLocaleString("pt-BR")}/mês`,
-    `Benefícios valorizados: R$${roundMoney(intangibleMonthlyValue).toLocaleString("pt-BR")}/mês`,
+    `Valor esperado: ${signedBrl(roundedDecision)}/mês${showsRange ? ` (${rangeText})` : ""}`,
+    feeKnown
+      ? `Anuidade efetiva: R$${roundMoney(effectiveAnnualFee).toLocaleString("pt-BR")}/ano`
+      : "Anuidade: não informada (calculada como R$0, pode ser maior)",
+    showsRange
+      ? `Retorno bruto: R$${roundMoney(grossRewardMonthlyAtSaleValuation).toLocaleString("pt-BR")}–R$${roundMoney(grossRewardMonthlyAtTravelValuation).toLocaleString("pt-BR")}/mês`
+      : `Retorno bruto: R$${roundMoney(grossRewardMonthly).toLocaleString("pt-BR")}/mês`,
+    annualTrips === 0 && hasTravelPerks
+      ? "Benefícios de viagem: R$0/mês (perfil não viaja)"
+      : `Benefícios de viagem: R$${roundMoney(intangibleMonthlyValue).toLocaleString("pt-BR")}/mês`,
   ];
   if (internationalMonthlyCost > 0) {
     scoreDrivers.push(
       `Custo internacional: -R$${roundMoney(internationalMonthlyCost).toLocaleString("pt-BR")}/mês`
     );
   }
-  const preferenceScoreAdjustment = preferenceAdjustment(profile, {
-    pointsRewardMonthlySale,
-    cashlikeRewardMonthly,
-    loungeValue,
-  });
-  if (
-    profile.preferences.prefersCashback ||
-    profile.preferences.prefersPoints ||
-    profile.preferences.wantsLounge
-  ) {
-    scoreDrivers.push(
-      `Preferências aplicadas com peso leve: ${preferenceScoreAdjustment >= 0 ? "+" : ""}${preferenceScoreAdjustment} pts no score`
-    );
-  }
+
   const rankReason = !eligibility.eligible
     ? `Bloqueado por elegibilidade: ${eligibilityReasons.join(" ")}`
-    : roundedNetMonthly >= 0
-      ? travelerNetLiquidityRange
-        ? `Rankeado por valor líquido positivo entre R$${roundedNetMonthly.toLocaleString("pt-BR")} e R$${roundedNetRangeHigh.toLocaleString("pt-BR")}/mês (venda–utilização) após anuidade e custos.`
-        : `Rankeado por valor líquido positivo de R$${roundedNetMonthly.toLocaleString("pt-BR")}/mês após anuidade e custos.`
-      : `Rankeado abaixo por destruir R$${Math.abs(roundedNetMonthly).toLocaleString("pt-BR")}/mês após anuidade e custos.`;
+    : !feeKnown
+      ? `Anuidade não informada: listado depois dos cartões com anuidade conhecida. Sem contar a anuidade, valor esperado de ${signedBrl(roundedDecision)}/mês.`
+      : roundedDecision >= 0
+        ? `Valor esperado de ${signedBrl(roundedDecision)}/mês após anuidade e custos${showsRange ? ` (${rangeText})` : ""}.`
+        : `Custa ${signedBrl(Math.abs(roundedDecision))}/mês a mais do que devolve, após anuidade e custos${showsRange ? ` (${rangeText})` : ""}.`;
   const verdict = !eligibility.eligible
     ? "Não elegível com o perfil informado."
-    : roundedNetMonthly > 100
-      ? "Forte candidato para este perfil."
-      : roundedNetMonthly >= 0
-        ? "Pode compensar, dependendo do uso real."
-        : "Tende a destruir valor neste perfil.";
-
-  const baseScore = normalizeScore({
-    netMonthly: netMonthlyValue,
-    eligible: eligibility.eligible,
-    grossRewardMonthly,
-    intangibleMonthlyValue,
-    effectiveMonthlyFee,
-    monthlySpend: profile.avgMonthlySpendBrl,
-  });
-  const adjustedScore = Math.round(clamp(baseScore + preferenceScoreAdjustment, 0, 100));
+    : !feeKnown
+      ? "Anuidade não informada: confirme o custo com o emissor antes de decidir."
+      : roundedDecision > 100
+        ? "Forte candidato para este perfil."
+        : roundedDecision >= 0
+          ? "Pode compensar, dependendo do uso real."
+          : "Tende a destruir valor neste perfil.";
 
   return {
     card,
     mode,
     eligible: eligibility.eligible,
     eligibilityReasons,
-    score0To100: adjustedScore,
+    // Percentil num conjunto de um cartão; o score exibido vem de scoreCardValues.
+    score0To100: eligibility.eligible ? 100 : 0,
     rankReason,
     feeAppliedReason,
     roiMultiple: roiMultiple === null ? null : roundMoney(roiMultiple),
     feeBurdenPctOfAnnualSpend: feeBurden === null ? null : roundMoney(feeBurden * 100),
     scoreDrivers,
+    decisionMonthlyValueBrl: roundedDecision,
+    feeKnown,
     netMonthlyValueBrl: roundedNetMonthly,
     netMonthlyValueRangeHighBrl: roundedNetRangeHigh,
     netAnnualValueBrl: roundMoney(netAnnualValue),
     effectiveMonthlyFeeBrl: roundMoney(effectiveMonthlyFee),
     effectiveAnnualFeeBrl: roundMoney(effectiveAnnualFee),
     grossRewardMonthlyBrl: roundMoney(grossRewardMonthly),
-    grossRewardMonthlyRangeHighBrl: roundMoney(
-      Math.max(grossRewardMonthlyAtTravelValuation, grossRewardMonthlyAtSaleValuation)
-    ),
+    grossRewardMonthlyRangeHighBrl: roundMoney(grossRewardMonthlyAtTravelValuation),
     pointsRewardMonthlyBrl: roundMoney(pointsRewardMonthlySale),
     pointsRewardMonthlySaleBrl: roundMoney(pointsRewardMonthlySale),
     pointsRewardMonthlyTravelBrl: roundMoney(pointsRewardMonthlyTravel),
@@ -1283,18 +1297,34 @@ export function scoreCardValue(
   };
 }
 
+/** Pontua, ordena (`compareCardValueScores`) e aplica o score percentil. */
 export function scoreCardValues(
   cards: CardFacet[],
   profile: UserProfile = DEFAULT_SCORING_PROFILE,
   mode: CardScoreMode = "profile",
   assumptions: CardValueAssumptions = DEFAULT_VALUE_ASSUMPTIONS
 ): CardValueScore[] {
-  return cards
-    .map((card) => scoreCardValue(card, profile, mode, assumptions))
-    .sort((a, b) => {
-      if (a.eligible !== b.eligible) return a.eligible ? -1 : 1;
-      const vb = netMonthlyValueForRanking(b, profile);
-      const va = netMonthlyValueForRanking(a, profile);
-      return vb - va || b.score0To100 - a.score0To100;
-    });
+  return applyPercentileScores(
+    cards
+      .map((card) => scoreCardValue(card, profile, mode, assumptions))
+      .sort(compareCardValueScores)
+  );
+}
+
+/**
+ * Score de um cartão no contexto de um catálogo: mesmo percentil, valor e
+ * ordem que o cartão tem em `scoreCardValues(allCards, …)`. Use em telas de
+ * detalhe, comparação e chat para o cartão mostrar o mesmo score em todo lugar.
+ */
+export function scoreCardInContext(
+  card: CardFacet,
+  allCards: CardFacet[],
+  profile: UserProfile = DEFAULT_SCORING_PROFILE,
+  assumptions: CardValueAssumptions = DEFAULT_VALUE_ASSUMPTIONS,
+  mode: CardScoreMode = "profile"
+): CardValueScore {
+  const inCatalog = allCards.some((c) => c.card_stable_id === card.card_stable_id);
+  const pool = inCatalog ? allCards : [...allCards, card];
+  const scored = scoreCardValues(pool, profile, mode, assumptions);
+  return scored.find((s) => s.card.card_stable_id === card.card_stable_id) as CardValueScore;
 }
