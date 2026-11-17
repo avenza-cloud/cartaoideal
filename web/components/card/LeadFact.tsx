@@ -50,7 +50,12 @@ export function LeadFact({
       </p>
       <p className="mt-0.5 text-xs text-muted-foreground">
         {label}
-        {hint && <span className="num"> ({hint})</span>}
+        {hint && (
+          <>
+            {" "}
+            <span className="num whitespace-nowrap">({hint})</span>
+          </>
+        )}
       </p>
     </div>
   );

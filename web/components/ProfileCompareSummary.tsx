@@ -121,7 +121,7 @@ export function ProfileCompareSummary({ cards }: ProfileCompareSummaryProps) {
                   label="valor líquido estimado por mês"
                   hint={high - low >= 1 ? `${brl(low)} a ${brl(high)}` : undefined}
                   tone={score.decisionMonthlyValueBrl < 0 ? "negative" : "default"}
-                  marked={isBest}
+                  marked={isBest && score.eligible && score.decisionMonthlyValueBrl >= 0}
                 />
                 <p className="mt-1 text-xs text-muted-foreground">{score.verdict}</p>
               </div>
