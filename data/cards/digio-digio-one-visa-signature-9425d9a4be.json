@@ -47,15 +47,16 @@
   "fee_waiver_rules": [
     {
       "category": "monthly_spend",
-      "description": "Gasto mensal mínimo",
-      "full_waiver": true,
+      "description": "5% de isenção da parcela mensal com faturas a partir de R$ 2 mil",
+      "discount_pct": 5,
+      "full_waiver": false,
       "period": "monthly",
       "raw_text": "Primeira anuidade gratuita. Após esse período, 5% de isenção da parcela mensal da anuidade para faturas que atingirem R$ 2 mil ou 100% de isenção para faturas acima de R$ 4 mil",
       "threshold_brl": 2000
     },
     {
       "category": "monthly_spend",
-      "description": "Gasto mensal mínimo",
+      "description": "100% de isenção com faturas acima de R$ 4 mil",
       "full_waiver": true,
       "period": "monthly",
       "raw_text": "Primeira anuidade gratuita. Após esse período, 5% de isenção da parcela mensal da anuidade para faturas que atingirem R$ 2 mil ou 100% de isenção para faturas acima de R$ 4 mil",

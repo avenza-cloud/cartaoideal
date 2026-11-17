@@ -77,6 +77,10 @@ export interface ScoreBreakdown {
 export type CardScoreMode = "default" | "profile";
 
 export interface CardValueAssumptions {
+  /**
+   * Dólar comercial (cotação de compra USD-BRL da AwesomeAPI), não a PTAX do
+   * Banco Central. O nome do campo ficou por compatibilidade.
+   */
   ptaxBrlPerUsd: number;
   mileValuePerThousandBrl: number;
   liveloPointSaleValuePerThousandBrl: number;

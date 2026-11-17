@@ -38,13 +38,15 @@ function executeGetInvestmentWaiverCards(
   return { totalEncontrado: cards.length, cartoes: cards.map(slim) };
 }
 
+// 50 = 48 anteriores + os dois Santander Unique, cuja regra estruturada
+// (2 de 3 critérios, um deles investimento de R$ 50 mil) passou a existir.
 describe("getInvestmentWaiverCards execute logic", () => {
-  it("with R$10k — totalEncontrado is 48 and all cards are accounted for", () => {
+  it("with R$10k — totalEncontrado is 50 and all cards are accounted for", () => {
     const result = executeGetInvestmentWaiverCards(10_000);
-    expect(result.totalEncontrado).toBe(48);
+    expect(result.totalEncontrado).toBe(50);
     expect("acessiveisAgora" in result).toBe(true);
     if ("acessiveisAgora" in result) {
-      expect(result.acessiveisAgora!.length + result.precisamDeMaisInvestimento!.length).toBe(48);
+      expect(result.acessiveisAgora!.length + result.precisamDeMaisInvestimento!.length).toBe(50);
     }
   });
 
@@ -80,11 +82,11 @@ describe("getInvestmentWaiverCards execute logic", () => {
     expect(nubank).toBeDefined();
   });
 
-  it("with no profile or input — returns flat cartoes array with totalEncontrado:48", () => {
+  it("with no profile or input — returns flat cartoes array with totalEncontrado:50", () => {
     const result = executeGetInvestmentWaiverCards(undefined, null);
-    expect(result.totalEncontrado).toBe(48);
+    expect(result.totalEncontrado).toBe(50);
     assert("cartoes" in result, "expected flat result");
-    expect(result.cartoes!).toHaveLength(48);
+    expect(result.cartoes!).toHaveLength(50);
   });
 
   it("each card has investment mention in text or structured rules", () => {

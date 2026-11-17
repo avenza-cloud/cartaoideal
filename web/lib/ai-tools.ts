@@ -11,9 +11,23 @@ import {
   resolveCardByName,
 } from "@/lib/cards";
 import { extractInvestmentThreshold } from "@/lib/fee-waiver";
-import { scoreCardValue } from "@/lib/card-value";
-import type { CardFacet, CardFilters, MarketSegment, UserProfile } from "@/types/cards";
+import {
+  compareCardValueScores,
+  DEFAULT_SCORING_PROFILE,
+  DEFAULT_VALUE_ASSUMPTIONS,
+  scoreCardValues,
+} from "@/lib/card-value";
+import type {
+  CardFacet,
+  CardFilters,
+  CardValueAssumptions,
+  CardValueScore,
+  MarketSegment,
+  UserProfile,
+} from "@/types/cards";
 
+// Campos opcionais sem default: o que a ferramenta não recebe vem do perfil
+// salvo (e, sem perfil salvo, do perfil de referência).
 function profileSchema() {
   return z.object({
     monthlySalaryBrl: z.number().optional(),
@@ -24,12 +38,14 @@ function profileSchema() {
       .optional()
       .describe("Gasto internacional mensal base, antes de IOF e spread."),
     travelFrequency: z.enum(["none", "occasional", "frequent"]).optional(),
-    prefersCashback: z.boolean().default(false),
-    prefersPoints: z.boolean().default(false),
-    prefersInvestback: z.boolean().default(false),
-    wantsLounge: z.boolean().default(false),
+    prefersCashback: z.boolean().optional(),
+    prefersPoints: z.boolean().optional(),
+    prefersInvestback: z.boolean().optional(),
+    wantsLounge: z.boolean().optional(),
   });
 }
+
+export type ToolProfileInput = z.infer<ReturnType<typeof profileSchema>>;
 
 export function toToolProfile(profile: UserProfile) {
   return {
@@ -45,45 +61,138 @@ export function toToolProfile(profile: UserProfile) {
   };
 }
 
-function toUserProfile(
-  input?: z.infer<ReturnType<typeof profileSchema>>,
-  savedProfile?: UserProfile | null
-): UserProfile | undefined {
-  if (!input && !savedProfile) return undefined;
-  const saved = savedProfile ? toToolProfile(savedProfile) : null;
-  const monthlySalaryBrl = saved?.monthlySalaryBrl ?? input?.monthlySalaryBrl;
-  const avgMonthlySpendBrl = saved?.avgMonthlySpendBrl ?? input?.avgMonthlySpendBrl;
+export interface ResolvedToolProfile {
+  profile: UserProfile;
+  /** Nada veio da conversa nem do perfil salvo: perfil de referência. */
+  isDefault: boolean;
+  /** Campos preenchidos pelo perfil de referência. */
+  defaultedFields: string[];
+}
 
-  if (monthlySalaryBrl === undefined || avgMonthlySpendBrl === undefined) {
-    return undefined;
+/**
+ * Perfil usado pelas ferramentas, campo a campo: entrada da ferramenta ??
+ * perfil salvo ?? perfil de referência. Assim "e se eu gastar R$10 mil?"
+ * troca só o gasto e mantém o resto do perfil salvo.
+ */
+export function resolveToolProfile(
+  input?: ToolProfileInput | null,
+  savedProfile?: UserProfile | null
+): ResolvedToolProfile {
+  const saved = savedProfile ? toToolProfile(savedProfile) : null;
+  const fallback = toToolProfile(DEFAULT_SCORING_PROFILE);
+  const inputCashback =
+    input?.prefersCashback === undefined && input?.prefersInvestback === undefined
+      ? undefined
+      : Boolean(input?.prefersCashback || input?.prefersInvestback);
+  const defaultedFields: string[] = [];
+  function pick<T>(field: string, fromInput: T | undefined, fromSaved: T | undefined, def: T): T {
+    if (fromInput !== undefined) return fromInput;
+    if (fromSaved !== undefined) return fromSaved;
+    defaultedFields.push(field);
+    return def;
   }
 
-  return {
-    monthlySalaryBrl,
-    avgMonthlySpendBrl,
-    avgInvestedBrl: saved?.avgInvestedBrl ?? input?.avgInvestedBrl ?? 0,
-    monthlyInternationalSpendBrl:
-      saved?.monthlyInternationalSpendBrl ?? input?.monthlyInternationalSpendBrl ?? 0,
-    travelFrequency: saved?.travelFrequency ?? input?.travelFrequency ?? "none",
-    spendingCategories: [],
+  const profile: UserProfile = {
+    monthlySalaryBrl: pick(
+      "monthlySalaryBrl",
+      input?.monthlySalaryBrl,
+      saved?.monthlySalaryBrl,
+      fallback.monthlySalaryBrl
+    ),
+    avgMonthlySpendBrl: pick(
+      "avgMonthlySpendBrl",
+      input?.avgMonthlySpendBrl,
+      saved?.avgMonthlySpendBrl,
+      fallback.avgMonthlySpendBrl
+    ),
+    avgInvestedBrl: pick(
+      "avgInvestedBrl",
+      input?.avgInvestedBrl,
+      saved?.avgInvestedBrl,
+      fallback.avgInvestedBrl
+    ),
+    monthlyInternationalSpendBrl: pick(
+      "monthlyInternationalSpendBrl",
+      input?.monthlyInternationalSpendBrl,
+      saved?.monthlyInternationalSpendBrl,
+      fallback.monthlyInternationalSpendBrl
+    ),
+    travelFrequency: pick(
+      "travelFrequency",
+      input?.travelFrequency,
+      saved?.travelFrequency,
+      fallback.travelFrequency
+    ),
+    spendingCategories: savedProfile?.spendingCategories ?? [],
     preferences: {
-      wantsLounge: saved?.wantsLounge ?? input?.wantsLounge ?? false,
-      prefersCashback:
-        saved?.prefersCashback ?? Boolean(input?.prefersCashback || input?.prefersInvestback),
-      prefersPoints: saved?.prefersPoints ?? input?.prefersPoints ?? false,
+      wantsLounge: pick(
+        "wantsLounge",
+        input?.wantsLounge,
+        saved?.wantsLounge,
+        fallback.wantsLounge
+      ),
+      prefersCashback: pick(
+        "prefersCashback",
+        inputCashback,
+        saved?.prefersCashback,
+        fallback.prefersCashback
+      ),
+      prefersPoints: pick(
+        "prefersPoints",
+        input?.prefersPoints,
+        saved?.prefersPoints,
+        fallback.prefersPoints
+      ),
       prefersInvestback: false,
     },
   };
+  // 8 campos do perfil: todos do padrão = perfil de referência.
+  return { profile, isDefault: defaultedFields.length === 8, defaultedFields };
 }
 
-function compactValue(card: CardFacet, profile?: UserProfile) {
-  const score = profile ? scoreCardValue(card, profile, "profile") : scoreCardValue(card);
+function perfilUsado(resolved: ResolvedToolProfile, assumptions: CardValueAssumptions) {
+  const { profile } = resolved;
+  return {
+    rendaMensal: profile.monthlySalaryBrl,
+    gastoMensal: profile.avgMonthlySpendBrl,
+    investido: profile.avgInvestedBrl,
+    gastoInternacionalMensal: profile.monthlyInternationalSpendBrl ?? 0,
+    viagens: profile.travelFrequency,
+    perfilPadrao: resolved.isDefault,
+    camposDoPerfilPadrao: resolved.defaultedFields,
+    dolarComercial: assumptions.ptaxBrlPerUsd,
+  };
+}
+
+/** Anuidade para o chat: nunca `null`/"unknown" cru, que a UI mostraria como texto técnico. */
+function chatAnnualFee(card: CardFacet): number | string {
+  const fee = card.facets_numeric_or_special.annual_fee_brl_best_estimate;
+  if (typeof fee === "number") return fee;
+  if (fee === "variable_pricing_claim") return "variável";
+  return "não informada";
+}
+
+/** Scores do catálogo inteiro para o perfil, por id: mesmo percentil do ranking. */
+function scoreCatalog(profile: UserProfile, assumptions: CardValueAssumptions) {
+  const scored = scoreCardValues(getAllCards(), profile, "profile", assumptions);
+  return new Map(scored.map((score) => [score.card.card_stable_id, score]));
+}
+
+function roundCents(value: number): number {
+  return Math.round(value * 100) / 100;
+}
+
+function compactValue(score: CardValueScore) {
   return {
     pontuacao: score.score0To100,
     elegivel: score.eligible,
     bloqueios: score.eligibilityReasons,
-    valorLiquidoMensal: score.netMonthlyValueBrl,
-    valorLiquidoAnual: score.netAnnualValueBrl,
+    // Valor de decisão: o mesmo número do ranking, do veredito e do vencedor.
+    valorLiquidoMensal: score.decisionMonthlyValueBrl,
+    valorLiquidoAnual: roundCents(score.decisionMonthlyValueBrl * 12),
+    valorLiquidoMensalPontosVendidos: score.netMonthlyValueBrl,
+    valorLiquidoMensalPontosEmViagem: score.netMonthlyValueRangeHighBrl,
+    anuidadeConhecida: score.feeKnown,
     retornoBrutoMensal: score.grossRewardMonthlyBrl,
     retornoPontosVendaMensal: score.pointsRewardMonthlySaleBrl,
     retornoPontosViagemMensal: score.pointsRewardMonthlyTravelBrl,
@@ -117,7 +226,15 @@ function rewardOriginLabel(card: CardFacet): string | null {
   return summary.length <= 32 ? summary : null;
 }
 
-export function createCardTools(savedProfile?: UserProfile | null) {
+/**
+ * Ferramentas do chat. `assumptions` deve ser o mesmo câmbio ao vivo que a UI
+ * e /api/recommend usam (getValueAssumptionsWithLiveUsd), para o chat dar os
+ * mesmos números.
+ */
+export function createCardTools(
+  savedProfile?: UserProfile | null,
+  assumptions: CardValueAssumptions = DEFAULT_VALUE_ASSUMPTIONS
+) {
   return {
     filterCards: tool({
       description:
@@ -150,7 +267,7 @@ export function createCardTools(savedProfile?: UserProfile | null) {
           emissor: c.issuer_raw,
           bandeira: c.network_primary,
           segmento: c.market_segment_guess,
-          anuidade: c.facets_numeric_or_special.annual_fee_brl_best_estimate,
+          anuidade: chatAnnualFee(c),
           investimentoMinimo: c.facets_numeric_or_special.minimum_investment_brl_best_estimate,
           lounge: c.lounge_access,
           retornoFinanceiro: c.reward_return,
@@ -171,22 +288,21 @@ export function createCardTools(savedProfile?: UserProfile | null) {
         cardId: z.string().describe("ID estável do cartão (card_stable_id)"),
         profile: profileSchema()
           .optional()
-          .describe("Perfil financeiro do usuário para cálculo numérico personalizado"),
+          .describe("Só os campos que o usuário mudou na conversa; o resto vem do perfil salvo"),
       }),
       execute: async ({ cardId, profile }) => {
         const card = getCardById(cardId);
         if (!card) return { erro: "Cartão não encontrado" };
-        const userProfile = toUserProfile(profile, savedProfile);
-        const score = userProfile
-          ? scoreCardValue(card, userProfile, "profile")
-          : scoreCardValue(card);
+        const resolved = resolveToolProfile(profile, savedProfile);
+        const score = scoreCatalog(resolved.profile, assumptions).get(card.card_stable_id);
+        if (!score) return { erro: "Cartão não encontrado" };
         return {
           id: card.card_stable_id,
           nome: card.display_name,
           emissor: card.issuer_raw,
           bandeira: card.network_primary,
           segmento: card.market_segment_guess,
-          anuidade: card.facets_numeric_or_special.annual_fee_brl_best_estimate,
+          anuidade: chatAnnualFee(card),
           investimentoMinimo: card.facets_numeric_or_special.minimum_investment_brl_best_estimate,
           lounge: card.lounge_access,
           iof: card.facets_numeric_or_special.official_forex_or_iof_note,
@@ -194,26 +310,15 @@ export function createCardTools(savedProfile?: UserProfile | null) {
           regrasIsencao: getCardFeeWaiver(card)?.rules ?? [],
           retornoFinanceiro: card.reward_return,
           valorEstimado: {
-            pontuacao: score.score0To100,
-            valorLiquidoMensal: score.netMonthlyValueBrl,
-            valorLiquidoAnual: score.netAnnualValueBrl,
-            anuidadeEfetivaMensal: score.effectiveMonthlyFeeBrl,
-            retornoBrutoMensal: score.grossRewardMonthlyBrl,
-            retornoPontosVendaMensal: score.pointsRewardMonthlySaleBrl,
-            retornoPontosViagemMensal: score.pointsRewardMonthlyTravelBrl,
+            ...compactValue(score),
             beneficiosIntangiveisMensais: score.intangibleMonthlyValueBrl,
-            custoInternacionalMensal: score.internationalMonthlyCostBrl,
-            pontoEquilibrioGastoMensal: score.breakEvenMonthlySpendBrl,
-            pontoEquilibrioSoPorRetornoMensal: score.breakEvenByRewardsOnlyMonthlySpendBrl,
-            veredito: score.verdict,
             motivoDoRanking: score.rankReason,
-            motivoDaAnuidade: score.feeAppliedReason,
             roiSobreAnuidade: score.roiMultiple,
             pesoAnuidadeNoGastoAnual: score.feeBurdenPctOfAnnualSpend,
-            fatores: score.scoreDrivers,
             componentes: score.components,
             observacoes: score.dataQualityNotes,
           },
+          perfilUsado: perfilUsado(resolved, assumptions),
           beneficiosAgrupados: card.benefit_groups,
           fonte: card.source_label,
           fonteUrl: card.source_url,
@@ -237,7 +342,9 @@ export function createCardTools(savedProfile?: UserProfile | null) {
           .describe("Nomes dos cartões a comparar quando o usuário informar por nome"),
         profile: profileSchema()
           .optional()
-          .describe("Perfil financeiro do usuário para cálculo numérico personalizado"),
+          .describe(
+            "Só os campos que o usuário mudou na conversa (ex.: gasto mensal); o resto vem do perfil salvo"
+          ),
       }),
       execute: async ({ cardIds, cardNames, profile }) => {
         const byId = cardIds?.length ? getCardsByIds(cardIds) : [];
@@ -251,16 +358,33 @@ export function createCardTools(savedProfile?: UserProfile | null) {
               arr.findIndex((other) => other.card_stable_id === card.card_stable_id) === index
           )
           .slice(0, 4);
-        const userProfile = toUserProfile(profile, savedProfile);
-        const values = cards.map((c) => compactValue(c, userProfile));
+        const resolved = resolveToolProfile(profile, savedProfile);
+        const catalog = scoreCatalog(resolved.profile, assumptions);
+        const scores = cards.flatMap((c) => {
+          const score = catalog.get(c.card_stable_id);
+          return score ? [score] : [];
+        });
+        const values = scores.map(compactValue);
+        // Vencedor pela ordem canônica do ranking (elegível → anuidade conhecida → valor).
+        const winner = scores.length >= 2 ? [...scores].sort(compareCardValueScores)[0] : null;
         const delta =
           values.length >= 2
             ? {
-                valorLiquidoMensal: values[1].valorLiquidoMensal - values[0].valorLiquidoMensal,
-                valorLiquidoAnual: values[1].valorLiquidoAnual - values[0].valorLiquidoAnual,
-                retornoBrutoMensal: values[1].retornoBrutoMensal - values[0].retornoBrutoMensal,
-                anuidadeMensal: values[1].anuidadeEfetivaMensal - values[0].anuidadeEfetivaMensal,
-                beneficiosMensais: values[1].beneficiosMensais - values[0].beneficiosMensais,
+                valorLiquidoMensal: roundCents(
+                  values[1].valorLiquidoMensal - values[0].valorLiquidoMensal
+                ),
+                valorLiquidoAnual: roundCents(
+                  values[1].valorLiquidoAnual - values[0].valorLiquidoAnual
+                ),
+                retornoBrutoMensal: roundCents(
+                  values[1].retornoBrutoMensal - values[0].retornoBrutoMensal
+                ),
+                anuidadeMensal: roundCents(
+                  values[1].anuidadeEfetivaMensal - values[0].anuidadeEfetivaMensal
+                ),
+                beneficiosMensais: roundCents(
+                  values[1].beneficiosMensais - values[0].beneficiosMensais
+                ),
                 origemRetorno: rewardOriginLabel(cards[1]),
               }
             : null;
@@ -269,7 +393,7 @@ export function createCardTools(savedProfile?: UserProfile | null) {
             id: c.card_stable_id,
             nome: c.display_name,
             emissor: c.issuer_raw,
-            anuidade: c.facets_numeric_or_special.annual_fee_brl_best_estimate,
+            anuidade: chatAnnualFee(c),
             investimentoMinimo: c.eligibility?.minimum_investment_brl_best_estimate,
             elegibilidade: c.eligibility,
             lounge: c.lounge_access,
@@ -285,15 +409,15 @@ export function createCardTools(savedProfile?: UserProfile | null) {
             valorEstimado: values[index],
           })),
           delta,
-          perfilUsado: userProfile
+          vencedor: winner
             ? {
-                rendaMensal: userProfile.monthlySalaryBrl,
-                gastoMensal: userProfile.avgMonthlySpendBrl,
-                investido: userProfile.avgInvestedBrl,
-                gastoInternacionalMensal: userProfile.monthlyInternationalSpendBrl ?? 0,
-                viagens: userProfile.travelFrequency,
+                id: winner.card.card_stable_id,
+                nome: winner.card.display_name,
+                valorLiquidoMensal: winner.decisionMonthlyValueBrl,
+                motivo: winner.rankReason,
               }
             : null,
+          perfilUsado: perfilUsado(resolved, assumptions),
           naoEncontrados: (cardNames ?? []).filter((name) => !resolveCardByName(name)),
         };
       },
@@ -316,7 +440,7 @@ export function createCardTools(savedProfile?: UserProfile | null) {
           nome: c.display_name,
           emissor: c.issuer_raw,
           bandeira: c.network_primary,
-          anuidade: c.facets_numeric_or_special.annual_fee_brl_best_estimate,
+          anuidade: chatAnnualFee(c),
           textoIsencao: getCardFeeWaiver(c)?.texto ?? "",
           regrasIsencao: getCardFeeWaiver(c)?.rules ?? [],
           viaGasto: getCardFeeWaiver(c)?.viaGasto ?? false,
@@ -351,7 +475,7 @@ export function createCardTools(savedProfile?: UserProfile | null) {
 
     rankCardsForProfile: tool({
       description:
-        "Pontua e ordena cartões de acordo com o perfil financeiro do usuário: renda, gastos, patrimônio investido e preferências.",
+        "Pontua e ordena cartões de acordo com o perfil financeiro do usuário: renda, gastos, patrimônio investido e preferências. Passe só os campos que o usuário mudou na conversa; o resto vem do perfil salvo.",
       inputSchema: z.object({
         monthlySalaryBrl: z.number().optional().describe("Renda mensal em reais"),
         avgMonthlySpendBrl: z.number().optional().describe("Gasto médio mensal no cartão"),
@@ -364,17 +488,16 @@ export function createCardTools(savedProfile?: UserProfile | null) {
           .enum(["none", "occasional", "frequent"])
           .optional()
           .describe("Frequência de viagens"),
-        prefersCashback: z.boolean().default(false),
-        prefersPoints: z.boolean().default(false),
-        prefersInvestback: z.boolean().default(false).describe("Legado: trate como cashback."),
-        wantsLounge: z.boolean().default(false),
+        prefersCashback: z.boolean().optional(),
+        prefersPoints: z.boolean().optional(),
+        prefersInvestback: z.boolean().optional().describe("Legado: trate como cashback."),
+        wantsLounge: z.boolean().optional(),
       }),
       execute: async (input) => {
         const { scoreCards: sc } = await import("@/lib/scoring");
-        const all = getAllCards();
-        const userProfile = toUserProfile(input, savedProfile);
-        if (!userProfile) return { erro: "Perfil financeiro não informado" };
-        const scored = sc(all, userProfile).slice(0, 6);
+        const resolved = resolveToolProfile(input, savedProfile);
+        if (resolved.isDefault) return { erro: "Perfil financeiro não informado" };
+        const scored = sc(getAllCards(), resolved.profile, assumptions).slice(0, 6);
         return scored.map((s) => ({
           id: s.card.card_stable_id,
           nome: s.card.display_name,
@@ -382,29 +505,22 @@ export function createCardTools(savedProfile?: UserProfile | null) {
           pontuacao: Math.round(s.totalScore * 100),
           valorEstimado: s.valueScore
             ? {
-                valorLiquidoMensal: s.valueScore.netMonthlyValueBrl,
-                valorLiquidoAnual: s.valueScore.netAnnualValueBrl,
-                anuidadeEfetivaMensal: s.valueScore.effectiveMonthlyFeeBrl,
-                retornoBrutoMensal: s.valueScore.grossRewardMonthlyBrl,
+                ...compactValue(s.valueScore),
                 beneficiosIntangiveisMensais: s.valueScore.intangibleMonthlyValueBrl,
-                custoInternacionalMensal: s.valueScore.internationalMonthlyCostBrl,
-                pontoEquilibrioGastoMensal: s.valueScore.breakEvenMonthlySpendBrl,
-                veredito: s.valueScore.verdict,
                 motivoDoRanking: s.valueScore.rankReason,
-                motivoDaAnuidade: s.valueScore.feeAppliedReason,
                 roiSobreAnuidade: s.valueScore.roiMultiple,
                 pesoAnuidadeNoGastoAnual: s.valueScore.feeBurdenPctOfAnnualSpend,
-                fatores: s.valueScore.scoreDrivers,
                 componentes: s.valueScore.components,
                 observacoes: s.valueScore.dataQualityNotes,
               }
             : null,
-          anuidade: s.card.facets_numeric_or_special.annual_fee_brl_best_estimate,
+          anuidade: chatAnnualFee(s.card),
           lounge: s.card.lounge_access,
           retornoFinanceiro: s.card.reward_return,
           regrasIsencao: getCardFeeWaiver(s.card)?.rules ?? [],
           cardArtUrl: s.card.media.card_art_url,
           altText: s.card.media.alt_text,
+          perfilPadraoParcial: resolved.defaultedFields.length > 0,
         }));
       },
     }),
@@ -419,6 +535,9 @@ Regras importantes:
 - Use as ferramentas disponíveis para buscar dados reais — nunca invente informações sobre cartões
 - Quando o usuário pedir comparação, troca de cartão, "vale trocar" ou "com números", use compareCards. Resolva por nome se o usuário não passar ID.
 - As ferramentas recebem o perfil salvo automaticamente. Não peça gasto/renda/investimento de novo quando já estiverem no contexto.
+- Em hipóteses ("e se eu gastar R$10 mil?"), passe em \`profile\` só o campo que mudou; o resto vem do perfil salvo. Se \`perfilUsado.perfilPadrao\` for verdadeiro, avise que o cálculo usa um perfil de referência.
+- \`valorLiquidoMensal\` é o valor esperado usado no ranking. Em comparações, o melhor cartão é \`vencedor\`; não escolha outro.
+- Anuidade "não informada" nunca é "sem anuidade".
 - Para comparações, a interface JÁ EXIBE visualmente delta mensal/anual, retorno, anuidade, benefícios e a tabela. NÃO repita esses números nem reescreva a tabela em texto.
 - Em comparações, responda em no máximo 3 frases: decisão prática ("trocar", "ficar" ou "depende"), motivo novo que não esteja óbvio na tabela, e bloqueio/ressalva de elegibilidade se existir.
 - Ao citar dados de cartões, mencione a fonte quando for relevante

@@ -53,7 +53,7 @@
   },
   "fee_waiver_rules": [
     {
-      "category": "general",
+      "category": "promotional_period",
       "description": "Período introdutório",
       "full_waiver": true,
       "raw_text": "Primeiros 90 dias após o desbloqueio do cartão com anuidade gratuita."
