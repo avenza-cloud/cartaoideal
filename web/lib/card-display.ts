@@ -1,5 +1,3 @@
-import type { CardFacet } from "@/types/cards";
-
 /** Resolve card art to a renderable src, or null when only a placeholder should render. */
 export function cardArtSrc(url: string | undefined | null): string | null {
   if (!url || url === "unknown") return null;

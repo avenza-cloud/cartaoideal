@@ -1,4 +1,4 @@
-import { extractFeeWaiverRules } from "@/lib/fee-waiver";
+import { feeWaiverRulesForCard } from "@/lib/fee-waiver";
 import type { CardFacet, CardFilters, FeeWaiverRule } from "@/types/cards";
 
 export function normalizeSearchText(value: string): string {
@@ -38,9 +38,8 @@ export function getCardFeeWaiver(card: CardFacet): {
 } | null {
   const char = card.characteristics?.find((x) => x.key === "fee_waiver");
   const texto = char?.value && char.value !== "unknown" ? String(char.value) : "";
-  const rules = card.fee_waiver_rules?.length
-    ? card.fee_waiver_rules
-    : extractFeeWaiverRules(texto);
+  // Mesma fonte de regras que o score (card-value) e as badges usam.
+  const rules = feeWaiverRulesForCard(card);
   if (!texto && rules.length === 0) return null;
   const lower = texto.toLowerCase();
   const isGratuito =
@@ -97,11 +96,8 @@ export function filterCards(allCards: CardFacet[], filters: CardFilters): CardFa
   }
 
   if (filters.zeroFee === true) {
-    cards = cards.filter(
-      (c) =>
-        c.facets_numeric_or_special.annual_fee_brl_best_estimate === 0 ||
-        c.facets_numeric_or_special.annual_fee_brl_best_estimate === "unknown"
-    );
+    // Anuidade desconhecida não é "sem anuidade".
+    cards = cards.filter((c) => c.facets_numeric_or_special.annual_fee_brl_best_estimate === 0);
   }
 
   if (typeof filters.maxFee === "number") {

@@ -112,6 +112,9 @@ export const CardFacetsNumericSchema = z.strictObject({
   minimum_investment_brl_best_estimate: numberOrUnknown,
   lounge_visits_per_year_hint: numberOrUnknown,
   official_forex_or_iof_note: z.string(),
+  // Spread cambial em pontos percentuais (ex.: 4 = 4%). Quando presente, o
+  // motor usa este valor em vez de ler texto ou cair no fallback do emissor.
+  fx_spread_pct: z.number().min(0).max(10).optional(),
 });
 
 export const CardFacetsBooleanSchema = z.strictObject({
@@ -195,6 +198,9 @@ export const FeeWaiverRuleSchema = z.strictObject({
   full_waiver: z.boolean(),
   discount_brl: z.number().optional(),
   discount_pct: z.number().optional(),
+  // Regra que é um critério de um grupo "cumprir N dos seguintes": o efeito
+  // só vale quando ao menos N regras do cartão com o mesmo valor são atendidas.
+  min_conditions: z.number().int().min(2).optional(),
   requires_bank_account: z.boolean().optional(),
   description: z.string(),
   raw_text: z.string(),

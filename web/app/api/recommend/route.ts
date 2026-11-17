@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { getAllCards, getCardById, resolveCardByName } from "@/lib/cards";
-import { scoreCards } from "@/lib/scoring";
-import { scoreCardValue, scoreCardValues } from "@/lib/card-value";
+import { cardScoresFromValueScores } from "@/lib/scoring";
+import { scoreCardValues } from "@/lib/card-value";
 import { getValueAssumptionsWithLiveUsd } from "@/lib/exchange-rate";
 import { profileSchema } from "@/lib/profile-schema";
 import { apiError } from "@/lib/api-error";
@@ -38,7 +38,10 @@ export async function POST(req: Request) {
 
   const cards = getAllCards();
   const assumptions = await getValueAssumptionsWithLiveUsd();
-  const scores = scoreCards(cards, profile, assumptions).slice(0, parsed.data.limit);
+  // One scoring pass: the ranking and the current card share the same
+  // percentile scores, so a card shows the same score everywhere.
+  const valueScores = scoreCardValues(cards, profile, "profile", assumptions);
+  const scores = cardScoresFromValueScores(valueScores).slice(0, parsed.data.limit);
 
   // Resolve the user's current card server-side so clients don't need the
   // catalog: rank among eligible cards + its value score.
@@ -49,15 +52,12 @@ export async function POST(req: Request) {
       ? resolveCardByName(profile.currentPrimaryCardName)
       : undefined;
   if (current) {
-    const valueScores = scoreCardValues(cards, profile, "profile", assumptions);
     const eligible = valueScores.filter((score) => score.eligible);
     const index = eligible.findIndex(
       (score) => score.card.card_stable_id === current.card_stable_id
     );
-    const score =
-      valueScores.find((s) => s.card.card_stable_id === current.card_stable_id) ??
-      scoreCardValue(current, profile, "profile", assumptions);
-    currentCard = { rank: index >= 0 ? index + 1 : null, score };
+    const score = valueScores.find((s) => s.card.card_stable_id === current.card_stable_id);
+    if (score) currentCard = { rank: index >= 0 ? index + 1 : null, score };
   }
 
   logEvent("/api/recommend", { count: scores.length, ms: Date.now() - start });
