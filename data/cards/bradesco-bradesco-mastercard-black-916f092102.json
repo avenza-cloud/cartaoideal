@@ -29,15 +29,15 @@
   "lounge_access": {
     "annual_visits": 2,
     "complimentary_access_confirmed": true,
-    "guest_policy": "0 acompanhante(s)",
+    "guest_policy": "unknown",
     "has_lounge_access": true,
     "policy_varies_by_issuer": false,
     "programs": [
-      "Mastercard Airport Experience",
-      "Sala VIP Mastercard Black"
+      "LoungeKey",
+      "Sala VIP Mastercard Black Guarulhos"
     ],
-    "summary": "Salas VIP do Mastercard Airport Experience - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano (Para ter direito à sala da Mastercard no Aeroporto de Guarulhos é necessário um gasto mínimo trimestral de R$ 15 mil.)",
-    "unlimited": true
+    "summary": "Salas VIP do LoungeKey - 2 acessos gratuitos para o portador por ano | Sala VIP Mastercard Black Guarulhos - Acesso para o portador (sujeito a gastos mínimos de R$ 15 mil no trimestre)",
+    "unlimited": false
   },
   "eligibility": {
     "availability_status": "available",
@@ -54,10 +54,10 @@
       "Precisa ser correntista: Não"
     ],
     "fees": [
-      "Anuidade: R$ 1.309",
+      "Anuidade: R$ 1.428",
       "Adicionais com benefícios: Sim",
       "Isenção da anuidade: Não há nenhuma publicada",
-      "Anuidade: R$ 1.309",
+      "Anuidade: R$ 1.428",
       "Adicionais gratuitos: 0"
     ],
     "lifestyle": [
@@ -84,7 +84,7 @@
       "category": "fees",
       "key": "annual_fee",
       "label": "Anuidade",
-      "value": "R$ 1.309"
+      "value": "R$ 1.428"
     },
     {
       "category": "rewards",
@@ -192,12 +192,13 @@
     }
   ],
   "facets_numeric_or_special": {
-    "annual_fee_brl_best_estimate": 1309,
+    "annual_fee_brl_best_estimate": 1428,
+    "fx_spread_pct": 5.3,
     "lounge_visits_per_year_hint": 2,
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Spread cambial estimado em 5,3% sobre a taxa PTAX para transações em moeda estrangeira, acrescido de IOF regulamentar."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -208,7 +209,7 @@
     "has_any_lounge_claim": true,
     "has_named_lounge_program": true,
     "issuer_multi_entity_row": false,
-    "lounge_unlimited_claim": true,
+    "lounge_unlimited_claim": false,
     "mentions_concierge": false,
     "mentions_travel_insurance": false,
     "reward_return_cashlike": false
@@ -219,8 +220,13 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
+      {
+        "label": "Tabela Geral de Tarifas Bradesco",
+        "tier": "official_issuer",
+        "url": "https://banco.bradesco/pdf/tabela-tarifas-pf.pdf"
+      },
       {
         "label": "Link direto do cartão",
         "tier": "trusted_catalog",
@@ -230,6 +236,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-mastercard-black/"
       }
-    ]
+    ],
+    "verification_note": "Mastercard Black: anuidade reajustada para R$ 1.428 (12x R$ 119) na Tabela de Tarifas do Bradesco. 2 acessos gratuitos LoungeKey por ano e sala VIP Mastercard Black GRU T3. Spread cambial de 5,3% verificado."
   }
 }

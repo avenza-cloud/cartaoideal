@@ -24,9 +24,11 @@
     "source_url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito"
   },
   "reward_return": {
-    "earning_summary": "Não identificado na captura oficial inicial.",
-    "has_cashlike_return": false,
-    "subtypes": []
+    "earning_summary": "0,5% de cashback para faturas de até R$ 2.999,99 e 1% de cashback para faturas a partir de R$ 3.000 pagas integralmente em dia.",
+    "has_cashlike_return": true,
+    "subtypes": [
+      "cashback"
+    ]
   },
   "lounge_access": {
     "annual_visits": "unknown",
@@ -85,15 +87,16 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 0,
+    "fx_spread_pct": 5,
     "lounge_visits_per_year_hint": 0,
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": 0,
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Cotação PTAX acrescida de spread cambial de 5,0% em compras internacionais no crédito; oferece campanha de IOF de volta."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
-    "earn_cashback": false,
+    "earn_cashback": true,
     "earn_investback": false,
     "earn_points_or_miles": false,
     "generic_article_not_single_product": false,
@@ -103,7 +106,7 @@
     "lounge_unlimited_claim": false,
     "mentions_concierge": false,
     "mentions_travel_insurance": false,
-    "reward_return_cashlike": false
+    "reward_return_cashlike": true
   },
   "labels_for_filtering": [
     "sem-anuidade"
@@ -203,13 +206,19 @@
   ],
   "cashback_details": null,
   "provenance": {
-    "last_verified_date": "2026-05-09",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Página oficial do emissor",
         "tier": "official_issuer",
         "url": "https://pagbank.com.br/conta-digital/cartao/cartao-de-credito"
+      },
+      {
+        "label": "PagBank Oficial",
+        "tier": "official_issuer",
+        "url": "https://pagbank.com.br"
       }
-    ]
+    ],
+    "verification_note": "Atualizado em 2026-11-18: spread cambial de 5,0% sobre PTAX em compras no crédito com benefício de IOF de volta; cashback na fatura de 0,5% a 1% para faturas pagas integralmente até o vencimento; anuidade zero."
   }
 }

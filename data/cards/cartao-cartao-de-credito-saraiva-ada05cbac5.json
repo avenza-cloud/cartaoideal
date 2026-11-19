@@ -4,7 +4,7 @@
   "issuer_raw": "Banco do Brasil",
   "issuer_id": "banco-do-brasil",
   "network_primary": "Visa",
-  "variant_band": "unknown",
+  "variant_band": "Internacional",
   "market_segment_guess": "mass_or_general",
   "product_kind": "named_credit_card_product",
   "verification_cross_check_status": "trusted_aggregator",
@@ -150,11 +150,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 0,
+    "fx_spread_pct": 4,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 0,
+    "official_forex_or_iof_note": "Spread cambial histórico de 4,0% praticado pelo emissor Banco do Brasil."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -178,17 +179,14 @@
     "Produto descontinuado — a rede Saraiva encerrou as operações."
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
-        "label": "Link direto do cartão",
-        "tier": "trusted_catalog",
-        "url": "https://www.bb.com.br/pbb/pagina-inicial/voce/produtos-e-servicos/cartoes/cartao-de-credito-saraiva#/"
-      },
-      {
-        "label": "Evidência primária",
-        "url": "https://passageirodeprimeira.com/cartao-de-credito/cartao-de-credito-saraiva-2/"
+        "label": "Portal BB - Cartões",
+        "tier": "official_issuer",
+        "url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 18/11/2026: produto descontinuado e indisponível para novas solicitações após o encerramento da parceria entre o Banco do Brasil e a Saraiva."
   }
 }

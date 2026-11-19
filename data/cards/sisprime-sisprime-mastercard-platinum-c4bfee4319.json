@@ -44,6 +44,21 @@
     "requires_bank_account_claim": true,
     "source_status": "not_structured"
   },
+  "fee_waiver_rules": [
+    {
+      "category": "promotional_period",
+      "description": "Isenção nos primeiros 2 meses",
+      "full_waiver": true,
+      "raw_text": "Anuidade gratuita nos primeiros 2 meses após ativação."
+    },
+    {
+      "category": "monthly_spend",
+      "description": "Isenção com uso de 30% do limite",
+      "full_waiver": true,
+      "period": "monthly",
+      "raw_text": "A partir do 3º mês, desconto de 100% na anuidade ao utilizar 30% ou mais do limite de crédito na fatura do mês anterior."
+    }
+  ],
   "benefit_groups": {
     "eligibility": [
       "Precisa ser correntista: Sim"
@@ -167,11 +182,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 420,
+    "fx_spread_pct": 0,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 35,
+    "official_forex_or_iof_note": "Spread zero sobre a cotação do dólar comercial (apenas IOF vigente)."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -192,7 +208,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -203,6 +219,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/sisprime-mastercard-platinum/"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 2026: spread zero confirmado, pontuação de 1,5 ponto/USD no crédito e 0,6 no débito, isenção com 30% do limite de crédito."
   }
 }

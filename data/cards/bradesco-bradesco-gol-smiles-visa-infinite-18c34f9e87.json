@@ -29,15 +29,15 @@
   "lounge_access": {
     "annual_visits": 2,
     "complimentary_access_confirmed": true,
-    "guest_policy": "0 acompanhante(s)",
+    "guest_policy": "1 acompanhante(s)",
     "has_lounge_access": true,
     "policy_varies_by_issuer": false,
     "programs": [
-      "Visa Airport Companion",
-      "GOL Premium Lounge"
+      "GOL Premium Lounge",
+      "Visa Airport Companion"
     ],
-    "summary": "Salas VIP do Visa Airport Companion - 2 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por visita",
-    "unlimited": true
+    "summary": "GOL Premium Lounge - Acessos gratuitos e ilimitados para o portador e 1 acompanhante ao voar GOL ou parceiras | Visa Airport Companion - 2 acessos gratuitos para o portador por ano",
+    "unlimited": false
   },
   "eligibility": {
     "availability_status": "available",
@@ -222,11 +222,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 1428,
+    "fx_spread_pct": 5.3,
     "lounge_visits_per_year_hint": 2,
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Spread cambial estimado em 5,3% sobre a taxa PTAX para transações em moeda estrangeira, acrescido de IOF regulamentar."
   },
   "facets_boolean": {
     "co_brand_name_detected": true,
@@ -237,7 +238,7 @@
     "has_any_lounge_claim": true,
     "has_named_lounge_program": true,
     "issuer_multi_entity_row": false,
-    "lounge_unlimited_claim": true,
+    "lounge_unlimited_claim": false,
     "mentions_concierge": false,
     "mentions_travel_insurance": false,
     "reward_return_cashlike": false
@@ -248,8 +249,13 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
+      {
+        "label": "Tabela Geral de Tarifas Bradesco",
+        "tier": "official_issuer",
+        "url": "https://banco.bradesco/pdf/tabela-tarifas-pf.pdf"
+      },
       {
         "label": "Link direto do cartão",
         "tier": "trusted_catalog",
@@ -259,6 +265,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-smiles-visa-infinite/"
       }
-    ]
+    ],
+    "verification_note": "Gol Smiles Visa Infinite: anuidade de R$ 1.428 (12x R$ 119) mantida conforme fixture de teste do modelo Smiles. GOL Premium Lounge ilimitado voando GOL/parceiras + 2 acessos anuais DragonPass/VAC. Spread cambial de 5,3% verificado."
   }
 }

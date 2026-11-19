@@ -1,0 +1,173 @@
+{
+  "card_stable_id": "itau-itau-uniclass-visa-infinite-53e9a1b8c2",
+  "display_name": "Itaú Uniclass Visa Infinite",
+  "issuer_raw": "Itaú",
+  "issuer_id": "itau",
+  "network_primary": "Visa",
+  "variant_band": "Infinite",
+  "market_segment_guess": "premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_verified",
+  "primary_evidence_url": "https://www.itau.com.br/uniclass/cartoes/visa-infinite",
+  "application_url": "https://www.itau.com.br/uniclass/cartoes/visa-infinite",
+  "review_source_url": "https://www.melhorescartoes.com.br/cartoes-credito/itau-uniclass-visa-infinite",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Melhores Cartões",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.itau.com.br/uniclass/cartoes/visa-infinite",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "Itaú Uniclass Visa Infinite",
+    "art_provenance": {
+      "retrieved_date": "2026-11-18",
+      "source_url": "https://www.itau.com.br/uniclass/cartoes/visa-infinite"
+    },
+    "card_art_url": "/card-images/itau-itau-uniclass-visa-infinite.png",
+    "source_url": "https://www.itau.com.br/uniclass/cartoes/visa-infinite"
+  },
+  "reward_return": {
+    "earning_summary": "2,0 a 2,5 pontos por dólar gasto (2,5 pts/USD com faturas a partir de R$ 4 mil)",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "annual_visits": 4,
+    "complimentary_access_confirmed": true,
+    "guest_policy": "Conforme cota anual compartilhada do portador",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "programs": [
+      "Visa Airport Companion",
+      "Dragon Pass"
+    ],
+    "summary": "Até 4 acessos anuais gratuitos às salas VIP pelo Visa Airport Companion (DragonPass), condicionados a gastos a partir de R$ 4 mil/mês na fatura",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [
+      "requires_account"
+    ],
+    "minimum_income_brl_best_estimate": 8000,
+    "minimum_investment_brl_best_estimate": 0,
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Exclusivo para correntistas do segmento Itaú Uniclass sujeito a análise de crédito.",
+    "requires_bank_account_claim": true,
+    "source_status": "official"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "monthly_spend",
+      "description": "Gastos a partir de R$ 8.000/mês na fatura garantem 100% de isenção na anuidade",
+      "full_waiver": true,
+      "period": "monthly",
+      "raw_text": "Faturas a partir de R$ 8 mil garantem isenção total da mensalidade.",
+      "threshold_brl": 8000
+    },
+    {
+      "category": "investment",
+      "description": "Investimentos a partir de R$ 50 mil no Itaú garantem isenção integral da anuidade",
+      "full_waiver": true,
+      "raw_text": "A partir de R$ 50 mil investidos no Itaú garantem isenção de 100% da anuidade.",
+      "threshold_brl": 50000
+    },
+    {
+      "category": "general",
+      "description": "Isenção para clientes a partir do nível 4 no Minhas Vantagens ou folha de pagamento",
+      "full_waiver": true,
+      "raw_text": "Isenção total a partir do nível 4 do programa Minhas Vantagens Uniclass ou recebimento de salário no Itaú."
+    }
+  ],
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista Itaú Uniclass: Sim",
+      "Renda mínima sugerida: R$ 8.000"
+    ],
+    "fees": [
+      "Anuidade: R$ 960 (12x R$ 80)",
+      "Isenção com fatura a partir de R$ 8.000/mês ou R$ 50 mil investidos",
+      "Isenção com nível 4 no Minhas Vantagens ou portabilidade de salário"
+    ],
+    "lifestyle": [
+      "Visa Concierge",
+      "Visa Fast Pass em aeroportos parceiros",
+      "Vai de Visa"
+    ],
+    "rewards": [
+      "2,0 pontos por dólar em compras regulares",
+      "2,5 pontos por dólar com gastos a partir de R$ 4 mil por fatura",
+      "Transferência para LATAM Pass, Smiles, Azul Fidelidade e TAP Miles&Go"
+    ],
+    "travel": [
+      "4 acessos anuais a salas VIP pelo Visa Airport Companion / DragonPass (com fatura >= R$ 4 mil)",
+      "Seguro de emergência médica internacional Visa Infinite",
+      "Seguro de atraso e perda de bagagem",
+      "Proteção de compra e garantia estendida"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 960 (12x R$ 80)"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "2,0 a 2,5 pts/USD"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "4 acessos anuais DragonPass"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 960,
+    "fx_spread_pct": 5.5,
+    "lounge_visits_per_year_hint": 4,
+    "minimum_income_brl_best_estimate": 8000,
+    "minimum_investment_brl_best_estimate": 0,
+    "monthly_fee_brl_after_intro_official_hint": 80,
+    "official_forex_or_iof_note": "Spread cambial de 5,5% sobre PTAX mais IOF de 3,5%"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": true,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": true,
+    "mentions_travel_insurance": true,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:premium",
+    "travel:lounge",
+    "rewards:points_or_miles",
+    "network:visa"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-11-18",
+    "sources": [
+      {
+        "label": "Itaú Uniclass Oficial",
+        "tier": "official_issuer",
+        "url": "https://www.itau.com.br/uniclass/cartoes/visa-infinite"
+      },
+      {
+        "label": "Melhores Cartões Review",
+        "tier": "trusted_catalog",
+        "url": "https://www.melhorescartoes.com.br/cartoes-credito/itau-uniclass-visa-infinite"
+      }
+    ],
+    "verification_note": "Reformulação 2026 do Uniclass Visa Infinite: 4 acessos anuais DragonPass, 2,0 a 2,5 pts/USD e regras flexíveis de isenção por gasto ou investimento."
+  }
+}

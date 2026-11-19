@@ -1,0 +1,199 @@
+{
+  "card_stable_id": "sisprime-sisprime-world-legend-mastercard-8c7a23ef45",
+  "display_name": "Sisprime World Legend Mastercard",
+  "issuer_raw": "Sisprime",
+  "issuer_id": "sisprime",
+  "network_primary": "Mastercard",
+  "variant_band": "World Legend",
+  "market_segment_guess": "ultra_premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_verified",
+  "primary_evidence_url": "https://www.sisprimedobrasil.com.br/cartoes",
+  "application_url": "https://www.sisprimedobrasil.com.br/cartoes",
+  "review_source_url": "https://www.melhorescartoes.com.br/cartoes-credito/sisprime-world-legend-mastercard",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Melhores Cartões",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.sisprimedobrasil.com.br/cartoes",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "Sisprime World Legend Mastercard",
+    "art_provenance": {
+      "retrieved_date": "2026-11-18",
+      "source_url": "https://www.sisprimedobrasil.com.br/cartoes"
+    },
+    "card_art_url": "/card-images/sisprime-sisprime-world-legend-mastercard.png",
+    "source_url": "https://www.sisprimedobrasil.com.br/cartoes"
+  },
+  "reward_return": {
+    "earning_summary": "5,0 pontos por dólar gasto no Brasil e 8,0 pontos por dólar gasto no exterior; cashback creditado na Cota Capital",
+    "has_cashlike_return": true,
+    "subtypes": [
+      "cashback",
+      "statement_credit"
+    ]
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": true,
+    "guest_policy": "8 acompanhante(s) gratuito(s) por ano",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "programs": [
+      "Mastercard Airport Experience",
+      "LoungeKey",
+      "Dragon Pass",
+      "Taste of Priceless",
+      "Sala VIP Mastercard Black",
+      "W Premium Lounge"
+    ],
+    "summary": "Acessos ilimitados e gratuitos às redes LoungeKey, DragonPass, W Premium Lounge, Sala VIP Mastercard Black e Taste of Priceless, com direito a até 8 acompanhantes gratuitos por ano",
+    "unlimited": true
+  },
+  "eligibility": {
+    "availability_status": "invite_only",
+    "hard_gate_fields": [
+      "availability",
+      "requires_account"
+    ],
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": 1000000,
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Disponível exclusivamente para cooperados Sisprime do Brasil mediante convite.",
+    "requires_bank_account_claim": true,
+    "source_status": "official"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "monthly_spend",
+      "description": "Gastos mensais a partir de R$ 40 mil garantem 100% de isenção na parcela da anuidade",
+      "full_waiver": true,
+      "period": "monthly",
+      "raw_text": "Faturas a partir de R$ 40 mil proporcionam 100% de desconto na mensalidade da anuidade.",
+      "threshold_brl": 40000
+    },
+    {
+      "category": "monthly_spend",
+      "description": "Gastos mensais entre R$ 20 mil e R$ 40 mil garantem 50% de desconto na anuidade",
+      "discount_pct": 50,
+      "full_waiver": false,
+      "period": "monthly",
+      "raw_text": "Faturas entre R$ 20 mil e R$ 40 mil proporcionam 50% de desconto na mensalidade.",
+      "threshold_brl": 20000
+    },
+    {
+      "category": "promotional_period",
+      "description": "Isenção de anuidade nos primeiros 12 meses para cartões ativados na campanha de lançamento",
+      "full_waiver": true,
+      "raw_text": "Cartões ativados na campanha de lançamento contam com 12 meses de anuidade grátis."
+    }
+  ],
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser cooperado Sisprime: Sim",
+      "Acesso exclusivo por convite"
+    ],
+    "fees": [
+      "Anuidade: R$ 4.200 (12x R$ 350)",
+      "Isenção 100% com gastos a partir de R$ 40 mil/mês",
+      "Desconto de 50% com gastos a partir de R$ 20 mil/mês",
+      "Spread cambial zero (0%)",
+      "Até 3 cartões adicionais gratuitos em metal"
+    ],
+    "lifestyle": [
+      "Cartão físico fabricado em metal com aplicação de cristal Swarovski",
+      "Mastercard Concierge dedicado 24h",
+      "The Mastercard Collection com reservas em restaurantes Guia Michelin"
+    ],
+    "rewards": [
+      "5,0 pontos por dólar em compras nacionais",
+      "8,0 pontos por dólar em compras internacionais",
+      "Transferência para Livelo, LATAM Pass e Azul Fidelidade ou cashback na Cota Capital",
+      "Pontos que não expiram"
+    ],
+    "travel": [
+      "Salas VIP LoungeKey, DragonPass e W Premium ilimitadas",
+      "8 acompanhantes gratuitos por ano em salas VIP",
+      "Acesso ao Dining Club Taste by Priceless em GRU T3",
+      "Seguro viagem internacional com cobertura de até US$ 1 milhão"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 4.200"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "5,0 pts/USD nacional e 8,0 pts/USD exterior"
+    },
+    {
+      "category": "rewards",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "Não expiram"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Sisprime Fidelidade / Livelo"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Ilimitado com 8 acompanhantes/ano"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 4200,
+    "fx_spread_pct": 0,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_investment_brl_best_estimate": 1000000,
+    "monthly_fee_brl_after_intro_official_hint": 350,
+    "official_forex_or_iof_note": "Spread cambial zero (0,0%) mais IOF de 3,5%"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": true,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": true,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": true,
+    "mentions_concierge": true,
+    "mentions_travel_insurance": true,
+    "reward_return_cashlike": true
+  },
+  "labels_for_filtering": [
+    "segment:ultra_premium",
+    "travel:lounge",
+    "rewards:points_or_miles",
+    "rewards:cashback",
+    "network:mastercard"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-11-18",
+    "sources": [
+      {
+        "label": "Sisprime do Brasil Oficial",
+        "tier": "official_issuer",
+        "url": "https://www.sisprimedobrasil.com.br/cartoes"
+      },
+      {
+        "label": "Melhores Cartões Review",
+        "tier": "trusted_catalog",
+        "url": "https://www.melhorescartoes.com.br/cartoes-credito/sisprime-world-legend-mastercard"
+      }
+    ],
+    "verification_note": "Lançamento 2026: Primeiro World Legend de cooperativa independente no Brasil, 5-8 pts/USD, spread zero, metal com Swarovski."
+  }
+}

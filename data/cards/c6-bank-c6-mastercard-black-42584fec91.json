@@ -165,7 +165,7 @@
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
+    "monthly_fee_brl_after_intro_official_hint": 50,
     "official_forex_or_iof_note": "unknown"
   },
   "facets_boolean": {
@@ -189,14 +189,14 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
-        "label": "Link direto do cartão",
-        "tier": "trusted_catalog",
-        "url": "https://www.c6bank.com.br/cartao-black/"
+        "label": "C6 Mastercard Black",
+        "tier": "official_issuer",
+        "url": "https://www.c6bank.com.br/cartao-c6-mastercard-black"
       }
     ],
-    "verification_note": "Verificação original: official_issuer_with_user_reported_context"
+    "verification_note": "Verificado em 18/11/2026: anuidade de R$ 600 (12x R$ 50), isenção com faturas a partir de R$ 5.000, spread cambial de 5,25%, acesso ilimitado à Sala VIP Mastercard Black em GRU."
   }
 }

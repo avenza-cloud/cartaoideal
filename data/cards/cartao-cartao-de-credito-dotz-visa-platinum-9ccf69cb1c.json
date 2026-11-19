@@ -35,7 +35,7 @@
     "unlimited": false
   },
   "eligibility": {
-    "availability_status": "available",
+    "availability_status": "unavailable",
     "hard_gate_fields": [],
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
@@ -146,7 +146,7 @@
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Cartão Ourocard Dotz físico teve emissão de novas vias suspensa pelo Banco do Brasil (disponibilidade marcada como unavailable)."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -167,7 +167,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -177,7 +177,13 @@
       {
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/cartao-de-credito-dotz-visa-platinum-2/"
+      },
+      {
+        "label": "Banco do Brasil",
+        "tier": "official_issuer",
+        "url": "https://www.bb.com.br"
       }
-    ]
+    ],
+    "verification_note": "Atualizado em 2026-11-18: novas contratações do cartão físico Dotz Visa Platinum suspensas pelo Banco do Brasil (status alterado para unavailable); ecossistema migrou para conversão automática de pontos BB para Dotz."
   }
 }

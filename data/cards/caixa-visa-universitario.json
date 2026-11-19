@@ -53,10 +53,11 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 0,
+    "fx_spread_pct": 4,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": ""
+    "monthly_fee_brl_after_intro_official_hint": 0,
+    "official_forex_or_iof_note": "Spread cambial de aproximadamente 4,0% sobre a cotação oficial, mais IOF padrão vigente."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -74,13 +75,19 @@
   },
   "labels_for_filtering": [],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
-        "label": "Página oficial do emissor",
+        "label": "CAIXA Visa Universitário - Página Oficial",
         "tier": "official_issuer",
-        "url": "https://www.caixa.gov.br/"
+        "url": "https://www.caixa.gov.br/voce/cartoes/credito/universitario/Paginas/default.aspx"
+      },
+      {
+        "label": "Tabela de Tarifas Cartões CAIXA",
+        "tier": "official_issuer",
+        "url": "https://www.caixa.gov.br/voce/cartoes/tabela-tarifas"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 18/11/2026: sem cobrança de anuidade, voltado para estudantes universitários, 1 ponto por USD gasto, spread de 4%."
   }
 }

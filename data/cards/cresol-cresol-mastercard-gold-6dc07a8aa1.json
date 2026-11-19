@@ -152,11 +152,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 239,
+    "fx_spread_pct": 0,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 19.91,
+    "official_forex_or_iof_note": "Spread zero sobre a cotação oficial do dólar PTAX (apenas IOF vigente)."
   },
   "facets_boolean": {
     "co_brand_name_detected": true,
@@ -177,7 +178,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -188,6 +189,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/cresol-mastercard-gold/"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 2026: spread zero confirmado, 1,0 ponto/USD e isenção com gastos a partir de R$ 2.400/mês."
   }
 }

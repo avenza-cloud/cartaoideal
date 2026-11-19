@@ -23,15 +23,20 @@
     "source_url": "https://passageirodeprimeira.com/cartao-de-credito/banpara-mastercard-black/"
   },
   "reward_return": {
-    "earning_summary": "2,0 pontos por dólar gasto",
+    "earning_summary": "2,0 pontos por dólar gasto no programa Banpará Sempre+.",
     "has_cashlike_return": false
   },
   "lounge_access": {
-    "complimentary_access_confirmed": false,
-    "guest_policy": "unknown",
+    "annual_visits": "unknown",
+    "complimentary_access_confirmed": true,
+    "guest_policy": "Conforme regras das salas VIP Mastercard Black em GRU T3; acessos LoungeKey são tarifados",
     "has_lounge_access": true,
     "policy_varies_by_issuer": false,
-    "summary": "unknown",
+    "programs": [
+      "Mastercard Black Lounge GRU",
+      "LoungeKey"
+    ],
+    "summary": "Acesso gratuito às salas VIP Mastercard Black no aeroporto de Guarulhos (GRU T3); acessos LoungeKey adicionais são tarifados.",
     "unlimited": false
   },
   "eligibility": {
@@ -150,12 +155,12 @@
     }
   ],
   "facets_numeric_or_special": {
-    "annual_fee_brl_best_estimate": 960,
+    "annual_fee_brl_best_estimate": 1056,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 88,
+    "official_forex_or_iof_note": "Conversão cambial pelo dólar PTAX na data da compra acrescido dos tributos governamentais e custos operacionais."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -177,7 +182,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -188,6 +193,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/banpara-mastercard-black/"
       }
-    ]
+    ],
+    "verification_note": "Auditado em 2026-11-18: anuidade R$ 1.056 (12x R$ 88) conforme tabela geral de tarifas vigente; acúmulo de 2,0 pts/USD no Sempre+; acessos às salas Mastercard Black em GRU T3 e LoungeKey pago."
   }
 }

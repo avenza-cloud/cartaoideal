@@ -210,11 +210,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 4200,
+    "fx_spread_pct": 6,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": 1000000,
     "monthly_fee_brl_after_intro_official_hint": 350,
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Taxa de serviço (spread) de 6,0% sobre a cotação PTAX D-1 mais IOF."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -236,18 +237,14 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
-        "label": "Link direto do cartão",
-        "tier": "trusted_catalog",
-        "url": "https://lp.xpi.com.br/cartao-xp-legacy?utm_medium=site"
-      },
-      {
-        "label": "Evidência primária",
-        "url": "https://passageirodeprimeira.com/cartao-de-credito/xp-legacy-versao-pontos/"
+        "label": "XP Legacy",
+        "tier": "official_issuer",
+        "url": "https://www.xpi.com.br/produtos/cartao-xp-legacy/"
       }
     ],
-    "verification_note": "Segmento revisado manualmente: XP Legacy exige cerca de R$ 1 milhão investido e tem pacote/lounges de cartão topo de linha. — Verificação original: trusted_catalog_with_curated_official_override"
+    "verification_note": "Verificado em 18/11/2026: anuidade de R$ 4.200 (isenta com R$ 3M investidos ou R$ 40k de fatura), pontuação de até 9,5 pts/USD, VAC ilimitado com 12 convidados, spread de 6,0%."
   }
 }

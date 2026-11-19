@@ -4,7 +4,7 @@
   "issuer_raw": "Bradesco",
   "issuer_id": "bradesco",
   "network_primary": "Visa",
-  "variant_band": "unknown",
+  "variant_band": "Infinite",
   "market_segment_guess": "premium",
   "product_kind": "named_credit_card_product",
   "verification_cross_check_status": "trusted_aggregator",
@@ -29,14 +29,14 @@
   "lounge_access": {
     "annual_visits": 4,
     "complimentary_access_confirmed": true,
-    "guest_policy": "0 acompanhante(s)",
+    "guest_policy": "1 acompanhante(s)",
     "has_lounge_access": true,
     "policy_varies_by_issuer": false,
     "programs": [
       "Visa Airport Companion",
       "Bradesco Cartões Lounge"
     ],
-    "summary": "Salas VIP do Visa Airport Companion - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Bradesco Cartões Lounge - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por visita",
+    "summary": "Salas VIP do Visa Airport Companion - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Bradesco Cartões Lounge - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita",
     "unlimited": false
   },
   "eligibility": {
@@ -52,18 +52,35 @@
   "fee_waiver_rules": [
     {
       "category": "monthly_spend",
-      "description": "Gasto mensal mínimo",
+      "description": "Gasto mensal mínimo (isenção integral)",
       "full_waiver": true,
       "period": "monthly",
-      "raw_text": "Isento para clientes a partir de R$ 300 mil em investimentos ou gastos mensais a partir de R$ 15 mil",
+      "raw_text": "Isento para clientes com gastos mensais a partir de R$ 15 mil ou investimentos a partir de R$ 300 mil.",
       "threshold_brl": 15000
     },
     {
       "category": "investment",
-      "description": "Investimento mínimo",
+      "description": "Investimento mínimo (isenção integral)",
       "full_waiver": true,
-      "raw_text": "Isento para clientes a partir de R$ 300 mil em investimentos ou gastos mensais a partir de R$ 15 mil",
+      "raw_text": "Isento para clientes com gastos mensais a partir de R$ 15 mil ou investimentos a partir de R$ 300 mil.",
       "threshold_brl": 300000
+    },
+    {
+      "category": "monthly_spend",
+      "description": "Desconto de 50% por gasto mensal",
+      "discount_pct": 50,
+      "full_waiver": false,
+      "period": "monthly",
+      "raw_text": "50% de desconto na anuidade para gastos mensais a partir de R$ 7.500.",
+      "threshold_brl": 7500
+    },
+    {
+      "category": "investment",
+      "description": "Desconto de 50% por investimento",
+      "discount_pct": 50,
+      "full_waiver": false,
+      "raw_text": "50% de desconto na anuidade para investimentos a partir de R$ 150.000.",
+      "threshold_brl": 150000
     }
   ],
   "benefit_groups": {
@@ -225,11 +242,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 1500,
+    "fx_spread_pct": 5.3,
     "lounge_visits_per_year_hint": 4,
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Spread cambial estimado em 5,3% sobre a taxa PTAX para transações em moeda estrangeira, acrescido de IOF regulamentar."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -251,8 +269,13 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
+      {
+        "label": "Tabela Geral de Tarifas Bradesco",
+        "tier": "official_issuer",
+        "url": "https://banco.bradesco/pdf/tabela-tarifas-pf.pdf"
+      },
       {
         "label": "Link direto do cartão",
         "tier": "trusted_catalog",
@@ -263,6 +286,6 @@
         "url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-visa-principal/"
       }
     ],
-    "verification_note": "Segmento revisado manualmente: Visa Principal tem anuidade e benefícios de cartão premium, mas não deve ser tratado como cartão comum."
+    "verification_note": "Bradesco Principal Visa Infinite: variante ajustada para Infinite, anuidade de R$ 1.500 (12x R$ 125). 4 acessos DragonPass/VAC e acesso ilimitado ao Bradesco Cartões Lounge com acompanhante. Regras de isenção de 50% e 100% estruturadas. Spread cambial de 5,3% verificado."
   }
 }

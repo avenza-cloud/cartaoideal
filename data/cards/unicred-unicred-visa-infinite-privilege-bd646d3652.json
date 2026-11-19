@@ -23,7 +23,7 @@
     "source_url": "https://passageirodeprimeira.com/cartao-de-credito/unicred-visa-infinite-privilege/"
   },
   "reward_return": {
-    "earning_summary": "Até 7,0 pontos por dólar gasto",
+    "earning_summary": "5,0 pontos por dólar em compras nacionais e 7,0 pontos por dólar em compras internacionais",
     "has_cashlike_return": false
   },
   "lounge_access": {
@@ -34,9 +34,9 @@
     "programs": [
       "LoungeKey",
       "Visa Airport Companion",
-      "Visa Infinite Privilege Lounge"
+      "Visa Infinite Privilege Lounge GRU"
     ],
-    "summary": "Salas VIP do LoungeKey - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 8 acompanhantes gratuitos por visita | Visa Infinite Privilege Lounge - Acessos gratuitos e ilimitados para o portador e acompanhantes por visita",
+    "summary": "Salas VIP do LoungeKey e Visa Airport Companion com acessos gratuitos e ilimitados para o portador e até 8 acompanhantes por visita, além de acesso ao Visa Infinite Privilege Lounge em GRU.",
     "unlimited": true
   },
   "eligibility": {
@@ -283,11 +283,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 18000,
+    "fx_spread_pct": 0,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": 300000,
     "minimum_investment_brl_best_estimate": 30000000,
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 1500,
+    "official_forex_or_iof_note": "Spread zero (0%) sobre a cotação oficial do dólar comercial/PTAX (apenas IOF vigente)."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -309,7 +310,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -320,6 +321,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/unicred-visa-infinite-privilege/"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 2026: produto Private/Ultra High, pontuação de até 7,0 pts/USD, spread zero, acessos ilimitados para titular e até 8 acompanhantes no LoungeKey/VAC e Privilege Lounge GRU."
   }
 }

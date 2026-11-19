@@ -35,7 +35,7 @@
     "unlimited": false
   },
   "eligibility": {
-    "availability_status": "available",
+    "availability_status": "unavailable",
     "hard_gate_fields": [],
     "minimum_income_brl_best_estimate": 2500,
     "minimum_investment_brl_best_estimate": "unknown",
@@ -193,11 +193,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 444,
+    "fx_spread_pct": 6,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": 2500,
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Spread cambial de 6% sobre a cotação do dólar para compras internacionais."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -218,7 +219,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -228,7 +229,12 @@
       {
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/cartao-123/"
+      },
+      {
+        "label": "Cartões Descontinuados Santander",
+        "url": "https://www.santander.com.br/cartoes-descontinuados"
       }
-    ]
+    ],
+    "verification_note": "Cartão Santander 1|2|3 descontinuado pelo banco para novas emissões, substituído pelo Santander Elite."
   }
 }

@@ -38,7 +38,7 @@
     "unlimited": true
   },
   "eligibility": {
-    "availability_status": "available",
+    "availability_status": "unavailable",
     "hard_gate_fields": [],
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
@@ -184,11 +184,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 1400,
+    "fx_spread_pct": 0,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 116.67,
+    "official_forex_or_iof_note": "Spread zero (0%) sobre a cotação oficial do dólar comercial/PTAX (apenas IOF vigente)."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -210,7 +211,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -221,6 +222,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/unicred-mastercard-black/"
       }
-    ]
+    ],
+    "verification_note": "Descontinuado para novas emissões em 2025/2026 devido à migração do portfólio Unicred para a bandeira Visa (Visa Infinite / Ímpar). Spread zero confirmado para cartões ativos."
   }
 }

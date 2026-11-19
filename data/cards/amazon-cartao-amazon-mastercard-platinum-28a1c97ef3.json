@@ -1,0 +1,147 @@
+{
+  "card_stable_id": "amazon-cartao-amazon-mastercard-platinum-28a1c97ef3",
+  "display_name": "Cartão Amazon.com.br Mastercard Platinum",
+  "issuer_raw": "Amazon",
+  "issuer_id": "amazon",
+  "network_primary": "Mastercard",
+  "variant_band": "Platinum",
+  "market_segment_guess": "mass_or_general",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_verified",
+  "primary_evidence_url": "https://www.amazon.com.br/b?node=21406859011",
+  "application_url": "https://www.amazon.com.br/b?node=21406859011",
+  "review_source_url": "https://www.melhorescartoes.com.br/cartoes-credito/cartao-amazon-bradescard",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Melhores Cartões",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.amazon.com.br/b?node=21406859011",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "Cartão Amazon.com.br Mastercard Platinum",
+    "art_provenance": {
+      "retrieved_date": "2026-11-18",
+      "source_url": "https://www.amazon.com.br/b?node=21406859011"
+    },
+    "card_art_url": "/card-images/amazon-cartao-amazon-mastercard-platinum.png",
+    "source_url": "https://www.amazon.com.br/b?node=21406859011"
+  },
+  "reward_return": {
+    "earning_summary": "3% de volta na Amazon.com.br, 2% em restaurantes, farmácias, entretenimento e viagens, e 1% em outros estabelecimentos (1 ponto = R$ 1)",
+    "has_cashlike_return": true,
+    "subtypes": [
+      "cashback"
+    ]
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": false,
+    "guest_policy": "Sem acesso gratuito a salas VIP",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "summary": "Sem acesso gratuito a salas VIP",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": 1518,
+    "minimum_investment_brl_best_estimate": 0,
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Disponível para clientes cadastrados na Amazon.com.br sujeito a aprovação pelo Bradescard.",
+    "requires_bank_account_claim": false,
+    "source_status": "official"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "general",
+      "description": "Sem cobrança de anuidade",
+      "full_waiver": true,
+      "raw_text": "Cartão de crédito internacional 100% sem anuidade."
+    }
+  ],
+  "benefit_groups": {
+    "eligibility": [
+      "Disponível para clientes Amazon.com.br",
+      "Sujeito a análise de crédito pelo Bradescard"
+    ],
+    "fees": [
+      "Anuidade gratuita para sempre (R$ 0)"
+    ],
+    "lifestyle": [
+      "Parcelamento exclusivo em até 15x sem juros na Amazon.com.br",
+      "Mastercard Surpreenda",
+      "Mastercard Concierge"
+    ],
+    "rewards": [
+      "3% de volta em pontos em todas as compras na Amazon.com.br",
+      "2% de volta em restaurantes, farmácias, viagens e entretenimento",
+      "1% de volta nos demais estabelecimentos",
+      "1 ponto = R$ 1 de desconto em compras na Amazon",
+      "Pontos que não expiram"
+    ],
+    "travel": [
+      "MasterSeguro de Automóveis",
+      "Masterassist Plus para viagens internacionais"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "Gratuito (R$ 0)"
+    },
+    {
+      "category": "rewards",
+      "key": "cashback_rate",
+      "label": "Cashback",
+      "value": "3% na Amazon, 2% em categorias selecionadas, 1% geral"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Não"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 0,
+    "fx_spread_pct": 5.5,
+    "lounge_visits_per_year_hint": 0,
+    "minimum_income_brl_best_estimate": 1518,
+    "minimum_investment_brl_best_estimate": 0,
+    "monthly_fee_brl_after_intro_official_hint": 0,
+    "official_forex_or_iof_note": "Spread cambial de 5,5% sobre a cotação PTAX mais IOF de 3,5%"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": true,
+    "earn_cashback": true,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": true,
+    "mentions_travel_insurance": true,
+    "reward_return_cashlike": true
+  },
+  "labels_for_filtering": [
+    "segment:mass_or_general",
+    "fees:no_annual_fee",
+    "rewards:cashback",
+    "network:mastercard"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-11-18",
+    "sources": [
+      {
+        "label": "Amazon Brasil Oficial",
+        "tier": "official_issuer",
+        "url": "https://www.amazon.com.br/b?node=21406859011"
+      }
+    ],
+    "verification_note": "Versão padrão (não-Prime) do Cartão Amazon.com.br com 3% de volta na loja, anuidade gratuita permanente e emitido pelo Bradescard."
+  }
+}

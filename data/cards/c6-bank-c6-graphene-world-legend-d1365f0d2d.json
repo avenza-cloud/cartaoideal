@@ -294,11 +294,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 3960,
+    "fx_spread_pct": 5.25,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": 5000000,
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 330,
+    "official_forex_or_iof_note": "Spread de 5,25% sobre a cotação do dólar comercial no dia do processamento mais IOF."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -321,18 +322,14 @@
     "rewards:return_cashlike"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
-        "label": "Link direto do cartão",
-        "tier": "trusted_catalog",
-        "url": "https://www.c6bank.com.br/c6-graphene?utm_medium=site"
-      },
-      {
-        "label": "Evidência primária",
-        "url": "https://passageirodeprimeira.com/cartao-de-credito/c6-graphene/"
+        "label": "C6 Graphene",
+        "tier": "official_issuer",
+        "url": "https://www.c6bank.com.br/cartao-graphene"
       }
     ],
-    "verification_note": "Segmento revisado manualmente: C6 Graphene World Legend é produto de altíssima renda, com World Legend, anuidade alta e critério de investimento elevado."
+    "verification_note": "Verificado em 18/11/2026: exclusivo para clientes com investimentos a partir de R$ 5 milhões (isenção total de anuidade), pontuação de 4,5 pts/USD, salas VIP ilimitadas via Dragon Pass e Mastercard Airport Experience."
   }
 }

@@ -4,7 +4,7 @@
   "issuer_raw": "Banco do Brasil",
   "issuer_id": "banco-do-brasil",
   "network_primary": "Visa",
-  "variant_band": "Internacional",
+  "variant_band": "Universitário",
   "market_segment_guess": "mass_or_general",
   "product_kind": "named_credit_card_product",
   "verification_cross_check_status": "official_partial",
@@ -47,9 +47,9 @@
   "fee_waiver_rules": [
     {
       "category": "general",
-      "description": "Sem anuidade para universitários",
+      "description": "Sem anuidade",
       "full_waiver": true,
-      "raw_text": "Sem anuidade. Exclusivo para universitários (mínimo 16 anos cursando nível superior)."
+      "raw_text": "Sem cobrança de anuidade e sem exigência de comprovação de renda para universitários"
     }
   ],
   "benefit_groups": {},
@@ -99,11 +99,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 0,
+    "fx_spread_pct": 4,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": 0,
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 0,
+    "official_forex_or_iof_note": "Spread cambial de 4,0% sobre o dólar PTAX no dia da compra, mais IOF padrão vigente."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -121,13 +122,19 @@
   },
   "labels_for_filtering": [],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
-        "label": "Link direto do cartão",
+        "label": "Ourocard Universitário - Portal BB",
         "tier": "official_issuer",
-        "url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/todos-os-cartoes/"
+        "url": "https://www.bb.com.br/site/pra-voce/cartoes-de-credito/ourocard-universitario/"
+      },
+      {
+        "label": "Tabela de Tarifas Cartões BB",
+        "tier": "official_issuer",
+        "url": "https://www.bb.com.br/site/tabela-tarifas"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 18/11/2026: anuidade gratuita (R$ 0) para estudantes universitários elegíveis, spread de 4%."
   }
 }

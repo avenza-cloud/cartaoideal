@@ -145,11 +145,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 616,
+    "fx_spread_pct": 5.5,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Spread cambial padrão de 5,5% sobre o dólar PTAX nas compras internacionais com cartão de crédito, acrescido de IOF padrão vigente."
   },
   "facets_boolean": {
     "co_brand_name_detected": true,
@@ -170,7 +171,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -180,7 +181,13 @@
       {
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/azul-itau-visa-platinum/"
+      },
+      {
+        "label": "Ranking Melhores Cartões 2026",
+        "tier": "trusted_catalog",
+        "url": "https://www.melhorescartoes.com.br/melhores-cartoes-credito-ranking"
       }
-    ]
+    ],
+    "verification_note": "Auditoria 2026-11-18: verificação de tarifas, regras de isenção, acessos a salas VIP, spread cambial (5,5% Itaú) e status de disponibilidade."
   }
 }

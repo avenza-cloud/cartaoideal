@@ -1,0 +1,158 @@
+{
+  "card_stable_id": "itau-itau-personnalite-the-essential-mastercard-black-41c89f23ea",
+  "display_name": "Itaú Personnalité The Essential Mastercard Black",
+  "issuer_raw": "Itaú",
+  "issuer_id": "itau",
+  "network_primary": "Mastercard",
+  "variant_band": "Black",
+  "market_segment_guess": "premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_verified",
+  "primary_evidence_url": "https://www.itau.com.br/personnalite/cartoes/the-essential",
+  "application_url": "https://www.itau.com.br/personnalite/cartoes/the-essential",
+  "review_source_url": "https://www.melhorescartoes.com.br/cartoes-credito/itau-personnalite-the-essential",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Melhores Cartões",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.itau.com.br/personnalite/cartoes/the-essential",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "Itaú Personnalité The Essential Mastercard Black",
+    "art_provenance": {
+      "retrieved_date": "2026-11-18",
+      "source_url": "https://www.itau.com.br/personnalite/cartoes/the-essential"
+    },
+    "card_art_url": "/card-images/itau-itau-personnalite-the-essential-mastercard-black.png",
+    "source_url": "https://www.itau.com.br/personnalite/cartoes/the-essential"
+  },
+  "reward_return": {
+    "earning_summary": "2,0 a 3,5 pontos por dólar gasto (pontos que não expiram); pontuação escalável pelo nível no Minhas Vantagens",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "annual_visits": 8,
+    "complimentary_access_confirmed": true,
+    "guest_policy": "Até 8 acessos anuais LoungeKey conforme nível no Minhas Vantagens",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "programs": [
+      "Mastercard Airport Experience",
+      "LoungeKey",
+      "Sala VIP Mastercard Black"
+    ],
+    "summary": "Acesso ilimitado e gratuito à Sala VIP Mastercard Black em GRU T3 e até 8 acessos anuais ao LoungeKey pelo Minhas Vantagens",
+    "unlimited": true
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [
+      "requires_account"
+    ],
+    "minimum_income_brl_best_estimate": 15000,
+    "minimum_investment_brl_best_estimate": 0,
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Exclusivo para correntistas Itaú Personnalité com acesso atrelado ao programa Minhas Vantagens.",
+    "requires_bank_account_claim": true,
+    "source_status": "official"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "general",
+      "description": "Isenção total de anuidade a partir do Nível 2 do programa Minhas Vantagens",
+      "full_waiver": true,
+      "raw_text": "Anuidade 100% gratuita a partir do nível 2 no Minhas Vantagens Personnalité."
+    }
+  ],
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista Itaú Personnalité: Sim",
+      "Integrado ao programa Minhas Vantagens"
+    ],
+    "fees": [
+      "Anuidade: R$ 960 (12x R$ 80)",
+      "Isenção total a partir do nível 2 no Minhas Vantagens"
+    ],
+    "lifestyle": [
+      "Mastercard Concierge 24h",
+      "Benefícios e descontos exclusivos na rede Fasano",
+      "Mastercard Surpreenda"
+    ],
+    "rewards": [
+      "Pontuação de 2,0 a 3,5 pontos por dólar",
+      "Pontos que nunca expiram",
+      "Transferência para parceiros aéreos nacionais e internacionais"
+    ],
+    "travel": [
+      "Sala VIP Mastercard Black GRU T3 ilimitada",
+      "Até 8 acessos gratuitos LoungeKey por ano",
+      "Seguro médico em viagens e seguro automóveis da bandeira"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 960 (12x R$ 80)"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "2,0 a 3,5 pts/USD"
+    },
+    {
+      "category": "rewards",
+      "key": "points_expiration",
+      "label": "Validade dos pontos",
+      "value": "Não expiram"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Mastercard Black GRU ilimitada + até 8 LoungeKey"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 960,
+    "fx_spread_pct": 5.5,
+    "lounge_visits_per_year_hint": 8,
+    "minimum_income_brl_best_estimate": 15000,
+    "minimum_investment_brl_best_estimate": 0,
+    "monthly_fee_brl_after_intro_official_hint": 80,
+    "official_forex_or_iof_note": "Spread cambial de 5,5% sobre PTAX mais IOF de 3,5%"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": true,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": true,
+    "mentions_concierge": true,
+    "mentions_travel_insurance": true,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:premium",
+    "travel:lounge",
+    "rewards:points_or_miles",
+    "network:mastercard"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-11-18",
+    "sources": [
+      {
+        "label": "Itaú Personnalité Oficial",
+        "tier": "official_issuer",
+        "url": "https://www.itau.com.br/personnalite/cartoes/the-essential"
+      }
+    ],
+    "verification_note": "Lançamento The Essential Mastercard Black do Personnalité: anuidade de R$ 960 com isenção a partir do nível 2 no Minhas Vantagens e até 8 acessos LoungeKey."
+  }
+}

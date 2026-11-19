@@ -58,10 +58,10 @@
       "Precisa ser correntista: Sim"
     ],
     "fees": [
-      "Anuidade: R$ 576",
+      "Anuidade: R$ 708",
       "Adicionais com benefícios: Sim",
       "Isenção da anuidade: Anuidade isenta com investimentos acima de 150 mil reais.",
-      "Anuidade: R$ 576",
+      "Anuidade: R$ 708",
       "Adicionais gratuitos: 0"
     ],
     "lifestyle": [
@@ -84,7 +84,7 @@
       "category": "fees",
       "key": "annual_fee",
       "label": "Anuidade",
-      "value": "R$ 576"
+      "value": "R$ 708"
     },
     {
       "category": "rewards",
@@ -166,12 +166,13 @@
     }
   ],
   "facets_numeric_or_special": {
-    "annual_fee_brl_best_estimate": 576,
+    "annual_fee_brl_best_estimate": 708,
+    "fx_spread_pct": 5.3,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Spread cambial estimado em 5,3% sobre a taxa PTAX para transações em moeda estrangeira, acrescido de IOF regulamentar."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -193,17 +194,23 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
+      {
+        "label": "Tabela Geral de Tarifas Bradesco",
+        "tier": "official_issuer",
+        "url": "https://banco.bradesco/pdf/tabela-tarifas-pf.pdf"
+      },
       {
         "label": "Link direto do cartão",
         "tier": "trusted_catalog",
-        "url": "https://banco.bradesco/html/prime/produtos-servicos/cartoes/conheca-os-cartoes/bradesco-elo-grafite.shtm"
+        "url": "https://banco.bradesco/html/prime/produtos-servicos/cartoes/conheca-os-cartoes/bradesco-prime-elo-grafite.shtm"
       },
       {
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-prime-elo-grafite/"
       }
-    ]
+    ],
+    "verification_note": "Segmento Prime Elo Grafite: anuidade reajustada para R$ 708 (12x R$ 59) conforme Tabela de Tarifas do Bradesco. Sem salas VIP gratuitas. Spread cambial de 5,3% verificado."
   }
 }

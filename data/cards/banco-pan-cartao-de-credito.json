@@ -47,7 +47,14 @@
     "requires_bank_account_claim": "unknown",
     "source_status": "official_partial"
   },
-  "fee_waiver_rules": [],
+  "fee_waiver_rules": [
+    {
+      "category": "general",
+      "description": "Sem anuidade",
+      "full_waiver": true,
+      "raw_text": "Cartão de crédito básico do PAN sem taxa de anuidade."
+    }
+  ],
   "benefit_groups": {
     "fees": [
       "Anuidade: Verificar tarifas vigentes no app/site do Banco PAN"
@@ -79,12 +86,13 @@
     }
   ],
   "facets_numeric_or_special": {
-    "annual_fee_brl_best_estimate": "unknown",
+    "annual_fee_brl_best_estimate": 0,
+    "fx_spread_pct": 6,
     "lounge_visits_per_year_hint": 0,
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 0,
+    "official_forex_or_iof_note": "Spread de 6,0% sobre a cotação do dólar comercial mais IOF."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -151,13 +159,14 @@
     "rate_text": "0,75% por real gasto nas transações elegíveis"
   },
   "provenance": {
-    "last_verified_date": "2026-05-09",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
-        "label": "Página oficial do emissor",
+        "label": "Banco PAN Cartão de Crédito",
         "tier": "official_issuer",
         "url": "https://www.bancopan.com.br/produtos/cartao-de-credito/"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 18/11/2026: cartão de crédito sem anuidade do Banco PAN, cashback no Shopping PAN e spread de 6,0% no crédito internacional."
   }
 }

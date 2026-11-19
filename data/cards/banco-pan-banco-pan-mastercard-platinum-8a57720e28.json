@@ -38,7 +38,7 @@
     "unlimited": false
   },
   "eligibility": {
-    "availability_status": "available",
+    "availability_status": "unavailable",
     "hard_gate_fields": [],
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
@@ -156,11 +156,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 500,
+    "fx_spread_pct": 6,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Spread de 6,0% sobre a cotação do dólar comercial mais IOF."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -181,17 +182,14 @@
     "rewards:cashback"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
-        "label": "Link direto do cartão",
-        "tier": "trusted_catalog",
+        "label": "Banco PAN Cartões",
+        "tier": "official_issuer",
         "url": "https://www.bancopan.com.br/produtos/cartao-de-credito/"
-      },
-      {
-        "label": "Evidência primária",
-        "url": "https://passageirodeprimeira.com/cartao-de-credito/banco-pan-mastercard-platinum/"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 18/11/2026: linha antiga substituída comercialmente pelo portfólio PAN Estelar; novas contratações sob esta nomenclatura descontinuadas."
   }
 }

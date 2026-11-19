@@ -202,7 +202,7 @@
     }
   ],
   "facets_numeric_or_special": {
-    "annual_fee_brl_best_estimate": 996,
+    "annual_fee_brl_best_estimate": 1056,
     "lounge_visits_per_year_hint": 2,
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
@@ -229,7 +229,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -239,7 +239,13 @@
       {
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/itau-personnalite-mastercard-black/"
+      },
+      {
+        "label": "Ranking Melhores Cartões 2026",
+        "tier": "trusted_catalog",
+        "url": "https://www.melhorescartoes.com.br/melhores-cartoes-credito-ranking"
       }
-    ]
+    ],
+    "verification_note": "Auditoria 2026-11-18: verificação de tarifas, regras de isenção, acessos a salas VIP, spread cambial (5,5% Itaú) e status de disponibilidade."
   }
 }

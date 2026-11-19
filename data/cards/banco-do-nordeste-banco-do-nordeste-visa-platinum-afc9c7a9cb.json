@@ -37,13 +37,22 @@
   "eligibility": {
     "availability_status": "available",
     "hard_gate_fields": [],
-    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_income_brl_best_estimate": 10000,
     "minimum_investment_brl_best_estimate": "unknown",
     "recommendation_blocking_unknowns": false,
     "requirements_text": "unknown",
     "requires_bank_account_claim": true,
     "source_status": "not_structured"
   },
+  "fee_waiver_rules": [
+    {
+      "category": "promotional_period",
+      "description": "Isenção nos primeiros 6 meses",
+      "full_waiver": true,
+      "period": "monthly",
+      "raw_text": "Novos clientes possuem isenção total do valor da anuidade nos primeiros seis meses."
+    }
+  ],
   "benefit_groups": {
     "eligibility": [
       "Precisa ser correntista: Sim"
@@ -162,8 +171,8 @@
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 35.83,
+    "official_forex_or_iof_note": "Conversão cambial baseada na taxa do dia do gasto/compra (PTAX)."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -184,7 +193,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -195,6 +204,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/banco-do-nordeste-visa-platinum/"
       }
-    ]
+    ],
+    "verification_note": "Auditado em 2026-11-18: anuidade R$ 430 (12x R$ 35,83), isenção nos primeiros 6 meses e desconto progressivo por gastos, pontuação 1,5 pt/USD no Nordeste Mais, renda mínima R$ 10.000."
   }
 }

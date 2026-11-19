@@ -23,7 +23,7 @@
     "source_url": "https://passageirodeprimeira.com/cartao-de-credito/banpara-mastercard-standard/"
   },
   "reward_return": {
-    "earning_summary": "1,0 ponto por dólar gasto",
+    "earning_summary": "Cartão Standard de entrada sem acúmulo de pontos no programa Banpará Sempre+.",
     "has_cashlike_return": false
   },
   "lounge_access": {
@@ -141,12 +141,12 @@
     }
   ],
   "facets_numeric_or_special": {
-    "annual_fee_brl_best_estimate": 140,
+    "annual_fee_brl_best_estimate": 216,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 18,
+    "official_forex_or_iof_note": "Conversão cambial pelo dólar PTAX na data da compra acrescido dos tributos governamentais e custos operacionais."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -167,7 +167,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -178,6 +178,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/banpara-mastercard-standard/"
       }
-    ]
+    ],
+    "verification_note": "Auditado em 2026-11-18: anuidade R$ 216 (12x R$ 18) conforme tabela geral de tarifas vigente."
   }
 }

@@ -86,10 +86,11 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 432,
+    "fx_spread_pct": 6,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": 36,
-    "official_forex_or_iof_note": ""
+    "official_forex_or_iof_note": "Spread de 6,0% sobre a cotação do dólar comercial mais IOF."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -107,13 +108,14 @@
   },
   "labels_for_filtering": [],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
-        "label": "Página oficial do emissor",
+        "label": "Banco PAN Estelar",
         "tier": "official_issuer",
-        "url": "https://www.bancopan.com.br/cartoes"
+        "url": "https://www.bancopan.com.br/produtos/cartao-de-credito/cartao-estelar/"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 18/11/2026: Cartão Estelar Elo, anuidade de R$ 36/mês (isenta com faturas >= R$ 4k ou R$ 25k investidos), cashback de 0,8% e spread de 6,0%."
   }
 }

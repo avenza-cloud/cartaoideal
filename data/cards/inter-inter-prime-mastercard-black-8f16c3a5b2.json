@@ -43,7 +43,7 @@
       "Sala VIP Mastercard Black",
       "Inter Lounge"
     ],
-    "summary": "Acesso a salas VIP. Melhores Cartões indica 6 acessos anuais ao Priority Pass para Inter Black desde 11/05/2025, além de salas Mastercard Black e Inter.",
+    "summary": "6 acessos gratuitos por ano via Priority Pass para o portador titular; acesso gratuito e ilimitado às salas VIP Mastercard Black em Guarulhos e aos Inter Lounges (Curitiba e aeroportos parceiros).",
     "unlimited": false
   },
   "eligibility": {
@@ -181,11 +181,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 708,
+    "fx_spread_pct": 4.99,
     "lounge_visits_per_year_hint": 6,
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 0,
+    "official_forex_or_iof_note": "Spread de 4,99% sobre a cotação PTAX venda do dia mais IOF."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -209,13 +210,14 @@
     "fees:zero_fee"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
-        "label": "Link direto do cartão",
+        "label": "Inter Black",
         "tier": "official_issuer",
-        "url": "https://inter.co/pra-voce/cartoes/v2/c/"
+        "url": "https://inter.co/pra-voce/cartoes/black/"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 18/11/2026: acesso Black via Duo Gourmet (R$ 708/ano), gastos de R$ 7k/mês ou R$ 250k investidos; 6 acessos Priority Pass, Inter Lounges e spread cambial de 4,99%."
   }
 }

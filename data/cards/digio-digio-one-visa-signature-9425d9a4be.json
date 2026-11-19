@@ -154,11 +154,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 539,
+    "fx_spread_pct": 4,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Dólar PTAX (venda do Banco Central) + spread cambial de 4,0% para compras internacionais."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -179,7 +180,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -189,7 +190,13 @@
       {
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/digiocartao/"
+      },
+      {
+        "label": "Digio Oficial",
+        "tier": "official_issuer",
+        "url": "https://www.digio.com.br"
       }
-    ]
+    ],
+    "verification_note": "Atualizado em 2026-11-18: spread cambial de 4,0% sobre PTAX; anuidade de R$ 538,80 (12x R$ 44,90) com faixas de isenção de 50% (R$ 2.000) e 100% (R$ 4.000); pontuação de 1,5 ponto por dólar na Livelo."
   }
 }

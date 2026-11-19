@@ -32,9 +32,10 @@
     "has_lounge_access": true,
     "policy_varies_by_issuer": false,
     "programs": [
-      "Visa Airport Companion"
+      "Visa Airport Companion",
+      "Bradesco Cartões Lounge"
     ],
-    "summary": "Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano",
+    "summary": "Salas VIP do Visa Airport Companion - Acessos gratuitos e ilimitados para o portador e 12 acompanhantes gratuitos por ano | Bradesco Cartões Lounge - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita",
     "unlimited": true
   },
   "eligibility": {
@@ -63,10 +64,10 @@
       "Precisa ser correntista: Sim"
     ],
     "fees": [
-      "Anuidade: R$ 1.848",
+      "Anuidade: R$ 2.112",
       "Adicionais com benefícios: Sim",
       "Isenção da anuidade: Anuidade gratuita para clientes com investimentos acima de R$ 5 milhões",
-      "Anuidade: R$ 1.848",
+      "Anuidade: R$ 2.112",
       "Adicionais gratuitos: 5"
     ],
     "lifestyle": [
@@ -92,7 +93,7 @@
       "category": "fees",
       "key": "annual_fee",
       "label": "Anuidade",
-      "value": "R$ 1.848"
+      "value": "R$ 2.112"
     },
     {
       "category": "rewards",
@@ -194,12 +195,13 @@
     }
   ],
   "facets_numeric_or_special": {
-    "annual_fee_brl_best_estimate": 1848,
+    "annual_fee_brl_best_estimate": 2112,
+    "fx_spread_pct": 5.3,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Spread cambial estimado em 5,3% sobre a taxa PTAX para transações em moeda estrangeira, acrescido de IOF regulamentar."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -221,8 +223,13 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
+      {
+        "label": "Tabela Geral de Tarifas Bradesco",
+        "tier": "official_issuer",
+        "url": "https://banco.bradesco/pdf/tabela-tarifas-pf.pdf"
+      },
       {
         "label": "Link direto do cartão",
         "tier": "trusted_catalog",
@@ -233,6 +240,6 @@
         "url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-visa-aeternum/"
       }
     ],
-    "verification_note": "Manual review 2026-05-06: official Bradesco Aeternum page identifies the product as Private Bank. Do not convert the R$5M waiver rule into a mandatory eligibility gate."
+    "verification_note": "Bradesco Visa Aeternum: anuidade reajustada para R$ 2.112 (12x R$ 176) na Tabela de Tarifas do Bradesco. Salas VIP ilimitadas: Visa Airport Companion (12 convidados/ano) e Bradesco Cartões Lounge (1 convidado). Spread cambial de 5,3% verificado."
   }
 }

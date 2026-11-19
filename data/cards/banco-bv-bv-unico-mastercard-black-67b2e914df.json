@@ -1,0 +1,166 @@
+{
+  "card_stable_id": "banco-bv-bv-unico-mastercard-black-67b2e914df",
+  "display_name": "BV Único Mastercard Black",
+  "issuer_raw": "Banco BV",
+  "issuer_id": "banco-bv",
+  "network_primary": "Mastercard",
+  "variant_band": "Black",
+  "market_segment_guess": "premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_verified",
+  "primary_evidence_url": "https://www.bv.com.br/cartoes/cartao-bv-unico",
+  "application_url": "https://www.bv.com.br/cartoes/cartao-bv-unico",
+  "review_source_url": "https://www.melhorescartoes.com.br/cartoes-credito/bv-unico-mastercard-black",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Melhores Cartões",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.bv.com.br/cartoes/cartao-bv-unico",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "BV Único Mastercard Black",
+    "art_provenance": {
+      "retrieved_date": "2026-11-18",
+      "source_url": "https://www.bv.com.br/cartoes/cartao-bv-unico"
+    },
+    "card_art_url": "/card-images/banco-bv-bv-unico-mastercard-black.png",
+    "source_url": "https://www.bv.com.br/cartoes/cartao-bv-unico"
+  },
+  "reward_return": {
+    "earning_summary": "Até 1,5% de cashback na fatura ou 2,0 pontos por dólar gasto",
+    "has_cashlike_return": true,
+    "subtypes": [
+      "cashback"
+    ]
+  },
+  "lounge_access": {
+    "annual_visits": 2,
+    "complimentary_access_confirmed": true,
+    "guest_policy": "Conforme cota anual de 2 acessos gratuitos",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "programs": [
+      "Mastercard Airport Experience",
+      "LoungeKey",
+      "Sala VIP Mastercard Black"
+    ],
+    "summary": "2 acessos anuais gratuitos às salas VIP pelo LoungeKey e acesso gratuito e ilimitado à Sala VIP Mastercard Black em GRU T3",
+    "unlimited": true
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": 10000,
+    "minimum_investment_brl_best_estimate": 0,
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Renda mínima recomendada de R$ 10.000 e análise de crédito pelo Banco BV.",
+    "requires_bank_account_claim": false,
+    "source_status": "official"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "monthly_spend",
+      "description": "Gastos a partir de R$ 10.000/mês garantem 100% de isenção na anuidade",
+      "full_waiver": true,
+      "period": "monthly",
+      "raw_text": "Faturas a partir de R$ 10 mil garantem isenção integral da parcela mensal.",
+      "threshold_brl": 10000
+    },
+    {
+      "category": "monthly_spend",
+      "description": "Gastos a partir de R$ 5.000/mês garantem 50% de desconto na anuidade",
+      "discount_pct": 50,
+      "full_waiver": false,
+      "period": "monthly",
+      "raw_text": "Faturas a partir de R$ 5 mil garantem 50% de desconto na parcela mensal.",
+      "threshold_brl": 5000
+    }
+  ],
+  "benefit_groups": {
+    "eligibility": [
+      "Disponível para correntistas e não correntistas",
+      "Renda mínima sugerida: R$ 10.000"
+    ],
+    "fees": [
+      "Anuidade: R$ 718,80 (12x R$ 59,90)",
+      "Isenção total com gastos a partir de R$ 10.000/mês",
+      "Desconto de 50% com gastos a partir de R$ 5.000/mês",
+      "Até 6 adicionais gratuitos"
+    ],
+    "lifestyle": [
+      "Mastercard Concierge 24h",
+      "Assistências gratuitas para residência e veículo (chaveiro, reboque, eletricista)",
+      "Mastercard Surpreenda"
+    ],
+    "rewards": [
+      "Até 1,5% de cashback na fatura",
+      "Opção de conversão em 2,0 pontos por dólar gasto",
+      "Pontos transferíveis para programas de milhas"
+    ],
+    "travel": [
+      "2 acessos gratuitos anuais LoungeKey",
+      "Sala VIP Mastercard Black GRU T3 ilimitada",
+      "Seguro médico em viagem Masterassist Black"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 718,80 (12x R$ 59,90)"
+    },
+    {
+      "category": "rewards",
+      "key": "cashback_rate",
+      "label": "Cashback",
+      "value": "Até 1,5%"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "2 LoungeKey + Mastercard Black GRU"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 718.8,
+    "fx_spread_pct": 5,
+    "lounge_visits_per_year_hint": 2,
+    "minimum_income_brl_best_estimate": 10000,
+    "minimum_investment_brl_best_estimate": 0,
+    "monthly_fee_brl_after_intro_official_hint": 59.9,
+    "official_forex_or_iof_note": "Spread cambial de 5,0% sobre PTAX mais IOF de 3,5%"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": true,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": true,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": true,
+    "mentions_concierge": true,
+    "mentions_travel_insurance": true,
+    "reward_return_cashlike": true
+  },
+  "labels_for_filtering": [
+    "segment:premium",
+    "travel:lounge",
+    "rewards:cashback",
+    "network:mastercard"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-11-18",
+    "sources": [
+      {
+        "label": "Banco BV Oficial",
+        "tier": "official_issuer",
+        "url": "https://www.bv.com.br/cartoes/cartao-bv-unico"
+      }
+    ],
+    "verification_note": "Versão Mastercard Black do BV Único com cashback de 1,5%, 2 acessos LoungeKey, Sala VIP Black GRU e anuidade com isenção a partir de R$ 10k."
+  }
+}

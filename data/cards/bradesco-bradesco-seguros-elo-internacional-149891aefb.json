@@ -49,10 +49,10 @@
       "Precisa ser correntista: Não"
     ],
     "fees": [
-      "Anuidade: R$ 395",
+      "Anuidade: R$ 456",
       "Adicionais com benefícios: Sim",
       "Isenção da anuidade: Não há nenhuma publicada",
-      "Anuidade: R$ 395",
+      "Anuidade: R$ 456",
       "Adicionais gratuitos: 0"
     ],
     "lifestyle": [
@@ -71,7 +71,7 @@
       "category": "fees",
       "key": "annual_fee",
       "label": "Anuidade",
-      "value": "R$ 395"
+      "value": "R$ 456"
     },
     {
       "category": "rewards",
@@ -141,12 +141,13 @@
     }
   ],
   "facets_numeric_or_special": {
-    "annual_fee_brl_best_estimate": 395,
+    "annual_fee_brl_best_estimate": 456,
+    "fx_spread_pct": 5.3,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Spread cambial estimado em 5,3% sobre a taxa PTAX para transações em moeda estrangeira, acrescido de IOF regulamentar."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -167,8 +168,13 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
+      {
+        "label": "Tabela Geral de Tarifas Bradesco",
+        "tier": "official_issuer",
+        "url": "https://banco.bradesco/pdf/tabela-tarifas-pf.pdf"
+      },
       {
         "label": "Link direto do cartão",
         "tier": "trusted_catalog",
@@ -178,6 +184,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-seguros-elo-internacional/"
       }
-    ]
+    ],
+    "verification_note": "Bradesco Seguros Elo Internacional: anuidade de R$ 456 (12x R$ 38) verificada na Tabela de Tarifas do Bradesco. Spread cambial de 5,3% verificado."
   }
 }

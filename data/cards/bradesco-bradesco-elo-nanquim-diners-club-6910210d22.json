@@ -29,15 +29,15 @@
   "lounge_access": {
     "annual_visits": 4,
     "complimentary_access_confirmed": true,
-    "guest_policy": "0 acompanhante(s); 1 acompanhante(s)",
+    "guest_policy": "1 acompanhante(s)",
     "has_lounge_access": true,
     "policy_varies_by_issuer": false,
     "programs": [
       "Priority Pass",
       "Bradesco Cartões Lounge"
     ],
-    "summary": "Salas VIP do Priority Pass - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Bradesco Cartões Lounge - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita",
-    "unlimited": true
+    "summary": "Salas VIP do Priority Pass - 4 acessos gratuitos para o portador por ano | Bradesco Cartões Lounge - Acessos gratuitos e ilimitados para o portador e 1 acompanhante gratuito por visita",
+    "unlimited": false
   },
   "eligibility": {
     "availability_status": "available",
@@ -64,10 +64,10 @@
       "Precisa ser correntista: Não"
     ],
     "fees": [
-      "Anuidade: R$ 1.607",
+      "Anuidade: R$ 1.812",
       "Adicionais com benefícios: Sim",
       "Isenção da anuidade: Anuidade isenta com gasto médio a partir de 10 mil reais por mês.",
-      "Anuidade: R$ 1.607",
+      "Anuidade: R$ 1.812",
       "Adicionais gratuitos: 4"
     ],
     "lifestyle": [
@@ -96,7 +96,7 @@
       "category": "fees",
       "key": "annual_fee",
       "label": "Anuidade",
-      "value": "R$ 1.607"
+      "value": "R$ 1.812"
     },
     {
       "category": "rewards",
@@ -217,12 +217,13 @@
     }
   ],
   "facets_numeric_or_special": {
-    "annual_fee_brl_best_estimate": 1607,
+    "annual_fee_brl_best_estimate": 1812,
+    "fx_spread_pct": 5.3,
     "lounge_visits_per_year_hint": 4,
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Spread cambial estimado em 5,3% sobre a taxa PTAX para transações em moeda estrangeira, acrescido de IOF regulamentar."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -233,7 +234,7 @@
     "has_any_lounge_claim": true,
     "has_named_lounge_program": true,
     "issuer_multi_entity_row": false,
-    "lounge_unlimited_claim": true,
+    "lounge_unlimited_claim": false,
     "mentions_concierge": false,
     "mentions_travel_insurance": false,
     "reward_return_cashlike": false
@@ -244,8 +245,13 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
+      {
+        "label": "Tabela Geral de Tarifas Bradesco",
+        "tier": "official_issuer",
+        "url": "https://banco.bradesco/pdf/tabela-tarifas-pf.pdf"
+      },
       {
         "label": "Link direto do cartão",
         "tier": "trusted_catalog",
@@ -256,6 +262,6 @@
         "url": "https://passageirodeprimeira.com/cartao-de-credito/bradesco-elo-nanquim-diners-club/"
       }
     ],
-    "verification_note": "Segmento revisado manualmente: Elo Nanquim Diners Club é premium por benefícios e lounge, mas não ultra premium."
+    "verification_note": "Elo Diners Club: anuidade reajustada para R$ 1.812 (12x R$ 151) conforme Tabela de Tarifas do Bradesco. 4 acessos anuais Priority Pass e Bradesco Cartões Lounge ilimitado. Spread cambial de 5,3% verificado."
   }
 }

@@ -29,9 +29,9 @@
   "lounge_access": {
     "complimentary_access_confirmed": false,
     "guest_policy": "unknown",
-    "has_lounge_access": true,
+    "has_lounge_access": false,
     "policy_varies_by_issuer": false,
-    "summary": "unknown",
+    "summary": "Sem acessos gratuitos a salas VIP.",
     "unlimited": false
   },
   "eligibility": {
@@ -160,12 +160,13 @@
     }
   ],
   "facets_numeric_or_special": {
-    "annual_fee_brl_best_estimate": 318,
+    "annual_fee_brl_best_estimate": 444,
+    "fx_spread_pct": 4,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Spread cambial de 4,0% sobre a cotação do dólar para compras internacionais."
   },
   "facets_boolean": {
     "co_brand_name_detected": true,
@@ -173,7 +174,7 @@
     "earn_investback": false,
     "earn_points_or_miles": true,
     "generic_article_not_single_product": false,
-    "has_any_lounge_claim": true,
+    "has_any_lounge_claim": false,
     "has_named_lounge_program": false,
     "issuer_multi_entity_row": false,
     "lounge_unlimited_claim": false,
@@ -187,13 +188,18 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Passageiro de Primeira",
         "tier": "trusted_catalog",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/brb-stock-car-mastercard-gold/"
+      },
+      {
+        "label": "Tabela de Tarifas Oficiais BRBCARD",
+        "url": "https://novo.brbcard.com.br/tarifas"
       }
-    ]
+    ],
+    "verification_note": "Atualizada anuidade oficial R$ 444 (12x R$ 37), sem salas VIP e spread 4,0%."
   }
 }

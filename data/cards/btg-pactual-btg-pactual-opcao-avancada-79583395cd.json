@@ -46,11 +46,21 @@
   },
   "fee_waiver_rules": [
     {
-      "category": "investment",
-      "description": "Investimento mínimo",
-      "full_waiver": true,
-      "raw_text": "Isenta a cada R$10.000 em investimentos ou R$1.000 de gastos no cartão garantem R$10 de desconto na mensalidade, sempre priorizando o maior desconto para o cliente.",
+      "category": "monthly_spend",
+      "description": "Desconto progressivo por gastos",
+      "discount_brl": 10,
+      "full_waiver": false,
+      "period": "monthly",
+      "raw_text": "A cada R$ 1.000 gastos na fatura, ganhe R$ 10 de desconto na mensalidade.",
       "threshold_brl": 1000
+    },
+    {
+      "category": "investment",
+      "description": "Desconto progressivo por investimentos",
+      "discount_brl": 10,
+      "full_waiver": false,
+      "raw_text": "A cada R$ 10.000 investidos no BTG Pactual, ganhe R$ 10 de desconto na mensalidade.",
+      "threshold_brl": 10000
     }
   ],
   "benefit_groups": {
@@ -151,11 +161,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 600,
+    "fx_spread_pct": 6,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 50,
+    "official_forex_or_iof_note": "Campanha de IOF Zero em compras internacionais no crédito; incide spread cambial de 6% sobre PTAX."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -176,17 +187,14 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
-        "label": "Link direto do cartão",
-        "tier": "trusted_catalog",
-        "url": "https://www.btgmais.com/cartao-de-credito/"
-      },
-      {
-        "label": "Evidência primária",
-        "url": "https://passageirodeprimeira.com/cartao-de-credito/btg-opcao-avancada-2/"
+        "label": "BTG Pactual Opção Avançada",
+        "tier": "official_issuer",
+        "url": "https://www.btgpactual.com/banking/cartoes/opcao-avancada"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 18/11/2026: mensalidade de R$ 50 (R$ 600/ano), isenção progressiva via gastos (R$ 5k) ou investimentos (R$ 50k), IOF Zero com 6,0% de spread."
   }
 }

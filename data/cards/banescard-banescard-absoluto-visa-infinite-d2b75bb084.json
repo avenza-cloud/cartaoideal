@@ -253,11 +253,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 1800,
+    "fx_spread_pct": 4,
     "lounge_visits_per_year_hint": 12,
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": 1000000,
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "IOF zero em compras internacionais"
+    "monthly_fee_brl_after_intro_official_hint": 150,
+    "official_forex_or_iof_note": "Spread cambial padrão de 4,0% sobre a cotação PTAX na data da compra."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -279,14 +280,19 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Passageiro de Primeira",
         "tier": "trusted_catalog",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/banescard-absoluto-visa-infinite/"
+      },
+      {
+        "label": "Página Oficial Banescard Absoluto",
+        "tier": "official_issuer",
+        "url": "https://www.banescard.com.br/absoluto/"
       }
     ],
-    "verification_note": "Manual review 2026-05-06: official Banescard Absoluto page gives 4.2 pts/USD domestic, 5 pts/USD international, IOF zero, invite-only and R$1M Banestes investment acquisition criterion."
+    "verification_note": "Auditado em 2026-11-18: anuidade R$ 1.800 (12x R$ 150), isenção total com R$ 25k/mês ou R$ 5M investidos (50% com R$ 12,5k/mês ou R$ 2,5M investidos), salas VIP ilimitadas LoungeKey e DragonPass com convidados, 4,2 a 5,0 pts/USD, spread 0% (ou IOF zero promocional / spread 4% contratual)."
   }
 }

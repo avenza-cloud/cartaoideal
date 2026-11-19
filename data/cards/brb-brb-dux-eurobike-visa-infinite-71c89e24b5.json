@@ -1,0 +1,172 @@
+{
+  "card_stable_id": "brb-brb-dux-eurobike-visa-infinite-71c89e24b5",
+  "display_name": "BRB DUX Eurobike Visa Infinite",
+  "issuer_raw": "BRB",
+  "issuer_id": "brb",
+  "network_primary": "Visa",
+  "variant_band": "Infinite",
+  "market_segment_guess": "ultra_premium",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_verified",
+  "primary_evidence_url": "https://www.brbcard.com.br/cartoes/dux-eurobike.html",
+  "application_url": "https://www.brbcard.com.br/cartoes/dux-eurobike.html",
+  "review_source_url": "https://www.melhorescartoes.com.br/cartoes-credito/brb-dux-eurobike-visa-infinite",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Melhores Cartões",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.brbcard.com.br/cartoes/dux-eurobike.html",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "BRB DUX Eurobike Visa Infinite",
+    "art_provenance": {
+      "retrieved_date": "2026-11-18",
+      "source_url": "https://www.brbcard.com.br/cartoes/dux-eurobike.html"
+    },
+    "card_art_url": "/card-images/brb-brb-dux-eurobike-visa-infinite.png",
+    "source_url": "https://www.brbcard.com.br/cartoes/dux-eurobike.html"
+  },
+  "reward_return": {
+    "earning_summary": "4,0 pontos por dólar em compras nacionais e 5,0 pontos por dólar em compras internacionais no programa Curtaí",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": true,
+    "guest_policy": "Até 3 convidados por visita nas salas BRB VIP Club e programas conveniados",
+    "has_lounge_access": true,
+    "policy_varies_by_issuer": false,
+    "programs": [
+      "BRB VIP Club",
+      "LoungeKey",
+      "Priority Pass",
+      "Visa Airport Companion"
+    ],
+    "summary": "Acesso gratuito e ilimitado aos lounges BRB VIP Club (com raio-X exclusivo em BSB) e acessos ilimitados via LoungeKey, Priority Pass e Visa Airport Companion",
+    "unlimited": true
+  },
+  "eligibility": {
+    "availability_status": "invite_only",
+    "hard_gate_fields": [
+      "availability"
+    ],
+    "minimum_income_brl_best_estimate": 50000,
+    "minimum_investment_brl_best_estimate": 0,
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Exclusivo para clientes Eurobike e alta renda BRB, mediante convite.",
+    "requires_bank_account_claim": false,
+    "source_status": "official"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "monthly_spend",
+      "description": "Gastos a partir de R$ 35.000/mês garantem 100% de isenção na anuidade",
+      "full_waiver": true,
+      "period": "monthly",
+      "raw_text": "Faturas a partir de R$ 35 mil proporcionam isenção de 100% da anuidade.",
+      "threshold_brl": 35000
+    },
+    {
+      "category": "monthly_spend",
+      "description": "Gastos a partir de R$ 20.000/mês garantem 50% de desconto na anuidade",
+      "discount_pct": 50,
+      "full_waiver": false,
+      "period": "monthly",
+      "raw_text": "Faturas a partir de R$ 20 mil proporcionam desconto de 50% na anuidade.",
+      "threshold_brl": 20000
+    }
+  ],
+  "benefit_groups": {
+    "eligibility": [
+      "Exclusivo por convite em parceria com a rede Eurobike",
+      "Cartão físico em metal"
+    ],
+    "fees": [
+      "Anuidade: R$ 1.980 (12x R$ 165)",
+      "Isenção total com gastos a partir de R$ 35.000/mês",
+      "Desconto de 50% com gastos a partir de R$ 20.000/mês",
+      "Até 4 cartões adicionais inclusos"
+    ],
+    "lifestyle": [
+      "Concierge DUX exclusivo 24h",
+      "Atendimento personalizado para serviços e revisões na rede Eurobike",
+      "Visa Fast Pass"
+    ],
+    "rewards": [
+      "4,0 pontos por dólar gasto no Brasil",
+      "5,0 pontos por dólar gasto no exterior",
+      "Pontos que nunca expiram no programa Curtaí",
+      "Transferência para LATAM Pass, Smiles e TudoAzul"
+    ],
+    "travel": [
+      "Salas BRB VIP Club ilimitadas com raio-X privativo em Brasília",
+      "Acessos ilimitados LoungeKey, Priority Pass e DragonPass",
+      "Seguro viagem internacional completo Visa Infinite"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "R$ 1.980 (12x R$ 165)"
+    },
+    {
+      "category": "rewards",
+      "key": "earning_rate",
+      "label": "Pontuação",
+      "value": "4,0 a 5,0 pts/USD"
+    },
+    {
+      "category": "rewards",
+      "key": "loyalty_program",
+      "label": "Programa de fidelidade",
+      "value": "Curtaí"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Ilimitado BRB VIP Club, LK, PP, VAC"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 1980,
+    "fx_spread_pct": 4,
+    "lounge_visits_per_year_hint": "unknown",
+    "minimum_income_brl_best_estimate": 50000,
+    "minimum_investment_brl_best_estimate": 0,
+    "monthly_fee_brl_after_intro_official_hint": 165,
+    "official_forex_or_iof_note": "Spread cambial de 4,0% sobre PTAX mais IOF de 3,5%"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": true,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": true,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": true,
+    "has_named_lounge_program": true,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": true,
+    "mentions_concierge": true,
+    "mentions_travel_insurance": true,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:ultra_premium",
+    "travel:lounge",
+    "rewards:points_or_miles",
+    "network:visa"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-11-18",
+    "sources": [
+      {
+        "label": "BRBCARD Oficial",
+        "tier": "official_issuer",
+        "url": "https://www.brbcard.com.br/cartoes/dux-eurobike.html"
+      }
+    ],
+    "verification_note": "Cartão em metal BRB DUX Eurobike Visa Infinite em parceria com concessionárias de luxo Eurobike: salas VIP BRB Club e internacionais ilimitadas, 4 a 5 pts/USD."
+  }
+}

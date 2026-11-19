@@ -29,15 +29,16 @@
   "lounge_access": {
     "annual_visits": 4,
     "complimentary_access_confirmed": true,
+    "complimentary_visits_per_year": 4,
     "guest_policy": "0 acompanhante(s)",
     "has_lounge_access": true,
     "policy_varies_by_issuer": false,
     "programs": [
       "LoungeKey",
-      "Sala VIP Mastercard Black"
+      "Sala VIP Mastercard Black GRU"
     ],
-    "summary": "Salas VIP do LoungeKey - 4 acessos gratuitos para o portador e 0 acompanhante gratuito por ano | Sala VIP Mastercard Black - Acessos gratuitos e ilimitados para o portador e 0 acompanhante gratuito por ano",
-    "unlimited": true
+    "summary": "4 acessos anuais gratuitos pelo LoungeKey, além de acesso à Sala VIP Mastercard Black em GRU.",
+    "unlimited": false
   },
   "eligibility": {
     "availability_status": "available",
@@ -211,11 +212,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 900,
+    "fx_spread_pct": 0,
     "lounge_visits_per_year_hint": 4,
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 75,
+    "official_forex_or_iof_note": "Spread zero sobre a cotação oficial do dólar PTAX (apenas IOF vigente)."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -226,7 +228,7 @@
     "has_any_lounge_claim": true,
     "has_named_lounge_program": true,
     "issuer_multi_entity_row": false,
-    "lounge_unlimited_claim": true,
+    "lounge_unlimited_claim": false,
     "mentions_concierge": false,
     "mentions_travel_insurance": false,
     "reward_return_cashlike": false
@@ -237,7 +239,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -248,6 +250,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/cresol-mastercard-black/"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 2026: spread zero confirmado, 4 acessos LoungeKey/ano + sala Black GRU, e isenção com gastos a partir de R$ 12.000 mensais."
   }
 }

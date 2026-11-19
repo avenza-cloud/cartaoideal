@@ -23,7 +23,7 @@
     "source_url": "https://passageirodeprimeira.com/cartao-de-credito/unicred-impar/"
   },
   "reward_return": {
-    "earning_summary": "Até 4,5 pontos por dólar gasto",
+    "earning_summary": "3,5 pontos por dólar em compras nacionais e 4,5 pontos por dólar em compras internacionais",
     "has_cashlike_return": false
   },
   "lounge_access": {
@@ -245,11 +245,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 3000,
+    "fx_spread_pct": 0,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": 3000000,
     "minimum_investment_brl_best_estimate": 3000000,
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 250,
+    "official_forex_or_iof_note": "Spread zero (0%) sobre a cotação oficial do dólar comercial/PTAX (apenas IOF vigente)."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -271,7 +272,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -283,6 +284,6 @@
         "url": "https://passageirodeprimeira.com/cartao-de-credito/unicred-impar/"
       }
     ],
-    "verification_note": "Segmento revisado manualmente: Unicred Ímpar tem anuidade elevada, lounge ilimitado e requisito de investimento milionário."
+    "verification_note": "Verificado em 2026: cartão em metal do segmento Ímpar/Private, spread zero, 3,5 a 4,5 pts/USD e acessos ilimitados com 1 convidado por visita no LoungeKey e Visa Airport Companion."
   }
 }

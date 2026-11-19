@@ -21,7 +21,7 @@
     "source_url": "https://cardfacil.com/r2-cartao-de-credito-ailos-gold/"
   },
   "reward_return": {
-    "earning_summary": "Programa de pontos: compras acumulam pontos que podem ser trocados por produtos, milhas, aporte na previdência e crédito na fatura.",
+    "earning_summary": "1,0 ponto por dólar gasto no programa Ganhe Pontos Ailos; pontos resgatáveis por milhas, produtos, crédito na fatura ou aporte na previdência.",
     "has_cashlike_return": false,
     "subtypes": []
   },
@@ -104,11 +104,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": "unknown",
+    "fx_spread_pct": 0,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
     "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "official_forex_or_iof_note": "Spread zero (0%) sobre transações internacionais (apenas IOF vigente)."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -233,13 +234,14 @@
     "Não inferir taxa de pontos para Clássico/Gold/Platinum; apenas Black tem taxa oficial encontrada (2,2 pontos/USD)."
   ],
   "provenance": {
-    "last_verified_date": "2026-05-10",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Página oficial do emissor",
         "tier": "official_issuer",
         "url": "https://www.ailos.coop.br/para-voce/cartoes"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 2026: spread zero confirmado, 1,0 ponto/USD no programa Ganhe Pontos Ailos e programa Comprou, Zerou."
   }
 }

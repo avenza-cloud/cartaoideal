@@ -142,11 +142,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 400,
+    "fx_spread_pct": 1,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 33.33,
+    "official_forex_or_iof_note": "PTAX do dia útil anterior + 1,0% de spread oficial (apenas IOF vigente)."
   },
   "facets_boolean": {
     "co_brand_name_detected": false,
@@ -167,7 +168,7 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
         "label": "Link direto do cartão",
@@ -178,6 +179,7 @@
         "label": "Evidência primária",
         "url": "https://passageirodeprimeira.com/cartao-de-credito/sicredi-visa-platinum/"
       }
-    ]
+    ],
+    "verification_note": "Verificado em 2026: spread oficial de 1,0% sobre PTAX, 1,5 ponto/USD e anuidade base de R$ 400."
   }
 }

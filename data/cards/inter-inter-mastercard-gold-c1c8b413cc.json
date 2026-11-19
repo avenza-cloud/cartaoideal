@@ -142,11 +142,12 @@
   ],
   "facets_numeric_or_special": {
     "annual_fee_brl_best_estimate": 0,
+    "fx_spread_pct": 4.99,
     "lounge_visits_per_year_hint": "unknown",
     "minimum_income_brl_best_estimate": "unknown",
     "minimum_investment_brl_best_estimate": "unknown",
-    "monthly_fee_brl_after_intro_official_hint": "unknown",
-    "official_forex_or_iof_note": "unknown"
+    "monthly_fee_brl_after_intro_official_hint": 0,
+    "official_forex_or_iof_note": "Spread de 4,99% sobre a cotação PTAX venda do dia mais IOF."
   },
   "facets_boolean": {
     "co_brand_name_detected": true,
@@ -167,18 +168,14 @@
     "rewards:points_or_miles"
   ],
   "provenance": {
-    "last_verified_date": "2026-05-07",
+    "last_verified_date": "2026-11-18",
     "sources": [
       {
-        "label": "Link direto do cartão",
-        "tier": "trusted_catalog",
-        "url": "https://www.bancointer.com.br/pra-voce/cartoes/"
-      },
-      {
-        "label": "Evidência primária",
-        "url": "https://passageirodeprimeira.com/cartao-de-credito/inter-mastercard-gold/"
+        "label": "Inter Gold",
+        "tier": "official_issuer",
+        "url": "https://inter.co/pra-voce/cartoes/gold/"
       }
     ],
-    "verification_note": "Segmento revisado manualmente: Inter Mastercard Gold é cartão comum/entrada, sem anuidade e sem pacote premium."
+    "verification_note": "Verificado em 18/11/2026: anuidade zero, pontos Inter Loop (1 ponto a cada R$ 10 gastos), spread cambial de 4,99% sobre PTAX venda."
   }
 }

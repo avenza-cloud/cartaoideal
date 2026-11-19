@@ -1,0 +1,142 @@
+{
+  "card_stable_id": "banco-pan-atmosfera-mastercard-gold-7b3c29e14a",
+  "display_name": "PAN Atmosfera Mastercard Gold",
+  "issuer_raw": "Banco PAN",
+  "issuer_id": "banco-pan",
+  "network_primary": "Mastercard",
+  "variant_band": "Gold",
+  "market_segment_guess": "mass_or_general",
+  "product_kind": "named_credit_card_product",
+  "verification_cross_check_status": "official_verified",
+  "primary_evidence_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/atmosfera-gold/",
+  "application_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/atmosfera-gold/",
+  "review_source_url": "https://cartoeseviagens.com.br/cartao-pan-atmosfera-gold/",
+  "source_label": "Link direto do cartão",
+  "review_source_label": "Cartões e Viagens",
+  "source_tier": "official_issuer",
+  "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/atmosfera-gold/",
+  "ranking_position": "unknown",
+  "ranking_score": "unknown",
+  "media": {
+    "alt_text": "PAN Atmosfera Mastercard Gold",
+    "art_provenance": {
+      "retrieved_date": "2026-11-18",
+      "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/atmosfera-gold/"
+    },
+    "card_art_url": "/card-images/banco-pan-atmosfera-mastercard-gold.png",
+    "source_url": "https://www.bancopan.com.br/produtos/cartao-de-credito/atmosfera-gold/"
+  },
+  "reward_return": {
+    "earning_summary": "Sem programa de pontos nativo; benefícios e descontos via Mastercard Surpreenda",
+    "has_cashlike_return": false
+  },
+  "lounge_access": {
+    "complimentary_access_confirmed": false,
+    "guest_policy": "Sem acesso gratuito a salas VIP",
+    "has_lounge_access": false,
+    "policy_varies_by_issuer": false,
+    "summary": "Sem acesso gratuito a salas VIP",
+    "unlimited": false
+  },
+  "eligibility": {
+    "availability_status": "available",
+    "hard_gate_fields": [],
+    "minimum_income_brl_best_estimate": 1518,
+    "minimum_investment_brl_best_estimate": 0,
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Abertura de conta digital Banco PAN e análise de crédito.",
+    "requires_bank_account_claim": true,
+    "source_status": "official"
+  },
+  "fee_waiver_rules": [
+    {
+      "category": "general",
+      "description": "Sem cobrança de anuidade",
+      "full_waiver": true,
+      "raw_text": "Cartão de crédito internacional sem anuidade."
+    }
+  ],
+  "benefit_groups": {
+    "eligibility": [
+      "Precisa ser correntista Banco PAN: Sim",
+      "Sujeito a análise de crédito"
+    ],
+    "fees": [
+      "Anuidade gratuita para sempre (R$ 0)"
+    ],
+    "lifestyle": [
+      "Mastercard Surpreenda",
+      "Seguro Proteção de Preço",
+      "Seguro Compra Protegida",
+      "Garantia Estendida Original"
+    ],
+    "rewards": [
+      "Programa Mastercard Surpreenda: compre 1 e leve 2"
+    ]
+  },
+  "characteristics": [
+    {
+      "category": "fees",
+      "key": "annual_fee",
+      "label": "Anuidade",
+      "value": "Gratuito (R$ 0)"
+    },
+    {
+      "category": "lifestyle",
+      "key": "insurance_price_protection",
+      "label": "Proteção de preço",
+      "value": "Sim"
+    },
+    {
+      "category": "lifestyle",
+      "key": "insurance_purchase_protection",
+      "label": "Compra protegida",
+      "value": "Sim"
+    },
+    {
+      "category": "travel",
+      "key": "lounge_access",
+      "label": "Sala VIP",
+      "value": "Não"
+    }
+  ],
+  "facets_numeric_or_special": {
+    "annual_fee_brl_best_estimate": 0,
+    "fx_spread_pct": 6,
+    "lounge_visits_per_year_hint": 0,
+    "minimum_income_brl_best_estimate": 1518,
+    "minimum_investment_brl_best_estimate": 0,
+    "monthly_fee_brl_after_intro_official_hint": 0,
+    "official_forex_or_iof_note": "Spread cambial de 6,0% sobre PTAX mais IOF de 3,5%"
+  },
+  "facets_boolean": {
+    "co_brand_name_detected": false,
+    "earn_cashback": false,
+    "earn_investback": false,
+    "earn_points_or_miles": false,
+    "generic_article_not_single_product": false,
+    "has_any_lounge_claim": false,
+    "has_named_lounge_program": false,
+    "issuer_multi_entity_row": false,
+    "lounge_unlimited_claim": false,
+    "mentions_concierge": false,
+    "mentions_travel_insurance": false,
+    "reward_return_cashlike": false
+  },
+  "labels_for_filtering": [
+    "segment:mass_or_general",
+    "fees:no_annual_fee",
+    "network:mastercard"
+  ],
+  "provenance": {
+    "last_verified_date": "2026-11-18",
+    "sources": [
+      {
+        "label": "Banco PAN Oficial",
+        "tier": "official_issuer",
+        "url": "https://www.bancopan.com.br/produtos/cartao-de-credito/atmosfera-gold/"
+      }
+    ],
+    "verification_note": "Novo cartão de entrada do Banco PAN lançado em substituição ao antigo PAN Internacional/Gold, 100% sem anuidade."
+  }
+}
