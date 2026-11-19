@@ -9,11 +9,12 @@ export async function GET(req: Request) {
   const decision = await limiter.check(req);
   if (!decision.allowed) return tooManyRequests(decision, limiter.limit);
 
-  // getUsdBrlExchangeRate never throws: it degrades to the fixed commercial-rate
-  // fallback (AwesomeAPI bid, not PTAX) and
-  // its upstream fetch is cached for 30min (next.revalidate).
+  // getUsdBrlExchangeRate never throws: it tries a multi-provider chain cached
+  // for 1 hour (3600s) and degrades to the fallback constant only if all fail.
   const rate = await getUsdBrlExchangeRate();
+  const cacheControl =
+    rate.source === "fallback" ? "no-store" : "public, s-maxage=3600, stale-while-revalidate=7200";
   return Response.json(rate, {
-    headers: { "Cache-Control": "s-maxage=1800, stale-while-revalidate=3600" },
+    headers: { "Cache-Control": cacheControl },
   });
 }
