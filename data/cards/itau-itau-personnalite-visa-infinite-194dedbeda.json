@@ -23,7 +23,7 @@
     "source_url": "https://www.manualdasmilhas.com.br/docs/cartoes/lista/itau_personnalite_visa_infinite/"
   },
   "reward_return": {
-    "earning_summary": "Até 3 pontos por dólar gasto no exterior; 2 pontos por real gasto no Brasil",
+    "earning_summary": "Até 3 pontos por dólar gasto no exterior; 2 pontos por dólar gasto no Brasil",
     "has_cashlike_return": false
   },
   "lounge_access": {
@@ -44,10 +44,10 @@
     "hard_gate_fields": [
       "availability"
     ],
-    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_income_brl_best_estimate": 15000,
     "minimum_investment_brl_best_estimate": "unknown",
-    "recommendation_blocking_unknowns": true,
-    "requirements_text": "Segmento Personnalité Itaú (cartão vinculado à conta no segmento)",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Segmento Personnalité Itaú (renda a partir de R$ 15.000/mês ou investimentos no segmento)",
     "requires_bank_account_claim": true,
     "source_status": "aggregator"
   },
@@ -104,7 +104,7 @@
       "Experiências Personnalité (gastronomia, viagens e cultura — conforme programa)"
     ],
     "rewards": [
-      "Pontuação: Até 3 pontos por dólar no exterior; 2 pontos por real no Brasil",
+      "Pontuação: Até 3 pontos por dólar no exterior; 2 pontos por dólar no Brasil",
       "Programa de fidelidade: Pontos/Cashback Personnalité Itaú",
       "Validade dos pontos: Não expiram (fonte agregadora)"
     ],
@@ -125,7 +125,7 @@
       "category": "rewards",
       "key": "earning_rate",
       "label": "Pontuação",
-      "value": "Até 3 pontos por dólar no exterior; 2 pontos por real no Brasil"
+      "value": "Até 3 pontos por dólar no exterior; 2 pontos por dólar no Brasil"
     },
     {
       "category": "travel",

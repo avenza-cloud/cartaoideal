@@ -10,7 +10,7 @@ import { useProfileStore } from "@/lib/store";
 import { useCardDetailHrefBuilder } from "@/lib/use-card-detail-href";
 import { useValueAssumptions } from "@/lib/use-value-assumptions";
 import { formatGrossRewardMonthlyDisplay } from "@/lib/formatting";
-import { CardArt, LeadFact, StatRow } from "@/components/card";
+import { CardArt, LeadFact, StatRow, Tag } from "@/components/card";
 import { cn } from "@/lib/utils";
 import type { CardFacet } from "@/types/cards";
 
@@ -43,61 +43,72 @@ export function ProfileCompareSummary({ cards }: ProfileCompareSummaryProps) {
   const assumptions = useValueAssumptions();
   if (!profile) {
     return (
-      <div className="rounded-md border bg-card px-4 py-3 text-sm text-muted-foreground">
-        Configure seu perfil para ver valor líquido, delta mensal e recomendação de troca.
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-panel bg-surface px-5 py-4 text-sm text-fg-2">
+        <span>
+          Configure seu perfil para ver valor líquido, diferença mensal e recomendação de troca.
+        </span>
+        <Link
+          href="/perfil"
+          className="font-semibold text-fg underline underline-offset-4 hover:text-brand-accent"
+        >
+          Configurar perfil
+        </Link>
       </div>
     );
   }
 
   const travelFrequency = travelFrequencyForValueModeling(profile);
   const scores = cards.map((card) => scoreCardValue(card, profile, "profile", assumptions));
-  // Winner and deltas come from the decision value, the same number shown on each card.
   const best = [...scores].sort(compareCardValueScores)[0] ?? null;
   const delta =
     scores.length >= 2 ? scores[1].decisionMonthlyValueBrl - scores[0].decisionMonthlyValueBrl : 0;
 
   return (
-    <section className="rounded-md border bg-card p-3">
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+    <section className="rounded-panel bg-surface p-5">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
-          <p className="text-base font-medium">
-            Melhor para seu perfil: {best?.card.display_name ?? "—"}
-          </p>
-          <p className="num mt-0.5 text-xs text-muted-foreground">
-            Base: R${profile.avgMonthlySpendBrl.toLocaleString("pt-BR")}/mês de gasto, R$
-            {profile.avgInvestedBrl.toLocaleString("pt-BR")} investidos.
+          <div className="flex flex-wrap items-center gap-2">
+            <h2 className="text-lg font-semibold tracking-tight text-fg">
+              Melhor para seu perfil: {best?.card.display_name ?? "—"}
+            </h2>
+            <Tag variant="brand">Recomendado</Tag>
+          </div>
+          <p className="num mt-1 text-sm text-fg-3">
+            Base: R$ {profile.avgMonthlySpendBrl.toLocaleString("pt-BR")}/mês de gasto · R${" "}
+            {profile.avgInvestedBrl.toLocaleString("pt-BR")} investidos
           </p>
         </div>
         {scores.length >= 2 && (
-          <div className="rounded-md border px-3 py-2 sm:text-right">
-            <p className="text-xs text-muted-foreground">Delta 2º vs 1º</p>
+          <div className="rounded-panel bg-raised px-4 py-2.5 shadow-card sm:text-right">
+            <p className="text-xs text-fg-3">Diferença 2º vs 1º</p>
             <p
               className={cn(
-                "num text-base font-medium",
-                delta > 0 && "text-positive",
-                delta < 0 && "text-negative"
+                "num text-base font-semibold",
+                delta > 0 && "text-success-text",
+                delta < 0 && "text-danger-text"
               )}
             >
               {money(delta)}
             </p>
-            <p className="num text-xs text-muted-foreground">{annual(delta * 12)}</p>
+            <p className="num text-xs text-fg-3">{annual(delta * 12)}</p>
           </div>
         )}
       </div>
 
-      <div className="mt-3 grid gap-2 md:grid-cols-2">
+      <div className="mt-4 grid gap-3 md:grid-cols-2">
         {scores.map((score) => {
           const isBest = score === best;
           const low = Math.min(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl);
           const high = Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl);
           const fee = score.effectiveMonthlyFeeBrl;
+          const prefix = score.decisionMonthlyValueBrl > 0 ? "+" : "";
           return (
             <Link
               key={score.card.card_stable_id}
               href={cardDetailHref(score.card.card_stable_id)}
               className={cn(
-                "flex flex-col gap-3 rounded-md border bg-card p-3 transition-colors duration-150 hover:bg-muted",
-                isBest && "border-foreground"
+                "flex flex-col gap-3.5 rounded-panel border bg-raised p-4 transition-colors duration-100 hover:bg-page",
+                isBest ? "border-brand-border shadow-card" : "border-line"
               )}
             >
               <div className="flex items-start gap-3">
@@ -109,21 +120,32 @@ export function ProfileCompareSummary({ cards }: ProfileCompareSummaryProps) {
                   displayName={score.card.display_name}
                   className="h-10 w-16"
                 />
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-medium">{score.card.display_name}</p>
-                  <p className="truncate text-xs text-muted-foreground">{score.card.issuer_raw}</p>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2">
+                    <p className="truncate text-sm font-semibold text-fg">
+                      {score.card.display_name}
+                    </p>
+                    {isBest && <Tag variant="brand">Melhor</Tag>}
+                  </div>
+                  <p className="truncate text-xs text-fg-3">{score.card.issuer_raw}</p>
                 </div>
               </div>
 
               <div>
                 <LeadFact
-                  value={`${brl(score.decisionMonthlyValueBrl)}/mês`}
+                  value={`${prefix}${brl(score.decisionMonthlyValueBrl)}/mês`}
                   label="valor líquido estimado por mês"
                   hint={high - low >= 1 ? `${brl(low)} a ${brl(high)}` : undefined}
-                  tone={score.decisionMonthlyValueBrl < 0 ? "negative" : "default"}
+                  tone={
+                    score.decisionMonthlyValueBrl < 0
+                      ? "negative"
+                      : score.decisionMonthlyValueBrl > 0
+                        ? "positive"
+                        : "default"
+                  }
                   marked={isBest && score.eligible && score.decisionMonthlyValueBrl >= 0}
                 />
-                <p className="mt-1 text-xs text-muted-foreground">{score.verdict}</p>
+                <p className="mt-1 text-xs leading-relaxed text-fg-2">{score.verdict}</p>
               </div>
 
               <StatRow
@@ -132,7 +154,7 @@ export function ProfileCompareSummary({ cards }: ProfileCompareSummaryProps) {
                     ? {
                         label: "Anuidade",
                         value: fee > 0 ? `-${money(fee).replace("+", "")}` : "R$0/mês",
-                        tone: fee > 0 ? "negative" : "default",
+                        tone: fee > 0 ? "negative" : "positive",
                       }
                     : { label: "Anuidade", value: "Não informada", tone: "muted" },
                   {
@@ -144,7 +166,9 @@ export function ProfileCompareSummary({ cards }: ProfileCompareSummaryProps) {
               />
 
               {score.eligibilityReasons.length > 0 && (
-                <p className="text-xs text-negative">{score.eligibilityReasons.join(" ")}</p>
+                <p className="text-xs font-medium text-danger-text">
+                  {score.eligibilityReasons.join(" ")}
+                </p>
               )}
             </Link>
           );

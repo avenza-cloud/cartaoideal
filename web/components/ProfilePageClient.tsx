@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { useProfileStore } from "@/lib/store";
 import { AppHeader } from "@/components/AppHeader";
+import { MobileBottomNav } from "@/components/MobileBottomNav";
 import { searchCardOptions, type ClientCardOption } from "@/lib/card-options";
 import { Check, ArrowLeft, X } from "lucide-react";
 import { CardArt } from "@/components/card";
@@ -33,7 +34,7 @@ const REWARD_OPTIONS: { value: RewardPref; label: string; desc: string }[] = [
 ];
 
 const INPUT_CLASS =
-  "h-10 w-full min-w-0 rounded-md border border-input bg-card px-3 text-base outline-none transition-colors duration-150 placeholder:text-muted-foreground focus-visible:border-ring md:text-sm";
+  "h-10 w-full min-w-0 rounded-field border border-line-strong bg-field px-3.5 text-base text-fg transition-colors duration-100 placeholder:text-fg-3 hover:border-fg focus-visible:border-accent-line md:text-sm";
 
 export interface ProfilePageClientProps {
   cardOptions: ClientCardOption[];
@@ -51,7 +52,6 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
   const [rewards, setRewards] = useState<Set<RewardPref>>(new Set());
   const [saved, setSaved] = useState(false);
 
-  // card search
   const [cardQuery, setCardQuery] = useState("");
   const [cardId, setCardId] = useState<string | undefined>();
   const [cardFocused, setCardFocused] = useState(false);
@@ -66,7 +66,6 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
     [cardOptions, cardId]
   );
 
-  // pre-fill from existing profile
   useEffect(() => {
     if (!profile) return;
     setSalary(formatBrlNumber(profile.monthlySalaryBrl));
@@ -106,7 +105,6 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
       monthlySalaryBrl: parseBrlInput(salary),
       avgMonthlySpendBrl: parseBrlInput(spend),
       avgInvestedBrl: parseBrlInput(invested),
-      // Not edited on this page: keep whatever is already stored.
       monthlyInternationalSpendBrl: profile?.monthlyInternationalSpendBrl,
       travelFrequency: travel,
       spendingCategories: profile?.spendingCategories ?? [],
@@ -128,57 +126,65 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
   const isNew = !profile;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-page">
       <AppHeader />
 
-      <main className="mx-auto w-full max-w-xl px-4 pb-24 pt-8">
-        {/* Back link — only when editing */}
+      <main className="mx-auto w-full max-w-2xl px-4 pb-28 pt-7 sm:px-6 md:pt-10">
         {!isNew && (
           <button
             type="button"
             onClick={() => router.back()}
-            className="mb-6 flex items-center gap-1.5 text-xs text-muted-foreground transition-colors duration-150 hover:text-foreground"
+            className="mb-5 inline-flex items-center gap-1.5 text-sm font-medium text-fg-3 transition-colors duration-100 hover:text-fg"
           >
-            <ArrowLeft className="h-3.5 w-3.5" />
+            <ArrowLeft className="h-4 w-4" />
             Voltar
           </button>
         )}
 
-        {/* Header */}
         <div className="mb-8">
-          <p className="mb-1 text-xs text-muted-foreground">
-            {isNew ? "Passo 1 de 1" : "Seu perfil"}
-          </p>
-          <h1 className="text-3xl font-medium">
+          <h1 className="text-2xl font-semibold tracking-tight text-fg sm:text-3xl">
             {isNew ? "Configure seu perfil" : "Editar perfil"}
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="mt-2 text-sm leading-relaxed text-fg-2 sm:text-[15px]">
             {isNew
-              ? "Preencha seus dados financeiros para ver o ranking personalizado e sua jornada de cartões."
+              ? "Preencha seus dados financeiros para calcular o valor líquido real e sua jornada de cartões."
               : "Atualize seus dados para recalcular o ranking e a simulação de progressão."}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Financial inputs */}
+        <form onSubmit={handleSubmit} className="space-y-5">
           <Panel title="Financeiro">
             <div className="space-y-4">
-              <Field label="Renda mensal">
-                <CurrencyInput value={salary} onChange={setSalary} placeholder="Ex: 8.000" />
+              <Field id="profile-salary" label="Renda mensal">
+                <CurrencyInput
+                  id="profile-salary"
+                  value={salary}
+                  onChange={setSalary}
+                  placeholder="Ex: 8.000"
+                />
               </Field>
-              <Field label="Gasto mensal no cartão">
-                <CurrencyInput value={spend} onChange={setSpend} placeholder="Ex: 3.000" />
+              <Field id="profile-spend" label="Gasto mensal no cartão">
+                <CurrencyInput
+                  id="profile-spend"
+                  value={spend}
+                  onChange={setSpend}
+                  placeholder="Ex: 3.000"
+                />
               </Field>
-              <Field label="Total investido">
-                <CurrencyInput value={invested} onChange={setInvested} placeholder="Ex: 50.000" />
+              <Field id="profile-invested" label="Total investido">
+                <CurrencyInput
+                  id="profile-invested"
+                  value={invested}
+                  onChange={setInvested}
+                  placeholder="Ex: 50.000"
+                />
               </Field>
             </div>
           </Panel>
 
-          {/* Current card */}
           <Panel title="Cartão atual">
             {selectedCard ? (
-              <div className="flex items-center gap-3 rounded-md border border-foreground px-3 py-2">
+              <div className="flex items-center gap-3 rounded-panel border border-brand-border bg-brand-wash px-3.5 py-2.5">
                 <CardArt
                   compact
                   artUrl={selectedCard.artUrl}
@@ -187,24 +193,29 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                   className="h-10 w-16"
                 />
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium">{selectedCard.name}</p>
-                  <p className="truncate text-xs text-muted-foreground">{selectedCard.issuer}</p>
+                  <p className="truncate text-sm font-semibold text-fg">{selectedCard.name}</p>
+                  <p className="truncate text-xs text-fg-2">{selectedCard.issuer}</p>
                 </div>
                 <button
                   type="button"
+                  aria-label="Remover cartão atual"
                   onClick={() => {
                     setCardId(undefined);
                     setCardQuery("");
                     setCardFocused(true);
                   }}
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-fg-2 transition-colors duration-100 hover:bg-raised hover:text-fg"
                 >
-                  <X className="h-3.5 w-3.5" />
+                  <X className="h-4 w-4" />
                 </button>
               </div>
             ) : (
               <div>
+                <label htmlFor="profile-current-card" className="sr-only">
+                  Buscar cartão atual
+                </label>
                 <input
+                  id="profile-current-card"
                   autoFocus={cardFocused}
                   type="text"
                   value={cardQuery}
@@ -220,9 +231,9 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                 {cardFocused && cardMatches.length > 0 && (
                   <div className="mt-3">
                     {!cardQuery.trim() && (
-                      <p className="mb-2 text-xs text-muted-foreground">Mais comuns</p>
+                      <p className="mb-2 text-xs font-medium text-fg-3">Mais comuns</p>
                     )}
-                    <div className="max-h-72 divide-y overflow-y-auto rounded-md border">
+                    <div className="max-h-72 divide-y divide-line overflow-y-auto rounded-panel border border-line bg-raised">
                       {cardMatches.map((c) => (
                         <button
                           key={c.id}
@@ -232,7 +243,7 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                             setCardQuery(c.name);
                             setCardFocused(false);
                           }}
-                          className="flex w-full items-center gap-3 px-3 py-2 text-left transition-colors duration-150 hover:bg-muted"
+                          className="flex w-full items-center gap-3 px-3.5 py-2.5 text-left transition-colors duration-100 hover:bg-surface"
                         >
                           <CardArt
                             compact
@@ -242,8 +253,10 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
                             className="h-10 w-16"
                           />
                           <span className="min-w-0 flex-1">
-                            <span className="block truncate text-sm font-medium">{c.name}</span>
-                            <span className="block truncate text-xs text-muted-foreground">
+                            <span className="block truncate text-sm font-semibold text-fg">
+                              {c.name}
+                            </span>
+                            <span className="block truncate text-xs text-fg-3">
                               {c.description ?? c.issuer}
                             </span>
                           </span>
@@ -256,9 +269,8 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
             )}
           </Panel>
 
-          {/* Preferences */}
           <Panel title="Prefere receber">
-            <div className="grid gap-2 min-[380px]:grid-cols-2">
+            <div className="grid gap-2.5 min-[380px]:grid-cols-2">
               {REWARD_OPTIONS.map(({ value, label, desc }) => (
                 <OptionButton
                   key={value}
@@ -271,9 +283,8 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
             </div>
           </Panel>
 
-          {/* Travel frequency */}
           <Panel title="Frequência de viagens">
-            <div className="grid gap-2 min-[430px]:grid-cols-3">
+            <div className="grid gap-2.5 min-[430px]:grid-cols-3">
               {TRAVEL_OPTIONS.map(({ value, label, desc }) => (
                 <OptionButton
                   key={value}
@@ -286,11 +297,10 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
             </div>
           </Panel>
 
-          {/* Submit: the page's one marked action */}
           {saved ? (
             <p
               role="status"
-              className="flex min-h-10 items-center justify-center gap-2 rounded-md border bg-card px-4 py-2 text-sm font-medium text-positive"
+              className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-success-tint px-5 py-2.5 text-sm font-semibold text-success-text"
             >
               <Check className="h-4 w-4 shrink-0" />
               Salvo! Redirecionando…
@@ -298,33 +308,37 @@ export function ProfilePageClient({ cardOptions, curatedOptions }: ProfilePageCl
           ) : (
             <Button
               type="submit"
-              variant="mark"
+              variant="default"
               size="lg"
               disabled={!salary}
-              className="h-auto min-h-10 w-full whitespace-normal py-2"
+              className="w-full whitespace-normal"
             >
               {isNew ? "Ver meu ranking personalizado" : "Salvar alterações"}
             </Button>
           )}
         </form>
       </main>
+
+      <MobileBottomNav />
     </div>
   );
 }
 
 function Panel({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="rounded-md border bg-card p-4">
-      <h2 className="mb-4 text-sm font-medium">{title}</h2>
+    <section className="rounded-panel bg-surface p-5 sm:p-6">
+      <h2 className="mb-4 text-lg font-semibold tracking-tight text-fg">{title}</h2>
       {children}
     </section>
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ id, label, children }: { id: string; label: string; children: React.ReactNode }) {
   return (
     <div>
-      <span className="mb-1.5 block text-xs text-muted-foreground">{label}</span>
+      <label htmlFor={id} className="mb-1.5 block text-sm font-medium text-fg">
+        {label}
+      </label>
       {children}
     </div>
   );
@@ -347,37 +361,36 @@ function OptionButton({
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        "rounded-md border px-3 py-2.5 text-left transition-colors duration-150",
+        "rounded-panel border px-3.5 py-3 text-left transition-colors duration-100 active:scale-[0.98]",
         active
-          ? "border-foreground bg-foreground text-background"
-          : "border-input bg-card text-foreground hover:bg-muted"
+          ? "border-brand-border bg-brand-wash text-fg"
+          : "border-line bg-raised text-fg hover:border-line-strong hover:bg-page"
       )}
     >
-      <span className="block text-sm font-medium">{label}</span>
-      <span
-        className={cn("mt-0.5 block text-xs", active ? "text-background" : "text-muted-foreground")}
-      >
-        {desc}
-      </span>
+      <span className="block text-sm font-semibold">{label}</span>
+      <span className="mt-0.5 block text-xs leading-relaxed text-fg-2">{desc}</span>
     </button>
   );
 }
 
 function CurrencyInput({
+  id,
   value,
   onChange,
   placeholder,
 }: {
+  id: string;
   value: string;
   onChange: (v: string) => void;
   placeholder?: string;
 }) {
   return (
     <div className="relative">
-      <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-sm text-muted-foreground">
+      <span className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-sm text-fg-3">
         R$
       </span>
       <input
+        id={id}
         type="text"
         inputMode="numeric"
         value={value}

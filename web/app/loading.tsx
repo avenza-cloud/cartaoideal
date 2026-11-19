@@ -1,11 +1,13 @@
+import { BrandMark } from "@/components/BrandMark";
+
 export default function Loading() {
   return (
     <div
       role="status"
-      className="mx-auto flex min-h-[40vh] w-full max-w-xl items-center gap-2 px-4 text-sm text-muted-foreground"
+      className="mx-auto flex min-h-[40vh] w-full max-w-xl items-center justify-center gap-3 px-4 text-sm text-fg-2"
     >
-      <span aria-hidden className="h-2 w-2 animate-pulse bg-foreground" />
-      Carregando…
+      <BrandMark animated className="h-5 w-6" />
+      <span>Carregando…</span>
     </div>
   );
 }

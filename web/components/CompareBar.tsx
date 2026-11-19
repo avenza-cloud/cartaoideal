@@ -12,32 +12,33 @@ export function CompareBar() {
   if (items.length === 0) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t bg-card px-3 py-3 pb-safe sm:px-4">
-      <div className="mx-auto flex max-w-7xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+    <div className="pointer-events-none fixed inset-x-0 bottom-18 z-50 px-3 sm:px-6 md:bottom-5">
+      <div className="pointer-events-auto mx-auto flex w-full max-w-4xl flex-col gap-3 rounded-sheet border border-line bg-raised px-4 py-3 shadow-overlay sm:flex-row sm:items-center sm:justify-between sm:gap-4">
         <div className="flex min-w-0 flex-wrap items-center gap-2">
-          <span className="num text-sm text-muted-foreground">{items.length}/4 selecionados</span>
+          <span className="num text-sm font-medium text-fg-2">{items.length}/4 selecionados</span>
           {items.map((item) => (
             <div
               key={item.id}
-              className="inline-flex h-6 max-w-full items-center gap-1 rounded-sm border bg-muted px-1.5 text-xs"
+              className="inline-flex h-8 max-w-full items-center gap-1 rounded-full bg-surface-2 pl-3 pr-1 text-xs font-medium text-fg"
             >
-              <span className="max-w-[min(170px,52vw)] truncate">{item.name}</span>
+              <span className="max-w-[min(170px,50vw)] truncate">{item.name}</span>
               <button
                 type="button"
                 onClick={() => remove(item.id)}
-                className="text-muted-foreground transition-colors duration-150 hover:text-foreground"
+                aria-label={`Remover ${item.name} da comparação`}
+                className="flex h-6 w-6 items-center justify-center rounded-full text-fg-3 transition-colors duration-100 hover:bg-surface-3 hover:text-fg"
               >
-                <X className="h-3 w-3" />
+                <X className="h-3.5 w-3.5" />
               </button>
             </div>
           ))}
         </div>
-        <div className="flex shrink-0 justify-end gap-2">
+        <div className="flex shrink-0 items-center justify-end gap-2">
           <Button variant="ghost" size="sm" onClick={clear}>
             Limpar
           </Button>
           <Button
-            variant="mark"
+            variant="default"
             size="sm"
             disabled={items.length < 2}
             onClick={() => router.push(`/comparar?ids=${items.map((i) => i.id).join(",")}`)}

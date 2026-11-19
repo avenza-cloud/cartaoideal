@@ -7,27 +7,30 @@ export interface Stat {
 }
 
 const TONE = {
-  default: "text-foreground",
-  positive: "text-positive",
-  negative: "text-negative",
-  muted: "text-muted-foreground",
+  default: "text-fg",
+  positive: "text-success-text",
+  negative: "text-danger-text",
+  muted: "text-fg-3",
 } as const;
 
 /**
- * Fixed row of facts in the same order everywhere (fee, return, lounge...),
- * so the eye learns where each one lives. Cells are divided by hairlines.
+ * Hairline-bounded inline metric strip (zero nested card borders).
+ * Fixed column order lets the eye scan Anuidade, Retorno, Sala VIP effortlessly.
  */
 export function StatRow({ stats, className }: { stats: Stat[]; className?: string }) {
   return (
     <dl
-      className={cn("grid divide-x overflow-hidden rounded-md border bg-card", className)}
+      className={cn("grid gap-x-3 gap-y-2 border-y border-line py-2.5", className)}
       style={{ gridTemplateColumns: `repeat(${stats.length}, minmax(0, 1fr))` }}
     >
       {stats.map((stat) => (
-        <div key={stat.label} className="min-w-0 px-2.5 py-2">
-          <dt className="truncate text-2xs text-muted-foreground">{stat.label}</dt>
+        <div key={stat.label} className="min-w-0">
+          <dt className="truncate text-xs text-fg-3">{stat.label}</dt>
           <dd
-            className={cn("num mt-0.5 truncate text-sm font-medium", TONE[stat.tone ?? "default"])}
+            className={cn(
+              "num mt-0.5 truncate text-sm font-semibold",
+              TONE[stat.tone ?? "default"]
+            )}
             title={stat.value}
           >
             {stat.value}

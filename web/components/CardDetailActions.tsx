@@ -14,8 +14,7 @@ interface CardDetailActionsProps {
   sourceUrl: string;
 }
 
-// Four equal cells; icons drop out below 360px so labels never overflow.
-const ACTION_CLASS = "h-10 w-full min-w-0 gap-1.5 px-1.5 text-xs max-[359px]:[&_svg]:hidden";
+const ACTION_CLASS = "h-10 w-full min-w-0 gap-1.5 px-2.5 text-xs max-[359px]:[&_svg]:hidden";
 
 export function CardDetailActions({ cardId, cardName, issuer, sourceUrl }: CardDetailActionsProps) {
   const { ids, add, remove, canAdd } = useCompareStore();
@@ -30,17 +29,17 @@ export function CardDetailActions({ cardId, cardName, issuer, sourceUrl }: CardD
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t bg-card">
-      <div className="mx-auto grid max-w-lg grid-cols-4 gap-2 px-3 pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
-        <Button asChild variant="outline" className={ACTION_CLASS}>
+    <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6">
+      <div className="pointer-events-auto mx-auto grid max-w-xl grid-cols-4 gap-2 rounded-sheet border border-line bg-raised p-2 shadow-overlay">
+        <Button asChild variant="ghost" className={ACTION_CLASS}>
           <Link href="/cartoes">
             <ArrowLeft className="h-3.5 w-3.5" />
             Voltar
           </Link>
         </Button>
-        <Button type="button" variant="mark" onClick={toggleCompare} className={ACTION_CLASS}>
+        <Button type="button" variant="default" onClick={toggleCompare} className={ACTION_CLASS}>
           {selected ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
-          Comparar
+          {selected ? "Comparando" : "Comparar"}
         </Button>
         <CardCorrectionForm
           cardId={cardId}

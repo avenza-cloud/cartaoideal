@@ -1,10 +1,9 @@
 "use client";
 
 import { useMemo } from "react";
-import { Search, X } from "lucide-react";
+import { ChevronDown, Search, SlidersHorizontal, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { useProfileStore } from "@/lib/store";
 
@@ -52,7 +51,7 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
       (profile.preferences.prefersCashback || profile.preferences.prefersInvestback) &&
       !profile.preferences.prefersPoints;
     return [
-      { key: "lounge" as const, label: "Lounge" },
+      { key: "lounge" as const, label: "Sala VIP" },
       {
         key: "rewardReturn" as const,
         label: prefersCashbackLens ? "Cashback" : "Retorno financeiro",
@@ -62,24 +61,37 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
     ];
   }, [profile]);
 
+  const activeCount = [
+    active.segment,
+    active.network,
+    active.lounge,
+    active.rewardReturn,
+    active.points,
+    active.zeroFee,
+    active.search,
+  ].filter(Boolean).length;
+
   const content = (
     <>
       <div>
-        <p className="mb-2 text-xs text-muted-foreground">Buscar</p>
+        <label htmlFor="catalog-search" className="mb-2 block text-xs font-semibold text-fg">
+          Buscar
+        </label>
         <div className="relative">
-          <Search className="pointer-events-none absolute left-2.5 top-2.5 h-3.5 w-3.5 text-muted-foreground" />
+          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-fg-3" />
           <Input
+            id="catalog-search"
             value={active.search}
             onChange={(e) => update({ search: e.target.value }, true)}
             placeholder="Nome, emissor ou bandeira"
-            className="pl-8 pr-8"
+            className="pl-9 pr-9"
           />
           {active.search && (
             <Button
               type="button"
               variant="ghost"
               size="icon-xs"
-              className="absolute right-1 top-1"
+              className="absolute right-1.5 top-1/2 -translate-y-1/2"
               onClick={() => update({ search: "" })}
               aria-label="Limpar busca"
             >
@@ -89,22 +101,21 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
         </div>
       </div>
 
-      <Separator />
-
       <div>
-        <p className="mb-2 text-xs text-muted-foreground">Ordenação</p>
-        <div className="grid grid-cols-2 overflow-hidden rounded-md border bg-card">
+        <p className="mb-2 text-xs font-semibold text-fg">Ordenação</p>
+        <div className="grid grid-cols-2 gap-0.5 rounded-full bg-surface-2 p-1">
           {RANKING_MODES.map((mode) => (
             <button
               key={mode.value}
               type="button"
               title={mode.title}
+              aria-pressed={active.rank === mode.value}
               onClick={() => update({ rank: mode.value })}
               className={cn(
-                "px-2 py-1.5 text-center text-xs transition-colors duration-150",
+                "h-8 rounded-full px-2.5 text-center text-xs font-medium transition-colors duration-100",
                 active.rank === mode.value
-                  ? "bg-foreground font-medium text-background"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  ? "bg-raised font-semibold text-fg shadow-card"
+                  : "text-fg-2 hover:text-fg"
               )}
             >
               {mode.label}
@@ -113,56 +124,52 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
         </div>
       </div>
 
-      <Separator />
-
       <div>
-        <p className="mb-2 text-xs text-muted-foreground">Segmento</p>
-        <div className="grid grid-cols-2 gap-1 md:flex md:flex-col">
+        <p className="mb-2 text-xs font-semibold text-fg">Segmento</p>
+        <div className="grid grid-cols-2 gap-1 md:flex md:flex-col md:gap-0.5">
           {SEGMENTS.map((s) => (
             <button
               type="button"
               key={s.value}
+              aria-pressed={active.segment === s.value}
               onClick={() => update({ segment: s.value })}
               className={cn(
-                "rounded-sm px-2 py-1.5 text-left text-sm transition-colors duration-150",
+                "flex min-h-9 items-center justify-between rounded-lg px-2.5 text-left text-sm transition-colors duration-100",
                 active.segment === s.value
-                  ? "bg-foreground font-medium text-background"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  ? "bg-brand-wash font-semibold text-fg"
+                  : "text-fg-2 hover:bg-surface-2 hover:text-fg"
               )}
             >
-              {s.label}
+              <span>{s.label}</span>
             </button>
           ))}
         </div>
       </div>
 
-      <Separator />
-
       <div>
-        <p className="mb-2 text-xs text-muted-foreground">Bandeira</p>
-        <div className="grid grid-cols-2 gap-1 md:flex md:flex-col">
+        <p className="mb-2 text-xs font-semibold text-fg">Bandeira</p>
+        <div className="grid grid-cols-2 gap-1 md:flex md:flex-col md:gap-0.5">
           {NETWORKS.map((n) => (
             <button
               type="button"
               key={n}
+              aria-pressed={active.network === n}
               onClick={() => update({ network: active.network === n ? "" : n })}
               className={cn(
-                "rounded-sm px-2 py-1.5 text-left text-sm transition-colors duration-150",
+                "flex min-h-9 items-center justify-between rounded-lg px-2.5 text-left text-sm transition-colors duration-100",
                 active.network === n
-                  ? "bg-foreground font-medium text-background"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  ? "bg-brand-wash font-semibold text-fg"
+                  : "text-fg-2 hover:bg-surface-2 hover:text-fg"
               )}
             >
-              {n}
+              <span>{n}</span>
             </button>
           ))}
         </div>
       </div>
 
-      <Separator />
-
       <div>
-        <p className="mb-2 text-xs text-muted-foreground">Benefícios</p>
+        <p className="mb-2 text-xs font-semibold text-fg">Benefícios</p>
         <div className="flex flex-wrap gap-1.5">
           {booleanFilters.map((f) => (
             <button
@@ -171,10 +178,10 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
               aria-pressed={active[f.key]}
               onClick={() => update({ [f.key]: !active[f.key] })}
               className={cn(
-                "min-h-7 rounded-sm border px-2 py-1 text-left text-xs transition-colors duration-150",
+                "min-h-8 rounded-full border px-3 py-1 text-left text-xs font-medium transition-colors duration-100 active:scale-[0.98]",
                 active[f.key]
-                  ? "border-foreground bg-foreground font-medium text-background"
-                  : "bg-card text-foreground hover:bg-muted"
+                  ? "border-primary bg-primary text-on-accent"
+                  : "border-line-strong bg-page text-fg hover:bg-surface-2"
               )}
             >
               {f.label}
@@ -183,21 +190,52 @@ export function CardFilters({ active, update, totalFiltered, totalAll }: CardFil
         </div>
       </div>
 
-      {totalFiltered < totalAll && (
-        <p className="num text-xs text-muted-foreground">
+      <div className="flex items-center justify-between border-t border-line pt-3 text-xs text-fg-3">
+        <span className="num">
           {totalFiltered} de {totalAll} cartões
-        </p>
-      )}
+        </span>
+        {activeCount > 0 && (
+          <button
+            type="button"
+            onClick={() =>
+              update({
+                segment: "",
+                network: "",
+                lounge: false,
+                rewardReturn: false,
+                points: false,
+                zeroFee: false,
+                search: "",
+              })
+            }
+            className="font-medium text-brand-accent hover:underline"
+          >
+            Limpar
+          </button>
+        )}
+      </div>
     </>
   );
 
   return (
-    <aside className="w-full shrink-0 md:sticky md:top-[72px] md:max-h-[calc(100vh-88px)] md:w-52 md:overflow-y-auto">
-      <details className="rounded-md border bg-card p-3 md:hidden">
-        <summary className="cursor-pointer list-none text-sm font-medium">Filtros</summary>
-        <div className="mt-3 space-y-4">{content}</div>
+    <aside className="w-full shrink-0 px-4 pt-4 md:sticky md:top-14 md:h-[calc(100dvh-3.5rem)] md:w-[264px] md:overflow-y-auto md:border-r md:border-line md:bg-surface md:px-4 md:py-5">
+      <details className="group rounded-panel bg-surface p-3.5 md:hidden">
+        <summary className="flex cursor-pointer list-none items-center justify-between gap-2 text-sm font-semibold text-fg">
+          <span className="inline-flex items-center gap-2">
+            <SlidersHorizontal className="h-4 w-4 text-fg-2" />
+            Filtros
+            {activeCount > 0 && (
+              <span className="num inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-brand-wash px-1.5 text-xs font-semibold text-brand-accent">
+                {activeCount}
+              </span>
+            )}
+          </span>
+          <ChevronDown className="h-4 w-4 text-fg-3 transition-transform duration-150 group-open:rotate-180" />
+        </summary>
+        <div className="mt-4 space-y-5 border-t border-line pt-4">{content}</div>
       </details>
-      <div className="hidden space-y-4 rounded-md border bg-card p-3 md:block">{content}</div>
+
+      <div className="hidden space-y-5 md:block">{content}</div>
     </aside>
   );
 }

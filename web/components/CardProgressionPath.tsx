@@ -60,7 +60,7 @@ function CardRow({
     <Link
       href={detailHref}
       aria-label={labelForA11y}
-      className="flex items-start gap-3 rounded-md border bg-card p-2.5 text-left transition-colors duration-150 hover:bg-muted"
+      className="flex items-start gap-3 rounded-panel border border-line bg-raised p-3.5 text-left transition-colors duration-100 hover:border-line-strong"
     >
       <CardArt
         compact
@@ -71,31 +71,37 @@ function CardRow({
         className="h-9 w-14"
       />
       <div className="min-w-0 flex-1">
-        <p className="truncate text-sm font-medium">{card.display_name}</p>
-        <p className="truncate text-xs text-muted-foreground">{card.issuer_raw}</p>
+        <p className="truncate text-sm font-semibold text-fg">{card.display_name}</p>
+        <p className="truncate text-xs text-fg-3">{card.issuer_raw}</p>
         {valueScore ? (
           <LeadFact
             size="sm"
-            className="mt-1.5"
-            value={`${brl(valueScore.decisionMonthlyValueBrl)}/mês`}
-            label="valor líquido estimado por mês"
+            className="mt-2"
+            value={`${valueScore.decisionMonthlyValueBrl > 0 ? "+" : ""}${brl(valueScore.decisionMonthlyValueBrl)}/mês`}
+            label="valor líquido estimado"
             hint={high - low >= 1 ? `${brl(low)} a ${brl(high)}` : undefined}
-            tone={valueScore.decisionMonthlyValueBrl < 0 ? "negative" : "default"}
+            tone={
+              valueScore.decisionMonthlyValueBrl < 0
+                ? "negative"
+                : valueScore.decisionMonthlyValueBrl > 0
+                  ? "positive"
+                  : "default"
+            }
           />
         ) : (
           <LeadFact
             size="sm"
-            className="mt-1.5"
+            className="mt-2"
             value={feeValue}
             label={feeValue === FEE_UNKNOWN ? "consulte o emissor" : "anuidade"}
           />
         )}
         {valueScore && !valueScore.feeKnown && (
-          <p className="mt-0.5 text-xs text-muted-foreground">{FEE_UNKNOWN}</p>
+          <p className="mt-0.5 text-xs text-fg-3">{FEE_UNKNOWN}</p>
         )}
         {tag && (
-          <div className="mt-1.5 flex">
-            <Tag variant="solid">{tag}</Tag>
+          <div className="mt-2 flex">
+            <Tag variant="brand">{tag}</Tag>
           </div>
         )}
       </div>
@@ -104,12 +110,12 @@ function CardRow({
 }
 
 function RowLabel({ children }: { children: ReactNode }) {
-  return <p className="mb-1 text-xs text-muted-foreground">{children}</p>;
+  return <p className="mb-1.5 text-xs font-medium text-fg-3">{children}</p>;
 }
 
 function Notice({ children }: { children: ReactNode }) {
   return (
-    <p className="rounded-md border border-dashed px-2.5 py-2 text-xs leading-relaxed text-muted-foreground">
+    <p className="rounded-panel border border-dashed border-line-strong/60 bg-page px-3.5 py-3 text-sm leading-relaxed text-fg-2">
       {children}
     </p>
   );
@@ -154,7 +160,6 @@ export function CardProgressionPath() {
           setCurrentReco(fromList);
           return;
         }
-        // Current card outside the top list: the API resolves and scores it.
         setCurrentReco(
           currentCard
             ? {
@@ -182,7 +187,6 @@ export function CardProgressionPath() {
   const futureIncomeNum = parseBrlInput(futureIncome);
   const futureInvestedNum = parseBrlInput(futureInvested);
 
-  // Spend follows income proportionally. Profile values are used as given.
   const scalesSpend = !!profile && futureIncomeNum > 0 && profile.monthlySalaryBrl > 0;
   const estimatedFutureSpend =
     profile && scalesSpend
@@ -207,7 +211,6 @@ export function CardProgressionPath() {
     try {
       const { scores: future } = await fetchRecommendations(futureProfile, 10);
 
-      // New on the radar: eligible in the projected scenario, not eligible today.
       const newUnlocked = future.filter(
         (s) =>
           s.valueScore?.eligible !== false &&
@@ -243,9 +246,9 @@ export function CardProgressionPath() {
   let agoraContent: ReactNode;
   if (loadingReco) {
     agoraContent = (
-      <div className="space-y-2" aria-busy="true">
-        <div className="h-16 rounded-md bg-muted" />
-        <div className="h-16 rounded-md bg-muted" />
+      <div className="space-y-2.5" aria-busy="true">
+        <div className="h-20 rounded-panel bg-surface-2" />
+        <div className="h-20 rounded-panel bg-surface-2" />
       </div>
     );
   } else if (!bestReco) {
@@ -268,14 +271,14 @@ export function CardProgressionPath() {
         ) : profile.currentPrimaryCardId ? (
           <Notice>
             O cartão do cadastro não aparece como elegível com este perfil.{" "}
-            <Link href="/perfil" className="text-foreground underline underline-offset-2">
+            <Link href="/perfil" className="font-medium text-fg underline underline-offset-4">
               Ajustar perfil
             </Link>
           </Notice>
         ) : (
           <Notice>
             Nenhum cartão principal no cadastro.{" "}
-            <Link href="/perfil" className="text-foreground underline underline-offset-2">
+            <Link href="/perfil" className="font-medium text-fg underline underline-offset-4">
               Definir no perfil
             </Link>
           </Notice>
@@ -292,61 +295,67 @@ export function CardProgressionPath() {
   const bestInScenario = simResult?.top[0];
 
   return (
-    <section className="rounded-md border bg-card">
-      <div className="border-b px-3 py-3">
-        <h2 className="text-base font-medium">Sua jornada de cartões</h2>
-        <p className="text-xs text-muted-foreground">
-          Cartão atual, melhor opção e simulação rápida.
+    <section className="rounded-panel bg-surface p-5 sm:p-6">
+      <div className="pb-4">
+        <h2 className="text-lg font-semibold tracking-tight text-fg">Sua jornada de cartões</h2>
+        <p className="mt-0.5 text-sm text-fg-2">
+          Compare seu cenário atual com uma projeção de renda ou patrimônio.
         </p>
       </div>
 
-      <div className="grid divide-y md:grid-cols-2 md:divide-x md:divide-y-0">
-        <div className="p-3">
-          <p className="mb-2 text-sm font-medium">Agora</p>
+      <div className="grid gap-6 border-t border-line pt-5 md:grid-cols-2 md:gap-8">
+        <div>
+          <h3 className="mb-3 text-sm font-semibold text-fg">Agora</h3>
 
           {agoraContent}
 
-          <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 border-t pt-2 text-xs text-muted-foreground">
+          <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 border-t border-line pt-3 text-xs text-fg-3">
             <span>
               Renda{" "}
-              <span className="num text-foreground">
+              <span className="num font-medium text-fg">
                 R${profile.monthlySalaryBrl.toLocaleString("pt-BR")}/mês
               </span>
             </span>
             <span>
               Gasto{" "}
-              <span className="num text-foreground">
+              <span className="num font-medium text-fg">
                 R${profile.avgMonthlySpendBrl.toLocaleString("pt-BR")}/mês
               </span>
             </span>
             <span>
               Investido{" "}
-              <span className="num text-foreground">{shortMoney(profile.avgInvestedBrl)}</span>
+              <span className="num font-medium text-fg">{shortMoney(profile.avgInvestedBrl)}</span>
             </span>
-            <Link href="/perfil" className="ml-auto text-foreground underline underline-offset-2">
+            <Link
+              href="/perfil"
+              className="ml-auto font-medium text-fg underline underline-offset-4 hover:text-brand-accent"
+            >
               Editar
             </Link>
           </div>
         </div>
 
-        <div className="p-3">
-          <p className="text-sm font-medium">Em ~1 ano</p>
-          <p className="text-xs text-muted-foreground">Vazio = cadastro.</p>
+        <div>
+          <h3 className="text-sm font-semibold text-fg">Em ~1 ano</h3>
+          <p className="mt-0.5 text-xs text-fg-3">Deixe em branco para manter o valor atual.</p>
 
-          <div className="mt-3 space-y-3">
-            <div className="space-y-1">
+          <div className="mt-4 space-y-4">
+            <div className="space-y-1.5">
               <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5">
-                <span className="text-xs font-medium">Renda / mês</span>
-                <span className="text-xs text-muted-foreground">
+                <label htmlFor="future-income" className="text-sm font-medium text-fg">
+                  Renda / mês
+                </label>
+                <span className="text-xs text-fg-3">
                   Atual{" "}
-                  <span className="num text-foreground">
+                  <span className="num font-medium text-fg">
                     R${profile.monthlySalaryBrl.toLocaleString("pt-BR")}
                   </span>
                 </span>
               </div>
-              <div className="flex h-9 items-center gap-1.5 rounded-md border border-input bg-background px-2.5 transition-colors duration-150 focus-within:border-foreground">
-                <span className="shrink-0 text-sm text-muted-foreground">R$</span>
+              <div className="flex h-10 items-center gap-2 rounded-field border border-line-strong bg-field px-3 transition-colors duration-100 focus-within:border-accent-line focus-within:ring-2 focus-within:ring-ring/20">
+                <span className="shrink-0 text-sm text-fg-3">R$</span>
                 <input
+                  id="future-income"
                   type="text"
                   inputMode="numeric"
                   value={futureIncome}
@@ -356,22 +365,27 @@ export function CardProgressionPath() {
                   }}
                   placeholder="—"
                   aria-label="Renda mensal esperada em cerca de um ano"
-                  className="num min-w-0 flex-1 bg-transparent text-sm font-medium placeholder:text-muted-foreground focus:outline-none"
+                  className="num min-w-0 flex-1 bg-transparent text-sm font-medium text-fg placeholder:text-fg-3 focus:outline-none"
                 />
               </div>
             </div>
 
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               <div className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-0.5">
-                <span className="text-xs font-medium">Investido</span>
-                <span className="text-xs text-muted-foreground">
+                <label htmlFor="future-invested" className="text-sm font-medium text-fg">
+                  Investido
+                </label>
+                <span className="text-xs text-fg-3">
                   Atual{" "}
-                  <span className="num text-foreground">{shortMoney(profile.avgInvestedBrl)}</span>
+                  <span className="num font-medium text-fg">
+                    {shortMoney(profile.avgInvestedBrl)}
+                  </span>
                 </span>
               </div>
-              <div className="flex h-9 items-center gap-1.5 rounded-md border border-input bg-background px-2.5 transition-colors duration-150 focus-within:border-foreground">
-                <span className="shrink-0 text-sm text-muted-foreground">R$</span>
+              <div className="flex h-10 items-center gap-2 rounded-field border border-line-strong bg-field px-3 transition-colors duration-100 focus-within:border-accent-line focus-within:ring-2 focus-within:ring-ring/20">
+                <span className="shrink-0 text-sm text-fg-3">R$</span>
                 <input
+                  id="future-invested"
                   type="text"
                   inputMode="numeric"
                   value={futureInvested}
@@ -381,50 +395,53 @@ export function CardProgressionPath() {
                   }}
                   placeholder="—"
                   aria-label="Total investido esperado em cerca de um ano"
-                  className="num min-w-0 flex-1 bg-transparent text-sm font-medium placeholder:text-muted-foreground focus:outline-none"
+                  className="num min-w-0 flex-1 bg-transparent text-sm font-medium text-fg placeholder:text-fg-3 focus:outline-none"
                 />
               </div>
             </div>
           </div>
 
           {estimatedFutureSpend > 0 && estimatedFutureSpend !== profile.avgMonthlySpendBrl && (
-            <div className="mt-3 flex items-baseline justify-between gap-2 border-t pt-2 text-xs">
-              <span className="text-muted-foreground">Gasto est.</span>
-              <span className="num font-medium">{formatBrlCurrency(estimatedFutureSpend)}/mês</span>
+            <div className="mt-4 flex items-baseline justify-between gap-2 border-t border-line pt-3 text-sm">
+              <span className="text-fg-2">Gasto est.</span>
+              <span className="num font-semibold text-fg">
+                {formatBrlCurrency(estimatedFutureSpend)}/mês
+              </span>
             </div>
           )}
 
           <Button
             type="button"
+            variant="outline"
             onClick={simulate}
             disabled={!canSimulate || simLoading}
-            className="mt-3 w-full"
+            className="mt-4 w-full"
           >
-            <span>{simLoading ? "…" : "Simular"}</span>
-            {!simLoading && <ArrowRight aria-hidden />}
+            <span>{simLoading ? "Calculando…" : "Simular cenário"}</span>
+            {!simLoading && <ArrowRight aria-hidden className="h-4 w-4" />}
           </Button>
           {!canSimulate && (
-            <p className="mt-1.5 text-center text-xs text-muted-foreground">
-              Renda ou investido para simular.
+            <p className="mt-2 text-center text-xs text-fg-3">
+              Preencha renda ou patrimônio investido para simular.
             </p>
           )}
         </div>
       </div>
 
       {simResult && (
-        <div className="border-t p-3">
-          <p className="num mb-2 text-sm font-medium">
+        <div className="mt-6 border-t border-line pt-5">
+          <p className="num mb-3 text-sm font-semibold text-fg">
             Simulado · gasto ≈ {formatBrlCurrency(simResult.futureSpend)}/mês
           </p>
           {simResult.newUnlocked.length > 0 ? (
-            <div className="space-y-3">
+            <div className="space-y-4">
               <div>
                 <RowLabel>
                   {simResult.newUnlocked.length === 1
                     ? "Novo no radar"
                     : `${simResult.newUnlocked.length} novos no radar`}
                 </RowLabel>
-                <div className="grid gap-2 md:grid-cols-2">
+                <div className="grid gap-3 md:grid-cols-2">
                   {simResult.newUnlocked.map((s) => (
                     <CardRow
                       key={s.card.card_stable_id}
@@ -444,8 +461,8 @@ export function CardProgressionPath() {
             </div>
           ) : (
             <div>
-              <RowLabel>Ranking (sem novos)</RowLabel>
-              <div className="grid gap-2 md:grid-cols-2">
+              <RowLabel>Ranking no cenário (sem novos desbloqueios)</RowLabel>
+              <div className="grid gap-3 md:grid-cols-2">
                 {simResult.top.slice(0, 2).map((s, i) => (
                   <div key={s.card.card_stable_id}>
                     <RowLabel>{i + 1}º no cenário</RowLabel>

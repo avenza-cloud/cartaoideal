@@ -1,5 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="10" fill="#000000"/>
-  <rect x="10" y="18" width="44" height="28" rx="3" fill="#ffffff"/>
-  <rect x="10" y="25" width="44" height="7" fill="#ffe500"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Cartão Ideal por Avenza">
+  <rect width="160" height="160" rx="34" fill="#fffff5" />
+  <g fill="#ff3333">
+    <rect x="20.42" y="101.06" width="29.88" height="29.88" rx="14.94" />
+    <rect x="92.42" y="101.06" width="29.88" height="29.88" rx="14.94" />
+    <rect x="29.06" y="65.06" width="29.88" height="29.88" rx="14.94" />
+    <rect x="101.06" y="65.06" width="29.88" height="29.88" rx="14.94" />
+    <rect x="65.06" y="65.06" width="29.88" height="29.88" rx="14.94" />
+    <rect x="37.7" y="29.06" width="29.88" height="29.88" rx="14.94" />
+    <rect x="109.7" y="29.06" width="29.88" height="29.88" rx="14.94" />
+    <rect x="73.7" y="29.06" width="29.88" height="29.88" rx="14.94" />
+  </g>
 </svg>

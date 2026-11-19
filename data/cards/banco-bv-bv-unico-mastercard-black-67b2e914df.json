@@ -27,7 +27,7 @@
     "source_url": "https://www.bv.com.br/cartoes/cartao-bv-unico"
   },
   "reward_return": {
-    "earning_summary": "Até 1,5% de cashback na fatura ou 2,0 pontos por dólar gasto",
+    "earning_summary": "Até 1,5% de cashback na fatura (0,3% até R$ 3k; 0,5% de R$ 3k a 6k; 0,8% de R$ 6k a 10k; 1,5% acima de R$ 10k) ou 2,0 pontos por dólar gasto",
     "has_cashlike_return": true,
     "subtypes": [
       "cashback"

@@ -9,7 +9,6 @@ import { formatFee, loungeSummary, rewardReturnLabel, segmentLabel } from "@/lib
 import { useCompareStore, useProfileStore } from "@/lib/store";
 import { useCardDetailHref } from "@/lib/use-card-detail-href";
 import { cn } from "@/lib/utils";
-// lib/cards.ts re-exports same helpers but is server-only; formatting is shared
 import type { CardFacet, CardValueScore } from "@/types/cards";
 
 interface CardCardProps {
@@ -85,18 +84,23 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
   if (valueScore) {
     const low = Math.min(valueScore.netMonthlyValueBrl, valueScore.netMonthlyValueRangeHighBrl);
     const high = Math.max(valueScore.netMonthlyValueBrl, valueScore.netMonthlyValueRangeHighBrl);
+    const prefix = valueScore.decisionMonthlyValueBrl > 0 ? "+" : "";
     lead = (
       <div className="flex items-start justify-between gap-2">
         <LeadFact
-          value={`${brl(valueScore.decisionMonthlyValueBrl)}/mês`}
-          label="valor líquido estimado por mês"
+          value={`${prefix}${brl(valueScore.decisionMonthlyValueBrl)}/mês`}
+          label="valor líquido estimado"
           hint={high - low >= 1 ? `${brl(low)} a ${brl(high)}` : undefined}
           marked={isBest}
-          tone={valueScore.decisionMonthlyValueBrl < 0 ? "negative" : "default"}
+          tone={
+            valueScore.decisionMonthlyValueBrl < 0
+              ? "negative"
+              : valueScore.decisionMonthlyValueBrl > 0
+                ? "positive"
+                : "default"
+          }
         />
-        <span className="num shrink-0 pt-1 text-xs text-muted-foreground">
-          {valueScore.score0To100}/100
-        </span>
+        <span className="num shrink-0 pt-1 text-xs text-fg-3">{valueScore.score0To100}/100</span>
       </div>
     );
   } else if (feeUnknown) {
@@ -111,8 +115,10 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
     <Link href={detailHref} className="block h-full">
       <article
         className={cn(
-          "flex h-full flex-col gap-3 rounded-md border bg-card p-3 transition-colors duration-150 hover:bg-muted",
-          isBest && "border-foreground"
+          "flex h-full flex-col gap-3.5 rounded-panel p-4.5 transition-colors duration-100",
+          isBest
+            ? "border border-brand-border bg-raised shadow-card hover:bg-surface/60"
+            : "border border-transparent bg-surface hover:bg-surface-2/70"
         )}
       >
         <div className="flex items-start gap-3">
@@ -121,24 +127,36 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
             issuerRaw={card.issuer_raw}
             network={card.network_primary}
             displayName={card.display_name}
-            className={compact ? "h-10 w-16" : "h-12 w-20"}
+            className={compact ? "h-11 w-[70px]" : "h-12 w-[76px]"}
             compact
           />
           <div className="min-w-0 flex-1">
-            <h3 className="line-clamp-2 text-sm font-medium leading-tight">{card.display_name}</h3>
-            <p className="mt-0.5 truncate text-xs text-muted-foreground">{card.issuer_raw}</p>
+            <h3 className="line-clamp-2 text-[15px] font-semibold leading-snug text-fg">
+              {card.display_name}
+            </h3>
+            <p className="mt-0.5 truncate text-xs text-fg-3">{card.issuer_raw}</p>
           </div>
-          <span className="num shrink-0 text-xs text-muted-foreground">
-            #{rank ?? card.ranking_position}
-          </span>
+          {isBest ? (
+            <Tag variant="brand" className="num">
+              #{rank}
+            </Tag>
+          ) : (
+            <span className="num shrink-0 text-xs font-medium text-fg-3">
+              #{rank ?? card.ranking_position}
+            </span>
+          )}
         </div>
 
         {lead}
 
         {valueScore && (
-          <p className="line-clamp-2 text-xs text-muted-foreground">
-            <span className="text-foreground">Para seu perfil</span> ·{" "}
-            <span className={valueScore.eligible ? "text-foreground" : "text-negative"}>
+          <p className="line-clamp-2 text-xs leading-relaxed text-fg-2">
+            <span className="font-medium text-fg">Para seu perfil</span> ·{" "}
+            <span
+              className={
+                valueScore.eligible ? "font-medium text-fg" : "font-medium text-danger-text"
+              }
+            >
               {classification(valueScore)}
             </span>{" "}
             · {valueScore.rankReason}
@@ -149,39 +167,42 @@ export function CardCard({ card, compact = false, valueScore, rank }: CardCardPr
           stats={valueScore ? [feeStat, returnStat, loungeStat] : [returnStat, loungeStat]}
         />
 
-        <div className="flex flex-wrap gap-1">
-          <Tag>{segmentLabel(card.market_segment_guess)}</Tag>
-          <Tag>{card.network_primary}</Tag>
+        <div className="flex flex-wrap gap-1.5">
+          <Tag variant="quiet">{segmentLabel(card.market_segment_guess)}</Tag>
+          <Tag variant="quiet">{card.network_primary}</Tag>
           {earnsPoints && hasReturn && <Tag variant="quiet">Pontos</Tag>}
           {feeWaiverBadges.map((badge) => (
             <Tag
               key={badge.key}
-              variant={badge.variant === "waiver_benefit" ? "positive" : "quiet"}
+              variant={badge.variant === "waiver_benefit" ? "positive" : "outline"}
             >
               {badge.label}
             </Tag>
           ))}
         </div>
 
-        <div className="mt-auto space-y-2">
-          <p className="flex min-w-0 items-center gap-1 text-2xs text-muted-foreground">
+        <div className="mt-auto space-y-2.5 pt-1">
+          <p className="flex min-w-0 items-center gap-1.5 text-xs text-fg-3">
             <ExternalLink className="h-3 w-3 shrink-0" />
             <span className="truncate">{card.source_label}</span>
           </p>
           <Button
-            variant={isSelected ? "default" : "outline"}
+            variant="outline"
             size="sm"
-            className="w-full"
+            className={cn(
+              "w-full",
+              isSelected && "border-brand-border bg-brand-wash text-fg hover:bg-brand-wash-strong"
+            )}
             onClick={toggleCompare}
             disabled={!isSelected && !canAdd()}
           >
             {isSelected ? (
               <>
-                <Check className="h-3 w-3" /> Selecionado
+                <Check className="h-3.5 w-3.5 text-brand-accent" /> Selecionado para comparar
               </>
             ) : (
               <>
-                <Plus className="h-3 w-3" /> Comparar
+                <Plus className="h-3.5 w-3.5" /> Comparar
               </>
             )}
           </Button>

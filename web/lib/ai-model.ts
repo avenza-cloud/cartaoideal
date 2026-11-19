@@ -3,14 +3,23 @@ import { createDeepSeek } from "@ai-sdk/deepseek";
 import type { LanguageModelV3 } from "@ai-sdk/provider";
 import { logEvent } from "@/lib/log";
 
-const google = createGoogleGenerativeAI({
-  // Accept GEMINI_API_KEY (also the name Google AI Studio hands out); the
-  // SDK default is GOOGLE_GENERATIVE_AI_API_KEY, which still works when set.
-  apiKey: process.env.GEMINI_API_KEY ?? process.env.GOOGLE_GENERATIVE_AI_API_KEY,
+const OPENCODE_DEFAULT_BASE_URL = "https://opencode.ai/zen/go/v1";
+
+const openCodeApiKey = process.env.OPENCODE_API_KEY ?? process.env.DEEPSEEK_API_KEY;
+const openCodeBaseUrl =
+  process.env.OPENCODE_BASE_URL ?? process.env.DEEPSEEK_BASE_URL ?? OPENCODE_DEFAULT_BASE_URL;
+
+const opencode = createDeepSeek({
+  apiKey: openCodeApiKey,
+  baseURL: openCodeBaseUrl,
+  headers: {
+    // Required by OpenCode Go gateway for session routing & prompt caching.
+    "x-opencode-session": process.env.OPENCODE_SESSION_ID ?? "sess_cartaoideal_prod",
+  },
 });
 
-const deepseek = createDeepSeek({
-  baseURL: process.env.DEEPSEEK_BASE_URL,
+const google = createGoogleGenerativeAI({
+  apiKey: process.env.GEMINI_API_KEY ?? process.env.GOOGLE_GENERATIVE_AI_API_KEY,
 });
 
 /**
@@ -52,7 +61,13 @@ function withFallback(primary: LanguageModelV3, fallback: LanguageModelV3): Lang
   };
 }
 
-export const chatModel = withFallback(
-  google(process.env.GEMINI_MODEL ?? "gemini-3.5-flash-lite"),
-  deepseek(process.env.DEEPSEEK_MODEL ?? "deepseek-chat")
-);
+const primaryModelId =
+  process.env.OPENCODE_MODEL ?? process.env.DEEPSEEK_MODEL ?? "deepseek-v4.1-flash";
+const fallbackModelId = process.env.OPENCODE_FALLBACK_MODEL ?? "glm-5.3-flash";
+
+export const chatModel = openCodeApiKey
+  ? withFallback(opencode(primaryModelId), opencode(fallbackModelId))
+  : withFallback(
+      google(process.env.GEMINI_MODEL ?? "gemini-3.5-flash-lite"),
+      opencode(primaryModelId)
+    );

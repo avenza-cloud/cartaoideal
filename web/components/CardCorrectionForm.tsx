@@ -95,7 +95,7 @@ export function CardCorrectionForm({
   return (
     <Dialog open={open} onOpenChange={resetAndClose}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className={cn("gap-1.5", triggerClassName)}>
+        <Button variant="ghost" size="sm" className={cn("gap-1.5", triggerClassName)}>
           <PencilLine className="h-3.5 w-3.5" />
           Corrigir
         </Button>
@@ -104,25 +104,25 @@ export function CardCorrectionForm({
         <DialogHeader>
           <DialogTitle>Corrigir informação</DialogTitle>
           <DialogDescription>
-            Envie uma fonte para abrir uma solicitação de revisão para este cartão.
+            Envie uma fonte oficial para abrir uma solicitação de revisão para este cartão.
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={submit} className="space-y-3">
-          <div className="rounded-md border bg-muted px-3 py-2">
-            <p className="truncate text-sm font-medium">{cardName}</p>
-            <p className="truncate text-xs text-muted-foreground">{issuer}</p>
+        <form onSubmit={submit} className="space-y-4">
+          <div className="rounded-panel bg-surface px-3.5 py-2.5">
+            <p className="truncate text-sm font-semibold text-fg">{cardName}</p>
+            <p className="truncate text-xs text-fg-3">{issuer}</p>
           </div>
 
           <div className="space-y-1.5">
-            <label htmlFor="correction-field" className="text-xs font-medium text-muted-foreground">
+            <label htmlFor="correction-field" className="text-sm font-medium text-fg">
               Campo
             </label>
             <select
               id="correction-field"
               value={field}
               onChange={(event) => setField(event.target.value)}
-              className="h-9 w-full rounded-md border border-input bg-background px-2.5 text-sm outline-none transition-colors duration-150 focus-visible:border-foreground"
+              className="h-10 w-full rounded-field border border-line-strong bg-field px-3 text-sm text-fg transition-colors duration-100 hover:border-fg focus-visible:border-accent-line"
             >
               {FIELD_OPTIONS.map((option) => (
                 <option key={option} value={option}>
@@ -133,7 +133,7 @@ export function CardCorrectionForm({
           </div>
 
           <div className="space-y-1.5">
-            <label htmlFor="correction-value" className="text-xs font-medium text-muted-foreground">
+            <label htmlFor="correction-value" className="text-sm font-medium text-fg">
               Valor correto
             </label>
             <Input
@@ -146,10 +146,7 @@ export function CardCorrectionForm({
           </div>
 
           <div className="space-y-1.5">
-            <label
-              htmlFor="correction-source"
-              className="text-xs font-medium text-muted-foreground"
-            >
+            <label htmlFor="correction-source" className="text-sm font-medium text-fg">
               Fonte
             </label>
             <Input
@@ -163,7 +160,7 @@ export function CardCorrectionForm({
           </div>
 
           <div className="space-y-1.5">
-            <label htmlFor="correction-notes" className="text-xs font-medium text-muted-foreground">
+            <label htmlFor="correction-notes" className="text-sm font-medium text-fg">
               Notas
             </label>
             <Textarea
@@ -176,11 +173,18 @@ export function CardCorrectionForm({
           </div>
 
           {message && (
-            <div className="flex items-start gap-2 rounded-md border bg-muted px-3 py-2 text-xs">
+            <div
+              className={cn(
+                "flex items-start gap-2 rounded-panel px-3.5 py-2.5 text-sm",
+                status === "success"
+                  ? "bg-success-tint text-success-text"
+                  : "bg-danger-tint text-danger-text"
+              )}
+            >
               {status === "success" ? (
-                <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-positive" />
+                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
               ) : (
-                <AlertCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-negative" />
+                <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
               )}
               <span>{message}</span>
             </div>
@@ -188,7 +192,8 @@ export function CardCorrectionForm({
 
           <Button
             type="submit"
-            variant="mark"
+            variant="default"
+            size="lg"
             disabled={status === "submitting" || status === "success"}
             className="w-full"
           >

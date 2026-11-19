@@ -32,9 +32,6 @@ export async function generateStaticParams() {
   return getAllCards().map((c) => ({ id: c.card_stable_id }));
 }
 
-// The catalog is closed-world (every valid id is prerendered above), so an
-// unknown id must be a real 404 — without this, Next renders the not-found UI
-// on demand and caches it with a 200 (soft-404).
 export const dynamicParams = false;
 
 function cardReturnLabel(card: CardFacet): string | null {
@@ -95,7 +92,6 @@ export default async function CartaoDetailPage({ params }: PageProps) {
       ? card.facets_numeric_or_special.official_forex_or_iof_note
       : null;
 
-  // Per-program lounge breakdown from summary field
   const loungePerProgram: { name: string; detail: string }[] = card.lounge_access.summary
     ? card.lounge_access.summary
         .split(" | ")
@@ -107,7 +103,6 @@ export default async function CartaoDetailPage({ params }: PageProps) {
         .filter((x): x is { name: string; detail: string } => x !== null)
     : [];
 
-  // Reward characteristics: skip travel dups, skip "(Não há)" values, skip cashback/return type echo
   const rewardChars = filterChars(card, ["rewards"]).filter(
     (i) =>
       String(i.value) !== "(Não há)" &&
@@ -118,7 +113,6 @@ export default async function CartaoDetailPage({ params }: PageProps) {
       String(i.value) !== earningSummary
   );
 
-  // Fee characteristics: skip annual_fee duplicates
   const feeChars = filterChars(card, ["fees"]).filter(
     (i) =>
       i.key !== "annual_fee" &&
@@ -138,7 +132,6 @@ export default async function CartaoDetailPage({ params }: PageProps) {
     (i) => String(i.value) !== "(Não há)" && String(i.value) !== "Não há"
   );
 
-  // Lounge summary line for hero
   const loungeSummaryLine = hasLounge
     ? typeof card.lounge_access.annual_visits === "number"
       ? card.lounge_access.unlimited
@@ -150,9 +143,13 @@ export default async function CartaoDetailPage({ params }: PageProps) {
     : "Sem lounge";
 
   const heroStats: Stat[] = [
-    { label: "Anuidade", value: feeLabel(fee), tone: feeIsKnown(fee) ? "default" : "muted" },
+    {
+      label: "Anuidade",
+      value: feeLabel(fee),
+      tone: fee === 0 ? "positive" : feeIsKnown(fee) ? "default" : "muted",
+    },
     { label: "Retorno", value: returnType ?? "—" },
-    { label: "Lounge", value: loungeSummaryLine },
+    { label: "Sala VIP", value: loungeSummaryLine, tone: hasLounge ? "default" : "muted" },
   ];
 
   const adSlot = process.env.NEXT_PUBLIC_ADSENSE_SLOT_DETAIL ?? "";
@@ -181,66 +178,63 @@ export default async function CartaoDetailPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <AppHeader />
-      <div className="mx-auto flex w-full max-w-7xl items-start gap-4 px-3 sm:px-4">
-        {/* Left sidebar ad — desktop only */}
-        <div className="hidden xl:block w-40 shrink-0 sticky top-4 pt-6">
+      <div className="mx-auto flex w-full max-w-7xl items-start justify-center gap-6 px-4 sm:px-6">
+        <div className="hidden w-40 shrink-0 sticky top-16 pt-6 xl:block">
           <AdSlot slot={adSlot} format="vertical" />
         </div>
 
-        <main className="min-w-0 flex-1 max-w-4xl pb-28 pt-4 sm:pt-6">
+        <main className="min-w-0 flex-1 max-w-[920px] pb-32 pt-5 sm:pt-7">
           <Suspense>
             <CardDetailBackLink />
           </Suspense>
 
-          {/* ─── Hero ─── */}
-          <div className="rounded-md border bg-card p-4 sm:p-5">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+          {/* ─── Editorial Hero ─── */}
+          <section className="border-b border-line pb-7">
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
               <CardArt
                 artUrl={card.media.card_art_url}
                 issuerRaw={card.issuer_raw}
                 network={card.network_primary}
                 displayName={card.display_name}
                 loading="eager"
-                className="h-28 w-44 sm:h-32 sm:w-52"
+                className="h-[118px] w-[188px] sm:h-[138px] sm:w-[220px]"
               />
               <div className="min-w-0 flex-1">
-                <h1 className="text-3xl font-medium tracking-tight break-words">
+                <h1 className="break-words text-2xl font-semibold tracking-tight text-fg sm:text-[26px]">
                   {card.display_name}
                 </h1>
-                <p className="mt-1 text-sm text-muted-foreground">{card.issuer_raw}</p>
+                <p className="mt-1 text-[15px] text-fg-2">
+                  {card.issuer_raw} · {card.network_primary}
+                </p>
                 {earningSummary && (
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-2.5 max-w-[58ch] text-sm leading-relaxed text-fg-2">
                     {earningSummary}
                   </p>
                 )}
+
+                <div className="mt-4 flex flex-wrap items-center gap-2">
+                  <Tag variant="quiet">{segmentLabel(card.market_segment_guess)}</Tag>
+                  <Tag variant="quiet">{card.network_primary}</Tag>
+                  {card.ranking_position !== "unknown" && (
+                    <Tag variant="brand" className="num">
+                      #{card.ranking_position} geral
+                    </Tag>
+                  )}
+                </div>
               </div>
             </div>
 
-            <StatRow
-              stats={heroStats}
-              className="mt-4 bg-background max-[379px]:grid-cols-1! max-[379px]:divide-x-0 max-[379px]:divide-y"
-            />
+            <StatRow stats={heroStats} className="mt-6 max-[379px]:grid-cols-1!" />
+          </section>
 
-            <div className="mt-3 flex flex-wrap items-center gap-1.5">
-              <Tag>{segmentLabel(card.market_segment_guess)}</Tag>
-              <Tag>{card.network_primary}</Tag>
-              {card.ranking_position !== "unknown" && (
-                <Tag variant="quiet" className="num">
-                  #{card.ranking_position}
-                </Tag>
-              )}
-            </div>
-          </div>
-
-          <div className="mt-3">
+          {/* ─── Personalized Financial Verdict ─── */}
+          <div className="mt-6">
             <CardProfileInsights card={card} />
           </div>
 
-          {/* ─── Content ─── */}
-          <div className="mt-3 space-y-2">
-            {/* Row 1: Retorno + Lounge side by side */}
-            <div className="grid gap-2 md:grid-cols-2">
-              {/* Retorno */}
+          {/* ─── Clean Two-Column Ledger Specs ─── */}
+          <div className="mt-8 space-y-8">
+            <div className="grid gap-8 md:grid-cols-2">
               <Block title="Retorno">
                 {returnType ? (
                   <DataRow label="Tipo" value={returnType} />
@@ -248,20 +242,19 @@ export default async function CartaoDetailPage({ params }: PageProps) {
                   <EmptyRow>Sem retorno financeiro neste cartão.</EmptyRow>
                 )}
                 {rewardChars.length > 0 && <CharList items={rewardChars} />}
-                {!returnType && rewardChars.length === 0 && null}
               </Block>
 
-              {/* Lounge */}
-              <Block title="Lounge">
+              <Block title="Sala VIP e lounge">
                 {hasLounge ? (
                   loungePerProgram.length > 0 ? (
                     <div>
                       {loungePerProgram.map((prog) => (
-                        <div key={prog.name} className="border-b py-2 last:border-b-0">
-                          <p className="text-sm font-medium">{prog.name}</p>
-                          <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-                            {prog.detail}
-                          </p>
+                        <div
+                          key={prog.name}
+                          className="border-b border-line py-2.5 last:border-b-0"
+                        >
+                          <p className="text-sm font-semibold text-fg">{prog.name}</p>
+                          <p className="mt-0.5 text-sm leading-relaxed text-fg-2">{prog.detail}</p>
                         </div>
                       ))}
                     </div>
@@ -294,10 +287,8 @@ export default async function CartaoDetailPage({ params }: PageProps) {
               </Block>
             </div>
 
-            {/* Row 2: Custo + Elegibilidade */}
-            <div className="grid gap-2 md:grid-cols-2">
-              {/* Custo */}
-              <Block title="Custo">
+            <div className="grid gap-8 md:grid-cols-2">
+              <Block title="Custo e isenção">
                 <DataRow label="Anuidade" value={feeLabel(fee)} />
                 {feeWaiverRules.length > 0 ? (
                   <FeeWaiverRules rules={feeWaiverRules} />
@@ -311,63 +302,58 @@ export default async function CartaoDetailPage({ params }: PageProps) {
                 {forexNote && <DataRow label="Câmbio / IOF" value={forexNote} />}
                 {feeChars.length > 0 && <CharList items={feeChars} />}
                 {!forexNote && feeChars.length === 0 && (
-                  <EmptyRow>Câmbio e IOF: verifique na fonte.</EmptyRow>
+                  <EmptyRow>Câmbio e IOF: verifique na fonte oficial.</EmptyRow>
                 )}
               </Block>
 
-              {/* Elegibilidade */}
               <Block title="Elegibilidade">
                 <DataRow label="Segmento" value={segmentLabel(card.market_segment_guess)} />
                 <DataRow label="Bandeira" value={card.network_primary} />
                 {minimumInvestment !== "unknown" && (
                   <DataRow
                     label="Investimento mín."
-                    value={`R$${(minimumInvestment as number).toLocaleString("pt-BR")}`}
+                    value={`R$ ${(minimumInvestment as number).toLocaleString("pt-BR")}`}
                   />
                 )}
                 {minimumIncome && minimumIncome !== "unknown" && (
                   <DataRow
                     label="Renda mín."
-                    value={`R$${(minimumIncome as number).toLocaleString("pt-BR")}/mês`}
+                    value={`R$ ${(minimumIncome as number).toLocaleString("pt-BR")}/mês`}
                   />
                 )}
                 {eligibilityChars.length > 0 && <CharList items={eligibilityChars} />}
               </Block>
             </div>
 
-            {/* Row 3: Extras — only if content */}
             {extrasChars.length > 0 && (
               <Block title="Benefícios extras">
                 <CharList items={extrasChars} />
               </Block>
             )}
 
-            {/* Fonte */}
-            <div className="mb-8 flex flex-col gap-3 rounded-md border bg-card px-4 py-3 sm:flex-row sm:items-center">
-              <div className="min-w-0 flex-1">
-                <span className="text-xs font-medium">{card.source_label}</span>
-                <span className="ml-2 text-xs text-muted-foreground">
-                  · confirme condições com o emissor
-                </span>
+            {/* Official Source Strip */}
+            <div className="flex flex-col gap-3 rounded-panel bg-surface px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
+                <p className="text-sm font-semibold text-fg">{card.source_label}</p>
+                <p className="text-xs text-fg-3">
+                  Confirme anuidade, taxas e critérios diretamente com o emissor.
+                </p>
               </div>
-              <div className="flex shrink-0 gap-2">
-                <Button asChild variant="outline" size="sm">
-                  <a
-                    href={affiliateClickUrl(card.card_stable_id)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="h-3 w-3" />
-                    Abrir
-                  </a>
-                </Button>
-              </div>
+              <Button asChild variant="outline" size="sm" className="shrink-0">
+                <a
+                  href={affiliateClickUrl(card.card_stable_id)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Abrir fonte oficial
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </Button>
             </div>
           </div>
         </main>
 
-        {/* Right sidebar ad — desktop only */}
-        <div className="hidden xl:block w-40 shrink-0 sticky top-4 pt-6">
+        <div className="hidden w-40 shrink-0 sticky top-16 pt-6 xl:block">
           <AdSlot slot={adSlot} format="vertical" />
         </div>
       </div>
@@ -382,13 +368,12 @@ export default async function CartaoDetailPage({ params }: PageProps) {
   );
 }
 
-/* ─── Layout primitives ─── */
+/* ─── Helpers ─── */
 
 function feeIsKnown(fee: CardFacet["facets_numeric_or_special"]["annual_fee_brl_best_estimate"]) {
   return typeof fee === "number" || fee === "variable_pricing_claim";
 }
 
-/** Unknown fees are never shown as free. */
 function feeLabel(fee: CardFacet["facets_numeric_or_special"]["annual_fee_brl_best_estimate"]) {
   return feeIsKnown(fee) ? formatFee(fee) : "Não informada";
 }
@@ -405,7 +390,7 @@ function formatRuleAmount(rule: FeeWaiverRule) {
   if (rule.category === "general" && rule.full_waiver) return null;
   if (typeof rule.threshold_brl !== "number") return "Sem limite informado";
   const suffix = rule.period === "monthly" ? "/mês" : rule.period === "annual" ? "/ano" : "";
-  return `R$${rule.threshold_brl.toLocaleString("pt-BR")}${suffix}`;
+  return `R$ ${rule.threshold_brl.toLocaleString("pt-BR")}${suffix}`;
 }
 
 function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
@@ -427,9 +412,9 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
   const hasAlternativeRules = ordered.length > 1;
 
   return (
-    <div className="border-b py-2 last:border-b-0">
-      <div className="mb-2 flex items-center justify-between gap-2">
-        <span className="text-xs text-muted-foreground">Isenção da anuidade</span>
+    <div className="border-b border-line py-3 last:border-b-0">
+      <div className="mb-2.5 flex items-center justify-between gap-2">
+        <span className="text-sm text-fg-2">Isenção da anuidade</span>
         <Tag variant="positive">
           {hasOnlyGeneralFullWaiver
             ? "Sem anuidade"
@@ -439,17 +424,17 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
         </Tag>
       </div>
       {hasOnlyGeneralFullWaiver && (
-        <p className="text-sm leading-relaxed">{ordered[0].description}</p>
+        <p className="text-sm leading-relaxed text-fg">{ordered[0].description}</p>
       )}
       {!hasOnlyGeneralFullWaiver && (
         <>
           {hasAlternativeRules && (
-            <p className="mb-2 text-xs leading-relaxed text-muted-foreground">
+            <p className="mb-3 text-xs leading-relaxed text-fg-3">
               Basta cumprir uma das condições abaixo. As regras são alternativas: uma{" "}
-              <span className="font-medium text-foreground">OU</span> outra.
+              <span className="font-semibold text-fg">ou</span> outra.
             </p>
           )}
-          <div className="grid gap-2 min-[420px]:grid-cols-2">
+          <div className="grid gap-2.5 min-[420px]:grid-cols-2">
             {ordered.map((rule, index) => {
               const isSpend = rule.category === "monthly_spend";
               const isInvestment = rule.category === "investment";
@@ -486,18 +471,18 @@ function FeeWaiverRules({ rules }: { rules: FeeWaiverRule[] }) {
               return (
                 <div
                   key={`${rule.category}-${rule.threshold_brl ?? "general"}-${index}`}
-                  className="rounded-md border bg-background px-2.5 py-2"
+                  className="rounded-panel bg-surface p-3"
                 >
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                  <div className="flex items-center gap-1.5 text-xs font-medium text-fg-3">
                     <Icon className="h-3.5 w-3.5" />
                     {label}
                   </div>
-                  {amount && <p className="num mt-1 text-sm font-medium">{amount}</p>}
-                  <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-                    {rule.description}
-                  </p>
+                  {amount && <p className="num mt-1 text-[15px] font-semibold text-fg">{amount}</p>}
+                  <p className="mt-1 text-xs leading-relaxed text-fg-2">{rule.description}</p>
                   {hasAlternativeRules && index < ordered.length - 1 && (
-                    <p className="mt-2 text-2xs font-medium text-muted-foreground">OU</p>
+                    <span className="mt-2 inline-flex rounded-full bg-surface-2 px-2 py-0.5 text-xs font-medium text-fg-3">
+                      ou
+                    </span>
                   )}
                 </div>
               );
@@ -523,10 +508,6 @@ function filterChars(
   });
 }
 
-function charLabel(item: CardCharacteristic): string {
-  return item.label;
-}
-
 function charValue(item: CardCharacteristic): string {
   const v = String(item.value);
   if (v === "unknown") return "Consultar";
@@ -537,7 +518,6 @@ function CharList({ items }: { items: CardCharacteristic[] }) {
   return (
     <>
       {items.slice(0, 8).map((item) => {
-        const label = charLabel(item);
         const value = charValue(item);
         const detail =
           item.details && item.details !== "unknown" && item.details !== value
@@ -546,7 +526,7 @@ function CharList({ items }: { items: CardCharacteristic[] }) {
         return (
           <DataRow
             key={`${item.category}-${item.key}-${value}`}
-            label={label}
+            label={item.label}
             value={value}
             detail={detail}
           />

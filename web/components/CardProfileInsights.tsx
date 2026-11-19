@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { DataRow, type Stat, StatRow, Tag } from "@/components/card";
+import Link from "next/link";
+import { DataRow, Tag } from "@/components/card";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { TRAVEL_REDEMPTION_WEIGHT } from "@/lib/assumptions";
 import {
@@ -40,10 +41,10 @@ function RetornoTooltip({
   assumptions: CardValueAssumptions;
 }) {
   return (
-    <div className="space-y-1.5 text-xs leading-relaxed text-muted-foreground">
-      <p className="font-medium text-popover-foreground">{component.label}</p>
+    <div className="space-y-1.5 text-xs leading-relaxed text-fg-2">
+      <p className="font-semibold text-fg">{component.label}</p>
       <p>{component.explanation}</p>
-      <p className="num text-2xs">
+      <p className="num text-xs text-fg-3">
         Gasto mensal: R${monthlySpend.toLocaleString("pt-BR", { maximumFractionDigits: 0 })} ·
         Livelo R${assumptions.liveloPointSaleValuePerThousandBrl}/1k venda · Livelo R$
         {assumptions.liveloPointTravelValuePerThousandBrl}/1k uso · MR R$
@@ -67,11 +68,16 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
 
   if (!profile || !score) {
     return (
-      <div className="flex items-center justify-between gap-3 rounded-md border bg-card px-4 py-3">
-        <p className="text-xs text-muted-foreground">
-          Configure seu perfil para ver valor líquido e ponto de equilíbrio.
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-panel bg-surface px-5 py-4">
+        <p className="text-sm text-fg-2">
+          Configure seu perfil para calcular valor líquido mensal, isenção e ponto de equilíbrio.
         </p>
-        <Tag variant="quiet">Para você</Tag>
+        <Link
+          href="/perfil"
+          className="text-sm font-semibold text-fg underline underline-offset-4 hover:text-brand-accent"
+        >
+          Configurar perfil
+        </Link>
       </div>
     );
   }
@@ -90,256 +96,295 @@ export function CardProfileInsights({ card }: { card: CardFacet }) {
 
   const a = score.assumptions;
 
-  const stats: Stat[] = [
-    {
-      label: "Retorno",
-      value: formatGrossRewardMonthlyDisplay(score, travelFrequency),
-      tone: score.grossRewardMonthlyRangeHighBrl > 0 ? "positive" : "default",
-    },
-    {
-      label: "Benefícios",
-      value: `${signedBrl(score.intangibleMonthlyValueBrl)}/mês`,
-      tone: score.intangibleMonthlyValueBrl > 0 ? "positive" : "default",
-    },
-    score.feeKnown
-      ? {
-          label: "Anuidade",
-          value: `${signedBrl(-score.effectiveMonthlyFeeBrl)}/mês`,
-          tone: score.effectiveMonthlyFeeBrl > 0 ? "negative" : "default",
-        }
-      : { label: "Anuidade", value: "Não informada", tone: "muted" },
-    {
-      label: "Custo internacional",
-      value: `${signedBrl(-score.internationalMonthlyCostBrl)}/mês`,
-      tone: score.internationalMonthlyCostBrl > 0 ? "negative" : "default",
-    },
-  ];
-
   return (
-    <section className="rounded-md border bg-card">
-      <div className="p-4">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <h2 className="text-sm font-medium">Para você</h2>
-          {!score.eligible && <Tag variant="negative">Não elegível</Tag>}
-        </div>
+    <section className="rounded-panel bg-surface p-5 sm:p-6">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <div className="flex flex-wrap items-center gap-2">
+            <h2 className="text-lg font-semibold tracking-tight text-fg">Para você</h2>
+            {score.eligible ? (
+              <Tag variant="positive">Elegível</Tag>
+            ) : (
+              <Tag variant="negative">Não elegível</Tag>
+            )}
+          </div>
 
-        {/* The decision number: the loudest element on the page. */}
-        <p className="num mt-3 whitespace-nowrap text-5xl font-medium tracking-tight">
-          <span className={cn(decision < 0 && "text-negative")}>{brl(decision)}</span>
-          <span className="text-xl text-muted-foreground">/mês</span>
-        </p>
-        <p className="mt-1 text-xs text-muted-foreground">
-          valor líquido estimado por mês
-          {hasRange && (
-            <span className="num">
-              {" "}
-              ({brl(low)} a {brl(high)})
+          {/* Single 36px display figure */}
+          <p className="num mt-2.5 whitespace-nowrap text-5xl font-semibold tracking-tight">
+            <span
+              className={cn(
+                decision > 0 ? "text-success-text" : decision < 0 ? "text-danger-text" : "text-fg"
+              )}
+            >
+              {decision > 0 ? `+${brl(decision)}` : brl(decision)}
             </span>
-          )}
-        </p>
-        {!score.feeKnown && (
-          <p className="mt-1 text-xs text-muted-foreground">
-            Anuidade não informada: o valor acima não desconta anuidade.
+            <span className="text-lg font-medium text-fg-3">/mês</span>
           </p>
-        )}
-
-        <p className={cn("mt-4 text-base font-medium", !score.eligible && "text-negative")}>
-          {score.verdict}
-        </p>
-        <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">{score.rankReason}</p>
-        {score.feeAppliedReason && (
-          <p className="mt-0.5 text-xs leading-relaxed text-muted-foreground">
-            {score.feeAppliedReason}
+          <p className="mt-1 text-xs text-fg-3">
+            Valor líquido estimado por mês
+            {hasRange && (
+              <span className="num">
+                {" "}
+                ({brl(low)} a {brl(high)})
+              </span>
+            )}
           </p>
-        )}
-
-        <StatRow
-          stats={stats}
-          className="mt-4 bg-background max-sm:grid-cols-2! max-sm:[&>*:nth-child(-n+2)]:border-b max-sm:[&>*:nth-child(2)]:border-r-0"
-        />
-
-        <div className="mt-2">
-          {reward && (
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button
-                  type="button"
-                  className="text-xs text-muted-foreground underline underline-offset-4 transition-colors duration-150 hover:text-foreground"
-                >
-                  Como o retorno foi estimado
-                </button>
-              </TooltipTrigger>
-              <TooltipContent
-                side="top"
-                align="start"
-                sideOffset={6}
-                className="block w-72 max-w-[calc(100vw-2rem)] border border-foreground bg-popover p-3 text-left text-popover-foreground [&_svg]:hidden"
-              >
-                <RetornoTooltip
-                  component={reward}
-                  monthlySpend={profile.avgMonthlySpendBrl}
-                  assumptions={a}
-                />
-              </TooltipContent>
-            </Tooltip>
+          {!score.feeKnown && (
+            <p className="mt-1 text-xs text-warn-text">
+              Anuidade não informada: o valor acima não desconta anuidade.
+            </p>
           )}
         </div>
-
-        <div className="mt-2">
-          <DataRow
-            label="Equilíbrio"
-            value={
-              score.breakEvenMonthlySpendBrl === null
-                ? "—"
-                : `R$${score.breakEvenMonthlySpendBrl.toLocaleString("pt-BR")}/mês`
-            }
-          />
-          {score.feeBurdenPctOfAnnualSpend !== null && score.feeBurdenPctOfAnnualSpend > 0 && (
-            <DataRow
-              label="Peso da anuidade"
-              value={`anuidade ${score.feeBurdenPctOfAnnualSpend}% do gasto`}
-            />
-          )}
-        </div>
+        <Tag variant="quiet" className="num h-7 px-3 text-xs">
+          Nota {score.score0To100}/100
+        </Tag>
       </div>
 
-      {/* Collapsible method */}
-      <div className="border-t">
+      <p
+        className={cn(
+          "mt-4 max-w-[62ch] text-[15px] font-medium leading-relaxed",
+          !score.eligible ? "text-danger-text" : "text-fg"
+        )}
+      >
+        {score.verdict}
+      </p>
+      <p className="mt-1 text-sm leading-relaxed text-fg-2">{score.rankReason}</p>
+      {score.feeAppliedReason && (
+        <p className="mt-1 text-sm leading-relaxed text-fg-2">{score.feeAppliedReason}</p>
+      )}
+
+      {/* Clean hairline ledger breakdown (no nested equal stat boxes) */}
+      <div className="mt-5 border-t border-line">
+        <DataRow
+          label="Retorno bruto estimado"
+          value={
+            <span
+              className={score.grossRewardMonthlyRangeHighBrl > 0 ? "text-success-text" : undefined}
+            >
+              {formatGrossRewardMonthlyDisplay(score, travelFrequency)}
+            </span>
+          }
+        />
+        <DataRow
+          label="Benefícios estimados"
+          value={
+            <span className={score.intangibleMonthlyValueBrl > 0 ? "text-success-text" : undefined}>
+              {`${signedBrl(score.intangibleMonthlyValueBrl)}/mês`}
+            </span>
+          }
+        />
+        <DataRow
+          label="Anuidade efetiva"
+          value={
+            score.feeKnown ? (
+              <span
+                className={
+                  score.effectiveMonthlyFeeBrl > 0 ? "text-danger-text" : "text-success-text"
+                }
+              >
+                {score.effectiveMonthlyFeeBrl > 0
+                  ? `${signedBrl(-score.effectiveMonthlyFeeBrl)}/mês`
+                  : "R$ 0/mês (isento)"}
+              </span>
+            ) : (
+              <span className="text-fg-3">Não informada</span>
+            )
+          }
+        />
+        {score.internationalMonthlyCostBrl > 0 && (
+          <DataRow
+            label="Custo internacional"
+            value={
+              <span className="text-danger-text">
+                {`${signedBrl(-score.internationalMonthlyCostBrl)}/mês`}
+              </span>
+            }
+          />
+        )}
+        <DataRow
+          label="Ponto de equilíbrio"
+          value={
+            score.breakEvenMonthlySpendBrl === null
+              ? "—"
+              : `R$ ${score.breakEvenMonthlySpendBrl.toLocaleString("pt-BR")}/mês`
+          }
+        />
+        {score.feeBurdenPctOfAnnualSpend !== null && score.feeBurdenPctOfAnnualSpend > 0 && (
+          <DataRow
+            label="Peso da anuidade"
+            value={`${score.feeBurdenPctOfAnnualSpend}% do gasto anual`}
+          />
+        )}
+      </div>
+
+      <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-3">
+        {reward ? (
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                type="button"
+                className="text-xs font-medium text-fg-2 underline underline-offset-4 transition-colors duration-100 hover:text-fg"
+              >
+                Como o retorno foi estimado
+              </button>
+            </TooltipTrigger>
+            <TooltipContent
+              side="top"
+              align="start"
+              sideOffset={6}
+              className="block w-80 max-w-[calc(100vw-2rem)] rounded-panel border border-line bg-raised p-3.5 text-left text-fg shadow-menu"
+            >
+              <RetornoTooltip
+                component={reward}
+                monthlySpend={profile.avgMonthlySpendBrl}
+                assumptions={a}
+              />
+            </TooltipContent>
+          </Tooltip>
+        ) : (
+          <span />
+        )}
+
         <button
           type="button"
           onClick={() => setShowCalc((v) => !v)}
           aria-expanded={showCalc}
-          className="flex w-full items-center justify-between px-4 py-3 text-xs text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground"
+          className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium text-fg-2 transition-colors duration-100 hover:bg-surface-2 hover:text-fg"
         >
           <span>Como calculamos</span>
-          <ChevronDown className={cn("h-3.5 w-3.5", showCalc && "rotate-180")} />
-        </button>
-
-        {showCalc && (
-          <div className="space-y-5 border-t px-4 py-4">
-            <MethodPart title="A conta">
-              <p>
-                Valor líquido por mês = retorno + benefícios − anuidade − custo internacional. Tudo
-                em reais por mês, com o gasto e as respostas do seu perfil.
-              </p>
-              <div className="mt-2">
-                {reward && <FormulaLine sign="+" component={reward} />}
-                {intangibles && <FormulaLine sign="+" component={intangibles} />}
-                {fee && <FormulaLine sign="−" component={fee} />}
-                {international && <FormulaLine sign="−" component={international} />}
-                <DataRow label="Soma, vendendo os pontos" value={`${brl(low)}/mês`} />
-              </div>
-            </MethodPart>
-
-            <MethodPart title="O número em destaque">
-              <p>
-                Pontos e milhas valem mais usados em viagem do que vendidos. Por isso calculamos as
-                duas pontas e mostramos o valor esperado entre elas: o valor vendendo os pontos mais{" "}
-                <span className="num">{pct(travelWeight)}</span> da diferença até o valor usando os
-                pontos em viagem. Esse peso vem da sua frequência de viagem:{" "}
-                <span className="num">
-                  {pct(TRAVEL_REDEMPTION_WEIGHT.none)} para quem não viaja,{" "}
-                  {pct(TRAVEL_REDEMPTION_WEIGHT.occasional)} para quem viaja às vezes e{" "}
-                  {pct(TRAVEL_REDEMPTION_WEIGHT.frequent)} para quem viaja com frequência
-                </span>
-                . Quem não viaja mas prefere pontos ou sala VIP é tratado como quem viaja às vezes.
-              </p>
-              <div className="mt-2">
-                <DataRow label="Vendendo os pontos" value={`${brl(low)}/mês`} />
-                <DataRow label="Usando em viagem" value={`${brl(high)}/mês`} />
-                <DataRow label="Peso de viagem no seu perfil" value={pct(travelWeight)} />
-                <DataRow label="Valor esperado" value={`${brl(decision)}/mês`} />
-              </div>
-              {!hasRange && (
-                <p className="mt-2">
-                  Neste cartão as duas pontas são iguais: o retorno não depende de como os pontos
-                  são usados.
-                </p>
-              )}
-            </MethodPart>
-
-            <MethodPart title="Premissas usadas">
-              <div>
-                <DataRow label="Dólar comercial" value={brl(a.ptaxBrlPerUsd, 4)} />
-                <DataRow
-                  label="Milhas aéreas, venda"
-                  value={`${brl(a.mileValuePerThousandBrl)}/mil`}
-                />
-                <DataRow
-                  label="Milhas aéreas, viagem"
-                  value={`${brl(Math.max(a.mileValuePerThousandBrl, a.liveloPointTravelValuePerThousandBrl))}/mil`}
-                />
-                <DataRow
-                  label="Livelo, venda"
-                  value={`${brl(a.liveloPointSaleValuePerThousandBrl)}/mil`}
-                />
-                <DataRow
-                  label="Livelo, viagem"
-                  value={`${brl(a.liveloPointTravelValuePerThousandBrl)}/mil`}
-                />
-                <DataRow
-                  label="Membership Rewards, venda"
-                  value={`${brl(a.membershipRewardsPointSaleValuePerThousandBrl)}/mil`}
-                />
-                <DataRow
-                  label="Membership Rewards, viagem"
-                  value={`${brl(a.membershipRewardsPointTravelValuePerThousandBrl)}/mil`}
-                />
-                <DataRow
-                  label="Outros pontos, venda"
-                  value={`${brl(a.defaultPointValuePerThousandBrl)}/mil`}
-                />
-                <DataRow label="Visita a sala VIP" value={brl(a.loungeVisitValueBrl)} />
-                <DataRow
-                  label="Seguro viagem"
-                  value={`${brl(a.travelInsuranceMonthlyValueBrl)}/mês`}
-                />
-                <DataRow label="Concierge" value={`${brl(a.conciergeMonthlyValueBrl)}/mês`} />
-                <DataRow label="IOF em compra internacional" value={pct(a.iof)} />
-              </div>
-              <p className="mt-2">
-                Valores por mil pontos ou milhas. São estimativas de mercado, não valores
-                garantidos. Sala VIP, seguro e concierge só contam quando o cartão oferece o
-                benefício e são ponderados pela sua frequência de viagem.
-              </p>
-            </MethodPart>
-
-            <MethodPart title="A nota de 0 a 100">
-              <p>
-                A nota que aparece nos rankings é um percentil: a posição do cartão, pelo valor
-                líquido estimado, entre os cartões para os quais o seu perfil é elegível. 100 é o
-                melhor desse conjunto, 0 o pior. Ela não mede qualidade absoluta e muda quando o
-                perfil muda.
-              </p>
-            </MethodPart>
-
-            <MethodPart title="O que fica de fora">
-              <p>
-                A conta assume que a fatura é paga integralmente todo mês, sem juros. Com rotativo
-                ou parcelamento da fatura, os juros superam qualquer retorno mostrado aqui.
-              </p>
-            </MethodPart>
-
-            {score.dataQualityNotes.length > 0 && (
-              <MethodPart title="Limites dos dados deste cartão">
-                <ul className="space-y-1">
-                  {score.dataQualityNotes.map((note) => (
-                    <li key={note}>{note}</li>
-                  ))}
-                </ul>
-              </MethodPart>
+          <ChevronDown
+            className={cn(
+              "h-3.5 w-3.5 transition-transform duration-150",
+              showCalc && "rotate-180"
             )}
-          </div>
-        )}
+          />
+        </button>
       </div>
+
+      {showCalc && (
+        <div className="mt-4 space-y-6 border-t border-line pt-5">
+          <MethodPart title="A conta">
+            <p>
+              Valor líquido por mês = retorno + benefícios − anuidade − custo internacional. Tudo em
+              reais por mês, com o gasto e as respostas do seu perfil.
+            </p>
+            <div className="mt-2">
+              {reward && <FormulaLine sign="+" component={reward} />}
+              {intangibles && <FormulaLine sign="+" component={intangibles} />}
+              {fee && <FormulaLine sign="−" component={fee} />}
+              {international && <FormulaLine sign="−" component={international} />}
+              <DataRow label="Soma, vendendo os pontos" value={`${brl(low)}/mês`} />
+            </div>
+          </MethodPart>
+
+          <MethodPart title="O número em destaque">
+            <p>
+              Pontos e milhas valem mais usados em viagem do que vendidos. Por isso calculamos as
+              duas pontas e mostramos o valor esperado entre elas: o valor vendendo os pontos mais{" "}
+              <span className="num">{pct(travelWeight)}</span> da diferença até o valor usando os
+              pontos em viagem. Esse peso vem da sua frequência de viagem:{" "}
+              <span className="num">
+                {pct(TRAVEL_REDEMPTION_WEIGHT.none)} para quem não viaja,{" "}
+                {pct(TRAVEL_REDEMPTION_WEIGHT.occasional)} para quem viaja às vezes e{" "}
+                {pct(TRAVEL_REDEMPTION_WEIGHT.frequent)} para quem viaja com frequência
+              </span>
+              . Quem não viaja mas prefere pontos ou sala VIP é tratado como quem viaja às vezes.
+            </p>
+            <div className="mt-2">
+              <DataRow label="Vendendo os pontos" value={`${brl(low)}/mês`} />
+              <DataRow label="Usando em viagem" value={`${brl(high)}/mês`} />
+              <DataRow label="Peso de viagem no seu perfil" value={pct(travelWeight)} />
+              <DataRow label="Valor esperado" value={`${brl(decision)}/mês`} />
+            </div>
+            {!hasRange && (
+              <p className="mt-2">
+                Neste cartão as duas pontas são iguais: o retorno não depende de como os pontos são
+                usados.
+              </p>
+            )}
+          </MethodPart>
+
+          <MethodPart title="Premissas usadas">
+            <div>
+              <DataRow label="Dólar comercial" value={brl(a.ptaxBrlPerUsd, 4)} />
+              <DataRow
+                label="Milhas aéreas, venda"
+                value={`${brl(a.mileValuePerThousandBrl)}/mil`}
+              />
+              <DataRow
+                label="Milhas aéreas, viagem"
+                value={`${brl(Math.max(a.mileValuePerThousandBrl, a.liveloPointTravelValuePerThousandBrl))}/mil`}
+              />
+              <DataRow
+                label="Livelo, venda"
+                value={`${brl(a.liveloPointSaleValuePerThousandBrl)}/mil`}
+              />
+              <DataRow
+                label="Livelo, viagem"
+                value={`${brl(a.liveloPointTravelValuePerThousandBrl)}/mil`}
+              />
+              <DataRow
+                label="Membership Rewards, venda"
+                value={`${brl(a.membershipRewardsPointSaleValuePerThousandBrl)}/mil`}
+              />
+              <DataRow
+                label="Membership Rewards, viagem"
+                value={`${brl(a.membershipRewardsPointTravelValuePerThousandBrl)}/mil`}
+              />
+              <DataRow
+                label="Outros pontos, venda"
+                value={`${brl(a.defaultPointValuePerThousandBrl)}/mil`}
+              />
+              <DataRow label="Visita a sala VIP" value={brl(a.loungeVisitValueBrl)} />
+              <DataRow
+                label="Seguro viagem"
+                value={`${brl(a.travelInsuranceMonthlyValueBrl)}/mês`}
+              />
+              <DataRow label="Concierge" value={`${brl(a.conciergeMonthlyValueBrl)}/mês`} />
+              <DataRow label="IOF em compra internacional" value={pct(a.iof)} />
+            </div>
+            <p className="mt-2">
+              Valores por mil pontos ou milhas. São estimativas de mercado, não valores garantidos.
+              Sala VIP, seguro e concierge só contam quando o cartão oferece o benefício e são
+              ponderados pela sua frequência de viagem.
+            </p>
+          </MethodPart>
+
+          <MethodPart title="A nota de 0 a 100">
+            <p>
+              A nota que aparece nos rankings é um percentil: a posição do cartão, pelo valor
+              líquido estimado, entre os cartões para os quais o seu perfil é elegível. 100 é o
+              melhor desse conjunto, 0 o pior. Ela não mede qualidade absoluta e muda quando o
+              perfil muda.
+            </p>
+          </MethodPart>
+
+          <MethodPart title="O que fica de fora">
+            <p>
+              A conta assume que a fatura é paga integralmente todo mês, sem juros. Com rotativo ou
+              parcelamento da fatura, os juros superam qualquer retorno mostrado aqui.
+            </p>
+          </MethodPart>
+
+          {score.dataQualityNotes.length > 0 && (
+            <MethodPart title="Limites dos dados deste cartão">
+              <ul className="space-y-1">
+                {score.dataQualityNotes.map((note) => (
+                  <li key={note}>{note}</li>
+                ))}
+              </ul>
+            </MethodPart>
+          )}
+        </div>
+      )}
     </section>
   );
 }
 
 function MethodPart({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="text-xs leading-relaxed text-muted-foreground">
-      <h3 className="mb-1 text-sm font-medium text-foreground">{title}</h3>
+    <div className="text-sm leading-relaxed text-fg-2">
+      <h3 className="mb-1.5 text-sm font-semibold text-fg">{title}</h3>
       {children}
     </div>
   );
@@ -353,7 +398,7 @@ function FormulaLine({ component, sign }: { component: CardValueComponent; sign:
     <DataRow
       label={component.label}
       value={
-        <span className={sign === "+" ? "text-positive" : "text-negative"}>
+        <span className={sign === "+" ? "text-success-text" : "text-danger-text"}>
           {sign}R$ {amount}
         </span>
       }

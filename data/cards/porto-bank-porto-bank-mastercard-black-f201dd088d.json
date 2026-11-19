@@ -43,10 +43,10 @@
   "eligibility": {
     "availability_status": "available",
     "hard_gate_fields": [],
-    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_income_brl_best_estimate": 15000,
     "minimum_investment_brl_best_estimate": "unknown",
     "recommendation_blocking_unknowns": false,
-    "requirements_text": "unknown",
+    "requirements_text": "Análise de crédito Porto Bank (renda recomendada a partir de R$ 15.000/mês ou investimentos no Porto Bank).",
     "requires_bank_account_claim": false,
     "source_status": "not_structured"
   },

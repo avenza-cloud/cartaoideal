@@ -37,6 +37,7 @@ import type { UIMessage } from "ai";
 import type { FeeWaiverRule } from "@/types/cards";
 import { feeWaiverRuleBadgeVariant, feeWaiverRuleDisplayLabel } from "@/lib/fee-waiver-badges";
 import { CardArt, DataRow, LeadFact, type Stat, StatRow, Tag } from "@/components/card";
+import { BrandMark } from "@/components/BrandMark";
 import { cn } from "@/lib/utils";
 
 interface ChatInterfaceProps {
@@ -265,14 +266,26 @@ function MiniCard({ card, rank, best }: { card: CardItem; rank?: number; best?: 
   );
 
   return (
-    <div className="rounded-md border bg-card p-3">
+    <div
+      className={cn(
+        "rounded-panel p-4 transition-colors duration-100",
+        best ? "border border-brand-border bg-brand-wash" : "bg-surface"
+      )}
+    >
       <Link
         href={`/cartoes/${card.id}`}
         className="group/mini flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-3"
       >
         <div className="flex min-w-0 flex-1 items-center gap-3">
           {rank !== undefined && (
-            <span className="num shrink-0 text-xs text-muted-foreground">#{rank}</span>
+            <span
+              className={cn(
+                "num shrink-0 text-xs font-medium",
+                best ? "font-semibold text-brand-accent" : "text-fg-3"
+              )}
+            >
+              #{rank}
+            </span>
           )}
           <CardArt
             artUrl={card.cardArtUrl}
@@ -282,11 +295,11 @@ function MiniCard({ card, rank, best }: { card: CardItem; rank?: number; best?: 
             className="h-10 w-16"
           />
           <div className="min-w-0 flex-1">
-            <p className="flex items-center gap-1 text-sm font-medium leading-tight">
+            <p className="flex items-center gap-1.5 text-sm font-semibold leading-snug text-fg">
               <span className="truncate group-hover/mini:underline">{card.nome}</span>
-              <ArrowUpRight className="h-3 w-3 shrink-0 text-muted-foreground" />
+              <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-fg-3" />
             </p>
-            <p className="truncate text-xs text-muted-foreground">{card.emissor}</p>
+            <p className="truncate text-xs text-fg-3">{card.emissor}</p>
           </div>
         </div>
         {net !== undefined ? (
@@ -312,7 +325,12 @@ function MiniCard({ card, rank, best }: { card: CardItem; rank?: number; best?: 
       <StatRow stats={stats} className="mt-3" />
 
       <div className="mt-3 flex items-end justify-between gap-2">
-        <div className="flex min-w-0 flex-wrap gap-1">
+        <div className="flex min-w-0 flex-wrap gap-1.5">
+          {best && (
+            <Tag variant="brand" className="bg-raised">
+              Melhor escolha
+            </Tag>
+          )}
           {card.pontuacao !== undefined && (
             <Tag variant="quiet">
               <span className="num">
@@ -340,10 +358,10 @@ function MiniCard({ card, rank, best }: { card: CardItem; rank?: number; best?: 
           disabled={!selected && !canAdd()}
           onClick={() => (selected ? remove(card.id) : add({ id: card.id, name: card.nome }))}
           className={cn(
-            "flex h-7 w-7 shrink-0 items-center justify-center rounded-md border transition-colors duration-150 disabled:opacity-50",
+            "flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors duration-100 disabled:opacity-50",
             selected
-              ? "border-foreground bg-foreground text-background"
-              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              ? "border-brand-border bg-brand-wash text-brand-accent"
+              : "border-line-strong bg-page text-fg-2 hover:bg-surface-2 hover:text-fg"
           )}
         >
           {selected ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
@@ -459,13 +477,16 @@ function CardCompareArtifact({ output }: { output: unknown }) {
   ];
 
   return (
-    <div className="mt-2 space-y-2">
+    <div className="mt-2 space-y-3">
       {(delta || winner) && (
-        <div className="rounded-md border bg-card px-3 py-2">
+        <div className="rounded-panel bg-surface px-4 py-3">
           {winner && (
-            <p className="py-1 text-sm">
-              Melhor no cálculo: <span className="font-medium">{winner.nome}</span>
-            </p>
+            <div className="flex flex-wrap items-center gap-2 py-1 text-sm">
+              <span>
+                Melhor no cálculo: <strong className="font-semibold text-fg">{winner.nome}</strong>
+              </span>
+              <Tag variant="brand">Melhor</Tag>
+            </div>
           )}
           {delta && (
             <div>
@@ -482,7 +503,7 @@ function CardCompareArtifact({ output }: { output: unknown }) {
                 label="Delta/ano"
                 value={
                   <span className={signClass(delta.valorLiquidoAnual)}>
-                    {`R$${Math.round(delta.valorLiquidoAnual ?? 0).toLocaleString("pt-BR")}`}
+                    {`R$ ${Math.round(delta.valorLiquidoAnual ?? 0).toLocaleString("pt-BR")}`}
                   </span>
                 }
               />
@@ -506,17 +527,17 @@ function CardCompareArtifact({ output }: { output: unknown }) {
           )}
         </div>
       )}
-      <div className="overflow-x-auto rounded-md border bg-card text-xs">
-        <table className="w-full min-w-[420px]">
+      <div className="overflow-x-auto rounded-panel border border-line bg-surface text-sm">
+        <table className="w-full min-w-[440px] border-collapse">
           <thead>
-            <tr className="border-b align-top">
-              <th className="px-3 py-3 text-left font-normal text-muted-foreground">—</th>
+            <tr className="border-b border-line bg-surface-2 align-top">
+              <th className="px-3.5 py-3 text-left text-xs font-medium text-fg-3">Critério</th>
               {cards.map((c) => {
                 const isWinner = winner?.id === c.id;
                 const net = netMonthly(c);
                 return (
-                  <th key={c.id} className="px-3 py-3 text-left font-normal">
-                    <Link href={`/cartoes/${c.id}`} className="group/cmp flex items-center gap-2">
+                  <th key={c.id} className="px-3.5 py-3 text-left font-normal">
+                    <Link href={`/cartoes/${c.id}`} className="group/cmp flex items-center gap-2.5">
                       <CardArt
                         artUrl={c.cardArtUrl}
                         issuerRaw={c.emissor ?? ""}
@@ -525,11 +546,11 @@ function CardCompareArtifact({ output }: { output: unknown }) {
                         className="h-8 w-12"
                       />
                       <span className="min-w-0">
-                        <span className="block text-sm font-medium leading-tight group-hover/cmp:underline">
-                          {c.nome}
-                          {isWinner && <span className="ml-1 text-muted-foreground">★</span>}
+                        <span className="flex flex-wrap items-center gap-1.5 text-sm font-semibold leading-tight text-fg group-hover/cmp:underline">
+                          <span>{c.nome}</span>
+                          {isWinner && <Tag variant="brand">Melhor</Tag>}
                         </span>
-                        <span className="block text-xs text-muted-foreground">{c.emissor}</span>
+                        <span className="block text-xs text-fg-3">{c.emissor}</span>
                       </span>
                     </Link>
                     {net !== undefined ? (
@@ -558,11 +579,16 @@ function CardCompareArtifact({ output }: { output: unknown }) {
             {rows.map((row) => {
               const best = row.numericKey ? bestIndex(cards.map(row.numericKey)) : null;
               return (
-                <tr key={row.label} className="border-b last:border-0">
-                  <td className="px-3 py-1.5 text-muted-foreground">{row.label}</td>
+                <tr key={row.label} className="border-b border-line last:border-0">
+                  <td className="px-3.5 py-2.5 text-fg-2">{row.label}</td>
                   {cards.map((c, i) => (
-                    <td key={c.id} className="num px-3 py-1.5">
-                      <span className={cn(best === i && "bg-mark px-1 text-mark-foreground")}>
+                    <td key={c.id} className="ledger-col px-3.5 py-2.5 text-fg">
+                      <span
+                        className={cn(
+                          best === i &&
+                            "inline-flex rounded-full bg-success-tint px-2 py-0.5 font-semibold text-success-text"
+                        )}
+                      >
                         {row.key(c)}
                       </span>
                     </td>
@@ -613,7 +639,7 @@ function CardDetailArtifact({ output }: { output: unknown }) {
   stats.push({ label: "Lounge", value: hasLounge(c.lounge) ? "Sim" : "Não" });
 
   return (
-    <div className="mt-2 rounded-md border bg-card p-3">
+    <div className="mt-2 rounded-panel bg-surface p-4">
       <div className="flex items-center gap-3">
         <CardArt
           artUrl={c.cardArtUrl}
@@ -623,8 +649,8 @@ function CardDetailArtifact({ output }: { output: unknown }) {
           className="h-10 w-16"
         />
         <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-medium leading-tight">{c.nome}</p>
-          <p className="truncate text-xs text-muted-foreground">{c.emissor}</p>
+          <p className="truncate text-sm font-semibold leading-tight text-fg">{c.nome}</p>
+          <p className="truncate text-xs text-fg-3">{c.emissor}</p>
         </div>
       </div>
 
@@ -647,12 +673,14 @@ function CardDetailArtifact({ output }: { output: unknown }) {
       <StatRow stats={stats} className="mt-3" />
 
       {c.retornoFinanceiro?.earning_summary && (
-        <p className="mt-2 text-xs text-muted-foreground">{c.retornoFinanceiro.earning_summary}</p>
+        <p className="mt-2.5 text-xs leading-relaxed text-fg-2">
+          {c.retornoFinanceiro.earning_summary}
+        </p>
       )}
 
       <Link
         href={`/cartoes/${c.id}`}
-        className="mt-3 inline-flex h-7 items-center rounded-md border px-2.5 text-xs font-medium transition-colors duration-150 hover:bg-muted"
+        className="mt-3 inline-flex h-8 items-center rounded-full border border-line-strong bg-page px-3.5 text-xs font-medium text-fg transition-colors duration-100 hover:bg-surface-2"
       >
         Ver mais
       </Link>
@@ -694,7 +722,7 @@ function WaiverMiniCard({ card, faltam }: { card: WaiverCardItem; faltam?: numbe
   return (
     <Link
       href={`/cartoes/${card.id}`}
-      className="group/waiver block rounded-md border bg-card p-3 transition-colors duration-150 hover:border-foreground"
+      className="group/waiver block rounded-panel bg-surface p-4 transition-colors duration-100 hover:bg-surface-2"
     >
       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-3">
         <div className="flex min-w-0 flex-1 items-center gap-3">
@@ -706,24 +734,26 @@ function WaiverMiniCard({ card, faltam }: { card: WaiverCardItem; faltam?: numbe
             className="h-10 w-16"
           />
           <div className="min-w-0 flex-1">
-            <p className="flex items-center gap-1 text-sm font-medium leading-tight">
+            <p className="flex items-center gap-1.5 text-sm font-semibold leading-snug text-fg">
               <span className="truncate group-hover/waiver:underline">{card.nome}</span>
-              <ArrowUpRight className="h-3 w-3 shrink-0 text-muted-foreground" />
+              <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-fg-3" />
             </p>
-            <p className="truncate text-xs text-muted-foreground">{card.emissor}</p>
+            <p className="truncate text-xs text-fg-3">{card.emissor}</p>
           </div>
         </div>
         <div className="shrink-0 sm:text-right">
           <LeadFact value={feeLabel(card.anuidade)} label="Anuidade" size="sm" />
           {faltam !== undefined ? (
-            <p className="num mt-1 text-xs">faltam R${faltam.toLocaleString("pt-BR")}</p>
+            <p className="num mt-1 text-xs text-fg-2">faltam R$ {faltam.toLocaleString("pt-BR")}</p>
           ) : (
-            <p className="mt-1 text-xs text-positive">✓ acessível</p>
+            <Tag variant="positive" className="mt-1">
+              Acessível agora
+            </Tag>
           )}
         </div>
       </div>
       {visibleRules.length > 0 && (
-        <div className="mt-3 flex min-w-0 flex-wrap gap-1">
+        <div className="mt-3 flex min-w-0 flex-wrap gap-1.5">
           {visibleRules.map((rule, index) => {
             const Icon =
               rule.category === "investment"
@@ -736,6 +766,7 @@ function WaiverMiniCard({ card, faltam }: { card: WaiverCardItem; faltam?: numbe
             return (
               <Tag
                 key={`${rule.category}-${rule.threshold_brl ?? index}`}
+                variant="outline"
                 className="min-w-0 max-w-full shrink"
               >
                 <Icon className="h-3 w-3 shrink-0" />
@@ -962,14 +993,15 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
             data-testid="chat-loading"
             role="status"
             aria-label="Carregando"
-            className="flex h-4 items-center"
+            className="flex items-center gap-2.5 py-1 text-xs text-fg-3"
           >
-            <span className="h-2 w-2 animate-pulse bg-foreground" />
+            <BrandMark animated className="h-4 w-5" />
+            <span>Analisando…</span>
           </div>
         )}
         {expanded && messages.length > 2 && (
           <button type="button" onClick={() => setExpanded(false)} className={QUIET_BUTTON}>
-            <ChevronDown className="h-3 w-3" />
+            <ChevronDown className="h-3.5 w-3.5" />
             Recolher
           </button>
         )}
@@ -980,17 +1012,15 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
 
   return (
     <>
-      {/* ── Compact view ── */}
+      {/* ── Main / Compact view ── */}
       <motion.div
         className={cn(
           "flex flex-col overflow-hidden",
-          // The chat page is a viewport-tall flex column from `sm` up, so this
-          // fills what the header and title leave; phones keep a usable floor.
           !isHero && "min-h-[520px] flex-1 sm:min-h-0",
           className
         )}
         animate={isHero ? { height: hasMessages ? 420 : "auto" } : {}}
-        transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
       >
         <AnimatePresence initial={false}>
           {hasMessages && (
@@ -1000,14 +1030,14 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.16 }}
             >
               {conversationContent}
             </motion.div>
           )}
         </AnimatePresence>
-        <div className="shrink-0 px-4 pb-4 pt-2">
-          <div className="mx-auto max-w-2xl">
+        <div className={cn("shrink-0 pb-2 pt-1", !isHero && "px-4 pb-5 pt-2 sm:px-6")}>
+          <div className={cn("mx-auto", isHero ? "w-full" : "max-w-[768px]")}>
             <ChatPromptBox
               isLoading={isStreaming}
               onSubmit={handleSubmit}
@@ -1022,8 +1052,8 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
               }}
               onExpand={hasMessages ? () => setIsFullscreen(true) : undefined}
             />
-            <p className="mt-2 text-center text-2xs text-muted-foreground">
-              Dados podem conter imprecisões. Confirme com o emissor.
+            <p className="mt-2.5 text-center text-xs text-fg-3">
+              Dados podem conter imprecisões. Confirme as condições diretamente com o emissor.
             </p>
           </div>
         </div>
@@ -1033,33 +1063,37 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
       <AnimatePresence>
         {isFullscreen && (
           <motion.div
-            className="fixed inset-0 z-[60] flex flex-col border border-foreground bg-popover text-popover-foreground"
-            initial={{ opacity: 0, y: 16 }}
+            className="fixed inset-0 z-[60] flex flex-col bg-page text-fg"
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Header */}
-            <div className="flex h-14 shrink-0 items-center justify-between gap-3 border-b px-4">
-              <p className="min-w-0 truncate text-sm font-medium">
-                {selectedHistory ? selectedHistory.title : "Chat"}
-              </p>
+            <div className="flex h-14 shrink-0 items-center justify-between gap-3 border-b border-line bg-page px-4 sm:px-6">
+              <div className="flex min-w-0 items-center gap-2.5">
+                <BrandMark className="h-4 w-5" />
+                <p className="min-w-0 truncate text-sm font-semibold text-fg">
+                  {selectedHistory ? selectedHistory.title : "Assistente de Cartões"}
+                </p>
+              </div>
               <button
                 type="button"
+                aria-label="Fechar conversa"
                 onClick={() => {
                   setIsFullscreen(false);
                   setSelectedHistory(null);
                 }}
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border text-muted-foreground transition-colors duration-150 hover:bg-muted hover:text-foreground"
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-page text-fg-2 transition-colors duration-100 hover:bg-surface hover:text-fg"
               >
-                <X className="h-3.5 w-3.5" />
+                <X className="h-4 w-4" />
               </button>
             </div>
 
             {/* Conversation */}
             {selectedHistory ? (
               <div className="min-h-0 flex-1 overflow-y-auto px-4">
-                <div className="mx-auto flex max-w-2xl flex-col gap-5 py-5">
+                <div className="mx-auto flex max-w-[768px] flex-col gap-6 py-6">
                   {selectedHistory.messages.map((msg) => (
                     <ChatMessageBubble key={msg.id} message={msg as UIMessage} />
                   ))}
@@ -1071,20 +1105,20 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
                   conversationContent
                 ) : (
                   <div className="flex h-full items-center justify-center">
-                    <p className="text-sm text-muted-foreground">Nenhuma mensagem ainda.</p>
+                    <p className="text-sm text-fg-3">Nenhuma mensagem ainda.</p>
                   </div>
                 )}
               </div>
             )}
 
             {/* Input */}
-            <div className="shrink-0 px-4 pb-4 pt-2">
+            <div className="shrink-0 px-4 pb-5 pt-2 sm:px-6">
               {selectedHistory && (
-                <p className="mx-auto mb-2 max-w-2xl text-xs text-muted-foreground">
+                <p className="mx-auto mb-2 max-w-[768px] text-xs font-medium text-fg-3">
                   Nova pergunta
                 </p>
               )}
-              <div className="mx-auto max-w-2xl">
+              <div className="mx-auto max-w-[768px]">
                 <ChatPromptBox
                   isLoading={isStreaming}
                   onSubmit={(text) => {
@@ -1108,7 +1142,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
 }
 
 const CHIP =
-  "flex h-7 max-w-full items-center gap-1 rounded-md border px-2.5 text-xs text-muted-foreground transition-colors duration-150 hover:border-foreground hover:text-foreground";
+  "flex h-8 max-w-full items-center gap-1.5 rounded-full border border-line bg-surface px-3.5 text-xs font-medium text-fg-2 transition-colors duration-100 hover:border-line-strong hover:bg-surface-2 hover:text-fg";
 
 /* ─── Prompt box ─── */
 function ChatPromptBox({
@@ -1188,106 +1222,109 @@ function ChatPromptBox({
   }
 
   return (
-    <PromptInput
-      value={value}
-      onValueChange={setValue}
-      isLoading={isLoading}
-      onSubmit={handleSubmit}
-      className={cn(historyOpen && "relative z-90")}
-    >
-      {(onExpand || (!value && !isLoading)) && (
-        <div className="flex flex-wrap items-center gap-1.5 px-2 pt-2">
-          {!value &&
-            !isLoading &&
-            chips.map((chip) => (
-              <button
-                key={chip.label}
-                type="button"
-                onClick={() => {
-                  onSubmit(chip.query);
+    <div className="space-y-2.5">
+      <PromptInput
+        value={value}
+        onValueChange={setValue}
+        isLoading={isLoading}
+        onSubmit={handleSubmit}
+        className={cn(historyOpen && "relative z-90")}
+      >
+        <PromptInputTextarea
+          placeholder="Pergunte sobre cartões..."
+          className="min-h-[48px] px-4 py-3.5 text-base md:text-[15px]"
+        />
+        <PromptInputActions className="justify-between px-3 pb-2.5">
+          <div className={cn("relative flex items-center gap-1.5", historyOpen && "z-90")}>
+            {historyOpen && historyLayer && (
+              <div
+                className="fixed z-[130] rounded-panel border border-line bg-raised p-2.5 text-fg shadow-menu"
+                style={{
+                  left: historyLayer.left,
+                  bottom: historyLayer.bottom,
+                  width: historyLayer.width,
+                  maxWidth: "calc(100vw - 1.5rem)",
                 }}
-                className={CHIP}
               >
-                <span className="truncate">{chip.label}</span>
+                <div className="mb-1.5 flex items-center justify-between px-2">
+                  <p className="text-xs font-semibold text-fg">Histórico</p>
+                  <p className="num text-xs text-fg-3">{history.length}</p>
+                </div>
+                {history.length ? (
+                  <div className="max-h-64 overflow-y-auto">
+                    {groups.map((group) => (
+                      <div key={group.label} className="mb-2 last:mb-0">
+                        <p className="px-2 py-1 text-xs font-medium text-fg-3">{group.label}</p>
+                        <div>
+                          {group.items.map((item) => (
+                            <button
+                              key={item.id}
+                              type="button"
+                              onClick={() => {
+                                onOpenHistory(item);
+                                setHistoryOpen(false);
+                              }}
+                              className="w-full rounded-lg px-2.5 py-2 text-left transition-colors duration-100 hover:bg-surface"
+                            >
+                              <p className="line-clamp-1 text-xs font-semibold text-fg">
+                                {item.title}
+                              </p>
+                              <p className="num mt-0.5 text-xs text-fg-3">
+                                {item.messages.length} mensagens ·{" "}
+                                {new Date(item.updatedAt).toLocaleTimeString("pt-BR", {
+                                  hour: "2-digit",
+                                  minute: "2-digit",
+                                })}
+                              </p>
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="px-2 py-3 text-xs text-fg-3">
+                    As conversas aparecem aqui depois da primeira resposta.
+                  </p>
+                )}
+              </div>
+            )}
+            <ActionButton
+              tooltip="Histórico"
+              onClick={() => setHistoryOpen((open) => !open)}
+              active={historyOpen}
+              buttonRef={historyButtonRef}
+            >
+              <History className="h-4 w-4" />
+            </ActionButton>
+            {onExpand && (
+              <button type="button" onClick={onExpand} className={CHIP}>
+                <Maximize2 className="h-3.5 w-3.5" />
+                Expandir
               </button>
-            ))}
-          {onExpand && (
-            <button type="button" onClick={onExpand} className={cn(CHIP, "ml-auto shrink-0")}>
-              <Maximize2 className="h-3 w-3" />
-              Expandir
+            )}
+          </div>
+          <PromptInputSubmit onStop={onStop} />
+        </PromptInputActions>
+      </PromptInput>
+
+      {!value && !isLoading && chips.length > 0 && (
+        <div className="flex flex-wrap items-center gap-2">
+          {chips.map((chip) => (
+            <button
+              key={chip.label}
+              type="button"
+              onClick={() => {
+                onSubmit(chip.query);
+              }}
+              className={CHIP}
+            >
+              <span className="truncate">{chip.label}</span>
             </button>
-          )}
+          ))}
         </div>
       )}
-      <PromptInputTextarea
-        placeholder="Pergunte sobre cartões..."
-        className="px-3 py-2.5 text-sm min-h-[42px]"
-      />
-      <PromptInputActions className="justify-between px-2 pb-2">
-        <div className={cn("relative flex items-center gap-1", historyOpen && "z-90")}>
-          {historyOpen && historyLayer && (
-            <div
-              className="fixed z-[130] rounded-md border border-foreground bg-popover p-2 text-popover-foreground"
-              style={{
-                left: historyLayer.left,
-                bottom: historyLayer.bottom,
-                width: historyLayer.width,
-                maxWidth: "calc(100vw - 1.5rem)",
-              }}
-            >
-              <div className="mb-1 flex items-center justify-between px-2">
-                <p className="text-xs font-medium">Histórico</p>
-                <p className="num text-2xs text-muted-foreground">{history.length}</p>
-              </div>
-              {history.length ? (
-                <div className="max-h-64 overflow-y-auto">
-                  {groups.map((group) => (
-                    <div key={group.label} className="mb-2 last:mb-0">
-                      <p className="px-2 py-1 text-2xs text-muted-foreground">{group.label}</p>
-                      <div>
-                        {group.items.map((item) => (
-                          <button
-                            key={item.id}
-                            type="button"
-                            onClick={() => {
-                              onOpenHistory(item);
-                              setHistoryOpen(false);
-                            }}
-                            className="w-full rounded-sm px-2 py-2 text-left transition-colors duration-150 hover:bg-muted"
-                          >
-                            <p className="line-clamp-1 text-xs font-medium">{item.title}</p>
-                            <p className="num mt-0.5 text-2xs text-muted-foreground">
-                              {item.messages.length} mensagens ·{" "}
-                              {new Date(item.updatedAt).toLocaleTimeString("pt-BR", {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                              })}
-                            </p>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="px-2 py-3 text-xs text-muted-foreground">
-                  As conversas aparecem aqui depois da primeira resposta.
-                </p>
-              )}
-            </div>
-          )}
-          <ActionButton
-            tooltip="Histórico"
-            onClick={() => setHistoryOpen((open) => !open)}
-            active={historyOpen}
-            buttonRef={historyButtonRef}
-          >
-            <History className="h-4 w-4" />
-          </ActionButton>
-        </div>
-        <PromptInputSubmit onStop={onStop} />
-      </PromptInputActions>
-    </PromptInput>
+    </div>
   );
 }
 
@@ -1311,10 +1348,8 @@ function ActionButton({
       title={tooltip}
       onClick={onClick}
       className={cn(
-        "flex h-8 w-8 items-center justify-center rounded-md transition-colors duration-150",
-        active
-          ? "bg-muted text-foreground"
-          : "text-muted-foreground hover:bg-muted hover:text-foreground"
+        "inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors duration-100",
+        active ? "bg-surface-2 text-fg" : "text-fg-2 hover:bg-surface hover:text-fg"
       )}
     >
       {children}

@@ -14,8 +14,8 @@ interface CardArtProps {
 }
 
 /**
- * The one way card art is shown: a flat bordered well. With no official art,
- * issuer initials on a mono tile stand in. No gradients, no shadows.
+ * Physical credit card framing: realistic 1.586:1 ISO proportion with quiet surface
+ * fallback and subtle paper lift (never a heavy grey bordered box).
  */
 export function CardArt({
   artUrl,
@@ -32,22 +32,25 @@ export function CardArt({
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center justify-center overflow-hidden rounded-md border bg-muted",
+        "flex shrink-0 items-center justify-center overflow-hidden bg-surface-2",
+        compact
+          ? "rounded-[6px] shadow-[0_1px_3px_rgb(var(--shadow-ink)/0.12),0_0_0_1px_rgb(var(--shadow-ink)/0.06)]"
+          : "rounded-[10px] shadow-paper",
         className
       )}
     >
       {src ? (
-        <img src={src} alt={label} loading={loading} className="h-full w-full object-contain p-1" />
+        <img src={src} alt={label} loading={loading} className="h-full w-full object-contain" />
       ) : (
         <div
           role="img"
           aria-label={label}
-          className="flex h-full w-full flex-col items-center justify-center gap-0.5"
+          className="flex h-full w-full flex-col items-center justify-center gap-0.5 px-1 text-center"
         >
-          <span className={cn("font-medium text-foreground", compact ? "text-2xs" : "text-xl")}>
+          <span className={cn("font-semibold text-fg", compact ? "text-xs" : "text-xl")}>
             {issuerInitials(issuerRaw)}
           </span>
-          {!compact && network && <span className="text-2xs text-muted-foreground">{network}</span>}
+          {!compact && network && <span className="text-xs text-fg-3">{network}</span>}
         </div>
       )}
     </div>

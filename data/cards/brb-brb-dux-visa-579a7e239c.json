@@ -43,10 +43,10 @@
   "eligibility": {
     "availability_status": "available",
     "hard_gate_fields": [],
-    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_income_brl_best_estimate": 20000,
     "minimum_investment_brl_best_estimate": "unknown",
     "recommendation_blocking_unknowns": false,
-    "requirements_text": "unknown",
+    "requirements_text": "Exige relacionamento de alta renda no BRB e limite de crédito aprovado a partir de R$ 50.000 (renda estimada a partir de R$ 20.000).",
     "requires_bank_account_claim": true,
     "source_status": "not_structured"
   },

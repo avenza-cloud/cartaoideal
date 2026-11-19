@@ -16,14 +16,14 @@ interface LeadFactProps {
 }
 
 const SIZE = {
-  sm: "text-base font-medium",
-  md: "text-xl font-medium",
-  lg: "text-3xl font-medium tracking-[-0.02em]",
+  sm: "text-base font-semibold tracking-[-0.01em]",
+  md: "text-xl font-semibold tracking-[-0.015em]",
+  lg: "text-3xl font-semibold tracking-[-0.025em]",
 } as const;
 
 /**
- * The single loudest element on a card surface. The yellow mark goes behind
- * the number only, and only when it is the best in its set.
+ * The single loudest numeric anchor on a card surface.
+ * Uses clean tabular Instrument Sans and semantic positive/negative tones.
  */
 export function LeadFact({
   value,
@@ -35,20 +35,19 @@ export function LeadFact({
   align = "left",
   className,
 }: LeadFactProps) {
+  const valueTone =
+    tone === "negative"
+      ? "text-danger-text"
+      : tone === "positive" || marked
+        ? "text-success-text"
+        : "text-fg";
+
   return (
     <div className={cn("min-w-0", align === "right" && "text-right", className)}>
-      <p className={cn("num whitespace-nowrap", SIZE[size])}>
-        <span
-          className={cn(
-            marked && "bg-mark px-1 text-mark-foreground",
-            !marked && tone === "positive" && "text-positive",
-            !marked && tone === "negative" && "text-negative"
-          )}
-        >
-          {value}
-        </span>
+      <p className={cn("num whitespace-nowrap", SIZE[size], valueTone)}>
+        <span>{value}</span>
       </p>
-      <p className="mt-0.5 text-xs text-muted-foreground">
+      <p className="mt-0.5 text-xs text-fg-3">
         {label}
         {hint && (
           <>

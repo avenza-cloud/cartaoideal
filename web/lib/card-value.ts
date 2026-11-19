@@ -385,13 +385,19 @@ function parseCashlikeRates(card: CardFacet): {
   const ignoredCategorySpecific: string[] = [];
 
   const partnerOnlyCashlike =
-    /(magalu|magazine luiza|amazon|mercado livre|extra|pao de acucar|pão de açúcar|nu viagens|passagens?|hoteis|hot[eé]is|hotel|companhia aerea|vivo)/;
+    /(magalu|magazine luiza|amazon|mercado livre|extra|pao de acucar|pão de açúcar|nu viagens|passagens?|hoteis|hot[eé]is|hotel|companhia aerea|vivo|em apps|em aplicativos|pacote de prefer[eê]ncias|pacote escolhido|categoria escolhida|digio\s*loja|shopping\s+\w+)/;
 
   for (const raw of cashlikeTextCandidates(card)) {
     const text = normalizeText(raw);
     if (!/(cashback|investback|credito na fatura|dinheiro de volta)/.test(text)) continue;
+
     const rate = parsePercent(text);
-    if (rate === null || rate <= 0 || rate > 0.08) continue;
+    if (rate === null || rate <= 0 || rate > 0.08) {
+      if (/(digio\s*loja|shopping\s+\w+)/.test(text)) {
+        ignoredCategorySpecific.push(String(raw).trim());
+      }
+      continue;
+    }
 
     const categorySpecific = partnerOnlyCashlike.test(text);
     if (categorySpecific) {
@@ -489,6 +495,51 @@ function parseSpendTieredRates(card: CardFacet): Array<{
     if (aboveMatch) {
       const minSpend = parseBrlNumber(aboveMatch[1]);
       if (minSpend !== null) {
+        tiers.push({ rate, minSpend, maxSpend: Infinity });
+      }
+    }
+  }
+
+  // Fallback: inline spend tiers in earning_summary (e.g. BV Único, BV Mais, PagBank)
+  if (tiers.length === 0) {
+    const summaryNorm = normalizeText(String(card.reward_return.earning_summary ?? ""));
+    const parseCompactSpend = (numStr: string, suffix?: string): number | null => {
+      const base = parseBrlNumber(numStr);
+      if (base === null) return null;
+      if (suffix === "k" || suffix === "mil") return base * 1000;
+      return base;
+    };
+
+    // "0,3% até r$ 3k" or "0,5% de cashback para faturas de até r$ 2.999,99"
+    for (const m of summaryNorm.matchAll(
+      /(\d+(?:[,.]\d+)?)\s*%(?:\s*de\s*cashback)?(?:\s*para\s*faturas?\s*(?:de)?)?\s*at[eé]\s*r\$\s*([\d.,]+)\s*(k|mil)?/g
+    )) {
+      const rate = Number(m[1].replace(",", ".")) / 100;
+      const maxSpend = parseCompactSpend(m[2], m[3]);
+      if (rate > 0 && rate <= 0.2 && maxSpend !== null) {
+        tiers.push({ rate, minSpend: 0, maxSpend });
+      }
+    }
+
+    // "0,5% de r$ 3k a 6k" or "0,8% de r$ 6k a 10k"
+    for (const m of summaryNorm.matchAll(
+      /(\d+(?:[,.]\d+)?)\s*%\s*(?:de|entre)\s*r\$\s*([\d.,]+)\s*(k|mil)?\s*(?:a|e)\s*(?:r\$\s*)?([\d.,]+)\s*(k|mil)?/g
+    )) {
+      const rate = Number(m[1].replace(",", ".")) / 100;
+      const minSpend = parseCompactSpend(m[2], m[3]);
+      const maxSpend = parseCompactSpend(m[4], m[5] ?? m[3]);
+      if (rate > 0 && rate <= 0.2 && minSpend !== null && maxSpend !== null) {
+        tiers.push({ rate, minSpend, maxSpend });
+      }
+    }
+
+    // "1,5% acima de r$ 10k" or "1% de cashback para faturas a partir de r$ 3.000"
+    for (const m of summaryNorm.matchAll(
+      /(\d+(?:[,.]\d+)?)\s*%(?:\s*de\s*cashback)?(?:\s*para\s*faturas?)?\s*(?:acima|a\s*partir)\s*de\s*r\$\s*([\d.,]+)\s*(k|mil)?/g
+    )) {
+      const rate = Number(m[1].replace(",", ".")) / 100;
+      const minSpend = parseCompactSpend(m[2], m[3]);
+      if (rate > 0 && rate <= 0.2 && minSpend !== null) {
         tiers.push({ rate, minSpend, maxSpend: Infinity });
       }
     }
@@ -892,7 +943,21 @@ function estimateAnnualLoungeVisits(
     return { visits: Math.min(demand, card.lounge_access.annual_visits) };
   }
 
-  if (card.lounge_access.unlimited) return { visits: demand };
+  if (card.lounge_access.unlimited) {
+    const programsNorm = normalizeText((card.lounge_access.programs ?? []).join(" "));
+    const hasGlobalNetwork =
+      /(loungekey|priority pass|visa airport companion|dragon\s*pass|mastercard airport|centurion|brb vip)/.test(
+        programsNorm
+      );
+    const isTopBand = /black|infinite|centurion|nanquim/.test(normalizeText(card.variant_band));
+    if (!hasGlobalNetwork && !isTopBand) {
+      return {
+        visits: Math.min(demand, FALLBACK_LOUNGE_VISITS_STANDARD),
+        note: "Sala VIP própria de companhia aérea em variante não-Black/Infinite; limitado a 2 usos/ano.",
+      };
+    }
+    return { visits: demand };
+  }
 
   const fallback = fallbackAnnualLoungeCap(card);
   return {
@@ -1004,6 +1069,7 @@ export function scoreCardValue(
   const effectiveMonthlyFee = effectiveAnnualFee / 12;
 
   const pointsRates = parsePointsRates(card);
+  const totalSpend = Math.max(0, profile.avgMonthlySpendBrl);
 
   // Nomad Explorer: tiered earning rate based on user's USD investment balance
   if (card.card_stable_id === NOMAD_CARD_ID) {
@@ -1022,12 +1088,39 @@ export function scoreCardValue(
     } else {
       pointsRates.note = `Nomad Explorer: taxa ${nomadRate} pts/USD aplicada com US$${investedUsd.toFixed(0)} investidos (faixa ≥ US$${tier.minUsd.toLocaleString()}).`;
     }
+  } else if (
+    card.card_stable_id === "porto-bank-porto-bank-mastercard-black-f201dd088d" ||
+    card.card_stable_id === "porto-bank-porto-bank-visa-infinite-35c693cb81"
+  ) {
+    const portoRate = totalSpend > 20_000 ? 3.5 : 2.5;
+    pointsRates.domesticRate = portoRate;
+    pointsRates.internationalRate = portoRate;
+    pointsRates.fallbackRate = portoRate;
+    pointsRates.note = `PortoPlus: taxa de ${portoRate.toLocaleString("pt-BR")} pts/USD aplicada para fatura mensal de ${formatBrl(totalSpend)} (3,5 pts/USD acima de R$20.000).`;
+  } else if (card.card_stable_id === "itau-itau-uniclass-visa-infinite-53e9a1b8c2") {
+    const uniclassRate = totalSpend >= 4_000 ? 2.5 : 2.0;
+    pointsRates.domesticRate = uniclassRate;
+    pointsRates.internationalRate = uniclassRate;
+    pointsRates.fallbackRate = uniclassRate;
+  } else if (card.card_stable_id === "banco-do-brasil-banco-do-brasil-visa-altus-liv-0ba9e1e5c9") {
+    const altusLivDomestic = totalSpend > 25_000 ? 4.0 : totalSpend >= 15_000 ? 3.5 : 3.0;
+    pointsRates.domesticRate = altusLivDomestic;
+    pointsRates.internationalRate = 4.0;
+    pointsRates.fallbackRate = altusLivDomestic;
+  } else if (
+    card.card_stable_id === "itau-itau-personnalite-the-essential-mastercard-black-41c89f23ea"
+  ) {
+    const inv = profile.avgInvestedBrl ?? 0;
+    const essentialRate =
+      inv >= 1_000_000 ? 3.5 : inv >= 500_000 ? 3.0 : inv >= 150_000 ? 2.5 : 2.0;
+    pointsRates.domesticRate = essentialRate;
+    pointsRates.internationalRate = essentialRate;
+    pointsRates.fallbackRate = essentialRate;
   }
 
   const pointValuation = pointValuationForCard(card, profile, assumptions);
 
   // O gasto internacional é parte do gasto total: nunca maior que ele.
-  const totalSpend = Math.max(0, profile.avgMonthlySpendBrl);
   const declaredInternationalSpend = Math.max(0, profile.monthlyInternationalSpendBrl ?? 0);
   const internationalSpend = Math.min(declaredInternationalSpend, totalSpend);
   const domesticSpend = totalSpend - internationalSpend;
@@ -1063,8 +1156,18 @@ export function scoreCardValue(
   const cashlikeInternationalRate = hasTiers
     ? tieredRate
     : (cashlike.internationalRate ?? cashlike.generalRate);
-  const cashlikeRewardMonthly =
+  let cashlikeRewardMonthly =
     domesticSpend * cashlikeDomesticRate + internationalSpend * cashlikeInternationalRate;
+
+  // Bradesco Like Visa: category-restricted and hard-capped cashback (5% apps up to R$15/mo,
+  // 3% on 1 chosen lifestyle package up to R$500/mo, 0% on general spend outside those categories).
+  if (card.card_stable_id === "bradesco-bradesco-like-visa-bb515842d5") {
+    const appsCashback = Math.min(15, totalSpend * 0.1 * 0.05);
+    const packageCashback = Math.min(500, totalSpend * 0.25 * 0.03);
+    cashlikeRewardMonthly = appsCashback + packageCashback;
+    cashlike.note =
+      "Bradesco Like: cashback restrito a apps (5%, teto de R$15/mês) e 1 pacote de categoria (3%, teto de R$500/mês), com 0% no gasto geral fora das categorias; estimado sobre 10% do gasto em apps e 25% no pacote.";
+  }
   const grossRewardMonthlyAtSaleValuation = Math.max(
     pointsRewardMonthlySale,
     cashlikeRewardMonthly

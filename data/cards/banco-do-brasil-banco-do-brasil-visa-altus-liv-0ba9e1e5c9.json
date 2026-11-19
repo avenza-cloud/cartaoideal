@@ -44,10 +44,10 @@
   "eligibility": {
     "availability_status": "available",
     "hard_gate_fields": [],
-    "minimum_income_brl_best_estimate": "unknown",
-    "minimum_investment_brl_best_estimate": "unknown",
+    "minimum_income_brl_best_estimate": 25000,
+    "minimum_investment_brl_best_estimate": 1000000,
     "recommendation_blocking_unknowns": false,
-    "requirements_text": "unknown",
+    "requirements_text": "Exclusivo para clientes Banco do Brasil Estilo / Private com a partir de R$ 1 milhão em investimentos.",
     "requires_bank_account_claim": true,
     "source_status": "not_structured"
   },

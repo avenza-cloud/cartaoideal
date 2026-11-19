@@ -59,9 +59,9 @@
       "Adicionais gratuitos: 0"
     ],
     "rewards": [
-      "Pontuação: 1,5% de cashback",
-      "Retorno financeiro: cashback",
-      "Regra de pontuação: 1,5% de cashback"
+      "Cashback: Até 5% em apps (limite R$ 15/mês) e 3% no pacote de preferências (limite R$ 500/mês)",
+      "Retorno financeiro: cashback por categoria",
+      "Demais compras fora das categorias elegíveis: 0% de cashback"
     ]
   },
   "characteristics": [
@@ -75,7 +75,7 @@
       "category": "rewards",
       "key": "earning_rate",
       "label": "Pontuação",
-      "value": "1,5% de cashback"
+      "value": "Até 5% de cashback em apps e 3% no pacote de preferências"
     },
     {
       "category": "rewards",
@@ -87,7 +87,7 @@
       "category": "rewards",
       "key": "earning_detail",
       "label": "Regra de pontuação",
-      "value": "1,5% de cashback"
+      "value": "5% de cashback em apps (limite R$ 15/mês) e 3% no pacote de preferências (limite R$ 500/mês)"
     },
     {
       "category": "fees",

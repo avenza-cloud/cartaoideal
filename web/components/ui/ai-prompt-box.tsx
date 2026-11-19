@@ -2,7 +2,6 @@
 
 import React from "react";
 import { ArrowUp, Square } from "lucide-react";
-import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 /* ─── Textarea ─── */
@@ -14,7 +13,7 @@ const Textarea = React.forwardRef<
     ref={ref}
     rows={1}
     className={cn(
-      "flex w-full resize-none bg-transparent px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 scrollbar-thin",
+      "flex w-full resize-none bg-transparent px-4 py-3 text-base leading-relaxed text-fg placeholder:text-fg-3 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
       className
     )}
     {...props}
@@ -41,7 +40,7 @@ const Ctx = React.createContext<PromptCtx>({
 
 const useCtx = () => React.useContext(Ctx);
 
-/* ─── PromptInput (container) ─── */
+/* ─── PromptInput (Avenza floating composer panel) ─── */
 interface PromptInputProps extends React.HTMLAttributes<HTMLDivElement> {
   isLoading?: boolean;
   value?: string;
@@ -85,8 +84,8 @@ export const PromptInput = React.forwardRef<HTMLDivElement, PromptInputProps>(
         <div
           ref={ref}
           className={cn(
-            "rounded-md border border-input bg-card transition-colors duration-150 focus-within:border-foreground",
-            isLoading && "border-border",
+            "rounded-[14px] border border-line bg-raised shadow-card transition-[border-color,box-shadow] duration-150 focus-within:border-accent-line focus-within:shadow-menu focus-within:ring-2 focus-within:ring-ring/20",
+            isLoading && "border-line",
             className
           )}
           {...props}
@@ -142,7 +141,7 @@ export const PromptInputActions: React.FC<React.HTMLAttributes<HTMLDivElement>> 
   </div>
 );
 
-/* ─── Send / Stop button ─── */
+/* ─── Send / Stop button (circular glowing primary action) ─── */
 interface PromptInputSubmitProps {
   onStop?: () => void;
   className?: string;
@@ -154,27 +153,27 @@ export const PromptInputSubmit: React.FC<PromptInputSubmitProps> = ({
 }) => {
   const { isLoading, value, onSubmit } = useCtx();
   const hasContent = value.trim() !== "";
+  const active = isLoading || hasContent;
 
   return (
-    <motion.button
+    <button
       type="button"
+      aria-label={isLoading ? "Parar resposta" : "Enviar pergunta"}
+      disabled={!active}
       onClick={isLoading ? onStop : hasContent ? onSubmit : undefined}
-      whileTap={{ scale: 0.92 }}
       className={cn(
-        "flex h-8 w-8 items-center justify-center rounded-md transition-colors duration-150",
-        isLoading
-          ? "bg-foreground text-background"
-          : hasContent
-          ? "bg-mark text-mark-foreground"
-          : "bg-transparent text-muted-foreground cursor-default",
+        "flex h-9 w-9 shrink-0 items-center justify-center rounded-full transition-[background-color,color,transform] duration-100 ease-out active:not-disabled:scale-[0.98]",
+        active
+          ? "glow glow-accent glow-subtle bg-primary text-on-accent"
+          : "bg-surface-2 text-fg-disabled cursor-not-allowed",
         className
       )}
     >
       {isLoading ? (
-        <Square className="h-3.5 w-3.5 fill-background" />
+        <Square className="h-3.5 w-3.5 fill-current" />
       ) : (
         <ArrowUp className="h-4 w-4" />
       )}
-    </motion.button>
+    </button>
   );
 };

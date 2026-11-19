@@ -12,6 +12,7 @@ import { useCardDetailHref } from "@/lib/use-card-detail-href";
 import { Button } from "@/components/ui/button";
 import { ListFilter } from "lucide-react";
 import { CardArt, LeadFact, Tag } from "@/components/card";
+import { cn } from "@/lib/utils";
 import type {
   CardFacet,
   CardScore,
@@ -58,28 +59,32 @@ function moneyPerMonth(value: number) {
   })}/mês`;
 }
 
-/** The number that decides, with the sale–travel range as a hint. */
 interface Lead {
   value: string;
   label: string;
   hint?: string;
-  tone?: "default" | "negative";
+  tone?: "default" | "positive" | "negative";
 }
 
 function valueLead(score: SlimValueScore): Lead {
   const low = Math.min(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl);
   const high = Math.max(score.netMonthlyValueBrl, score.netMonthlyValueRangeHighBrl);
+  const prefix = score.decisionMonthlyValueBrl > 0 ? "+" : "";
   return {
-    value: `${brl(score.decisionMonthlyValueBrl)}/mês`,
-    label: "valor líquido estimado por mês",
+    value: `${prefix}${brl(score.decisionMonthlyValueBrl)}/mês`,
+    label: "valor líquido estimado",
     hint: high - low >= 1 ? `${brl(low)} a ${brl(high)}` : undefined,
-    tone: score.decisionMonthlyValueBrl < 0 ? "negative" : "default",
+    tone:
+      score.decisionMonthlyValueBrl < 0
+        ? "negative"
+        : score.decisionMonthlyValueBrl > 0
+          ? "positive"
+          : "default",
   };
 }
 
-/** Without a value score the annual fee leads. Unknown is never shown as free. */
 function feeLead(fee: AnnualFee): Lead {
-  if (fee === 0) return { value: "Sem anuidade", label: "anuidade" };
+  if (fee === 0) return { value: "Sem anuidade", label: "anuidade", tone: "positive" };
   if (typeof fee === "number") return { value: `${brl(fee)}/ano`, label: "anuidade" };
   if (fee === "variable_pricing_claim") return { value: "Variável", label: "anuidade" };
   return { value: FEE_UNKNOWN, label: "consulte o emissor" };
@@ -107,7 +112,7 @@ function describeProfile(profile: UserProfile) {
 
 function RankRow({
   rank,
-  eyebrow,
+  currentBadge,
   id,
   nome,
   emissor,
@@ -123,7 +128,7 @@ function RankRow({
   showFeeInDetail = false,
 }: {
   rank?: number;
-  eyebrow?: string;
+  currentBadge?: string;
   id: string;
   nome: string;
   emissor: string;
@@ -142,14 +147,13 @@ function RankRow({
   const feeKnown = valueScore ? valueScore.feeKnown : anuidade !== "unknown" && anuidade !== null;
   const fact = feeKnown ? note : FEE_UNKNOWN;
   const lead = valueScore ? valueLead(valueScore) : feeLead(anuidade);
-  // A fee-free tag would contradict an unknown fee.
   const shownBadges = feeKnown ? badges : badges.filter((badge) => badge.key !== "general");
 
   let detail: string | undefined;
   if (valueScore) {
-    detail = `Retorno: ${formatGrossRewardMonthlyDisplay(valueScore, travelFrequency)} · Benefícios: ${moneyPerMonth(valueScore.intangibleMonthlyValueBrl)}`;
+    detail = `Retorno ${formatGrossRewardMonthlyDisplay(valueScore, travelFrequency)} · Benefícios ${moneyPerMonth(valueScore.intangibleMonthlyValueBrl)}`;
     if (showFeeInDetail && feeKnown) {
-      detail += ` · Anuidade: ${moneyPerMonth(-valueScore.effectiveMonthlyFeeBrl)}`;
+      detail += ` · Anuidade ${moneyPerMonth(-valueScore.effectiveMonthlyFeeBrl)}`;
     }
   } else if (earningsSummary && earningsSummary !== "unknown") {
     detail = earningsSummary;
@@ -158,9 +162,23 @@ function RankRow({
   return (
     <Link
       href={detailHref}
-      className="grid grid-cols-[1.5rem_3.5rem_minmax(0,1fr)] items-center gap-x-3 gap-y-2 px-3 py-3 transition-colors duration-150 hover:bg-muted sm:grid-cols-[1.5rem_4rem_minmax(0,1fr)_auto]"
+      className={cn(
+        "grid grid-cols-[1.75rem_3.75rem_minmax(0,1fr)] items-center gap-x-3.5 gap-y-2 px-3.5 py-4 transition-colors duration-100 sm:grid-cols-[2rem_4rem_minmax(0,1fr)_auto]",
+        marked
+          ? "my-1.5 rounded-panel bg-brand-wash hover:bg-brand-wash-strong/70"
+          : currentBadge
+            ? "my-1.5 rounded-panel bg-surface hover:bg-surface-2"
+            : "border-b border-line last:border-b-0 hover:bg-surface"
+      )}
     >
-      <span className="num text-xs text-muted-foreground">{rank ? `#${rank}` : "—"}</span>
+      <span
+        className={cn(
+          "num text-xs font-medium",
+          marked ? "font-semibold text-brand-accent" : "text-fg-3"
+        )}
+      >
+        {rank ? `#${rank}` : "—"}
+      </span>
 
       <CardArt
         compact
@@ -168,26 +186,31 @@ function RankRow({
         issuerRaw={emissor}
         network={bandeira}
         displayName={nome}
-        className="h-9 w-14 sm:h-10 sm:w-16"
+        className="h-[38px] w-[60px] sm:h-10 sm:w-16"
       />
 
       <div className="min-w-0">
-        {eyebrow && <p className="text-2xs text-muted-foreground">{eyebrow}</p>}
-        <p className="truncate text-sm font-medium">{nome}</p>
-        <p className="truncate text-xs text-muted-foreground" title={fact}>
+        <div className="flex flex-wrap items-center gap-1.5">
+          <p className="truncate text-[15px] font-semibold leading-snug text-fg">{nome}</p>
+          {marked && (
+            <Tag variant="brand" className="bg-raised">
+              Melhor escolha
+            </Tag>
+          )}
+          {currentBadge && <Tag variant="info">{currentBadge}</Tag>}
+        </div>
+        <p className="mt-0.5 truncate text-xs text-fg-2" title={fact}>
           {emissor} · {fact}
         </p>
         {detail && (
-          <p className="num mt-0.5 hidden truncate text-2xs text-muted-foreground sm:block">
-            {detail}
-          </p>
+          <p className="num mt-0.5 hidden truncate text-xs text-fg-3 sm:block">{detail}</p>
         )}
         {shownBadges.length > 0 && (
-          <div className="mt-1 flex flex-wrap gap-1">
+          <div className="mt-2 flex flex-wrap gap-1.5">
             {shownBadges.map((badge) => (
               <Tag
                 key={badge.key}
-                variant={badge.variant === "waiver_benefit" ? "positive" : "quiet"}
+                variant={badge.variant === "waiver_benefit" ? "positive" : "outline"}
               >
                 {badge.label}
               </Tag>
@@ -206,10 +229,7 @@ function RankRow({
           marked={marked}
         />
         {valueScore && (
-          <p
-            className="num mt-0.5 text-2xs text-muted-foreground"
-            title="Percentil entre os cartões elegíveis"
-          >
+          <p className="num mt-0.5 text-xs text-fg-3" title="Percentil entre os cartões elegíveis">
             {valueScore.score0To100}/100
           </p>
         )}
@@ -218,16 +238,16 @@ function RankRow({
   );
 }
 
-function SkeletonRows({ n = 6 }: { n?: number }) {
+function SkeletonRows({ n = 5 }: { n?: number }) {
   return (
-    <div className="divide-y" aria-busy="true">
+    <div className="divide-y divide-line border-y border-line" aria-busy="true">
       {Array.from({ length: n }).map((_, i) => (
-        <div key={i} className="flex items-center gap-3 px-3 py-3">
-          <div className="h-4 w-6 rounded-sm bg-muted" />
-          <div className="h-10 w-16 rounded-md bg-muted" />
-          <div className="flex-1 space-y-1.5">
-            <div className="h-3 w-40 max-w-full rounded-sm bg-muted" />
-            <div className="h-2.5 w-56 max-w-full rounded-sm bg-muted" />
+        <div key={i} className="flex items-center gap-3.5 px-3.5 py-4">
+          <div className="h-4 w-6 rounded-sm bg-surface-2" />
+          <div className="h-10 w-16 rounded-[6px] bg-surface-2" />
+          <div className="flex-1 space-y-2">
+            <div className="h-3.5 w-44 max-w-full rounded-sm bg-surface-2" />
+            <div className="h-3 w-64 max-w-full rounded-sm bg-surface-2" />
           </div>
         </div>
       ))}
@@ -245,7 +265,6 @@ export function PersonalizedRanking() {
   const [retryToken, setRetryToken] = useState(0);
 
   useEffect(() => {
-    // Bumping the token is how "Tentar novamente" re-runs this fetch.
     void retryToken;
     let cancelled = false;
     setError(false);
@@ -297,27 +316,27 @@ export function PersonalizedRanking() {
   const referenceTravel = travelFrequencyForValueModeling(DEFAULT_SCORING_PROFILE);
 
   return (
-    <section className="overflow-hidden rounded-md border bg-card">
-      <div className="flex flex-wrap items-start justify-between gap-x-3 gap-y-2 border-b px-3 py-3">
+    <section className="space-y-4">
+      <div className="flex flex-wrap items-end justify-between gap-x-4 gap-y-2">
         <div className="min-w-0">
-          <h2 className="text-base font-medium">
+          <h2 className="text-lg font-semibold tracking-tight text-fg">
             {profile ? "Ranking personalizado" : "Melhores cartões"}
           </h2>
-          <p className="num text-xs text-muted-foreground">
+          <p className="num mt-0.5 text-sm text-fg-3">
             {profile
-              ? `R$${profile.monthlySalaryBrl.toLocaleString("pt-BR")} renda · R$${profile.avgMonthlySpendBrl.toLocaleString("pt-BR")} gasto/mês`
+              ? `Renda R$ ${profile.monthlySalaryBrl.toLocaleString("pt-BR")}/mês · Gasto R$ ${profile.avgMonthlySpendBrl.toLocaleString("pt-BR")}/mês`
               : "Por pontuação geral · Configure seu perfil para personalizar"}
           </p>
           {!profile && (
-            <p className="num mt-0.5 text-xs text-muted-foreground">
-              Calculado para um perfil de referência: {describeProfile(DEFAULT_SCORING_PROFILE)}.
+            <p className="num mt-0.5 text-xs text-fg-3">
+              Perfil de referência: {describeProfile(DEFAULT_SCORING_PROFILE)}.
             </p>
           )}
         </div>
         {profile ? (
           <Button asChild variant="outline" size="sm">
             <Link href="/cartoes?profileRank=true">
-              <ListFilter />
+              <ListFilter className="h-3.5 w-3.5" />
               Ver lista completa
             </Link>
           </Button>
@@ -329,10 +348,10 @@ export function PersonalizedRanking() {
       </div>
 
       {profile && currentCard && (
-        <div className="border-b">
+        <div>
           <RankRow
             rank={currentCard.rank ?? undefined}
-            eyebrow="Seu cartão atual"
+            currentBadge="Seu cartão atual"
             id={currentCard.score.card.card_stable_id}
             nome={currentCard.score.card.display_name}
             emissor={currentCard.score.card.issuer_raw}
@@ -354,10 +373,8 @@ export function PersonalizedRanking() {
       {loading && <SkeletonRows />}
 
       {!loading && error && (
-        <div className="flex flex-col items-center gap-2 px-4 py-6 text-center">
-          <p className="text-xs text-muted-foreground">
-            Não foi possível carregar o ranking agora.
-          </p>
+        <div className="flex flex-col items-center gap-3 rounded-panel bg-surface px-4 py-8 text-center">
+          <p className="text-sm text-fg-2">Não foi possível carregar o ranking agora.</p>
           <Button variant="outline" size="sm" onClick={() => setRetryToken((t) => t + 1)}>
             Tentar novamente
           </Button>
@@ -365,7 +382,7 @@ export function PersonalizedRanking() {
       )}
 
       {!loading && !error && profile && results && (
-        <div className="divide-y">
+        <div className="border-y border-line">
           {results.map((scored, idx) => {
             const card = scored.card;
             const eff = scored.valueScore?.effectiveAnnualFeeBrl;
@@ -384,7 +401,7 @@ export function PersonalizedRanking() {
                 valueScore={scored.valueScore}
                 badges={feeWaiverBadgesForCard(card, profile)}
                 travelFrequency={travelFrequencyForValueModeling(profile)}
-                marked={idx === 0}
+                marked={idx === 0 && scored.valueScore?.eligible !== false}
               />
             );
           })}
@@ -392,7 +409,7 @@ export function PersonalizedRanking() {
       )}
 
       {!loading && !error && !profile && topCards && (
-        <div className="divide-y">
+        <div className="border-y border-line">
           {topCards.map((c, idx) => (
             <RankRow
               key={c.id}

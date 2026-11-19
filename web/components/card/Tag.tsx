@@ -1,19 +1,30 @@
 import { cn } from "@/lib/utils";
 
 const VARIANT = {
-  /** Neutral fact: segment, network, issuer. */
-  outline: "border-border text-foreground",
-  quiet: "border-transparent bg-muted text-muted-foreground",
-  solid: "border-foreground bg-foreground text-background",
-  positive: "border-positive text-positive",
-  negative: "border-negative text-negative",
-  mark: "border-mark bg-mark text-mark-foreground",
+  /** Neutral subtle outline pill */
+  outline: "border border-line bg-page text-fg-2",
+  /** Soft neutral metadata pill (Lime default) */
+  quiet: "border border-transparent bg-surface-2 text-fg-2",
+  /** Dark solid pill */
+  solid: "border border-transparent bg-primary text-on-accent",
+  /** Vermelho Avenza soft wash — #1 best pick & featured badges */
+  brand: "border border-brand-border bg-brand-wash text-brand-accent",
+  /** Alias kept for backward compatibility */
+  mark: "border border-brand-border bg-brand-wash text-brand-accent",
+  /** Emerald tint — positive return & fee waivers */
+  positive: "border border-transparent bg-success-tint text-success-text",
+  /** Amber tint — partial waiver / attention */
+  warn: "border border-transparent bg-warn-tint text-warn-text",
+  /** Coral tint — ineligible / negative cost */
+  negative: "border border-transparent bg-danger-tint text-danger-text",
+  /** Petrol teal tint — current card / neutral state */
+  info: "border border-transparent bg-info-tint text-info-text",
 } as const;
 
-/** Square mono tag. Colour only for gain, cost, or the single best pick. */
+/** Sentence-case Lime pill badge. Never clickable (use Button/Chip for toggles). */
 export function Tag({
   children,
-  variant = "outline",
+  variant = "quiet",
   className,
 }: {
   children: React.ReactNode;
@@ -23,7 +34,7 @@ export function Tag({
   return (
     <span
       className={cn(
-        "inline-flex h-5 shrink-0 items-center gap-1 whitespace-nowrap rounded-sm border px-1.5 text-2xs font-medium",
+        "inline-flex h-6 shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-2.5 text-xs font-medium tracking-[0.01em]",
         VARIANT[variant],
         className
       )}

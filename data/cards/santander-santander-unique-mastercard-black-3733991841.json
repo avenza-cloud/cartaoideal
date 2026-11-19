@@ -44,10 +44,10 @@
     "hard_gate_fields": [
       "availability"
     ],
-    "minimum_income_brl_best_estimate": "unknown",
+    "minimum_income_brl_best_estimate": 15000,
     "minimum_investment_brl_best_estimate": "unknown",
-    "recommendation_blocking_unknowns": true,
-    "requirements_text": "unknown",
+    "recommendation_blocking_unknowns": false,
+    "requirements_text": "Segmento Santander Select/Unique ou renda mensal a partir de R$ 15.000",
     "requires_bank_account_claim": true,
     "source_status": "official"
   },
