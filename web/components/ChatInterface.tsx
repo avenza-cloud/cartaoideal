@@ -36,7 +36,7 @@ import Link from "next/link";
 import type { UIMessage } from "ai";
 import type { FeeWaiverRule } from "@/types/cards";
 import { feeWaiverRuleBadgeVariant, feeWaiverRuleDisplayLabel } from "@/lib/fee-waiver-badges";
-import { CardArt, DataRow, LeadFact, type Stat, StatRow, Tag } from "@/components/card";
+import { CardArt, Tag } from "@/components/card";
 import { BrandMark } from "@/components/BrandMark";
 import { cn } from "@/lib/utils";
 
@@ -46,7 +46,17 @@ interface ChatInterfaceProps {
 }
 
 const CHAT_HISTORY_KEY = "credit-card-chat-history";
+const ACTIVE_CHAT_SESSION_KEY = "cartaoideal-active-chat-session";
 const MAX_CHAT_HISTORY = 20;
+
+interface ActiveChatSession {
+  variant: "full" | "hero";
+  conversationId: string | null;
+  messages: UIMessage[];
+  isFullscreen: boolean;
+  selectedHistory: ChatHistoryItem | null;
+  scrollTop: number;
+}
 
 interface ChatHistoryItem {
   id: string;
@@ -199,7 +209,13 @@ function groupedHistory(history: ChatHistoryItem[]) {
   }, []);
 }
 
-function ChatMessageBubble({ message }: { message: UIMessage }) {
+function ChatMessageBubble({
+  message,
+  onNavigate,
+}: {
+  message: UIMessage;
+  onNavigate?: () => void;
+}) {
   const isUser = message.role === "user";
   return (
     <Message
@@ -210,7 +226,7 @@ function ChatMessageBubble({ message }: { message: UIMessage }) {
         {message.parts.map((part, i) => {
           if (isTextUIPart(part)) {
             return isUser ? (
-              <span key={i} className="text-sm">
+              <span key={i} className="text-[13.5px]">
                 {part.text}
               </span>
             ) : (
@@ -226,6 +242,7 @@ function ChatMessageBubble({ message }: { message: UIMessage }) {
                 toolName={toolName}
                 state={part.state as string}
                 output={output}
+                onNavigate={onNavigate}
               />
             );
           }
@@ -236,154 +253,170 @@ function ChatMessageBubble({ message }: { message: UIMessage }) {
   );
 }
 
-/* ─── Mini card used in list artifacts ─── */
-function MiniCard({ card, rank, best }: { card: CardItem; rank?: number; best?: boolean }) {
+/* ─── Mini card row used in condensed list artifacts ─── */
+function MiniCard({
+  card,
+  rank,
+  best,
+  onNavigate,
+}: {
+  card: CardItem;
+  rank?: number;
+  best?: boolean;
+  onNavigate?: () => void;
+}) {
   const { ids, add, remove, canAdd } = useCompareStore();
   const selected = ids.includes(card.id);
-  const badges = (card.regrasIsencao ?? []).slice(0, 3);
+  const badges = (card.regrasIsencao ?? []).slice(0, 2);
   const annualFeeHint = typeof card.anuidade === "number" ? card.anuidade : undefined;
   const net = netMonthly(card);
   const grossReturn = card.valorEstimado?.retornoBrutoMensal;
 
-  // The fee leads when there is no estimate, so it is not repeated below.
-  const stats: Stat[] = [];
+  const metaParts: string[] = [card.emissor];
   if (net !== undefined) {
-    stats.push({
-      label: "Anuidade",
-      value: feeLabel(card.anuidade),
-      tone: isFree(card.anuidade) ? "positive" : "default",
-    });
+    metaParts.push(
+      isFree(card.anuidade) ? "Grátis" : `Anuidade ${feeLabel(card.anuidade).replace("/ano", "")}`
+    );
   }
-  stats.push(
-    {
-      label: "Retorno",
-      value:
-        typeof grossReturn === "number"
-          ? moneyLabel(grossReturn)
-          : (card.retornoFinanceiro?.earning_summary ?? "—"),
-    },
-    { label: "Lounge", value: hasLounge(card.lounge) ? "Sim" : "Não" }
-  );
+  if (typeof grossReturn === "number") {
+    metaParts.push(`Retorno ${moneyLabel(grossReturn)}`);
+  } else if (card.retornoFinanceiro?.earning_summary) {
+    metaParts.push(card.retornoFinanceiro.earning_summary);
+  }
+  if (hasLounge(card.lounge)) {
+    metaParts.push("Lounge");
+  }
 
   return (
     <div
       className={cn(
-        "rounded-panel p-4 transition-colors duration-100",
-        best ? "border border-brand-border bg-brand-wash" : "bg-surface"
+        "flex items-center gap-2.5 px-3 py-2 transition-colors duration-100",
+        best ? "bg-brand-wash/70" : "hover:bg-surface-2/60"
       )}
     >
       <Link
         href={`/cartoes/${card.id}`}
-        className="group/mini flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-3"
+        onClick={onNavigate}
+        className="group/mini flex min-w-0 flex-1 items-center gap-2.5"
       >
-        <div className="flex min-w-0 flex-1 items-center gap-3">
-          {rank !== undefined && (
+        {rank !== undefined && (
+          <span
+            className={cn(
+              "num w-5 shrink-0 text-[11px] font-medium",
+              best ? "font-semibold text-brand-accent" : "text-fg-3"
+            )}
+          >
+            #{rank}
+          </span>
+        )}
+        <CardArt
+          artUrl={card.cardArtUrl}
+          issuerRaw={card.emissor ?? ""}
+          displayName={card.nome}
+          compact
+          decorative
+          className="h-7 w-11"
+        />
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-1.5">
+            <span className="truncate text-[13px] font-semibold leading-tight text-fg group-hover/mini:underline">
+              {card.nome}
+            </span>
+            <ArrowUpRight className="h-3 w-3 shrink-0 text-fg-3" />
+          </div>
+          <p className="num truncate text-[11px] text-fg-3">{metaParts.join(" · ")}</p>
+          {(best || card.pontuacao !== undefined || badges.length > 0) && (
+            <div className="mt-1 flex flex-wrap gap-1">
+              {best && (
+                <Tag variant="brand" className="bg-raised px-1.5 py-0 text-[10px]">
+                  Melhor
+                </Tag>
+              )}
+              {card.pontuacao !== undefined && (
+                <Tag variant="quiet" className="px-1.5 py-0 text-[10px]">
+                  <span className="num">
+                    {card.pontuacao}
+                    {net !== undefined ? "/100" : "pts"}
+                  </span>
+                </Tag>
+              )}
+              {badges.map((rule, index) => (
+                <Tag
+                  key={`${rule.category}-${rule.threshold_brl ?? index}`}
+                  variant={
+                    feeWaiverRuleBadgeVariant(rule, annualFeeHint) === "paid_fee_default"
+                      ? "outline"
+                      : "positive"
+                  }
+                  className="px-1.5 py-0 text-[10px]"
+                >
+                  {feeWaiverRuleDisplayLabel(rule, annualFeeHint)}
+                </Tag>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="shrink-0 text-right">
+          {net !== undefined ? (
             <span
               className={cn(
-                "num shrink-0 text-xs font-medium",
-                best ? "font-semibold text-brand-accent" : "text-fg-3"
+                "num block whitespace-nowrap text-sm font-semibold",
+                signTone(net) === "negative"
+                  ? "text-danger-text"
+                  : signTone(net) === "positive" || best
+                    ? "text-success-text"
+                    : "text-fg"
               )}
             >
-              #{rank}
+              {moneyLabel(net)}
+            </span>
+          ) : (
+            <span
+              className={cn(
+                "num block whitespace-nowrap text-xs font-semibold",
+                isFree(card.anuidade) ? "text-success-text" : "text-fg"
+              )}
+            >
+              {feeLabel(card.anuidade)}
             </span>
           )}
-          <CardArt
-            artUrl={card.cardArtUrl}
-            issuerRaw={card.emissor ?? ""}
-            displayName={card.nome}
-            compact
-            className="h-10 w-16"
-          />
-          <div className="min-w-0 flex-1">
-            <p className="flex items-center gap-1.5 text-sm font-semibold leading-snug text-fg">
-              <span className="truncate group-hover/mini:underline">{card.nome}</span>
-              <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-fg-3" />
-            </p>
-            <p className="truncate text-xs text-fg-3">{card.emissor}</p>
-          </div>
+          <span className="block text-[10px] text-fg-3">
+            {net !== undefined ? "líq./mês" : "anuidade"}
+          </span>
         </div>
-        {net !== undefined ? (
-          <LeadFact
-            value={moneyLabel(net)}
-            label="Valor líquido"
-            marked={best}
-            tone={signTone(net)}
-            size="sm"
-            className="shrink-0 sm:text-right"
-          />
-        ) : (
-          <LeadFact
-            value={feeLabel(card.anuidade)}
-            label="Anuidade"
-            tone={isFree(card.anuidade) ? "positive" : "default"}
-            size="sm"
-            className="shrink-0 sm:text-right"
-          />
-        )}
       </Link>
-
-      <StatRow stats={stats} className="mt-3" />
-
-      <div className="mt-3 flex items-end justify-between gap-2">
-        <div className="flex min-w-0 flex-wrap gap-1.5">
-          {best && (
-            <Tag variant="brand" className="bg-raised">
-              Melhor escolha
-            </Tag>
-          )}
-          {card.pontuacao !== undefined && (
-            <Tag variant="quiet">
-              <span className="num">
-                {card.pontuacao}
-                {net !== undefined ? "/100" : "pts"}
-              </span>
-            </Tag>
-          )}
-          {badges.map((rule, index) => (
-            <Tag
-              key={`${rule.category}-${rule.threshold_brl ?? index}`}
-              variant={
-                feeWaiverRuleBadgeVariant(rule, annualFeeHint) === "paid_fee_default"
-                  ? "outline"
-                  : "positive"
-              }
-            >
-              {feeWaiverRuleDisplayLabel(rule, annualFeeHint)}
-            </Tag>
-          ))}
-        </div>
-        <button
-          type="button"
-          title={selected ? "Remover da comparação" : "Adicionar à comparação"}
-          disabled={!selected && !canAdd()}
-          onClick={() => (selected ? remove(card.id) : add({ id: card.id, name: card.nome }))}
-          className={cn(
-            "flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-colors duration-100 disabled:opacity-50",
-            selected
-              ? "border-brand-border bg-brand-wash text-brand-accent"
-              : "border-line-strong bg-page text-fg-2 hover:bg-surface-2 hover:text-fg"
-          )}
-        >
-          {selected ? <Check className="h-3.5 w-3.5" /> : <Plus className="h-3.5 w-3.5" />}
-        </button>
-      </div>
+      <button
+        type="button"
+        title={selected ? "Remover da comparação" : "Adicionar à comparação"}
+        disabled={!selected && !canAdd()}
+        onClick={() => (selected ? remove(card.id) : add({ id: card.id, name: card.nome }))}
+        className={cn(
+          "flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-colors duration-100 disabled:opacity-50",
+          selected
+            ? "border-brand-border bg-brand-wash text-brand-accent"
+            : "border-line-strong bg-page text-fg-2 hover:bg-surface-2 hover:text-fg"
+        )}
+      >
+        {selected ? <Check className="h-3 w-3" /> : <Plus className="h-3 w-3" />}
+      </button>
     </div>
   );
 }
 
 /* ─── Card list artifact ─── */
-function CardListArtifact({ output }: { output: unknown }) {
+function CardListArtifact({ output, onNavigate }: { output: unknown; onNavigate?: () => void }) {
   const cards = Array.isArray(output) ? (output as CardItem[]) : [];
   if (!cards.length) return null;
   const best = bestIndex(cards.map(netMonthly));
   return (
-    <div className="mt-2 space-y-2">
+    <div className="mt-1.5 divide-y divide-line overflow-hidden rounded-panel border border-line bg-surface">
       {cards.map((c, i) => (
         <MiniCard
           key={c.id}
           card={c}
           rank={c.pontuacao !== undefined ? i + 1 : undefined}
           best={best === i}
+          onNavigate={onNavigate}
         />
       ))}
     </div>
@@ -391,7 +424,7 @@ function CardListArtifact({ output }: { output: unknown }) {
 }
 
 /* ─── Compare artifact ─── */
-function CardCompareArtifact({ output }: { output: unknown }) {
+function CardCompareArtifact({ output, onNavigate }: { output: unknown; onNavigate?: () => void }) {
   const payload = output as
     | {
         cards?: CardItem[];
@@ -411,8 +444,6 @@ function CardCompareArtifact({ output }: { output: unknown }) {
   const cards = Array.isArray(payload) ? payload : (payload?.cards ?? []);
   if (cards.length < 2) return null;
   const delta = !Array.isArray(payload) ? payload.delta : null;
-  // The engine names the winner (same rule as the ranking). The delta is only
-  // a fallback for payloads from before that key existed.
   const namedWinnerId = !Array.isArray(payload) ? payload.vencedor?.id : undefined;
   const winner =
     (namedWinnerId ? cards.find((c) => c.id === namedWinnerId) : undefined) ??
@@ -423,7 +454,6 @@ function CardCompareArtifact({ output }: { output: unknown }) {
         : cards[0]
       : null);
 
-  // The net value is each column's lead number, so it is not repeated as a row.
   const rows: {
     label: string;
     key: (c: CardItem) => string;
@@ -448,21 +478,24 @@ function CardCompareArtifact({ output }: { output: unknown }) {
         c.valorEstimado?.beneficiosMensais ?? c.valorEstimado?.beneficiosIntangiveisMensais,
     },
     {
-      label: "Anuidade efetiva",
-      key: (c) =>
-        c.valorEstimado?.anuidadeEfetivaMensal !== undefined
-          ? `-${moneyLabel(c.valorEstimado.anuidadeEfetivaMensal).replace("+", "")}`
-          : feeLabel(c.anuidade),
+      label: "Anuidade",
+      key: (c) => {
+        const ef = c.valorEstimado?.anuidadeEfetivaMensal;
+        if (ef !== undefined) {
+          return ef === 0
+            ? "Grátis"
+            : `-${moneyLabel(ef).replace("+", "")} (${feeLabel(c.anuidade)})`;
+        }
+        return feeLabel(c.anuidade);
+      },
       numericKey: (c) =>
         c.valorEstimado?.anuidadeEfetivaMensal !== undefined
           ? -c.valorEstimado.anuidadeEfetivaMensal
-          : undefined,
-    },
-    {
-      label: "Anuidade",
-      key: (c) => feeLabel(c.anuidade),
-      numericKey: (c) =>
-        isFree(c.anuidade) ? 0 : typeof c.anuidade === "number" ? -c.anuidade : undefined,
+          : isFree(c.anuidade)
+            ? 0
+            : typeof c.anuidade === "number"
+              ? -c.anuidade
+              : undefined,
     },
     { label: "Lounge", key: (c) => (hasLounge(c.lounge) ? "Sim" : "Não") },
     { label: "Pontos", key: (c) => (c.pontos ? "Sim" : "Não") },
@@ -477,99 +510,81 @@ function CardCompareArtifact({ output }: { output: unknown }) {
   ];
 
   return (
-    <div className="mt-2 space-y-3">
+    <div className="mt-1.5 space-y-2">
       {(delta || winner) && (
-        <div className="rounded-panel bg-surface px-4 py-3">
-          {winner && (
-            <div className="flex flex-wrap items-center gap-2 py-1 text-sm">
-              <span>
-                Melhor no cálculo: <strong className="font-semibold text-fg">{winner.nome}</strong>
-              </span>
-              <Tag variant="brand">Melhor</Tag>
-            </div>
-          )}
+        <div className="flex flex-wrap items-center justify-between gap-2 rounded-panel border border-brand-border bg-brand-wash px-3 py-2 text-xs">
+          <div className="flex min-w-0 flex-wrap items-center gap-1.5">
+            {winner && (
+              <>
+                <span className="text-fg-2">Melhor:</span>
+                <strong className="font-semibold text-fg">{winner.nome}</strong>
+              </>
+            )}
+          </div>
           {delta && (
-            <div>
-              <DataRow
-                label="Delta/mês"
-                value={
-                  <span className={signClass(delta.valorLiquidoMensal)}>
-                    {moneyLabel(delta.valorLiquidoMensal ?? 0)}
-                  </span>
-                }
-                detail={delta.origemRetorno}
-              />
-              <DataRow
-                label="Delta/ano"
-                value={
-                  <span className={signClass(delta.valorLiquidoAnual)}>
-                    {`R$ ${Math.round(delta.valorLiquidoAnual ?? 0).toLocaleString("pt-BR")}`}
-                  </span>
-                }
-              />
-              <DataRow
-                label="Retorno"
-                value={
-                  <span className={signClass(delta.retornoBrutoMensal)}>
-                    {moneyLabel(delta.retornoBrutoMensal ?? 0)}
-                  </span>
-                }
-              />
-              <DataRow
-                label="Anuidade"
-                value={
-                  <span className={signClass(-(delta.anuidadeMensal ?? 0))}>
-                    {moneyLabel(-(delta.anuidadeMensal ?? 0))}
-                  </span>
-                }
-              />
+            <div className="num flex flex-wrap items-center gap-2 font-semibold">
+              <span className={signClass(delta.valorLiquidoMensal)}>
+                {moneyLabel(delta.valorLiquidoMensal ?? 0)}
+              </span>
+              <span className="text-fg-3">·</span>
+              <span className={signClass(delta.valorLiquidoAnual)}>
+                {`R$ ${Math.round(delta.valorLiquidoAnual ?? 0).toLocaleString("pt-BR")}/ano`}
+              </span>
             </div>
           )}
         </div>
       )}
-      <div className="overflow-x-auto rounded-panel border border-line bg-surface text-sm">
-        <table className="w-full min-w-[440px] border-collapse">
+      <div className="overflow-x-auto rounded-panel border border-line bg-surface text-xs">
+        <table className="w-full min-w-[380px] border-collapse">
           <thead>
             <tr className="border-b border-line bg-surface-2 align-top">
-              <th className="px-3.5 py-3 text-left text-xs font-medium text-fg-3">Critério</th>
+              <th className="w-24 px-2.5 py-2 text-left text-[11px] font-medium text-fg-3">
+                Critério
+              </th>
               {cards.map((c) => {
                 const isWinner = winner?.id === c.id;
                 const net = netMonthly(c);
                 return (
-                  <th key={c.id} className="px-3.5 py-3 text-left font-normal">
-                    <Link href={`/cartoes/${c.id}`} className="group/cmp flex items-center gap-2.5">
+                  <th key={c.id} className="px-2.5 py-2 text-left font-normal">
+                    <Link
+                      href={`/cartoes/${c.id}`}
+                      onClick={onNavigate}
+                      className="group/cmp flex items-center gap-2"
+                    >
                       <CardArt
                         artUrl={c.cardArtUrl}
                         issuerRaw={c.emissor ?? ""}
                         displayName={c.nome}
                         compact
-                        className="h-8 w-12"
+                        decorative
+                        className="h-6 w-9"
                       />
                       <span className="min-w-0">
-                        <span className="flex flex-wrap items-center gap-1.5 text-sm font-semibold leading-tight text-fg group-hover/cmp:underline">
+                        <span className="flex flex-wrap items-center gap-1 text-xs font-semibold leading-tight text-fg group-hover/cmp:underline">
                           <span>{c.nome}</span>
-                          {isWinner && <Tag variant="brand">Melhor</Tag>}
+                          {isWinner && (
+                            <Tag variant="brand" className="px-1.5 py-0 text-[10px]">
+                              Melhor
+                            </Tag>
+                          )}
                         </span>
-                        <span className="block text-xs text-fg-3">{c.emissor}</span>
+                        <span className="block text-[11px] text-fg-3">{c.emissor}</span>
                       </span>
                     </Link>
-                    {net !== undefined ? (
-                      <LeadFact
-                        value={moneyLabel(net)}
-                        label="Valor líquido"
-                        marked={isWinner}
-                        tone={signTone(net)}
-                        size="sm"
-                        className="mt-2"
-                      />
-                    ) : (
-                      <LeadFact
-                        value={feeLabel(c.anuidade)}
-                        label="Anuidade"
-                        size="sm"
-                        className="mt-2"
-                      />
-                    )}
+                    <p
+                      className={cn(
+                        "num mt-1 whitespace-nowrap text-sm font-semibold",
+                        net !== undefined
+                          ? signTone(net) === "negative"
+                            ? "text-danger-text"
+                            : signTone(net) === "positive" || isWinner
+                              ? "text-success-text"
+                              : "text-fg"
+                          : "text-fg"
+                      )}
+                    >
+                      {net !== undefined ? moneyLabel(net) : feeLabel(c.anuidade)}
+                    </p>
                   </th>
                 );
               })}
@@ -580,13 +595,13 @@ function CardCompareArtifact({ output }: { output: unknown }) {
               const best = row.numericKey ? bestIndex(cards.map(row.numericKey)) : null;
               return (
                 <tr key={row.label} className="border-b border-line last:border-0">
-                  <td className="px-3.5 py-2.5 text-fg-2">{row.label}</td>
+                  <td className="px-2.5 py-1.5 text-fg-2">{row.label}</td>
                   {cards.map((c, i) => (
-                    <td key={c.id} className="ledger-col px-3.5 py-2.5 text-fg">
+                    <td key={c.id} className="ledger-col px-2.5 py-1.5 text-fg">
                       <span
                         className={cn(
                           best === i &&
-                            "inline-flex rounded-full bg-success-tint px-2 py-0.5 font-semibold text-success-text"
+                            "inline-flex rounded-full bg-success-tint px-1.5 py-0.5 font-semibold text-success-text"
                         )}
                       >
                         {row.key(c)}
@@ -604,7 +619,7 @@ function CardCompareArtifact({ output }: { output: unknown }) {
 }
 
 /* ─── Detail artifact ─── */
-function CardDetailArtifact({ output }: { output: unknown }) {
+function CardDetailArtifact({ output, onNavigate }: { output: unknown; onNavigate?: () => void }) {
   const c = output as {
     id: string;
     nome: string;
@@ -613,78 +628,64 @@ function CardDetailArtifact({ output }: { output: unknown }) {
     lounge?: boolean;
     retornoFinanceiro?: { earning_summary?: string };
     valorEstimado?: CardItem["valorEstimado"];
-    beneficiosAgrupados?: Record<string, string[]>;
-    fonte?: string;
-    fonteUrl?: string;
     cardArtUrl?: string;
-    altText?: string;
   };
   if (!c?.id) return null;
   const net = c.valorEstimado ? (c.valorEstimado.valorLiquidoMensal ?? 0) : undefined;
 
-  const stats: Stat[] = [];
-  if (net !== undefined) {
-    stats.push({
-      label: "Anuidade",
-      value: feeLabel(c.anuidade),
-      tone: isFree(c.anuidade) ? "positive" : "default",
-    });
-  }
+  const metaParts: string[] = [c.emissor];
+  if (net !== undefined) metaParts.push(`Anuidade ${feeLabel(c.anuidade)}`);
   if (c.valorEstimado) {
-    stats.push({
-      label: "Retorno bruto",
-      value: moneyLabel(c.valorEstimado.retornoBrutoMensal ?? 0),
-    });
+    metaParts.push(`Retorno ${moneyLabel(c.valorEstimado.retornoBrutoMensal ?? 0)}`);
   }
-  stats.push({ label: "Lounge", value: hasLounge(c.lounge) ? "Sim" : "Não" });
+  metaParts.push(`Lounge ${hasLounge(c.lounge) ? "Sim" : "Não"}`);
 
   return (
-    <div className="mt-2 rounded-panel bg-surface p-4">
-      <div className="flex items-center gap-3">
-        <CardArt
-          artUrl={c.cardArtUrl}
-          issuerRaw={c.emissor ?? ""}
-          displayName={c.nome}
-          compact
-          className="h-10 w-16"
-        />
-        <div className="min-w-0 flex-1">
-          <p className="truncate text-sm font-semibold leading-tight text-fg">{c.nome}</p>
-          <p className="truncate text-xs text-fg-3">{c.emissor}</p>
-        </div>
-      </div>
-
-      {net !== undefined ? (
-        <LeadFact
-          value={moneyLabel(net)}
-          label="Valor líquido"
-          tone={net >= 0 ? "positive" : "negative"}
-          className="mt-3"
-        />
-      ) : (
-        <LeadFact
-          value={feeLabel(c.anuidade)}
-          label="Anuidade"
-          tone={isFree(c.anuidade) ? "positive" : "default"}
-          className="mt-3"
-        />
-      )}
-
-      <StatRow stats={stats} className="mt-3" />
-
-      {c.retornoFinanceiro?.earning_summary && (
-        <p className="mt-2.5 text-xs leading-relaxed text-fg-2">
-          {c.retornoFinanceiro.earning_summary}
+    <Link
+      href={`/cartoes/${c.id}`}
+      onClick={onNavigate}
+      className="group/det mt-1.5 flex items-center gap-2.5 rounded-panel border border-line bg-surface px-3 py-2.5 transition-colors duration-100 hover:bg-surface-2"
+    >
+      <CardArt
+        artUrl={c.cardArtUrl}
+        issuerRaw={c.emissor ?? ""}
+        displayName={c.nome}
+        compact
+        decorative
+        className="h-8 w-12"
+      />
+      <div className="min-w-0 flex-1">
+        <p className="flex items-center gap-1 text-[13px] font-semibold leading-tight text-fg group-hover/det:underline">
+          <span className="truncate">{c.nome}</span>
+          <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-fg-3" />
         </p>
-      )}
-
-      <Link
-        href={`/cartoes/${c.id}`}
-        className="mt-3 inline-flex h-8 items-center rounded-full border border-line-strong bg-page px-3.5 text-xs font-medium text-fg transition-colors duration-100 hover:bg-surface-2"
-      >
-        Ver mais
-      </Link>
-    </div>
+        <p className="num truncate text-[11px] text-fg-3">{metaParts.join(" · ")}</p>
+        {c.retornoFinanceiro?.earning_summary && (
+          <p className="mt-0.5 line-clamp-1 text-[11px] text-fg-2">
+            {c.retornoFinanceiro.earning_summary}
+          </p>
+        )}
+      </div>
+      <div className="shrink-0 text-right">
+        <span
+          className={cn(
+            "num block whitespace-nowrap text-sm font-semibold",
+            net !== undefined
+              ? net >= 0
+                ? "text-success-text"
+                : "text-danger-text"
+              : isFree(c.anuidade)
+                ? "text-success-text"
+                : "text-fg"
+          )}
+        >
+          {net !== undefined ? moneyLabel(net) : feeLabel(c.anuidade)}
+        </span>
+        <span className="block text-[10px] text-fg-3">
+          {net !== undefined ? "valor líq." : "anuidade"}
+        </span>
+      </div>
+    </Link>
   );
 }
 
@@ -717,70 +718,136 @@ function waiverRuleLabel(rule: FeeWaiverRule) {
   return rule.description;
 }
 
-function WaiverMiniCard({ card, faltam }: { card: WaiverCardItem; faltam?: number }) {
+function WaiverMiniCard({
+  card,
+  faltam,
+  onNavigate,
+}: {
+  card: WaiverCardItem;
+  faltam?: number;
+  onNavigate?: () => void;
+}) {
   const visibleRules = (card.regrasIsencao ?? []).slice(0, 2);
   return (
     <Link
       href={`/cartoes/${card.id}`}
-      className="group/waiver block rounded-panel bg-surface p-4 transition-colors duration-100 hover:bg-surface-2"
+      onClick={onNavigate}
+      className="group/waiver flex items-center gap-2.5 px-3 py-2 transition-colors duration-100 hover:bg-surface-2/60"
     >
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-3">
-        <div className="flex min-w-0 flex-1 items-center gap-3">
-          <CardArt
-            artUrl={card.cardArtUrl}
-            issuerRaw={card.emissor ?? ""}
-            displayName={card.nome}
-            compact
-            className="h-10 w-16"
-          />
-          <div className="min-w-0 flex-1">
-            <p className="flex items-center gap-1.5 text-sm font-semibold leading-snug text-fg">
-              <span className="truncate group-hover/waiver:underline">{card.nome}</span>
-              <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-fg-3" />
-            </p>
-            <p className="truncate text-xs text-fg-3">{card.emissor}</p>
+      <CardArt
+        artUrl={card.cardArtUrl}
+        issuerRaw={card.emissor ?? ""}
+        displayName={card.nome}
+        compact
+        decorative
+        className="h-7 w-11"
+      />
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center gap-1">
+          <span className="truncate text-[13px] font-semibold leading-tight text-fg group-hover/waiver:underline">
+            {card.nome}
+          </span>
+          <ArrowUpRight className="h-3 w-3 shrink-0 text-fg-3" />
+        </div>
+        <p className="truncate text-[11px] text-fg-3">{card.emissor}</p>
+        {visibleRules.length > 0 && (
+          <div className="mt-1 flex min-w-0 flex-wrap gap-1">
+            {visibleRules.map((rule, index) => {
+              const Icon =
+                rule.category === "investment"
+                  ? WalletCards
+                  : rule.category === "cashback"
+                    ? Coins
+                    : rule.category === "miles"
+                      ? Plane
+                      : ReceiptText;
+              return (
+                <Tag
+                  key={`${rule.category}-${rule.threshold_brl ?? index}`}
+                  variant="outline"
+                  className="min-w-0 max-w-full shrink px-1.5 py-0 text-[10px]"
+                >
+                  <Icon className="h-2.5 w-2.5 shrink-0" />
+                  <span className="num truncate">{waiverRuleLabel(rule)}</span>
+                </Tag>
+              );
+            })}
           </div>
-        </div>
-        <div className="shrink-0 sm:text-right">
-          <LeadFact value={feeLabel(card.anuidade)} label="Anuidade" size="sm" />
-          {faltam !== undefined ? (
-            <p className="num mt-1 text-xs text-fg-2">faltam R$ {faltam.toLocaleString("pt-BR")}</p>
-          ) : (
-            <Tag variant="positive" className="mt-1">
-              Acessível agora
-            </Tag>
-          )}
-        </div>
+        )}
       </div>
-      {visibleRules.length > 0 && (
-        <div className="mt-3 flex min-w-0 flex-wrap gap-1.5">
-          {visibleRules.map((rule, index) => {
-            const Icon =
-              rule.category === "investment"
-                ? WalletCards
-                : rule.category === "cashback"
-                  ? Coins
-                  : rule.category === "miles"
-                    ? Plane
-                    : ReceiptText;
-            return (
-              <Tag
-                key={`${rule.category}-${rule.threshold_brl ?? index}`}
-                variant="outline"
-                className="min-w-0 max-w-full shrink"
-              >
-                <Icon className="h-3 w-3 shrink-0" />
-                <span className="num truncate">{waiverRuleLabel(rule)}</span>
-              </Tag>
-            );
-          })}
-        </div>
-      )}
+      <div className="shrink-0 text-right">
+        <span
+          className={cn(
+            "num block whitespace-nowrap text-xs font-semibold",
+            isFree(card.anuidade) ? "text-success-text" : "text-fg"
+          )}
+        >
+          {feeLabel(card.anuidade)}
+        </span>
+        {faltam !== undefined ? (
+          <span className="num block text-[10px] text-fg-3">
+            +R$ {faltam.toLocaleString("pt-BR")}
+          </span>
+        ) : (
+          <span className="block text-[10px] font-medium text-success-text">Acessível</span>
+        )}
+      </div>
     </Link>
   );
 }
 
-function InvestmentWaiverArtifact({ output }: { output: unknown }) {
+const WAIVER_COLLAPSED_LIMIT = 6;
+
+function WaiverGroupList({
+  title,
+  items,
+  showFaltam,
+  onNavigate,
+}: {
+  title: string;
+  items: WaiverCardItem[];
+  showFaltam?: boolean;
+  onNavigate?: () => void;
+}) {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? items : items.slice(0, WAIVER_COLLAPSED_LIMIT);
+  const hiddenCount = items.length - visible.length;
+
+  return (
+    <div className="space-y-1">
+      <p className="text-[11px] font-medium text-fg-3">
+        {title} <span className="num">({items.length})</span>
+      </p>
+      <div className="divide-y divide-line overflow-hidden rounded-panel border border-line bg-surface">
+        {visible.map((c) => (
+          <WaiverMiniCard
+            key={c.id}
+            card={c}
+            faltam={showFaltam ? c.faltam : undefined}
+            onNavigate={onNavigate}
+          />
+        ))}
+        {items.length > WAIVER_COLLAPSED_LIMIT && (
+          <button
+            type="button"
+            onClick={() => setShowAll((prev) => !prev)}
+            className="w-full px-3 py-1.5 text-center text-[11px] font-medium text-fg-2 transition-colors hover:bg-surface-2 hover:text-fg"
+          >
+            {showAll ? "Mostrar menos" : `Ver mais ${hiddenCount} cartões`}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function InvestmentWaiverArtifact({
+  output,
+  onNavigate,
+}: {
+  output: unknown;
+  onNavigate?: () => void;
+}) {
   const data = output as {
     totalEncontrado?: number;
     investidoUsuario?: number;
@@ -796,41 +863,29 @@ function InvestmentWaiverArtifact({ output }: { output: unknown }) {
 
   if (flat) {
     return (
-      <div className="mt-2 space-y-2">
+      <div className="mt-1.5 divide-y divide-line overflow-hidden rounded-panel border border-line bg-surface">
         {flat.map((c) => (
-          <WaiverMiniCard key={c.id} card={c} />
+          <WaiverMiniCard key={c.id} card={c} onNavigate={onNavigate} />
         ))}
       </div>
     );
   }
 
+  const nearby = needsMore.filter((c) => (c.faltam ?? Infinity) <= 100_000);
+
   return (
-    <div className="mt-2 space-y-4">
+    <div className="mt-1.5 space-y-2.5">
       {accessible.length > 0 && (
-        <div className="space-y-2">
-          <p className="text-xs font-medium text-muted-foreground">
-            Acessíveis agora <span className="num">({accessible.length})</span>
-          </p>
-          {accessible.map((c) => (
-            <WaiverMiniCard key={c.id} card={c} />
-          ))}
-        </div>
+        <WaiverGroupList title="Acessíveis agora" items={accessible} onNavigate={onNavigate} />
       )}
-      {needsMore.length > 0 &&
-        (() => {
-          const nearby = needsMore.filter((c) => (c.faltam ?? Infinity) <= 100_000);
-          if (!nearby.length) return null;
-          return (
-            <div className="space-y-2">
-              <p className="text-xs font-medium text-muted-foreground">
-                Precisam de mais investimento <span className="num">({nearby.length})</span>
-              </p>
-              {nearby.map((c) => (
-                <WaiverMiniCard key={c.id} card={c} faltam={c.faltam} />
-              ))}
-            </div>
-          );
-        })()}
+      {nearby.length > 0 && (
+        <WaiverGroupList
+          title="Precisam de mais investimento"
+          items={nearby}
+          showFaltam
+          onNavigate={onNavigate}
+        />
+      )}
     </div>
   );
 }
@@ -848,10 +903,12 @@ function ToolArtifact({
   toolName,
   state,
   output,
+  onNavigate,
 }: {
   toolName: string;
   state: string;
   output?: unknown;
+  onNavigate?: () => void;
 }) {
   const isLoading = state === "input-streaming" || state === "input";
   if (isLoading) {
@@ -865,16 +922,16 @@ function ToolArtifact({
   if (!output) return null;
 
   if (toolName === "filterCards" || toolName === "rankCardsForProfile") {
-    return <CardListArtifact output={output} />;
+    return <CardListArtifact output={output} onNavigate={onNavigate} />;
   }
   if (toolName === "compareCards") {
-    return <CardCompareArtifact output={output} />;
+    return <CardCompareArtifact output={output} onNavigate={onNavigate} />;
   }
   if (toolName === "getCardDetail") {
-    return <CardDetailArtifact output={output} />;
+    return <CardDetailArtifact output={output} onNavigate={onNavigate} />;
   }
   if (toolName === "getInvestmentWaiverCards") {
-    return <InvestmentWaiverArtifact output={output} />;
+    return <InvestmentWaiverArtifact output={output} onNavigate={onNavigate} />;
   }
   return null;
 }
@@ -898,7 +955,7 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
     setHistory(readChatHistory());
   }, []);
 
-  const { messages, sendMessage, status, stop } = useChat({
+  const { messages, setMessages, sendMessage, status, stop } = useChat({
     transport: new DefaultChatTransport({
       api: "/api/chat",
     }),
@@ -908,6 +965,94 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
   const isHero = variant === "hero";
   const isStreaming = status === "streaming" || status === "submitted";
   const [expanded, setExpanded] = useState(false);
+  const restoredSessionRef = React.useRef(false);
+  const historyScrollRef = React.useRef<HTMLDivElement | null>(null);
+  const convoContainerRef = React.useRef<HTMLDivElement | null>(null);
+
+  const persistActiveSession = React.useCallback(
+    (scrollTopOverride?: number) => {
+      if (typeof window === "undefined") return;
+      const scrollEl =
+        selectedHistory && historyScrollRef.current
+          ? historyScrollRef.current
+          : (convoContainerRef.current?.querySelector<HTMLElement>("[role='log']") ??
+            convoContainerRef.current);
+      const scrollTop = scrollTopOverride ?? scrollEl?.scrollTop ?? 0;
+      const payload: ActiveChatSession = {
+        variant,
+        conversationId: conversationIdRef.current,
+        messages: messages as UIMessage[],
+        isFullscreen,
+        selectedHistory,
+        scrollTop,
+      };
+      try {
+        window.sessionStorage.setItem(ACTIVE_CHAT_SESSION_KEY, JSON.stringify(payload));
+      } catch {
+        // Ignore storage quota errors
+      }
+    },
+    [isFullscreen, messages, selectedHistory, variant]
+  );
+
+  React.useEffect(() => {
+    if (restoredSessionRef.current) return;
+    restoredSessionRef.current = true;
+    if (typeof window === "undefined") return;
+    try {
+      const raw = window.sessionStorage.getItem(ACTIVE_CHAT_SESSION_KEY);
+      if (!raw) return;
+      const saved = JSON.parse(raw) as ActiveChatSession;
+      if (saved.variant !== variant) return;
+      if (!saved.messages.length && !saved.selectedHistory) return;
+      conversationIdRef.current = saved.conversationId;
+      if (saved.messages.length) {
+        setMessages(saved.messages);
+        setExpanded(true);
+      }
+      if (saved.selectedHistory) {
+        setSelectedHistory(saved.selectedHistory);
+      }
+      if (saved.isFullscreen) {
+        setIsFullscreen(true);
+      }
+      if (saved.scrollTop > 0) {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const target = saved.selectedHistory
+              ? historyScrollRef.current
+              : (convoContainerRef.current?.querySelector<HTMLElement>("[role='log']") ??
+                convoContainerRef.current);
+            if (target) target.scrollTop = saved.scrollTop;
+          });
+        });
+      }
+    } catch {
+      // Ignore malformed sessionStorage
+    }
+  }, [setMessages, variant]);
+
+  React.useEffect(() => {
+    if (!restoredSessionRef.current || isStreaming) return;
+    if (!messages.length && !selectedHistory) {
+      if (typeof window !== "undefined") {
+        window.sessionStorage.removeItem(ACTIVE_CHAT_SESSION_KEY);
+      }
+      return;
+    }
+    persistActiveSession();
+  }, [isStreaming, messages, persistActiveSession, selectedHistory]);
+
+  function handleResetConversation() {
+    conversationIdRef.current = null;
+    setMessages([]);
+    setSelectedHistory(null);
+    setExpanded(false);
+    setIsFullscreen(false);
+    if (typeof window !== "undefined") {
+      window.sessionStorage.removeItem(ACTIVE_CHAT_SESSION_KEY);
+    }
+  }
 
   function handleSubmit(text: string) {
     if (!text.trim()) return;
@@ -977,37 +1122,43 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
       : null;
 
   const conversationContent = (
-    <Conversation className="h-full overflow-y-auto px-4">
-      <ConversationContent className="mx-auto max-w-2xl gap-5 px-0 py-5">
-        {hiddenCount > 0 && (
-          <button type="button" onClick={() => setExpanded(true)} className={QUIET_BUTTON}>
-            <ChevronUp className="h-3 w-3" />
-            {hiddenCount} mensagen{hiddenCount !== 1 ? "s" : ""} anteriores
-          </button>
-        )}
-        {(visibleMessages as UIMessage[]).map((message) => (
-          <ChatMessageBubble key={message.id} message={message} />
-        ))}
-        {isStreaming && (
-          <div
-            data-testid="chat-loading"
-            role="status"
-            aria-label="Carregando"
-            className="flex items-center gap-2.5 py-1 text-xs text-fg-3"
-          >
-            <BrandMark animated className="h-4 w-5" />
-            <span>Analisando…</span>
-          </div>
-        )}
-        {expanded && messages.length > 2 && (
-          <button type="button" onClick={() => setExpanded(false)} className={QUIET_BUTTON}>
-            <ChevronDown className="h-3.5 w-3.5" />
-            Recolher
-          </button>
-        )}
-      </ConversationContent>
-      <ConversationScrollButton />
-    </Conversation>
+    <div ref={convoContainerRef} className="h-full min-h-0">
+      <Conversation className="h-full overflow-y-auto px-3 sm:px-4">
+        <ConversationContent className="mx-auto max-w-2xl gap-3 px-0 py-3">
+          {hiddenCount > 0 && (
+            <button type="button" onClick={() => setExpanded(true)} className={QUIET_BUTTON}>
+              <ChevronUp className="h-3 w-3" />
+              {hiddenCount} mensagen{hiddenCount !== 1 ? "s" : ""} anteriores
+            </button>
+          )}
+          {(visibleMessages as UIMessage[]).map((message) => (
+            <ChatMessageBubble
+              key={message.id}
+              message={message}
+              onNavigate={() => persistActiveSession()}
+            />
+          ))}
+          {isStreaming && (
+            <div
+              data-testid="chat-loading"
+              role="status"
+              aria-label="Carregando"
+              className="flex items-center gap-2 py-1 text-xs text-fg-3"
+            >
+              <BrandMark animated className="h-4 w-5" />
+              <span>Analisando…</span>
+            </div>
+          )}
+          {expanded && messages.length > 2 && (
+            <button type="button" onClick={() => setExpanded(false)} className={QUIET_BUTTON}>
+              <ChevronDown className="h-3.5 w-3.5" />
+              Recolher
+            </button>
+          )}
+        </ConversationContent>
+        <ConversationScrollButton />
+      </Conversation>
+    </div>
   );
 
   return (
@@ -1070,32 +1221,47 @@ export function ChatInterface({ variant = "full", className }: ChatInterfaceProp
             transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Header */}
-            <div className="flex h-14 shrink-0 items-center justify-between gap-3 border-b border-line bg-page px-4 sm:px-6">
+            <div className="flex h-12 shrink-0 items-center justify-between gap-3 border-b border-line bg-page px-4 sm:px-6">
               <div className="flex min-w-0 items-center gap-2.5">
                 <BrandMark className="h-4 w-5" />
                 <p className="min-w-0 truncate text-sm font-semibold text-fg">
                   {selectedHistory ? selectedHistory.title : "Assistente de Cartões"}
                 </p>
               </div>
-              <button
-                type="button"
-                aria-label="Fechar conversa"
-                onClick={() => {
-                  setIsFullscreen(false);
-                  setSelectedHistory(null);
-                }}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-page text-fg-2 transition-colors duration-100 hover:bg-surface hover:text-fg"
-              >
-                <X className="h-4 w-4" />
-              </button>
+              <div className="flex shrink-0 items-center gap-2">
+                {(hasMessages || selectedHistory) && (
+                  <button
+                    type="button"
+                    onClick={handleResetConversation}
+                    className="h-8 rounded-full border border-line bg-page px-3 text-xs font-medium text-fg-2 transition-colors duration-100 hover:bg-surface hover:text-fg"
+                  >
+                    Nova conversa
+                  </button>
+                )}
+                <button
+                  type="button"
+                  aria-label="Fechar conversa"
+                  onClick={() => {
+                    setIsFullscreen(false);
+                    setSelectedHistory(null);
+                  }}
+                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line bg-page text-fg-2 transition-colors duration-100 hover:bg-surface hover:text-fg"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
             </div>
 
             {/* Conversation */}
             {selectedHistory ? (
-              <div className="min-h-0 flex-1 overflow-y-auto px-4">
-                <div className="mx-auto flex max-w-[768px] flex-col gap-6 py-6">
+              <div ref={historyScrollRef} className="min-h-0 flex-1 overflow-y-auto px-3 sm:px-4">
+                <div className="mx-auto flex max-w-[768px] flex-col gap-3 py-3">
                   {selectedHistory.messages.map((msg) => (
-                    <ChatMessageBubble key={msg.id} message={msg as UIMessage} />
+                    <ChatMessageBubble
+                      key={msg.id}
+                      message={msg as UIMessage}
+                      onNavigate={() => persistActiveSession()}
+                    />
                   ))}
                 </div>
               </div>

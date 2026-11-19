@@ -24,6 +24,25 @@ export function AvenzaParentWordmark({ className }: { className?: string }) {
   );
 }
 
+/** External link to Avenza parent site ("por avenza"). */
+export function AvenzaParentLink({ className }: { className?: string }) {
+  return (
+    <a
+      href="https://avenza.cloud"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="por Avenza (abre avenza.cloud)"
+      className={cn(
+        "inline-flex items-center gap-1 text-[11px] font-medium text-fg-3 transition-colors duration-100 hover:text-fg",
+        className
+      )}
+    >
+      <span>por</span>
+      <AvenzaParentWordmark className="h-[8px] text-fg-2" />
+    </a>
+  );
+}
+
 /** Sub-product brand lockup: "Cartão Ideal | por avenza" (inspired by Devin by Cognition). */
 export const BrandWordmark = ({ className, showParent = true }: BrandWordmarkProps) => (
   <span className={cn("inline-flex items-center gap-2 whitespace-nowrap leading-none", className)}>

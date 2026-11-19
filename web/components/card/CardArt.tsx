@@ -10,6 +10,8 @@ interface CardArtProps {
   className?: string;
   /** Small rows show initials only when there is no art. */
   compact?: boolean;
+  /** Hide from accessibility/copy when adjacent to a visible card name. */
+  decorative?: boolean;
   loading?: "eager" | "lazy";
 }
 
@@ -24,13 +26,16 @@ export function CardArt({
   displayName,
   className,
   compact = false,
+  decorative = false,
   loading = "lazy",
 }: CardArtProps) {
   const src = cardArtSrc(artUrl);
-  const label = displayName ? `Cartão ${displayName}` : `Cartão ${issuerRaw}`;
+  const rawName = displayName || issuerRaw;
+  const label = /^cart[aã]o\b/i.test(rawName) ? rawName : `Cartão ${rawName}`;
 
   return (
     <div
+      aria-hidden={decorative || undefined}
       className={cn(
         "flex shrink-0 items-center justify-center overflow-hidden bg-surface-2",
         compact
@@ -40,11 +45,16 @@ export function CardArt({
       )}
     >
       {src ? (
-        <img src={src} alt={label} loading={loading} className="h-full w-full object-contain" />
+        <img
+          src={src}
+          alt={decorative ? "" : label}
+          loading={loading}
+          className="h-full w-full object-contain"
+        />
       ) : (
         <div
           role="img"
-          aria-label={label}
+          aria-label={decorative ? undefined : label}
           className="flex h-full w-full flex-col items-center justify-center gap-0.5 px-1 text-center"
         >
           <span className={cn("font-semibold text-fg", compact ? "text-xs" : "text-xl")}>

@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
 function safeInternalPath(value: string | null): string | null {
@@ -12,17 +12,39 @@ function safeInternalPath(value: string | null): string | null {
 }
 
 export function CardDetailBackLink() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const from = safeInternalPath(searchParams.get("from"));
-  const href = from ?? "/cartoes";
+  const [canGoBack, setCanGoBack] = useState(false);
+
+  useEffect(() => {
+    const isExternalReferrer = (() => {
+      if (!document.referrer) return false;
+      try {
+        return new URL(document.referrer).origin !== window.location.origin;
+      } catch {
+        return true;
+      }
+    })();
+    setCanGoBack(window.history.length > 1 && !isExternalReferrer);
+  }, []);
+
+  function handleBack() {
+    if (canGoBack) {
+      router.back();
+      return;
+    }
+    router.push(from ?? "/cartoes");
+  }
 
   return (
-    <Link
-      href={href}
-      className="mb-5 hidden items-center gap-1.5 rounded-full text-sm font-medium text-fg-3 transition-colors duration-100 hover:text-fg md:inline-flex"
+    <button
+      type="button"
+      onClick={handleBack}
+      className="mb-4 inline-flex items-center gap-1.5 rounded-full text-sm font-medium text-fg-3 transition-colors duration-100 hover:text-fg"
     >
       <ArrowLeft className="h-4 w-4" />
-      {from ? "Voltar para análise" : "Todos os cartões"}
-    </Link>
+      {canGoBack || from ? "Voltar" : "Todos os cartões"}
+    </button>
   );
 }

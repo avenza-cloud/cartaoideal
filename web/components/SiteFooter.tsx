@@ -1,5 +1,5 @@
 import { BrandMark } from "@/components/BrandMark";
-import { AvenzaParentWordmark } from "@/components/BrandWordmark";
+import { AvenzaParentLink } from "@/components/BrandWordmark";
 
 export function SiteFooter() {
   return (
@@ -9,8 +9,7 @@ export function SiteFooter() {
           <BrandMark className="h-3.5 w-4" />
           <span className="font-medium text-fg-2">Cartão Ideal</span>
           <span aria-hidden="true">·</span>
-          <span>por</span>
-          <AvenzaParentWordmark className="h-[8px] text-fg-2" />
+          <AvenzaParentLink className="text-xs" />
         </div>
         <p className="max-w-xl text-xs leading-relaxed text-fg-3">
           Conteúdo informativo. Não é recomendação financeira. Dados podem conter imprecisões;
