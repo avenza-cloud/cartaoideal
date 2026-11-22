@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { CreditCard, Home, MessageSquare, UserRound } from "lucide-react";
-import { BrandMark } from "@/components/BrandMark";
 import { AvenzaParentLink, BrandWordmark } from "@/components/BrandWordmark";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cn } from "@/lib/utils";
@@ -38,9 +37,9 @@ export function AppHeader({ alwaysBorder = false }: { alwaysBorder?: boolean }) 
         <div className="inline-flex min-w-0 items-center gap-2">
           <Link
             href="/"
-            className="inline-flex min-w-0 items-center gap-2.5 rounded-md py-1 focus-visible:outline-offset-4"
+            className="inline-flex min-w-0 items-center rounded-md py-1 focus-visible:outline-offset-4"
+            aria-label="Cartão Ideal — início"
           >
-            <BrandMark className="h-[20px] w-[24px]" />
             <BrandWordmark showParent={false} />
           </Link>
           <span

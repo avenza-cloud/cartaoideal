@@ -25,8 +25,7 @@ test.describe("mobile compatibility", () => {
 
   test("home uses new brand and has no page overflow", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByText("Cartão Ideal").first()).toBeVisible();
-    await expect(page.locator("header").getByTestId("brand-mark")).toBeVisible();
+    await expect(page.getByRole("img", { name: "Cartão Ideal" }).first()).toBeVisible();
     await expect(page).toHaveTitle(/Cartão Ideal/);
     await expectNoHorizontalOverflow(page);
   });

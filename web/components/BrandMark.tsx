@@ -4,33 +4,40 @@ interface BrandMarkProps {
   className?: string;
   /** Subtle wave animation for genuine loading / assistant thinking states. */
   animated?: boolean;
-  /** Render in currentColor instead of Vermelho Avenza (#ff3333). */
+  /** Render all dots in currentColor (no accent). */
   mono?: boolean;
 }
 
-/**
- * Genuine Avenza 8-dot leaning 3×3 mark (13.5°).
- * Red (#ff3333) means Avenza; the leaning dots form the A of entries put in order.
- */
+/** Cartão Ideal mark from avenza-brand (299→1: rows of three, two, one; accent dot last). */
+const DOTS: Array<{ cx: number; cy: number; accent?: boolean }> = [
+  { cx: 32.22, cy: 14.94 },
+  { cx: 68.22, cy: 14.94 },
+  { cx: 104.22, cy: 14.94 },
+  { cx: 41.58, cy: 50.94 },
+  { cx: 77.58, cy: 50.94 },
+  { cx: 50.94, cy: 86.94, accent: true },
+];
+
 export function BrandMark({ className, animated = false, mono = false }: BrandMarkProps) {
   return (
     <svg
-      viewBox="0 0 119.16 101.88"
+      viewBox="-4 -4 127.16 109.88"
       role="img"
-      aria-label="Avenza — Cartão Ideal"
+      aria-label="Cartão Ideal"
       data-testid="brand-mark"
       className={cn("shrink-0", animated && "avenza-dot-loading", className)}
     >
-      <g className={mono ? "fill-current" : "fill-brand"}>
-        <rect x="0" y="72" width="29.88" height="29.88" rx="14.94" />
-        <rect x="72" y="72" width="29.88" height="29.88" rx="14.94" />
-        <rect x="8.64" y="36" width="29.88" height="29.88" rx="14.94" />
-        <rect x="80.64" y="36" width="29.88" height="29.88" rx="14.94" />
-        <rect x="44.64" y="36" width="29.88" height="29.88" rx="14.94" />
-        <rect x="17.28" y="0" width="29.88" height="29.88" rx="14.94" />
-        <rect x="89.28" y="0" width="29.88" height="29.88" rx="14.94" />
-        <rect x="53.28" y="0" width="29.88" height="29.88" rx="14.94" />
-      </g>
+      {DOTS.map(({ cx, cy, accent }) => (
+        <circle
+          key={`${cx}-${cy}`}
+          cx={cx}
+          cy={cy}
+          r={14.94}
+          className={cn(
+            accent && !mono ? "fill-brand" : mono ? "fill-current" : "fill-fg"
+          )}
+        />
+      ))}
     </svg>
   );
 }

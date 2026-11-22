@@ -1,13 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Cartão Ideal por Avenza">
-  <rect width="160" height="160" rx="34" fill="#fffff5" />
-  <g fill="#ff3333">
-    <rect x="20.42" y="101.06" width="29.88" height="29.88" rx="14.94" />
-    <rect x="92.42" y="101.06" width="29.88" height="29.88" rx="14.94" />
-    <rect x="29.06" y="65.06" width="29.88" height="29.88" rx="14.94" />
-    <rect x="101.06" y="65.06" width="29.88" height="29.88" rx="14.94" />
-    <rect x="65.06" y="65.06" width="29.88" height="29.88" rx="14.94" />
-    <rect x="37.7" y="29.06" width="29.88" height="29.88" rx="14.94" />
-    <rect x="109.7" y="29.06" width="29.88" height="29.88" rx="14.94" />
-    <rect x="73.7" y="29.06" width="29.88" height="29.88" rx="14.94" />
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="Cartão Ideal">
+  <rect width="160" height="160" rx="34" fill="#fffff5"/>
+  <circle cx="48" cy="52" r="15" fill="#111111"/>
+  <circle cx="84" cy="52" r="15" fill="#111111"/>
+  <circle cx="120" cy="52" r="15" fill="#111111"/>
+  <circle cx="57" cy="88" r="15" fill="#111111"/>
+  <circle cx="93" cy="88" r="15" fill="#111111"/>
+  <circle cx="66" cy="124" r="15" fill="#ff3333"/>
 </svg>

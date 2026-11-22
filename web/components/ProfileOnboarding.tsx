@@ -7,7 +7,6 @@ import { searchCardOptions, type ClientCardOption } from "@/lib/card-options";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { CardArt, Tag } from "@/components/card";
 import { Button } from "@/components/ui/button";
-import { BrandMark } from "@/components/BrandMark";
 import { BrandWordmark } from "@/components/BrandWordmark";
 import type { UserProfile } from "@/types/cards";
 import { cn } from "@/lib/utils";
@@ -123,10 +122,7 @@ export function ProfileOnboarding({ cardOptions, curatedOptions }: ProfileOnboar
             Voltar
           </button>
         ) : (
-          <div className="inline-flex items-center gap-2.5">
-            <BrandMark className="h-5 w-6" />
-            <BrandWordmark />
-          </div>
+          <BrandWordmark showParent={false} />
         )}
 
         <div className="flex items-center gap-4">
