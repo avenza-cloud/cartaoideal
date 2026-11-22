@@ -33,9 +33,7 @@ export function BrandMark({ className, animated = false, mono = false }: BrandMa
           cx={cx}
           cy={cy}
           r={14.94}
-          className={cn(
-            accent && !mono ? "fill-brand" : mono ? "fill-current" : "fill-fg"
-          )}
+          className={cn(accent && !mono ? "fill-brand" : mono ? "fill-current" : "fill-fg")}
         />
       ))}
     </svg>
