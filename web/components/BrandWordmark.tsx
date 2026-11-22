@@ -1,19 +1,11 @@
-"use client";
-
-import Image from "next/image";
-import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
+import { CartaoIdealLockup } from "@/components/CartaoIdealLockup";
 
 type BrandWordmarkProps = {
   className?: string;
   /** Show the parent "por avenza" sub-product lockup (Cognition / Devin pattern). */
   showParent?: boolean;
 };
-
-const LOCKUPS = {
-  light: { src: "/brand/cartaoideal-lockup.svg", width: 307, height: 110 },
-  dark: { src: "/brand/cartaoideal-lockup-inverse.svg", width: 355, height: 158 },
-} as const;
 
 /** Drawn Avenza parent wordmark vector (from avenza-brand/logo/avenza-lockup.svg). */
 export function AvenzaParentWordmark({ className }: { className?: string }) {
@@ -52,26 +44,10 @@ export function AvenzaParentLink({ className }: { className?: string }) {
   );
 }
 
-function CartaoIdealLockup({ className, priority }: { className?: string; priority?: boolean }) {
-  const { resolvedTheme } = useTheme();
-  const asset = resolvedTheme === "dark" ? LOCKUPS.dark : LOCKUPS.light;
-
-  return (
-    <Image
-      src={asset.src}
-      alt="Cartão Ideal"
-      width={asset.width}
-      height={asset.height}
-      priority={priority}
-      className={cn("h-[22px] w-auto shrink-0 select-none", className)}
-    />
-  );
-}
-
 /** Official avenza-brand lockup, optionally with "por avenza" parent line. */
 export const BrandWordmark = ({ className, showParent = true }: BrandWordmarkProps) => (
   <span className={cn("inline-flex items-center gap-2 whitespace-nowrap leading-none", className)}>
-    <CartaoIdealLockup priority />
+    <CartaoIdealLockup />
     {showParent && (
       <>
         <span aria-hidden="true" className="hidden h-3.5 w-px bg-line-strong/45 sm:inline-block" />
